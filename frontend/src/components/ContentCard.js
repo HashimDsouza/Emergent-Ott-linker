@@ -169,42 +169,36 @@ const ContentCard = ({ content, currentUser, onContentClick, compact = false, is
           <div className="flex items-center gap-2 py-1 border-t border-white/5">
             <span className="text-[9px] text-gray-500 font-medium">Why:</span>
             <div className="flex gap-1.5">
-              {content.social_links?.youtube && (
-                <a
-                  href={content.social_links.youtube}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-6 h-6 rounded-full bg-red-500/20 border border-red-500/30 flex items-center justify-center hover:bg-red-500/30 transition-colors"
-                  onClick={(e) => e.stopPropagation()}
-                  data-testid={`social-youtube-${content.id}`}
-                >
-                  <FaYoutube className="w-3 h-3 text-red-500" />
-                </a>
-              )}
-              {content.social_links?.twitter && (
-                <a
-                  href={content.social_links.twitter}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-6 h-6 rounded-full bg-white/10 border border-white/20 flex items-center justify-center hover:bg-white/20 transition-colors"
-                  onClick={(e) => e.stopPropagation()}
-                  data-testid={`social-twitter-${content.id}`}
-                >
-                  <FaXTwitter className="w-3 h-3 text-white" />
-                </a>
-              )}
-              {content.social_links?.reddit && (
-                <a
-                  href={content.social_links.reddit}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-6 h-6 rounded-full bg-orange-500/20 border border-orange-500/30 flex items-center justify-center hover:bg-orange-500/30 transition-colors"
-                  onClick={(e) => e.stopPropagation()}
-                  data-testid={`social-reddit-${content.id}`}
-                >
-                  <FaReddit className="w-3 h-3 text-orange-500" />
-                </a>
-              )}
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  openSocialLink('youtube', content.title, content.social_links?.youtube);
+                }}
+                className="w-6 h-6 rounded-full bg-red-500/20 border border-red-500/30 flex items-center justify-center hover:bg-red-500/30 transition-colors"
+                data-testid={`social-youtube-${content.id}`}
+              >
+                <FaYoutube className="w-3 h-3 text-red-500" />
+              </button>
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  openSocialLink('twitter', content.title, content.social_links?.twitter);
+                }}
+                className="w-6 h-6 rounded-full bg-white/10 border border-white/20 flex items-center justify-center hover:bg-white/20 transition-colors"
+                data-testid={`social-twitter-${content.id}`}
+              >
+                <FaXTwitter className="w-3 h-3 text-white" />
+              </button>
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  openSocialLink('reddit', content.title, content.social_links?.reddit);
+                }}
+                className="w-6 h-6 rounded-full bg-orange-500/20 border border-orange-500/30 flex items-center justify-center hover:bg-orange-500/30 transition-colors"
+                data-testid={`social-reddit-${content.id}`}
+              >
+                <FaReddit className="w-3 h-3 text-orange-500" />
+              </button>
             </div>
           </div>
 
