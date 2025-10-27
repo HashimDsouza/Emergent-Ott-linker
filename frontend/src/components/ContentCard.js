@@ -111,9 +111,10 @@ const ContentCard = ({ content, currentUser, onContentClick, compact = false, is
     // Compact view for grid layout (3x2)
     return (
       <div 
-        className="content-card glass-card overflow-hidden group rounded-xl relative" 
+        className="content-card glass-card overflow-hidden group rounded-xl relative cursor-pointer" 
         data-testid={`content-card-${content.id}`}
         style={bonusStyles}
+        onClick={handleCardClick}
       >
         {/* Bonus Badge */}
         {isBonus && (
