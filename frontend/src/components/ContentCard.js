@@ -26,6 +26,11 @@ const ContentCard = ({ content, currentUser, onContentClick, compact = false, is
     return 'platform-appletv';
   };
 
+  const handleCardClick = () => {
+    // Open OTT app when clicking on the card
+    openOTTApp(content.platform, content.id, content.title);
+  };
+
   const handleLike = async (e) => {
     e.stopPropagation();
     if (!currentUser) {
