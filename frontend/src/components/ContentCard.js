@@ -1,9 +1,20 @@
-import React from "react";
-import { Star, Play, ExternalLink } from "lucide-react";
+import React, { useState, useEffect } from "react";
+import { Star, Play, ExternalLink, Heart, Share2, MessageCircle } from "lucide-react";
 import { FaYoutube, FaReddit } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
+import { toast } from "sonner";
 
-const ContentCard = ({ content }) => {
+const ContentCard = ({ content, currentUser, onContentClick }) => {
+  const [isLiked, setIsLiked] = useState(false);
+  const [localLikes, setLocalLikes] = useState(content.likes || 0);
+  const [localShares, setLocalShares] = useState(content.shares || 0);
+
+  useEffect(() => {
+    if (currentUser && currentUser.liked_content) {
+      setIsLiked(currentUser.liked_content.includes(content.id));
+    }
+  }, [currentUser, content.id]);
+
   const getPlatformClass = (platform) => {
     const platformLower = platform.toLowerCase().replace(/\s+/g, '');
     if (platformLower.includes('netflix')) return 'platform-netflix';
@@ -13,6 +24,76 @@ const ContentCard = ({ content }) => {
     if (platformLower.includes('apple')) return 'platform-appletv';
     if (platformLower.includes('mx')) return 'platform-mx';
     return 'platform-appletv';
+  };
+
+  const handleLike = async (e) => {
+    e.stopPropagation();
+    if (!currentUser) {
+      toast.error("Please create a profile to like content!");
+      return;
+    }
+
+    if (isLiked) {
+      toast.info("You've already liked this!");
+      return;
+    }
+
+    try {
+      const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
+      const response = await fetch(`${BACKEND_URL}/api/content/like`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          user_id: currentUser.id,
+          content_id: content.id
+        })
+      });
+
+      const data = await response.json();
+      if (response.ok) {
+        setIsLiked(true);
+        setLocalLikes(localLikes + 1);
+        toast.success(`+${data.points_earned} points! 🎉`);
+      }
+    } catch (error) {
+      toast.error("Failed to like content");
+    }
+  };
+
+  const handleShare = async (e) => {
+    e.stopPropagation();
+    if (!currentUser) {
+      toast.error("Please create a profile to share content!");
+      return;
+    }
+
+    try {
+      const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
+      const response = await fetch(`${BACKEND_URL}/api/content/share`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          user_id: currentUser.id,
+          content_id: content.id,
+          platform: 'general'
+        })
+      });
+
+      const data = await response.json();
+      if (response.ok) {
+        setLocalShares(localShares + 1);
+        toast.success(`+${data.points_earned} points! 🎉 Content shared!`);
+      }
+    } catch (error) {
+      toast.error("Failed to share content");
+    }
+  };
+
+  const handleDiscuss = (e) => {
+    e.stopPropagation();
+    if (onContentClick) {
+      onContentClick(content);
+    }
   };
 
   return (
@@ -67,6 +148,40 @@ const ContentCard = ({ content }) => {
         <p className="text-sm text-gray-500 line-clamp-2" style={{ fontFamily: 'Inter, sans-serif' }}>
           {content.description}
         </p>
+
+        {/* Engagement Stats */}
+        <div className="flex items-center gap-4 pt-2 border-t border-white/5">
+          <button
+            onClick={handleLike}
+            className={`flex items-center gap-1 px-3 py-1.5 rounded-full transition-all ${
+              isLiked
+                ? 'bg-red-500/20 text-red-500 border border-red-500/30'
+                : 'bg-white/5 text-gray-400 hover:bg-white/10 hover:text-red-500'
+            }`}
+            data-testid={`like-button-${content.id}`}
+          >
+            <Heart className={`w-4 h-4 ${isLiked ? 'fill-current' : ''}`} />
+            <span className="text-xs font-medium">{localLikes}</span>
+          </button>
+
+          <button
+            onClick={handleShare}
+            className="flex items-center gap-1 px-3 py-1.5 rounded-full bg-white/5 text-gray-400 hover:bg-white/10 hover:text-[#ff6b35] transition-all"
+            data-testid={`share-button-${content.id}`}
+          >
+            <Share2 className="w-4 h-4" />
+            <span className="text-xs font-medium">{localShares}</span>
+          </button>
+
+          <button
+            onClick={handleDiscuss}
+            className="flex items-center gap-1 px-3 py-1.5 rounded-full bg-white/5 text-gray-400 hover:bg-white/10 hover:text-blue-500 transition-all"
+            data-testid={`discuss-button-${content.id}`}
+          >
+            <MessageCircle className="w-4 h-4" />
+            <span className="text-xs font-medium">Discuss</span>
+          </button>
+        </div>
 
         {/* Social Links */}
         <div className="flex items-center gap-3 pt-2 border-t border-white/5">
