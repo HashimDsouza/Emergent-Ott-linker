@@ -232,7 +232,11 @@ const ContentCard = ({ content, currentUser, onContentClick, compact = false, is
 
   // Regular view for modal/detailed view
   return (
-    <div className="content-card glass-card overflow-hidden group rounded-xl" data-testid={`content-card-${content.id}`}>
+    <div 
+      className="content-card glass-card overflow-hidden group rounded-xl cursor-pointer" 
+      data-testid={`content-card-${content.id}`}
+      onClick={handleCardClick}
+    >
       {/* Thumbnail */}
       <div className="relative h-48 overflow-hidden">
         <img
