@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { ChevronRight } from "lucide-react";
 
-const CategorySection = ({ title, emoji, description, content, allContent, categoryKey }) => {
+const CategorySection = ({ title, emoji, description, content, allContent, categoryKey, currentUser, onContentClick, onRefreshUser }) => {
   const [showModal, setShowModal] = useState(false);
 
   if (!content || content.length === 0) return null;
@@ -27,7 +27,12 @@ const CategorySection = ({ title, emoji, description, content, allContent, categ
       {/* Content Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-6">
         {content.map((item) => (
-          <ContentCard key={item.id} content={item} />
+          <ContentCard 
+            key={item.id} 
+            content={item} 
+            currentUser={currentUser} 
+            onContentClick={onContentClick}
+          />
         ))}
       </div>
 
@@ -56,7 +61,12 @@ const CategorySection = ({ title, emoji, description, content, allContent, categ
           </DialogHeader>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-6">
             {allContent.map((item) => (
-              <ContentCard key={item.id} content={item} />
+              <ContentCard 
+                key={item.id} 
+                content={item} 
+                currentUser={currentUser} 
+                onContentClick={onContentClick}
+              />
             ))}
           </div>
         </DialogContent>
