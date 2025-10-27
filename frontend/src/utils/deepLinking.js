@@ -97,7 +97,7 @@ export const generateOTTDeepLink = (platform, contentId = '') => {
 };
 
 /**
- * Open OTT app with fallback to app store
+ * Open OTT app with fallback to web version
  * @param {string} platform - OTT platform name
  * @param {string} contentId - Content ID
  * @param {string} contentTitle - Content title for fallback search
@@ -111,25 +111,40 @@ export const openOTTApp = (platform, contentId, contentTitle) => {
     return;
   }
   
-  // Mobile: Try to open app, fallback to store
-  const timeout = setTimeout(() => {
-    // If app didn't open in 2 seconds, redirect to app store
-    const storeLink = userPlatform === 'ios' ? appStore : playStore;
-    if (storeLink) {
-      window.location.href = storeLink;
-    } else {
-      // Fallback to Google search
-      window.location.href = `https://www.google.com/search?q=${encodeURIComponent(contentTitle + ' ' + platform)}`;
+  // Mobile: Try to open app with iframe trick, fallback to web
+  const iframe = document.createElement('iframe');
+  iframe.style.display = 'none';
+  iframe.src = deepLink;
+  document.body.appendChild(iframe);
+  
+  // Set timeout to check if app opened
+  const appOpenTimeout = setTimeout(() => {
+    // Remove iframe
+    document.body.removeChild(iframe);
+    
+    // If app didn't open, show install prompt via toast
+    // For now, just open web version as fallback
+    window.open(webLink, '_blank');
+  }, 1500);
+  
+  // If user leaves page (app opened), clear timeout
+  const handleVisibilityChange = () => {
+    if (document.hidden) {
+      clearTimeout(appOpenTimeout);
+      document.body.removeChild(iframe);
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
+    }
+  };
+  
+  document.addEventListener('visibilitychange', handleVisibilityChange);
+  
+  // Fallback: If nothing happens in 2 seconds, open web version
+  setTimeout(() => {
+    if (document.body.contains(iframe)) {
+      document.body.removeChild(iframe);
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
     }
   }, 2000);
-  
-  // Try to open the app
-  window.location.href = deepLink;
-  
-  // Clear timeout if app opens successfully
-  window.addEventListener('blur', () => {
-    clearTimeout(timeout);
-  });
 };
 
 /**
