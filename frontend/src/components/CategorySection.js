@@ -32,13 +32,14 @@ const CategorySection = ({ title, emoji, description, content, allContent, categ
 
       {/* Content Grid - 3 columns, 2 rows */}
       <div className="grid grid-cols-3 gap-3 sm:gap-4">
-        {content.map((item) => (
+        {content.map((item, index) => (
           <ContentCard 
             key={item.id} 
             content={item} 
             currentUser={currentUser} 
             onContentClick={onContentClick}
             compact={true}
+            isBonus={index === 5}  // 6th tile (index 5) is the bonus tile
           />
         ))}
       </div>

@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { Star, Heart, Share2, MessageCircle, Play } from "lucide-react";
+import { Star, Heart, Share2, MessageCircle, Play, Sparkles } from "lucide-react";
+import { FaYoutube, FaReddit } from "react-icons/fa";
+import { FaXTwitter } from "react-icons/fa6";
 import { toast } from "sonner";
 
-const ContentCard = ({ content, currentUser, onContentClick, compact = false }) => {
+const ContentCard = ({ content, currentUser, onContentClick, compact = false, isBonus = false }) => {
   const [isLiked, setIsLiked] = useState(false);
   const [localLikes, setLocalLikes] = useState(content.likes || 0);
 
@@ -93,9 +95,30 @@ const ContentCard = ({ content, currentUser, onContentClick, compact = false }) 
   };
 
   if (compact) {
+    // Bonus tile special styling
+    const bonusStyles = isBonus ? {
+      border: '2px solid #ffa500',
+      background: 'linear-gradient(135deg, rgba(255, 107, 53, 0.15) 0%, rgba(255, 165, 0, 0.15) 100%)',
+      boxShadow: '0 0 20px rgba(255, 165, 0, 0.3)'
+    } : {};
+
     // Compact view for grid layout (3x2)
     return (
-      <div className="content-card glass-card overflow-hidden group rounded-xl" data-testid={`content-card-${content.id}`}>
+      <div 
+        className="content-card glass-card overflow-hidden group rounded-xl relative" 
+        data-testid={`content-card-${content.id}`}
+        style={bonusStyles}
+      >
+        {/* Bonus Badge */}
+        {isBonus && (
+          <div className="absolute top-0 left-0 right-0 z-10 flex justify-center">
+            <div className="bg-gradient-to-r from-[#ff6b35] to-[#ffa500] text-white text-[10px] font-bold px-3 py-1 rounded-b-lg flex items-center gap-1 shadow-lg">
+              <Sparkles className="w-3 h-3" />
+              <span>BONUS</span>
+            </div>
+          </div>
+        )}
+
         {/* Thumbnail */}
         <div className="relative h-32 sm:h-40 overflow-hidden">
           <img
@@ -133,6 +156,49 @@ const ContentCard = ({ content, currentUser, onContentClick, compact = false }) 
             <span className={`text-[10px] px-2 py-0.5 rounded-full font-semibold ${getPlatformClass(content.platform)}`}>
               {content.platform}
             </span>
+          </div>
+
+          {/* Social Links - Why to Watch */}
+          <div className="flex items-center gap-2 py-1 border-t border-white/5">
+            <span className="text-[9px] text-gray-500 font-medium">Why:</span>
+            <div className="flex gap-1.5">
+              {content.social_links?.youtube && (
+                <a
+                  href={content.social_links.youtube}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-6 h-6 rounded-full bg-red-500/20 border border-red-500/30 flex items-center justify-center hover:bg-red-500/30 transition-colors"
+                  onClick={(e) => e.stopPropagation()}
+                  data-testid={`social-youtube-${content.id}`}
+                >
+                  <FaYoutube className="w-3 h-3 text-red-500" />
+                </a>
+              )}
+              {content.social_links?.twitter && (
+                <a
+                  href={content.social_links.twitter}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-6 h-6 rounded-full bg-white/10 border border-white/20 flex items-center justify-center hover:bg-white/20 transition-colors"
+                  onClick={(e) => e.stopPropagation()}
+                  data-testid={`social-twitter-${content.id}`}
+                >
+                  <FaXTwitter className="w-3 h-3 text-white" />
+                </a>
+              )}
+              {content.social_links?.reddit && (
+                <a
+                  href={content.social_links.reddit}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-6 h-6 rounded-full bg-orange-500/20 border border-orange-500/30 flex items-center justify-center hover:bg-orange-500/30 transition-colors"
+                  onClick={(e) => e.stopPropagation()}
+                  data-testid={`social-reddit-${content.id}`}
+                >
+                  <FaReddit className="w-3 h-3 text-orange-500" />
+                </a>
+              )}
+            </div>
           </div>
 
           {/* Engagement - Compact */}
@@ -204,6 +270,49 @@ const ContentCard = ({ content, currentUser, onContentClick, compact = false }) 
             "{content.tagline}"
           </p>
         )}
+
+        {/* Social Links */}
+        <div className="flex items-center gap-3 pt-2 border-t border-white/5">
+          <span className="text-xs text-gray-500 font-medium">Buzz:</span>
+          <div className="flex gap-2">
+            {content.social_links?.youtube && (
+              <a
+                href={content.social_links.youtube}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-8 h-8 rounded-full bg-red-500/20 border border-red-500/30 flex items-center justify-center hover:bg-red-500/30 transition-colors"
+                onClick={(e) => e.stopPropagation()}
+                data-testid={`social-youtube-${content.id}`}
+              >
+                <FaYoutube className="w-4 h-4 text-red-500" />
+              </a>
+            )}
+            {content.social_links?.twitter && (
+              <a
+                href={content.social_links.twitter}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-8 h-8 rounded-full bg-white/10 border border-white/20 flex items-center justify-center hover:bg-white/20 transition-colors"
+                onClick={(e) => e.stopPropagation()}
+                data-testid={`social-twitter-${content.id}`}
+              >
+                <FaXTwitter className="w-4 h-4 text-white" />
+              </a>
+            )}
+            {content.social_links?.reddit && (
+              <a
+                href={content.social_links.reddit}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-8 h-8 rounded-full bg-orange-500/20 border border-orange-500/30 flex items-center justify-center hover:bg-orange-500/30 transition-colors"
+                onClick={(e) => e.stopPropagation()}
+                data-testid={`social-reddit-${content.id}`}
+              >
+                <FaReddit className="w-4 h-4 text-orange-500" />
+              </a>
+            )}
+          </div>
+        </div>
 
         <div className="flex items-center gap-3 pt-2">
           <button
