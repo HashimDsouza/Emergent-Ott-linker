@@ -313,14 +313,14 @@ const Home = () => {
               <span className="text-xs font-medium">Home</span>
             </button>
 
-            {/* Leaderboard */}
+            {/* Your Tribe */}
             <button 
               className="flex flex-col items-center gap-1 px-2 sm:px-4 py-2 text-gray-400 hover:text-[#ff6b35] transition-colors" 
               data-testid="nav-leaderboard"
               onClick={() => setShowLeaderboard(true)}
             >
               <Trophy className="w-5 h-5 sm:w-6 sm:h-6" />
-              <span className="text-xs font-medium">Leaders</span>
+              <span className="text-xs font-medium">Your Tribe</span>
             </button>
 
             {/* AI Agent - Center */}
