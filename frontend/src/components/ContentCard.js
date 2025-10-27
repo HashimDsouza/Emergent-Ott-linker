@@ -27,7 +27,18 @@ const ContentCard = ({ content, currentUser, onContentClick, compact = false, is
   };
 
   const handleCardClick = () => {
-    // Open OTT app when clicking on the card
+    // Show toast with options
+    const { platform: userPlatform } = generateOTTDeepLink(content.platform, content.id);
+    
+    if (userPlatform !== 'web') {
+      // Mobile: Show notification
+      toast.info(`Opening ${content.platform}...`, {
+        description: "If the app doesn't open, we'll show you the web version",
+        duration: 2000
+      });
+    }
+    
+    // Open OTT app
     openOTTApp(content.platform, content.id, content.title);
   };
 
