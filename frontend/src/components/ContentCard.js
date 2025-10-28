@@ -3,7 +3,7 @@ import { Star, Heart, Share2, MessageCircle, Play, Sparkles } from "lucide-react
 import { FaYoutube, FaReddit } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 import { toast } from "sonner";
-import { openOTTApp, openSocialLink, generateOTTDeepLink } from "@/utils/deepLinking";
+import { openOTTAppWithResolver, openSocialLink, copyToClipboard } from "@/utils/deepLinking";
 
 const ContentCard = ({ content, currentUser, onContentClick, compact = false, isBonus = false, bonusLabel = "BONUS" }) => {
   const [isLiked, setIsLiked] = useState(false);
