@@ -5,7 +5,7 @@ import { FaXTwitter } from "react-icons/fa6";
 import { toast } from "sonner";
 import { openOTTApp, openSocialLink, generateOTTDeepLink } from "@/utils/deepLinking";
 
-const ContentCard = ({ content, currentUser, onContentClick, compact = false, isBonus = false }) => {
+const ContentCard = ({ content, currentUser, onContentClick, compact = false, isBonus = false, bonusLabel = "BONUS" }) => {
   const [isLiked, setIsLiked] = useState(false);
   const [localLikes, setLocalLikes] = useState(content.likes || 0);
 
@@ -23,11 +23,11 @@ const ContentCard = ({ content, currentUser, onContentClick, compact = false, is
     if (platformLower.includes('sonyliv') || platformLower.includes('sony')) return 'platform-sonyliv';
     if (platformLower.includes('apple')) return 'platform-appletv';
     if (platformLower.includes('mx')) return 'platform-mx';
+    if (platformLower.includes('fancode')) return 'platform-appletv';
     return 'platform-appletv';
   };
 
   const handleCardClick = () => {
-    // Show toast with options
     toast.info(`Opening ${content.platform}...`, {
       description: content.platform_content_id 
         ? "Taking you directly to the show" 
@@ -35,7 +35,6 @@ const ContentCard = ({ content, currentUser, onContentClick, compact = false, is
       duration: 2000
     });
     
-    // Open OTT app/website with platform content ID if available
     openOTTApp(content.platform, content.platform_content_id, content.title);
   };
 
@@ -116,7 +115,6 @@ const ContentCard = ({ content, currentUser, onContentClick, compact = false, is
       boxShadow: '0 0 20px rgba(255, 165, 0, 0.3)'
     } : {};
 
-    // Compact view for grid layout (3x2)
     return (
       <div 
         className="content-card glass-card overflow-hidden group rounded-xl relative cursor-pointer" 
@@ -125,11 +123,11 @@ const ContentCard = ({ content, currentUser, onContentClick, compact = false, is
         onClick={handleCardClick}
       >
         {/* Bonus Badge */}
-        {isBonus && (
+        {isBonus && bonusLabel && (
           <div className="absolute top-0 left-0 right-0 z-10 flex justify-center">
             <div className="bg-gradient-to-r from-[#ff6b35] to-[#ffa500] text-white text-[10px] font-bold px-3 py-1 rounded-b-lg flex items-center gap-1 shadow-lg">
               <Sparkles className="w-3 h-3" />
-              <span>BONUS</span>
+              <span>{bonusLabel}</span>
             </div>
           </div>
         )}

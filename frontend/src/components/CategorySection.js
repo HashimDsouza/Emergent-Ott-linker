@@ -8,6 +8,22 @@ const CategorySection = ({ title, emoji, description, content, allContent, categ
 
   if (!content || content.length === 0) return null;
 
+  // Different bonus labels for variety
+  const getBonusLabel = (categoryKey) => {
+    const labels = {
+      'buzzing': 'BONUS',
+      'hot_drop': 'WILDCARD',
+      'movies': 'SURPRISE',
+      'series': null,  // No special tile
+      'sports': 'BONUS',
+      'docu_series': null,  // No special tile
+      'reality': 'WILDCARD'
+    };
+    return labels[categoryKey] || null;
+  };
+
+  const bonusLabel = getBonusLabel(categoryKey);
+
   return (
     <section className="fade-in mb-8" data-testid={`category-section-${categoryKey}`}>
       {/* Section Header - Inline with See More */}
@@ -39,7 +55,8 @@ const CategorySection = ({ title, emoji, description, content, allContent, categ
             currentUser={currentUser} 
             onContentClick={onContentClick}
             compact={true}
-            isBonus={index === 5}  // 6th tile (index 5) is the bonus tile
+            isBonus={index === 5 && bonusLabel !== null}  // Only 6th tile and if category has bonus
+            bonusLabel={index === 5 ? bonusLabel : null}
           />
         ))}
       </div>

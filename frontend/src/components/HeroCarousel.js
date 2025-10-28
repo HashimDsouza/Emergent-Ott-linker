@@ -1,5 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import { FaYoutube, FaReddit } from "react-icons/fa";
+import { FaXTwitter } from "react-icons/fa6";
+import { toast } from "sonner";
+import { openOTTApp, openSocialLink } from "@/utils/deepLinking";
 
 const HeroCarousel = ({ launches }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -36,6 +40,14 @@ const HeroCarousel = ({ launches }) => {
     setTimeout(() => setIsTransitioning(false), 500);
   };
 
+  const handleSlideClick = (launch) => {
+    toast.info(`Opening ${launch.platform}...`, {
+      description: "Taking you to the content",
+      duration: 2000
+    });
+    openOTTApp(launch.platform, launch.platform_content_id, launch.title);
+  };
+
   if (!launches || launches.length === 0) {
     return null;
   }
@@ -43,7 +55,7 @@ const HeroCarousel = ({ launches }) => {
   const currentLaunch = launches[currentIndex];
 
   return (
-    <section className="relative w-full h-[500px] sm:h-[600px] overflow-hidden" data-testid="hero-carousel">
+    <section className="relative w-full h-[500px] sm:h-[600px] overflow-hidden cursor-pointer" data-testid="hero-carousel" onClick={() => handleSlideClick(currentLaunch)}>
       {/* Background Image with Overlay */}
       <div className="absolute inset-0">
         <img
@@ -94,19 +106,59 @@ const HeroCarousel = ({ launches }) => {
               <span className="text-lg font-bold text-white">{currentLaunch.rating}</span>
             </div>
           </div>
+
+          {/* Social Links */}
+          <div className="flex items-center gap-3 pt-2">
+            <span className="text-sm text-gray-400 font-medium">Why Watch:</span>
+            <div className="flex gap-2">
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  openSocialLink('youtube', currentLaunch.title, currentLaunch.social_links?.youtube);
+                }}
+                className="w-10 h-10 rounded-full bg-red-500/20 border border-red-500/30 flex items-center justify-center hover:bg-red-500/30 transition-colors"
+              >
+                <FaYoutube className="w-5 h-5 text-red-500" />
+              </button>
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  openSocialLink('twitter', currentLaunch.title, currentLaunch.social_links?.twitter);
+                }}
+                className="w-10 h-10 rounded-full bg-white/10 border border-white/20 flex items-center justify-center hover:bg-white/20 transition-colors"
+              >
+                <FaXTwitter className="w-5 h-5 text-white" />
+              </button>
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  openSocialLink('reddit', currentLaunch.title, currentLaunch.social_links?.reddit);
+                }}
+                className="w-10 h-10 rounded-full bg-orange-500/20 border border-orange-500/30 flex items-center justify-center hover:bg-orange-500/30 transition-colors"
+              >
+                <FaReddit className="w-5 h-5 text-orange-500" />
+              </button>
+            </div>
+          </div>
         </div>
       </div>
 
       {/* Navigation Arrows */}
       <button
-        onClick={prevSlide}
+        onClick={(e) => {
+          e.stopPropagation();
+          prevSlide();
+        }}
         className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 flex items-center justify-center text-white hover:bg-white/20 transition-all z-10"
         data-testid="carousel-prev"
       >
         <ChevronLeft className="w-6 h-6" />
       </button>
       <button
-        onClick={nextSlide}
+        onClick={(e) => {
+          e.stopPropagation();
+          nextSlide();
+        }}
         className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 flex items-center justify-center text-white hover:bg-white/20 transition-all z-10"
         data-testid="carousel-next"
       >
@@ -118,7 +170,10 @@ const HeroCarousel = ({ launches }) => {
         {launches.map((_, index) => (
           <button
             key={index}
-            onClick={() => goToSlide(index)}
+            onClick={(e) => {
+              e.stopPropagation();
+              goToSlide(index);
+            }}
             className={`transition-all duration-300 rounded-full ${
               index === currentIndex
                 ? "w-8 h-3 bg-gradient-to-r from-[#ff6b35] to-[#ffa500]"
