@@ -129,6 +129,45 @@ backend:
           - Checks cached links in title_links collection
           - Generates links on-the-fly using generate_provider_links helper
           Tested with curl - working correctly for Netflix, Apple TV, and other platforms.
+      - working: true
+        agent: "testing"
+        comment: |
+          COMPREHENSIVE BACKEND TESTING COMPLETED - ALL TESTS PASSED (15/15)
+          
+          ✅ API Health Check: PASS - Root endpoint responding correctly
+          
+          ✅ Deep Link Resolver Tests (5/5 PASS):
+          - Netflix content (208c17e4-5087-4f0a-9234-352fac787bbe): Returns proper search URL
+          - SonyLIV content (c51d6ce2-fc47-412b-b0e5-d9d7962bc231): Returns proper search URL  
+          - Apple TV content (bf0a6d14-6e46-491b-8b62-5683e728d26b): Returns proper search URL
+          - Prime Video content (6cd2e1bd-5c15-4f05-8a8b-6443da9f56dc): Returns proper search URL
+          - JioHotstar content (c5be7e9e-6fbf-4ad7-a266-32ce541298c0): Returns proper search URL
+          
+          ✅ Response Structure Validation:
+          - All required fields present: url, fallback_search_url, provider
+          - Optional fields handled correctly: scheme_url, platform_content_id
+          - URLs follow correct platform patterns (netflix.com/search, tv.apple.com/search, etc.)
+          - Fallback search URLs always present when platform_content_id is null
+          
+          ✅ Error Handling Tests (3/3 PASS):
+          - Invalid title_id: Returns 404 as expected
+          - Missing title_id parameter: Returns 422 validation error
+          - Missing provider parameter: Returns 422 validation error
+          
+          ✅ Provider Name Variations (6/6 PASS):
+          - Case insensitivity working: "Netflix", "netflix", "NETFLIX" all work
+          - Space handling working: "Apple TV", "apple tv", "APPLE TV" all work
+          
+          ✅ Platform Coverage Verified:
+          - Netflix: Search URLs generated correctly
+          - Apple TV: Search URLs generated correctly  
+          - SonyLIV: Search URLs generated correctly
+          - Prime Video: Search URLs generated correctly
+          - JioHotstar: Search URLs generated correctly
+          - Fancode: Basic URL generation working
+          - YouTube: Basic URL generation working
+          
+          The deep linking resolver API is fully functional and ready for production use.
   
   - task: "Provider link generator function"
     implemented: true
