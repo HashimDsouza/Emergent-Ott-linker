@@ -397,137 +397,501 @@ async def get_messages(content_id: Optional[str] = None, limit: int = 50):
 
 @api_router.post("/content/seed")
 async def seed_content():
-    """Seed content - keeping existing implementation"""
+    """Seed comprehensive content for The Connector"""
     await db.content.delete_many({})
     
-    # Sample content for testing deep linking
+    # Comprehensive content with proper categories and search-friendly approach
     mock_content = [
+        # BUZZING NOW Category
         {
-            "id": "208c17e4-5087-4f0a-9234-352fac787bbe",
-            "title": "The Bads of Bollywood",
+            "id": str(uuid.uuid4()),
+            "title": "Squid Game Season 2",
             "category": "buzzing",
             "platform": "Netflix",
-            "platform_content_id": "81234567",
-            "rating": 8.5,
-            "thumbnail": "https://images.unsplash.com/photo-1489599735734-79b4169c2a78?w=400&h=600&fit=crop",
-            "description": "A gripping drama series that explores the dark side of Bollywood.",
-            "release_date": "2024-01-15",
+            "platform_content_id": None,  # Will use search fallback
+            "rating": 8.9,
+            "thumbnail": "https://images.unsplash.com/photo-1598899134739-24c46f58b8c0?w=400&h=600&fit=crop",
+            "description": "The deadly games return with new players and higher stakes.",
+            "release_date": "2025-01",
             "social_links": {
-                "youtube": "https://www.youtube.com/watch?v=example1",
-                "twitter": "https://twitter.com/search?q=BadsBollywood",
-                "reddit": "https://www.reddit.com/r/bollywood"
+                "youtube": "https://www.youtube.com/results?search_query=Squid+Game+Season+2+trailer",
+                "twitter": "https://twitter.com/search?q=%23SquidGame",
+                "reddit": "https://www.reddit.com/r/squidgame"
             },
             "content_type": "series",
-            "tagline": "Behind the glitz lies the truth",
-            "likes": 1250,
-            "shares": 340
+            "tagline": "Survival of the fittest",
+            "likes": 4500,
+            "shares": 1200
         },
         {
-            "id": "bf0a6d14-6e46-491b-8b62-5683e728d26b",
-            "title": "Severance",
+            "id": str(uuid.uuid4()),
+            "title": "Mirzapur Season 3",
+            "category": "buzzing",
+            "platform": "Prime Video",
+            "platform_content_id": None,
+            "rating": 8.7,
+            "thumbnail": "https://images.unsplash.com/photo-1509347528160-9a9e33742cdb?w=400&h=600&fit=crop",
+            "description": "The battle for Mirzapur intensifies in this gripping finale.",
+            "release_date": "2025-02",
+            "social_links": {
+                "youtube": "https://www.youtube.com/results?search_query=Mirzapur+Season+3+trailer",
+                "twitter": "https://twitter.com/search?q=%23Mirzapur",
+                "reddit": "https://www.reddit.com/r/mirzapur"
+            },
+            "content_type": "series",
+            "tagline": "Power ki jung",
+            "likes": 3800,
+            "shares": 950
+        },
+        {
+            "id": str(uuid.uuid4()),
+            "title": "Severance Season 2",
             "category": "buzzing",
             "platform": "Apple TV",
-            "platform_content_id": "1234567890",
-            "rating": 9.2,
-            "thumbnail": "https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=400&h=600&fit=crop",
-            "description": "A psychological thriller about work-life balance taken to extremes.",
-            "release_date": "2024-02-01",
+            "platform_content_id": None,
+            "rating": 9.1,
+            "thumbnail": "https://images.unsplash.com/photo-1542204165-19b4f98b48ed?w=400&h=600&fit=crop",
+            "description": "The mind-bending thriller returns with more twists.",
+            "release_date": "2025-02",
             "social_links": {
-                "youtube": "https://www.youtube.com/watch?v=example2",
-                "twitter": "https://twitter.com/search?q=Severance",
+                "youtube": "https://www.youtube.com/results?search_query=Severance+Season+2+trailer",
+                "twitter": "https://twitter.com/search?q=%23Severance",
                 "reddit": "https://www.reddit.com/r/SeveranceAppleTVPlus"
             },
             "content_type": "series",
-            "tagline": "Work is life. Life is work.",
-            "likes": 2100,
-            "shares": 580
+            "tagline": "Mind = Blown",
+            "likes": 3200,
+            "shares": 850
         },
         {
-            "id": "c51d6ce2-fc47-412b-b0e5-d9d7962bc231",
-            "title": "Scam 1992",
-            "category": "hot_drop",
+            "id": str(uuid.uuid4()),
+            "title": "Scam 2003",
+            "category": "buzzing",
             "platform": "SonyLIV",
-            "platform_content_id": "scam1992",
-            "rating": 9.6,
+            "platform_content_id": None,
+            "rating": 9.0,
             "thumbnail": "https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=400&h=600&fit=crop",
-            "description": "The story of Harshad Mehta and the biggest financial scam in India.",
-            "release_date": "2024-01-20",
+            "description": "The Telgi stamp paper scam that shook the nation.",
+            "release_date": "2025-01",
             "social_links": {
-                "youtube": "https://www.youtube.com/watch?v=example3",
-                "twitter": "https://twitter.com/search?q=Scam1992",
+                "youtube": "https://www.youtube.com/results?search_query=Scam+2003+trailer",
+                "twitter": "https://twitter.com/search?q=%23Scam2003",
                 "reddit": "https://www.reddit.com/r/IndianWebSeries"
             },
             "content_type": "series",
-            "tagline": "Risk hai toh ishq hai",
-            "likes": 3200,
-            "shares": 890
+            "tagline": "The stamp of deception",
+            "likes": 2900,
+            "shares": 780
         },
         {
-            "id": "6cd2e1bd-5c15-4f05-8a8b-6443da9f56dc",
-            "title": "The Boys",
+            "id": str(uuid.uuid4()),
+            "title": "The Family Man Season 3",
             "category": "buzzing",
             "platform": "Prime Video",
-            "platform_content_id": "theboys2024",
+            "platform_content_id": None,
             "rating": 8.8,
-            "thumbnail": "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=400&h=600&fit=crop",
-            "description": "A dark take on superheroes and corporate corruption.",
-            "release_date": "2024-03-01",
+            "thumbnail": "https://images.unsplash.com/photo-1598899134739-24c46f58b8c0?w=400&h=600&fit=crop",
+            "description": "Srikant Tiwari is back for more action-packed missions.",
+            "release_date": "2025-03",
             "social_links": {
-                "youtube": "https://www.youtube.com/watch?v=example4",
-                "twitter": "https://twitter.com/search?q=TheBoys",
-                "reddit": "https://www.reddit.com/r/TheBoys"
+                "youtube": "https://www.youtube.com/results?search_query=The+Family+Man+Season+3+trailer",
+                "twitter": "https://twitter.com/search?q=%23TheFamilyMan",
+                "reddit": "https://www.reddit.com/r/TheFamilyMan"
             },
             "content_type": "series",
-            "tagline": "Heroes are not what they seem",
-            "likes": 2800,
-            "shares": 720
+            "tagline": "Mission impossible",
+            "likes": 3400,
+            "shares": 920
         },
         {
-            "id": "c5be7e9e-6fbf-4ad7-a266-32ce541298c0",
-            "title": "Arya 3",
+            "id": str(uuid.uuid4()),
+            "title": "Asur Season 3",
+            "category": "buzzing",
+            "platform": "JioHotstar",
+            "platform_content_id": None,
+            "rating": 8.6,
+            "thumbnail": "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&h=600&fit=crop",
+            "description": "The psychological thriller continues with new dark twists.",
+            "release_date": "2025-02",
+            "social_links": {
+                "youtube": "https://www.youtube.com/results?search_query=Asur+Season+3+trailer",
+                "twitter": "https://twitter.com/search?q=%23Asur",
+                "reddit": "https://www.reddit.com/r/IndianWebSeries"
+            },
+            "content_type": "series",
+            "tagline": "Evil never dies",
+            "likes": 2700,
+            "shares": 690
+        },
+        # HOT DROP ALERT Category
+        {
+            "id": str(uuid.uuid4()),
+            "title": "Fighter",
+            "category": "hot_drop",
+            "platform": "Netflix",
+            "platform_content_id": None,
+            "rating": 8.2,
+            "thumbnail": "https://images.unsplash.com/photo-1532035708-99aac78b0ad1?w=400&h=600&fit=crop",
+            "description": "India's first aerial action film with Hrithik Roshan.",
+            "release_date": "2025-01",
+            "social_links": {
+                "youtube": "https://www.youtube.com/results?search_query=Fighter+movie+trailer",
+                "twitter": "https://twitter.com/search?q=%23Fighter",
+                "reddit": "https://www.reddit.com/r/bollywood"
+            },
+            "content_type": "movie",
+            "tagline": "Sky is the limit",
+            "likes": 3100,
+            "shares": 840
+        },
+        {
+            "id": str(uuid.uuid4()),
+            "title": "Maharaja",
+            "category": "hot_drop",
+            "platform": "Netflix",
+            "platform_content_id": None,
+            "rating": 8.9,
+            "thumbnail": "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&h=600&fit=crop",
+            "description": "A barber's search for his stolen dustbin leads to shocking revelations.",
+            "release_date": "2024-12",
+            "social_links": {
+                "youtube": "https://www.youtube.com/results?search_query=Maharaja+movie+trailer",
+                "twitter": "https://twitter.com/search?q=%23Maharaja",
+                "reddit": "https://www.reddit.com/r/kollywood"
+            },
+            "content_type": "movie",
+            "tagline": "Revenge served cold",
+            "likes": 2800,
+            "shares": 750
+        },
+        {
+            "id": str(uuid.uuid4()),
+            "title": "Animal",
+            "category": "hot_drop",
+            "platform": "Netflix",
+            "platform_content_id": None,
+            "rating": 7.9,
+            "thumbnail": "https://images.unsplash.com/photo-1509347528160-9a9e33742cdb?w=400&h=600&fit=crop",
+            "description": "A son's dark journey to protect his father at any cost.",
+            "release_date": "2024-12",
+            "social_links": {
+                "youtube": "https://www.youtube.com/results?search_query=Animal+movie+trailer",
+                "twitter": "https://twitter.com/search?q=%23Animal",
+                "reddit": "https://www.reddit.com/r/bollywood"
+            },
+            "content_type": "movie",
+            "tagline": "Unleash the beast",
+            "likes": 4200,
+            "shares": 1100
+        },
+        {
+            "id": str(uuid.uuid4()),
+            "title": "Dune Part 2",
             "category": "hot_drop",
             "platform": "JioHotstar",
-            "platform_content_id": "arya3_2024",
-            "rating": 8.1,
-            "thumbnail": "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&h=600&fit=crop",
-            "description": "The third installment of the popular action franchise.",
-            "release_date": "2024-02-15",
+            "platform_content_id": None,
+            "rating": 8.8,
+            "thumbnail": "https://images.unsplash.com/photo-1598899134739-24c46f58b8c0?w=400&h=600&fit=crop",
+            "description": "Paul Atreides unites with the Fremen to seek revenge.",
+            "release_date": "2024-12",
             "social_links": {
-                "youtube": "https://www.youtube.com/watch?v=example5",
-                "twitter": "https://twitter.com/search?q=Arya3",
+                "youtube": "https://www.youtube.com/results?search_query=Dune+Part+2+trailer",
+                "twitter": "https://twitter.com/search?q=%23DunePartTwo",
+                "reddit": "https://www.reddit.com/r/dune"
+            },
+            "content_type": "movie",
+            "tagline": "The prophecy is real",
+            "likes": 3900,
+            "shares": 980
+        },
+        {
+            "id": str(uuid.uuid4()),
+            "title": "Salaar",
+            "category": "hot_drop",
+            "platform": "Netflix",
+            "platform_content_id": None,
+            "rating": 8.3,
+            "thumbnail": "https://images.unsplash.com/photo-1509909756405-be0199881695?w=400&h=600&fit=crop",
+            "description": "A violent saga of friendship, loyalty, and power.",
+            "release_date": "2024-12",
+            "social_links": {
+                "youtube": "https://www.youtube.com/results?search_query=Salaar+movie+trailer",
+                "twitter": "https://twitter.com/search?q=%23Salaar",
                 "reddit": "https://www.reddit.com/r/tollywood"
             },
             "content_type": "movie",
-            "tagline": "The legend continues",
-            "likes": 1800,
-            "shares": 450
+            "tagline": "Fire meets fury",
+            "likes": 3600,
+            "shares": 910
         },
         {
-            "id": "d7f8e9a0-1b2c-3d4e-5f6g-7h8i9j0k1l2m",
-            "title": "Wednesday",
-            "category": "series",
-            "platform": "Netflix",
-            "platform_content_id": "wednesday2024",
-            "rating": 8.3,
-            "thumbnail": "https://images.unsplash.com/photo-1509909756405-be0199881695?w=400&h=600&fit=crop",
-            "description": "Wednesday Addams navigates her years as a student at Nevermore Academy.",
-            "release_date": "2024-01-10",
+            "id": str(uuid.uuid4()),
+            "title": "12th Fail",
+            "category": "hot_drop",
+            "platform": "JioHotstar",
+            "platform_content_id": None,
+            "rating": 9.2,
+            "thumbnail": "https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=400&h=600&fit=crop",
+            "description": "An inspiring story of perseverance and the UPSC dream.",
+            "release_date": "2024-12",
             "social_links": {
-                "youtube": "https://www.youtube.com/watch?v=example6",
-                "twitter": "https://twitter.com/search?q=Wednesday",
-                "reddit": "https://www.reddit.com/r/WednesdayTVShow"
+                "youtube": "https://www.youtube.com/results?search_query=12th+Fail+trailer",
+                "twitter": "https://twitter.com/search?q=%2312thFail",
+                "reddit": "https://www.reddit.com/r/bollywood"
             },
-            "content_type": "series",
-            "tagline": "Smart, sarcastic and a little dead inside",
-            "likes": 2500,
-            "shares": 650
+            "content_type": "movie",
+            "tagline": "Restart. Rebuild. Reclaim.",
+            "likes": 4100,
+            "shares": 1050
+        },
+        # DOCU SERIES Category
+        {
+            "id": str(uuid.uuid4()),
+            "title": "Drive to Survive Season 6",
+            "category": "docu_series",
+            "platform": "Netflix",
+            "platform_content_id": None,
+            "rating": 8.7,
+            "thumbnail": "https://images.unsplash.com/photo-1532035708-99aac78b0ad1?w=400&h=600&fit=crop",
+            "description": "Behind-the-scenes drama of Formula 1's 2024 season.",
+            "release_date": "2025-02",
+            "social_links": {
+                "youtube": "https://www.youtube.com/results?search_query=Drive+to+Survive+Season+6+trailer",
+                "twitter": "https://twitter.com/search?q=%23DriveToSurvive",
+                "reddit": "https://www.reddit.com/r/formula1"
+            },
+            "content_type": "documentary",
+            "tagline": "Speed. Drama. Glory.",
+            "likes": 3300,
+            "shares": 870
+        },
+        {
+            "id": str(uuid.uuid4()),
+            "title": "Indian Predator Season 3",
+            "category": "docu_series",
+            "platform": "Netflix",
+            "platform_content_id": None,
+            "rating": 8.1,
+            "thumbnail": "https://images.unsplash.com/photo-1509909756405-be0199881695?w=400&h=600&fit=crop",
+            "description": "True crime stories that shocked India.",
+            "release_date": "2025-01",
+            "social_links": {
+                "youtube": "https://www.youtube.com/results?search_query=Indian+Predator+Season+3+trailer",
+                "twitter": "https://twitter.com/search?q=%23IndianPredator",
+                "reddit": "https://www.reddit.com/r/TrueCrime"
+            },
+            "content_type": "documentary",
+            "tagline": "The darkest minds",
+            "likes": 2600,
+            "shares": 680
+        },
+        {
+            "id": str(uuid.uuid4()),
+            "title": "The Last Dance of Indian Cricket",
+            "category": "docu_series",
+            "platform": "JioHotstar",
+            "platform_content_id": None,
+            "rating": 8.9,
+            "thumbnail": "https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?w=400&h=600&fit=crop",
+            "description": "Legends' final moments in international cricket.",
+            "release_date": "2025-02",
+            "social_links": {
+                "youtube": "https://www.youtube.com/results?search_query=Indian+Cricket+Documentary",
+                "twitter": "https://twitter.com/search?q=%23IndianCricket",
+                "reddit": "https://www.reddit.com/r/Cricket"
+            },
+            "content_type": "documentary",
+            "tagline": "End of an era",
+            "likes": 3700,
+            "shares": 940
+        },
+        {
+            "id": str(uuid.uuid4()),
+            "title": "Planet Earth III",
+            "category": "docu_series",
+            "platform": "SonyLIV",
+            "platform_content_id": None,
+            "rating": 9.5,
+            "thumbnail": "https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=400&h=600&fit=crop",
+            "description": "Breathtaking journey through Earth's most spectacular habitats.",
+            "release_date": "2025-01",
+            "social_links": {
+                "youtube": "https://www.youtube.com/results?search_query=Planet+Earth+III+trailer",
+                "twitter": "https://twitter.com/search?q=%23PlanetEarth",
+                "reddit": "https://www.reddit.com/r/Documentaries"
+            },
+            "content_type": "documentary",
+            "tagline": "Nature's masterpiece",
+            "likes": 2900,
+            "shares": 760
+        },
+        {
+            "id": str(uuid.uuid4()),
+            "title": "Beckham Beyond the Field",
+            "category": "docu_series",
+            "platform": "Netflix",
+            "platform_content_id": None,
+            "rating": 8.4,
+            "thumbnail": "https://images.unsplash.com/photo-1522778119026-d647f0596c20?w=400&h=600&fit=crop",
+            "description": "The untold story of David Beckham's life and career.",
+            "release_date": "2024-12",
+            "social_links": {
+                "youtube": "https://www.youtube.com/results?search_query=Beckham+Documentary+trailer",
+                "twitter": "https://twitter.com/search?q=%23Beckham",
+                "reddit": "https://www.reddit.com/r/soccer"
+            },
+            "content_type": "documentary",
+            "tagline": "Icon. Legend. Human.",
+            "likes": 3100,
+            "shares": 820
+        },
+        {
+            "id": str(uuid.uuid4()),
+            "title": "Our Universe",
+            "category": "docu_series",
+            "platform": "Netflix",
+            "platform_content_id": None,
+            "rating": 8.8,
+            "thumbnail": "https://images.unsplash.com/photo-1509347528160-9a9e33742cdb?w=400&h=600&fit=crop",
+            "description": "An epic cosmic journey narrated by Morgan Freeman.",
+            "release_date": "2025-01",
+            "social_links": {
+                "youtube": "https://www.youtube.com/results?search_query=Our+Universe+Documentary+trailer",
+                "twitter": "https://twitter.com/search?q=%23OurUniverse",
+                "reddit": "https://www.reddit.com/r/space"
+            },
+            "content_type": "documentary",
+            "tagline": "Infinite wonders",
+            "likes": 2800,
+            "shares": 730
+        },
+        # SPORTS Category
+        {
+            "id": str(uuid.uuid4()),
+            "title": "IPL 2025 Live",
+            "category": "sports",
+            "platform": "JioHotstar",
+            "platform_content_id": None,
+            "rating": 9.3,
+            "thumbnail": "https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?w=400&h=600&fit=crop",
+            "description": "The biggest cricket carnival is back with thrilling matches.",
+            "release_date": "2025-03",
+            "social_links": {
+                "youtube": "https://www.youtube.com/results?search_query=IPL+2025+highlights",
+                "twitter": "https://twitter.com/search?q=%23IPL2025",
+                "reddit": "https://www.reddit.com/r/Cricket"
+            },
+            "content_type": "sports_event",
+            "tagline": "Cricket fever!",
+            "likes": 5200,
+            "shares": 1400
+        },
+        {
+            "id": str(uuid.uuid4()),
+            "title": "UEFA Champions League",
+            "category": "sports",
+            "platform": "SonyLIV",
+            "platform_content_id": None,
+            "rating": 9.4,
+            "thumbnail": "https://images.unsplash.com/photo-1522778119026-d647f0596c20?w=400&h=600&fit=crop",
+            "description": "Europe's elite clubs battle for football supremacy.",
+            "release_date": "2025-02",
+            "social_links": {
+                "youtube": "https://www.youtube.com/results?search_query=UEFA+Champions+League+highlights",
+                "twitter": "https://twitter.com/search?q=%23UCL",
+                "reddit": "https://www.reddit.com/r/soccer"
+            },
+            "content_type": "sports_event",
+            "tagline": "Glory awaits",
+            "likes": 4800,
+            "shares": 1300
+        },
+        {
+            "id": str(uuid.uuid4()),
+            "title": "Pro Kabaddi League 2025",
+            "category": "sports",
+            "platform": "JioHotstar",
+            "platform_content_id": None,
+            "rating": 8.9,
+            "thumbnail": "https://images.unsplash.com/photo-1517649763962-0c623066013b?w=400&h=600&fit=crop",
+            "description": "India's indigenous sport at its competitive best.",
+            "release_date": "2025-02",
+            "social_links": {
+                "youtube": "https://www.youtube.com/results?search_query=Pro+Kabaddi+League+2025+highlights",
+                "twitter": "https://twitter.com/search?q=%23PKL2025",
+                "reddit": "https://www.reddit.com/r/Kabaddi"
+            },
+            "content_type": "sports_event",
+            "tagline": "Raid the night",
+            "likes": 3400,
+            "shares": 890
+        },
+        {
+            "id": str(uuid.uuid4()),
+            "title": "NBA Finals 2025",
+            "category": "sports",
+            "platform": "Fancode",
+            "platform_content_id": None,
+            "rating": 9.2,
+            "thumbnail": "https://images.unsplash.com/photo-1546519638-68e109498ffc?w=400&h=600&fit=crop",
+            "description": "The ultimate basketball showdown for the championship.",
+            "release_date": "2025-06",
+            "social_links": {
+                "youtube": "https://www.youtube.com/results?search_query=NBA+Finals+2025+highlights",
+                "twitter": "https://twitter.com/search?q=%23NBAFinals",
+                "reddit": "https://www.reddit.com/r/nba"
+            },
+            "content_type": "sports_event",
+            "tagline": "Hoop dreams",
+            "likes": 3800,
+            "shares": 970
+        },
+        {
+            "id": str(uuid.uuid4()),
+            "title": "Formula 1 Season 2025",
+            "category": "sports",
+            "platform": "Fancode",
+            "platform_content_id": None,
+            "rating": 9.1,
+            "thumbnail": "https://images.unsplash.com/photo-1532035708-99aac78b0ad1?w=400&h=600&fit=crop",
+            "description": "The fastest motorsport returns with new regulations.",
+            "release_date": "2025-03",
+            "social_links": {
+                "youtube": "https://www.youtube.com/results?search_query=Formula+1+2025+highlights",
+                "twitter": "https://twitter.com/search?q=%23F1",
+                "reddit": "https://www.reddit.com/r/formula1"
+            },
+            "content_type": "sports_event",
+            "tagline": "Speed unleashed",
+            "likes": 4200,
+            "shares": 1080
+        },
+        {
+            "id": str(uuid.uuid4()),
+            "title": "ISL 2025",
+            "category": "sports",
+            "platform": "JioHotstar",
+            "platform_content_id": None,
+            "rating": 8.6,
+            "thumbnail": "https://images.unsplash.com/photo-1522778119026-d647f0596c20?w=400&h=600&fit=crop",
+            "description": "Indian Super League brings top football action.",
+            "release_date": "2025-02",
+            "social_links": {
+                "youtube": "https://www.youtube.com/results?search_query=ISL+2025+highlights",
+                "twitter": "https://twitter.com/search?q=%23ISL",
+                "reddit": "https://www.reddit.com/r/IndianFootball"
+            },
+            "content_type": "sports_event",
+            "tagline": "Indian football rising",
+            "likes": 3100,
+            "shares": 810
         }
     ]
     
-    # Insert the mock content
+    # Insert the comprehensive content
     await db.content.insert_many(mock_content)
     
-    return {"message": "Content seeded successfully"}
+    return {"message": "Content seeded successfully with 24 items across all categories"}
 
 @api_router.post("/chat", response_model=ChatResponse)
 async def chat_with_ai(message: ChatMessage):
