@@ -48,6 +48,7 @@ class ContentCreate(BaseModel):
     title: str
     category: str
     platform: str
+    platform_content_id: Optional[str] = None  # Real content ID from the OTT platform (e.g., Netflix title ID)
     rating: float
     thumbnail: str
     description: str
