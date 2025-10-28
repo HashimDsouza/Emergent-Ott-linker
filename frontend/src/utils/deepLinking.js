@@ -1,4 +1,99 @@
-// Deep linking utility functions for OTT apps and social media
+// Deep linking utility with resolver API integration
+
+const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
+const API = `${BACKEND_URL}/api`;
+
+/**
+ * Resolve and open OTT deep link using resolver API
+ * @param {string} titleId - Content ID from database
+ * @param {string} provider - Provider name
+ * @param {string} title - Content title (for fallback)
+ */
+export const openOTTAppWithResolver = async (titleId, provider, title) => {
+  try {
+    // Call resolver API
+    const response = await fetch(`${API}/resolve-link?title_id=${titleId}&provider=${encodeURIComponent(provider)}&country=IN`);
+    
+    if (!response.ok) {
+      throw new Error('Resolver failed');
+    }
+    
+    const data = await response.json();
+    
+    // Try to open the resolved URL
+    const opened = tryOpenLink(data.url, data.scheme_url, data.fallback_search_url, provider, title);
+    
+    return opened;
+  } catch (error) {
+    console.error('Resolver error:', error);
+    // Fallback to search
+    const fallbackUrl = getSearchUrl(provider, title);
+    window.open(fallbackUrl, '_blank');
+    return false;
+  }
+};
+
+/**
+ * Try to open link with fallback chain
+ */
+const tryOpenLink = (url, schemeUrl, fallbackUrl, provider, title) => {
+  const isMobile = /android|iphone|ipad|ipod/i.test(navigator.userAgent.toLowerCase());
+  
+  if (isMobile && schemeUrl) {
+    // On mobile, try scheme URL first (opens app directly)
+    try {
+      window.location.href = schemeUrl;
+      
+      // Fallback to web URL after 2 seconds if app doesn't open
+      setTimeout(() => {
+        window.open(url || fallbackUrl, '_blank');
+      }, 2000);
+      
+      return true;
+    } catch (e) {
+      // Scheme failed, try web URL
+      window.open(url || fallbackUrl, '_blank');
+      return false;
+    }
+  } else {
+    // On desktop or no scheme, use web URL
+    const targetUrl = url || fallbackUrl;
+    
+    if (!url && fallbackUrl) {
+      // Only fallback available, copy title to clipboard
+      copyToClipboard(title);
+    }
+    
+    window.open(targetUrl, '_blank');
+    return !!url;
+  }
+};
+
+/**
+ * Copy text to clipboard
+ */
+const copyToClipboard = async (text) => {
+  try {
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      await navigator.clipboard.writeText(text);
+      return true;
+    } else {
+      // Fallback for older browsers
+      const textarea = document.createElement('textarea');
+      textarea.value = text;
+      textarea.style.position = 'fixed';
+      textarea.style.opacity = '0';
+      document.body.appendChild(textarea);
+      textarea.select();
+      document.execCommand('copy');
+      document.body.removeChild(textarea);
+      return true;
+    }
+  } catch (err) {
+    console.error('Failed to copy:', err);
+    return false;
+  }
+};
 
 /**
  * Detect if user is on iOS or Android
@@ -18,126 +113,7 @@ export const detectPlatform = () => {
 };
 
 /**
- * Deep link configurations for OTT platforms
- */
-const OTT_DEEP_LINKS = {
-  'Netflix': {
-    android: 'nflx://www.netflix.com/title/',
-    ios: 'nflx://www.netflix.com/title/',
-    web: 'https://www.netflix.com/title/',
-    appStore: 'https://apps.apple.com/app/netflix/id363590051',
-    playStore: 'https://play.google.com/store/apps/details?id=com.netflix.mediaclient'
-  },
-  'Prime Video': {
-    android: 'aiv://aiv/view?gti=',
-    ios: 'aiv://aiv/view?gti=',
-    web: 'https://www.primevideo.com/detail/',
-    appStore: 'https://apps.apple.com/app/amazon-prime-video/id545519333',
-    playStore: 'https://play.google.com/store/apps/details?id=com.amazon.avod.thirdpartyclient'
-  },
-  'JioHotstar': {
-    android: 'hotstar://content/',
-    ios: 'hotstar://content/',
-    web: 'https://www.hotstar.com/in/',
-    appStore: 'https://apps.apple.com/app/hotstar/id934459219',
-    playStore: 'https://play.google.com/store/apps/details?id=in.startv.hotstar'
-  },
-  'Apple TV': {
-    android: 'https://tv.apple.com/',
-    ios: 'com.apple.tv://tv.apple.com/',
-    web: 'https://tv.apple.com/',
-    appStore: 'https://apps.apple.com/app/apple-tv/id1174078549',
-    playStore: 'https://play.google.com/store/apps/details?id=com.apple.atve.androidtv.appletv'
-  },
-  'SonyLIV': {
-    android: 'sonyliv://content/',
-    ios: 'sonyliv://content/',
-    web: 'https://www.sonyliv.com/',
-    appStore: 'https://apps.apple.com/app/sonyliv/id998099426',
-    playStore: 'https://play.google.com/store/apps/details?id=com.msmpl.livsportsphone'
-  },
-  'MX Player': {
-    android: 'mxplayer://play/',
-    ios: 'mxplayer://play/',
-    web: 'https://www.mxplayer.in/',
-    appStore: 'https://apps.apple.com/app/mx-player/id1445507777',
-    playStore: 'https://play.google.com/store/apps/details?id=com.mxtech.videoplayer.ad'
-  }
-};
-
-/**
- * Generate deep link for OTT platform
- * @param {string} platform - OTT platform name (e.g., 'Netflix')
- * @param {string} contentId - Content ID or slug
- * @returns {object} - Deep link URLs for different platforms
- */
-export const generateOTTDeepLink = (platform, contentId = '') => {
-  const config = OTT_DEEP_LINKS[platform];
-  
-  if (!config) {
-    return {
-      deepLink: null,
-      webLink: `https://www.google.com/search?q=${encodeURIComponent(platform)}`,
-      appStore: null,
-      playStore: null
-    };
-  }
-  
-  const platformType = detectPlatform();
-  
-  return {
-    deepLink: platformType === 'web' ? config.web + contentId : 
-              platformType === 'ios' ? config.ios + contentId : 
-              config.android + contentId,
-    webLink: config.web + contentId,
-    appStore: config.appStore,
-    playStore: config.playStore,
-    platform: platformType
-  };
-};
-
-/**
- * Open OTT app with fallback to search/home
- * @param {string} platform - OTT platform name
- * @param {string} platformContentId - Real platform content ID (optional)
- * @param {string} contentTitle - Content title for search fallback
- */
-export const openOTTApp = (platform, platformContentId, contentTitle) => {
-  // If we have a real platform content ID, use it
-  const targetUrl = platformContentId 
-    ? getDirectUrl(platform, platformContentId)
-    : getSearchUrl(platform, contentTitle);
-  
-  // Open URL - browser will handle app vs web
-  window.open(targetUrl, '_blank');
-};
-
-/**
- * Get direct URL for platform with content ID
- * @param {string} platform - OTT platform name
- * @param {string} contentId - Platform-specific content ID
- * @returns {string} - Direct URL to content
- */
-const getDirectUrl = (platform, contentId) => {
-  const directUrls = {
-    'Netflix': `https://www.netflix.com/title/${contentId}`,
-    'Prime Video': `https://www.primevideo.com/detail/${contentId}`,
-    'JioHotstar': `https://www.hotstar.com/in/${contentId}`,
-    'Apple TV': `https://tv.apple.com/show/${contentId}`,
-    'SonyLIV': `https://www.sonyliv.com/shows/${contentId}`,
-    'MX Player': `https://www.mxplayer.in/show/${contentId}`,
-    'Fancode': `https://www.fancode.com/`,
-    'YouTube': `https://www.youtube.com/results?search_query=${encodeURIComponent(contentId)}`
-  };
-  
-  return directUrls[platform] || getSearchUrl(platform, contentId);
-};
-
-/**
- * Get search URL for platform
- * @param {string} platform - OTT platform name
- * @param {string} title - Content title
- * @returns {string} - Search URL
+ * Get search URL for platform (fallback)
  */
 const getSearchUrl = (platform, title) => {
   const encodedTitle = encodeURIComponent(title);
@@ -147,11 +123,10 @@ const getSearchUrl = (platform, title) => {
     'Prime Video': `https://www.primevideo.com/search?phrase=${encodedTitle}`,
     'JioHotstar': `https://www.hotstar.com/in/search/${encodedTitle}`,
     'Apple TV': `https://tv.apple.com/search?term=${encodedTitle}`,
-    'SonyLIV': `https://www.sonyliv.com/`,  // SonyLIV search has issues on mobile, go to homepage
+    'SonyLIV': `https://www.sonyliv.com/`,
     'MX Player': `https://www.mxplayer.in/search?q=${encodedTitle}`,
     'Fancode': `https://www.fancode.com/`,
     'YouTube': `https://www.youtube.com/results?search_query=${encodedTitle}`,
-    'FIDE': `https://www.youtube.com/results?search_query=${encodedTitle}`,
   };
   
   return searchUrls[platform] || searchUrls['YouTube'];
@@ -159,18 +134,13 @@ const getSearchUrl = (platform, title) => {
 
 /**
  * Generate YouTube search/trailer link
- * @param {string} title - Content title
- * @returns {string} - YouTube URL
  */
 export const generateYouTubeLink = (title) => {
-  // Use direct link format that's less likely to be blocked
   return `https://www.youtube.com/results?search_query=${encodeURIComponent(title + ' trailer')}`;
 };
 
 /**
  * Generate X/Twitter search link
- * @param {string} title - Content title
- * @returns {string} - Twitter URL
  */
 export const generateTwitterLink = (title) => {
   const hashtag = title.replace(/[^a-zA-Z0-9]/g, '');
@@ -179,8 +149,6 @@ export const generateTwitterLink = (title) => {
 
 /**
  * Generate Reddit search link
- * @param {string} title - Content title
- * @returns {string} - Reddit URL
  */
 export const generateRedditLink = (title) => {
   return `https://www.reddit.com/search/?q=${encodeURIComponent(title)}`;
@@ -188,9 +156,6 @@ export const generateRedditLink = (title) => {
 
 /**
  * Open social media link
- * @param {string} type - 'youtube', 'twitter', or 'reddit'
- * @param {string} title - Content title
- * @param {string} customUrl - Custom URL if available
  */
 export const openSocialLink = (type, title, customUrl = null) => {
   let url;
@@ -209,9 +174,11 @@ export const openSocialLink = (type, title, customUrl = null) => {
         url = generateRedditLink(title);
         break;
       default:
-        url = `https://www.google.com/search?q=${encodeURIComponent(title)}`;
+        url = `https://www.youtube.com/results?search_query=${encodeURIComponent(title)}`;
     }
   }
   
   window.open(url, '_blank');
 };
+
+export { copyToClipboard };
