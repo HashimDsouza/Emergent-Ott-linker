@@ -99,25 +99,36 @@ export const generateOTTDeepLink = (platform, contentId = '') => {
 /**
  * Open OTT app with fallback to search/home
  * @param {string} platform - OTT platform name
- * @param {string} contentId - Content ID (optional, can be empty)
+ * @param {string} platformContentId - Real platform content ID (optional)
  * @param {string} contentTitle - Content title for search fallback
  */
-export const openOTTApp = (platform, contentId, contentTitle) => {
-  const { webLink, platform: userPlatform } = generateOTTDeepLink(platform, contentId);
+export const openOTTApp = (platform, platformContentId, contentTitle) => {
+  // If we have a real platform content ID, use it
+  const targetUrl = platformContentId 
+    ? getDirectUrl(platform, platformContentId)
+    : getSearchUrl(platform, contentTitle);
   
-  // If no valid content ID, use search fallback
-  const searchUrl = getSearchUrl(platform, contentTitle);
-  const targetUrl = contentId && contentId.length > 0 && !contentId.includes('-') ? webLink : searchUrl;
+  // Open in new tab
+  window.open(targetUrl, '_blank');
+};
+
+/**
+ * Get direct URL for platform with content ID
+ * @param {string} platform - OTT platform name
+ * @param {string} contentId - Platform-specific content ID
+ * @returns {string} - Direct URL to content
+ */
+const getDirectUrl = (platform, contentId) => {
+  const directUrls = {
+    'Netflix': `https://www.netflix.com/title/${contentId}`,
+    'Prime Video': `https://www.primevideo.com/detail/${contentId}`,
+    'JioHotstar': `https://www.hotstar.com/in/tv/${contentId}`,
+    'Apple TV': `https://tv.apple.com/show/${contentId}`,
+    'SonyLIV': `https://www.sonyliv.com/shows/${contentId}`,
+    'MX Player': `https://www.mxplayer.in/show/${contentId}`
+  };
   
-  if (userPlatform === 'web') {
-    // Desktop: Open web version or search
-    window.open(targetUrl, '_blank');
-    return;
-  }
-  
-  // Mobile: For now, just open web version with search
-  // Deep linking without proper content IDs causes 404 errors
-  window.open(searchUrl, '_blank');
+  return directUrls[platform] || getSearchUrl(platform, contentId);
 };
 
 /**
