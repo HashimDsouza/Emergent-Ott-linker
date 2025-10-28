@@ -138,8 +138,12 @@ async def get_tmdb_details(tmdb_id: int, content_type: str = "movie") -> Optiona
 
 async def get_omdb_rating(imdb_id: str) -> Optional[Dict]:
     """Get IMDb rating and votes from OMDb"""
+    if not OMDB_API_KEY:
+        logging.debug(f"OMDb API key not configured, skipping for: {imdb_id}")
+        return None
+    
     try:
-        async with httpx.AsyncClient(timeout=httpx.Timeout(5.0)) as client:
+        async with httpx.AsyncClient(timeout=httpx.Timeout(3.0)) as client:  # Reduced to 3s
             response = await client.get(
                 "http://www.omdbapi.com/",
                 params={
@@ -147,19 +151,27 @@ async def get_omdb_rating(imdb_id: str) -> Optional[Dict]:
                     "i": imdb_id,
                     "plot": "short"
                 },
-                timeout=5.0
+                timeout=3.0
             )
             
             if response.status_code == 200:
                 data = response.json()
                 if data.get("Response") == "True" and data.get("imdbRating") != "N/A":
+                    logging.info(f"✅ OMDb rating for {imdb_id}: {data.get('imdbRating')}")
                     return {
                         "imdb_rating": data.get("imdbRating"),
                         "imdb_votes": data.get("imdbVotes"),
                         "metascore": data.get("Metascore")
                     }
+                else:
+                    logging.warning(f"⚠️  OMDb no rating for {imdb_id}")
+            elif response.status_code == 401:
+                logging.error(f"❌ OMDb API key invalid or expired")
+                
+    except httpx.TimeoutException:
+        logging.warning(f"⏱️  OMDb timeout for {imdb_id} (3s limit exceeded)")
     except Exception as e:
-        logging.warning(f"OMDb timeout/error for {imdb_id}: {str(e)[:50]}")
+        logging.warning(f"⚠️  OMDb error for {imdb_id}: {str(e)[:50]}")
     return None
 
 async def search_watchmode(title: str, content_type: str = "movie") -> Optional[Dict]:
