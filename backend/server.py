@@ -617,6 +617,47 @@ async def enrich_all_content():
         "failed": failed
     }
 
+@api_router.get("/debug/sample")
+async def debug_sample():
+    """
+    Debug endpoint to verify enrichment data
+    Returns 3 enriched titles with full metadata
+    """
+    content_list = await db.content.find(
+        {"tmdb_id": {"$ne": None}},
+        {"_id": 0}
+    ).limit(3).to_list(3)
+    
+    if not content_list:
+        # If no enriched items, return any 3
+        content_list = await db.content.find({}, {"_id": 0}).limit(3).to_list(3)
+    
+    # Format for debugging
+    debug_data = []
+    for item in content_list:
+        debug_data.append({
+            "titleId": item.get("id"),
+            "title": item.get("title"),
+            "tmdb_id": item.get("tmdb_id"),
+            "imdb_id": item.get("imdb_id"),
+            "poster_path": item.get("poster_path"),
+            "poster_url": item.get("poster_path"),  # Same as poster_path for now
+            "thumbnail": item.get("thumbnail"),
+            "imdb_rating": item.get("imdb_rating"),
+            "rating": item.get("rating"),
+            "providers_IN": item.get("providers_in", []),
+            "platform": item.get("platform"),
+            "platform_content_id": item.get("platform_content_id"),
+            "enriched": item.get("tmdb_id") is not None
+        })
+    
+    return {
+        "status": "success",
+        "count": len(debug_data),
+        "enriched_count": len([d for d in debug_data if d["enriched"]]),
+        "samples": debug_data
+    }
+
 @api_router.get("/content", response_model=List[Content])
 async def get_all_content(response: Response):
     # Add cache control headers to prevent caching
