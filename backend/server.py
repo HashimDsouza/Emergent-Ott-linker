@@ -20,8 +20,272 @@ mongo_url = os.environ['MONGO_URL']
 client = AsyncIOMotorClient(mongo_url)
 db = client[os.environ['DB_NAME']]
 
+# API Keys for enrichment
+TMDB_API_KEY = os.environ.get('TMDB_API_KEY')
+OMDB_API_KEY = os.environ.get('OMDB_API_KEY')
+WATCHMODE_API_KEY = os.environ.get('WATCHMODE_API_KEY')
+
 app = FastAPI()
 api_router = APIRouter(prefix="/api")
+
+# ============================================================================
+# METADATA ENRICHMENT FUNCTIONS
+# ============================================================================
+
+async def search_tmdb(title: str, year: Optional[int] = None, content_type: str = "movie") -> Optional[Dict]:
+    """Search TMDB for a title and return best match"""
+    try:
+        async with httpx.AsyncClient() as client:
+            endpoint = "tv" if content_type == "series" else "movie"
+            params = {
+                "api_key": TMDB_API_KEY,
+                "query": title,
+                "language": "en-US",
+                "page": 1
+            }
+            if year:
+                params["year" if endpoint == "movie" else "first_air_date_year"] = year
+            
+            response = await client.get(
+                f"https://api.themoviedb.org/3/search/{endpoint}",
+                params=params,
+                timeout=10.0
+            )
+            
+            if response.status_code == 200:
+                data = response.json()
+                if data.get("results"):
+                    return data["results"][0]  # Return best match
+    except Exception as e:
+        logging.error(f"TMDB search error: {str(e)}")
+    return None
+
+async def get_tmdb_details(tmdb_id: int, content_type: str = "movie") -> Optional[Dict]:
+    """Get detailed info from TMDB including external IDs and watch providers"""
+    try:
+        async with httpx.AsyncClient() as client:
+            endpoint = "tv" if content_type == "series" else "movie"
+            
+            # Get main details
+            response = await client.get(
+                f"https://api.themoviedb.org/3/{endpoint}/{tmdb_id}",
+                params={"api_key": TMDB_API_KEY, "language": "en-US"},
+                timeout=10.0
+            )
+            
+            if response.status_code != 200:
+                return None
+            
+            details = response.json()
+            
+            # Get external IDs (includes IMDb ID)
+            external_response = await client.get(
+                f"https://api.themoviedb.org/3/{endpoint}/{tmdb_id}/external_ids",
+                params={"api_key": TMDB_API_KEY},
+                timeout=10.0
+            )
+            
+            if external_response.status_code == 200:
+                details["external_ids"] = external_response.json()
+            
+            # Get watch providers for India
+            providers_response = await client.get(
+                f"https://api.themoviedb.org/3/{endpoint}/{tmdb_id}/watch/providers",
+                params={"api_key": TMDB_API_KEY},
+                timeout=10.0
+            )
+            
+            if providers_response.status_code == 200:
+                providers_data = providers_response.json()
+                details["watch_providers_in"] = providers_data.get("results", {}).get("IN", {})
+            
+            return details
+    except Exception as e:
+        logging.error(f"TMDB details error: {str(e)}")
+    return None
+
+async def get_omdb_rating(imdb_id: str) -> Optional[Dict]:
+    """Get IMDb rating and votes from OMDb"""
+    try:
+        async with httpx.AsyncClient() as client:
+            response = await client.get(
+                "http://www.omdbapi.com/",
+                params={
+                    "apikey": OMDB_API_KEY,
+                    "i": imdb_id,
+                    "plot": "short"
+                },
+                timeout=10.0
+            )
+            
+            if response.status_code == 200:
+                data = response.json()
+                if data.get("Response") == "True":
+                    return {
+                        "imdb_rating": data.get("imdbRating"),
+                        "imdb_votes": data.get("imdbVotes"),
+                        "metascore": data.get("Metascore")
+                    }
+    except Exception as e:
+        logging.error(f"OMDb error: {str(e)}")
+    return None
+
+async def search_watchmode(title: str, content_type: str = "movie") -> Optional[Dict]:
+    """Search Watchmode for streaming sources"""
+    try:
+        async with httpx.AsyncClient() as client:
+            # First search for the title
+            search_response = await client.get(
+                "https://api.watchmode.com/v1/search/",
+                params={
+                    "apiKey": WATCHMODE_API_KEY,
+                    "search_field": "name",
+                    "search_value": title
+                },
+                timeout=10.0
+            )
+            
+            if search_response.status_code == 200:
+                search_data = search_response.json()
+                if search_data.get("title_results"):
+                    # Get the first match
+                    watchmode_id = search_data["title_results"][0]["id"]
+                    
+                    # Get sources for India
+                    sources_response = await client.get(
+                        f"https://api.watchmode.com/v1/title/{watchmode_id}/sources/",
+                        params={
+                            "apiKey": WATCHMODE_API_KEY,
+                            "regions": "IN"
+                        },
+                        timeout=10.0
+                    )
+                    
+                    if sources_response.status_code == 200:
+                        return {
+                            "watchmode_id": watchmode_id,
+                            "sources": sources_response.json()
+                        }
+    except Exception as e:
+        logging.error(f"Watchmode error: {str(e)}")
+    return None
+
+def normalize_title_for_search(title: str, platform: str = None) -> str:
+    """Normalize title for better search matching"""
+    # Remove "Season X" for Apple TV and other platforms
+    if platform and platform.lower() in ["apple tv", "appletv"]:
+        title = re.sub(r'\s+Season\s+\d+', '', title, flags=re.IGNORECASE)
+    
+    # Remove year in parentheses
+    title = re.sub(r'\s*\(\d{4}\)', '', title)
+    
+    # Clean up extra spaces
+    title = ' '.join(title.split())
+    
+    return title
+
+async def enrich_content_item(content: Dict) -> Dict:
+    """Enrich a single content item with TMDB + OMDb + Watchmode data"""
+    try:
+        # Step 1: Search TMDB
+        tmdb_result = await search_tmdb(
+            content["title"],
+            content_type=content.get("content_type", "movie")
+        )
+        
+        if not tmdb_result:
+            logging.warning(f"No TMDB result for: {content['title']}")
+            return content
+        
+        tmdb_id = tmdb_result["id"]
+        
+        # Step 2: Get TMDB details
+        tmdb_details = await get_tmdb_details(
+            tmdb_id,
+            content_type=content.get("content_type", "movie")
+        )
+        
+        if not tmdb_details:
+            return content
+        
+        # Extract data from TMDB
+        content["tmdb_id"] = tmdb_id
+        content["normalized_title"] = tmdb_result.get("title") or tmdb_result.get("name")
+        content["description"] = tmdb_details.get("overview", content.get("description"))
+        
+        # Poster and backdrop
+        if tmdb_result.get("poster_path"):
+            content["poster_path"] = f"https://image.tmdb.org/t/p/w500{tmdb_result['poster_path']}"
+            content["thumbnail"] = content["poster_path"]  # Update thumbnail
+        
+        if tmdb_result.get("backdrop_path"):
+            content["backdrop_path"] = f"https://image.tmdb.org/t/p/original{tmdb_result['backdrop_path']}"
+        
+        # Year
+        release_date = tmdb_result.get("release_date") or tmdb_result.get("first_air_date")
+        if release_date:
+            content["year"] = int(release_date.split("-")[0])
+        
+        # Get IMDb ID
+        imdb_id = tmdb_details.get("external_ids", {}).get("imdb_id")
+        if imdb_id:
+            content["imdb_id"] = imdb_id
+            
+            # Step 3: Get OMDb rating
+            omdb_data = await get_omdb_rating(imdb_id)
+            if omdb_data and omdb_data.get("imdb_rating") != "N/A":
+                try:
+                    content["imdb_rating"] = float(omdb_data["imdb_rating"])
+                    content["rating"] = content["imdb_rating"]  # Update rating
+                    content["imdb_votes"] = omdb_data.get("imdb_votes")
+                except:
+                    pass
+        
+        # Extract providers from TMDB watch providers
+        watch_providers = tmdb_details.get("watch_providers_in", {})
+        providers = []
+        for provider_type in ["flatrate", "buy", "rent"]:
+            if provider_type in watch_providers:
+                providers.extend([p["provider_name"] for p in watch_providers[provider_type]])
+        content["providers_in"] = list(set(providers))
+        
+        # Step 4: Get Watchmode streaming links
+        watchmode_data = await search_watchmode(
+            content["normalized_title"] or content["title"],
+            content_type=content.get("content_type", "movie")
+        )
+        
+        if watchmode_data:
+            content["watchmode_id"] = watchmode_data["watchmode_id"]
+            
+            # Store provider-specific links
+            sources = watchmode_data.get("sources", [])
+            for source in sources:
+                provider_name = source.get("name", "").lower()
+                web_url = source.get("web_url")
+                
+                # Map provider names to our platforms
+                if web_url:
+                    if "netflix" in provider_name:
+                        # Extract Netflix content ID from URL
+                        match = re.search(r'/title/(\d+)', web_url)
+                        if match:
+                            content["platform_content_id"] = match.group(1)
+                    elif "prime" in provider_name or "amazon" in provider_name:
+                        match = re.search(r'/detail/([^/]+)', web_url)
+                        if match:
+                            content["platform_content_id"] = match.group(1)
+        
+        content["last_enriched"] = datetime.now(timezone.utc).isoformat()
+        
+        logging.info(f"Enriched: {content['title']} (TMDB: {tmdb_id}, IMDb: {content.get('imdb_rating', 'N/A')})")
+        
+    except Exception as e:
+        logging.error(f"Enrichment error for {content.get('title')}: {str(e)}")
+    
+    return content
+
+# ============================================================================
 
 class Content(BaseModel):
     model_config = ConfigDict(extra="ignore")
