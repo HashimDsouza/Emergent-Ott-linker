@@ -27,15 +27,39 @@ const ContentCard = ({ content, currentUser, onContentClick, compact = false, is
     return 'platform-appletv';
   };
 
-  const handleCardClick = () => {
-    toast.info(`Opening ${content.platform}...`, {
+  const handleCardClick = async () => {
+    const loadingToast = toast.loading(`Opening ${content.platform}...`, {
       description: content.platform_content_id 
         ? "Taking you directly to the show" 
-        : "Searching for this content on the platform",
-      duration: 2000
+        : "Searching for this content",
     });
     
-    openOTTApp(content.platform, content.platform_content_id, content.title);
+    try {
+      const opened = await openOTTAppWithResolver(content.id, content.platform, content.title);
+      
+      toast.dismiss(loadingToast);
+      
+      if (opened) {
+        toast.success(`Opened ${content.platform}!`, { duration: 2000 });
+      } else {
+        // Fallback: copy title to clipboard
+        const copied = await copyToClipboard(content.title);
+        if (copied) {
+          toast.info(`Title copied to clipboard!`, {
+            description: `Search for "${content.title}" in the app`,
+            duration: 3000
+          });
+        } else {
+          toast.info(`Opening search page...`, { duration: 2000 });
+        }
+      }
+    } catch (error) {
+      toast.dismiss(loadingToast);
+      toast.error("Failed to open content", {
+        description: "Please try again",
+        duration: 2000
+      });
+    }
   };
 
   const handleLike = async (e) => {
