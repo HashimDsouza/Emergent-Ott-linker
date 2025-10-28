@@ -143,13 +143,16 @@ const getSearchUrl = (platform, title) => {
   const searchUrls = {
     'Netflix': `https://www.netflix.com/search?q=${encodedTitle}`,
     'Prime Video': `https://www.primevideo.com/search?phrase=${encodedTitle}`,
-    'JioHotstar': `https://www.hotstar.com/in/search?q=${encodedTitle}`,
+    'JioHotstar': `https://www.hotstar.com/in/search/all?q=${encodedTitle}`,
     'Apple TV': `https://tv.apple.com/search?term=${encodedTitle}`,
-    'SonyLIV': `https://www.sonyliv.com/search?q=${encodedTitle}`,
-    'MX Player': `https://www.mxplayer.in/search?q=${encodedTitle}`
+    'SonyLIV': `https://www.sonyliv.com/search?searchQuery=${encodedTitle}`,
+    'MX Player': `https://www.mxplayer.in/search?q=${encodedTitle}`,
+    'Fancode': `https://www.fancode.com/`,  // Direct to homepage
+    'YouTube': `https://www.youtube.com/results?search_query=${encodedTitle}`,
+    'FIDE': `https://www.youtube.com/results?search_query=${encodedTitle}`,
   };
   
-  return searchUrls[platform] || `https://www.google.com/search?q=${encodedTitle}+${encodeURIComponent(platform)}`;
+  return searchUrls[platform] || searchUrls['YouTube'];
 };
 
 /**
