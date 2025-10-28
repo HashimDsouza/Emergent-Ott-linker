@@ -46,14 +46,25 @@ const tryOpenLink = (url, schemeUrl, fallbackUrl, provider, title) => {
       
       // Fallback to web URL after 2 seconds if app doesn't open
       setTimeout(() => {
-        window.open(url || fallbackUrl, '_blank');
+        if (url) {
+          window.open(url, '_blank');
+        } else {
+          window.open(fallbackUrl, '_blank');
+          copyToClipboard(title);
+        }
       }, 2000);
       
       return true;
     } catch (e) {
-      // Scheme failed, try web URL
-      window.open(url || fallbackUrl, '_blank');
-      return false;
+      // Scheme failed, try web URL or fallback
+      if (url) {
+        window.open(url, '_blank');
+        return true;
+      } else {
+        window.open(fallbackUrl, '_blank');
+        copyToClipboard(title);
+        return false;
+      }
     }
   } else {
     // On desktop or no scheme, use web URL
@@ -62,6 +73,8 @@ const tryOpenLink = (url, schemeUrl, fallbackUrl, provider, title) => {
     if (!url && fallbackUrl) {
       // Only fallback available, copy title to clipboard
       copyToClipboard(title);
+      window.open(targetUrl, '_blank');
+      return false;
     }
     
     window.open(targetUrl, '_blank');
