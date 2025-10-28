@@ -172,38 +172,38 @@ const ContentCard = ({ content, currentUser, onContentClick, compact = false, is
           </div>
 
           {/* Social Links - Why to Watch */}
-          <div className="flex items-center gap-2 py-1 border-t border-white/5">
+          <div className="flex items-center gap-1.5 py-1 border-t border-white/5">
             <span className="text-[9px] text-gray-500 font-medium">Why:</span>
-            <div className="flex gap-1.5">
+            <div className="flex gap-1">
               <button
                 onClick={(e) => {
                   e.stopPropagation();
                   openSocialLink('youtube', content.title, content.social_links?.youtube);
                 }}
-                className="w-6 h-6 rounded-full bg-red-500/20 border border-red-500/30 flex items-center justify-center hover:bg-red-500/30 transition-colors"
+                className="w-5 h-5 sm:w-6 sm:h-6 rounded-full bg-red-500/20 border border-red-500/30 flex items-center justify-center hover:bg-red-500/30 transition-colors flex-shrink-0"
                 data-testid={`social-youtube-${content.id}`}
               >
-                <FaYoutube className="w-3 h-3 text-red-500" />
+                <FaYoutube className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-red-500" />
               </button>
               <button
                 onClick={(e) => {
                   e.stopPropagation();
                   openSocialLink('twitter', content.title, content.social_links?.twitter);
                 }}
-                className="w-6 h-6 rounded-full bg-white/10 border border-white/20 flex items-center justify-center hover:bg-white/20 transition-colors"
+                className="w-5 h-5 sm:w-6 sm:h-6 rounded-full bg-white/10 border border-white/20 flex items-center justify-center hover:bg-white/20 transition-colors flex-shrink-0"
                 data-testid={`social-twitter-${content.id}`}
               >
-                <FaXTwitter className="w-3 h-3 text-white" />
+                <FaXTwitter className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-white" />
               </button>
               <button
                 onClick={(e) => {
                   e.stopPropagation();
                   openSocialLink('reddit', content.title, content.social_links?.reddit);
                 }}
-                className="w-6 h-6 rounded-full bg-orange-500/20 border border-orange-500/30 flex items-center justify-center hover:bg-orange-500/30 transition-colors"
+                className="w-5 h-5 sm:w-6 sm:h-6 rounded-full bg-orange-500/20 border border-orange-500/30 flex items-center justify-center hover:bg-orange-500/30 transition-colors flex-shrink-0"
                 data-testid={`social-reddit-${content.id}`}
               >
-                <FaReddit className="w-3 h-3 text-orange-500" />
+                <FaReddit className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-orange-500" />
               </button>
             </div>
           </div>
