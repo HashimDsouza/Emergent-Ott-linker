@@ -482,12 +482,18 @@ async def resolve_link(
     country: str = Query("IN", description="Country code")
 ):
     """
-    Resolve deep link for a title on a specific provider
+    Resolve deep link for a title on a specific provider (uses enriched data)
     """
     # Get content from database
     content = await db.content.find_one({"id": title_id}, {"_id": 0})
     if not content:
         raise HTTPException(status_code=404, detail="Content not found")
+    
+    # Use normalized title for better search if available
+    search_title = normalize_title_for_search(
+        content.get("normalized_title") or content["title"],
+        provider
+    )
     
     # Check if we have a cached link
     cached_link = await db.title_links.find_one(
@@ -504,8 +510,8 @@ async def resolve_link(
             platform_content_id=cached_link.get("platform_content_id")
         )
     
-    # Generate links on the fly
-    links = generate_provider_links(provider, content["title"], content.get("platform_content_id"))
+    # Generate links on the fly with normalized title
+    links = generate_provider_links(provider, search_title, content.get("platform_content_id"))
     
     return LinkResolverResponse(
         url=links["web_url"] or links["app_search_url"],
@@ -514,6 +520,37 @@ async def resolve_link(
         provider=provider,
         platform_content_id=content.get("platform_content_id")
     )
+
+@api_router.post("/enrich-all-content")
+async def enrich_all_content():
+    """
+    Enrich all content with TMDB + OMDb + Watchmode metadata
+    This should be run after seeding or periodically for updates
+    """
+    all_content = await db.content.find({}, {"_id": 0}).to_list(1000)
+    enriched_count = 0
+    failed = []
+    
+    for content in all_content:
+        try:
+            enriched = await enrich_content_item(content)
+            
+            # Update in database
+            await db.content.update_one(
+                {"id": enriched["id"]},
+                {"$set": enriched}
+            )
+            enriched_count += 1
+        except Exception as e:
+            logging.error(f"Failed to enrich {content.get('title')}: {str(e)}")
+            failed.append(content.get('title'))
+    
+    return {
+        "message": f"Enriched {enriched_count} out of {len(all_content)} content items",
+        "enriched": enriched_count,
+        "total": len(all_content),
+        "failed": failed
+    }
 
 @api_router.post("/enrich-content")
 async def enrich_content():
