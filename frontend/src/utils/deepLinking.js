@@ -122,10 +122,12 @@ const getDirectUrl = (platform, contentId) => {
   const directUrls = {
     'Netflix': `https://www.netflix.com/title/${contentId}`,
     'Prime Video': `https://www.primevideo.com/detail/${contentId}`,
-    'JioHotstar': `https://www.hotstar.com/in/tv/${contentId}`,
+    'JioHotstar': `https://www.hotstar.com/in/${contentId}`,
     'Apple TV': `https://tv.apple.com/show/${contentId}`,
     'SonyLIV': `https://www.sonyliv.com/shows/${contentId}`,
-    'MX Player': `https://www.mxplayer.in/show/${contentId}`
+    'MX Player': `https://www.mxplayer.in/show/${contentId}`,
+    'Fancode': `https://www.fancode.com/`,
+    'YouTube': `https://www.youtube.com/results?search_query=${encodeURIComponent(contentId)}`
   };
   
   return directUrls[platform] || getSearchUrl(platform, contentId);
