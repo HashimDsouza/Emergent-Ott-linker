@@ -250,15 +250,22 @@ async def enrich_content_item(content: Dict) -> Dict:
         if imdb_id:
             content["imdb_id"] = imdb_id
             
-            # Step 3: Get OMDb rating
+            # Step 3: Get OMDb rating (with timeout protection)
             omdb_data = await get_omdb_rating(imdb_id)
-            if omdb_data and omdb_data.get("imdb_rating") != "N/A":
+            if omdb_data and omdb_data.get("imdb_rating"):
                 try:
                     content["imdb_rating"] = float(omdb_data["imdb_rating"])
                     content["rating"] = content["imdb_rating"]  # Update rating
                     content["imdb_votes"] = omdb_data.get("imdb_votes")
                 except:
                     pass
+            else:
+                # Fallback to TMDB rating if OMDb fails
+                tmdb_rating = tmdb_details.get("vote_average")
+                if tmdb_rating:
+                    content["imdb_rating"] = round(tmdb_rating, 1)
+                    content["rating"] = content["imdb_rating"]
+                    logging.info(f"Using TMDB rating for {content['title']}: {tmdb_rating}")
         
         # Extract providers from TMDB watch providers
         watch_providers = tmdb_details.get("watch_providers_in", {})
