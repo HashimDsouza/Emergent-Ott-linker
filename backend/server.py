@@ -400,9 +400,132 @@ async def seed_content():
     """Seed content - keeping existing implementation"""
     await db.content.delete_many({})
     
-    # Import existing seed data from previous implementation
-    # (keeping the mock_content array as is)
-    # ... [rest of seed data stays the same]
+    # Sample content for testing deep linking
+    mock_content = [
+        {
+            "id": "208c17e4-5087-4f0a-9234-352fac787bbe",
+            "title": "The Bads of Bollywood",
+            "category": "buzzing",
+            "platform": "Netflix",
+            "platform_content_id": "81234567",
+            "rating": 8.5,
+            "thumbnail": "https://images.unsplash.com/photo-1489599735734-79b4169c2a78?w=400&h=600&fit=crop",
+            "description": "A gripping drama series that explores the dark side of Bollywood.",
+            "release_date": "2024-01-15",
+            "social_links": {
+                "youtube": "https://www.youtube.com/watch?v=example1",
+                "twitter": "https://twitter.com/search?q=BadsBollywood",
+                "reddit": "https://www.reddit.com/r/bollywood"
+            },
+            "content_type": "series",
+            "tagline": "Behind the glitz lies the truth",
+            "likes": 1250,
+            "shares": 340
+        },
+        {
+            "id": "bf0a6d14-6e46-491b-8b62-5683e728d26b",
+            "title": "Severance",
+            "category": "buzzing",
+            "platform": "Apple TV",
+            "platform_content_id": "1234567890",
+            "rating": 9.2,
+            "thumbnail": "https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=400&h=600&fit=crop",
+            "description": "A psychological thriller about work-life balance taken to extremes.",
+            "release_date": "2024-02-01",
+            "social_links": {
+                "youtube": "https://www.youtube.com/watch?v=example2",
+                "twitter": "https://twitter.com/search?q=Severance",
+                "reddit": "https://www.reddit.com/r/SeveranceAppleTVPlus"
+            },
+            "content_type": "series",
+            "tagline": "Work is life. Life is work.",
+            "likes": 2100,
+            "shares": 580
+        },
+        {
+            "id": "c51d6ce2-fc47-412b-b0e5-d9d7962bc231",
+            "title": "Scam 1992",
+            "category": "hot_drop",
+            "platform": "SonyLIV",
+            "platform_content_id": "scam1992",
+            "rating": 9.6,
+            "thumbnail": "https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=400&h=600&fit=crop",
+            "description": "The story of Harshad Mehta and the biggest financial scam in India.",
+            "release_date": "2024-01-20",
+            "social_links": {
+                "youtube": "https://www.youtube.com/watch?v=example3",
+                "twitter": "https://twitter.com/search?q=Scam1992",
+                "reddit": "https://www.reddit.com/r/IndianWebSeries"
+            },
+            "content_type": "series",
+            "tagline": "Risk hai toh ishq hai",
+            "likes": 3200,
+            "shares": 890
+        },
+        {
+            "id": "6cd2e1bd-5c15-4f05-8a8b-6443da9f56dc",
+            "title": "The Boys",
+            "category": "buzzing",
+            "platform": "Prime Video",
+            "platform_content_id": "theboys2024",
+            "rating": 8.8,
+            "thumbnail": "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=400&h=600&fit=crop",
+            "description": "A dark take on superheroes and corporate corruption.",
+            "release_date": "2024-03-01",
+            "social_links": {
+                "youtube": "https://www.youtube.com/watch?v=example4",
+                "twitter": "https://twitter.com/search?q=TheBoys",
+                "reddit": "https://www.reddit.com/r/TheBoys"
+            },
+            "content_type": "series",
+            "tagline": "Heroes are not what they seem",
+            "likes": 2800,
+            "shares": 720
+        },
+        {
+            "id": "c5be7e9e-6fbf-4ad7-a266-32ce541298c0",
+            "title": "Arya 3",
+            "category": "hot_drop",
+            "platform": "JioHotstar",
+            "platform_content_id": "arya3_2024",
+            "rating": 8.1,
+            "thumbnail": "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&h=600&fit=crop",
+            "description": "The third installment of the popular action franchise.",
+            "release_date": "2024-02-15",
+            "social_links": {
+                "youtube": "https://www.youtube.com/watch?v=example5",
+                "twitter": "https://twitter.com/search?q=Arya3",
+                "reddit": "https://www.reddit.com/r/tollywood"
+            },
+            "content_type": "movie",
+            "tagline": "The legend continues",
+            "likes": 1800,
+            "shares": 450
+        },
+        {
+            "id": "d7f8e9a0-1b2c-3d4e-5f6g-7h8i9j0k1l2m",
+            "title": "Wednesday",
+            "category": "series",
+            "platform": "Netflix",
+            "platform_content_id": "wednesday2024",
+            "rating": 8.3,
+            "thumbnail": "https://images.unsplash.com/photo-1509909756405-be0199881695?w=400&h=600&fit=crop",
+            "description": "Wednesday Addams navigates her years as a student at Nevermore Academy.",
+            "release_date": "2024-01-10",
+            "social_links": {
+                "youtube": "https://www.youtube.com/watch?v=example6",
+                "twitter": "https://twitter.com/search?q=Wednesday",
+                "reddit": "https://www.reddit.com/r/WednesdayTVShow"
+            },
+            "content_type": "series",
+            "tagline": "Smart, sarcastic and a little dead inside",
+            "likes": 2500,
+            "shares": 650
+        }
+    ]
+    
+    # Insert the mock content
+    await db.content.insert_many(mock_content)
     
     return {"message": "Content seeded successfully"}
 
