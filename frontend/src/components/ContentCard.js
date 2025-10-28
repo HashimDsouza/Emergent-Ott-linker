@@ -28,18 +28,15 @@ const ContentCard = ({ content, currentUser, onContentClick, compact = false, is
 
   const handleCardClick = () => {
     // Show toast with options
-    const { platform: userPlatform } = generateOTTDeepLink(content.platform, content.id);
+    toast.info(`Opening ${content.platform}...`, {
+      description: content.platform_content_id 
+        ? "Taking you directly to the show" 
+        : "Searching for this content on the platform",
+      duration: 2000
+    });
     
-    if (userPlatform !== 'web') {
-      // Mobile: Show notification
-      toast.info(`Opening ${content.platform}...`, {
-        description: "If the app doesn't open, we'll show you the web version",
-        duration: 2000
-      });
-    }
-    
-    // Open OTT app
-    openOTTApp(content.platform, content.id, content.title);
+    // Open OTT app/website with platform content ID if available
+    openOTTApp(content.platform, content.platform_content_id, content.title);
   };
 
   const handleLike = async (e) => {
