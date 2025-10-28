@@ -552,46 +552,6 @@ async def enrich_all_content():
         "failed": failed
     }
 
-@api_router.post("/enrich-content")
-async def enrich_content():
-    """
-    Enrich all existing content with proper deep links
-    """
-    all_content = await db.content.find({}, {"_id": 0}).to_list(1000)
-    enriched_count = 0
-    
-    for content in all_content:
-        provider = content.get("platform", "").lower()
-        title = content.get("title", "")
-        content_id = content.get("id")
-        platform_content_id = content.get("platform_content_id")
-        
-        # Generate links
-        links = generate_provider_links(provider, title, platform_content_id)
-        
-        # Store in title_links collection
-        title_link = {
-            "id": str(uuid.uuid4()),
-            "title_id": content_id,
-            "country": "IN",
-            "provider": provider,
-            "web_url": links["web_url"],
-            "scheme_url": links["scheme_url"],
-            "app_search_url": links["app_search_url"],
-            "platform_content_id": platform_content_id,
-            "last_checked": datetime.now(timezone.utc).isoformat()
-        }
-        
-        # Upsert
-        await db.title_links.update_one(
-            {"title_id": content_id, "provider": provider, "country": "IN"},
-            {"$set": title_link},
-            upsert=True
-        )
-        enriched_count += 1
-    
-    return {"message": f"Enriched {enriched_count} content items with deep links"}
-
 @api_router.get("/content", response_model=List[Content])
 async def get_all_content():
     content_list = await db.content.find({}, {"_id": 0}).to_list(1000)
