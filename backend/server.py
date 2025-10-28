@@ -31,8 +31,8 @@ class Content(BaseModel):
     category: str
     platform: str
     platform_content_id: Optional[str] = None
-    rating: float
-    thumbnail: str
+    rating: float  # Now will be IMDb rating from OMDb
+    thumbnail: str  # Now will be TMDB poster path
     description: str
     release_date: str
     social_links: Dict[str, str] = Field(default_factory=dict)
@@ -40,6 +40,18 @@ class Content(BaseModel):
     tagline: str = ""
     likes: int = 0
     shares: int = 0
+    # Enhanced metadata fields
+    tmdb_id: Optional[int] = None
+    imdb_id: Optional[str] = None
+    imdb_rating: Optional[float] = None
+    imdb_votes: Optional[str] = None
+    poster_path: Optional[str] = None  # TMDB poster URL
+    backdrop_path: Optional[str] = None  # TMDB backdrop URL
+    year: Optional[int] = None
+    normalized_title: Optional[str] = None  # For better search matching
+    providers_in: List[str] = Field(default_factory=list)  # Available platforms in India
+    watchmode_id: Optional[int] = None
+    last_enriched: Optional[str] = None
 
 class TitleLink(BaseModel):
     model_config = ConfigDict(extra="ignore")
