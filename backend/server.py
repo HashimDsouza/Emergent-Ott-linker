@@ -126,7 +126,7 @@ async def get_tmdb_details(tmdb_id: int, content_type: str = "movie") -> Optiona
 async def get_omdb_rating(imdb_id: str) -> Optional[Dict]:
     """Get IMDb rating and votes from OMDb"""
     try:
-        async with httpx.AsyncClient() as client:
+        async with httpx.AsyncClient(timeout=httpx.Timeout(5.0)) as client:
             response = await client.get(
                 "http://www.omdbapi.com/",
                 params={
@@ -134,19 +134,19 @@ async def get_omdb_rating(imdb_id: str) -> Optional[Dict]:
                     "i": imdb_id,
                     "plot": "short"
                 },
-                timeout=10.0
+                timeout=5.0
             )
             
             if response.status_code == 200:
                 data = response.json()
-                if data.get("Response") == "True":
+                if data.get("Response") == "True" and data.get("imdbRating") != "N/A":
                     return {
                         "imdb_rating": data.get("imdbRating"),
                         "imdb_votes": data.get("imdbVotes"),
                         "metascore": data.get("Metascore")
                     }
     except Exception as e:
-        logging.error(f"OMDb error: {str(e)}")
+        logging.warning(f"OMDb timeout/error for {imdb_id}: {str(e)[:50]}")
     return None
 
 async def search_watchmode(title: str, content_type: str = "movie") -> Optional[Dict]:
