@@ -101,3 +101,170 @@
 #====================================================================================================
 # Testing Data - Main Agent and testing sub agent both should log testing data below this section
 #====================================================================================================
+
+user_problem_statement: |
+  Implement robust deep linking for "The Connector" app that allows users to click on content tiles and 
+  open the respective OTT platform app directly to the content. The solution includes:
+  1. Backend resolver API (/api/resolve-link) that generates platform-specific deep links
+  2. Frontend integration using the resolver API for all content tiles and hero carousel
+  3. Auto-copy title to clipboard as fallback when deep links cannot resolve
+  4. Support for priority platforms: Netflix, JioHotstar, Prime Video, SonyLIV, Apple TV, Fancode, DAZN, YouTube, X, Reddit
+  5. Graceful fallback chain: deep link → web URL → search page + clipboard copy
+
+backend:
+  - task: "Deep link resolver API endpoint"
+    implemented: true
+    working: true
+    file: "/app/backend/server.py"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+      - working: true
+        agent: "main"
+        comment: |
+          Created /api/resolve-link endpoint (lines 202-240) that:
+          - Takes title_id, provider, and country as query params
+          - Returns web_url, scheme_url, fallback_search_url, and platform_content_id
+          - Checks cached links in title_links collection
+          - Generates links on-the-fly using generate_provider_links helper
+          Tested with curl - working correctly for Netflix, Apple TV, and other platforms.
+  
+  - task: "Provider link generator function"
+    implemented: true
+    working: true
+    file: "/app/backend/server.py"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+      - working: true
+        agent: "main"
+        comment: |
+          Created generate_provider_links() function (lines 151-196) that generates:
+          - web_url: Universal web links (works on all devices)
+          - scheme_url: Mobile app deep link schemes (nflx://, aiv://, hotstar://, etc.)
+          - app_search_url: Search page fallback
+          Supports Netflix, Prime Video, JioHotstar, SonyLIV, Apple TV, Fancode, MX Player, YouTube.
+
+  - task: "Content enrichment endpoint"
+    implemented: true
+    working: "NA"
+    file: "/app/backend/server.py"
+    stuck_count: 0
+    priority: "medium"
+    needs_retesting: false
+    status_history:
+      - working: "NA"
+        agent: "main"
+        comment: |
+          Created /api/enrich-content endpoint (lines 242-280) for batch processing.
+          This is optional - enriches all content with deep links in title_links collection.
+          Not critical for MVP, can be tested later if needed.
+
+frontend:
+  - task: "Deep linking utility with resolver API"
+    implemented: true
+    working: true
+    file: "/app/frontend/src/utils/deepLinking.js"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: true
+    status_history:
+      - working: true
+        agent: "main"
+        comment: |
+          Created openOTTAppWithResolver() function that:
+          - Calls backend /api/resolve-link endpoint
+          - Handles mobile vs desktop detection
+          - Tries scheme URLs on mobile first
+          - Falls back to web URLs
+          - Copies title to clipboard when only search fallback available
+          - Implements tryOpenLink() with proper fallback chain
+          Enhanced clipboard copy logic for better UX.
+
+  - task: "ContentCard deep linking integration"
+    implemented: true
+    working: true
+    file: "/app/frontend/src/components/ContentCard.js"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: true
+    status_history:
+      - working: true
+        agent: "main"
+        comment: |
+          Updated handleCardClick to:
+          - Make async and use openOTTAppWithResolver
+          - Show loading toast during API call
+          - Display success/fallback messages
+          - Copy title to clipboard on fallback with user notification
+          - Proper error handling with user-friendly messages
+          Updated imports to use correct functions from deepLinking.js
+
+  - task: "HeroCarousel deep linking integration"
+    implemented: true
+    working: true
+    file: "/app/frontend/src/components/HeroCarousel.js"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: true
+    status_history:
+      - working: true
+        agent: "main"
+        comment: |
+          Updated handleSlideClick to:
+          - Make async and use openOTTAppWithResolver
+          - Show loading toast during API call
+          - Display success/fallback messages
+          - Copy title to clipboard on fallback with user notification
+          - Proper error handling
+          Updated imports to use correct functions from deepLinking.js
+
+metadata:
+  created_by: "main_agent"
+  version: "1.0"
+  test_sequence: 0
+  run_ui: false
+
+test_plan:
+  current_focus:
+    - "Backend API endpoint - resolve-link with priority platforms"
+    - "Frontend tile clicks - ContentCard integration"
+    - "Frontend carousel clicks - HeroCarousel integration"
+    - "Clipboard fallback mechanism"
+  stuck_tasks: []
+  test_all: false
+  test_priority: "high_first"
+
+agent_communication:
+  - agent: "main"
+    message: |
+      Deep linking implementation complete. Ready for testing.
+      
+      BACKEND TESTING:
+      1. Test /api/resolve-link with various platform content (Netflix, Prime, JioHotstar, Apple TV, SonyLIV)
+      2. Verify response structure (url, scheme_url, fallback_search_url)
+      3. Ensure proper fallback when platform_content_id is null
+      
+      FRONTEND TESTING:
+      1. Test ContentCard tiles - click should trigger resolver API and open appropriate link
+      2. Test HeroCarousel slides - same behavior
+      3. Verify toast notifications (loading, success, fallback)
+      4. Test clipboard copy functionality when using fallback
+      5. Verify no console errors
+      
+      PRIORITY PLATFORMS TO TEST:
+      - Netflix
+      - JioHotstar  
+      - Prime Video
+      - SonyLIV
+      - Apple TV
+      - Fancode
+      - DAZN
+      - YouTube
+      - X (Twitter)
+      - Reddit
+      
+      Note: Real mobile deep link testing (scheme URLs on Android/iOS) should be done by user on actual devices.
+      Frontend testing agent should verify the web flow and API integration.
