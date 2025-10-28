@@ -97,54 +97,48 @@ export const generateOTTDeepLink = (platform, contentId = '') => {
 };
 
 /**
- * Open OTT app with fallback to web version
+ * Open OTT app with fallback to search/home
  * @param {string} platform - OTT platform name
- * @param {string} contentId - Content ID
- * @param {string} contentTitle - Content title for fallback search
+ * @param {string} contentId - Content ID (optional, can be empty)
+ * @param {string} contentTitle - Content title for search fallback
  */
 export const openOTTApp = (platform, contentId, contentTitle) => {
-  const { deepLink, webLink, appStore, playStore, platform: userPlatform } = generateOTTDeepLink(platform, contentId);
+  const { webLink, platform: userPlatform } = generateOTTDeepLink(platform, contentId);
+  
+  // If no valid content ID, use search fallback
+  const searchUrl = getSearchUrl(platform, contentTitle);
+  const targetUrl = contentId && contentId.length > 0 && !contentId.includes('-') ? webLink : searchUrl;
   
   if (userPlatform === 'web') {
-    // Desktop: Open web version
-    window.open(webLink, '_blank');
+    // Desktop: Open web version or search
+    window.open(targetUrl, '_blank');
     return;
   }
   
-  // Mobile: Try to open app with iframe trick, fallback to web
-  const iframe = document.createElement('iframe');
-  iframe.style.display = 'none';
-  iframe.src = deepLink;
-  document.body.appendChild(iframe);
+  // Mobile: For now, just open web version with search
+  // Deep linking without proper content IDs causes 404 errors
+  window.open(searchUrl, '_blank');
+};
+
+/**
+ * Get search URL for platform
+ * @param {string} platform - OTT platform name
+ * @param {string} title - Content title
+ * @returns {string} - Search URL
+ */
+const getSearchUrl = (platform, title) => {
+  const encodedTitle = encodeURIComponent(title);
   
-  // Set timeout to check if app opened
-  const appOpenTimeout = setTimeout(() => {
-    // Remove iframe
-    document.body.removeChild(iframe);
-    
-    // If app didn't open, show install prompt via toast
-    // For now, just open web version as fallback
-    window.open(webLink, '_blank');
-  }, 1500);
-  
-  // If user leaves page (app opened), clear timeout
-  const handleVisibilityChange = () => {
-    if (document.hidden) {
-      clearTimeout(appOpenTimeout);
-      document.body.removeChild(iframe);
-      document.removeEventListener('visibilitychange', handleVisibilityChange);
-    }
+  const searchUrls = {
+    'Netflix': `https://www.netflix.com/search?q=${encodedTitle}`,
+    'Prime Video': `https://www.primevideo.com/search?phrase=${encodedTitle}`,
+    'JioHotstar': `https://www.hotstar.com/in/search?q=${encodedTitle}`,
+    'Apple TV': `https://tv.apple.com/search?term=${encodedTitle}`,
+    'SonyLIV': `https://www.sonyliv.com/search?q=${encodedTitle}`,
+    'MX Player': `https://www.mxplayer.in/search?q=${encodedTitle}`
   };
   
-  document.addEventListener('visibilitychange', handleVisibilityChange);
-  
-  // Fallback: If nothing happens in 2 seconds, open web version
-  setTimeout(() => {
-    if (document.body.contains(iframe)) {
-      document.body.removeChild(iframe);
-      document.removeEventListener('visibilitychange', handleVisibilityChange);
-    }
-  }, 2000);
+  return searchUrls[platform] || `https://www.google.com/search?q=${encodedTitle}+${encodeURIComponent(platform)}`;
 };
 
 /**
