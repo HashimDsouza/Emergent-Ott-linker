@@ -34,6 +34,10 @@ api_router = APIRouter(prefix="/api")
 
 async def search_tmdb(title: str, year: Optional[int] = None, content_type: str = "movie") -> Optional[Dict]:
     """Search TMDB for a title and return best match"""
+    if not TMDB_API_KEY:
+        logging.debug(f"TMDB API key not configured, skipping search for: {title}")
+        return None
+    
     try:
         async with httpx.AsyncClient() as client:
             endpoint = "tv" if content_type in ["series", "documentary"] else "movie"
@@ -57,7 +61,11 @@ async def search_tmdb(title: str, year: Optional[int] = None, content_type: str 
             if response.status_code == 200:
                 data = response.json()
                 if data.get("results"):
+                    logging.info(f"✅ TMDB found: {title} -> {data['results'][0].get('title') or data['results'][0].get('name')}")
                     return data["results"][0]
+            elif response.status_code == 401:
+                logging.error(f"❌ TMDB API key invalid or expired")
+                return None
             
             # If no results and title has "Season X", try without it
             if "Season" in title or "season" in title:
@@ -73,10 +81,15 @@ async def search_tmdb(title: str, year: Optional[int] = None, content_type: str 
                 if response.status_code == 200:
                     data = response.json()
                     if data.get("results"):
+                        logging.info(f"✅ TMDB found (cleaned title): {cleaned_title} -> {data['results'][0].get('title') or data['results'][0].get('name')}")
                         return data["results"][0]
             
+            logging.warning(f"⚠️  TMDB no results for: {title}")
+            
+    except httpx.TimeoutException:
+        logging.error(f"⏱️  TMDB timeout for: {title}")
     except Exception as e:
-        logging.error(f"TMDB search error: {str(e)}")
+        logging.error(f"❌ TMDB search error for {title}: {str(e)}")
     return None
 
 async def get_tmdb_details(tmdb_id: int, content_type: str = "movie") -> Optional[Dict]:
