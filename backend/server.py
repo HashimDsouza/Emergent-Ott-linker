@@ -36,7 +36,9 @@ async def search_tmdb(title: str, year: Optional[int] = None, content_type: str 
     """Search TMDB for a title and return best match"""
     try:
         async with httpx.AsyncClient() as client:
-            endpoint = "tv" if content_type == "series" else "movie"
+            endpoint = "tv" if content_type in ["series", "documentary"] else "movie"
+            
+            # Try exact search first
             params = {
                 "api_key": TMDB_API_KEY,
                 "query": title,
@@ -55,7 +57,24 @@ async def search_tmdb(title: str, year: Optional[int] = None, content_type: str 
             if response.status_code == 200:
                 data = response.json()
                 if data.get("results"):
-                    return data["results"][0]  # Return best match
+                    return data["results"][0]
+            
+            # If no results and title has "Season X", try without it
+            if "Season" in title or "season" in title:
+                cleaned_title = re.sub(r'\s+Season\s+\d+', '', title, flags=re.IGNORECASE)
+                params["query"] = cleaned_title
+                
+                response = await client.get(
+                    f"https://api.themoviedb.org/3/search/{endpoint}",
+                    params=params,
+                    timeout=10.0
+                )
+                
+                if response.status_code == 200:
+                    data = response.json()
+                    if data.get("results"):
+                        return data["results"][0]
+            
     except Exception as e:
         logging.error(f"TMDB search error: {str(e)}")
     return None
