@@ -232,13 +232,14 @@ async def enrich_content_item(content: Dict) -> Dict:
     """Enrich a single content item with TMDB + OMDb data (non-blocking)"""
     try:
         # Step 1: Search TMDB
+        logging.info(f"🔍 Enriching: {content['title']}")
         tmdb_result = await search_tmdb(
             content["title"],
             content_type=content.get("content_type", "movie")
         )
         
         if not tmdb_result:
-            logging.warning(f"No TMDB result for: {content['title']}")
+            logging.warning(f"❌ No TMDB result for: {content['title']}")
             return content
         
         tmdb_id = tmdb_result["id"]
@@ -250,6 +251,7 @@ async def enrich_content_item(content: Dict) -> Dict:
         )
         
         if not tmdb_details:
+            logging.warning(f"❌ No TMDB details for: {content['title']}")
             return content
         
         # IMMEDIATELY persist TMDB data (don't wait for OMDb)
@@ -263,6 +265,7 @@ async def enrich_content_item(content: Dict) -> Dict:
             content["poster_url"] = poster_url
             content["poster_path"] = poster_url  # Keep both
             content["thumbnail"] = poster_url  # Update thumbnail too
+            logging.info(f"  📷 Poster: {poster_url[:60]}...")
         
         # Backdrop
         if tmdb_result.get("backdrop_path"):
@@ -279,11 +282,13 @@ async def enrich_content_item(content: Dict) -> Dict:
             content["vote_average"] = round(vote_average, 1)
             content["rating"] = content["vote_average"]  # Use TMDB as baseline
             content["rating_source"] = "tmdb"
+            logging.info(f"  ⭐ TMDB Rating: {content['vote_average']}")
         
         # Get IMDb ID
         imdb_id = tmdb_details.get("external_ids", {}).get("imdb_id")
         if imdb_id:
             content["imdb_id"] = imdb_id
+            logging.info(f"  🎬 IMDb ID: {imdb_id}")
             
             # Step 3: Try OMDb (non-blocking, with short timeout)
             try:
@@ -294,11 +299,12 @@ async def enrich_content_item(content: Dict) -> Dict:
                         content["rating"] = content["imdb_rating"]  # Prefer IMDb if available
                         content["imdb_votes"] = omdb_data.get("imdb_votes")
                         content["rating_source"] = "imdb"
+                        logging.info(f"  ⭐ IMDb Rating: {content['imdb_rating']} (overriding TMDB)")
                     except:
                         pass
             except Exception as e:
                 # OMDb failed, but we already have TMDB data - continue
-                logging.warning(f"OMDb failed for {content['title']}, using TMDB rating")
+                logging.warning(f"⚠️  OMDb failed for {content['title']}, using TMDB rating")
                 pass
         
         # Extract providers from TMDB watch providers
@@ -308,6 +314,8 @@ async def enrich_content_item(content: Dict) -> Dict:
             if provider_type in watch_providers:
                 providers.extend([p["provider_name"] for p in watch_providers[provider_type]])
         content["providers_in"] = list(set(providers))
+        if providers:
+            logging.info(f"  📺 Providers (IN): {', '.join(content['providers_in'][:3])}")
         
         # Watchmode for platform content IDs (skip if too slow)
         try:
@@ -336,10 +344,10 @@ async def enrich_content_item(content: Dict) -> Dict:
         
         content["last_enriched"] = datetime.now(timezone.utc).isoformat()
         
-        logging.info(f"Enriched: {content['title']} (TMDB: {tmdb_id}, Rating: {content.get('rating', 'N/A')}, Source: {content.get('rating_source', 'N/A')})")
+        logging.info(f"✅ Enriched: {content['title']} (TMDB: {tmdb_id}, Rating: {content.get('rating', 'N/A')}, Source: {content.get('rating_source', 'N/A')})")
         
     except Exception as e:
-        logging.error(f"Enrichment error for {content.get('title')}: {str(e)}")
+        logging.error(f"❌ Enrichment error for {content.get('title')}: {str(e)}")
     
     return content
 
