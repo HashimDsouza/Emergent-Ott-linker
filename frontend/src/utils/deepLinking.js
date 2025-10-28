@@ -108,42 +108,8 @@ export const openOTTApp = (platform, platformContentId, contentTitle) => {
     ? getDirectUrl(platform, platformContentId)
     : getSearchUrl(platform, contentTitle);
   
-  // For mobile, try to open in app first for specific platforms
-  const userAgent = navigator.userAgent || navigator.vendor || window.opera;
-  const isMobile = /android|iphone|ipad|ipod/i.test(userAgent.toLowerCase());
-  
-  if (isMobile && !platformContentId) {
-    // On mobile without content ID, try app deep links first
-    const deepLink = getMobileDeepLink(platform, contentTitle);
-    if (deepLink) {
-      // Try to open app
-      window.location.href = deepLink;
-      
-      // Fallback to web after 2 seconds if app doesn't open
-      setTimeout(() => {
-        window.location.href = targetUrl;
-      }, 2000);
-      return;
-    }
-  }
-  
-  // Default: Open in new tab/window
+  // Open URL - browser will handle app vs web
   window.open(targetUrl, '_blank');
-};
-
-/**
- * Get mobile app deep links
- */
-const getMobileDeepLink = (platform, title) => {
-  const encodedTitle = encodeURIComponent(title);
-  
-  const deepLinks = {
-    'Netflix': `nflx://www.netflix.com/search?q=${encodedTitle}`,
-    'JioHotstar': `hotstar://search/${encodedTitle}`,
-    'Prime Video': `aiv://search/${encodedTitle}`,
-  };
-  
-  return deepLinks[platform] || null;
 };
 
 /**
