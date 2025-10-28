@@ -633,31 +633,29 @@ async def enrich_all_content():
 @api_router.get("/debug/sample")
 async def debug_sample():
     """
-    Debug endpoint to verify enrichment data
-    Returns 3 enriched titles with full metadata
+    Debug probe: Returns 3-5 enriched titles with full metadata
     """
     content_list = await db.content.find(
         {"tmdb_id": {"$ne": None}},
         {"_id": 0}
-    ).limit(3).to_list(3)
+    ).limit(5).to_list(5)
     
     if not content_list:
-        # If no enriched items, return any 3
-        content_list = await db.content.find({}, {"_id": 0}).limit(3).to_list(3)
+        content_list = await db.content.find({}, {"_id": 0}).limit(5).to_list(5)
     
-    # Format for debugging
-    debug_data = []
+    # Format for verification
+    samples = []
     for item in content_list:
-        debug_data.append({
+        samples.append({
             "titleId": item.get("id"),
             "title": item.get("title"),
             "tmdb_id": item.get("tmdb_id"),
             "imdb_id": item.get("imdb_id"),
-            "poster_path": item.get("poster_path"),
-            "poster_url": item.get("poster_path"),  # Same as poster_path for now
-            "thumbnail": item.get("thumbnail"),
+            "vote_average": item.get("vote_average"),
             "imdb_rating": item.get("imdb_rating"),
-            "rating": item.get("rating"),
+            "rating_source": item.get("rating_source", "unknown"),
+            "poster_url": item.get("poster_url"),
+            "thumbnail": item.get("thumbnail"),
             "providers_IN": item.get("providers_in", []),
             "platform": item.get("platform"),
             "platform_content_id": item.get("platform_content_id"),
@@ -666,9 +664,43 @@ async def debug_sample():
     
     return {
         "status": "success",
-        "count": len(debug_data),
-        "enriched_count": len([d for d in debug_data if d["enriched"]]),
-        "samples": debug_data
+        "count": len(samples),
+        "enriched_count": len([s for s in samples if s["enriched"]]),
+        "samples": samples
+    }
+
+@api_router.get("/debug/item")
+async def debug_item(title: str = Query(..., description="Title to search for")):
+    """
+    Debug probe: Returns a single item by title
+    """
+    item = await db.content.find_one(
+        {"title": {"$regex": title, "$options": "i"}},
+        {"_id": 0}
+    )
+    
+    if not item:
+        raise HTTPException(status_code=404, detail=f"Title '{title}' not found")
+    
+    return {
+        "status": "success",
+        "item": {
+            "titleId": item.get("id"),
+            "title": item.get("title"),
+            "tmdb_id": item.get("tmdb_id"),
+            "imdb_id": item.get("imdb_id"),
+            "vote_average": item.get("vote_average"),
+            "imdb_rating": item.get("imdb_rating"),
+            "rating_source": item.get("rating_source", "unknown"),
+            "poster_url": item.get("poster_url"),
+            "poster_path": item.get("poster_path"),
+            "thumbnail": item.get("thumbnail"),
+            "providers_IN": item.get("providers_in", []),
+            "platform": item.get("platform"),
+            "platform_content_id": item.get("platform_content_id"),
+            "enriched": item.get("tmdb_id") is not None,
+            "last_enriched": item.get("last_enriched")
+        }
     }
 
 @api_router.get("/content", response_model=List[Content])
