@@ -147,7 +147,8 @@ const getSearchUrl = (platform, title) => {
  * @returns {string} - YouTube URL
  */
 export const generateYouTubeLink = (title) => {
-  return `https://www.youtube.com/results?search_query=${encodeURIComponent(title + ' official trailer')}`;
+  // Use direct link format that's less likely to be blocked
+  return `https://www.youtube.com/results?search_query=${encodeURIComponent(title + ' trailer')}`;
 };
 
 /**
