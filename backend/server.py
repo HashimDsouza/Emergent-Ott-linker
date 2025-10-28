@@ -608,12 +608,20 @@ async def enrich_all_content():
     }
 
 @api_router.get("/content", response_model=List[Content])
-async def get_all_content():
+async def get_all_content(response: Response):
+    # Add cache control headers to prevent caching
+    response.headers["Cache-Control"] = "no-cache, no-store, must-revalidate"
+    response.headers["Pragma"] = "no-cache"
+    response.headers["Expires"] = "0"
     content_list = await db.content.find({}, {"_id": 0}).to_list(1000)
     return content_list
 
 @api_router.get("/content/{category}", response_model=List[Content])
-async def get_content_by_category(category: str):
+async def get_content_by_category(category: str, response: Response):
+    # Add cache control headers
+    response.headers["Cache-Control"] = "no-cache, no-store, must-revalidate"
+    response.headers["Pragma"] = "no-cache"
+    response.headers["Expires"] = "0"
     content_list = await db.content.find({"category": category}, {"_id": 0}).to_list(100)
     return content_list
 
