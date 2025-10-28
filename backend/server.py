@@ -328,8 +328,8 @@ class Content(BaseModel):
     category: str
     platform: str
     platform_content_id: Optional[str] = None
-    rating: float  # Now will be IMDb rating from OMDb
-    thumbnail: str  # Now will be TMDB poster path
+    rating: float  # Can be IMDb or TMDB rating
+    thumbnail: str  # TMDB poster URL
     description: str
     release_date: str
     social_links: Dict[str, str] = Field(default_factory=dict)
@@ -342,7 +342,10 @@ class Content(BaseModel):
     imdb_id: Optional[str] = None
     imdb_rating: Optional[float] = None
     imdb_votes: Optional[str] = None
-    poster_path: Optional[str] = None  # TMDB poster URL
+    vote_average: Optional[float] = None  # TMDB rating
+    rating_source: Optional[str] = None  # "imdb" or "tmdb"
+    poster_path: Optional[str] = None  # Full TMDB poster URL
+    poster_url: Optional[str] = None  # Full TMDB poster URL (w500)
     backdrop_path: Optional[str] = None  # TMDB backdrop URL
     year: Optional[int] = None
     normalized_title: Optional[str] = None  # For better search matching
