@@ -590,7 +590,10 @@ async def enrich_all_content():
             
             if result.modified_count > 0:
                 enriched_count += 1
-                logging.info(f"Successfully updated {original_title} in database")
+                
+                # Verify the update stuck by reading back
+                verification = await db.content.find_one({"id": original_id}, {"_id": 0})
+                logging.info(f"Successfully updated {original_title} - Verified TMDB ID: {verification.get('tmdb_id', 'NONE')}")
             else:
                 logging.warning(f"No document updated for {original_title} (matched: {result.matched_count})")
                 
