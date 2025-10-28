@@ -550,19 +550,33 @@ async def enrich_all_content():
     enriched_count = 0
     failed = []
     
+    logging.info(f"Starting enrichment for {len(all_content)} items")
+    
     for content in all_content:
         try:
+            original_id = content["id"]
             enriched = await enrich_content_item(content)
             
+            # Remove _id if present to avoid conflicts
+            enriched.pop("_id", None)
+            
             # Update in database
-            await db.content.update_one(
-                {"id": enriched["id"]},
+            result = await db.content.update_one(
+                {"id": original_id},
                 {"$set": enriched}
             )
-            enriched_count += 1
+            
+            if result.modified_count > 0:
+                enriched_count += 1
+                logging.info(f"Successfully updated {enriched['title']} in database")
+            else:
+                logging.warning(f"No document updated for {enriched['title']}")
+                
         except Exception as e:
             logging.error(f"Failed to enrich {content.get('title')}: {str(e)}")
             failed.append(content.get('title'))
+    
+    logging.info(f"Enrichment complete: {enriched_count} updated out of {len(all_content)}")
     
     return {
         "message": f"Enriched {enriched_count} out of {len(all_content)} content items",
