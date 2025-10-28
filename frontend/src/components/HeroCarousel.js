@@ -3,7 +3,7 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 import { FaYoutube, FaReddit } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 import { toast } from "sonner";
-import { openOTTApp, openSocialLink } from "@/utils/deepLinking";
+import { openOTTAppWithResolver, openSocialLink, copyToClipboard } from "@/utils/deepLinking";
 
 const HeroCarousel = ({ launches }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
