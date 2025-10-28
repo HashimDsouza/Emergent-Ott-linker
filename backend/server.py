@@ -555,22 +555,44 @@ async def enrich_all_content():
     for content in all_content:
         try:
             original_id = content["id"]
-            enriched = await enrich_content_item(content)
+            original_title = content["title"]
+            
+            # Enrich the content
+            enriched = await enrich_content_item(content.copy())  # Use copy to avoid modifying original
             
             # Remove _id if present to avoid conflicts
             enriched.pop("_id", None)
             
+            # Build update dict with only the fields we want to update
+            update_fields = {
+                "thumbnail": enriched.get("thumbnail", content["thumbnail"]),
+                "rating": enriched.get("rating", content["rating"]),
+                "description": enriched.get("description", content["description"]),
+                "tmdb_id": enriched.get("tmdb_id"),
+                "imdb_id": enriched.get("imdb_id"),
+                "imdb_rating": enriched.get("imdb_rating"),
+                "imdb_votes": enriched.get("imdb_votes"),
+                "poster_path": enriched.get("poster_path"),
+                "backdrop_path": enriched.get("backdrop_path"),
+                "year": enriched.get("year"),
+                "normalized_title": enriched.get("normalized_title"),
+                "providers_in": enriched.get("providers_in", []),
+                "watchmode_id": enriched.get("watchmode_id"),
+                "platform_content_id": enriched.get("platform_content_id", content.get("platform_content_id")),
+                "last_enriched": enriched.get("last_enriched")
+            }
+            
             # Update in database
             result = await db.content.update_one(
                 {"id": original_id},
-                {"$set": enriched}
+                {"$set": update_fields}
             )
             
             if result.modified_count > 0:
                 enriched_count += 1
-                logging.info(f"Successfully updated {enriched['title']} in database")
+                logging.info(f"Successfully updated {original_title} in database")
             else:
-                logging.warning(f"No document updated for {enriched['title']}")
+                logging.warning(f"No document updated for {original_title} (matched: {result.matched_count})")
                 
         except Exception as e:
             logging.error(f"Failed to enrich {content.get('title')}: {str(e)}")
