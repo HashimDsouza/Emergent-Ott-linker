@@ -204,7 +204,7 @@ def normalize_title_for_search(title: str, platform: str = None) -> str:
     return title
 
 async def enrich_content_item(content: Dict) -> Dict:
-    """Enrich a single content item with TMDB + OMDb + Watchmode data"""
+    """Enrich a single content item with TMDB + OMDb data (non-blocking)"""
     try:
         # Step 1: Search TMDB
         tmdb_result = await search_tmdb(
@@ -227,16 +227,19 @@ async def enrich_content_item(content: Dict) -> Dict:
         if not tmdb_details:
             return content
         
-        # Extract data from TMDB
+        # IMMEDIATELY persist TMDB data (don't wait for OMDb)
         content["tmdb_id"] = tmdb_id
         content["normalized_title"] = tmdb_result.get("title") or tmdb_result.get("name")
         content["description"] = tmdb_details.get("overview", content.get("description"))
         
-        # Poster and backdrop
+        # Build full poster URL and persist
         if tmdb_result.get("poster_path"):
-            content["poster_path"] = f"https://image.tmdb.org/t/p/w500{tmdb_result['poster_path']}"
-            content["thumbnail"] = content["poster_path"]  # Update thumbnail
+            poster_url = f"https://image.tmdb.org/t/p/w500{tmdb_result['poster_path']}"
+            content["poster_url"] = poster_url
+            content["poster_path"] = poster_url  # Keep both
+            content["thumbnail"] = poster_url  # Update thumbnail too
         
+        # Backdrop
         if tmdb_result.get("backdrop_path"):
             content["backdrop_path"] = f"https://image.tmdb.org/t/p/original{tmdb_result['backdrop_path']}"
         
@@ -245,27 +248,33 @@ async def enrich_content_item(content: Dict) -> Dict:
         if release_date:
             content["year"] = int(release_date.split("-")[0])
         
+        # TMDB rating (always available)
+        vote_average = tmdb_details.get("vote_average")
+        if vote_average:
+            content["vote_average"] = round(vote_average, 1)
+            content["rating"] = content["vote_average"]  # Use TMDB as baseline
+            content["rating_source"] = "tmdb"
+        
         # Get IMDb ID
         imdb_id = tmdb_details.get("external_ids", {}).get("imdb_id")
         if imdb_id:
             content["imdb_id"] = imdb_id
             
-            # Step 3: Get OMDb rating (with timeout protection)
-            omdb_data = await get_omdb_rating(imdb_id)
-            if omdb_data and omdb_data.get("imdb_rating"):
-                try:
-                    content["imdb_rating"] = float(omdb_data["imdb_rating"])
-                    content["rating"] = content["imdb_rating"]  # Update rating
-                    content["imdb_votes"] = omdb_data.get("imdb_votes")
-                except:
-                    pass
-            else:
-                # Fallback to TMDB rating if OMDb fails
-                tmdb_rating = tmdb_details.get("vote_average")
-                if tmdb_rating:
-                    content["imdb_rating"] = round(tmdb_rating, 1)
-                    content["rating"] = content["imdb_rating"]
-                    logging.info(f"Using TMDB rating for {content['title']}: {tmdb_rating}")
+            # Step 3: Try OMDb (non-blocking, with short timeout)
+            try:
+                omdb_data = await get_omdb_rating(imdb_id)
+                if omdb_data and omdb_data.get("imdb_rating"):
+                    try:
+                        content["imdb_rating"] = float(omdb_data["imdb_rating"])
+                        content["rating"] = content["imdb_rating"]  # Prefer IMDb if available
+                        content["imdb_votes"] = omdb_data.get("imdb_votes")
+                        content["rating_source"] = "imdb"
+                    except:
+                        pass
+            except Exception as e:
+                # OMDb failed, but we already have TMDB data - continue
+                logging.warning(f"OMDb failed for {content['title']}, using TMDB rating")
+                pass
         
         # Extract providers from TMDB watch providers
         watch_providers = tmdb_details.get("watch_providers_in", {})
@@ -275,36 +284,34 @@ async def enrich_content_item(content: Dict) -> Dict:
                 providers.extend([p["provider_name"] for p in watch_providers[provider_type]])
         content["providers_in"] = list(set(providers))
         
-        # Step 4: Get Watchmode streaming links
-        watchmode_data = await search_watchmode(
-            content["normalized_title"] or content["title"],
-            content_type=content.get("content_type", "movie")
-        )
-        
-        if watchmode_data:
-            content["watchmode_id"] = watchmode_data["watchmode_id"]
+        # Watchmode for platform content IDs (skip if too slow)
+        try:
+            watchmode_data = await search_watchmode(
+                content["normalized_title"] or content["title"],
+                content_type=content.get("content_type", "movie")
+            )
             
-            # Store provider-specific links
-            sources = watchmode_data.get("sources", [])
-            for source in sources:
-                provider_name = source.get("name", "").lower()
-                web_url = source.get("web_url")
-                
-                # Map provider names to our platforms
-                if web_url:
-                    if "netflix" in provider_name:
-                        # Extract Netflix content ID from URL
+            if watchmode_data:
+                content["watchmode_id"] = watchmode_data["watchmode_id"]
+                sources = watchmode_data.get("sources", [])
+                for source in sources:
+                    provider_name = source.get("name", "").lower()
+                    web_url = source.get("web_url")
+                    
+                    if web_url and "netflix" in provider_name:
                         match = re.search(r'/title/(\d+)', web_url)
                         if match:
                             content["platform_content_id"] = match.group(1)
-                    elif "prime" in provider_name or "amazon" in provider_name:
+                    elif web_url and ("prime" in provider_name or "amazon" in provider_name):
                         match = re.search(r'/detail/([^/]+)', web_url)
                         if match:
                             content["platform_content_id"] = match.group(1)
+        except:
+            pass  # Watchmode is optional
         
         content["last_enriched"] = datetime.now(timezone.utc).isoformat()
         
-        logging.info(f"Enriched: {content['title']} (TMDB: {tmdb_id}, IMDb: {content.get('imdb_rating', 'N/A')})")
+        logging.info(f"Enriched: {content['title']} (TMDB: {tmdb_id}, Rating: {content.get('rating', 'N/A')}, Source: {content.get('rating_source', 'N/A')})")
         
     except Exception as e:
         logging.error(f"Enrichment error for {content.get('title')}: {str(e)}")
