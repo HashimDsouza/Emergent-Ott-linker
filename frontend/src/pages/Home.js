@@ -273,12 +273,12 @@ const Home = () => {
         />
 
         <CategorySection
-          title="Documentaries"
+          title="Docu Series"
           emoji="🎥"
           description="Real stories, unreal impact."
-          content={getContentByCategory("documentaries")}
-          allContent={getAllContentByCategory("documentaries")}
-          categoryKey="documentaries"
+          content={getContentByCategory("docu_series")}
+          allContent={getAllContentByCategory("docu_series")}
+          categoryKey="docu_series"
           currentUser={currentUser}
           onContentClick={handleContentClick}
           onRefreshUser={refreshUser}
