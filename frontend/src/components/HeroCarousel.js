@@ -40,12 +40,37 @@ const HeroCarousel = ({ launches }) => {
     setTimeout(() => setIsTransitioning(false), 500);
   };
 
-  const handleSlideClick = (launch) => {
-    toast.info(`Opening ${launch.platform}...`, {
+  const handleSlideClick = async (launch) => {
+    const loadingToast = toast.loading(`Opening ${launch.platform}...`, {
       description: "Taking you to the content",
-      duration: 2000
     });
-    openOTTApp(launch.platform, launch.platform_content_id, launch.title);
+    
+    try {
+      const opened = await openOTTAppWithResolver(launch.id, launch.platform, launch.title);
+      
+      toast.dismiss(loadingToast);
+      
+      if (opened) {
+        toast.success(`Opened ${launch.platform}!`, { duration: 2000 });
+      } else {
+        // Fallback: copy title to clipboard
+        const copied = await copyToClipboard(launch.title);
+        if (copied) {
+          toast.info(`Title copied to clipboard!`, {
+            description: `Search for "${launch.title}" in the app`,
+            duration: 3000
+          });
+        } else {
+          toast.info(`Opening search page...`, { duration: 2000 });
+        }
+      }
+    } catch (error) {
+      toast.dismiss(loadingToast);
+      toast.error("Failed to open content", {
+        description: "Please try again",
+        duration: 2000
+      });
+    }
   };
 
   if (!launches || launches.length === 0) {
