@@ -179,11 +179,11 @@ const getSearchUrl = (platform, title) => {
   const searchUrls = {
     'Netflix': `https://www.netflix.com/search?q=${encodedTitle}`,
     'Prime Video': `https://www.primevideo.com/search?phrase=${encodedTitle}`,
-    'JioHotstar': `https://www.hotstar.com/in/search/all?q=${encodedTitle}`,
+    'JioHotstar': `https://www.hotstar.com/in/search/${encodedTitle}`,
     'Apple TV': `https://tv.apple.com/search?term=${encodedTitle}`,
-    'SonyLIV': `https://www.sonyliv.com/search?searchQuery=${encodedTitle}`,
+    'SonyLIV': `https://www.sonyliv.com/`,  // SonyLIV search has issues on mobile, go to homepage
     'MX Player': `https://www.mxplayer.in/search?q=${encodedTitle}`,
-    'Fancode': `https://www.fancode.com/`,  // Direct to homepage
+    'Fancode': `https://www.fancode.com/`,
     'YouTube': `https://www.youtube.com/results?search_query=${encodedTitle}`,
     'FIDE': `https://www.youtube.com/results?search_query=${encodedTitle}`,
   };
