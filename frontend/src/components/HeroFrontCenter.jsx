@@ -5,6 +5,7 @@ const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 
 export default function HeroFrontCenter() {
   const hero = useMemo(() => ({
+    id: "hero-fighter-123",
     title: "Fighter",
     tagline: "Sky is the limit",
     platform: "JioHotstar",
