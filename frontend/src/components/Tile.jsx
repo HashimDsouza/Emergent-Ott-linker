@@ -55,13 +55,31 @@ export default function Tile({ item, onInfo }) {
         {/* 2: Buzz Meter */}
         <div className="flex items-center gap-2 text-[11px] uppercase tracking-wider opacity-85 mb-1">
           <span>Buzz Meter</span>
-          <a href="#yt" title="Trending on YouTube">
+          <a 
+            href={item.buzz?.yt || `https://www.youtube.com/results?search_query=${encodeURIComponent(item.title + ' trailer')}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={(e) => e.stopPropagation()}
+            title="Trending on YouTube"
+          >
             <svg width="16" height="16" viewBox="0 0 24 24"><path fill="#FF0000" d="M23.5 6.2a4 4 0 0 0-2.8-2.8C18.9 3 12 3 12 3s-6.9 0-8.7.4A4 4 0 0 0 .5 6.2 41.6 41.6 0 0 0 0 12a41.6 41.6 0 0 0 .5 5.8 4 4 0 0 0 2.8 2.8C5.1 21 12 21 12 21s6.9 0 8.7-.4a4 4 0 0 0 2.8-2.8A41.6 41.6 0 0 0 24 12a41.6 41.6 0 0 0-.5-5.8Z"/><path fill="#fff" d="m10 15 6-3-6-3v6z"/></svg>
           </a>
-          <a href="#x" title="Buzzing on X">
+          <a 
+            href={item.buzz?.x || `https://twitter.com/search?q=${encodeURIComponent(item.title)}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={(e) => e.stopPropagation()}
+            title="Buzzing on X"
+          >
             <svg width="16" height="16" viewBox="0 0 24 24"><path fill="#ffffff" d="M18.146 2H21l-6.5 7.43L22.5 22h-6.59l-5.16-6.64L4.7 22H2l6.97-7.97L1.5 2H8.09l4.66 6L18.146 2Zm-2.31 18.5h1.71L7.25 3.46H5.43l10.41 17.04Z"/></svg>
           </a>
-          <a href="#rd" title="Hot in threads">
+          <a 
+            href={item.buzz?.reddit || `https://www.reddit.com/search/?q=${encodeURIComponent(item.title)}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={(e) => e.stopPropagation()}
+            title="Hot in threads"
+          >
             <svg width="16" height="16" viewBox="0 0 24 24"><path fill="#FF4500" d="M22 12.07c0-1.2-.98-2.18-2.18-2.18-.56 0-1.07.21-1.45.55-1.44-.94-3.23-1.54-5.2-1.61l1.11-3.51 3.06.72a1.64 1.64 0 1 0 .19-1.1l-3.6-.85a.7.7 0 0 0-.84.46l-1.4 4.42c-1.97.05-3.76.64-5.21 1.58a2.18 2.18 0 1 0-2.64 3.45c-.05.24-.08.49-.08.74 0 2.87 3.58 5.2 8 5.2s8-2.33 8-5.2c0-.25-.03-.5-.09-.74.5-.4.84-1 .84-1.73Z"/></svg>
           </a>
         </div>
