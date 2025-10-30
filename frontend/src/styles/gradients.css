@@ -1,0 +1,13 @@
+:root {
+  --coral: #FF4F64;
+  --mint: #30E0B2;
+  --charcoal: #0E1514;
+  --charcoalSoft: #173A35;
+}
+/* Landing background */
+.landing-v23-bg {
+  background:
+    radial-gradient(900px 700px at 20% -10%, rgba(255,79,100,0.46), transparent 60%),
+    radial-gradient(800px 600px at 110% 10%, rgba(48,224,178,0.33), transparent 60%),
+    linear-gradient(180deg, var(--charcoal), var(--charcoalSoft));
+}
