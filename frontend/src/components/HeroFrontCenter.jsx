@@ -56,9 +56,10 @@ export default function HeroFrontCenter() {
         {/* Text content - positioned 60% from top */}
         <div className="relative h-full flex flex-col justify-end pb-6 px-6 md:px-10" style={{ paddingTop: "60%" }}>
           <div className="max-w-md">
-          <div className="flex items-center gap-2 opacity-90 mb-1">
-            <span>🎥</span><span className="uppercase tracking-wider text-xs">Front & Center</span>
-          </div>
+            <div className="flex items-center gap-2 opacity-90 mb-1">
+              <span className="text-sm">🎥</span>
+              <span className="uppercase tracking-wider text-[10px]">Front & Center</span>
+            </div>
           <h1 className="text-3xl md:text-5xl font-bold leading-tight">{hero.title}</h1>
           <p className="italic text-white/90 mt-1 md:text-lg">“{hero.tagline}”</p>
           <div className="mt-2 flex items-center gap-2 text-sm">
