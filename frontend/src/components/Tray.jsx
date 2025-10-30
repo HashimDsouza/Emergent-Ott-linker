@@ -32,14 +32,18 @@ export default function Tray({ icon, title, subline, items, onInfo }) {
         </div>
       </div>
 
-      <div className={expanded ? "overflow-x-auto pb-2" : ""}>
-        <div className={expanded ? "flex gap-4 min-w-[1100px]" : "grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4"}>
-          {items?.map(it => (
-            <div key={it.id} className="min-w-[320px]">
-              <Tile item={it} onInfo={onInfo} />
-            </div>
-          ))}
-        </div>
+      <div className={expanded 
+        ? "flex gap-2 overflow-x-auto pb-2 snap-x snap-mandatory scrollbar-hide" 
+        : "grid grid-cols-3 gap-2 md:gap-3"
+      }>
+        {items?.map(it => (
+          <div 
+            key={it.id} 
+            className={expanded ? "flex-none w-[30%] snap-start" : ""}
+          >
+            <Tile item={it} onInfo={onInfo} />
+          </div>
+        ))}
       </div>
     </section>
   );
