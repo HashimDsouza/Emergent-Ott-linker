@@ -1,13 +1,42 @@
 import React from "react";
 
 const coral = "#FF4F64", mint = "#30E0B2", charcoalSoft = "#173A35";
+const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 
 export default function Tile({ item, onInfo }) {
   const badgeCls = "text-[10px] px-1.5 py-0.5 rounded-full bg-white/10 border border-white/15";
   const counter = "text-[10px] opacity-75";
 
+  const handleClick = async (e) => {
+    e.preventDefault();
+    if (!item?.id || !item?.platform) return;
+    
+    try {
+      const response = await fetch(
+        `${BACKEND_URL}/api/resolve-link?title_id=${item.id}&provider=${encodeURIComponent(item.platform)}`
+      );
+      const data = await response.json();
+      
+      // Try to open deep link first (for mobile), fallback to web URL
+      if (data.scheme_url) {
+        window.location.href = data.scheme_url;
+        // Fallback to web after 1 second if app doesn't open
+        setTimeout(() => {
+          window.open(data.url || data.fallback_search_url, '_blank');
+        }, 1000);
+      } else {
+        window.open(data.url || data.fallback_search_url, '_blank');
+      }
+    } catch (error) {
+      console.error('Error resolving link:', error);
+      // Fallback: search on the platform
+      const platform = item.platform.toLowerCase().replace(' ', '');
+      window.open(`https://www.${platform}.com/`, '_blank');
+    }
+  };
+
   return (
-    <a href="#deeplink-ott" className="relative block rounded-2xl overflow-hidden shadow-lg border border-white/10 hover:-translate-y-0.5 transition">
+    <div onClick={handleClick} className="relative block rounded-2xl overflow-hidden shadow-lg border border-white/10 hover:-translate-y-0.5 transition cursor-pointer">
       {/* Poster */}
       <div className="relative" style={{ aspectRatio: "16/9", background: `linear-gradient(135deg, ${coral}70 0%, ${mint}45 45%, ${charcoalSoft} 100%)` }}>
         <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-black/70 to-transparent" />
