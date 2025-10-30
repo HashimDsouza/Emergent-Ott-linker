@@ -41,21 +41,19 @@ export default function Tile({ item, onInfo }) {
 
   return (
     <div onClick={handleClick} className="relative block rounded-lg md:rounded-xl overflow-hidden shadow-lg border border-white/10 hover:-translate-y-0.5 transition cursor-pointer">
-      {/* Poster - 2:3 on mobile, 16:9 on desktop */}
-      <div className="relative bg-gradient-to-br" style={{ 
-        aspectRatio: "2/3",
-        background: `linear-gradient(135deg, ${coral}70 0%, ${mint}45 45%, ${charcoalSoft} 100%)`
-      }} 
-      className="relative"
+      {/* Poster - 2:3 on mobile (portrait), 16:9 on desktop (landscape) */}
+      <div 
+        className="relative" 
+        style={{ background: `linear-gradient(135deg, ${coral}70 0%, ${mint}45 45%, ${charcoalSoft} 100%)` }}
       >
-        <style jsx>{`
-          @media (min-width: 768px) {
-            div[style*="aspectRatio"] {
-              aspect-ratio: 16/9 !important;
-            }
-          }
-        `}</style>
-        <div className="absolute inset-x-0 bottom-0 h-1/4 bg-gradient-to-t from-black/90 to-transparent" />
+        {/* Mobile: 2/3 aspect ratio */}
+        <div className="md:hidden" style={{ aspectRatio: "2/3" }}>
+          <div className="absolute inset-x-0 bottom-0 h-1/4 bg-gradient-to-t from-black/90 to-transparent" />
+        </div>
+        {/* Desktop: 16/9 aspect ratio */}
+        <div className="hidden md:block" style={{ aspectRatio: "16/9" }}>
+          <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-black/90 to-transparent" />
+        </div>
       </div>
 
       {/* Compact overlay - responsive sizing */}
