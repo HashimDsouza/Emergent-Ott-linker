@@ -6,6 +6,10 @@ const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 export default function Tile({ item, onInfo }) {
   const badgeCls = "text-[8px] md:text-[10px] px-1 md:px-1.5 py-0.5 rounded-full bg-white/10 border border-white/15";
   const counter = "text-[8px] md:text-[10px] opacity-75";
+  
+  // State for interactive buttons
+  const [liked, setLiked] = React.useState(false);
+  const [disliked, setDisliked] = React.useState(false);
 
   const handleClick = async (e) => {
     e.preventDefault();
