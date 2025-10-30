@@ -47,8 +47,9 @@ export default function HeroFrontCenter() {
   return (
     <section className="mb-8">
       <div
-        className="relative rounded-3xl overflow-hidden border border-white/10 shadow-xl"
-        style={{ background: hero.slides[heroIndex].poster }}
+        onClick={handleHeroClick}
+        className="relative rounded-3xl overflow-hidden border border-white/10 shadow-xl cursor-pointer hover:border-white/20 transition"
+        style={{ background: hero.slides[heroIndex].poster, minHeight: "400px" }}
       >
         <div className="absolute inset-x-0 top-0 h-1/2" style={{ background: `linear-gradient(180deg, ${charcoal}66, transparent)` }} />
         <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-black/70 to-transparent" />
