@@ -6,13 +6,13 @@ export default function Tray({ icon, title, subline, items, onInfo }) {
   const [visible, setVisible] = useState(true);
 
   if (!visible) return (
-    <section className="mb-6">
-      <div className="flex items-end justify-between mb-3">
+    <section className="mb-4 md:mb-6">
+      <div className="flex items-end justify-between mb-2 md:mb-3">
         <div>
-          <div className="text-xl md:text-2xl font-semibold text-white flex items-center gap-2">{icon} {title}</div>
-          {subline && <div className="text-sm" style={{ color: "#FF4F64" }}>{subline}</div>}
+          <div className="text-base md:text-xl font-semibold text-white flex items-center gap-1.5 md:gap-2">{icon} {title}</div>
+          {subline && <div className="text-[10px] md:text-sm" style={{ color: "#FF4F64" }}>{subline}</div>}
         </div>
-        <div className="flex items-center gap-4 text-sm text-white/85">
+        <div className="flex items-center gap-2 md:gap-4 text-[10px] md:text-sm text-white/85">
           <button onClick={() => setVisible(true)} className="hover:text-white">Show</button>
         </div>
       </div>
@@ -20,11 +20,7 @@ export default function Tray({ icon, title, subline, items, onInfo }) {
   );
 
   return (
-    <section className="mb-8">
-      <div className="flex items-end justify-between mb-2 md:mb-3">
-        <div>
-          <div className="text-base md:text-xl font-semibold text-white flex items-center gap-1.5 md:gap-2">{icon} {title}</div>
-          {subline && <div className="text-[10px] md:text-sm" style={{ color: "#FF4F64" }}>{subline}</div>}
+    <section className="mb-4 md:mb-8">{subline && <div className="text-[10px] md:text-sm" style={{ color: "#FF4F64" }}>{subline}</div>}
         </div>
         <div className="flex items-center gap-2 md:gap-4 text-[10px] md:text-sm text-white/85">
           <button onClick={() => setExpanded(v => !v)} className="hover:text-white">{expanded ? "Collapse" : "Go Deeper"}</button>
