@@ -64,7 +64,7 @@ export default function DetailsModal({ open, onClose, item }) {
               <button className="inline-flex items-center gap-1 px-2 py-1 rounded-xl border border-white/10 bg-white/5">❤️</button>
               <button className="inline-flex items-center gap-1 px-2 py-1 rounded-xl border border-white/10 bg-white/5">👎</button>
               <button className="inline-flex items-center gap-1 px-2 py-1 rounded-xl border border-white/10 bg-white/5">💬</button>
-              <a href="#ott" className="inline-flex items-center gap-2 px-2 py-1 rounded-xl border border-white/10 bg-white/5"><span className="text-xs">Watch on {item?.platform || "JioHotstar"} ↗</span></a>
+              <button onClick={handleWatchNow} className="inline-flex items-center gap-2 px-3 py-1.5 rounded-xl border border-white/10 bg-white/5 hover:bg-white/10 transition"><span className="text-xs">Watch on {item?.platform || "JioHotstar"} ↗</span></button>
             </div>
           </div>
         </div>
