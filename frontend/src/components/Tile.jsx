@@ -69,12 +69,12 @@ export default function Tile({ item, onInfo }) {
         {/* 3: Trending + i (smaller) */}
         <div className="flex items-center gap-2">
           <div className="text-[12px] italic" style={{ color: coral }}>{item.descriptor || "Trending on YouTube"}</div>
-          <button aria-label="More info" onClick={() => onInfo?.(item)} className="relative inline-flex items-center justify-center" style={{ transform: "scale(0.75)" }}>
+          <button aria-label="More info" onClick={(e) => { e.stopPropagation(); onInfo?.(item); }} className="relative inline-flex items-center justify-center" style={{ transform: "scale(0.75)" }}>
             <span className="rounded-full" style={{ background: mint, width: 24, height: 24, boxShadow: "0 0 20px rgba(48,224,178,0.5)" }} />
             <span className="absolute text-[12px] font-bold" style={{ color: "#0E1514" }}>i</span>
           </button>
         </div>
       </div>
-    </a>
+    </div>
   );
 }
