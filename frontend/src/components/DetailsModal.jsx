@@ -1,7 +1,33 @@
 import React from "react";
 
+const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
+
 export default function DetailsModal({ open, onClose, item }) {
   const badge = "text-[10px] px-1.5 py-0.5 rounded-full bg-white/10 border border-white/15";
+  
+  const handleWatchNow = async () => {
+    if (!item?.id || !item?.platform) return;
+    
+    try {
+      const response = await fetch(
+        `${BACKEND_URL}/api/resolve-link?title_id=${item.id}&provider=${encodeURIComponent(item.platform)}`
+      );
+      const data = await response.json();
+      
+      // Try deep link first, fallback to web
+      if (data.scheme_url) {
+        window.location.href = data.scheme_url;
+        setTimeout(() => {
+          window.open(data.url || data.fallback_search_url, '_blank');
+        }, 1000);
+      } else {
+        window.open(data.url || data.fallback_search_url, '_blank');
+      }
+    } catch (error) {
+      console.error('Error resolving link:', error);
+    }
+  };
+  
   return (
     <div className={`fixed inset-0 z-50 ${open ? "" : "pointer-events-none"}`} aria-hidden={!open}>
       <div className={`absolute inset-0 bg-black/60 backdrop-blur-sm transition ${open ? "opacity-100" : "opacity-0"}`} onClick={onClose} />
