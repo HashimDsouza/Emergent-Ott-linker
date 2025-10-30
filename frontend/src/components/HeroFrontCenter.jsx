@@ -50,15 +50,21 @@ export default function HeroFrontCenter() {
         onClick={handleHeroClick}
         className="relative rounded-2xl md:rounded-3xl overflow-hidden border border-white/10 shadow-xl cursor-pointer hover:border-white/20 transition"
         style={{ 
-          background: hero.slides[heroIndex].poster, 
+          background: hero.slides[heroIndex].poster,
           height: "200px"
         }}
-        className="md:h-[280px]"
       >
+        <style>{`
+          @media (min-width: 768px) {
+            .hero-container {
+              height: 280px !important;
+            }
+          }
+        `}</style>
         <div className="absolute inset-x-0 top-0 h-1/2" style={{ background: `linear-gradient(180deg, ${charcoal}66, transparent)` }} />
         <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-black/90 to-transparent" />
         
-        {/* Text content - positioned at bottom */}
+        {/* Text content - positioned at bottom left */}
         <div className="absolute bottom-0 left-0 right-0 px-3 pb-2 md:px-6 md:pb-4">
           <div className="max-w-lg">
             <div className="flex items-center gap-1 md:gap-2 opacity-90 mb-0.5">
