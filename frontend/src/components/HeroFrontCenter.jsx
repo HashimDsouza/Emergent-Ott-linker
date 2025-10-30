@@ -86,15 +86,6 @@ export default function HeroFrontCenter() {
             </div>
             
             {/* Line 5: Buzz Meter */}
-            <div className="mt-1 md:mt-1.5 flex items-center gap-1 md:gap-2 text-[7px] md:text-[10px] uppercase tracking-wider opacity-85">{hero.tagline}"</p>
-            
-            {/* Line 3: Platform + Rating */}
-            <div className="mt-0.5 md:mt-1 flex items-center gap-1 md:gap-2 text-xs">
-              <span className="text-[7px] md:text-[9px] px-1 md:px-1.5 py-0.5 rounded-full bg-white/10 border border-white/15">{hero.platform}</span>
-              <span className="text-white/85 text-[9px] md:text-xs">⭐ {hero.rating}</span>
-            </div>
-            
-            {/* Line 4: Buzz Meter */}
             <div className="mt-1 md:mt-1.5 flex items-center gap-1 md:gap-2 text-[7px] md:text-[10px] uppercase tracking-wider opacity-85">
               <span>BUZZ</span>
               <a 
