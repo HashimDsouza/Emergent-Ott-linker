@@ -53,7 +53,9 @@ export default function HeroFrontCenter() {
       >
         <div className="absolute inset-x-0 top-0 h-1/2" style={{ background: `linear-gradient(180deg, ${charcoal}66, transparent)` }} />
         <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-black/70 to-transparent" />
-        <div className="relative p-6 md:p-10 text-white">
+        {/* Text content - positioned 60% from top */}
+        <div className="relative h-full flex flex-col justify-end pb-6 px-6 md:px-10" style={{ paddingTop: "60%" }}>
+          <div className="max-w-md">
           <div className="flex items-center gap-2 opacity-90 mb-1">
             <span>🎥</span><span className="uppercase tracking-wider text-xs">Front & Center</span>
           </div>
