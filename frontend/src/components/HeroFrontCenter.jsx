@@ -53,6 +53,7 @@ export default function HeroFrontCenter() {
           background: hero.slides[heroIndex].poster, 
           height: "200px"
         }}
+        className="md:h-[280px]"
       >
         <div className="absolute inset-x-0 top-0 h-1/2" style={{ background: `linear-gradient(180deg, ${charcoal}66, transparent)` }} />
         <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-black/90 to-transparent" />
