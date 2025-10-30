@@ -1,6 +1,7 @@
 import React, { useMemo, useEffect, useState } from "react";
 
 const coral = "#FF4F64", mint = "#30E0B2", charcoal = "#0E1514", charcoalSoft = "#173A35";
+const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 
 export default function HeroFrontCenter() {
   const hero = useMemo(() => ({
