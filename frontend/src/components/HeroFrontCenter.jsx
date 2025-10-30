@@ -67,16 +67,26 @@ export default function HeroFrontCenter() {
         {/* Text content - positioned at bottom left */}
         <div className="absolute bottom-0 left-0 right-0 px-3 pb-2 md:px-6 md:pb-4">
           <div className="max-w-lg">
-            <div className="flex items-center gap-1 md:gap-2 opacity-90 mb-0.5">
+            {/* Line 1: Title */}
+            <h1 className="text-base md:text-2xl font-bold leading-tight text-white">{hero.title}</h1>
+            
+            {/* Line 2: Front & Center label */}
+            <div className="flex items-center gap-1 md:gap-2 opacity-90 mt-0.5 mb-0.5">
               <span className="text-[10px] md:text-xs">🎥</span>
               <span className="uppercase tracking-wider text-[7px] md:text-[9px]">Front & Center</span>
             </div>
             
-            {/* Line 1: Title */}
-            <h1 className="text-base md:text-2xl font-bold leading-tight text-white">{hero.title}</h1>
-            
-            {/* Line 2: Short descriptor */}
+            {/* Line 3: Short descriptor */}
             <p className="italic text-white/90 text-[10px] md:text-sm mt-0.5">"{hero.tagline}"</p>
+            
+            {/* Line 4: Platform + Rating */}
+            <div className="mt-0.5 md:mt-1 flex items-center gap-1 md:gap-2 text-xs">
+              <span className="text-[7px] md:text-[9px] px-1 md:px-1.5 py-0.5 rounded-full bg-white/10 border border-white/15">{hero.platform}</span>
+              <span className="text-white/85 text-[9px] md:text-xs">⭐ {hero.rating}</span>
+            </div>
+            
+            {/* Line 5: Buzz Meter */}
+            <div className="mt-1 md:mt-1.5 flex items-center gap-1 md:gap-2 text-[7px] md:text-[10px] uppercase tracking-wider opacity-85">{hero.tagline}"</p>
             
             {/* Line 3: Platform + Rating */}
             <div className="mt-0.5 md:mt-1 flex items-center gap-1 md:gap-2 text-xs">
