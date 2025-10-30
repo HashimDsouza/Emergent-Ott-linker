@@ -13,7 +13,7 @@ export default function LandingV2_3({ apiData }) {
   const onInfo = (item) => { setModalItem(item); setModalOpen(true); };
 
   return (
-    <div className="min-h-screen p-6 landing-v23-bg text-white">
+    <div className="min-h-screen p-3 md:p-6 landing-v23-bg text-white">
       <div className="max-w-6xl mx-auto">
         <HeroFrontCenter />
 
