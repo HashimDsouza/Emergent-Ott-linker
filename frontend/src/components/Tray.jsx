@@ -7,8 +7,14 @@ export default function Tray({ icon, title, subline, items, onInfo }) {
 
   if (!visible) return (
     <section className="mb-6">
-      <div className="flex items-center gap-3 text-sm text-white/85">
-        <button onClick={() => setVisible(true)} className="hover:text-white underline">Show {title}</button>
+      <div className="flex items-end justify-between mb-3">
+        <div>
+          <div className="text-xl md:text-2xl font-semibold text-white flex items-center gap-2">{icon} {title}</div>
+          {subline && <div className="text-sm" style={{ color: "#FF4F64" }}>{subline}</div>}
+        </div>
+        <div className="flex items-center gap-4 text-sm text-white/85">
+          <button onClick={() => setVisible(true)} className="hover:text-white">Show</button>
+        </div>
       </div>
     </section>
   );
@@ -21,8 +27,8 @@ export default function Tray({ icon, title, subline, items, onInfo }) {
           {subline && <div className="text-sm" style={{ color: "#FF4F64" }}>{subline}</div>}
         </div>
         <div className="flex items-center gap-4 text-sm text-white/85">
-          <button onClick={() => setExpanded(v => !v)} className="hover:text-white">{expanded ? "Hide" : "Go Deeper"}</button>
-          <button onClick={() => setVisible(false)} className="hover:text-white">Collapse</button>
+          <button onClick={() => setExpanded(v => !v)} className="hover:text-white">{expanded ? "Collapse" : "Go Deeper"}</button>
+          <button onClick={() => setVisible(false)} className="hover:text-white">Hide</button>
         </div>
       </div>
 
