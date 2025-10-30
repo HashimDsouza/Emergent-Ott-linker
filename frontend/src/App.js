@@ -2,6 +2,7 @@ import React from "react";
 import "@/App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "@/pages/Home";
+import LandingV2_3Wrapper from "@/pages/LandingV2_3Wrapper";
 
 function App() {
   return (
@@ -9,6 +10,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/landing/v2_3" element={<LandingV2_3Wrapper />} />
         </Routes>
       </BrowserRouter>
     </div>
