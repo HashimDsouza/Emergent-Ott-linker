@@ -51,14 +51,32 @@ export default function Tile({ item, onInfo }) {
         {/* Line 1: Platform + social icons (heart, thumbs, comments) */}
         <div className="flex items-center gap-0.5 md:gap-2 mb-0.5 md:mb-1">
           <span className="text-[7px] md:text-[10px] px-1 py-0.5 rounded-full bg-white/10 border border-white/15 flex-shrink-0">{item.platform || "JioHotstar"}</span>
-          <span className="inline-flex items-center gap-0.5 opacity-90 text-[7px] md:text-xs">❤️ <span>1.2k</span></span>
-          <span className="inline-flex items-center gap-0.5 opacity-90 text-[7px] md:text-xs">👎 <span>120</span></span>
-          <span className="inline-flex items-center gap-0.5 opacity-90 text-[7px] md:text-xs">💬 <span>320</span></span>
+          <button 
+            onClick={(e) => { e.stopPropagation(); setLiked(!liked); }} 
+            className="inline-flex items-center gap-0.5 opacity-90 text-[7px] md:text-xs hover:scale-110 transition"
+          >
+            <span style={{ color: liked ? '#FF4F64' : 'inherit' }}>❤️</span>
+            <span>1.2k</span>
+          </button>
+          <button 
+            onClick={(e) => { e.stopPropagation(); setDisliked(!disliked); }} 
+            className="inline-flex items-center gap-0.5 opacity-90 text-[7px] md:text-xs hover:scale-110 transition"
+          >
+            <span style={{ color: disliked ? '#FF4F64' : 'inherit' }}>👎</span>
+            <span>120</span>
+          </button>
+          <button 
+            onClick={(e) => { e.stopPropagation(); onInfo?.(item); }} 
+            className="inline-flex items-center gap-0.5 opacity-90 text-[7px] md:text-xs hover:scale-110 transition"
+          >
+            <span>💬</span>
+            <span>320</span>
+          </button>
         </div>
 
-        {/* Line 2: BUZZ + social media icons */}
-        <div className="flex items-center gap-0.5 md:gap-1.5 uppercase tracking-wide opacity-85 mb-0.5 md:mb-1 text-[7px] md:text-[9px]">
-          <span>BUZZ</span>
+        {/* Line 2: BUZZ METER + social media icons */}
+        <div className="flex items-center gap-1 md:gap-1.5 uppercase tracking-wide opacity-85 mb-0.5 md:mb-1 text-[7px] md:text-[9px]">
+          <span>BUZZ METER</span>
           <a 
             href={item.buzz?.yt || `https://www.youtube.com/results?search_query=${encodeURIComponent((item.title || 'trending') + ' trailer')}`}
             target="_blank"
