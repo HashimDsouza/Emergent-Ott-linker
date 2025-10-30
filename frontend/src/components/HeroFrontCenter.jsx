@@ -17,10 +17,32 @@ export default function HeroFrontCenter() {
   }), []);
 
   const [heroIndex, setHeroIndex] = useState(0);
+  
   useEffect(() => {
     const t = setInterval(() => setHeroIndex(i => (i + 1) % hero.slides.length), 5000);
     return () => clearInterval(t);
   }, [hero.slides.length]);
+
+  const handleHeroClick = async () => {
+    try {
+      const response = await fetch(
+        `${BACKEND_URL}/api/resolve-link?title_id=${hero.id}&provider=${encodeURIComponent(hero.platform)}`
+      );
+      const data = await response.json();
+      
+      if (data.scheme_url) {
+        window.location.href = data.scheme_url;
+        setTimeout(() => {
+          window.open(data.url || data.fallback_search_url, '_blank');
+        }, 1000);
+      } else {
+        window.open(data.url || data.fallback_search_url, '_blank');
+      }
+    } catch (error) {
+      console.error('Error resolving hero link:', error);
+      window.open(`https://www.hotstar.com/in/search/${encodeURIComponent(hero.title)}`, '_blank');
+    }
+  };
 
   return (
     <section className="mb-8">
