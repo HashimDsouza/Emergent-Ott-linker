@@ -60,7 +60,8 @@ export default function HeroFrontCenter() {
               <span className="text-sm">🎥</span>
               <span className="uppercase tracking-wider text-[10px]">Front & Center</span>
             </div>
-          <h1 className="text-3xl md:text-5xl font-bold leading-tight">{hero.title}</h1>
+            {/* Line 1: Title */}
+            <h1 className="text-2xl md:text-3xl font-bold leading-tight text-white">{hero.title}</h1>
           <p className="italic text-white/90 mt-1 md:text-lg">“{hero.tagline}”</p>
           <div className="mt-2 flex items-center gap-2 text-sm">
             <span className="text-[10px] px-1.5 py-0.5 rounded-full bg-white/10 border border-white/15">{hero.platform}</span>
