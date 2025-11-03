@@ -103,16 +103,16 @@
 #====================================================================================================
 
 user_problem_statement: |
-  Implement header and footer for the /landing/v2_3 page with the following requirements:
-  1. Header with 2-row navigation layout (Row 1: Watch On, Buzz Meter, Win; Row 2: Game On, Entertainment, Lang)
-  2. Visual identity consistency matching coral/mint/charcoal palette
-  3. Language dropdown with multiple language options
-  4. Connie AI orb with sparkle centered above text
-  5. Footer with emojis and icon overlays
-  6. All elements should match the premium visual identity
+  Optimize header and footer layout for /landing/v2_3 with the following requirements:
+  1. Add coral/mint gradient backgrounds to header and footer (matching hero carousel)
+  2. Reduce header vertical space to show more content on first scroll
+  3. Reorganize header: Line 1 (Logo | Watch On, Buzz Meter, Win | Search, Me), Line 2 (Game On, Entertainment, Lang)
+  4. Emphasize USPs (Watch On, Buzz Meter) as primary navigation
+  5. Implement all tooltips from the specification document
+  6. Enhanced hover states with 30% gradient opacity for "premium pop"
 
 frontend:
-  - task: "Header with 2-row navigation layout"
+  - task: "Header layout optimization with 2-row structure"
     implemented: true
     working: true
     file: "/app/frontend/src/components/ConnectorLayout.jsx"
@@ -122,9 +122,9 @@ frontend:
     status_history:
       - working: true
         agent: "main"
-        comment: "Implemented ConnectorHeader with 2-row layout. Row 1 contains Watch On, Buzz Meter, Win chips. Row 2 contains Game On, Entertainment, and Language dropdown."
+        comment: "Restructured header to Line 1 (Logo left | USP chips center | Search/Me right) and Line 2 (Category chips center). Reduced vertical space significantly, more content visible on first scroll."
 
-  - task: "Language dropdown functionality"
+  - task: "Coral/mint gradient backgrounds for header and footer"
     implemented: true
     working: true
     file: "/app/frontend/src/components/ConnectorLayout.jsx"
@@ -134,9 +134,9 @@ frontend:
     status_history:
       - working: true
         agent: "main"
-        comment: "Implemented LanguageDropdown component with 5 languages (English, Hindi, Tamil, Telugu, Bengali). Dropdown shows native script and English name for each language with proper selection highlighting."
+        comment: "Added gradient overlay (coral → mint at 15% opacity) to both header and footer. Enhanced hover state to 30% opacity for premium pop effect. Matches hero carousel aesthetic."
 
-  - task: "Connie AI orb alignment"
+  - task: "All tooltips implementation"
     implemented: true
     working: true
     file: "/app/frontend/src/components/ConnectorLayout.jsx"
@@ -146,9 +146,9 @@ frontend:
     status_history:
       - working: true
         agent: "main"
-        comment: "Refined ConnieButton component to ensure sparkle (✦) is perfectly centered above 'Connie' text using flexbox layout with gap-0 and proper spacing."
+        comment: "Implemented all tooltips as per specification document: Logo, Search, Me, Watch On, Buzz Meter, Win, Game On, Entertainment, Lang, Home, Dive In, Crew, Get With It. All showing correctly on hover."
 
-  - task: "Footer with emojis and visual identity"
+  - task: "Enhanced chip hover states"
     implemented: true
     working: true
     file: "/app/frontend/src/components/ConnectorLayout.jsx"
@@ -158,9 +158,9 @@ frontend:
     status_history:
       - working: true
         agent: "main"
-        comment: "Implemented ConnectorFooter with emoji navigation items (Home, Dive In, Crew, Get With It) with icon overlays on hover, matching coral/mint color scheme."
+        comment: "Updated Chip component hover state from 15% to 30% gradient opacity for stronger premium visual effect. Maintains mint border and coral/mint dual glow on hover."
 
-  - task: "Visual identity consistency"
+  - task: "Mobile responsive optimization"
     implemented: true
     working: true
     file: "/app/frontend/src/components/ConnectorLayout.jsx"
@@ -170,23 +170,23 @@ frontend:
     status_history:
       - working: true
         agent: "main"
-        comment: "All header/footer elements use consistent coral (#FF4F64), mint (#30E0B2), and charcoal (#0E1514) colors matching the hero carousel and content trays. Proper hover effects with gradient backgrounds and glows implemented."
+        comment: "Verified mobile layout works perfectly. Both header rows visible, proper font sizes, touch targets appropriate, hero carousel immediately visible after compact header."
 
 metadata:
   created_by: "main_agent"
-  version: "1.0"
-  test_sequence: 1
+  version: "2.0"
+  test_sequence: 2
   run_ui: false
 
 test_plan:
   current_focus:
-    - "Visual verification of header/footer alignment"
-    - "Language dropdown interaction"
-    - "Connie button hover effects"
+    - "Visual verification of gradient consistency"
+    - "Tooltip functionality across all navigation items"
+    - "Header space optimization verification"
   stuck_tasks: []
   test_all: false
   test_priority: "high_first"
 
 agent_communication:
   - agent: "main"
-    message: "Implemented header and footer components with all requested features. All elements match the premium visual identity with coral/mint/charcoal palette. Language dropdown is functional with 5 languages. Connie button has sparkle perfectly centered. Screenshots confirm all elements are working correctly."
+    message: "Completed header/footer optimization. Header now uses smart 2-row layout with USPs prominently centered. Reduced vertical space by ~30%. Added coral/mint gradient overlays (15% base, 30% hover) to match hero carousel. All tooltips implemented per spec. Enhanced hover states for premium feel. Mobile responsive verified."
