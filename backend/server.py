@@ -711,7 +711,15 @@ async def enrich_all_content():
                 "providers_in": enriched.get("providers_in", []),
                 "watchmode_id": enriched.get("watchmode_id"),
                 "platform_content_id": enriched.get("platform_content_id", content.get("platform_content_id")),
-                "last_enriched": enriched.get("last_enriched")
+                "last_enriched": enriched.get("last_enriched"),
+                # NEW METADATA FIELDS
+                "runtime": enriched.get("runtime"),
+                "genres": enriched.get("genres", []),
+                "cast": enriched.get("cast", []),
+                "crew": enriched.get("crew", {}),
+                "trailer_url": enriched.get("trailer_url"),
+                "vote_count": enriched.get("vote_count"),
+                "streaming_platforms": enriched.get("streaming_platforms", [])
             }
             
             # Update in database
