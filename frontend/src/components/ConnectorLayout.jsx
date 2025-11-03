@@ -357,7 +357,7 @@ export function ConnectorFooter() {
   );
 }
 
-// Connie AI floating button - positioned above footer with safe spacing
+// Connie AI floating button - positioned well above footer with increased safe spacing
 export function ConnieButton({ onClick }) {
   const [hover, setHover] = useState(false);
   
@@ -365,7 +365,7 @@ export function ConnieButton({ onClick }) {
     <button
       className="fixed right-4 md:right-6 w-14 h-14 md:w-16 md:h-16 rounded-full flex flex-col items-center justify-center shadow-xl cursor-pointer select-none z-50 transition-all"
       style={{
-        bottom: 'calc(56px + 16px)', // Footer height (56px) + margin (16px) to ensure it sits above footer
+        bottom: 'calc(72px + 8px)', // Footer height + extra margin to prevent overlap
         background: `linear-gradient(135deg, ${mint}, ${mint}E0)`,
         boxShadow: hover 
           ? `0 0 24px ${coral}, 0 0 12px ${mint}, 0 8px 16px ${charcoal}80` 
