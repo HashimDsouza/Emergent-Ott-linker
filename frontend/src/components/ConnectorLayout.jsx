@@ -277,7 +277,7 @@ export function ConnectorFooter() {
   );
 }
 
-// Connie AI floating button - sparkle centered above text
+// Connie AI floating button - sparkle perfectly centered above text
 export function ConnieButton({ onClick }) {
   const [hover, setHover] = useState(false);
   
@@ -296,24 +296,26 @@ export function ConnieButton({ onClick }) {
       onClick={onClick}
       aria-label="Connie AI Assistant"
     >
-      {/* Sparkle centered above text */}
-      <span 
-        className="text-[14px] md:text-[16px] mb-0.5"
-        style={{ 
-          color: coral,
-          textShadow: `0 0 8px ${coral}80`,
-          filter: hover ? `drop-shadow(0 0 4px ${coral})` : 'none'
-        }}
-      >
-        ✦
-      </span>
-      {/* Connie text */}
-      <span 
-        className="text-[9px] md:text-[10px] font-bold tracking-wide"
-        style={{ color: charcoal }}
-      >
-        Connie
-      </span>
+      {/* Sparkle perfectly centered above text */}
+      <div className="flex flex-col items-center justify-center gap-0">
+        <span 
+          className="text-[14px] md:text-[16px] leading-none"
+          style={{ 
+            color: coral,
+            textShadow: `0 0 8px ${coral}80`,
+            filter: hover ? `drop-shadow(0 0 4px ${coral})` : 'none'
+          }}
+        >
+          ✦
+        </span>
+        {/* Connie text */}
+        <span 
+          className="text-[9px] md:text-[10px] font-bold tracking-wide leading-none mt-0.5"
+          style={{ color: charcoal }}
+        >
+          Connie
+        </span>
+      </div>
       {hover && <Tip text="Always watching out for what you'll love." />}
     </button>
   );
