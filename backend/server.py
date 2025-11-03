@@ -280,13 +280,69 @@ async def enrich_content_item(content: Dict) -> Dict:
         if release_date:
             content["year"] = int(release_date.split("-")[0])
         
+        # Runtime (for movies) or episode_run_time (for TV)
+        if content_type == "movie":
+            runtime = tmdb_details.get("runtime")
+            if runtime:
+                content["runtime"] = runtime
+                logging.info(f"  ⏱️  Runtime: {runtime} min")
+        else:
+            episode_run_time = tmdb_details.get("episode_run_time")
+            if episode_run_time and len(episode_run_time) > 0:
+                content["runtime"] = episode_run_time[0]
+                logging.info(f"  ⏱️  Episode Runtime: {episode_run_time[0]} min")
+        
+        # Genres
+        genres = tmdb_details.get("genres", [])
+        if genres:
+            content["genres"] = [g["name"] for g in genres]
+            logging.info(f"  🎭 Genres: {', '.join(content['genres'][:3])}")
+        
+        # Cast (top 5)
+        credits = tmdb_details.get("credits", {})
+        cast = credits.get("cast", [])
+        if cast:
+            content["cast"] = [
+                {
+                    "name": member["name"],
+                    "character": member.get("character"),
+                    "profile_url": f"https://image.tmdb.org/t/p/w185{member['profile_path']}" if member.get("profile_path") else None
+                }
+                for member in cast[:5]
+            ]
+            logging.info(f"  🎬 Cast: {', '.join([c['name'] for c in content['cast'][:2]])}")
+        
+        # Crew (director, writer)
+        crew = credits.get("crew", [])
+        directors = [member["name"] for member in crew if member.get("job") == "Director"]
+        writers = [member["name"] for member in crew if member.get("job") in ["Writer", "Screenplay"]]
+        if directors or writers:
+            content["crew"] = {}
+            if directors:
+                content["crew"]["directors"] = directors[:2]
+                logging.info(f"  🎥 Director: {', '.join(directors[:2])}")
+            if writers:
+                content["crew"]["writers"] = writers[:2]
+        
+        # Trailer (YouTube)
+        videos = tmdb_details.get("videos", {}).get("results", [])
+        trailers = [v for v in videos if v.get("type") == "Trailer" and v.get("site") == "YouTube"]
+        if trailers:
+            content["trailer_url"] = f"https://www.youtube.com/watch?v={trailers[0]['key']}"
+            logging.info(f"  🎬 Trailer: {content['trailer_url'][:50]}...")
+        
+        # Vote count
+        vote_count = tmdb_details.get("vote_count")
+        if vote_count:
+            content["vote_count"] = vote_count
+        
         # TMDB rating (always available)
         vote_average = tmdb_details.get("vote_average")
         if vote_average:
             content["vote_average"] = round(vote_average, 1)
             content["rating"] = content["vote_average"]  # Use TMDB as baseline
             content["rating_source"] = "tmdb"
-            logging.info(f"  ⭐ TMDB Rating: {content['vote_average']}")
+            logging.info(f"  ⭐ TMDB Rating: {content['vote_average']}/10 ({vote_count} votes)")
         
         # Get IMDb ID
         imdb_id = tmdb_details.get("external_ids", {}).get("imdb_id")
