@@ -226,7 +226,7 @@ export function ConnectorHeader() {
   );
 }
 
-// Footer component with emojis + icons
+// Footer component with emojis + icons and gradient background
 export function ConnectorFooter() {
   const NavItem = ({ emoji, icon: Icon, label, tip }) => {
     const [hover, setHover] = useState(false);
@@ -268,14 +268,23 @@ export function ConnectorFooter() {
 
   return (
     <footer
-      className="fixed bottom-0 left-0 right-0 z-40 backdrop-blur-md border-t"
+      className="fixed bottom-0 left-0 right-0 z-40 backdrop-blur-md border-t relative overflow-hidden"
       style={{ 
-        backgroundColor: `${charcoal}F0`,
+        backgroundColor: charcoal,
         borderColor: `${coral}20`,
         boxShadow: `0 -4px 16px ${charcoal}80, 0 -1px 4px ${mint}20`
       }}
     >
-      <div className="flex items-center justify-around max-w-md mx-auto px-4 py-2 md:py-2.5">
+      {/* Gradient overlay matching header */}
+      <div 
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background: `linear-gradient(135deg, ${coral}15, ${mint}15, ${charcoal}00)`,
+          opacity: 0.15
+        }}
+      />
+      
+      <div className="relative flex items-center justify-around max-w-md mx-auto px-4 py-2 md:py-2.5">
         <NavItem emoji="🏠" icon={Home} label="Home" tip="Back to where the buzz begins." />
         <NavItem emoji="🧭" icon={Compass} label="Dive In" tip="Deep cuts. Hot picks. Dive already." />
         <NavItem emoji="👥" icon={Users} label="Crew" tip="Where fans become fam." />
