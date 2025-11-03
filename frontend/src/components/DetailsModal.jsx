@@ -77,9 +77,20 @@ export default function DetailsModal({ open, onClose, item }) {
           <div>
             <div className="text-[11px] uppercase tracking-wider opacity-80">Buzz Meter</div>
             <div className="flex items-center gap-3 mt-1">
-              <a href="#yt" className="inline-flex items-center gap-2 px-2 py-1 rounded-xl border border-white/10 bg-white/5">YouTube</a>
-              <a href="#x" className="inline-flex items-center gap-2 px-2 py-1 rounded-xl border border-white/10 bg-white/5">X</a>
-              <a href="#rd" className="inline-flex items-center gap-2 px-2 py-1 rounded-xl border border-white/10 bg-white/5">Reddit</a>
+              {item?.trailer_url ? (
+                <a 
+                  href={item.trailer_url} 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-2 py-1 rounded-xl border border-white/10 bg-white/5 hover:bg-white/10 transition"
+                >
+                  YouTube
+                </a>
+              ) : (
+                <a href={item?.social_links?.youtube || "#yt"} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-2 py-1 rounded-xl border border-white/10 bg-white/5 hover:bg-white/10 transition">YouTube</a>
+              )}
+              <a href={item?.social_links?.twitter || "#x"} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-2 py-1 rounded-xl border border-white/10 bg-white/5 hover:bg-white/10 transition">X</a>
+              <a href={item?.social_links?.reddit || "#rd"} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-2 py-1 rounded-xl border border-white/10 bg-white/5 hover:bg-white/10 transition">Reddit</a>
             </div>
             <div className="mt-3 flex items-center gap-2">
               <button className="inline-flex items-center gap-1 px-2 py-1 rounded-xl border border-white/10 bg-white/5">❤️</button>
