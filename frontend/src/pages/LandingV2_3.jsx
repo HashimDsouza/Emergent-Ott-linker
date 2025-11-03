@@ -46,7 +46,14 @@ export default function LandingV2_3({ apiData }) {
         />
 
         <DetailsModal open={modalOpen} onClose={() => setModalOpen(false)} item={modalItem} />
+        </div>
       </div>
+      
+      {/* Footer */}
+      <ConnectorFooter />
+      
+      {/* Connie AI Button */}
+      <ConnieButton onClick={() => console.log('Connie AI clicked')} />
     </div>
   );
 }
