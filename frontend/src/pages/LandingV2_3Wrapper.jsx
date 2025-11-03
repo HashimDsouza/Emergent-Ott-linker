@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import LandingV2_3 from "./LandingV2_3";
+import ConnieFloating from "../components/ConnieFloating";
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 const API = `${BACKEND_URL}/api`;
@@ -39,5 +40,10 @@ export default function LandingV2_3Wrapper() {
     );
   }
 
-  return <LandingV2_3 apiData={apiData} />;
+  return (
+    <>
+      <LandingV2_3 apiData={apiData} />
+      <ConnieFloating />
+    </>
+  );
 }
