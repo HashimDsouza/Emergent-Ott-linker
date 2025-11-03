@@ -130,84 +130,91 @@ function LanguageDropdown() {
   );
 }
 
-// Header component with 2-row layout
+// Header component with optimized 2-row layout and gradient background
 export function ConnectorHeader() {
+  const [searchHover, setSearchHover] = useState(false);
+  const [meHover, setMeHover] = useState(false);
+
   return (
     <header
-      className="sticky top-0 z-40 backdrop-blur-md border-b"
+      className="sticky top-0 z-40 backdrop-blur-md border-b relative overflow-hidden"
       style={{ 
-        backgroundColor: `${charcoal}E6`,
-        borderColor: `${mint}15`
+        backgroundColor: charcoal,
+        borderColor: `${mint}20`
       }}
     >
-      {/* Top row: Logo, Search, Profile */}
-      <div className="flex items-center justify-between px-3 md:px-6 py-2.5 md:py-3">
-        {/* Logo with premium glow */}
-        <div 
-          className="select-none font-bold text-xl md:text-2xl cursor-pointer"
-          style={{ 
-            color: coral,
-            textShadow: `0 0 12px ${coral}60`
-          }}
-        >
-          C•
+      {/* Gradient overlay for premium feel */}
+      <div 
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background: `linear-gradient(135deg, ${coral}15, ${mint}15, ${charcoal}00)`,
+          opacity: 0.15
+        }}
+      />
+
+      {/* Row 1: Logo | USP Chips (Watch On, Buzz Meter, Win) | Search & Me */}
+      <div className="relative flex items-center justify-between px-3 md:px-6 py-2 md:py-2.5">
+        {/* Logo with premium glow and tooltip */}
+        <div className="relative group">
+          <div 
+            className="select-none font-bold text-xl md:text-2xl cursor-pointer"
+            style={{ 
+              color: coral,
+              textShadow: `0 0 12px ${coral}60`
+            }}
+            aria-label="Logo"
+          >
+            C•
+          </div>
+          <Tip text="All the action. None of the confusion." />
         </div>
 
-        {/* Search & Profile with hover effects */}
+        {/* Center: USP Chips (Watch On, Buzz Meter, Win) */}
+        <div className="flex gap-2 md:gap-3">
+          <Chip icon={Play} label="Watch On" tip="Pick your platform. Jump right in." />
+          <Chip icon={Flame} label="Buzz Meter" tip="If it's trending, it's here." />
+          <Chip icon={Target} label="Win" tip="Flex your fandom. Score some cred." />
+        </div>
+
+        {/* Right: Search & Me with hover effects and tooltips */}
         <div className="flex items-center gap-3 md:gap-4">
           <button 
             className="relative group p-1.5 rounded-full transition-all"
             style={{
-              background: 'transparent',
+              background: searchHover ? `${mint}15` : 'transparent',
+              boxShadow: searchHover ? `0 0 12px ${mint}40` : 'none'
             }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.background = `${mint}15`;
-              e.currentTarget.style.boxShadow = `0 0 12px ${mint}40`;
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.background = 'transparent';
-              e.currentTarget.style.boxShadow = 'none';
-            }}
+            onMouseEnter={() => setSearchHover(true)}
+            onMouseLeave={() => setSearchHover(false)}
             aria-label="Search"
           >
             <Search 
               className="w-5 h-5 md:w-5.5 md:h-5.5 transition-colors" 
               style={{ color: coral }}
             />
+            {searchHover && <Tip text="Find it before your friends do." />}
           </button>
           <button 
             className="relative group p-1.5 rounded-full transition-all"
             style={{
-              background: 'transparent',
+              background: meHover ? `${mint}15` : 'transparent',
+              boxShadow: meHover ? `0 0 12px ${mint}40` : 'none'
             }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.background = `${mint}15`;
-              e.currentTarget.style.boxShadow = `0 0 12px ${mint}40`;
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.background = 'transparent';
-              e.currentTarget.style.boxShadow = 'none';
-            }}
-            aria-label="Profile"
+            onMouseEnter={() => setMeHover(true)}
+            onMouseLeave={() => setMeHover(false)}
+            aria-label="Me"
           >
             <User 
               className="w-5 h-5 md:w-5.5 md:h-5.5 transition-colors"
               style={{ color: coral }}
             />
+            {meHover && <Tip text="Your taste. Your vibe. Your call." />}
           </button>
         </div>
       </div>
 
-      {/* Navigation chips - 2 rows */}
-      <div className="px-3 md:px-6 pb-2.5 md:pb-3 space-y-2">
-        {/* Row 1: Watch On, Buzz Meter, Win */}
-        <div className="flex gap-2 md:gap-3 justify-center">
-          <Chip icon={Play} label="Watch On" tip="Pick your platform. Jump right in." />
-          <Chip icon={Flame} label="Buzz Meter" tip="If it's trending, it's here." />
-          <Chip icon={Target} label="Win" tip="Flex your fandom. Score some cred." />
-        </div>
-
-        {/* Row 2: Game On, Entertainment, Lang */}
+      {/* Row 2: Game On, Entertainment, Lang (centered) */}
+      <div className="relative px-3 md:px-6 pb-2 md:pb-2.5">
         <div className="flex gap-2 md:gap-3 justify-center">
           <Chip icon={Trophy} label="Game On" tip="The game never sleeps." />
           <Chip icon={Clapperboard} label="Entertainment" tip="Fresh stories. Zero scroll fatigue." />
