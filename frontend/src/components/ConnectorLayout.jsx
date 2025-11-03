@@ -158,19 +158,25 @@ export function ConnectorHeader() {
       {/* Row 1: Logo | USP Chips (Watch On, Buzz Meter, Win) | Search & Me */}
       <div className="relative flex items-center justify-between px-3 md:px-6 py-2 md:py-2.5">
         {/* Logo with premium glow and tooltip */}
-        <div className="relative group">
+        <button 
+          className="relative group"
+          onMouseEnter={(e) => e.currentTarget.querySelector('.logo-tip')?.classList.add('visible')}
+          onMouseLeave={(e) => e.currentTarget.querySelector('.logo-tip')?.classList.remove('visible')}
+          aria-label="Logo"
+        >
           <div 
             className="select-none font-bold text-xl md:text-2xl cursor-pointer"
             style={{ 
               color: coral,
               textShadow: `0 0 12px ${coral}60`
             }}
-            aria-label="Logo"
           >
             C•
           </div>
-          <Tip text="All the action. None of the confusion." />
-        </div>
+          <span className="logo-tip hidden group-hover:block">
+            <Tip text="All the action. None of the confusion." />
+          </span>
+        </button>
 
         {/* Center: USP Chips (Watch On, Buzz Meter, Win) */}
         <div className="flex gap-2 md:gap-3">
