@@ -358,47 +358,13 @@ export function ConnectorFooter() {
   );
 }
 
-// Connie AI floating button - positioned well above footer with increased safe spacing
-export function ConnieButton({ onClick }) {
-  const [hover, setHover] = useState(false);
-  
+// Main layout wrapper component that includes header, content, and footer
+export function ConnectorLayout({ children }) {
   return (
-    <button
-      className="fixed right-4 md:right-6 w-14 h-14 md:w-16 md:h-16 rounded-full flex flex-col items-center justify-center shadow-xl cursor-pointer select-none z-50 transition-all"
-      style={{
-        bottom: 'calc(72px + 8px)', // Footer height + extra margin to prevent overlap
-        background: `linear-gradient(135deg, ${mint}, ${mint}E0)`,
-        boxShadow: hover 
-          ? `0 0 24px ${coral}, 0 0 12px ${mint}, 0 8px 16px ${charcoal}80` 
-          : `0 4px 16px ${charcoal}80, 0 0 8px ${mint}60`,
-        transform: hover ? 'scale(1.05)' : 'scale(1)'
-      }}
-      onMouseEnter={() => setHover(true)}
-      onMouseLeave={() => setHover(false)}
-      onClick={onClick}
-      aria-label="Connie AI Assistant"
-    >
-      {/* Sparkle perfectly centered above text */}
-      <div className="flex flex-col items-center justify-center gap-0">
-        <span 
-          className="text-[14px] md:text-[16px] leading-none"
-          style={{ 
-            color: coral,
-            textShadow: `0 0 8px ${coral}80`,
-            filter: hover ? `drop-shadow(0 0 4px ${coral})` : 'none'
-          }}
-        >
-          ✦
-        </span>
-        {/* Connie text */}
-        <span 
-          className="text-[9px] md:text-[10px] font-bold tracking-wide leading-none mt-0.5"
-          style={{ color: charcoal }}
-        >
-          Connie
-        </span>
-      </div>
-      {hover && <Tip text="Always watching out for what you'll love." />}
-    </button>
+    <>
+      <ConnectorHeader />
+      {children}
+      <ConnectorFooter />
+    </>
   );
 }
