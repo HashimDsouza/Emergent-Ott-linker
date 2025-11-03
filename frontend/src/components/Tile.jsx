@@ -48,10 +48,24 @@ export default function Tile({ item, onInfo }) {
       >
         {/* Mobile: 2/3 aspect ratio */}
         <div className="md:hidden" style={{ aspectRatio: "2/3" }}>
+          {item.thumbnail && (
+            <img 
+              src={item.thumbnail} 
+              alt={item.title}
+              className="absolute inset-0 w-full h-full object-cover"
+            />
+          )}
           <div className="absolute inset-x-0 bottom-0 h-1/4 bg-gradient-to-t from-black/90 to-transparent" />
         </div>
         {/* Desktop: 16/9 aspect ratio */}
         <div className="hidden md:block" style={{ aspectRatio: "16/9" }}>
+          {item.thumbnail && (
+            <img 
+              src={item.thumbnail} 
+              alt={item.title}
+              className="absolute inset-0 w-full h-full object-cover"
+            />
+          )}
           <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-black/90 to-transparent" />
         </div>
       </div>
