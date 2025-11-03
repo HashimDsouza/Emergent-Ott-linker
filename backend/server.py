@@ -284,7 +284,8 @@ async def enrich_content_item(content: Dict) -> Dict:
             content["year"] = int(release_date.split("-")[0])
         
         # Runtime (for movies) or episode_run_time (for TV)
-        if content_type == "movie":
+        content_type_val = content.get("content_type", "movie")
+        if content_type_val == "movie":
             runtime = tmdb_details.get("runtime")
             if runtime:
                 content["runtime"] = runtime
