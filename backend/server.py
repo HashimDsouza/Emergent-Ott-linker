@@ -93,15 +93,19 @@ async def search_tmdb(title: str, year: Optional[int] = None, content_type: str 
     return None
 
 async def get_tmdb_details(tmdb_id: int, content_type: str = "movie") -> Optional[Dict]:
-    """Get detailed info from TMDB including external IDs and watch providers"""
+    """Get detailed info from TMDB including external IDs, watch providers, cast, crew, and videos"""
     try:
         async with httpx.AsyncClient() as client:
             endpoint = "tv" if content_type == "series" else "movie"
             
-            # Get main details
+            # Get main details with appended responses (credits and videos)
             response = await client.get(
                 f"https://api.themoviedb.org/3/{endpoint}/{tmdb_id}",
-                params={"api_key": TMDB_API_KEY, "language": "en-US"},
+                params={
+                    "api_key": TMDB_API_KEY, 
+                    "language": "en-US",
+                    "append_to_response": "credits,videos"
+                },
                 timeout=10.0
             )
             
