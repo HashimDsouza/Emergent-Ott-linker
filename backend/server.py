@@ -367,15 +367,31 @@ async def enrich_content_item(content: Dict) -> Dict:
                 logging.warning(f"⚠️  OMDb failed for {content['title']}, using TMDB rating")
                 pass
         
-        # Extract providers from TMDB watch providers
+        # Extract providers from TMDB watch providers with logos
         watch_providers = tmdb_details.get("watch_providers_in", {})
-        providers = []
+        streaming_platforms = []
         for provider_type in ["flatrate", "buy", "rent"]:
             if provider_type in watch_providers:
-                providers.extend([p["provider_name"] for p in watch_providers[provider_type]])
-        content["providers_in"] = list(set(providers))
-        if providers:
-            logging.info(f"  📺 Providers (IN): {', '.join(content['providers_in'][:3])}")
+                for provider in watch_providers[provider_type]:
+                    platform = {
+                        "platform_name": provider["provider_name"],
+                        "platform_logo": f"https://image.tmdb.org/t/p/original{provider['logo_path']}" if provider.get("logo_path") else None,
+                        "type": provider_type  # flatrate, buy, rent
+                    }
+                    streaming_platforms.append(platform)
+        
+        # Deduplicate and store
+        if streaming_platforms:
+            # Remove duplicates based on platform_name
+            seen = set()
+            unique_platforms = []
+            for p in streaming_platforms:
+                if p["platform_name"] not in seen:
+                    seen.add(p["platform_name"])
+                    unique_platforms.append(p)
+            content["streaming_platforms"] = unique_platforms
+            content["providers_in"] = [p["platform_name"] for p in unique_platforms]  # Keep for compatibility
+            logging.info(f"  📺 Streaming (IN): {', '.join([p['platform_name'] for p in unique_platforms[:3]])}")
         
         # Watchmode for platform content IDs (skip if too slow)
         try:
