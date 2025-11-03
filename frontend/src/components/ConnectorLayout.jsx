@@ -192,10 +192,10 @@ export function ConnectorHeader() {
       />
 
       {/* Row 1: Logo | USP Chips (Watch On, Buzz Meter, Win) | Search & Me */}
-      <div className="relative flex items-center justify-between px-3 md:px-6 py-2 md:py-2.5">
+      <div className="relative flex items-center justify-between gap-4 md:gap-6 px-3 md:px-6 py-2 md:py-2.5">
         {/* Logo with premium glow and tooltip */}
         <button 
-          className="relative group"
+          className="relative group flex-shrink-0"
           onMouseEnter={(e) => e.currentTarget.querySelector('.logo-tip')?.classList.add('visible')}
           onMouseLeave={(e) => e.currentTarget.querySelector('.logo-tip')?.classList.remove('visible')}
           aria-label="Logo"
@@ -215,14 +215,14 @@ export function ConnectorHeader() {
         </button>
 
         {/* Center: USP Chips (Watch On, Buzz Meter, Win) */}
-        <div className="flex gap-2 md:gap-3">
+        <div className="flex gap-2 md:gap-3 flex-1 justify-center">
           <Chip icon={Play} label="Watch On" tip="Pick your platform. Jump right in." />
           <Chip icon={Flame} label="Buzz Meter" tip="If it's trending, it's here." />
           <Chip icon={Target} label="Win" tip="Flex your fandom. Score some cred." />
         </div>
 
         {/* Right: Search & Me with hover effects and tooltips */}
-        <div className="flex items-center gap-3 md:gap-4">
+        <div className="flex items-center gap-3 md:gap-4 flex-shrink-0">
           <button 
             className="relative group p-1.5 rounded-full transition-all"
             style={{
