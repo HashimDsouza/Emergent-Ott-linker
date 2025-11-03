@@ -135,7 +135,7 @@ export default function LandingV2_3({ apiData }) {
           icon="🏆"
           title="Game On"
           subline="Matches, highlights, and scores"
-          items={cards.slice(12,18)}
+          items={sportsCards}
           onInfo={onInfo}
         />
 
