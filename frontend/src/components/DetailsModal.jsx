@@ -48,10 +48,31 @@ export default function DetailsModal({ open, onClose, item }) {
         </div>
         <div className="px-5 pb-5 grid grid-cols-1 md:grid-cols-2 gap-5 text-white/90">
           <div>
-            <div className="text-sm leading-6">A compact, cinematic synopsis (3–5 lines) that gives just enough to decide. Crisp, human copy — no clutter.</div>
+            <div className="text-sm leading-6">{item?.description || "A compact, cinematic synopsis (3–5 lines) that gives just enough to decide. Crisp, human copy — no clutter."}</div>
             <div className="flex flex-wrap gap-2 mt-3">
-              {["Thriller","Heist","Dark Comedy"].map(t => <span key={t} className="text-xs px-2 py-1 rounded-full border border-white/15 bg-white/5">{t}</span>)}
+              {(item?.genres || ["Thriller","Heist","Dark Comedy"]).map(t => <span key={t} className="text-xs px-2 py-1 rounded-full border border-white/15 bg-white/5">{t}</span>)}
             </div>
+            
+            {/* Cast Section */}
+            {item?.cast && item.cast.length > 0 && (
+              <div className="mt-4">
+                <div className="text-[11px] uppercase tracking-wider opacity-60 mb-2">Cast</div>
+                <div className="flex flex-wrap gap-2">
+                  {item.cast.slice(0, 5).map((member, idx) => (
+                    <div key={idx} className="flex items-center gap-2 text-xs px-2 py-1 rounded-full border border-white/15 bg-white/5">
+                      {member.profile_url && (
+                        <img 
+                          src={member.profile_url} 
+                          alt={member.name}
+                          className="w-5 h-5 rounded-full object-cover"
+                        />
+                      )}
+                      <span>{member.name}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
           </div>
           <div>
             <div className="text-[11px] uppercase tracking-wider opacity-80">Buzz Meter</div>
