@@ -13,6 +13,100 @@ export default function LandingV2_3({ apiData }) {
 
   const onInfo = (item) => { setModalItem(item); setModalOpen(true); };
 
+  // Sports tiles for Game On tray
+  const sportsCards = useMemo(() => [
+    {
+      id: 'sport-1',
+      title: "ICC Women's World Cup 2025 Final",
+      platform: 'Jiohotstar',
+      thumbnail: 'https://images.unsplash.com/photo-1531415074968-036ba1b575da?w=400&h=600&fit=crop',
+      description: "Women's Cricket World Cup Final - Live coverage",
+      category: 'Cricket',
+      imdb: 'LIVE',
+      genres: ['Cricket', 'Women\'s World Cup', 'Final'],
+      social_links: {
+        youtube: 'https://www.youtube.com/results?search_query=ICC+Women+World+Cup+2025',
+        twitter: 'https://twitter.com/search?q=%23WWC2025',
+        reddit: 'https://www.reddit.com/r/Cricket'
+      }
+    },
+    {
+      id: 'sport-2',
+      title: "Manchester United vs Nottingham Forest",
+      platform: 'Jiohotstar',
+      thumbnail: 'https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=400&h=600&fit=crop',
+      description: "Premier League - Live Match",
+      category: 'Football',
+      imdb: 'LIVE',
+      genres: ['Football', 'Premier League', 'Live'],
+      social_links: {
+        youtube: 'https://www.youtube.com/results?search_query=Manchester+United+vs+Nottingham+Forest',
+        twitter: 'https://twitter.com/search?q=%23MUNNFO',
+        reddit: 'https://www.reddit.com/r/soccer'
+      }
+    },
+    {
+      id: 'sport-3',
+      title: "UEFA Champions League",
+      platform: 'Sony Liv',
+      thumbnail: 'https://images.unsplash.com/photo-1579952363873-27f3bade9f55?w=400&h=600&fit=crop',
+      description: "UEFA Champions League - Today's Matches",
+      category: 'Football',
+      imdb: '⭐',
+      genres: ['Football', 'Champions League', 'Europe'],
+      social_links: {
+        youtube: 'https://www.youtube.com/results?search_query=UEFA+Champions+League',
+        twitter: 'https://twitter.com/search?q=%23UCL',
+        reddit: 'https://www.reddit.com/r/soccer'
+      }
+    },
+    {
+      id: 'sport-4',
+      title: "F1 Bahrain",
+      platform: 'Fancode',
+      thumbnail: 'https://images.unsplash.com/photo-1580891825485-1d74894c9e77?w=400&h=600&fit=crop',
+      description: "Formula 1 Bahrain Grand Prix",
+      category: 'F1',
+      imdb: '🏁',
+      genres: ['F1', 'Racing', 'Grand Prix'],
+      social_links: {
+        youtube: 'https://www.youtube.com/results?search_query=F1+Bahrain+Grand+Prix',
+        twitter: 'https://twitter.com/search?q=%23BahrainGP',
+        reddit: 'https://www.reddit.com/r/formula1'
+      }
+    },
+    {
+      id: 'sport-5',
+      title: "US Open 2025",
+      platform: 'Jiohotstar',
+      thumbnail: 'https://images.unsplash.com/photo-1622279457486-62dcc4a431d6?w=400&h=600&fit=crop',
+      description: "US Open Tennis Championship",
+      category: 'Tennis',
+      imdb: '🎾',
+      genres: ['Tennis', 'US Open', 'Grand Slam'],
+      social_links: {
+        youtube: 'https://www.youtube.com/results?search_query=US+Open+Tennis+2025',
+        twitter: 'https://twitter.com/search?q=%23USOpen',
+        reddit: 'https://www.reddit.com/r/tennis'
+      }
+    },
+    {
+      id: 'sport-6',
+      title: "Serie A",
+      platform: 'Dazn',
+      thumbnail: 'https://images.unsplash.com/photo-1553778263-73a83bab9b0c?w=400&h=600&fit=crop',
+      description: "Serie A - Italian Football",
+      category: 'Football',
+      imdb: '⚽',
+      genres: ['Football', 'Serie A', 'Italy'],
+      social_links: {
+        youtube: 'https://www.youtube.com/results?search_query=Serie+A',
+        twitter: 'https://twitter.com/search?q=%23SerieA',
+        reddit: 'https://www.reddit.com/r/soccer'
+      }
+    }
+  ], []);
+
   return (
     <div className="min-h-screen pb-20 md:pb-24 landing-v23-bg text-white">
       {/* Header */}
