@@ -274,12 +274,31 @@ export function ConnectorHeader() {
 export function ConnectorFooter() {
   const NavItem = ({ emoji, icon: Icon, label, tip }) => {
     const [hover, setHover] = useState(false);
+    const [showTip, setShowTip] = useState(false);
+    const longPressTimer = React.useRef(null);
+    
+    const handleTouchStart = () => {
+      if (tip) {
+        longPressTimer.current = setTimeout(() => {
+          setShowTip(true);
+          setTimeout(() => setShowTip(false), 2000);
+        }, 500);
+      }
+    };
+    
+    const handleTouchEnd = () => {
+      if (longPressTimer.current) {
+        clearTimeout(longPressTimer.current);
+      }
+    };
     
     return (
       <button
         onMouseEnter={() => setHover(true)}
         onMouseLeave={() => setHover(false)}
-        className="relative flex flex-col items-center gap-0.5 md:gap-1 text-white/80 hover:text-white transition-all py-1"
+        onTouchStart={handleTouchStart}
+        onTouchEnd={handleTouchEnd}
+        className="relative group flex flex-col items-center gap-0.5 md:gap-1 text-white/80 hover:text-white transition-all py-1"
         style={{
           textShadow: hover ? `0 0 8px ${mint}80` : 'none'
         }}
@@ -305,7 +324,7 @@ export function ConnectorFooter() {
             {label}
           </span>
         )}
-        {hover && tip && <Tip text={tip} />}
+        {(hover || showTip) && tip && <Tip text={tip} />}
       </button>
     );
   };
