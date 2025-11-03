@@ -182,12 +182,12 @@ export function ConnectorHeader() {
         borderColor: `${mint}20`
       }}
     >
-      {/* Gradient overlay for premium feel */}
+      {/* Gradient overlay for premium feel - increased opacity for more coral/mint visibility */}
       <div 
         className="absolute inset-0 pointer-events-none"
         style={{
-          background: `linear-gradient(135deg, ${coral}15, ${mint}15, ${charcoal}00)`,
-          opacity: 0.15
+          background: `linear-gradient(135deg, ${coral}30, ${mint}30, ${charcoal}10)`,
+          opacity: 0.4
         }}
       />
 
