@@ -1462,6 +1462,11 @@ async def chat_with_ai(message: ChatMessage):
         logger.error(f"Chat error: {str(e)}")
         raise HTTPException(status_code=500, detail=f"Chat failed: {str(e)}")
 
+# Include sports routers
+api_router.include_router(cricket.router)
+api_router.include_router(football.router)
+api_router.include_router(sports.router)
+
 app.include_router(api_router)
 
 app.add_middleware(
