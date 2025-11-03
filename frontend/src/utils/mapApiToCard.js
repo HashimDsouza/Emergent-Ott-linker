@@ -2,8 +2,26 @@ export const mapApiToCard = (x) => ({
   id: x.id ?? String(Math.random()),
   title: x.title ?? "Title",
   platform: x.platform ?? "JioHotstar",
-  posterUrl: x.thumbnail ?? x.poster_url ?? null,
-  imdb: x.imdb_rating ?? x.rating ?? null,
+  // Use poster_url from TMDB first, fallback to thumbnail
+  thumbnail: x.poster_url || x.thumbnail || "https://images.unsplash.com/photo-1598899134739-24c46f58b8c0?w=400&h=600&fit=crop",
+  posterUrl: x.poster_url || x.thumbnail || null,
+  // Use IMDb rating if available, otherwise TMDB rating, otherwise fallback
+  imdb: x.imdb_rating ?? x.vote_average ?? x.rating ?? "N/A",
+  rating: x.imdb_rating ?? x.vote_average ?? x.rating ?? null,
   descriptor: x.tagline ?? "Trending on YouTube",
+  // Pass through enriched metadata
+  description: x.description || "A compact, cinematic synopsis that gives just enough to decide.",
+  genres: x.genres || ["Thriller", "Heist", "Dark Comedy"],
+  cast: x.cast || [],
+  crew: x.crew || {},
+  trailer_url: x.trailer_url || null,
+  streaming_platforms: x.streaming_platforms || [],
+  vote_count: x.vote_count || null,
+  year: x.year || null,
+  runtime: x.runtime || null,
+  // Social links
+  social_links: x.social_links || { youtube: null, twitter: null, reddit: null },
   buzz: x.social_links ?? { yt: null, x: null, reddit: null },
+  category: x.category || "Entertainment",
+  content_type: x.content_type || "movie"
 });
