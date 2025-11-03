@@ -91,17 +91,34 @@ function Chip({ icon: Icon, label, tip, onClick }) {
   );
 }
 
-// Language Dropdown Component
+// Language Dropdown Component with mobile tooltip support
 function LanguageDropdown() {
   const [open, setOpen] = useState(false);
   const [selected, setSelected] = useState(languages[0]);
   const [hover, setHover] = useState(false);
+  const [showTip, setShowTip] = useState(false);
+  const longPressTimer = React.useRef(null);
+  
+  const handleTouchStart = (e) => {
+    longPressTimer.current = setTimeout(() => {
+      setShowTip(true);
+      setTimeout(() => setShowTip(false), 2000);
+    }, 500);
+  };
+  
+  const handleTouchEnd = () => {
+    if (longPressTimer.current) {
+      clearTimeout(longPressTimer.current);
+    }
+  };
 
   return (
-    <div className="relative">
+    <div className="relative group">
       <button
         onMouseEnter={() => setHover(true)}
         onMouseLeave={() => setHover(false)}
+        onTouchStart={handleTouchStart}
+        onTouchEnd={handleTouchEnd}
         onClick={() => setOpen(!open)}
         className="relative flex items-center gap-1 md:gap-1.5 rounded-full px-2.5 md:px-3.5 py-1.5 md:py-2 text-[10px] md:text-[11px] font-medium text-white/90 transition-all whitespace-nowrap"
         style={{
@@ -114,7 +131,7 @@ function LanguageDropdown() {
         <Globe className="w-3.5 h-3.5 md:w-4 md:h-4" style={{ color: hover || open ? mint : coral }} />
         <span>{selected.native}</span>
         <ChevronDown className="w-3 h-3" style={{ color: hover || open ? mint : 'white' }} />
-        {hover && !open && <Tip text="Switch the lingo, keep the drama." />}
+        {(hover || showTip) && !open && <Tip text="Switch the lingo, keep the drama." />}
       </button>
 
       {open && (
