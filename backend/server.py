@@ -13,6 +13,9 @@ from emergentintegrations.llm.chat import LlmChat, UserMessage
 import httpx
 import re
 
+# Import sports routers
+from routers import cricket, football, sports
+
 ROOT_DIR = Path(__file__).parent
 load_dotenv(ROOT_DIR / '.env')
 
