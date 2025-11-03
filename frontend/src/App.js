@@ -9,8 +9,9 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<LandingV2_3Wrapper />} />
           <Route path="/landing/v2_3" element={<LandingV2_3Wrapper />} />
+          <Route path="/original" element={<Home />} />
         </Routes>
       </BrowserRouter>
     </div>
