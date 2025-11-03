@@ -4,7 +4,7 @@ import { mapApiToCard } from "../utils/mapApiToCard";
 import HeroFrontCenter from "../components/HeroFrontCenter";
 import Tray from "../components/Tray";
 import DetailsModal from "../components/DetailsModal";
-import { ConnectorHeader, ConnectorFooter, ConnieButton } from "../components/ConnectorLayout";
+import { ConnectorHeader, ConnectorFooter } from "../components/ConnectorLayout";
 
 export default function LandingV2_3({ apiData }) {
   const cards = useMemo(() => (apiData?.items || []).map(mapApiToCard), [apiData]);
