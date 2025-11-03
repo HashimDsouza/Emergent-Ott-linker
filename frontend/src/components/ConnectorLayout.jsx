@@ -46,7 +46,7 @@ function Tip({ text }) {
   );
 }
 
-// Premium Chip component with gradient borders
+// Premium Chip component with gradient borders and enhanced hover
 function Chip({ icon: Icon, label, tip, onClick }) {
   const [hover, setHover] = useState(false);
   
@@ -57,7 +57,9 @@ function Chip({ icon: Icon, label, tip, onClick }) {
       onClick={onClick}
       className="relative flex items-center gap-1 md:gap-1.5 rounded-full px-2.5 md:px-3.5 py-1.5 md:py-2 text-[10px] md:text-[11px] font-medium text-white/90 transition-all whitespace-nowrap"
       style={{
-        background: hover ? `linear-gradient(135deg, ${coral}15, ${mint}15)` : `${charcoal}80`,
+        background: hover 
+          ? `linear-gradient(135deg, ${coral}30, ${mint}30)` 
+          : `${charcoal}80`,
         border: `1px solid ${hover ? mint : 'rgba(255,255,255,0.1)'}`,
         boxShadow: hover ? `0 0 16px ${coral}60, 0 0 8px ${mint}40` : 'none'
       }}
