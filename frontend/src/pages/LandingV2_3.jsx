@@ -51,9 +51,6 @@ export default function LandingV2_3({ apiData }) {
       
       {/* Footer */}
       <ConnectorFooter />
-      
-      {/* Connie AI Button */}
-      <ConnieButton onClick={() => console.log('Connie AI clicked')} />
     </div>
   );
 }
