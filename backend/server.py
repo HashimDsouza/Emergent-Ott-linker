@@ -465,6 +465,14 @@ class Content(BaseModel):
     providers_in: List[str] = Field(default_factory=list)  # Available platforms in India
     watchmode_id: Optional[int] = None
     last_enriched: Optional[str] = None
+    # NEW Phase 1 metadata fields
+    runtime: Optional[int] = None  # Duration in minutes
+    genres: Optional[List[str]] = Field(default_factory=list)  # List of genre names
+    cast: Optional[List[Dict]] = Field(default_factory=list)  # Top 5 cast members
+    crew: Optional[Dict] = Field(default_factory=dict)  # Directors, writers
+    trailer_url: Optional[str] = None  # YouTube trailer URL
+    vote_count: Optional[int] = None  # Number of TMDB votes
+    streaming_platforms: Optional[List[Dict]] = Field(default_factory=list)  # Platform details with logos
 
 class TitleLink(BaseModel):
     model_config = ConfigDict(extra="ignore")
