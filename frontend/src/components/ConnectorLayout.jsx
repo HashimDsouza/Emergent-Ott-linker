@@ -93,6 +93,7 @@ function LanguageDropdown() {
         <Globe className="w-3.5 h-3.5 md:w-4 md:h-4" style={{ color: hover || open ? mint : coral }} />
         <span>{selected.native}</span>
         <ChevronDown className="w-3 h-3" style={{ color: hover || open ? mint : 'white' }} />
+        {hover && !open && <Tip text="Switch the lingo, keep the drama." />}
       </button>
 
       {open && (
