@@ -126,9 +126,14 @@ export default function Tile({ item, onInfo }) {
           </a>
         </div>
 
-        {/* Line 3: Trending text + info button */}
+        {/* Line 3: Trending text + IMDb rating + info button */}
         <div className="flex items-center gap-0.5 md:gap-1.5">
           <div className="italic flex-1 line-clamp-1 text-[7px] md:text-[11px]" style={{ color: coral }}>{item.descriptor || "Trending"}</div>
+          {item.imdb && (
+            <span className="text-[8px] md:text-[10px] px-1 py-0.5 rounded-full bg-yellow-500/20 border border-yellow-500/30 flex-shrink-0">
+              ⭐ {typeof item.imdb === 'number' ? item.imdb.toFixed(1) : item.imdb}
+            </span>
+          )}
           <button aria-label="More info" onClick={(e) => { e.stopPropagation(); onInfo?.(item); }} className="relative inline-flex items-center justify-center flex-shrink-0">
             <span className="rounded-full" style={{ background: mint, width: 14, height: 14, boxShadow: "0 0 10px rgba(48,224,178,0.4)" }} className="md:w-[20px] md:h-[20px]" />
             <span className="absolute text-[8px] md:text-[11px] font-bold" style={{ color: "#0E1514" }}>i</span>
