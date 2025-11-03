@@ -190,7 +190,7 @@ sudo supervisorctl restart all
 
 **Preview URL:**
 ```
-https://browser-session-fix.preview.emergentagent.com/landing/v2_3
+https://content-hub-454.preview.emergentagent.com/landing/v2_3
 ```
 
 **Local:**
