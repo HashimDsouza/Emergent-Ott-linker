@@ -29,12 +29,12 @@ const languages = [
   { code: "bn", name: "Bengali", native: "বাংলা" },
 ];
 
-// Tooltip component - matching tile style
+// Tooltip component - works on hover (desktop) and long-press (mobile)
 function Tip({ text }) {
   if (!text || typeof text !== "string") return null;
   return (
     <span 
-      className="pointer-events-none absolute -bottom-10 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full px-2 py-1 text-[9px] md:text-[10px] text-white shadow-lg border z-50"
+      className="pointer-events-none absolute -bottom-10 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full px-2 py-1 text-[9px] md:text-[10px] text-white shadow-lg border z-50 opacity-0 group-hover:opacity-100 transition-opacity"
       style={{
         backgroundColor: `${charcoal}F0`,
         borderColor: `${mint}30`,
@@ -46,16 +46,35 @@ function Tip({ text }) {
   );
 }
 
-// Premium Chip component with gradient borders and enhanced hover
+// Enhanced chip component with mobile tooltip support via long-press
 function Chip({ icon: Icon, label, tip, onClick }) {
   const [hover, setHover] = useState(false);
+  const [showTip, setShowTip] = useState(false);
+  const longPressTimer = React.useRef(null);
+  
+  const handleTouchStart = () => {
+    if (tip) {
+      longPressTimer.current = setTimeout(() => {
+        setShowTip(true);
+        setTimeout(() => setShowTip(false), 2000); // Hide after 2s
+      }, 500); // Show tooltip after 500ms long press
+    }
+  };
+  
+  const handleTouchEnd = () => {
+    if (longPressTimer.current) {
+      clearTimeout(longPressTimer.current);
+    }
+  };
   
   return (
     <button
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
+      onTouchStart={handleTouchStart}
+      onTouchEnd={handleTouchEnd}
       onClick={onClick}
-      className="relative flex items-center gap-1 md:gap-1.5 rounded-full px-2.5 md:px-3.5 py-1.5 md:py-2 text-[10px] md:text-[11px] font-medium text-white/90 transition-all whitespace-nowrap"
+      className="relative group flex items-center gap-1 md:gap-1.5 rounded-full px-2.5 md:px-3.5 py-1.5 md:py-2 text-[10px] md:text-[11px] font-medium text-white/90 transition-all whitespace-nowrap"
       style={{
         background: hover 
           ? `linear-gradient(135deg, ${coral}30, ${mint}30)` 
@@ -67,7 +86,7 @@ function Chip({ icon: Icon, label, tip, onClick }) {
     >
       {Icon && <Icon className="w-3.5 h-3.5 md:w-4 md:h-4" style={{ color: hover ? mint : coral }} />}
       {label && <span>{label}</span>}
-      {hover && tip && <Tip text={tip} />}
+      {(hover || showTip) && tip && <Tip text={tip} />}
     </button>
   );
 }
