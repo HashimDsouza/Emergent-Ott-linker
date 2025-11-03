@@ -103,16 +103,14 @@
 #====================================================================================================
 
 user_problem_statement: |
-  Optimize header and footer layout for /landing/v2_3 with the following requirements:
-  1. Add coral/mint gradient backgrounds to header and footer (matching hero carousel)
-  2. Reduce header vertical space to show more content on first scroll
-  3. Reorganize header: Line 1 (Logo | Watch On, Buzz Meter, Win | Search, Me), Line 2 (Game On, Entertainment, Lang)
-  4. Emphasize USPs (Watch On, Buzz Meter) as primary navigation
-  5. Implement all tooltips from the specification document
-  6. Enhanced hover states with 30% gradient opacity for "premium pop"
+  Fix tooltip and positioning issues on mobile:
+  1. Remove permanently visible logo tooltip - should only show on hover
+  2. Add missing tooltips for Line 2 (Game On, Entertainment, Lang) and Footer (Home, Dive In, Crew, Get With It)
+  3. Fix Connie button overlapping "Get With It" on mobile - position above footer
+  4. Implement mobile-friendly tooltip system (long-press to show tooltip)
 
 frontend:
-  - task: "Header layout optimization with 2-row structure"
+  - task: "Remove permanently visible logo tooltip"
     implemented: true
     working: true
     file: "/app/frontend/src/components/ConnectorLayout.jsx"
@@ -122,9 +120,9 @@ frontend:
     status_history:
       - working: true
         agent: "main"
-        comment: "Restructured header to Line 1 (Logo left | USP chips center | Search/Me right) and Line 2 (Category chips center). Reduced vertical space significantly, more content visible on first scroll."
+        comment: "Fixed logo tooltip to only show on hover/group-hover. Changed from always-visible <Tip> to conditional display with hidden class + group-hover:block. Logo tooltip no longer permanently visible."
 
-  - task: "Coral/mint gradient backgrounds for header and footer"
+  - task: "Add tooltips to Line 2 and Footer elements"
     implemented: true
     working: true
     file: "/app/frontend/src/components/ConnectorLayout.jsx"
@@ -134,9 +132,9 @@ frontend:
     status_history:
       - working: true
         agent: "main"
-        comment: "Added gradient overlay (coral → mint at 15% opacity) to both header and footer. Enhanced hover state to 30% opacity for premium pop effect. Matches hero carousel aesthetic."
+        comment: "Added tooltip support to all missing elements: Game On, Entertainment, Lang (Language Dropdown), Home, Dive In, Crew, Get With It. All tooltips now functional on hover."
 
-  - task: "All tooltips implementation"
+  - task: "Connie button positioning to avoid footer overlap"
     implemented: true
     working: true
     file: "/app/frontend/src/components/ConnectorLayout.jsx"
@@ -146,47 +144,48 @@ frontend:
     status_history:
       - working: true
         agent: "main"
-        comment: "Implemented all tooltips as per specification document: Logo, Search, Me, Watch On, Buzz Meter, Win, Game On, Entertainment, Lang, Home, Dive In, Crew, Get With It. All showing correctly on hover."
+        comment: "Changed Connie button positioning from fixed bottom-16 to calculated bottom: calc(56px + 16px) to sit above footer (56px footer height + 16px margin). Connie now properly positioned above footer on mobile without overlapping 'Get With It'."
 
-  - task: "Enhanced chip hover states"
+  - task: "Mobile tooltip system with long-press"
     implemented: true
     working: true
     file: "/app/frontend/src/components/ConnectorLayout.jsx"
     stuck_count: 0
-    priority: "high"
+    priority: "medium"
     needs_retesting: false
     status_history:
       - working: true
         agent: "main"
-        comment: "Updated Chip component hover state from 15% to 30% gradient opacity for stronger premium visual effect. Maintains mint border and coral/mint dual glow on hover."
+        comment: "Implemented long-press tooltip system for mobile. Added onTouchStart/onTouchEnd handlers with 500ms delay. Tooltips show for 2 seconds on long-press. Enhanced Chip, LanguageDropdown, and NavItem components with mobile tooltip support using React.useRef for timer management."
 
-  - task: "Mobile responsive optimization"
+  - task: "Tooltip component enhancement"
     implemented: true
     working: true
     file: "/app/frontend/src/components/ConnectorLayout.jsx"
     stuck_count: 0
-    priority: "high"
+    priority: "medium"
     needs_retesting: false
     status_history:
       - working: true
         agent: "main"
-        comment: "Verified mobile layout works perfectly. Both header rows visible, proper font sizes, touch targets appropriate, hero carousel immediately visible after compact header."
+        comment: "Updated Tip component with opacity-0 + group-hover:opacity-100 for smooth transitions. Tooltips now use CSS transitions for better UX."
 
 metadata:
   created_by: "main_agent"
-  version: "2.0"
-  test_sequence: 2
+  version: "3.0"
+  test_sequence: 3
   run_ui: false
 
 test_plan:
   current_focus:
-    - "Visual verification of gradient consistency"
-    - "Tooltip functionality across all navigation items"
-    - "Header space optimization verification"
+    - "Verify logo tooltip only shows on hover"
+    - "Confirm all Line 2 and Footer tooltips are functional"
+    - "Test Connie button positioning on mobile (no overlap)"
+    - "Test long-press tooltip behavior on mobile devices"
   stuck_tasks: []
   test_all: false
   test_priority: "high_first"
 
 agent_communication:
   - agent: "main"
-    message: "Completed header/footer optimization. Header now uses smart 2-row layout with USPs prominently centered. Reduced vertical space by ~30%. Added coral/mint gradient overlays (15% base, 30% hover) to match hero carousel. All tooltips implemented per spec. Enhanced hover states for premium feel. Mobile responsive verified."
+    message: "Fixed all reported mobile issues: 1) Logo tooltip no longer permanently visible, 2) Added all missing tooltips to Game On, Entertainment, Lang, Home, Dive In, Crew, Get With It, 3) Connie button repositioned to sit above footer without overlapping, 4) Implemented long-press tooltip system for mobile. Desktop tooltips work on hover, mobile tooltips appear on 500ms long-press and auto-hide after 2s."
