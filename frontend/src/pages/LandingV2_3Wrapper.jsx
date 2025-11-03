@@ -43,7 +43,7 @@ export default function LandingV2_3Wrapper() {
   return (
     <>
       <LandingV2_3 apiData={apiData} />
-      <ConnieFloating offsetPx={80} />
+      <ConnieFloating offsetPx={110} />
     </>
   );
 }
