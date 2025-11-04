@@ -104,7 +104,7 @@ sudo supervisorctl restart all
 
 **Preview URL:**
 ```
-https://content-hub-454.preview.emergentagent.com/landing/v2_3
+https://ottlinker.preview.emergentagent.com/landing/v2_3
 ```
 
 **Local:**
