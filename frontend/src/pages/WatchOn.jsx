@@ -313,7 +313,7 @@ export default function WatchOn() {
         />
       )}
 
-      {/* CSS for toast animation */}
+      {/* CSS for toast animation and scrollbar hiding */}
       <style>{`
         @keyframes slideDown {
           from {
@@ -324,6 +324,17 @@ export default function WatchOn() {
             transform: translate(-50%, 0);
             opacity: 1;
           }
+        }
+
+        /* Hide scrollbar for Chrome, Safari and Opera */
+        .scrollbar-hide::-webkit-scrollbar {
+          display: none;
+        }
+
+        /* Hide scrollbar for IE, Edge and Firefox */
+        .scrollbar-hide {
+          -ms-overflow-style: none;  /* IE and Edge */
+          scrollbar-width: none;  /* Firefox */
         }
       `}</style>
     </div>
