@@ -428,8 +428,8 @@ class ContentEnrichmentTester:
         print("\n📋 Step 6: Fighter Movie Duplicate Title Test")
         await self.test_fighter_movie_specifically()
         
-        # Test 6: Check specific titles
-        print("\n📋 Step 6: Testing Specific Title Metadata")
+        # Test 7: Check specific titles
+        print("\n📋 Step 7: Testing Specific Title Metadata")
         
         specific_titles = [
             {
