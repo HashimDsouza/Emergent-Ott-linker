@@ -39,8 +39,13 @@ export default function DetailsModal({ open, onClose, item }) {
               <div className="text-lg font-semibold">{item?.title || "Title Name"}</div>
               <div className="flex items-center gap-2 mt-1 text-xs">
                 <span className={badge}>{item?.platform || "JioHotstar"}</span>
-                {item?.imdb && <span className={badge}>⭐ {item.imdb}</span>}
-                <span className={badge}>2025 • 8 eps • Hindi</span>
+                {item?.imdb && <span className={badge}>⭐ {typeof item.imdb === 'number' ? item.imdb.toFixed(1) : item.imdb}</span>}
+                {/* Dynamic metadata capsule: year • episodes • language */}
+                <span className={badge}>
+                  {item?.year || "N/A"}
+                  {item?.episodes && ` • ${item.episodes} eps`}
+                  {item?.language && ` • ${item.language}`}
+                </span>
               </div>
             </div>
           </div>
