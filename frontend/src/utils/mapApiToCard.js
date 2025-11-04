@@ -19,6 +19,8 @@ export const mapApiToCard = (x) => ({
   vote_count: x.vote_count || null,
   year: x.year || null,
   runtime: x.runtime || null,
+  episodes: x.episodes || null,
+  language: x.language || null,
   // Social links
   social_links: x.social_links || { youtube: null, twitter: null, reddit: null },
   buzz: x.social_links ?? { yt: null, x: null, reddit: null },
