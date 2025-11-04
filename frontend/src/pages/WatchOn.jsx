@@ -31,9 +31,9 @@ export default function WatchOn() {
         const response = await fetch(`${BACKEND_URL}/api/content`);
         const data = await response.json();
         
-        // Filter out sports content for main trays (we'll include them in "All Platforms")
+        // Filter out only sports content (game_on), include hero and regular content
         const contentItems = data
-          .filter(item => item.category !== 'game_on' && item.category !== 'hero')
+          .filter(item => item.category !== 'game_on')
           .map(mapApiToCard);
         
         setContent(contentItems);
