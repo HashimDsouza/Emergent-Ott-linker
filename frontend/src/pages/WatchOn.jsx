@@ -239,34 +239,45 @@ export default function WatchOn() {
                 <h2 className="text-base md:text-xl font-semibold text-white flex items-center gap-1.5 md:gap-2">
                   <span>⭐</span> Top 10 Right Now
                 </h2>
-                <p className="text-[10px] md:text-sm italic" style={{ color: coral }}>
-                  "Consensus chaos — everyone's watching these."
-                </p>
+                {!visibleTop10 ? null : (
+                  <p className="text-[10px] md:text-sm italic" style={{ color: coral }}>
+                    "Consensus chaos — everyone's watching these."
+                  </p>
+                )}
               </div>
               <div className="flex items-center gap-2 md:gap-4 text-[10px] md:text-sm text-white/85">
-                <button 
-                  onClick={() => setExpandedTop10(!expandedTop10)} 
-                  className="hover:text-white"
-                >
-                  {expandedTop10 ? "Collapse" : "Go Deeper"}
-                </button>
+                {!visibleTop10 ? (
+                  <button onClick={() => setVisibleTop10(true)} className="hover:text-white">Show</button>
+                ) : (
+                  <>
+                    <button 
+                      onClick={() => setExpandedTop10(!expandedTop10)} 
+                      className="hover:text-white"
+                    >
+                      {expandedTop10 ? "Collapse" : "Go Deeper"}
+                    </button>
+                    <button onClick={() => setVisibleTop10(false)} className="hover:text-white">Hide</button>
+                  </>
+                )}
               </div>
             </div>
-            <div 
-              className="overflow-x-auto scrollbar-hide px-3 md:px-6 pb-2 snap-x snap-mandatory"
-              style={{ scrollBehavior: 'smooth' }}
-            >
-              <div className="flex gap-2 md:gap-3" style={{ width: 'max-content' }}>
-                {top10.slice(0, 6).map((item) => (
-                  <div key={item.id} className="flex-shrink-0 snap-start" style={{ width: '140px', maxWidth: '140px' }}>
-                    <Tile 
-                      item={item} 
-                      onInfo={() => setModalItem(item)} 
-                    />
-                  </div>
-                ))}
+            {visibleTop10 && (
+              <div 
+                className="overflow-x-auto scrollbar-hide px-3 md:px-6 pb-2 snap-x snap-mandatory"
+                style={{ scrollBehavior: 'smooth' }}
+              >
+                <div className="flex gap-2 md:gap-3" style={{ width: 'max-content' }}>
+                  {top10.slice(0, 6).map((item) => (
+                    <div key={item.id} className="flex-shrink-0 snap-start" style={{ width: '140px', maxWidth: '140px' }}>
+                      <Tile 
+                        item={item} 
+                        onInfo={() => setModalItem(item)} 
+                      />
+                    </div>
+                  ))}
+                </div>
               </div>
-            </div>
+            )}
           </section>
 
           {/* Tray 3: Bro Recommends */}
