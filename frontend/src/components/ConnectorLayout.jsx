@@ -245,6 +245,7 @@ export function ConnectorHeader() {
             }}
             onMouseEnter={() => setSearchHover(true)}
             onMouseLeave={() => setSearchHover(false)}
+            onClick={() => setSearchOpen(true)}
             aria-label="Search"
           >
             <Search 
