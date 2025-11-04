@@ -181,34 +181,31 @@ export default function WatchOn() {
           
           {/* Tray 1: Trending Across Platforms */}
           <section>
-            <div className="px-3 md:px-6 mb-3 md:mb-4 flex items-center justify-between">
+            <div className="px-3 md:px-6 mb-2 flex items-end justify-between">
               <div>
-                <h2 className="text-xl md:text-2xl font-bold text-white flex items-center gap-2">
+                <h2 className="text-base md:text-xl font-semibold text-white flex items-center gap-1.5 md:gap-2">
                   <span>🔥</span> Trending Across Platforms
                 </h2>
-                <p className="text-sm md:text-base text-white/60 mt-1">
+                <p className="text-[10px] md:text-sm text-white/60">
                   What's hot right now on every app
                 </p>
               </div>
-              <button
-                onClick={() => setShowAllTrending(!showAllTrending)}
-                className="px-3 py-1.5 md:px-4 md:py-2 rounded-lg text-xs md:text-sm font-medium transition-all hover:scale-105"
-                style={{
-                  background: showAllTrending ? `linear-gradient(135deg, ${coral} 0%, ${mint} 100%)` : 'transparent',
-                  border: `1px solid ${mint}60`,
-                  color: 'white'
-                }}
-              >
-                {showAllTrending ? 'Hide' : 'Go Deeper'}
-              </button>
+              <div className="flex items-center gap-2 md:gap-4 text-[10px] md:text-sm text-white/85">
+                <button 
+                  onClick={() => setExpandedTrending(!expandedTrending)} 
+                  className="hover:text-white"
+                >
+                  {expandedTrending ? "Collapse" : "Go Deeper"}
+                </button>
+              </div>
             </div>
             <div 
-              className="overflow-x-auto scrollbar-hide px-3 md:px-6"
+              className="overflow-x-auto scrollbar-hide px-3 md:px-6 pb-2 snap-x snap-mandatory"
               style={{ scrollBehavior: 'smooth' }}
             >
-              <div className="flex gap-2 md:gap-4" style={{ width: 'max-content' }}>
-                {(showAllTrending ? content : content.slice(0, 6)).map((item) => (
-                  <div key={item.id} className="flex-shrink-0" style={{ width: '200px' }}>
+              <div className="flex gap-2 md:gap-3" style={{ width: 'max-content' }}>
+                {content.slice(0, 6).map((item) => (
+                  <div key={item.id} className="flex-shrink-0 snap-start" style={{ width: '140px', maxWidth: '140px' }}>
                     <Tile 
                       item={item} 
                       onInfo={() => setModalItem(item)} 
