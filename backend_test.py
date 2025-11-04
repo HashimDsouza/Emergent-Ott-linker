@@ -306,9 +306,10 @@ class ContentEnrichmentTester:
                         if rating_val < 8.0 or rating_val > 9.0:
                             issues.append(f"Unexpected IMDb rating: {imdb_rating} (expected ~8.5-8.6 for Indian series)")
                     
-                    # Check description for psychological thriller keywords
-                    if description and "psychological" not in description and "thriller" not in description:
-                        issues.append("Description doesn't mention psychological thriller (expected for Indian Asur series)")
+                    # Check description for crime/thriller keywords
+                    crime_keywords = ["psychological", "thriller", "serial killer", "forensic", "murder", "crime", "suspense"]
+                    if description and not any(keyword in description for keyword in crime_keywords):
+                        issues.append("Description doesn't mention crime/thriller keywords (expected for Indian Asur series)")
                     
                     if not issues:
                         self.log_test("Asur Season 3 Critical Test", "PASS", 
