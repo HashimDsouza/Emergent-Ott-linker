@@ -106,9 +106,10 @@ export default function LandingV2_3({ apiData }) {
       platform: 'Dazn',
       thumbnail: 'https://images.unsplash.com/photo-1553778263-73a83bab9b0c?w=600&h=900&fit=crop&q=80',
       posterUrl: 'https://images.unsplash.com/photo-1553778263-73a83bab9b0c?w=600&h=900&fit=crop&q=80',
-      description: "Serie A - Italian Football",
+      description: "Serie A - Italian Football elite league",
       category: 'Football',
       imdb: '⚽',
+      descriptor: 'Italian football passion',
       genres: ['Football', 'Serie A', 'Italy'],
       social_links: {
         youtube: 'https://www.youtube.com/results?search_query=Serie+A',
