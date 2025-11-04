@@ -435,7 +435,7 @@ class ContentEnrichmentTester:
             {
                 "title": "Asur Season 3",
                 "expected_imdb_rating": 8.5,  # Around 8.5-8.6 for Indian series
-                "expected_year": 2023,  # Indian series continuation, NOT 2025 Chinese film
+                "expected_year": 2020,  # Original Indian series year (used for TMDB search)
                 "expected_language": "Hindi"
             },
             {
