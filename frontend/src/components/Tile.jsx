@@ -77,7 +77,7 @@ export default function Tile({ item, onInfo }) {
 
       {/* Info Panel - Below image with all 3 lines */}
       <div 
-        className="px-1.5 py-1.5 md:px-3 md:py-2.5 text-white" 
+        className="px-1.5 py-1.5 md:px-2.5 md:py-2 text-white" 
         style={{ backgroundColor: 'rgba(23, 58, 53, 0.95)' }}
       >{/* Line 1: Platform + social icons (heart, thumbs, comments) - NO CAPSULE */}
         <div className="flex items-center gap-0.5 md:gap-2 mb-0.5 md:mb-1.5">
