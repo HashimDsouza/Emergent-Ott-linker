@@ -112,20 +112,17 @@ user_problem_statement: |
   6. Integrate with existing DetailsModal for tile interactions
 
 backend:
-  - task: "Fix IMDb rating accuracy"
+  - task: "No backend changes required for Watch On page"
     implemented: true
     working: true
-    file: "/app/backend/server.py"
+    file: "N/A"
     stuck_count: 0
-    priority: "high"
+    priority: "low"
     needs_retesting: false
     status_history:
-      - working: "NA"
-        agent: "main"
-        comment: "Added OMDb integration to fetch actual IMDb ratings. Updated enrichment logic to prefer IMDb ratings from OMDb over TMDB's vote_average. Added imdb_rating, language, episodes, and seasons fields to update_fields dictionary for proper persistence."
       - working: true
-        agent: "testing"
-        comment: "✅ VERIFIED: IMDb ratings working correctly. 12th Fail shows 8.7 (correct), Fighter shows 7.4 (reasonable for wrong movie). OMDb integration successful, ratings properly override TMDB vote_average. Rating source correctly set to 'imdb'."
+        agent: "main"
+        comment: "Watch On page uses existing /api/content endpoint. No backend modifications needed."
 
   - task: "Fix duplicate title matching"
     implemented: true
