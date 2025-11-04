@@ -206,7 +206,7 @@ metadata:
 
 test_plan:
   current_focus:
-    - "Fix Asur series duplicate title matching - getting Chinese film instead of Indian series"
+    - "Verify Asur Season 3 fix is stable (correct Indian series TMDB ID 100911)"
     - "Verify Fighter movie fix is stable (correct TMDB ID 784651)"
     - "Test all metadata enrichment accuracy"
   stuck_tasks: []
