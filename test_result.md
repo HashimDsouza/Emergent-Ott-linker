@@ -103,11 +103,11 @@
 #====================================================================================================
 
 user_problem_statement: |
-  Fix tooltip and positioning issues on mobile:
-  1. Remove permanently visible logo tooltip - should only show on hover
-  2. Add missing tooltips for Line 2 (Game On, Entertainment, Lang) and Footer (Home, Dive In, Crew, Get With It)
-  3. Fix Connie button overlapping "Get With It" on mobile - position above footer
-  4. Implement mobile-friendly tooltip system (long-press to show tooltip)
+  Fix content metadata accuracy issues:
+  1. IMDb ratings are inaccurate (showing TMDB ratings instead of actual IMDb scores from OMDb)
+  2. Wrong metadata capsule (episodes, year of release, and language details are incorrect)
+  3. Wrong title images for duplicate names (e.g., "Fighter" pulling international movie instead of Hindi version)
+  4. Season specificity issues (Season 2 showing Season 1 data)
 
 frontend:
   - task: "Remove permanently visible logo tooltip"
