@@ -288,34 +288,45 @@ export default function WatchOn() {
                   <h2 className="text-base md:text-xl font-semibold text-white flex items-center gap-1.5 md:gap-2">
                     <span style={{ color: mint }}>✨</span> Bro Recommends
                   </h2>
-                  <p className="text-[10px] md:text-sm text-white/60">
-                    Handpicked for your chaos
-                  </p>
+                  {!visibleBroRecommends ? null : (
+                    <p className="text-[10px] md:text-sm text-white/60">
+                      Handpicked for your chaos
+                    </p>
+                  )}
                 </div>
                 <div className="flex items-center gap-2 md:gap-4 text-[10px] md:text-sm text-white/85">
-                  <button 
-                    onClick={() => setExpandedBroRecommends(!expandedBroRecommends)} 
-                    className="hover:text-white"
-                  >
-                    {expandedBroRecommends ? "Collapse" : "Go Deeper"}
-                  </button>
+                  {!visibleBroRecommends ? (
+                    <button onClick={() => setVisibleBroRecommends(true)} className="hover:text-white">Show</button>
+                  ) : (
+                    <>
+                      <button 
+                        onClick={() => setExpandedBroRecommends(!expandedBroRecommends)} 
+                        className="hover:text-white"
+                      >
+                        {expandedBroRecommends ? "Collapse" : "Go Deeper"}
+                      </button>
+                      <button onClick={() => setVisibleBroRecommends(false)} className="hover:text-white">Hide</button>
+                    </>
+                  )}
                 </div>
               </div>
-              <div 
-                className="overflow-x-auto scrollbar-hide px-3 md:px-6 pb-2 snap-x snap-mandatory"
-                style={{ scrollBehavior: 'smooth' }}
-              >
-                <div className="flex gap-2 md:gap-3" style={{ width: 'max-content' }}>
-                  {broRecommends.slice(0, 6).map((item) => (
-                    <div key={item.id} className="flex-shrink-0 snap-start" style={{ width: '140px', maxWidth: '140px' }}>
-                      <Tile 
-                        item={item} 
-                        onInfo={() => setModalItem(item)} 
-                      />
-                    </div>
-                  ))}
+              {visibleBroRecommends && (
+                <div 
+                  className="overflow-x-auto scrollbar-hide px-3 md:px-6 pb-2 snap-x snap-mandatory"
+                  style={{ scrollBehavior: 'smooth' }}
+                >
+                  <div className="flex gap-2 md:gap-3" style={{ width: 'max-content' }}>
+                    {broRecommends.slice(0, 6).map((item) => (
+                      <div key={item.id} className="flex-shrink-0 snap-start" style={{ width: '140px', maxWidth: '140px' }}>
+                        <Tile 
+                          item={item} 
+                          onInfo={() => setModalItem(item)} 
+                        />
+                      </div>
+                    ))}
+                  </div>
                 </div>
-              </div>
+              )}
             </section>
           )}
 
