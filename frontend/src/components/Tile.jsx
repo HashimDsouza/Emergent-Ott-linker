@@ -78,26 +78,26 @@ export default function Tile({ item, onInfo }) {
       <div 
         className="px-1.5 py-2 md:px-3 md:py-2.5 text-white" 
         style={{ backgroundColor: 'rgba(23, 58, 53, 0.95)' }}
-      >{/* Line 1: Platform + social icons (heart, thumbs, comments) - UNCHANGED */}
-        <div className="flex items-center gap-0.5 md:gap-2 mb-1 md:mb-1.5">
-          <span className="text-[9px] md:text-[10px] px-1 py-0.5 rounded-full bg-white/10 border border-white/15 flex-shrink-0">{item.platform || "JioHotstar"}</span>
+      >{/* Line 1: Platform + social icons (heart, thumbs, comments) - MOBILE OPTIMIZED */}
+        <div className="flex items-center gap-0.5 md:gap-2 mb-0.5 md:mb-1.5">
+          <span className="text-[8px] md:text-[10px] px-1 py-0.5 rounded-full bg-white/10 border border-white/15 flex-shrink-0">{item.platform || "JioHotstar"}</span>
           <button 
             onClick={(e) => { e.stopPropagation(); setLiked(!liked); }} 
-            className="inline-flex items-center gap-0.5 opacity-90 text-[9px] md:text-xs hover:scale-110 transition"
+            className="inline-flex items-center gap-0.5 opacity-90 text-[8px] md:text-xs hover:scale-110 transition"
           >
             <span style={{ color: liked ? '#FF4F64' : 'inherit' }}>❤️</span>
             <span>1.2k</span>
           </button>
           <button 
             onClick={(e) => { e.stopPropagation(); setDisliked(!disliked); }} 
-            className="inline-flex items-center gap-0.5 opacity-90 text-[9px] md:text-xs hover:scale-110 transition"
+            className="inline-flex items-center gap-0.5 opacity-90 text-[8px] md:text-xs hover:scale-110 transition"
           >
             <span style={{ color: disliked ? '#FF4F64' : 'inherit' }}>👎</span>
             <span>120</span>
           </button>
           <button 
             onClick={(e) => { e.stopPropagation(); onInfo?.(item); }} 
-            className="inline-flex items-center gap-0.5 opacity-90 text-[9px] md:text-xs hover:scale-110 transition"
+            className="inline-flex items-center gap-0.5 opacity-90 text-[8px] md:text-xs hover:scale-110 transition"
           >
             <span>💬</span>
             <span>320</span>
