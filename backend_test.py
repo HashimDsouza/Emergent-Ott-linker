@@ -213,8 +213,8 @@ class ContentEnrichmentTester:
                     issues.append(f"Fighter shows wrong year: {year} (expected 2024)")
             
             # Check poster URLs
-            poster_url = item.get("poster_url", "")
-            thumbnail = item.get("thumbnail", "")
+            poster_url = item.get("poster_url") or ""
+            thumbnail = item.get("thumbnail") or ""
             if "unsplash" in poster_url.lower() or "unsplash" in thumbnail.lower():
                 issues.append(f"{title} using placeholder image instead of TMDB")
         
