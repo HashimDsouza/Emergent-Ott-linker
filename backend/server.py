@@ -1122,6 +1122,107 @@ async def seed_content():
     
     # Comprehensive content with proper categories and search-friendly approach
     mock_content = [
+        # HERO CAROUSEL Category
+        {
+            "id": str(uuid.uuid4()),
+            "title": "Fighter",
+            "category": "hero",
+            "platform": "Netflix",
+            "platform_content_id": None,
+            "rating": 6.2,
+            "thumbnail": "https://images.unsplash.com/photo-1598899134739-24c46f58b8c0?w=400&h=600&fit=crop",
+            "description": "India's first aerial action film featuring Hrithik Roshan and Deepika Padukone.",
+            "release_date": "2024-01",
+            "social_links": {
+                "youtube": "https://www.youtube.com/results?search_query=Fighter+movie+trailer",
+                "twitter": "https://twitter.com/search?q=%23Fighter",
+                "reddit": "https://www.reddit.com/r/bollywood"
+            },
+            "content_type": "movie",
+            "tagline": "Sky is the limit",
+            "likes": 3200,
+            "shares": 850
+        },
+        {
+            "id": str(uuid.uuid4()),
+            "title": "The Billionaires of Bollywood",
+            "category": "hero",
+            "platform": "Netflix",
+            "platform_content_id": None,
+            "rating": 7.5,
+            "thumbnail": "https://images.unsplash.com/photo-1598899134739-24c46f58b8c0?w=400&h=600&fit=crop",
+            "description": "An inside look at the glamorous lives of Bollywood's wealthiest stars.",
+            "release_date": "2024-11",
+            "social_links": {
+                "youtube": "https://www.youtube.com/results?search_query=Billionaires+of+Bollywood",
+                "twitter": "https://twitter.com/search?q=%23BollywoodBillionaires",
+                "reddit": "https://www.reddit.com/r/bollywood"
+            },
+            "content_type": "series",
+            "tagline": "Behind the fortune and fame",
+            "likes": 2100,
+            "shares": 550
+        },
+        {
+            "id": str(uuid.uuid4()),
+            "title": "House of the Dragon",
+            "category": "hero",
+            "platform": "JioHotstar",
+            "platform_content_id": None,
+            "rating": 8.4,
+            "thumbnail": "https://images.unsplash.com/photo-1598899134739-24c46f58b8c0?w=400&h=600&fit=crop",
+            "description": "The Targaryen civil war continues in this epic Game of Thrones prequel.",
+            "release_date": "2024-06",
+            "social_links": {
+                "youtube": "https://www.youtube.com/results?search_query=House+of+the+Dragon+trailer",
+                "twitter": "https://twitter.com/search?q=%23HouseOfTheDragon",
+                "reddit": "https://www.reddit.com/r/HouseOfTheDragon"
+            },
+            "content_type": "series",
+            "tagline": "Fire will reign",
+            "likes": 5600,
+            "shares": 1400
+        },
+        {
+            "id": str(uuid.uuid4()),
+            "title": "Slow Horses Season 5",
+            "category": "hero",
+            "platform": "Apple TV",
+            "platform_content_id": None,
+            "rating": 8.6,
+            "thumbnail": "https://images.unsplash.com/photo-1598899134739-24c46f58b8c0?w=400&h=600&fit=crop",
+            "description": "The misfit MI5 agents return for another thrilling spy adventure.",
+            "release_date": "2024-12",
+            "social_links": {
+                "youtube": "https://www.youtube.com/results?search_query=Slow+Horses+Season+5",
+                "twitter": "https://twitter.com/search?q=%23SlowHorses",
+                "reddit": "https://www.reddit.com/r/SlowHorses"
+            },
+            "content_type": "series",
+            "tagline": "Old spies never die",
+            "likes": 1800,
+            "shares": 420
+        },
+        {
+            "id": str(uuid.uuid4()),
+            "title": "The Hunt for Veerappan",
+            "category": "hero",
+            "platform": "Sony Liv",
+            "platform_content_id": None,
+            "rating": 7.8,
+            "thumbnail": "https://images.unsplash.com/photo-1598899134739-24c46f58b8c0?w=400&h=600&fit=crop",
+            "description": "The true story of India's most wanted bandit and the manhunt that captivated a nation.",
+            "release_date": "2023-08",
+            "social_links": {
+                "youtube": "https://www.youtube.com/results?search_query=Hunt+for+Veerappan",
+                "twitter": "https://twitter.com/search?q=%23Veerappan",
+                "reddit": "https://www.reddit.com/r/IndianWebSeries"
+            },
+            "content_type": "series",
+            "tagline": "The chase that defined a generation",
+            "likes": 2400,
+            "shares": 640
+        },
         # BUZZING NOW Category
         {
             "id": str(uuid.uuid4()),
