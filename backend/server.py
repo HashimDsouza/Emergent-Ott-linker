@@ -526,6 +526,10 @@ class Content(BaseModel):
     trailer_url: Optional[str] = None  # YouTube trailer URL
     vote_count: Optional[int] = None  # Number of TMDB votes
     streaming_platforms: Optional[List[Dict]] = Field(default_factory=list)  # Platform details with logos
+    # Additional metadata
+    language: Optional[str] = None  # Original language (Hindi, English, etc.)
+    episodes: Optional[int] = None  # Number of episodes (for series)
+    seasons: Optional[int] = None  # Number of seasons (for series)
 
 class TitleLink(BaseModel):
     model_config = ConfigDict(extra="ignore")
