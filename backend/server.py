@@ -794,7 +794,11 @@ async def enrich_all_content():
                 "crew": enriched.get("crew", {}),
                 "trailer_url": enriched.get("trailer_url"),
                 "vote_count": enriched.get("vote_count"),
-                "streaming_platforms": enriched.get("streaming_platforms", [])
+                "streaming_platforms": enriched.get("streaming_platforms", []),
+                # CRITICAL MISSING FIELDS
+                "language": enriched.get("language"),
+                "episodes": enriched.get("episodes"),
+                "seasons": enriched.get("seasons")
             }
             
             # Update in database
