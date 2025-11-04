@@ -57,8 +57,8 @@ export default function Tile({ item, onInfo }) {
             />
           )}
         </div>
-        {/* Desktop: 2/3 aspect ratio (portrait like mobile) */}
-        <div className="hidden md:block" style={{ aspectRatio: "2/3" }}>
+        {/* Desktop: 2/3 aspect ratio with MAX HEIGHT constraint */}
+        <div className="hidden md:block" style={{ aspectRatio: "2/3", maxHeight: "320px" }}>
           {item.thumbnail && (
             <img 
               src={item.thumbnail} 
