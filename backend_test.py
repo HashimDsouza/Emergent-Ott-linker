@@ -348,8 +348,12 @@ class ContentEnrichmentTester:
             print("\n📋 Step 4b: Verifying Hot Drop Alert Tray Accuracy")
             await self.verify_tray_content_accuracy(hot_drop_content, "hot_drop")
         
-        # Test 5: Check specific titles
-        print("\n📋 Step 5: Testing Specific Title Metadata")
+        # Test 5: CRITICAL Fighter Movie Test
+        print("\n📋 Step 5: CRITICAL Fighter Movie Duplicate Title Test")
+        await self.test_fighter_movie_specifically()
+        
+        # Test 6: Check specific titles
+        print("\n📋 Step 6: Testing Specific Title Metadata")
         
         specific_titles = [
             {
