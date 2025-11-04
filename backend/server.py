@@ -255,10 +255,19 @@ def normalize_title_for_search(title: str, platform: str = None) -> str:
 async def enrich_content_item(content: Dict) -> Dict:
     """Enrich a single content item with TMDB + OMDb data (non-blocking)"""
     try:
-        # Step 1: Search TMDB
+        # Step 1: Extract year from release_date for better matching
+        year = None
+        if content.get("release_date"):
+            try:
+                year = int(content["release_date"].split("-")[0])
+            except:
+                pass
+        
+        # Search TMDB with year for better duplicate handling
         logging.info(f"🔍 Enriching: {content['title']}")
         tmdb_result = await search_tmdb(
             content["title"],
+            year=year,
             content_type=content.get("content_type", "movie")
         )
         
