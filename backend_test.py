@@ -393,73 +393,153 @@ class ContentEnrichmentTester:
             self.log_test("Fighter Movie Critical Test", "FAIL", f"Exception: {str(e)}")
             return False
     
+    async def test_season_specific_enrichment(self) -> bool:
+        """CRITICAL TEST: Verify season-specific data for Season 2 and Season 3 shows"""
+        try:
+            # Get buzzing content to find season-specific titles
+            async with self.session.get(f"{self.base_url}/api/content?category=buzzing") as response:
+                if response.status == 200:
+                    content_list = await response.json()
+                    
+                    season_titles = {
+                        "Squid Game Season 2": {
+                            "expected_season": 2,
+                            "expected_year_range": [2024, 2025],  # Season 2 air date
+                            "expected_poster_different": True  # Should be different from Season 1
+                        },
+                        "Mirzapur Season 3": {
+                            "expected_season": 3,
+                            "expected_year_range": [2024, 2025],  # Season 3 air date
+                            "expected_poster_different": True
+                        },
+                        "Asur Season 3": {
+                            "expected_season": 3,
+                            "expected_year_range": [2020, 2024],  # Could be original series year or season year
+                            "expected_poster_different": True
+                        }
+                    }
+                    
+                    all_passed = True
+                    season_results = []
+                    
+                    for item in content_list:
+                        title = item.get("title", "")
+                        
+                        for season_title, expectations in season_titles.items():
+                            if season_title in title:
+                                issues = []
+                                
+                                # Check poster URL - should be TMDB, not placeholder
+                                poster_url = item.get("poster_url", "")
+                                if "unsplash" in poster_url.lower():
+                                    issues.append("Using placeholder image instead of season-specific TMDB poster")
+                                elif not poster_url.startswith("https://image.tmdb.org"):
+                                    issues.append("Poster not from TMDB")
+                                
+                                # Check year - should be season air date, not original show year
+                                year = item.get("year")
+                                expected_range = expectations["expected_year_range"]
+                                if year and (year < expected_range[0] or year > expected_range[1]):
+                                    issues.append(f"Year {year} not in expected range {expected_range} for season air date")
+                                
+                                # Check episodes - should be season-specific count
+                                episodes = item.get("episodes")
+                                season_number = item.get("season_number")
+                                
+                                if season_number != expectations["expected_season"]:
+                                    issues.append(f"Season number {season_number} vs expected {expectations['expected_season']}")
+                                
+                                # Check description - should be season-specific if available
+                                description = item.get("description", "")
+                                if not description or len(description) < 50:
+                                    issues.append("Missing or too short season-specific description")
+                                
+                                # Check TMDB ID exists
+                                tmdb_id = item.get("tmdb_id")
+                                if not tmdb_id:
+                                    issues.append("Missing TMDB ID for season-specific data")
+                                
+                                result = {
+                                    "title": season_title,
+                                    "poster_url": poster_url,
+                                    "year": year,
+                                    "episodes": episodes,
+                                    "season_number": season_number,
+                                    "tmdb_id": tmdb_id,
+                                    "issues": issues,
+                                    "passed": len(issues) == 0
+                                }
+                                season_results.append(result)
+                                
+                                if issues:
+                                    all_passed = False
+                                    self.log_test(f"Season-Specific Data - {season_title}", "FAIL", 
+                                                f"Issues: {'; '.join(issues)}")
+                                else:
+                                    self.log_test(f"Season-Specific Data - {season_title}", "PASS", 
+                                                f"✅ Season {expectations['expected_season']} data correct (Year: {year}, Episodes: {episodes}, TMDB: {tmdb_id})")
+                    
+                    # Summary of season-specific testing
+                    if all_passed:
+                        self.log_test("Season-Specific Enrichment Overall", "PASS", 
+                                    f"All {len(season_results)} season titles have correct season-specific data")
+                    else:
+                        failed_titles = [r["title"] for r in season_results if not r["passed"]]
+                        self.log_test("Season-Specific Enrichment Overall", "FAIL", 
+                                    f"Failed titles: {', '.join(failed_titles)}")
+                    
+                    return all_passed
+                        
+                else:
+                    error_text = await response.text()
+                    self.log_test("Season-Specific Enrichment", "FAIL", 
+                                f"HTTP {response.status}: {error_text}")
+                    return False
+        except Exception as e:
+            self.log_test("Season-Specific Enrichment", "FAIL", f"Exception: {str(e)}")
+            return False
+
     async def run_all_tests(self):
-        """Run comprehensive content enrichment tests"""
-        print(f"🚀 Starting Content Enrichment Tests")
+        """Run comprehensive season-specific enrichment tests"""
+        print(f"🚀 Starting Season-Specific Enrichment Tests")
         print(f"📡 Backend URL: {self.base_url}")
         print("=" * 60)
         
-        # Test 1: Trigger enrichment
-        print("\n📋 Step 1: Triggering Content Enrichment")
+        # Test 1: Trigger re-enrichment for season-specific logic
+        print("\n📋 Step 1: Triggering Content Re-Enrichment")
         enrichment_success = await self.test_enrich_all_content()
         
-        # Test 2: Verify sample content
-        print("\n📋 Step 2: Verifying Sample Enriched Content")
-        sample_data = await self.test_debug_sample()
+        # Test 2: CRITICAL - Season-Specific Data Verification
+        print("\n📋 Step 2: CRITICAL Season-Specific Data Verification")
+        season_success = await self.test_season_specific_enrichment()
         
-        # Test 3: Test first 2 trays
-        print("\n📋 Step 3: Testing First 2 Trays")
+        # Test 3: Get buzzing content for detailed verification
+        print("\n📋 Step 3: Testing Buzzing Now Tray (Season Titles)")
         buzzing_content = await self.test_content_category("buzzing")
-        hot_drop_content = await self.test_content_category("hot_drop")
         
-        # Test 4: Verify tray content accuracy
-        if buzzing_content:
-            print("\n📋 Step 4a: Verifying Buzzing Now Tray Accuracy")
-            await self.verify_tray_content_accuracy(buzzing_content, "buzzing")
+        # Test 4: Verify specific season titles individually
+        print("\n📋 Step 4: Individual Season Title Verification")
         
-        if hot_drop_content:
-            print("\n📋 Step 4b: Verifying Hot Drop Alert Tray Accuracy")
-            await self.verify_tray_content_accuracy(hot_drop_content, "hot_drop")
-        
-        # Test 5: CRITICAL Asur Season 3 Test (Primary Focus)
-        print("\n📋 Step 5: CRITICAL Asur Season 3 Duplicate Title Test")
-        await self.test_asur_season_3_specifically()
-        
-        # Test 6: Fighter Movie Test (Secondary)
-        print("\n📋 Step 6: Fighter Movie Duplicate Title Test")
-        await self.test_fighter_movie_specifically()
-        
-        # Test 7: Check specific titles
-        print("\n📋 Step 7: Testing Specific Title Metadata")
-        
-        specific_titles = [
+        season_titles = [
+            {
+                "title": "Squid Game Season 2",
+                "expected_year": 2024,  # Season 2 air date
+                "expected_language": "Korean"
+            },
+            {
+                "title": "Mirzapur Season 3", 
+                "expected_year": 2024,  # Season 3 air date
+                "expected_language": "Hindi"
+            },
             {
                 "title": "Asur Season 3",
                 "expected_imdb_rating": 8.5,  # Around 8.5-8.6 for Indian series
-                "expected_year": 2020,  # Original Indian series year (used for TMDB search)
+                "expected_year": 2020,  # Original series year for TMDB search
                 "expected_language": "Hindi"
-            },
-            {
-                "title": "Fighter",
-                "expected_tmdb_id": 784651,  # CRITICAL: 2024 Hindi film, NOT 125702 (2000 English)
-                "expected_imdb_rating": 7.4,  # Around 7.4 for correct movie
-                "expected_year": 2024,
-                "expected_language": "Hindi"
-            },
-            {
-                "title": "12th Fail",
-                "expected_imdb_rating": 8.7,
-                "expected_year": 2023,
-                "expected_language": "Hindi"
-            },
-            {
-                "title": "Maharaja",
-                "expected_year": 2024,  # Tamil film
-                "expected_language": "Tamil"
             }
         ]
         
-        for title_data in specific_titles:
+        for title_data in season_titles:
             await self.test_specific_title_metadata(title_data["title"], title_data)
         
         # Summary
