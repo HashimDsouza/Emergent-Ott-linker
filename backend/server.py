@@ -355,11 +355,23 @@ async def enrich_content_item(content: Dict) -> Dict:
         # IMMEDIATELY persist TMDB data (don't wait for OMDb)
         content["tmdb_id"] = tmdb_id
         content["normalized_title"] = tmdb_result.get("title") or tmdb_result.get("name")
-        content["description"] = tmdb_details.get("overview", content.get("description"))
         
-        # Build full poster URL and persist
-        if tmdb_result.get("poster_path"):
-            poster_url = f"https://image.tmdb.org/t/p/w500{tmdb_result['poster_path']}"
+        # Use season-specific description if available
+        if tmdb_details.get("season_specific") and tmdb_details.get("season_overview"):
+            content["description"] = tmdb_details.get("season_overview")
+        else:
+            content["description"] = tmdb_details.get("overview", content.get("description"))
+        
+        # Build full poster URL - prioritize season poster for TV shows
+        poster_path = None
+        if tmdb_details.get("season_specific") and tmdb_details.get("season_poster_path"):
+            poster_path = tmdb_details["season_poster_path"]
+            logging.info(f"  📷 Using Season {tmdb_details.get('season_number')} poster")
+        elif tmdb_result.get("poster_path"):
+            poster_path = tmdb_result["poster_path"]
+        
+        if poster_path:
+            poster_url = f"https://image.tmdb.org/t/p/w500{poster_path}"
             content["poster_url"] = poster_url
             content["poster_path"] = poster_url  # Keep both
             content["thumbnail"] = poster_url  # Update thumbnail too
@@ -369,10 +381,16 @@ async def enrich_content_item(content: Dict) -> Dict:
         if tmdb_result.get("backdrop_path"):
             content["backdrop_path"] = f"https://image.tmdb.org/t/p/original{tmdb_result['backdrop_path']}"
         
-        # Year
-        release_date = tmdb_result.get("release_date") or tmdb_result.get("first_air_date")
-        if release_date:
-            content["year"] = int(release_date.split("-")[0])
+        # Year - use season air date for season-specific content
+        if tmdb_details.get("season_specific") and tmdb_details.get("season_air_date"):
+            season_air_date = tmdb_details["season_air_date"]
+            if season_air_date:
+                content["year"] = int(season_air_date.split("-")[0])
+                logging.info(f"  📅 Season {tmdb_details.get('season_number')} Year: {content['year']}")
+        else:
+            release_date = tmdb_result.get("release_date") or tmdb_result.get("first_air_date")
+            if release_date:
+                content["year"] = int(release_date.split("-")[0])
         
         # Runtime (for movies) or episode_run_time (for TV)
         content_type_val = content.get("content_type", "movie")
