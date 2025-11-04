@@ -203,13 +203,12 @@ metadata:
 
 test_plan:
   current_focus:
-    - "Fix Fighter duplicate title matching - getting wrong movie (2000 vs 2024)"
-    - "Investigate TMDB search Indian content prioritization logic"
-    - "Verify all metadata fields (year, language, episodes) persist correctly"
-  stuck_tasks: 
-    - "Fix duplicate title matching"
+    - "Fix Asur series duplicate title matching - getting Chinese film instead of Indian series"
+    - "Verify Fighter movie fix is stable (correct TMDB ID 784651)"
+    - "Test all metadata enrichment accuracy"
+  stuck_tasks: []
   test_all: false
-  test_priority: "stuck_first"
+  test_priority: "high_first"
 
 agent_communication:
   - agent: "main"
