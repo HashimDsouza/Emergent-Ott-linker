@@ -16,8 +16,8 @@ export default function LandingV2_3Wrapper() {
 
   const loadContent = async () => {
     try {
-      // Seed content if needed (same as Home.js)
-      await axios.post(`${API}/content/seed`);
+      // Seed content if needed (commented out - content already exists)
+      // await axios.post(`${API}/content/seed`);
       
       // Fetch content
       const response = await axios.get(`${API}/content`);
