@@ -47,7 +47,7 @@ export default function Tile({ item, onInfo }) {
         className="relative" 
         style={{ background: `linear-gradient(135deg, ${coral}70 0%, ${mint}45 45%, ${charcoalSoft} 100%)` }}
       >
-        {/* Mobile: 2/3 aspect ratio */}
+        {/* Mobile: 2/3 aspect ratio (portrait) */}
         <div className="md:hidden" style={{ aspectRatio: "2/3" }}>
           {item.thumbnail && (
             <img 
@@ -57,8 +57,8 @@ export default function Tile({ item, onInfo }) {
             />
           )}
         </div>
-        {/* Desktop: 2/3 aspect ratio with MAX HEIGHT constraint */}
-        <div className="hidden md:block" style={{ aspectRatio: "2/3", maxHeight: "320px" }}>
+        {/* Desktop: 3/2 aspect ratio (wider, shorter - landscape) */}
+        <div className="hidden md:block" style={{ aspectRatio: "3/2" }}>
           {item.thumbnail && (
             <img 
               src={item.thumbnail} 
