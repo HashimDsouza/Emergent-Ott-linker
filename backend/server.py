@@ -1149,21 +1149,21 @@ async def seed_content():
         },
         {
             "id": str(uuid.uuid4()),
-            "title": "The Billionaires of Bollywood",
+            "title": "The Great Indian Kapil Show",
             "category": "hero",
             "platform": "Netflix",
             "platform_content_id": None,
             "rating": 7.5,
             "thumbnail": "https://images.unsplash.com/photo-1598899134739-24c46f58b8c0?w=400&h=600&fit=crop",
-            "description": "An inside look at the glamorous lives of Bollywood's wealthiest stars.",
-            "release_date": "2024-11",
+            "description": "Kapil Sharma returns with his hilarious talk show featuring Bollywood celebrities.",
+            "release_date": "2024-03",
             "social_links": {
-                "youtube": "https://www.youtube.com/results?search_query=Billionaires+of+Bollywood",
-                "twitter": "https://twitter.com/search?q=%23BollywoodBillionaires",
+                "youtube": "https://www.youtube.com/results?search_query=The+Great+Indian+Kapil+Show",
+                "twitter": "https://twitter.com/search?q=%23KapilSharmaShow",
                 "reddit": "https://www.reddit.com/r/bollywood"
             },
             "content_type": "series",
-            "tagline": "Behind the fortune and fame",
+            "tagline": "Laughter unlimited",
             "likes": 2100,
             "shares": 550
         },
