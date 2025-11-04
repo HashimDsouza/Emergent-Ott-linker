@@ -314,7 +314,11 @@ async def enrich_content_item(content: Dict) -> Dict:
             "Asur Season 2": 2020,  # Use original series year for better TMDB matching
             "12th Fail": 2023,
             "Scam 2003": 2023,
-            "Maharaja": 2024
+            "Maharaja": 2024,
+            "House of the Dragon": 2022,  # HBO series
+            "Slow Horses Season 5": 2022,  # Apple TV+ series (use original year)
+            "The Hunt for Veerappan": 2023,  # Indian documentary series
+            "The Billionaires of Bollywood": 2024  # Netflix documentary
         }
         
         year_hint = known_years.get(content["title"])
