@@ -10,6 +10,7 @@ export default function Tile({ item, onInfo }) {
   // State for interactive buttons
   const [liked, setLiked] = React.useState(false);
   const [disliked, setDisliked] = React.useState(false);
+  const [showTooltip, setShowTooltip] = React.useState(false);
 
   const handleClick = async (e) => {
     e.preventDefault();
