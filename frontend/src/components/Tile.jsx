@@ -143,18 +143,26 @@ export default function Tile({ item, onInfo }) {
         {/* Line 3: Descriptor with tooltip + info button */}
         <div className="flex items-center gap-1 md:gap-1.5">
           <div 
-            className="italic flex-1 line-clamp-1 text-[10px] md:text-[12px] relative cursor-pointer" 
+            className="italic flex-1 line-clamp-1 text-[10px] md:text-[12px] relative" 
             style={{ color: coral }}
-            onClick={(e) => { e.stopPropagation(); setShowTooltip(!showTooltip); }}
-            onMouseEnter={() => setShowTooltip(true)}
-            onMouseLeave={() => setShowTooltip(false)}
           >
-            {item.descriptor || "Trending"}
-            {/* Tooltip for truncated text */}
+            <span 
+              className="cursor-pointer"
+              onClick={(e) => { 
+                e.stopPropagation(); 
+                setShowTooltip(!showTooltip); 
+              }}
+              onMouseEnter={() => setShowTooltip(true)}
+              onMouseLeave={() => setShowTooltip(false)}
+            >
+              {item.descriptor || "Trending"}
+            </span>
+            {/* Tooltip for truncated text - stops propagation */}
             {showTooltip && (item.descriptor?.length > 20) && (
               <div 
                 className="absolute bottom-full left-0 mb-1 px-2 py-1 rounded text-[10px] whitespace-nowrap z-50 shadow-lg"
                 style={{ backgroundColor: 'rgba(23, 58, 53, 0.98)', color: coral, border: '1px solid rgba(255, 79, 100, 0.3)' }}
+                onClick={(e) => e.stopPropagation()}
               >
                 {item.descriptor}
               </div>
