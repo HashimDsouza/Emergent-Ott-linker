@@ -476,13 +476,19 @@ async def enrich_content_item(content: Dict) -> Dict:
         
         # Number of episodes (for TV shows)
         if content.get("content_type") in ["series", "documentary"]:
-            num_episodes = tmdb_details.get("number_of_episodes")
-            num_seasons = tmdb_details.get("number_of_seasons")
-            if num_episodes:
-                content["episodes"] = num_episodes
-                logging.info(f"  📺 Episodes: {num_episodes} ({num_seasons} seasons)")
-            if num_seasons:
-                content["seasons"] = num_seasons
+            # Use season-specific episode count if available
+            if tmdb_details.get("season_specific") and tmdb_details.get("season_episode_count"):
+                content["episodes"] = tmdb_details["season_episode_count"]
+                content["season_number"] = tmdb_details.get("season_number")
+                logging.info(f"  📺 Season {tmdb_details.get('season_number')} Episodes: {content['episodes']}")
+            else:
+                num_episodes = tmdb_details.get("number_of_episodes")
+                num_seasons = tmdb_details.get("number_of_seasons")
+                if num_episodes:
+                    content["episodes"] = num_episodes
+                    logging.info(f"  📺 Episodes: {num_episodes} ({num_seasons} seasons)")
+                if num_seasons:
+                    content["seasons"] = num_seasons
         
         # TMDB rating (always available)
         vote_average = tmdb_details.get("vote_average")
