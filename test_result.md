@@ -188,14 +188,13 @@ metadata:
 
 test_plan:
   current_focus:
-    - "Trigger content enrichment via /api/enrich-all-content"
-    - "Verify IMDb ratings are correctly fetched from OMDb and displayed"
-    - "Check metadata capsule displays correct year, episodes, and language"
-    - "Verify duplicate titles (Fighter, Asur) display correct images and metadata"
-    - "Test first 2 trays (Buzzing Now and Hot Drop Alert) for accuracy"
-  stuck_tasks: []
+    - "Fix Fighter duplicate title matching - getting wrong movie (2000 vs 2024)"
+    - "Investigate TMDB search Indian content prioritization logic"
+    - "Verify all metadata fields (year, language, episodes) persist correctly"
+  stuck_tasks: 
+    - "Fix duplicate title matching"
   test_all: false
-  test_priority: "high_first"
+  test_priority: "stuck_first"
 
 agent_communication:
   - agent: "main"
