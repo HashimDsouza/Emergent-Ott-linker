@@ -319,6 +319,13 @@ async def enrich_content_item(content: Dict) -> Dict:
         
         year_hint = known_years.get(content["title"])
         
+        # Detect season number if present in title
+        season_number = None
+        season_match = re.search(r'Season\s+(\d+)', content["title"], re.IGNORECASE)
+        if season_match:
+            season_number = int(season_match.group(1))
+            logging.info(f"  🎬 Detected Season {season_number}")
+        
         # Search TMDB with description for better Indian content detection
         logging.info(f"🔍 Enriching: {content['title']}")
         tmdb_result = await search_tmdb(
@@ -334,10 +341,11 @@ async def enrich_content_item(content: Dict) -> Dict:
         
         tmdb_id = tmdb_result["id"]
         
-        # Step 2: Get TMDB details
+        # Step 2: Get TMDB details (with season-specific data if applicable)
         tmdb_details = await get_tmdb_details(
             tmdb_id,
-            content_type=content.get("content_type", "movie")
+            content_type=content.get("content_type", "movie"),
+            season_number=season_number  # Pass season number for TV shows
         )
         
         if not tmdb_details:
