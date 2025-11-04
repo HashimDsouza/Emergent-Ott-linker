@@ -282,6 +282,39 @@ export function ConnectorHeader() {
         </div>
       </div>
     </header>
+
+    {/* Details Modal - shown when search result is clicked */}
+    {selectedItem && (
+      <div 
+        className="fixed inset-0 z-50 flex items-center justify-center p-4"
+        style={{ backgroundColor: 'rgba(14, 21, 20, 0.9)' }}
+        onClick={() => setSelectedItem(null)}
+      >
+        <div 
+          className="bg-white rounded-xl p-6 max-w-2xl w-full"
+          onClick={(e) => e.stopPropagation()}
+        >
+          <div className="flex justify-between items-start mb-4">
+            <h2 className="text-2xl font-bold">{selectedItem.title}</h2>
+            <button 
+              onClick={() => setSelectedItem(null)}
+              className="text-2xl"
+            >
+              ✕
+            </button>
+          </div>
+          <div className="text-gray-700">
+            <p className="mb-2">Platform: {selectedItem.platform}</p>
+            {selectedItem.imdb && <p className="mb-2">IMDb: ⭐ {selectedItem.imdb}</p>}
+            {selectedItem.description && <p className="mb-4">{selectedItem.description}</p>}
+            {selectedItem.genres && (
+              <p className="mb-4">Genres: {selectedItem.genres.join(", ")}</p>
+            )}
+          </div>
+        </div>
+      </div>
+    )}
+  </>
   );
 }
 
