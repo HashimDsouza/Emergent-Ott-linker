@@ -103,11 +103,13 @@
 #====================================================================================================
 
 user_problem_statement: |
-  Fix content metadata accuracy issues:
-  1. IMDb ratings are inaccurate (showing TMDB ratings instead of actual IMDb scores from OMDb)
-  2. Wrong metadata capsule (episodes, year of release, and language details are incorrect)
-  3. Wrong title images for duplicate names (e.g., "Fighter" pulling international movie instead of Hindi version)
-  4. Season specificity issues (Season 2 showing Season 1 data)
+  Build Phase 1A "Watch On Lite" Page:
+  1. Create unified OTT platform hub with navigation from header
+  2. Display 8 platform icons (JioHotstar, Netflix, Prime Video, Sony Liv, Zee5, Apple TV+, Fancode, Dazn)
+  3. Implement semi-functional icons with glow effect and toast notification
+  4. Create 3 content trays: "Trending Across Platforms," "Top 10 Right Now," "Bro Recommends"
+  5. Ensure mobile-first responsive design
+  6. Integrate with existing DetailsModal for tile interactions
 
 backend:
   - task: "Fix IMDb rating accuracy"
