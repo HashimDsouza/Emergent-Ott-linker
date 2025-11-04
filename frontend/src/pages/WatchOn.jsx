@@ -131,27 +131,44 @@ export default function WatchOn() {
         </div>
       </div>
 
-      {/* Platform Icons Row */}
+      {/* Platform Capsules - 2 Rows, 4 Per Row */}
       <div className="px-3 md:px-6 pb-6 md:pb-8">
         <div className="max-w-7xl mx-auto">
-          <div className="flex flex-wrap justify-center gap-3 md:gap-4">
-            {platforms.map((platform) => (
+          {/* Row 1: First 4 platforms */}
+          <div className="flex justify-center gap-2 md:gap-3 mb-2 md:mb-3">
+            {platforms.slice(0, 4).map((platform) => (
               <button
                 key={platform.name}
                 onClick={() => handlePlatformClick(platform)}
-                className="group relative flex flex-col items-center gap-1 md:gap-2 p-3 md:p-4 rounded-xl transition-all hover:scale-105"
+                className="group relative px-3 py-1.5 md:px-4 md:py-2 rounded-full transition-all hover:scale-105 text-xs md:text-sm font-semibold text-white"
                 style={{
-                  backgroundColor: selectedPlatform === platform.name ? `${platform.color}20` : charcoalSoft,
-                  border: `2px solid ${selectedPlatform === platform.name ? platform.color : 'transparent'}`,
-                  boxShadow: selectedPlatform === platform.name ? `0 0 20px ${platform.color}40` : 'none'
+                  background: selectedPlatform === platform.name 
+                    ? `linear-gradient(135deg, ${coral} 0%, ${mint} 100%)`
+                    : `linear-gradient(135deg, ${coral}80 0%, ${mint}60 100%)`,
+                  boxShadow: selectedPlatform === platform.name ? `0 0 16px ${mint}60` : 'none',
+                  opacity: selectedPlatform === platform.name ? 1 : 0.85
                 }}
               >
-                <span className="text-2xl md:text-3xl">{platform.icon}</span>
-                <span 
-                  className="text-xs md:text-sm font-medium text-white/90 group-hover:text-white"
-                >
-                  {platform.name}
-                </span>
+                {platform.name}
+              </button>
+            ))}
+          </div>
+          {/* Row 2: Last 4 platforms */}
+          <div className="flex justify-center gap-2 md:gap-3">
+            {platforms.slice(4).map((platform) => (
+              <button
+                key={platform.name}
+                onClick={() => handlePlatformClick(platform)}
+                className="group relative px-3 py-1.5 md:px-4 md:py-2 rounded-full transition-all hover:scale-105 text-xs md:text-sm font-semibold text-white"
+                style={{
+                  background: selectedPlatform === platform.name 
+                    ? `linear-gradient(135deg, ${coral} 0%, ${mint} 100%)`
+                    : `linear-gradient(135deg, ${coral}80 0%, ${mint}60 100%)`,
+                  boxShadow: selectedPlatform === platform.name ? `0 0 16px ${mint}60` : 'none',
+                  opacity: selectedPlatform === platform.name ? 1 : 0.85
+                }}
+              >
+                {platform.name}
               </button>
             ))}
           </div>
