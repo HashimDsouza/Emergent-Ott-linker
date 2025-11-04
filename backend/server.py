@@ -35,8 +35,8 @@ api_router = APIRouter(prefix="/api")
 # METADATA ENRICHMENT FUNCTIONS
 # ============================================================================
 
-async def search_tmdb(title: str, year: Optional[int] = None, content_type: str = "movie") -> Optional[Dict]:
-    """Search TMDB for a title and return best match"""
+async def search_tmdb(title: str, year: Optional[int] = None, content_type: str = "movie", region: str = "IN") -> Optional[Dict]:
+    """Search TMDB for a title and return best match with regional filtering"""
     if not TMDB_API_KEY:
         logging.debug(f"TMDB API key not configured, skipping search for: {title}")
         return None
@@ -45,7 +45,10 @@ async def search_tmdb(title: str, year: Optional[int] = None, content_type: str 
         async with httpx.AsyncClient() as client:
             endpoint = "tv" if content_type in ["series", "documentary"] else "movie"
             
-            # Try exact search first
+            # Detect if this is likely Indian content
+            is_indian_content = any(keyword in title.lower() for keyword in ['hindi', 'bollywood', 'tamil', 'telugu', 'malayalam', 'kannada', 'marathi'])
+            
+            # Try exact search first with region filter for Indian content
             params = {
                 "api_key": TMDB_API_KEY,
                 "query": title,
@@ -55,6 +58,9 @@ async def search_tmdb(title: str, year: Optional[int] = None, content_type: str 
             if year:
                 params["year" if endpoint == "movie" else "first_air_date_year"] = year
             
+            if is_indian_content:
+                params["region"] = region  # Filter by region for Indian content
+            
             response = await client.get(
                 f"https://api.themoviedb.org/3/search/{endpoint}",
                 params=params,
@@ -63,9 +69,20 @@ async def search_tmdb(title: str, year: Optional[int] = None, content_type: str 
             
             if response.status_code == 200:
                 data = response.json()
-                if data.get("results"):
-                    logging.info(f"✅ TMDB found: {title} -> {data['results'][0].get('title') or data['results'][0].get('name')}")
-                    return data["results"][0]
+                results = data.get("results", [])
+                
+                if results:
+                    # For Indian content, prefer results with Hindi/Indian language
+                    if is_indian_content and len(results) > 1:
+                        for result in results:
+                            original_lang = result.get("original_language", "")
+                            if original_lang in ["hi", "ta", "te", "ml", "kn", "mr"]:  # Indian languages
+                                logging.info(f"✅ TMDB found (Indian): {title} -> {result.get('title') or result.get('name')} ({original_lang})")
+                                return result
+                    
+                    # Default to first result
+                    logging.info(f"✅ TMDB found: {title} -> {results[0].get('title') or results[0].get('name')}")
+                    return results[0]
             elif response.status_code == 401:
                 logging.error(f"❌ TMDB API key invalid or expired")
                 return None
