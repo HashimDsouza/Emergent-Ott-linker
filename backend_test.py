@@ -420,8 +420,12 @@ class ContentEnrichmentTester:
             print("\n📋 Step 4b: Verifying Hot Drop Alert Tray Accuracy")
             await self.verify_tray_content_accuracy(hot_drop_content, "hot_drop")
         
-        # Test 5: CRITICAL Fighter Movie Test
-        print("\n📋 Step 5: CRITICAL Fighter Movie Duplicate Title Test")
+        # Test 5: CRITICAL Asur Season 3 Test (Primary Focus)
+        print("\n📋 Step 5: CRITICAL Asur Season 3 Duplicate Title Test")
+        await self.test_asur_season_3_specifically()
+        
+        # Test 6: Fighter Movie Test (Secondary)
+        print("\n📋 Step 6: Fighter Movie Duplicate Title Test")
         await self.test_fighter_movie_specifically()
         
         # Test 6: Check specific titles
