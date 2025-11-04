@@ -104,9 +104,10 @@ export default function Tile({ item, onInfo }) {
           </button>
         </div>
 
-        {/* Line 2: BUZZ METER + social media icons - UNCHANGED */}
-        <div className="flex items-center gap-1 md:gap-1.5 uppercase tracking-wide opacity-85 mb-1 md:mb-1.5 text-[9px] md:text-[10px]">
-          <span>BUZZ METER</span>
+        {/* Line 2: BUZZ METER + social media icons - MOBILE OPTIMIZED */}
+        <div className="flex items-center gap-1 md:gap-1.5 uppercase tracking-wide opacity-85 mb-1 md:mb-1.5 text-[8px] md:text-[10px]">
+          <span className="hidden md:inline">BUZZ METER</span>
+          <span className="md:hidden">BUZZ</span>
           <a 
             href={item.buzz?.yt || `https://www.youtube.com/results?search_query=${encodeURIComponent((item.title || 'trending') + ' trailer')}`}
             target="_blank"
