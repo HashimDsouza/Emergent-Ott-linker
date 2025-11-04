@@ -191,34 +191,45 @@ export default function WatchOn() {
                 <h2 className="text-base md:text-xl font-semibold text-white flex items-center gap-1.5 md:gap-2">
                   <span>🔥</span> Trending Across Platforms
                 </h2>
-                <p className="text-[10px] md:text-sm text-white/60">
-                  What's hot right now on every app
-                </p>
+                {!visibleTrending ? null : (
+                  <p className="text-[10px] md:text-sm text-white/60">
+                    What's hot right now on every app
+                  </p>
+                )}
               </div>
               <div className="flex items-center gap-2 md:gap-4 text-[10px] md:text-sm text-white/85">
-                <button 
-                  onClick={() => setExpandedTrending(!expandedTrending)} 
-                  className="hover:text-white"
-                >
-                  {expandedTrending ? "Collapse" : "Go Deeper"}
-                </button>
+                {!visibleTrending ? (
+                  <button onClick={() => setVisibleTrending(true)} className="hover:text-white">Show</button>
+                ) : (
+                  <>
+                    <button 
+                      onClick={() => setExpandedTrending(!expandedTrending)} 
+                      className="hover:text-white"
+                    >
+                      {expandedTrending ? "Collapse" : "Go Deeper"}
+                    </button>
+                    <button onClick={() => setVisibleTrending(false)} className="hover:text-white">Hide</button>
+                  </>
+                )}
               </div>
             </div>
-            <div 
-              className="overflow-x-auto scrollbar-hide px-3 md:px-6 pb-2 snap-x snap-mandatory"
-              style={{ scrollBehavior: 'smooth' }}
-            >
-              <div className="flex gap-2 md:gap-3" style={{ width: 'max-content' }}>
-                {content.slice(0, 6).map((item) => (
-                  <div key={item.id} className="flex-shrink-0 snap-start" style={{ width: '140px', maxWidth: '140px' }}>
-                    <Tile 
-                      item={item} 
-                      onInfo={() => setModalItem(item)} 
-                    />
-                  </div>
-                ))}
+            {visibleTrending && (
+              <div 
+                className="overflow-x-auto scrollbar-hide px-3 md:px-6 pb-2 snap-x snap-mandatory"
+                style={{ scrollBehavior: 'smooth' }}
+              >
+                <div className="flex gap-2 md:gap-3" style={{ width: 'max-content' }}>
+                  {content.slice(0, 6).map((item) => (
+                    <div key={item.id} className="flex-shrink-0 snap-start" style={{ width: '140px', maxWidth: '140px' }}>
+                      <Tile 
+                        item={item} 
+                        onInfo={() => setModalItem(item)} 
+                      />
+                    </div>
+                  ))}
+                </div>
               </div>
-            </div>
+            )}
           </section>
 
           {/* Tray 2: Top 10 Right Now */}
