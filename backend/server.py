@@ -35,7 +35,7 @@ api_router = APIRouter(prefix="/api")
 # METADATA ENRICHMENT FUNCTIONS
 # ============================================================================
 
-async def search_tmdb(title: str, year: Optional[int] = None, content_type: str = "movie", region: str = "IN") -> Optional[Dict]:
+async def search_tmdb(title: str, year: Optional[int] = None, content_type: str = "movie", region: str = "IN", description: str = "") -> Optional[Dict]:
     """Search TMDB for a title and return best match with regional filtering"""
     if not TMDB_API_KEY:
         logging.debug(f"TMDB API key not configured, skipping search for: {title}")
@@ -45,8 +45,12 @@ async def search_tmdb(title: str, year: Optional[int] = None, content_type: str 
         async with httpx.AsyncClient() as client:
             endpoint = "tv" if content_type in ["series", "documentary"] else "movie"
             
-            # Detect if this is likely Indian content
-            is_indian_content = any(keyword in title.lower() for keyword in ['hindi', 'bollywood', 'tamil', 'telugu', 'malayalam', 'kannada', 'marathi'])
+            # Enhanced Indian content detection - check both title AND description
+            indian_keywords = ['hindi', 'bollywood', 'tamil', 'telugu', 'malayalam', 'kannada', 'marathi', 
+                             'india', 'indian', 'mumbai', 'delhi', 'hrithik', 'shah rukh', 'deepika', 
+                             'ranveer', 'aamir', 'salman', 'akshay', 'ajay devgn', 'katrina']
+            search_text = (title + " " + description).lower()
+            is_indian_content = any(keyword in search_text for keyword in indian_keywords)
             
             # Try exact search first with region filter for Indian content
             params = {
@@ -78,6 +82,14 @@ async def search_tmdb(title: str, year: Optional[int] = None, content_type: str 
                             original_lang = result.get("original_language", "")
                             if original_lang in ["hi", "ta", "te", "ml", "kn", "mr"]:  # Indian languages
                                 logging.info(f"✅ TMDB found (Indian): {title} -> {result.get('title') or result.get('name')} ({original_lang})")
+                                return result
+                    
+                    # If year is provided and no Indian language match, prioritize by year
+                    if year and len(results) > 1:
+                        for result in results:
+                            release_date = result.get("release_date") or result.get("first_air_date", "")
+                            if release_date and release_date.startswith(str(year)):
+                                logging.info(f"✅ TMDB found (year match): {title} ({year}) -> {result.get('title') or result.get('name')}")
                                 return result
                     
                     # Default to first result
