@@ -30,6 +30,11 @@ export default function LandingV2_3({ apiData }) {
         youtube: 'https://www.youtube.com/results?search_query=ICC+Women+World+Cup+2025',
         twitter: 'https://twitter.com/search?q=%23WWC2025',
         reddit: 'https://www.reddit.com/r/Cricket'
+      },
+      buzz: {
+        yt: 'https://www.youtube.com/results?search_query=ICC+Women+World+Cup+2025',
+        x: 'https://twitter.com/search?q=%23WWC2025',
+        reddit: 'https://www.reddit.com/r/Cricket'
       }
     },
     {
