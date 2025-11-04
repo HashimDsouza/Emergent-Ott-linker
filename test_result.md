@@ -218,9 +218,7 @@ metadata:
 
 test_plan:
   current_focus:
-    - "Verify Asur Season 3 fix is stable (correct Indian series TMDB ID 100911)"
-    - "Verify Fighter movie fix is stable (correct TMDB ID 784651)"
-    - "Test all metadata enrichment accuracy"
+    - "Season-specific enrichment verification completed"
   stuck_tasks: []
   test_all: false
   test_priority: "high_first"
