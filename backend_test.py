@@ -11,7 +11,7 @@ import sys
 from typing import Dict, List, Optional
 
 # Backend URL from environment
-BACKEND_URL = "https://ottlinker.preview.emergentagent.com"
+BACKEND_URL = "https://watch-hub-22.preview.emergentagent.com"
 
 class ContentEnrichmentTester:
     def __init__(self):

@@ -190,7 +190,7 @@ sudo supervisorctl restart all
 
 **Preview URL:**
 ```
-https://ottlinker.preview.emergentagent.com/landing/v2_3
+https://watch-hub-22.preview.emergentagent.com/landing/v2_3
 ```
 
 **Local:**
