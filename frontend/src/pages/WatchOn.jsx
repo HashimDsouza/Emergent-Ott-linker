@@ -28,6 +28,11 @@ export default function WatchOn() {
   const [expandedTrending, setExpandedTrending] = useState(false);
   const [expandedTop10, setExpandedTop10] = useState(false);
   const [expandedBroRecommends, setExpandedBroRecommends] = useState(false);
+  
+  // State for hiding trays
+  const [visibleTrending, setVisibleTrending] = useState(true);
+  const [visibleTop10, setVisibleTop10] = useState(true);
+  const [visibleBroRecommends, setVisibleBroRecommends] = useState(true);
 
   // Fetch content
   useEffect(() => {
