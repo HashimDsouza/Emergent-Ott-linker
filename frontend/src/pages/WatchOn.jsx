@@ -12,17 +12,22 @@ export default function WatchOn() {
   const [selectedPlatform, setSelectedPlatform] = useState(null);
   const [modalItem, setModalItem] = useState(null);
 
-  // Platform icons configuration
+  // Platform capsules configuration (text-only)
   const platforms = [
-    { name: "JioHotstar", icon: "📺", color: coral },
-    { name: "Netflix", icon: "🎬", color: "#E50914" },
-    { name: "Prime Video", icon: "▶️", color: "#00A8E1" },
-    { name: "Sony Liv", icon: "📡", color: "#FF6B00" },
-    { name: "Zee5", icon: "🎭", color: "#9C27B0" },
-    { name: "Apple TV+", icon: "🍎", color: "#000000" },
-    { name: "Fancode", icon: "🏆", color: mint },
-    { name: "Dazn", icon: "⚽", color: "#F8B500" }
+    { name: "JioHotstar", color: coral },
+    { name: "Netflix", color: "#E50914" },
+    { name: "Prime Video", color: "#00A8E1" },
+    { name: "Sony Liv", color: "#FF6B00" },
+    { name: "Zee5", color: "#9C27B0" },
+    { name: "Apple TV+", color: "#000000" },
+    { name: "Fancode", color: mint },
+    { name: "Dazn", color: "#F8B500" }
   ];
+
+  // State for "Go Deeper" trays
+  const [showAllTrending, setShowAllTrending] = useState(false);
+  const [showAllTop10, setShowAllTop10] = useState(false);
+  const [showAllBroRecommends, setShowAllBroRecommends] = useState(false);
 
   // Fetch content
   useEffect(() => {
