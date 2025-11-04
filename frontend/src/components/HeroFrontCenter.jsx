@@ -86,7 +86,7 @@ export default function HeroFrontCenter({ onInfo }) {
         <style>{`
           @media (min-width: 768px) {
             .hero-container {
-              height: 450px !important;
+              height: 280px !important;
             }
           }
         `}</style>
