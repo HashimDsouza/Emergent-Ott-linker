@@ -175,71 +175,128 @@ export default function WatchOn() {
         </div>
       </div>
 
-      {/* Trays Section */}
-      <div id="trays-section" className="px-3 md:px-6 pb-8">
+      {/* Trays Section - Horizontal Scroll */}
+      <div id="trays-section" className="pb-8">
         <div className="max-w-7xl mx-auto space-y-6 md:space-y-8">
           
           {/* Tray 1: Trending Across Platforms */}
           <section>
-            <div className="mb-3 md:mb-4">
-              <h2 className="text-xl md:text-2xl font-bold text-white flex items-center gap-2">
-                <span>🔥</span> Trending Across Platforms
-              </h2>
-              <p className="text-sm md:text-base text-white/60 mt-1">
-                What's hot right now on every app
-              </p>
+            <div className="px-3 md:px-6 mb-3 md:mb-4 flex items-center justify-between">
+              <div>
+                <h2 className="text-xl md:text-2xl font-bold text-white flex items-center gap-2">
+                  <span>🔥</span> Trending Across Platforms
+                </h2>
+                <p className="text-sm md:text-base text-white/60 mt-1">
+                  What's hot right now on every app
+                </p>
+              </div>
+              <button
+                onClick={() => setShowAllTrending(!showAllTrending)}
+                className="px-3 py-1.5 md:px-4 md:py-2 rounded-lg text-xs md:text-sm font-medium transition-all hover:scale-105"
+                style={{
+                  background: showAllTrending ? `linear-gradient(135deg, ${coral} 0%, ${mint} 100%)` : 'transparent',
+                  border: `1px solid ${mint}60`,
+                  color: 'white'
+                }}
+              >
+                {showAllTrending ? 'Hide' : 'Go Deeper'}
+              </button>
             </div>
-            <div className="grid grid-cols-3 gap-2 md:gap-4">
-              {content.slice(0, 6).map((item) => (
-                <Tile 
-                  key={item.id} 
-                  item={item} 
-                  onInfo={() => setModalItem(item)} 
-                />
-              ))}
+            <div 
+              className="overflow-x-auto scrollbar-hide px-3 md:px-6"
+              style={{ scrollBehavior: 'smooth' }}
+            >
+              <div className="flex gap-2 md:gap-4" style={{ width: 'max-content' }}>
+                {(showAllTrending ? content : content.slice(0, 6)).map((item) => (
+                  <div key={item.id} className="flex-shrink-0" style={{ width: '200px' }}>
+                    <Tile 
+                      item={item} 
+                      onInfo={() => setModalItem(item)} 
+                    />
+                  </div>
+                ))}
+              </div>
             </div>
           </section>
 
           {/* Tray 2: Top 10 Right Now */}
           <section>
-            <div className="mb-3 md:mb-4">
-              <h2 className="text-xl md:text-2xl font-bold text-white flex items-center gap-2">
-                <span>⭐</span> Top 10 Right Now
-              </h2>
-              <p className="text-sm md:text-base italic" style={{ color: coral }}>
-                "Consensus chaos — everyone's watching these."
-              </p>
+            <div className="px-3 md:px-6 mb-3 md:mb-4 flex items-center justify-between">
+              <div>
+                <h2 className="text-xl md:text-2xl font-bold text-white flex items-center gap-2">
+                  <span>⭐</span> Top 10 Right Now
+                </h2>
+                <p className="text-sm md:text-base italic" style={{ color: coral }}>
+                  "Consensus chaos — everyone's watching these."
+                </p>
+              </div>
+              <button
+                onClick={() => setShowAllTop10(!showAllTop10)}
+                className="px-3 py-1.5 md:px-4 md:py-2 rounded-lg text-xs md:text-sm font-medium transition-all hover:scale-105"
+                style={{
+                  background: showAllTop10 ? `linear-gradient(135deg, ${coral} 0%, ${mint} 100%)` : 'transparent',
+                  border: `1px solid ${mint}60`,
+                  color: 'white'
+                }}
+              >
+                {showAllTop10 ? 'Hide' : 'Go Deeper'}
+              </button>
             </div>
-            <div className="grid grid-cols-3 gap-2 md:gap-4">
-              {top10.slice(0, 6).map((item) => (
-                <Tile 
-                  key={item.id} 
-                  item={item} 
-                  onInfo={() => setModalItem(item)} 
-                />
-              ))}
+            <div 
+              className="overflow-x-auto scrollbar-hide px-3 md:px-6"
+              style={{ scrollBehavior: 'smooth' }}
+            >
+              <div className="flex gap-2 md:gap-4" style={{ width: 'max-content' }}>
+                {(showAllTop10 ? top10 : top10.slice(0, 6)).map((item) => (
+                  <div key={item.id} className="flex-shrink-0" style={{ width: '200px' }}>
+                    <Tile 
+                      item={item} 
+                      onInfo={() => setModalItem(item)} 
+                    />
+                  </div>
+                ))}
+              </div>
             </div>
           </section>
 
           {/* Tray 3: Bro Recommends */}
           {broRecommends.length > 0 && (
             <section>
-              <div className="mb-3 md:mb-4">
-                <h2 className="text-xl md:text-2xl font-bold text-white flex items-center gap-2">
-                  <span style={{ color: mint }}>✨</span> Bro Recommends
-                </h2>
-                <p className="text-sm md:text-base text-white/60 mt-1">
-                  Handpicked for your chaos
-                </p>
+              <div className="px-3 md:px-6 mb-3 md:mb-4 flex items-center justify-between">
+                <div>
+                  <h2 className="text-xl md:text-2xl font-bold text-white flex items-center gap-2">
+                    <span style={{ color: mint }}>✨</span> Bro Recommends
+                  </h2>
+                  <p className="text-sm md:text-base text-white/60 mt-1">
+                    Handpicked for your chaos
+                  </p>
+                </div>
+                <button
+                  onClick={() => setShowAllBroRecommends(!showAllBroRecommends)}
+                  className="px-3 py-1.5 md:px-4 md:py-2 rounded-lg text-xs md:text-sm font-medium transition-all hover:scale-105"
+                  style={{
+                    background: showAllBroRecommends ? `linear-gradient(135deg, ${coral} 0%, ${mint} 100%)` : 'transparent',
+                    border: `1px solid ${mint}60`,
+                    color: 'white'
+                  }}
+                >
+                  {showAllBroRecommends ? 'Hide' : 'Go Deeper'}
+                </button>
               </div>
-              <div className="grid grid-cols-3 gap-2 md:gap-4">
-                {broRecommends.map((item) => (
-                  <Tile 
-                    key={item.id} 
-                    item={item} 
-                    onInfo={() => setModalItem(item)} 
-                  />
-                ))}
+              <div 
+                className="overflow-x-auto scrollbar-hide px-3 md:px-6"
+                style={{ scrollBehavior: 'smooth' }}
+              >
+                <div className="flex gap-2 md:gap-4" style={{ width: 'max-content' }}>
+                  {(showAllBroRecommends ? broRecommends : broRecommends.slice(0, 6)).map((item) => (
+                    <div key={item.id} className="flex-shrink-0" style={{ width: '200px' }}>
+                      <Tile 
+                        item={item} 
+                        onInfo={() => setModalItem(item)} 
+                      />
+                    </div>
+                  ))}
+                </div>
               </div>
             </section>
           )}
