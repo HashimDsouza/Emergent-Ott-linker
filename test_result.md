@@ -142,15 +142,18 @@ backend:
 
   - task: "Fix metadata capsule persistence"
     implemented: true
-    working: "NA"
+    working: true
     file: "/app/backend/server.py"
     stuck_count: 0
     priority: "high"
-    needs_retesting: true
+    needs_retesting: false
     status_history:
       - working: "NA"
         agent: "main"
         comment: "Added missing 'language', 'episodes', and 'seasons' fields to update_fields dictionary in enrich-all-content endpoint. These fields were being computed but not persisted to database."
+      - working: true
+        agent: "testing"
+        comment: "✅ VERIFIED: Metadata fields persisting correctly. 12th Fail shows year=2023, language=Hindi. Language and year fields properly populated for most content. Episodes field correctly None for movies. Fields being computed and stored in database successfully."
 
 frontend:
   - task: "Display accurate IMDb ratings in Tile and Modal"
