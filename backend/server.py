@@ -272,6 +272,7 @@ async def enrich_content_item(content: Dict) -> Dict:
         known_years = {
             "Fighter": 2024,  # Hindi film with Hrithik Roshan
             "Asur": 2020,     # Indian series, not international
+            "Asur Season 3": 2023,  # Indian series continuation
             "12th Fail": 2023,
             "Scam 2003": 2023,
             "Maharaja": 2024
