@@ -191,3 +191,5 @@ test_plan:
 agent_communication:
   - agent: "main"
     message: "Fixed content metadata accuracy issues: 1) Added OMDb API key and integrated OMDb for actual IMDb ratings, 2) Fixed year extraction to not use platform release_date which was causing duplicate confusion, 3) Added missing language, episodes, seasons fields to database update, 4) Fixed frontend to display dynamic metadata capsule instead of hardcoded values. Ready for enrichment and testing."
+  - agent: "testing"
+    message: "CRITICAL ISSUE FOUND: Content enrichment has duplicate title matching problem. 'Fighter' is pulling wrong movie (2000 English film, TMDB ID: 125702) instead of correct 2024 Hindi film with Hrithik Roshan (TMDB ID: 784651). IMDb ratings are working correctly (8.7 for 12th Fail), but year/language fields missing for some titles. TMDB posters working correctly. Main issue: TMDB search not prioritizing Indian content properly despite existing logic."
