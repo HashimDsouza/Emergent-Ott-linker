@@ -173,6 +173,7 @@ function LanguageDropdown() {
 
 // Header component with optimized 2-row layout and gradient background
 export function ConnectorHeader() {
+  const navigate = useNavigate();
   const [searchHover, setSearchHover] = useState(false);
   const [meHover, setMeHover] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
