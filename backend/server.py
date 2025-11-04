@@ -1225,7 +1225,7 @@ async def seed_content():
         },
         {
             "id": str(uuid.uuid4()),
-            "title": "Asur Season 3",
+            "title": "Asur Season 2",
             "category": "buzzing",
             "platform": "JioHotstar",
             "platform_content_id": None,
@@ -1234,7 +1234,7 @@ async def seed_content():
             "description": "The psychological thriller continues with new dark twists.",
             "release_date": "2025-02",
             "social_links": {
-                "youtube": "https://www.youtube.com/results?search_query=Asur+Season+3+trailer",
+                "youtube": "https://www.youtube.com/results?search_query=Asur+Season+2+trailer",
                 "twitter": "https://twitter.com/search?q=%23Asur",
                 "reddit": "https://www.reddit.com/r/IndianWebSeries"
             },
