@@ -7,6 +7,7 @@ export const mapApiToCard = (x) => ({
   posterUrl: x.poster_url || x.thumbnail || null,
   // Use IMDb rating if available, otherwise TMDB rating, otherwise fallback
   imdb: x.imdb_rating ?? x.vote_average ?? x.rating ?? "N/A",
+  imdb_id: x.imdb_id || null,
   rating: x.imdb_rating ?? x.vote_average ?? x.rating ?? null,
   descriptor: x.tagline ?? "Trending on YouTube",
   // Pass through enriched metadata
