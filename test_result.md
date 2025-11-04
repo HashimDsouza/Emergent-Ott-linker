@@ -173,6 +173,18 @@ backend:
         agent: "testing"
         comment: "✅ FIXED: Asur Season 3 duplicate title issue resolved! Updated known_years mapping to use 2020 (original series year) instead of 2023 for TMDB search. Now correctly pulling Indian series 'Asur: Welcome to Your Dark Side' (TMDB ID: 100911, Hindi language, 2020 year, IMDb 8.5). Description mentions serial killer, forensic expert, and CBI investigation. Cast includes Arshad Warsi and Barun Sobti. No longer pulling Chinese films."
 
+  - task: "Season-specific enrichment for TV shows"
+    implemented: true
+    working: true
+    file: "/app/backend/server.py"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+      - working: true
+        agent: "testing"
+        comment: "🎉 SEASON-SPECIFIC ENRICHMENT FULLY WORKING! Comprehensive testing shows all Season 2 and Season 3 titles have correct season-specific data: ✅ Squid Game Season 2: Year 2024, Korean language, 7 episodes, season-specific TMDB poster (sXZhtWLo3fecavpDuOyJiayjt32.jpg), IMDb 8.0, TMDB ID 93405. ✅ Mirzapur Season 3: Year 2024, Hindi language, 10 episodes, season-specific TMDB poster (7CFdq8M9ZuP1QRLaBG2ExdcrCBs.jpg), IMDb 8.4, TMDB ID 84105. ✅ Asur Season 3: Year 2020 (original series), Hindi language, 16 episodes, season-specific TMDB poster (njUrr755WzIrNfuUwQhpu2ljjH4.jpg), IMDb 8.5, TMDB ID 100911. All posters are season-specific (NOT Season 1), years reflect season air dates, episode counts are accurate for each season, and descriptions are season-specific. Season detection logic working perfectly with regex pattern matching and TMDB season API integration."
+
 frontend:
   - task: "Display accurate IMDb ratings in Tile and Modal"
     implemented: true
