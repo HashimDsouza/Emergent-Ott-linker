@@ -159,16 +159,19 @@ backend:
         comment: "✅ VERIFIED: Metadata fields persisting correctly. 12th Fail shows year=2023, language=Hindi. Language and year fields properly populated for most content. Episodes field correctly None for movies. Fields being computed and stored in database successfully."
 
   - task: "Fix Asur series duplicate title matching"
-    implemented: false
-    working: false
+    implemented: true
+    working: true
     file: "/app/backend/server.py"
     stuck_count: 0
     priority: "medium"
-    needs_retesting: true
+    needs_retesting: false
     status_history:
       - working: false
         agent: "testing"
         comment: "❌ ISSUE FOUND: Asur pulling wrong content - getting Chinese film 'Dying to Survive' (TMDB ID: 256744, Japanese language, 2025 year) instead of Indian series 'Asur: Welcome to Your Dark Side' (should be Hindi language, 2020 year, IMDb 8.5). Need to improve TMDB search for Indian series vs international films with similar names."
+      - working: true
+        agent: "testing"
+        comment: "✅ FIXED: Asur Season 3 duplicate title issue resolved! Updated known_years mapping to use 2020 (original series year) instead of 2023 for TMDB search. Now correctly pulling Indian series 'Asur: Welcome to Your Dark Side' (TMDB ID: 100911, Hindi language, 2020 year, IMDb 8.5). Description mentions serial killer, forensic expert, and CBI investigation. Cast includes Arshad Warsi and Barun Sobti. No longer pulling Chinese films."
 
 frontend:
   - task: "Display accurate IMDb ratings in Tile and Modal"
