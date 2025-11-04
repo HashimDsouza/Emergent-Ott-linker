@@ -124,7 +124,31 @@ async def search_tmdb(title: str, year: Optional[int] = None, content_type: str 
         logging.error(f"❌ TMDB search error for {title}: {str(e)}")
     return None
 
-async def get_tmdb_details(tmdb_id: int, content_type: str = "movie") -> Optional[Dict]:
+async def get_tmdb_season_details(tmdb_id: int, season_number: int) -> Optional[Dict]:
+    """Get season-specific details from TMDB"""
+    try:
+        async with httpx.AsyncClient() as client:
+            response = await client.get(
+                f"https://api.themoviedb.org/3/tv/{tmdb_id}/season/{season_number}",
+                params={
+                    "api_key": TMDB_API_KEY,
+                    "language": "en-US"
+                },
+                timeout=10.0
+            )
+            
+            if response.status_code == 200:
+                season_data = response.json()
+                logging.info(f"✅ TMDB Season {season_number} details fetched")
+                return season_data
+            else:
+                logging.warning(f"⚠️  TMDB Season {season_number} not found (status: {response.status_code})")
+                
+    except Exception as e:
+        logging.error(f"❌ TMDB season details error: {str(e)}")
+    return None
+
+async def get_tmdb_details(tmdb_id: int, content_type: str = "movie", season_number: Optional[int] = None) -> Optional[Dict]:
     """Get detailed info from TMDB including external IDs, watch providers, cast, crew, and videos"""
     try:
         async with httpx.AsyncClient() as client:
@@ -145,6 +169,21 @@ async def get_tmdb_details(tmdb_id: int, content_type: str = "movie") -> Optiona
                 return None
             
             details = response.json()
+            
+            # If this is a specific season, fetch season-specific details
+            if content_type == "series" and season_number:
+                season_data = await get_tmdb_season_details(tmdb_id, season_number)
+                if season_data:
+                    # Override with season-specific data
+                    details["season_specific"] = True
+                    details["season_number"] = season_number
+                    details["season_poster_path"] = season_data.get("poster_path")
+                    details["season_air_date"] = season_data.get("air_date")
+                    details["season_episode_count"] = len(season_data.get("episodes", []))
+                    details["season_overview"] = season_data.get("overview")
+                    logging.info(f"  📺 Season {season_number}: {details['season_episode_count']} episodes, aired {details.get('season_air_date', 'N/A')}")
+            
+            details
             
             # Get external IDs (includes IMDb ID)
             external_response = await client.get(
