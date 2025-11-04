@@ -174,8 +174,21 @@ function LanguageDropdown() {
 export function ConnectorHeader() {
   const [searchHover, setSearchHover] = useState(false);
   const [meHover, setMeHover] = useState(false);
+  const [searchOpen, setSearchOpen] = useState(false);
+  const [selectedItem, setSelectedItem] = useState(null);
+
+  const handleSearchSelect = (item) => {
+    setSelectedItem(item);
+    setSearchOpen(false);
+  };
 
   return (
+    <>
+      <SearchOverlay 
+        isOpen={searchOpen} 
+        onClose={() => setSearchOpen(false)}
+        onSelectItem={handleSearchSelect}
+      />
     <header
       className="sticky top-0 z-40 backdrop-blur-md border-b relative overflow-hidden"
       style={{ 
