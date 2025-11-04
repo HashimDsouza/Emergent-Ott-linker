@@ -140,9 +140,26 @@ export default function Tile({ item, onInfo }) {
           )}
         </div>
 
-        {/* Line 3: Descriptor + info button only */}
+        {/* Line 3: Descriptor with tooltip + info button */}
         <div className="flex items-center gap-1 md:gap-1.5">
-          <div className="italic flex-1 line-clamp-1 text-[10px] md:text-[12px]" style={{ color: coral }}>{item.descriptor || "Trending"}</div>
+          <div 
+            className="italic flex-1 line-clamp-1 text-[10px] md:text-[12px] relative cursor-pointer" 
+            style={{ color: coral }}
+            onClick={(e) => { e.stopPropagation(); setShowTooltip(!showTooltip); }}
+            onMouseEnter={() => setShowTooltip(true)}
+            onMouseLeave={() => setShowTooltip(false)}
+          >
+            {item.descriptor || "Trending"}
+            {/* Tooltip for truncated text */}
+            {showTooltip && (item.descriptor?.length > 20) && (
+              <div 
+                className="absolute bottom-full left-0 mb-1 px-2 py-1 rounded text-[10px] whitespace-nowrap z-50 shadow-lg"
+                style={{ backgroundColor: 'rgba(23, 58, 53, 0.98)', color: coral, border: '1px solid rgba(255, 79, 100, 0.3)' }}
+              >
+                {item.descriptor}
+              </div>
+            )}
+          </div>
           <button aria-label="More info" onClick={(e) => { e.stopPropagation(); onInfo?.(item); }} className="relative inline-flex items-center justify-center flex-shrink-0">
             <span className="rounded-full w-[14px] h-[14px] md:w-[20px] md:h-[20px]" style={{ background: mint, boxShadow: "0 0 10px rgba(48,224,178,0.4)" }} />
             <span className="absolute text-[9px] md:text-[11px] font-bold" style={{ color: "#0E1514" }}>i</span>
