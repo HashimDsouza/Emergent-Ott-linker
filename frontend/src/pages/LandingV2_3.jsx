@@ -52,6 +52,11 @@ export default function LandingV2_3({ apiData }) {
         youtube: 'https://www.youtube.com/results?search_query=Manchester+United+vs+Nottingham+Forest',
         twitter: 'https://twitter.com/search?q=%23MUNNFO',
         reddit: 'https://www.reddit.com/r/soccer'
+      },
+      buzz: {
+        yt: 'https://www.youtube.com/results?search_query=Manchester+United+vs+Nottingham+Forest',
+        x: 'https://twitter.com/search?q=%23MUNNFO',
+        reddit: 'https://www.reddit.com/r/soccer'
       }
     },
     {
@@ -68,6 +73,11 @@ export default function LandingV2_3({ apiData }) {
       social_links: {
         youtube: 'https://www.youtube.com/results?search_query=UEFA+Champions+League',
         twitter: 'https://twitter.com/search?q=%23UCL',
+        reddit: 'https://www.reddit.com/r/soccer'
+      },
+      buzz: {
+        yt: 'https://www.youtube.com/results?search_query=UEFA+Champions+League',
+        x: 'https://twitter.com/search?q=%23UCL',
         reddit: 'https://www.reddit.com/r/soccer'
       }
     },
@@ -86,6 +96,11 @@ export default function LandingV2_3({ apiData }) {
         youtube: 'https://www.youtube.com/results?search_query=F1+Bahrain+Grand+Prix',
         twitter: 'https://twitter.com/search?q=%23BahrainGP',
         reddit: 'https://www.reddit.com/r/formula1'
+      },
+      buzz: {
+        yt: 'https://www.youtube.com/results?search_query=F1+Bahrain+Grand+Prix',
+        x: 'https://twitter.com/search?q=%23BahrainGP',
+        reddit: 'https://www.reddit.com/r/formula1'
       }
     },
     {
@@ -103,6 +118,11 @@ export default function LandingV2_3({ apiData }) {
         youtube: 'https://www.youtube.com/results?search_query=US+Open+Tennis+2025',
         twitter: 'https://twitter.com/search?q=%23USOpen',
         reddit: 'https://www.reddit.com/r/tennis'
+      },
+      buzz: {
+        yt: 'https://www.youtube.com/results?search_query=US+Open+Tennis+2025',
+        x: 'https://twitter.com/search?q=%23USOpen',
+        reddit: 'https://www.reddit.com/r/tennis'
       }
     },
     {
@@ -119,6 +139,11 @@ export default function LandingV2_3({ apiData }) {
       social_links: {
         youtube: 'https://www.youtube.com/results?search_query=Serie+A',
         twitter: 'https://twitter.com/search?q=%23SerieA',
+        reddit: 'https://www.reddit.com/r/soccer'
+      },
+      buzz: {
+        yt: 'https://www.youtube.com/results?search_query=Serie+A',
+        x: 'https://twitter.com/search?q=%23SerieA',
         reddit: 'https://www.reddit.com/r/soccer'
       }
     }
