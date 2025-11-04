@@ -20,7 +20,7 @@ export default function Tray({ icon, title, subline, items, onInfo }) {
   );
 
   return (
-    <section className="mb-4 md:mb-8">
+    <section className="mb-4 md:mb-6">
       <div className="flex items-end justify-between mb-2 md:mb-3">
         <div>
           <div className="text-base md:text-xl font-semibold text-white flex items-center gap-1.5 md:gap-2">{icon} {title}</div>
@@ -33,8 +33,8 @@ export default function Tray({ icon, title, subline, items, onInfo }) {
       </div>
 
       <div className={expanded 
-        ? "flex gap-2 overflow-x-auto pb-2 snap-x snap-mandatory scrollbar-hide" 
-        : "grid grid-cols-3 gap-2 md:gap-3"
+        ? "flex gap-2 md:gap-3 overflow-x-auto pb-2 snap-x snap-mandatory scrollbar-hide" 
+        : "grid grid-cols-3 gap-2 md:gap-4"
       }>
         {items?.map(it => (
           <div 
