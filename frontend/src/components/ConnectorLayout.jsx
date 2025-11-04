@@ -14,6 +14,7 @@ import {
   Zap,
   ChevronDown,
 } from "lucide-react";
+import SearchOverlay from "./SearchOverlay";
 
 // Brand colors - exact match to tiles
 const coral = "#FF4F64";
