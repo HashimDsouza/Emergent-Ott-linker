@@ -232,7 +232,7 @@ export function ConnectorHeader() {
 
         {/* Center: USP Chips (Watch On, Buzz Meter, Win) */}
         <div className="flex gap-2 md:gap-3 flex-1 justify-center">
-          <Chip icon={Play} label="Watch On" tip="Pick your platform. Jump right in." />
+          <Chip icon={Play} label="Watch On" tip="Pick your platform. Jump right in." onClick={() => navigate('/watch-on')} />
           <Chip icon={Flame} label="Buzz Meter" tip="If it's trending, it's here." />
           <Chip icon={Target} label="Win" tip="Flex your fandom. Score some cred." />
         </div>
