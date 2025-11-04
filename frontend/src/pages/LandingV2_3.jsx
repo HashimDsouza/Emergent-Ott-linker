@@ -115,7 +115,7 @@ export default function LandingV2_3({ apiData }) {
       {/* Main Content */}
       <div className="px-3 md:px-6 pt-4 md:pt-6">
         <div className="max-w-6xl mx-auto">
-        <HeroFrontCenter />
+        <HeroFrontCenter onInfo={onInfo} />
 
         <Tray
           icon="🔥"
