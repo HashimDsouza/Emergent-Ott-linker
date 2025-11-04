@@ -24,10 +24,10 @@ export default function WatchOn() {
     { name: "Dazn", color: "#F8B500" }
   ];
 
-  // State for "Go Deeper" trays
-  const [showAllTrending, setShowAllTrending] = useState(false);
-  const [showAllTop10, setShowAllTop10] = useState(false);
-  const [showAllBroRecommends, setShowAllBroRecommends] = useState(false);
+  // State for "Go Deeper" trays (Phase 1B will expand with more content)
+  const [expandedTrending, setExpandedTrending] = useState(false);
+  const [expandedTop10, setExpandedTop10] = useState(false);
+  const [expandedBroRecommends, setExpandedBroRecommends] = useState(false);
 
   // Fetch content
   useEffect(() => {
