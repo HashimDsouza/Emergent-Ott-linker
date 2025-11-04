@@ -104,10 +104,9 @@ export default function Tile({ item, onInfo }) {
           </button>
         </div>
 
-        {/* Line 2: BUZZ METER + social media icons - MOBILE OPTIMIZED */}
+        {/* Line 2: BUZZ METER + social icons + IMDb rating */}
         <div className="flex items-center gap-1 md:gap-1.5 uppercase tracking-wide opacity-85 mb-1 md:mb-1.5 text-[8px] md:text-[10px]">
-          <span className="hidden md:inline">BUZZ METER</span>
-          <span className="md:hidden">BUZZ</span>
+          <span>BUZZ METER</span>
           <a 
             href={item.buzz?.yt || `https://www.youtube.com/results?search_query=${encodeURIComponent((item.title || 'trending') + ' trailer')}`}
             target="_blank"
@@ -132,16 +131,16 @@ export default function Tile({ item, onInfo }) {
           >
             <svg width="10" height="10" className="md:w-[14px] md:h-[14px]" viewBox="0 0 24 24"><path fill="#FF4500" d="M22 12.07c0-1.2-.98-2.18-2.18-2.18-.56 0-1.07.21-1.45.55-1.44-.94-3.23-1.54-5.2-1.61l1.11-3.51 3.06.72a1.64 1.64 0 1 0 .19-1.1l-3.6-.85a.7.7 0 0 0-.84.46l-1.4 4.42c-1.97.05-3.76.64-5.21 1.58a2.18 2.18 0 1 0-2.64 3.45c-.05.24-.08.49-.08.74 0 2.87 3.58 5.2 8 5.2s8-2.33 8-5.2c0-.25-.03-.5-.09-.74.5-.4.84-1 .84-1.73Z"/></svg>
           </a>
-        </div>
-
-        {/* Line 3: Descriptor + IMDb rating + info button - MOBILE OPTIMIZED */}
-        <div className="flex items-center gap-0.5 md:gap-1.5">
-          <div className="italic flex-1 line-clamp-1 text-[10px] md:text-[12px]" style={{ color: coral }}>{item.descriptor || "Trending"}</div>
           {item.imdb && (
-            <span className="text-[9px] md:text-[11px] px-1 py-0.5 rounded-full bg-yellow-500/20 border border-yellow-500/30 flex-shrink-0">
+            <span className="text-[9px] md:text-[10px] px-1 py-0.5 rounded-full bg-yellow-500/20 border border-yellow-500/30 flex-shrink-0 ml-1">
               ⭐ {typeof item.imdb === 'number' ? item.imdb.toFixed(1) : item.imdb}
             </span>
           )}
+        </div>
+
+        {/* Line 3: Descriptor + info button only */}
+        <div className="flex items-center gap-1 md:gap-1.5">
+          <div className="italic flex-1 line-clamp-1 text-[10px] md:text-[12px]" style={{ color: coral }}>{item.descriptor || "Trending"}</div>
           <button aria-label="More info" onClick={(e) => { e.stopPropagation(); onInfo?.(item); }} className="relative inline-flex items-center justify-center flex-shrink-0">
             <span className="rounded-full w-[14px] h-[14px] md:w-[20px] md:h-[20px]" style={{ background: mint, boxShadow: "0 0 10px rgba(48,224,178,0.4)" }} />
             <span className="absolute text-[9px] md:text-[11px] font-bold" style={{ color: "#0E1514" }}>i</span>
