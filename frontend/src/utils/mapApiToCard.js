@@ -5,6 +5,7 @@ export const mapApiToCard = (x) => ({
   // Use poster_url from TMDB first, fallback to thumbnail
   thumbnail: x.poster_url || x.thumbnail || "https://images.unsplash.com/photo-1598899134739-24c46f58b8c0?w=400&h=600&fit=crop",
   posterUrl: x.poster_url || x.thumbnail || null,
+  backdrop_path: x.backdrop_path || null,
   // Use IMDb rating if available, otherwise TMDB rating, otherwise fallback
   imdb: x.imdb_rating ?? x.vote_average ?? x.rating ?? "N/A",
   imdb_id: x.imdb_id || null,
