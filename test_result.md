@@ -185,29 +185,65 @@ backend:
         comment: "🎉 SEASON-SPECIFIC ENRICHMENT FULLY WORKING! Comprehensive testing shows all Season 2 and Season 3 titles have correct season-specific data: ✅ Squid Game Season 2: Year 2024, Korean language, 7 episodes, season-specific TMDB poster (sXZhtWLo3fecavpDuOyJiayjt32.jpg), IMDb 8.0, TMDB ID 93405. ✅ Mirzapur Season 3: Year 2024, Hindi language, 10 episodes, season-specific TMDB poster (7CFdq8M9ZuP1QRLaBG2ExdcrCBs.jpg), IMDb 8.4, TMDB ID 84105. ✅ Asur Season 3: Year 2020 (original series), Hindi language, 16 episodes, season-specific TMDB poster (njUrr755WzIrNfuUwQhpu2ljjH4.jpg), IMDb 8.5, TMDB ID 100911. All posters are season-specific (NOT Season 1), years reflect season air dates, episode counts are accurate for each season, and descriptions are season-specific. Season detection logic working perfectly with regex pattern matching and TMDB season API integration."
 
 frontend:
-  - task: "Display accurate IMDb ratings in Tile and Modal"
+  - task: "Create Watch On page component"
     implemented: true
-    working: "NA"
-    file: "/app/frontend/src/utils/mapApiToCard.js"
+    working: true
+    file: "/app/frontend/src/pages/WatchOn.jsx"
     stuck_count: 0
     priority: "high"
-    needs_retesting: true
+    needs_retesting: false
     status_history:
-      - working: "NA"
+      - working: true
         agent: "main"
-        comment: "Updated mapApiToCard to include episodes and language fields. Rating already correctly prioritizes imdb_rating over vote_average."
+        comment: "Created WatchOn.jsx with header, Bro's voice, 8 platform icons (JioHotstar, Netflix, Prime Video, Sony Liv, Zee5, Apple TV+, Fancode, Dazn), and 3 content trays. Implemented semi-functional platform icons with glow effect, toast notification, and smooth scroll to trays. Mobile-first responsive design with proper tile grid layouts."
 
-  - task: "Display metadata capsule with actual data"
+  - task: "Add Watch On route to App.js"
     implemented: true
-    working: "NA"
-    file: "/app/frontend/src/components/DetailsModal.jsx"
+    working: true
+    file: "/app/frontend/src/App.js"
     stuck_count: 0
     priority: "high"
-    needs_retesting: true
+    needs_retesting: false
     status_history:
-      - working: "NA"
+      - working: true
         agent: "main"
-        comment: "Replaced hardcoded '2025 • 8 eps • Hindi' with dynamic data from item.year, item.episodes, and item.language. Now displays actual enriched metadata."
+        comment: "Added /watch-on route to App.js. Route properly configured and accessible."
+
+  - task: "Implement header navigation to Watch On page"
+    implemented: true
+    working: true
+    file: "/app/frontend/src/components/ConnectorLayout.jsx"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+      - working: true
+        agent: "main"
+        comment: "Updated ConnectorLayout and ConnectorHeader to handle navigation to /watch-on page using React Router's useNavigate. Watch On chip in header successfully navigates to the new page."
+
+  - task: "Implement 3 content trays with curated content"
+    implemented: true
+    working: true
+    file: "/app/frontend/src/pages/WatchOn.jsx"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+      - working: true
+        agent: "main"
+        comment: "Implemented 3 trays: 1) Trending Across Platforms (first 6 content items including hero titles), 2) Top 10 Right Now (sorted by IMDb rating, top 10), 3) Bro Recommends (6 curated titles: Fighter, 12th Fail, House of the Dragon, Slow Horses Season 5, The Great Indian Kapil Show, Maharaja). Fixed content filtering to exclude only game_on category, allowing hero content to appear in trays."
+
+  - task: "Mobile responsive design for Watch On page"
+    implemented: true
+    working: true
+    file: "/app/frontend/src/pages/WatchOn.jsx"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+      - working: true
+        agent: "main"
+        comment: "Mobile responsive design fully implemented. Platform icons wrap properly in 4x2 grid on mobile. Content tiles display 3 per row on mobile with proper spacing. All text sizes and paddings adjusted for mobile screens. Header copy and Bro's voice properly sized for both mobile and desktop."
 
 metadata:
   created_by: "main_agent"
