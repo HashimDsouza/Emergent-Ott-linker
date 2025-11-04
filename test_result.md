@@ -109,66 +109,67 @@ user_problem_statement: |
   3. Wrong title images for duplicate names (e.g., "Fighter" pulling international movie instead of Hindi version)
   4. Season specificity issues (Season 2 showing Season 1 data)
 
+backend:
+  - task: "Fix IMDb rating accuracy"
+    implemented: true
+    working: "NA"
+    file: "/app/backend/server.py"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: true
+    status_history:
+      - working: "NA"
+        agent: "main"
+        comment: "Added OMDb integration to fetch actual IMDb ratings. Updated enrichment logic to prefer IMDb ratings from OMDb over TMDB's vote_average. Added imdb_rating, language, episodes, and seasons fields to update_fields dictionary for proper persistence."
+
+  - task: "Fix duplicate title matching"
+    implemented: true
+    working: "NA"
+    file: "/app/backend/server.py"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: true
+    status_history:
+      - working: "NA"
+        agent: "main"
+        comment: "Removed year constraint from TMDB search (was using platform release date 2025 instead of actual movie year). Now TMDB search uses title without year constraint, letting TMDB return most relevant result. Indian content detection logic already exists to prioritize Hindi/regional language results."
+
+  - task: "Fix metadata capsule persistence"
+    implemented: true
+    working: "NA"
+    file: "/app/backend/server.py"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: true
+    status_history:
+      - working: "NA"
+        agent: "main"
+        comment: "Added missing 'language', 'episodes', and 'seasons' fields to update_fields dictionary in enrich-all-content endpoint. These fields were being computed but not persisted to database."
+
 frontend:
-  - task: "Remove permanently visible logo tooltip"
+  - task: "Display accurate IMDb ratings in Tile and Modal"
     implemented: true
-    working: true
-    file: "/app/frontend/src/components/ConnectorLayout.jsx"
+    working: "NA"
+    file: "/app/frontend/src/utils/mapApiToCard.js"
     stuck_count: 0
     priority: "high"
-    needs_retesting: false
+    needs_retesting: true
     status_history:
-      - working: true
+      - working: "NA"
         agent: "main"
-        comment: "Fixed logo tooltip to only show on hover/group-hover. Changed from always-visible <Tip> to conditional display with hidden class + group-hover:block. Logo tooltip no longer permanently visible."
+        comment: "Updated mapApiToCard to include episodes and language fields. Rating already correctly prioritizes imdb_rating over vote_average."
 
-  - task: "Add tooltips to Line 2 and Footer elements"
+  - task: "Display metadata capsule with actual data"
     implemented: true
-    working: true
-    file: "/app/frontend/src/components/ConnectorLayout.jsx"
+    working: "NA"
+    file: "/app/frontend/src/components/DetailsModal.jsx"
     stuck_count: 0
     priority: "high"
-    needs_retesting: false
+    needs_retesting: true
     status_history:
-      - working: true
+      - working: "NA"
         agent: "main"
-        comment: "Added tooltip support to all missing elements: Game On, Entertainment, Lang (Language Dropdown), Home, Dive In, Crew, Get With It. All tooltips now functional on hover."
-
-  - task: "Connie button positioning to avoid footer overlap"
-    implemented: true
-    working: true
-    file: "/app/frontend/src/components/ConnectorLayout.jsx"
-    stuck_count: 0
-    priority: "high"
-    needs_retesting: false
-    status_history:
-      - working: true
-        agent: "main"
-        comment: "Changed Connie button positioning from fixed bottom-16 to calculated bottom: calc(56px + 16px) to sit above footer (56px footer height + 16px margin). Connie now properly positioned above footer on mobile without overlapping 'Get With It'."
-
-  - task: "Mobile tooltip system with long-press"
-    implemented: true
-    working: true
-    file: "/app/frontend/src/components/ConnectorLayout.jsx"
-    stuck_count: 0
-    priority: "medium"
-    needs_retesting: false
-    status_history:
-      - working: true
-        agent: "main"
-        comment: "Implemented long-press tooltip system for mobile. Added onTouchStart/onTouchEnd handlers with 500ms delay. Tooltips show for 2 seconds on long-press. Enhanced Chip, LanguageDropdown, and NavItem components with mobile tooltip support using React.useRef for timer management."
-
-  - task: "Tooltip component enhancement"
-    implemented: true
-    working: true
-    file: "/app/frontend/src/components/ConnectorLayout.jsx"
-    stuck_count: 0
-    priority: "medium"
-    needs_retesting: false
-    status_history:
-      - working: true
-        agent: "main"
-        comment: "Updated Tip component with opacity-0 + group-hover:opacity-100 for smooth transitions. Tooltips now use CSS transitions for better UX."
+        comment: "Replaced hardcoded '2025 • 8 eps • Hindi' with dynamic data from item.year, item.episodes, and item.language. Now displays actual enriched metadata."
 
 metadata:
   created_by: "main_agent"
