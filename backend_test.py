@@ -273,7 +273,8 @@ class ContentEnrichmentTester:
         specific_titles = [
             {
                 "title": "Fighter",
-                "expected_imdb_rating": 6.5,  # Approximate expected rating
+                "expected_tmdb_id": 784651,  # CRITICAL: 2024 Hindi film, NOT 125702 (2000 English)
+                "expected_imdb_rating": 7.4,  # Around 7.4 for correct movie
                 "expected_year": 2024,
                 "expected_language": "Hindi"
             },
@@ -282,6 +283,16 @@ class ContentEnrichmentTester:
                 "expected_imdb_rating": 8.7,
                 "expected_year": 2023,
                 "expected_language": "Hindi"
+            },
+            {
+                "title": "Asur",
+                "expected_year": 2020,  # Indian series
+                "expected_language": "Hindi"
+            },
+            {
+                "title": "Maharaja",
+                "expected_year": 2024,  # Tamil film
+                "expected_language": "Tamil"
             }
         ]
         
