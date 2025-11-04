@@ -256,6 +256,78 @@ class ContentEnrichmentTester:
                         f"Issues found: {'; '.join(issues[:3])}...")
             return False
     
+    async def test_asur_season_3_specifically(self) -> bool:
+        """CRITICAL TEST: Verify Asur Season 3 has correct Indian series metadata (not Chinese film)"""
+        try:
+            # Get buzzing content to find Asur Season 3
+            async with self.session.get(f"{self.base_url}/api/content?category=buzzing") as response:
+                if response.status == 200:
+                    content_list = await response.json()
+                    
+                    asur_item = None
+                    for item in content_list:
+                        if "Asur Season 3" in item.get("title", ""):
+                            asur_item = item
+                            break
+                    
+                    if not asur_item:
+                        self.log_test("Asur Season 3 Critical Test", "FAIL", 
+                                    "Asur Season 3 not found in buzzing category")
+                        return False
+                    
+                    # Check critical fields
+                    tmdb_id = asur_item.get("tmdb_id")
+                    year = asur_item.get("year")
+                    language = asur_item.get("language")
+                    imdb_rating = asur_item.get("imdb_rating")
+                    description = asur_item.get("description", "").lower()
+                    
+                    issues = []
+                    
+                    # MOST CRITICAL: Check if it's the wrong Chinese film
+                    if tmdb_id == 256744:
+                        issues.append("CRITICAL FAILURE: Using Chinese film 'Dying to Survive' (TMDB ID: 256744)")
+                    
+                    # Check year - should be around 2020-2023 for Indian series, NOT 2025
+                    if year and year == 2025:
+                        issues.append(f"Wrong year: {year} (Chinese film year, expected 2020-2023 for Indian series)")
+                    elif year and (year < 2020 or year > 2023):
+                        issues.append(f"Unexpected year: {year} (expected 2020-2023 for Indian series)")
+                    
+                    # Check language - should be Hindi, NOT Japanese/Chinese
+                    if language and language.lower() in ["japanese", "chinese", "mandarin"]:
+                        issues.append(f"Wrong language: {language} (Chinese film language, expected Hindi)")
+                    elif language and language != "Hindi":
+                        issues.append(f"Unexpected language: {language} (expected Hindi for Indian series)")
+                    
+                    # Check IMDb rating - should be around 8.5-8.6 for Indian series
+                    if imdb_rating:
+                        rating_val = float(imdb_rating)
+                        if rating_val < 8.0 or rating_val > 9.0:
+                            issues.append(f"Unexpected IMDb rating: {imdb_rating} (expected ~8.5-8.6 for Indian series)")
+                    
+                    # Check description for psychological thriller keywords
+                    if description and "psychological" not in description and "thriller" not in description:
+                        issues.append("Description doesn't mention psychological thriller (expected for Indian Asur series)")
+                    
+                    if not issues:
+                        self.log_test("Asur Season 3 Critical Test", "PASS", 
+                                    f"✅ Correct Indian series (TMDB: {tmdb_id}, Year: {year}, Lang: {language}, IMDb: {imdb_rating})")
+                        return True
+                    else:
+                        self.log_test("Asur Season 3 Critical Test", "FAIL", 
+                                    f"❌ {'; '.join(issues)}")
+                        return False
+                        
+                else:
+                    error_text = await response.text()
+                    self.log_test("Asur Season 3 Critical Test", "FAIL", 
+                                f"HTTP {response.status}: {error_text}")
+                    return False
+        except Exception as e:
+            self.log_test("Asur Season 3 Critical Test", "FAIL", f"Exception: {str(e)}")
+            return False
+    
     async def test_fighter_movie_specifically(self) -> bool:
         """CRITICAL TEST: Verify Fighter movie has correct TMDB ID (784651 not 125702)"""
         try:
