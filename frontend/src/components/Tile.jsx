@@ -78,9 +78,9 @@ export default function Tile({ item, onInfo }) {
       <div 
         className="px-1.5 py-1.5 md:px-3 md:py-2.5 text-white" 
         style={{ backgroundColor: 'rgba(23, 58, 53, 0.95)' }}
-      >{/* Line 1: Platform + social icons (heart, thumbs, comments) - MOBILE OPTIMIZED */}
+      >{/* Line 1: Platform + social icons (heart, thumbs, comments) - NO CAPSULE */}
         <div className="flex items-center gap-0.5 md:gap-2 mb-0.5 md:mb-1.5">
-          <span className="text-[8px] md:text-[10px] px-1 py-0.5 rounded-full bg-white/10 border border-white/15 flex-shrink-0">{item.platform || "JioHotstar"}</span>
+          <span className="text-[8px] md:text-[10px] font-semibold flex-shrink-0" style={{ color: mint }}>{item.platform || "JioHotstar"}</span>
           <button 
             onClick={(e) => { e.stopPropagation(); setLiked(!liked); }} 
             className="inline-flex items-center gap-0.5 opacity-90 text-[8px] md:text-xs hover:scale-110 transition"
