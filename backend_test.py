@@ -217,12 +217,29 @@ class ContentEnrichmentTester:
                     issues.append(f"12th Fail has low IMDb rating: {imdb_rating} (expected ~8.7)")
             
             elif "Fighter" in title:
+                # CRITICAL TEST: Check TMDB ID for Fighter
+                tmdb_id = item.get("tmdb_id")
+                if tmdb_id == 125702:
+                    issues.append(f"CRITICAL: Fighter has wrong TMDB ID {tmdb_id} (2000 English film) - should be 784651 (2024 Hindi)")
+                elif tmdb_id != 784651:
+                    issues.append(f"Fighter has unexpected TMDB ID {tmdb_id} (expected 784651 for 2024 Hindi film)")
+                
                 language = item.get("language")
                 year = item.get("year")
                 if language != "Hindi":
                     issues.append(f"Fighter shows wrong language: {language} (expected Hindi)")
                 if year and year != 2024:
                     issues.append(f"Fighter shows wrong year: {year} (expected 2024)")
+            
+            elif "Asur" in title:
+                year = item.get("year")
+                if year and year != 2020:
+                    issues.append(f"Asur shows wrong year: {year} (expected 2020 for Indian series)")
+            
+            elif "Maharaja" in title:
+                year = item.get("year")
+                if year and year != 2024:
+                    issues.append(f"Maharaja shows wrong year: {year} (expected 2024 Tamil film)")
             
             # Check poster URLs
             poster_url = item.get("poster_url") or ""
@@ -237,6 +254,70 @@ class ContentEnrichmentTester:
         else:
             self.log_test(f"Tray Content Accuracy - {category}", "FAIL", 
                         f"Issues found: {'; '.join(issues[:3])}...")
+            return False
+    
+    async def test_fighter_movie_specifically(self) -> bool:
+        """CRITICAL TEST: Verify Fighter movie has correct TMDB ID (784651 not 125702)"""
+        try:
+            # Get hot_drop content to find Fighter
+            async with self.session.get(f"{self.base_url}/api/content?category=hot_drop") as response:
+                if response.status == 200:
+                    content_list = await response.json()
+                    
+                    fighter_item = None
+                    for item in content_list:
+                        if "Fighter" in item.get("title", ""):
+                            fighter_item = item
+                            break
+                    
+                    if not fighter_item:
+                        self.log_test("Fighter Movie Critical Test", "FAIL", 
+                                    "Fighter movie not found in hot_drop category")
+                        return False
+                    
+                    # Check critical fields
+                    tmdb_id = fighter_item.get("tmdb_id")
+                    year = fighter_item.get("year")
+                    language = fighter_item.get("language")
+                    imdb_rating = fighter_item.get("imdb_rating")
+                    description = fighter_item.get("description", "").lower()
+                    
+                    issues = []
+                    
+                    # MOST CRITICAL: TMDB ID check
+                    if tmdb_id == 125702:
+                        issues.append("CRITICAL FAILURE: Using 2000 English Fighter film (TMDB ID: 125702)")
+                    elif tmdb_id != 784651:
+                        issues.append(f"Wrong TMDB ID: {tmdb_id} (expected 784651 for 2024 Hindi film)")
+                    
+                    if year != 2024:
+                        issues.append(f"Wrong year: {year} (expected 2024)")
+                    
+                    if language != "Hindi":
+                        issues.append(f"Wrong language: {language} (expected Hindi)")
+                    
+                    if imdb_rating and float(imdb_rating) < 6.0:
+                        issues.append(f"Suspiciously low IMDb rating: {imdb_rating} (expected ~7.4)")
+                    
+                    if "aerial" not in description and "hrithik" not in description:
+                        issues.append("Description doesn't mention aerial action or Hrithik Roshan")
+                    
+                    if not issues:
+                        self.log_test("Fighter Movie Critical Test", "PASS", 
+                                    f"✅ Correct 2024 Hindi film (TMDB: {tmdb_id}, Year: {year}, Lang: {language})")
+                        return True
+                    else:
+                        self.log_test("Fighter Movie Critical Test", "FAIL", 
+                                    f"❌ {'; '.join(issues)}")
+                        return False
+                        
+                else:
+                    error_text = await response.text()
+                    self.log_test("Fighter Movie Critical Test", "FAIL", 
+                                f"HTTP {response.status}: {error_text}")
+                    return False
+        except Exception as e:
+            self.log_test("Fighter Movie Critical Test", "FAIL", f"Exception: {str(e)}")
             return False
     
     async def run_all_tests(self):
