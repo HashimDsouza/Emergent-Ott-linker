@@ -20,8 +20,8 @@ export default function Tray({ icon, title, subline, items, onInfo }) {
   );
 
   return (
-    <section className="mb-4 md:mb-6">
-      <div className="flex items-end justify-between mb-2 md:mb-3">
+    <section className="mb-3 md:mb-4">
+      <div className="flex items-end justify-between mb-2">
         <div>
           <div className="text-base md:text-xl font-semibold text-white flex items-center gap-1.5 md:gap-2">{icon} {title}</div>
           {subline && <div className="text-[10px] md:text-sm" style={{ color: "#FF4F64" }}>{subline}</div>}
