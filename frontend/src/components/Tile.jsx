@@ -41,7 +41,7 @@ export default function Tile({ item, onInfo }) {
 
   return (
     <div onClick={handleClick} className="relative block rounded-lg md:rounded-xl overflow-hidden shadow-lg border border-white/10 hover:-translate-y-0.5 transition cursor-pointer">
-      {/* Poster - 2:3 on mobile (portrait), 16:9 on desktop (landscape) */}
+      {/* Poster - 2:3 on mobile (portrait), 16:9 on desktop (landscape) - CLEAN, NO OVERLAY */}
       <div 
         className="relative" 
         style={{ background: `linear-gradient(135deg, ${coral}70 0%, ${mint}45 45%, ${charcoalSoft} 100%)` }}
@@ -52,10 +52,9 @@ export default function Tile({ item, onInfo }) {
             <img 
               src={item.thumbnail} 
               alt={item.title}
-              className="absolute inset-0 w-full h-full object-cover"
+              className="w-full h-full object-cover"
             />
           )}
-          <div className="absolute inset-x-0 bottom-0 h-1/4 bg-gradient-to-t from-black/90 to-transparent" />
         </div>
         {/* Desktop: 16/9 aspect ratio */}
         <div className="hidden md:block" style={{ aspectRatio: "16/9" }}>
@@ -63,15 +62,23 @@ export default function Tile({ item, onInfo }) {
             <img 
               src={item.thumbnail} 
               alt={item.title}
-              className="absolute inset-0 w-full h-full object-cover"
+              className="w-full h-full object-cover"
             />
           )}
-          <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-black/90 to-transparent" />
         </div>
       </div>
 
-      {/* Compact overlay - responsive sizing */}
-      <div className="absolute inset-x-0 bottom-0 px-1.5 pb-1.5 md:px-3 md:pb-3 text-white">{/* Line 1: Platform + social icons (heart, thumbs, comments) */}
+      {/* Coral-Mint Gradient Separator */}
+      <div 
+        className="h-[3px]" 
+        style={{ background: `linear-gradient(90deg, ${coral} 0%, ${mint} 100%)` }}
+      />
+
+      {/* Info Panel - Below image with all 3 lines */}
+      <div 
+        className="px-1.5 py-2 md:px-3 md:py-2.5 text-white" 
+        style={{ backgroundColor: 'rgba(23, 58, 53, 0.95)' }}
+      >{/* Line 1: Platform + social icons (heart, thumbs, comments) */}
         <div className="flex items-center gap-0.5 md:gap-2 mb-0.5 md:mb-1">
           <span className="text-[7px] md:text-[10px] px-1 py-0.5 rounded-full bg-white/10 border border-white/15 flex-shrink-0">{item.platform || "JioHotstar"}</span>
           <button 
