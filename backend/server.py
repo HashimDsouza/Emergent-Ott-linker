@@ -357,12 +357,48 @@ async def enrich_content_item(content: Dict) -> Dict:
         if vote_count:
             content["vote_count"] = vote_count
         
+        # Language (original language)
+        original_language = tmdb_details.get("original_language")
+        if original_language:
+            # Map language codes to full names
+            language_map = {
+                "en": "English",
+                "hi": "Hindi",
+                "ta": "Tamil",
+                "te": "Telugu",
+                "ml": "Malayalam",
+                "kn": "Kannada",
+                "mr": "Marathi",
+                "bn": "Bengali",
+                "pa": "Punjabi",
+                "es": "Spanish",
+                "fr": "French",
+                "de": "German",
+                "it": "Italian",
+                "ja": "Japanese",
+                "ko": "Korean",
+                "zh": "Chinese"
+            }
+            content["language"] = language_map.get(original_language, original_language.upper())
+            logging.info(f"  🗣️  Language: {content['language']}")
+        
+        # Number of episodes (for TV shows)
+        if content.get("content_type") in ["series", "documentary"]:
+            num_episodes = tmdb_details.get("number_of_episodes")
+            num_seasons = tmdb_details.get("number_of_seasons")
+            if num_episodes:
+                content["episodes"] = num_episodes
+                logging.info(f"  📺 Episodes: {num_episodes} ({num_seasons} seasons)")
+            if num_seasons:
+                content["seasons"] = num_seasons
+        
         # TMDB rating (always available)
         vote_average = tmdb_details.get("vote_average")
         if vote_average:
             content["vote_average"] = round(vote_average, 1)
-            content["rating"] = content["vote_average"]  # Use TMDB as baseline
-            content["rating_source"] = "tmdb"
+            if not content.get("rating"):  # Only set if IMDb rating doesn't exist
+                content["rating"] = content["vote_average"]
+                content["rating_source"] = "tmdb"
             logging.info(f"  ⭐ TMDB Rating: {content['vote_average']}/10 ({vote_count} votes)")
         
         # Get IMDb ID
