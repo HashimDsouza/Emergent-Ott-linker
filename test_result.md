@@ -127,15 +127,18 @@ backend:
 
   - task: "Fix duplicate title matching"
     implemented: true
-    working: "NA"
+    working: false
     file: "/app/backend/server.py"
-    stuck_count: 0
+    stuck_count: 1
     priority: "high"
     needs_retesting: true
     status_history:
       - working: "NA"
         agent: "main"
         comment: "Removed year constraint from TMDB search (was using platform release date 2025 instead of actual movie year). Now TMDB search uses title without year constraint, letting TMDB return most relevant result. Indian content detection logic already exists to prioritize Hindi/regional language results."
+      - working: false
+        agent: "testing"
+        comment: "❌ CRITICAL ISSUE: Fighter pulling wrong movie. Getting 2000 English film (TMDB ID: 125702) instead of 2024 Hindi film with Hrithik Roshan (TMDB ID: 784651). Indian content detection logic not working properly. TMDB search for 'Fighter' with year=2024 returns correct movie as first result, but system picking wrong one. Need to investigate TMDB search parameters and Indian content prioritization."
 
   - task: "Fix metadata capsule persistence"
     implemented: true
