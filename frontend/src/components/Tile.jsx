@@ -134,17 +134,17 @@ export default function Tile({ item, onInfo }) {
           </a>
         </div>
 
-        {/* Line 3: Descriptor + IMDb rating + info button - INCREASED FONT SIZE */}
+        {/* Line 3: Descriptor + IMDb rating + info button - MOBILE OPTIMIZED */}
         <div className="flex items-center gap-0.5 md:gap-1.5">
-          <div className="italic flex-1 line-clamp-1 text-[11px] md:text-[12px]" style={{ color: coral }}>{item.descriptor || "Trending"}</div>
+          <div className="italic flex-1 line-clamp-1 text-[10px] md:text-[12px]" style={{ color: coral }}>{item.descriptor || "Trending"}</div>
           {item.imdb && (
-            <span className="text-[10px] md:text-[11px] px-1 py-0.5 rounded-full bg-yellow-500/20 border border-yellow-500/30 flex-shrink-0">
+            <span className="text-[9px] md:text-[11px] px-1 py-0.5 rounded-full bg-yellow-500/20 border border-yellow-500/30 flex-shrink-0">
               ⭐ {typeof item.imdb === 'number' ? item.imdb.toFixed(1) : item.imdb}
             </span>
           )}
           <button aria-label="More info" onClick={(e) => { e.stopPropagation(); onInfo?.(item); }} className="relative inline-flex items-center justify-center flex-shrink-0">
-            <span className="rounded-full w-[16px] h-[16px] md:w-[20px] md:h-[20px]" style={{ background: mint, boxShadow: "0 0 10px rgba(48,224,178,0.4)" }} />
-            <span className="absolute text-[10px] md:text-[11px] font-bold" style={{ color: "#0E1514" }}>i</span>
+            <span className="rounded-full w-[14px] h-[14px] md:w-[20px] md:h-[20px]" style={{ background: mint, boxShadow: "0 0 10px rgba(48,224,178,0.4)" }} />
+            <span className="absolute text-[9px] md:text-[11px] font-bold" style={{ color: "#0E1514" }}>i</span>
           </button>
         </div>
       </div>
