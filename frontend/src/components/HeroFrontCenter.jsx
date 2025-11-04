@@ -114,7 +114,7 @@ export default function HeroFrontCenter({ onInfo }) {
             e.stopPropagation(); 
             onInfo?.(currentSlide); 
           }} 
-          className="absolute bottom-3 right-3 md:bottom-4 md:right-4 z-10 relative inline-flex items-center justify-center"
+          className="absolute bottom-3 right-3 md:bottom-4 md:right-4 z-50 inline-flex items-center justify-center"
         >
           <span 
             className="rounded-full w-[18px] h-[18px] md:w-[24px] md:h-[24px]" 
