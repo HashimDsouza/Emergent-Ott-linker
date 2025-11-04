@@ -160,7 +160,19 @@ export default function HeroFrontCenter({ onInfo }) {
               >
                 {currentSlide.platform}
               </span>
-              {currentSlide.imdb && currentSlide.imdb !== "N/A" && (
+              {currentSlide.imdb && currentSlide.imdb !== "N/A" && currentSlide.imdb_id && (
+                <a
+                  href={`https://www.imdb.com/title/${currentSlide.imdb_id}/`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={(e) => e.stopPropagation()}
+                  className="text-white/85 text-[9px] md:text-xs font-semibold hover:opacity-80 transition"
+                  style={{ color: '#fbbf24' }}
+                >
+                  ⭐ {typeof currentSlide.imdb === 'number' ? currentSlide.imdb.toFixed(1) : currentSlide.imdb}
+                </a>
+              )}
+              {currentSlide.imdb && currentSlide.imdb !== "N/A" && !currentSlide.imdb_id && (
                 <span className="text-white/85 text-[9px] md:text-xs font-semibold" style={{ color: '#fbbf24' }}>
                   ⭐ {typeof currentSlide.imdb === 'number' ? currentSlide.imdb.toFixed(1) : currentSlide.imdb}
                 </span>
