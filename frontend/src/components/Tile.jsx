@@ -57,8 +57,8 @@ export default function Tile({ item, onInfo }) {
             />
           )}
         </div>
-        {/* Desktop: 16/9 aspect ratio */}
-        <div className="hidden md:block" style={{ aspectRatio: "16/9" }}>
+        {/* Desktop: 2/3 aspect ratio (portrait like mobile) */}
+        <div className="hidden md:block" style={{ aspectRatio: "2/3" }}>
           {item.thumbnail && (
             <img 
               src={item.thumbnail} 
