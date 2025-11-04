@@ -141,6 +141,12 @@ class ContentEnrichmentTester:
                     
                     issues = []
                     
+                    # CRITICAL: Check TMDB ID for Fighter movie
+                    tmdb_id = item.get("tmdb_id")
+                    expected_tmdb_id = expected_data.get("expected_tmdb_id")
+                    if expected_tmdb_id and tmdb_id != expected_tmdb_id:
+                        issues.append(f"CRITICAL: TMDB ID {tmdb_id} vs expected {expected_tmdb_id}")
+                    
                     # Check IMDb rating
                     imdb_rating = item.get("imdb_rating")
                     expected_rating = expected_data.get("expected_imdb_rating")
@@ -169,9 +175,15 @@ class ContentEnrichmentTester:
                     if expected_language and language != expected_language:
                         issues.append(f"Language '{language}' vs expected '{expected_language}'")
                     
+                    # Check description for Fighter (should mention aerial action or Hrithik Roshan)
+                    if title == "Fighter":
+                        description = item.get("description", "").lower()
+                        if "aerial" not in description and "hrithik" not in description and "roshan" not in description:
+                            issues.append("Description doesn't mention aerial action or Hrithik Roshan")
+                    
                     if not issues:
                         self.log_test(f"Title Metadata - {title}", "PASS", 
-                                    f"All metadata correct")
+                                    f"All metadata correct (TMDB ID: {tmdb_id})")
                         return True
                     else:
                         self.log_test(f"Title Metadata - {title}", "FAIL", 
