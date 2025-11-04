@@ -179,14 +179,15 @@ metadata:
 
 test_plan:
   current_focus:
-    - "Verify logo tooltip only shows on hover"
-    - "Confirm all Line 2 and Footer tooltips are functional"
-    - "Test Connie button positioning on mobile (no overlap)"
-    - "Test long-press tooltip behavior on mobile devices"
+    - "Trigger content enrichment via /api/enrich-all-content"
+    - "Verify IMDb ratings are correctly fetched from OMDb and displayed"
+    - "Check metadata capsule displays correct year, episodes, and language"
+    - "Verify duplicate titles (Fighter, Asur) display correct images and metadata"
+    - "Test first 2 trays (Buzzing Now and Hot Drop Alert) for accuracy"
   stuck_tasks: []
   test_all: false
   test_priority: "high_first"
 
 agent_communication:
   - agent: "main"
-    message: "Fixed all reported mobile issues: 1) Logo tooltip no longer permanently visible, 2) Added all missing tooltips to Game On, Entertainment, Lang, Home, Dive In, Crew, Get With It, 3) Connie button repositioned to sit above footer without overlapping, 4) Implemented long-press tooltip system for mobile. Desktop tooltips work on hover, mobile tooltips appear on 500ms long-press and auto-hide after 2s."
+    message: "Fixed content metadata accuracy issues: 1) Added OMDb API key and integrated OMDb for actual IMDb ratings, 2) Fixed year extraction to not use platform release_date which was causing duplicate confusion, 3) Added missing language, episodes, seasons fields to database update, 4) Fixed frontend to display dynamic metadata capsule instead of hardcoded values. Ready for enrichment and testing."
