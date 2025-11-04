@@ -433,6 +433,12 @@ class ContentEnrichmentTester:
         
         specific_titles = [
             {
+                "title": "Asur Season 3",
+                "expected_imdb_rating": 8.5,  # Around 8.5-8.6 for Indian series
+                "expected_year": 2023,  # Indian series continuation, NOT 2025 Chinese film
+                "expected_language": "Hindi"
+            },
+            {
                 "title": "Fighter",
                 "expected_tmdb_id": 784651,  # CRITICAL: 2024 Hindi film, NOT 125702 (2000 English)
                 "expected_imdb_rating": 7.4,  # Around 7.4 for correct movie
@@ -443,11 +449,6 @@ class ContentEnrichmentTester:
                 "title": "12th Fail",
                 "expected_imdb_rating": 8.7,
                 "expected_year": 2023,
-                "expected_language": "Hindi"
-            },
-            {
-                "title": "Asur",
-                "expected_year": 2020,  # Indian series
                 "expected_language": "Hindi"
             },
             {
