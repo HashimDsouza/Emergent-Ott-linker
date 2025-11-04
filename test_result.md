@@ -247,13 +247,13 @@ frontend:
 
 metadata:
   created_by: "main_agent"
-  version: "4.0"
-  test_sequence: 4
+  version: "5.0"
+  test_sequence: 5
   run_ui: false
 
 test_plan:
   current_focus:
-    - "Season-specific enrichment verification completed"
+    - "Watch On page Phase 1A implementation completed"
   stuck_tasks: []
   test_all: false
   test_priority: "high_first"
