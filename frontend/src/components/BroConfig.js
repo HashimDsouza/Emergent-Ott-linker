@@ -55,7 +55,7 @@ export const broChips = [
         sort_by: 'popularity.desc'
       }
     },
-    broReply: "Fists up. Let's go. 💥"
+    broReply: "Fists up. Lets go."
   },
   {
     id: 'trending-shows',
