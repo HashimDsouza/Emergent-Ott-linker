@@ -59,7 +59,7 @@ export default function BuzzMeter() {
       id: 'buzz-3',
       title: 'Kapil Sharma Goes Viral',
       platform: 'X',
-      thumbnail: 'https://image.tmdb.org/t/p/w500/wj6NMVpKNcIUFALdRx8hx2VqiLV.jpg', // The Great Indian Kapil Show
+      thumbnail: `${BACKEND_URL}/api/proxy-image?url=${encodeURIComponent('https://image.tmdb.org/t/p/w500/wj6NMVpKNcIUFALdRx8hx2VqiLV.jpg')}`,
       headline: 'Kapil\'s Akshay Kumar roast becomes #1 trending',
       buzzScore: 82,
       tags: ['Comedy', 'Entertainment'],
