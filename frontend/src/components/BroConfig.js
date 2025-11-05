@@ -92,7 +92,7 @@ export const broChips = [
         randomize: true
       }
     },
-    broReply: 'Trust fall. Ready? 🎲'
+    broReply: "Trust fall. Ready? 🎲"
   }
 ];
 
