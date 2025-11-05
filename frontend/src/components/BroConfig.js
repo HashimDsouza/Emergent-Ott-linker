@@ -17,7 +17,7 @@ export const broChips = [
         sort_by: 'popularity.desc'
       }
     },
-    broReply: "Desi vibes only. ✨"
+    broReply: "Desi vibes only."
   },
   {
     id: 'top-10',
