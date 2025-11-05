@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { mapApiToCard } from "../utils/mapApiToCard";
 import Tile from "../components/Tile";
 import DetailsModal from "../components/DetailsModal";
+import { ConnectorHeader, ConnectorFooter } from "../components/ConnectorLayout";
 
 const coral = "#FF4F64", mint = "#30E0B2", charcoal = "#0E1514", charcoalSoft = "#173A35";
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
