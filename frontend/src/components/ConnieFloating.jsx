@@ -83,8 +83,8 @@ const ConnieFloating = ({
   const rafRef = useRef(null);
   const resizeObsRef = useRef(null);
   
-  // XP Hook
-  const { xp, showMilestone, lastAction } = useBroXP();
+  // XP from Context
+  const { xp, showMilestone, lastAction } = useBro();
 
   useEffect(() => {
     const getFooterEl = () => {
