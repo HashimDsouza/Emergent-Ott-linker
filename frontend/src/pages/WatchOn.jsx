@@ -361,14 +361,15 @@ export default function WatchOn() {
                 </div>
               </div>
               {visibleSonyLiv && (
-                <div className="px-3 md:px-6">
-                  <div className="grid grid-cols-3 md:grid-cols-6 gap-2 md:gap-3">
+                <div className="overflow-x-auto scrollbar-hide px-3 md:px-6 pb-2 snap-x snap-mandatory" style={{ scrollBehavior: 'smooth' }}>
+                  <div className="flex gap-2 md:gap-3" style={{ width: 'max-content' }}>
                     {sonyLivTop10.map((item) => (
-                      <Tile 
-                        key={item.id}
-                        item={item} 
-                        onInfo={() => setModalItem(item)} 
-                      />
+                      <div key={item.id} className="flex-shrink-0 snap-start" style={{ width: '120px' }}>
+                        <Tile 
+                          item={item} 
+                          onInfo={() => setModalItem(item)} 
+                        />
+                      </div>
                     ))}
                   </div>
                 </div>
