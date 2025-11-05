@@ -23,13 +23,13 @@ export default function BuzzMeter() {
     { name: "IMDb", label: "IMDb" },
   ];
 
-  // Static curated Buzz Meter moments (Phase 1A)
+  // Static curated Buzz Meter moments (Phase 1A) - Using TMDB poster images
   const buzzMoments = [
     {
       id: 'buzz-1',
       title: 'Fighter Trailer',
       platform: 'YouTube',
-      thumbnail: 'https://img.youtube.com/vi/T6T0ouFer2A/maxresdefault.jpg',
+      thumbnail: 'https://image.tmdb.org/t/p/w500/qTxQz6nzSbN39BFfVu9bgDtxxW8.jpg', // Fighter TMDB poster
       headline: 'Fighter Trailer hits 25M views in 12 hours',
       buzzScore: 95,
       tags: ['OTT', 'Bollywood'],
@@ -43,7 +43,7 @@ export default function BuzzMeter() {
       id: 'buzz-2',
       title: 'ICC World Cup Final',
       platform: 'YouTube',
-      thumbnail: 'https://via.placeholder.com/600x400/173A35/30E0B2?text=ICC+World+Cup+Final',
+      thumbnail: 'https://image.tmdb.org/t/p/w500/3KICZbBy2BSPX0ZP5oBN58EbLtm.jpg', // Sports documentary
       headline: 'India vs Australia Final - Last Over Drama',
       buzzScore: 88,
       tags: ['Sports', 'Cricket'],
@@ -57,7 +57,7 @@ export default function BuzzMeter() {
       id: 'buzz-3',
       title: 'Kapil Sharma Goes Viral',
       platform: 'X',
-      thumbnail: 'https://via.placeholder.com/600x400/173A35/FF4F64?text=Kapil+Sharma',
+      thumbnail: 'https://image.tmdb.org/t/p/w500/wj6NMVpKNcIUFALdRx8hx2VqiLV.jpg', // The Great Indian Kapil Show
       headline: 'Kapil\'s Akshay Kumar roast becomes #1 trending',
       buzzScore: 82,
       tags: ['Comedy', 'Entertainment'],
@@ -71,7 +71,7 @@ export default function BuzzMeter() {
       id: 'buzz-4',
       title: 'House of the Dragon S2 Finale',
       platform: 'Reddit',
-      thumbnail: 'https://via.placeholder.com/600x400/173A35/30E0B2?text=House+of+the+Dragon',
+      thumbnail: 'https://image.tmdb.org/t/p/w500/7QMsOTMUswlwxJP0rTTZfmz2tX2.jpg', // House of the Dragon
       headline: 'HOTD fans debate shocking finale twist',
       buzzScore: 90,
       tags: ['OTT', 'Fantasy'],
@@ -85,7 +85,7 @@ export default function BuzzMeter() {
       id: 'buzz-5',
       title: '12th Fail IMDb Spike',
       platform: 'IMDb',
-      thumbnail: 'https://via.placeholder.com/600x400/173A35/FF4F64?text=12th+Fail',
+      thumbnail: 'https://image.tmdb.org/t/p/w500/g4zCId163psddDz7eCoB0r0fML0.jpg', // 12th Fail
       headline: '12th Fail added to 120K+ watchlists this week',
       buzzScore: 85,
       tags: ['Bollywood', 'Drama'],
@@ -97,16 +97,16 @@ export default function BuzzMeter() {
     },
     {
       id: 'buzz-6',
-      title: 'Fighter Social Media Storm',
+      title: 'Maharaja Social Storm',
       platform: 'X',
-      thumbnail: 'https://via.placeholder.com/600x400/173A35/30E0B2?text=Fighter+Reactions',
-      headline: '2M tweets about Fighter in 24 hours',
+      thumbnail: 'https://image.tmdb.org/t/p/w500/5wQnDMof4VOqfP78OmU31t3KnVd.jpg', // Maharaja
+      headline: '2M tweets about Maharaja in 24 hours',
       buzzScore: 92,
       tags: ['Bollywood', 'OTT'],
       stats: { views: '18M', comments: '2M', shares: '340K' },
-      summary: 'Fighter dominates social media conversations with 2 million tweets and counting.',
-      broQuip: "Fighter is everywhere. Like, literally everywhere.",
-      ctaLink: 'https://twitter.com/search?q=Fighter+movie',
+      summary: 'Maharaja dominates social media conversations with 2 million tweets and counting.',
+      broQuip: "Maharaja is everywhere. Like, literally everywhere.",
+      ctaLink: 'https://twitter.com/search?q=Maharaja+movie',
       category: 'hot_drop'
     }
   ];
