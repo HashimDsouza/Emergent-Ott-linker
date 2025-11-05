@@ -132,16 +132,16 @@ export default function Entertainment() {
         </div>
 
         {/* Mood Capsules - 2×3 Grid */}
-        <div className="px-3 md:px-6 pb-4 md:pb-6">
+        <div className="px-3 md:px-6 pb-6 md:pb-8">
           <div className="max-w-[1280px] mx-auto">
-            <div className="grid grid-cols-3 gap-2 md:gap-2.5">
+            <div className="grid grid-cols-3 gap-2 md:gap-3">
               {capsules.map((capsule) => (
                 <div key={capsule.id} className="relative">
                   <button
                     onClick={() => handleCapsuleClick(capsule)}
                     onMouseEnter={() => setHoveredCapsule(capsule.id)}
                     onMouseLeave={() => setHoveredCapsule(null)}
-                    className="w-full px-2 py-1 md:px-2.5 md:py-1.5 rounded-full transition-all text-[10px] md:text-xs font-semibold text-white flex items-center justify-center gap-1"
+                    className="w-full px-3 py-1.5 md:px-4 md:py-2 rounded-full transition-all text-xs md:text-sm font-semibold text-white flex items-center justify-center gap-1"
                     style={{
                       background: capsuleTooltip === capsule.id || selectedCapsule === capsule.id 
                         ? `linear-gradient(135deg, ${coral} 0%, ${mint} 100%)`
