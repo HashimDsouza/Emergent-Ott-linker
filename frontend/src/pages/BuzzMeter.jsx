@@ -354,42 +354,42 @@ export default function BuzzMeter() {
 
             <div className="p-4 md:p-8 pt-0">
               {/* Platform icon + title */}
-              <div className="flex items-center gap-3 mb-4">
+              <div className="flex items-center gap-2 mb-3">
                 <div 
-                  className="px-3 py-1.5 rounded-full text-sm font-semibold"
+                  className="px-2 py-1 md:px-3 md:py-1.5 rounded-full text-xs md:text-sm font-semibold"
                   style={{ background: `${mint}20`, color: mint }}
                 >
                   {modalItem.platform}
                 </div>
-                <h2 className="text-2xl md:text-3xl font-bold text-white flex-1">
+                <h2 className="text-lg md:text-3xl font-bold text-white flex-1">
                   {modalItem.title}
                 </h2>
               </div>
 
               {/* Headline */}
-              <p className="text-lg md:text-xl text-white/90 mb-4">
+              <p className="text-sm md:text-xl text-white/90 mb-3">
                 {modalItem.headline}
               </p>
 
               {/* Buzz Score with tooltip */}
-              <div className="mb-4 flex items-center gap-3">
-                <div className="flex items-center gap-2">
-                  <span className="text-3xl">{getBuzzFlames(modalItem.buzzScore)}</span>
-                  <span className="text-2xl font-bold" style={{ color: getBuzzColor(modalItem.buzzScore) }}>
+              <div className="mb-3 flex items-center gap-2">
+                <div className="flex items-center gap-1.5">
+                  <span className="text-xl md:text-3xl">{getBuzzFlames(modalItem.buzzScore)}</span>
+                  <span className="text-xl md:text-2xl font-bold" style={{ color: getBuzzColor(modalItem.buzzScore) }}>
                     {modalItem.buzzScore}
                   </span>
                 </div>
-                <div className="text-[10px] text-white/60 italic">
-                  Buzz Score = Views + Engagement + Speed
+                <div className="text-[9px] md:text-[10px] text-white/60 italic">
+                  Views + Engagement + Speed
                 </div>
               </div>
 
               {/* Tag pills */}
-              <div className="flex gap-2 mb-4">
+              <div className="flex gap-1.5 mb-3 flex-wrap">
                 {modalItem.tags?.map((tag, i) => (
                   <span 
                     key={i}
-                    className="text-xs px-3 py-1 rounded-full font-medium"
+                    className="text-[10px] md:text-xs px-2 md:px-3 py-0.5 md:py-1 rounded-full font-medium"
                     style={{ background: `${coral}20`, color: coral }}
                   >
                     {tag}
@@ -398,12 +398,12 @@ export default function BuzzMeter() {
               </div>
 
               {/* Summary */}
-              <p className="text-base text-white/80 mb-4 leading-relaxed">
+              <p className="text-xs md:text-base text-white/80 mb-3 leading-relaxed">
                 {modalItem.summary}
               </p>
 
               {/* Stats bar */}
-              <div className="flex gap-4 mb-6 text-sm">
+              <div className="flex gap-2 md:gap-4 mb-4 text-xs md:text-sm flex-wrap">
                 <div>
                   <span className="text-white/60">Views: </span>
                   <span className="text-white font-semibold">{modalItem.stats?.views}</span>
@@ -420,7 +420,7 @@ export default function BuzzMeter() {
 
               {/* Bro quip */}
               <p 
-                className="text-sm italic mb-6 px-4 py-3 rounded-lg"
+                className="text-xs md:text-sm italic mb-4 px-3 md:px-4 py-2 md:py-3 rounded-lg"
                 style={{ background: `${coral}15`, color: coral, borderLeft: `3px solid ${coral}` }}
               >
                 "{modalItem.broQuip}"
@@ -431,7 +431,7 @@ export default function BuzzMeter() {
                 href={modalItem.ctaLink}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="block w-full py-3 rounded-xl text-center text-white font-semibold transition-all hover:scale-105"
+                className="block w-full py-2.5 md:py-3 rounded-lg md:rounded-xl text-center text-sm md:text-base text-white font-semibold transition-all hover:scale-105"
                 style={{ background: `linear-gradient(135deg, ${coral} 0%, ${mint} 100%)` }}
               >
                 See on {modalItem.platform}
