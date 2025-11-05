@@ -93,20 +93,23 @@ export default function WatchOn() {
     }, 3000);
   };
 
-  // Curated "Bro Recommends" titles
-  const broRecommends = content.filter(item => 
-    ['Fighter', '12th Fail', 'House of the Dragon', 'Slow Horses Season 5', 'The Great Indian Kapil Show', 'Maharaja'].includes(item.title)
-  ).slice(0, 6);
+  // Platform-specific Top 10 content (filter by platform)
+  const getTopByPlatform = (platformName, count = 6) => {
+    return [...content]
+      .filter(item => item.platform?.toLowerCase().includes(platformName.toLowerCase()))
+      .filter(item => item.imdb && item.imdb !== "N/A")
+      .sort((a, b) => {
+        const ratingA = typeof a.imdb === 'number' ? a.imdb : parseFloat(a.imdb) || 0;
+        const ratingB = typeof b.imdb === 'number' ? b.imdb : parseFloat(b.imdb) || 0;
+        return ratingB - ratingA;
+      })
+      .slice(0, count);
+  };
 
-  // Top 10 by IMDb rating
-  const top10 = [...content]
-    .filter(item => item.imdb && item.imdb !== "N/A")
-    .sort((a, b) => {
-      const ratingA = typeof a.imdb === 'number' ? a.imdb : parseFloat(a.imdb) || 0;
-      const ratingB = typeof b.imdb === 'number' ? b.imdb : parseFloat(b.imdb) || 0;
-      return ratingB - ratingA;
-    })
-    .slice(0, 10);
+  const netflixTop10 = getTopByPlatform('Netflix', 6);
+  const jioHotstarTop10 = getTopByPlatform('JioHotstar', 6);
+  const primeTop10 = getTopByPlatform('Prime', 6);
+  const sonyLivTop10 = getTopByPlatform('Sony', 6);
 
   if (loading) {
     return (
