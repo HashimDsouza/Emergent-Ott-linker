@@ -173,6 +173,7 @@ export default function BuzzMeter() {
             >
               "Fighter trailer, Kapil clips, and dragon drama — all trending harder than deadlines."
             </p>
+            <BroMicroline />
           </div>
         </div>
 
