@@ -303,12 +303,11 @@ export default function BuzzMeter() {
             </div>
             {visibleFromTheFeeds && (
               <div className="overflow-x-auto scrollbar-hide px-3 md:px-6 pb-2 snap-x snap-mandatory" style={{ scrollBehavior: 'smooth' }}>
-                <div className="flex gap-2 md:gap-3" style={{ width: 'max-content' }}>
+                <div className="flex gap-2 md:gap-4" style={{ width: 'max-content' }}>
                   {filteredMoments.slice(0, 6).map((moment) => (
                     <div 
                       key={`feed-${moment.id}`} 
-                      className="flex-shrink-0 snap-start cursor-pointer" 
-                      style={{ width: '120px' }}
+                      className="flex-shrink-0 snap-start cursor-pointer w-[120px] md:w-[15.5%]"
                       onClick={() => setModalItem(moment)}
                     >
                       <div className="relative rounded-lg overflow-hidden shadow-lg border border-white/10 hover:-translate-y-0.5 transition">
