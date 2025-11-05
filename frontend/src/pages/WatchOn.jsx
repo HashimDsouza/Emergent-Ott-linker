@@ -323,9 +323,9 @@ export default function WatchOn() {
               </div>
               {visiblePrime && (
                 <div className="overflow-x-auto scrollbar-hide px-3 md:px-6 pb-2 snap-x snap-mandatory" style={{ scrollBehavior: 'smooth' }}>
-                  <div className="flex gap-2 md:gap-3" style={{ width: 'max-content' }}>
+                  <div className="flex gap-2 md:gap-4" style={{ width: 'max-content' }}>
                     {primeTop10.map((item) => (
-                      <div key={item.id} className="flex-shrink-0 snap-start" style={{ width: '120px' }}>
+                      <div key={item.id} className="flex-shrink-0 snap-start w-[120px] md:w-[15.5%]">
                         <Tile 
                           item={item} 
                           onInfo={() => setModalItem(item)} 
