@@ -29,7 +29,7 @@ export const broChips = [
         limit: 10
       }
     },
-    broReply: 'Hot list incoming. 🔥'
+    broReply: "Hot list incoming. 🔥"
   },
   {
     id: 'feel-good',
