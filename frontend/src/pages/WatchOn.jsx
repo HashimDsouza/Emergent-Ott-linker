@@ -77,37 +77,19 @@ export default function WatchOn() {
   const handlePlatformClick = (platform) => {
     setSelectedPlatform(platform.name);
     
-    // Visual feedback: scroll to trays
-    const traysSection = document.getElementById('trays-section');
-    if (traysSection) {
-      traysSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
-
-    // Show toast
-    const toast = document.createElement('div');
-    toast.textContent = `${platform.name} filter coming soon! Showing all platforms for now.`;
-    toast.style.cssText = `
-      position: fixed;
-      top: 80px;
-      left: 50%;
-      transform: translateX(-50%);
-      background: ${charcoalSoft};
-      color: ${mint};
-      padding: 12px 24px;
-      border-radius: 8px;
-      border: 1px solid ${mint}40;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-      z-index: 1000;
-      font-size: 14px;
-      animation: slideDown 0.3s ease;
-    `;
-    document.body.appendChild(toast);
-    
+    // Show tooltip for 2.5 seconds
+    setPlatformTooltip(platform.name);
     setTimeout(() => {
-      toast.style.opacity = '0';
-      toast.style.transition = 'opacity 0.3s';
-      setTimeout(() => toast.remove(), 300);
-    }, 3000);
+      setPlatformTooltip(null);
+    }, 2500);
+    
+    // Smooth scroll to trays section
+    setTimeout(() => {
+      document.getElementById('trays-section')?.scrollIntoView({ 
+        behavior: 'smooth',
+        block: 'start'
+      });
+    }, 100);
   };
 
   // Platform-specific Top 10 content (filter by platform)
