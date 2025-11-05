@@ -231,7 +231,7 @@ export default function WatchOn() {
                 <div className="overflow-x-auto scrollbar-hide px-3 md:px-6 pb-2 snap-x snap-mandatory" style={{ scrollBehavior: 'smooth' }}>
                   <div className="flex gap-2 md:gap-4" style={{ width: 'max-content' }}>
                     {netflixTop10.map((item) => (
-                      <div key={item.id} className="flex-shrink-0 snap-start w-[120px] md:w-[15.5%]">
+                      <div key={item.id} className="flex-shrink-0 snap-start w-[120px] md:w-[14%]">
                         <Tile 
                           item={item} 
                           onInfo={() => setModalItem(item)} 
@@ -278,7 +278,7 @@ export default function WatchOn() {
                 <div className="overflow-x-auto scrollbar-hide px-3 md:px-6 pb-2 snap-x snap-mandatory" style={{ scrollBehavior: 'smooth' }}>
                   <div className="flex gap-2 md:gap-4" style={{ width: 'max-content' }}>
                     {jioHotstarTop10.map((item) => (
-                      <div key={item.id} className="flex-shrink-0 snap-start w-[120px] md:w-[15.5%]">
+                      <div key={item.id} className="flex-shrink-0 snap-start w-[120px] md:w-[14%]">
                         <Tile 
                           item={item} 
                           onInfo={() => setModalItem(item)} 
@@ -325,7 +325,7 @@ export default function WatchOn() {
                 <div className="overflow-x-auto scrollbar-hide px-3 md:px-6 pb-2 snap-x snap-mandatory" style={{ scrollBehavior: 'smooth' }}>
                   <div className="flex gap-2 md:gap-4" style={{ width: 'max-content' }}>
                     {primeTop10.map((item) => (
-                      <div key={item.id} className="flex-shrink-0 snap-start w-[120px] md:w-[15.5%]">
+                      <div key={item.id} className="flex-shrink-0 snap-start w-[120px] md:w-[14%]">
                         <Tile 
                           item={item} 
                           onInfo={() => setModalItem(item)} 
@@ -372,7 +372,7 @@ export default function WatchOn() {
                 <div className="overflow-x-auto scrollbar-hide px-3 md:px-6 pb-2 snap-x snap-mandatory" style={{ scrollBehavior: 'smooth' }}>
                   <div className="flex gap-2 md:gap-4" style={{ width: 'max-content' }}>
                     {sonyLivTop10.map((item) => (
-                      <div key={item.id} className="flex-shrink-0 snap-start w-[120px] md:w-[15.5%]">
+                      <div key={item.id} className="flex-shrink-0 snap-start w-[120px] md:w-[14%]">
                         <Tile 
                           item={item} 
                           onInfo={() => setModalItem(item)} 
