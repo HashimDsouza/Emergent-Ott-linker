@@ -77,9 +77,14 @@ const ConnieFloating = ({
   const [mounted, setMounted] = useState(false);
   const [footerHeight, setFooterHeight] = useState(fallbackFooterHeightPx);
   const [visible, setVisible] = useState(!startHidden);
+  const [overlayOpen, setOverlayOpen] = useState(false);
+  const [xpPulse, setXpPulse] = useState(false);
   const lastScrollYRef = useRef(0);
   const rafRef = useRef(null);
   const resizeObsRef = useRef(null);
+  
+  // XP Hook
+  const { xp, showMilestone, lastAction } = useBroXP();
 
   useEffect(() => {
     const getFooterEl = () => {
