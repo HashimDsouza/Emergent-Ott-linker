@@ -77,7 +77,13 @@ export default function Tile({ item, onInfo }) {
         <div className="flex items-center gap-0.5 md:gap-2 mb-0.5 md:mb-1.5">
           <span className="text-[8px] md:text-[10px] font-semibold flex-shrink-0" style={{ color: mint }}>{item.platform || "JioHotstar"}</span>
           <button 
-            onClick={(e) => { e.stopPropagation(); setLiked(!liked); }} 
+            onClick={(e) => { 
+              e.stopPropagation(); 
+              if (!liked) {
+                addXP(1, 'save'); // Give +1 XP for liking
+              }
+              setLiked(!liked); 
+            }} 
             className="inline-flex items-center gap-0.5 opacity-90 text-[8px] md:text-xs hover:scale-110 transition"
           >
             <span style={{ color: liked ? '#FF4F64' : 'inherit' }}>❤️</span>
