@@ -447,6 +447,7 @@ export default function WatchOn() {
         `}</style>
       </div>
       <ConnectorFooter />
+      <ConnieFloating offsetPx={140} />
     </>
   );
 }
