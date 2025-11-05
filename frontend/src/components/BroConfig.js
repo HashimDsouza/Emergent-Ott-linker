@@ -42,7 +42,7 @@ export const broChips = [
         sort_by: 'vote_average.desc'
       }
     },
-    broReply: 'Warm vibes only. ☕'
+    broReply: "Warm vibes only. ☕"
   },
   {
     id: 'action',
