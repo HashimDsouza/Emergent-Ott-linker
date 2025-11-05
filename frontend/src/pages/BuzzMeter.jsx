@@ -209,12 +209,10 @@ export default function BuzzMeter() {
         <div className="max-w-[1280px] mx-auto">
           <div className="px-3 md:px-6 mb-2 flex items-end justify-between">
             <div>
-              <h2 className="text-base md:text-xl font-semibold text-white flex items-center gap-1.5 md:gap-2">
+              <h2 className="text-base md:text-xl font-semibold text-white flex items-center gap-1.5 md:gap-2 mb-2">
                 <span>🔥</span> Trending Right Now
               </h2>
-              <p className="text-[10px] md:text-sm text-white/60">
-                Live entertainment moments
-              </p>
+              <BuzzMoment />
             </div>
             <div className="flex items-center gap-2 md:gap-4 text-[10px] md:text-sm text-white/85">
               <button className="hover:text-white">Go Deeper</button>
