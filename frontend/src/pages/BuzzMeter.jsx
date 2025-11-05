@@ -214,12 +214,11 @@ export default function BuzzMeter() {
             </div>
           </div>
           <div className="overflow-x-auto scrollbar-hide px-3 md:px-6 pb-2 snap-x snap-mandatory" style={{ scrollBehavior: 'smooth' }}>
-            <div className="flex gap-2 md:gap-3" style={{ width: 'max-content' }}>
+            <div className="flex gap-2 md:gap-4" style={{ width: 'max-content' }}>
               {filteredMoments.map((moment) => (
                 <div 
                   key={moment.id} 
-                  className="flex-shrink-0 snap-start cursor-pointer" 
-                  style={{ width: '160px' }}
+                  className="flex-shrink-0 snap-start cursor-pointer w-[130px] md:w-[15.5%]"
                   onClick={() => setModalItem(moment)}
                 >
                   <div className="relative rounded-lg md:rounded-xl overflow-hidden shadow-lg border border-white/10 hover:-translate-y-0.5 transition">
