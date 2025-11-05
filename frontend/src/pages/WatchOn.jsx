@@ -418,6 +418,21 @@ export default function WatchOn() {
             }
           }
 
+          @keyframes fadeIn {
+            from {
+              opacity: 0;
+              transform: translate(-50%, -10px);
+            }
+            to {
+              opacity: 1;
+              transform: translate(-50%, 0);
+            }
+          }
+
+          .animate-fadeIn {
+            animation: fadeIn 0.3s ease-out;
+          }
+
           /* Hide scrollbar for Chrome, Safari and Opera */
           .scrollbar-hide::-webkit-scrollbar {
             display: none;
