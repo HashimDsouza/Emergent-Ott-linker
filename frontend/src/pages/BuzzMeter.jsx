@@ -73,7 +73,7 @@ export default function BuzzMeter() {
       id: 'buzz-4',
       title: 'House of the Dragon S2 Finale',
       platform: 'Reddit',
-      thumbnail: 'https://image.tmdb.org/t/p/w500/7QMsOTMUswlwxJP0rTTZfmz2tX2.jpg', // House of the Dragon
+      thumbnail: `${BACKEND_URL}/api/proxy-image?url=${encodeURIComponent('https://image.tmdb.org/t/p/w500/7QMsOTMUswlwxJP0rTTZfmz2tX2.jpg')}`,
       headline: 'HOTD fans debate shocking finale twist',
       buzzScore: 90,
       tags: ['OTT', 'Fantasy'],
