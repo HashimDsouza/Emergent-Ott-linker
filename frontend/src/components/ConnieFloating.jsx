@@ -22,7 +22,7 @@ function Connie() {
       }}
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
-      aria-label="Connie AI Assistant"
+      aria-label="Bro AI Assistant"
     >
       {/* Sparkle perfectly centered above text */}
       <div className="flex flex-col items-center justify-center gap-0">
@@ -36,12 +36,12 @@ function Connie() {
         >
           ✦
         </span>
-        {/* Connie text */}
+        {/* Bro text */}
         <span 
           className="text-[9px] md:text-[10px] font-bold tracking-wide leading-none mt-0.5"
           style={{ color: charcoal }}
         >
-          Connie
+          Bro
         </span>
       </div>
     </button>
