@@ -80,7 +80,7 @@ export const broChips = [
         sort_by: 'popularity.desc'
       }
     },
-    broReply: 'Fresh off the reel. 🎬'
+    broReply: "Fresh off the reel. 🎬"
   },
   {
     id: 'surprise',
