@@ -13,6 +13,17 @@ export default function Entertainment() {
   const [modalItem, setModalItem] = useState(null);
   const [selectedCapsule, setSelectedCapsule] = useState(null);
   const [hoveredCapsule, setHoveredCapsule] = useState(null);
+  const [capsuleTooltip, setCapsuleTooltip] = useState(null);
+
+  // Capsule tooltip messages
+  const capsuleMessages = {
+    'comfort': '"Patience, young Padawan — this feature awakens soon."',
+    'chaos': '"Hold on, hero — Bro\'s still assembling the features."',
+    'feels': '"One click to rule them all… coming soon."',
+    'laugh': '"The features are coming."',
+    'blockbusters': '"Accio features! (Still loading in the Room of Requirement.)"',
+    'bro-picks': '"Your next feature mission is classified. Stand by."'
+  };
 
   // State for tray visibility
   const [visibleNewNoted, setVisibleNewNoted] = useState(true);
