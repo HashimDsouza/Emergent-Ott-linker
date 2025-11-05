@@ -189,145 +189,183 @@ export default function WatchOn() {
       <div id="trays-section" className="pb-8">
         <div className="max-w-7xl mx-auto space-y-3 md:space-y-4">
           
-          {/* Tray 1: Trending Across Platforms */}
-          <section>
-            <div className="px-3 md:px-6 mb-2 flex items-end justify-between">
-              <div>
-                <h2 className="text-base md:text-xl font-semibold text-white flex items-center gap-1.5 md:gap-2">
-                  <span>🔥</span> Trending Across Platforms
-                </h2>
-                {!visibleTrending ? null : (
-                  <p className="text-[10px] md:text-sm text-white/60">
-                    What's hot right now on every app
-                  </p>
-                )}
-              </div>
-              <div className="flex items-center gap-2 md:gap-4 text-[10px] md:text-sm text-white/85">
-                {!visibleTrending ? (
-                  <button onClick={() => setVisibleTrending(true)} className="hover:text-white">Show</button>
-                ) : (
-                  <>
-                    <button 
-                      onClick={() => setExpandedTrending(!expandedTrending)} 
-                      className="hover:text-white"
-                    >
-                      {expandedTrending ? "Collapse" : "Go Deeper"}
-                    </button>
-                    <button onClick={() => setVisibleTrending(false)} className="hover:text-white">Hide</button>
-                  </>
-                )}
-              </div>
-            </div>
-            {visibleTrending && (
-              <div 
-                className="overflow-x-auto scrollbar-hide px-3 md:px-6 pb-2 snap-x snap-mandatory"
-                style={{ scrollBehavior: 'smooth' }}
-              >
-                <div className="flex gap-2 md:gap-3" style={{ width: 'max-content' }}>
-                  {content.slice(0, 6).map((item) => (
-                    <div key={item.id} className="flex-shrink-0 snap-start" style={{ width: '140px', maxWidth: '140px' }}>
-                      <Tile 
-                        item={item} 
-                        onInfo={() => setModalItem(item)} 
-                      />
-                    </div>
-                  ))}
-                </div>
-              </div>
-            )}
-          </section>
-
-          {/* Tray 2: Top 10 Right Now */}
-          <section>
-            <div className="px-3 md:px-6 mb-2 flex items-end justify-between">
-              <div>
-                <h2 className="text-base md:text-xl font-semibold text-white flex items-center gap-1.5 md:gap-2">
-                  <span>⭐</span> Top 10 Right Now
-                </h2>
-                {!visibleTop10 ? null : (
-                  <p className="text-[10px] md:text-sm italic" style={{ color: coral }}>
-                    "Consensus chaos — everyone's watching these."
-                  </p>
-                )}
-              </div>
-              <div className="flex items-center gap-2 md:gap-4 text-[10px] md:text-sm text-white/85">
-                {!visibleTop10 ? (
-                  <button onClick={() => setVisibleTop10(true)} className="hover:text-white">Show</button>
-                ) : (
-                  <>
-                    <button 
-                      onClick={() => setExpandedTop10(!expandedTop10)} 
-                      className="hover:text-white"
-                    >
-                      {expandedTop10 ? "Collapse" : "Go Deeper"}
-                    </button>
-                    <button onClick={() => setVisibleTop10(false)} className="hover:text-white">Hide</button>
-                  </>
-                )}
-              </div>
-            </div>
-            {visibleTop10 && (
-              <div 
-                className="overflow-x-auto scrollbar-hide px-3 md:px-6 pb-2 snap-x snap-mandatory"
-                style={{ scrollBehavior: 'smooth' }}
-              >
-                <div className="flex gap-2 md:gap-3" style={{ width: 'max-content' }}>
-                  {top10.slice(0, 6).map((item) => (
-                    <div key={item.id} className="flex-shrink-0 snap-start" style={{ width: '140px', maxWidth: '140px' }}>
-                      <Tile 
-                        item={item} 
-                        onInfo={() => setModalItem(item)} 
-                      />
-                    </div>
-                  ))}
-                </div>
-              </div>
-            )}
-          </section>
-
-          {/* Tray 3: Bro Recommends */}
-          {broRecommends.length > 0 && (
+          {/* Tray 1: Top 10 on Netflix */}
+          {netflixTop10.length > 0 && (
             <section>
               <div className="px-3 md:px-6 mb-2 flex items-end justify-between">
                 <div>
                   <h2 className="text-base md:text-xl font-semibold text-white flex items-center gap-1.5 md:gap-2">
-                    <span style={{ color: mint }}>✨</span> Bro Recommends
+                    Top 10 on Netflix
                   </h2>
-                  {!visibleBroRecommends ? null : (
+                  {!visibleNetflix ? null : (
                     <p className="text-[10px] md:text-sm text-white/60">
-                      Handpicked for your chaos
+                      Trending right now
                     </p>
                   )}
                 </div>
                 <div className="flex items-center gap-2 md:gap-4 text-[10px] md:text-sm text-white/85">
-                  {!visibleBroRecommends ? (
-                    <button onClick={() => setVisibleBroRecommends(true)} className="hover:text-white">Show</button>
+                  {!visibleNetflix ? (
+                    <button onClick={() => setVisibleNetflix(true)} className="hover:text-white">Show</button>
                   ) : (
                     <>
                       <button 
-                        onClick={() => setExpandedBroRecommends(!expandedBroRecommends)} 
+                        onClick={() => setExpandedNetflix(!expandedNetflix)} 
                         className="hover:text-white"
                       >
-                        {expandedBroRecommends ? "Collapse" : "Go Deeper"}
+                        {expandedNetflix ? "Collapse" : "Go Deeper"}
                       </button>
-                      <button onClick={() => setVisibleBroRecommends(false)} className="hover:text-white">Hide</button>
+                      <button onClick={() => setVisibleNetflix(false)} className="hover:text-white">Hide</button>
                     </>
                   )}
                 </div>
               </div>
-              {visibleBroRecommends && (
-                <div 
-                  className="overflow-x-auto scrollbar-hide px-3 md:px-6 pb-2 snap-x snap-mandatory"
-                  style={{ scrollBehavior: 'smooth' }}
-                >
-                  <div className="flex gap-2 md:gap-3" style={{ width: 'max-content' }}>
-                    {broRecommends.slice(0, 6).map((item) => (
-                      <div key={item.id} className="flex-shrink-0 snap-start" style={{ width: '140px', maxWidth: '140px' }}>
-                        <Tile 
-                          item={item} 
-                          onInfo={() => setModalItem(item)} 
-                        />
-                      </div>
+              {visibleNetflix && (
+                <div className="px-3 md:px-6">
+                  <div className="grid grid-cols-3 md:grid-cols-6 gap-2 md:gap-3">
+                    {netflixTop10.map((item) => (
+                      <Tile 
+                        key={item.id}
+                        item={item} 
+                        onInfo={() => setModalItem(item)} 
+                      />
+                    ))}
+                  </div>
+                </div>
+              )}
+            </section>
+          )}
+
+          {/* Tray 2: Top 10 on JioHotstar */}
+          {jioHotstarTop10.length > 0 && (
+            <section>
+              <div className="px-3 md:px-6 mb-2 flex items-end justify-between">
+                <div>
+                  <h2 className="text-base md:text-xl font-semibold text-white flex items-center gap-1.5 md:gap-2">
+                    Top 10 on JioHotstar
+                  </h2>
+                  {!visibleJioHotstar ? null : (
+                    <p className="text-[10px] md:text-sm text-white/60">
+                      Trending right now
+                    </p>
+                  )}
+                </div>
+                <div className="flex items-center gap-2 md:gap-4 text-[10px] md:text-sm text-white/85">
+                  {!visibleJioHotstar ? (
+                    <button onClick={() => setVisibleJioHotstar(true)} className="hover:text-white">Show</button>
+                  ) : (
+                    <>
+                      <button 
+                        onClick={() => setExpandedJioHotstar(!expandedJioHotstar)} 
+                        className="hover:text-white"
+                      >
+                        {expandedJioHotstar ? "Collapse" : "Go Deeper"}
+                      </button>
+                      <button onClick={() => setVisibleJioHotstar(false)} className="hover:text-white">Hide</button>
+                    </>
+                  )}
+                </div>
+              </div>
+              {visibleJioHotstar && (
+                <div className="px-3 md:px-6">
+                  <div className="grid grid-cols-3 md:grid-cols-6 gap-2 md:gap-3">
+                    {jioHotstarTop10.map((item) => (
+                      <Tile 
+                        key={item.id}
+                        item={item} 
+                        onInfo={() => setModalItem(item)} 
+                      />
+                    ))}
+                  </div>
+                </div>
+              )}
+            </section>
+          )}
+
+          {/* Tray 3: Top 10 on Prime Video */}
+          {primeTop10.length > 0 && (
+            <section>
+              <div className="px-3 md:px-6 mb-2 flex items-end justify-between">
+                <div>
+                  <h2 className="text-base md:text-xl font-semibold text-white flex items-center gap-1.5 md:gap-2">
+                    Top 10 on Prime Video
+                  </h2>
+                  {!visiblePrime ? null : (
+                    <p className="text-[10px] md:text-sm text-white/60">
+                      Trending right now
+                    </p>
+                  )}
+                </div>
+                <div className="flex items-center gap-2 md:gap-4 text-[10px] md:text-sm text-white/85">
+                  {!visiblePrime ? (
+                    <button onClick={() => setVisiblePrime(true)} className="hover:text-white">Show</button>
+                  ) : (
+                    <>
+                      <button 
+                        onClick={() => setExpandedPrime(!expandedPrime)} 
+                        className="hover:text-white"
+                      >
+                        {expandedPrime ? "Collapse" : "Go Deeper"}
+                      </button>
+                      <button onClick={() => setVisiblePrime(false)} className="hover:text-white">Hide</button>
+                    </>
+                  )}
+                </div>
+              </div>
+              {visiblePrime && (
+                <div className="px-3 md:px-6">
+                  <div className="grid grid-cols-3 md:grid-cols-6 gap-2 md:gap-3">
+                    {primeTop10.map((item) => (
+                      <Tile 
+                        key={item.id}
+                        item={item} 
+                        onInfo={() => setModalItem(item)} 
+                      />
+                    ))}
+                  </div>
+                </div>
+              )}
+            </section>
+          )}
+
+          {/* Tray 4: Top 10 on Sony Liv */}
+          {sonyLivTop10.length > 0 && (
+            <section>
+              <div className="px-3 md:px-6 mb-2 flex items-end justify-between">
+                <div>
+                  <h2 className="text-base md:text-xl font-semibold text-white flex items-center gap-1.5 md:gap-2">
+                    Top 10 on Sony Liv
+                  </h2>
+                  {!visibleSonyLiv ? null : (
+                    <p className="text-[10px] md:text-sm text-white/60">
+                      Trending right now
+                    </p>
+                  )}
+                </div>
+                <div className="flex items-center gap-2 md:gap-4 text-[10px] md:text-sm text-white/85">
+                  {!visibleSonyLiv ? (
+                    <button onClick={() => setVisibleSonyLiv(true)} className="hover:text-white">Show</button>
+                  ) : (
+                    <>
+                      <button 
+                        onClick={() => setExpandedSonyLiv(!expandedSonyLiv)} 
+                        className="hover:text-white"
+                      >
+                        {expandedSonyLiv ? "Collapse" : "Go Deeper"}
+                      </button>
+                      <button onClick={() => setVisibleSonyLiv(false)} className="hover:text-white">Hide</button>
+                    </>
+                  )}
+                </div>
+              </div>
+              {visibleSonyLiv && (
+                <div className="px-3 md:px-6">
+                  <div className="grid grid-cols-3 md:grid-cols-6 gap-2 md:gap-3">
+                    {sonyLivTop10.map((item) => (
+                      <Tile 
+                        key={item.id}
+                        item={item} 
+                        onInfo={() => setModalItem(item)} 
+                      />
                     ))}
                   </div>
                 </div>
