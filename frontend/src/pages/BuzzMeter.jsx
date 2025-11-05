@@ -321,12 +321,18 @@ export default function BuzzMeter() {
                       onClick={() => setModalItem(moment)}
                     >
                       <div className="relative rounded-lg overflow-hidden shadow-lg border border-white/10 hover:-translate-y-0.5 transition">
-                        <div className="relative aspect-[2/3] bg-gradient-to-br from-coral/20 via-charcoalSoft to-mint/20">
-                          <img 
-                            src={moment.thumbnail} 
-                            alt={moment.title}
-                            className="w-full h-full object-cover"
-                          />
+                        <div 
+                          className="relative aspect-[2/3] flex items-center justify-center text-white font-bold text-sm"
+                          style={{
+                            background: moment.id === 'buzz-1' ? `linear-gradient(135deg, ${coral} 0%, ${mint} 100%)` :
+                                       moment.id === 'buzz-2' ? `linear-gradient(135deg, ${mint} 0%, ${coral} 100%)` :
+                                       moment.id === 'buzz-3' ? `linear-gradient(135deg, #FF8C42 0%, ${mint} 100%)` :
+                                       moment.id === 'buzz-4' ? `linear-gradient(135deg, ${coral} 0%, #FF8C42 100%)` :
+                                       moment.id === 'buzz-5' ? `linear-gradient(135deg, ${mint} 0%, #FF8C42 100%)` :
+                                       `linear-gradient(135deg, ${coral} 0%, ${mint} 100%)`
+                          }}
+                        >
+                          <span className="opacity-70 text-center px-2">{moment.title}</span>
                           <div 
                             className="absolute top-1 right-1 px-1.5 py-0.5 rounded-full text-[9px] font-bold"
                             style={{ background: `${charcoalSoft}CC`, color: getBuzzColor(moment.buzzScore) }}
