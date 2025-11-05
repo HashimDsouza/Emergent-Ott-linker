@@ -174,27 +174,24 @@ export default function BuzzMeter() {
       <div className="px-3 md:px-6 pb-6 md:pb-8">
         <div className="max-w-7xl mx-auto">
           <div className="flex justify-center gap-2 md:gap-3 flex-wrap">
-            {platforms.map((platform) => {
-              const [hover, setHover] = React.useState(false);
-              return (
-                <button
-                  key={platform.name}
-                  onClick={() => handlePlatformClick(platform)}
-                  onMouseEnter={() => setHover(true)}
-                  onMouseLeave={() => setHover(false)}
-                  className="group relative px-3 py-1.5 md:px-4 md:py-2 rounded-full transition-all text-xs md:text-sm font-semibold text-white"
-                  style={{
-                    background: selectedPlatform === platform.name 
-                      ? `linear-gradient(135deg, ${coral} 0%, ${mint} 100%)`
-                      : `linear-gradient(135deg, ${coral}80 0%, ${mint}60 100%)`,
-                    boxShadow: hover || selectedPlatform === platform.name ? `0 0 16px ${mint}60` : 'none',
-                    opacity: selectedPlatform === platform.name ? 1 : 0.85
-                  }}
-                >
-                  {platform.label}
-                </button>
-              );
-            })}
+            {platforms.map((platform) => (
+              <button
+                key={platform.name}
+                onClick={() => handlePlatformClick(platform)}
+                onMouseEnter={() => setHoveredPlatform(platform.name)}
+                onMouseLeave={() => setHoveredPlatform(null)}
+                className="group relative px-3 py-1.5 md:px-4 md:py-2 rounded-full transition-all text-xs md:text-sm font-semibold text-white"
+                style={{
+                  background: selectedPlatform === platform.name 
+                    ? `linear-gradient(135deg, ${coral} 0%, ${mint} 100%)`
+                    : `linear-gradient(135deg, ${coral}80 0%, ${mint}60 100%)`,
+                  boxShadow: hoveredPlatform === platform.name || selectedPlatform === platform.name ? `0 0 16px ${mint}60` : 'none',
+                  opacity: selectedPlatform === platform.name ? 1 : 0.85
+                }}
+              >
+                {platform.label}
+              </button>
+            ))}
           </div>
         </div>
       </div>
