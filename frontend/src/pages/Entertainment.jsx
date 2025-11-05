@@ -93,6 +93,12 @@ export default function Entertainment() {
 
   const handleCapsuleClick = (capsule) => {
     setSelectedCapsule(selectedCapsule === capsule.id ? null : capsule.id);
+    
+    // Show tooltip for 2.5 seconds
+    setCapsuleTooltip(capsule.id);
+    setTimeout(() => {
+      setCapsuleTooltip(null);
+    }, 2500);
   };
 
   if (loading) {
