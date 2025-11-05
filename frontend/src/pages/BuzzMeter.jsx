@@ -139,8 +139,12 @@ export default function BuzzMeter() {
     return coral;
   };
 
+  // Auto-hide loading after mount
+  useEffect(() => {
+    setLoading(false);
+  }, []);
+
   if (loading) {
-    setTimeout(() => setLoading(false), 500);
     return (
       <div className="min-h-screen flex items-center justify-center" style={{ backgroundColor: charcoal }}>
         <div className="text-white text-xl">Loading Buzz...</div>
