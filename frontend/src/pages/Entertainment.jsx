@@ -211,7 +211,7 @@ export default function Entertainment() {
                   <div className="overflow-x-auto scrollbar-hide px-3 md:px-6 pb-2 snap-x snap-mandatory" style={{ scrollBehavior: 'smooth' }}>
                     <div className="flex gap-2 md:gap-4" style={{ width: 'max-content' }}>
                       {(expandedNewNoted ? newNoted : newNoted.slice(0, 6)).map((item) => (
-                        <div key={item.id} className="flex-shrink-0 snap-start w-[130px] md:w-[14%]">
+                        <div key={item.id} className="flex-shrink-0 snap-start w-[130px] md:w-[12%]">
                           <Tile 
                             item={item} 
                             onInfo={() => setModalItem(item)} 
@@ -258,7 +258,7 @@ export default function Entertainment() {
                   <div className="overflow-x-auto scrollbar-hide px-3 md:px-6 pb-2 snap-x snap-mandatory" style={{ scrollBehavior: 'smooth' }}>
                     <div className="flex gap-2 md:gap-4" style={{ width: 'max-content' }}>
                       {(expandedBroRecommends ? broRecommendsData : broRecommendsData.slice(0, 6)).map((item) => (
-                        <div key={item.id} className="flex-shrink-0 snap-start w-[130px] md:w-[14%]">
+                        <div key={item.id} className="flex-shrink-0 snap-start w-[130px] md:w-[12%]">
                           <Tile 
                             item={item} 
                             onInfo={() => setModalItem(item)} 
@@ -305,7 +305,7 @@ export default function Entertainment() {
                   <div className="overflow-x-auto scrollbar-hide px-3 md:px-6 pb-2 snap-x snap-mandatory" style={{ scrollBehavior: 'smooth' }}>
                     <div className="flex gap-2 md:gap-4" style={{ width: 'max-content' }}>
                       {(expandedAdrenaline ? adrenalineRush : adrenalineRush.slice(0, 6)).map((item) => (
-                        <div key={item.id} className="flex-shrink-0 snap-start w-[130px] md:w-[14%]">
+                        <div key={item.id} className="flex-shrink-0 snap-start w-[130px] md:w-[12%]">
                           <Tile 
                             item={item} 
                             onInfo={() => setModalItem(item)} 
@@ -352,7 +352,7 @@ export default function Entertainment() {
                   <div className="overflow-x-auto scrollbar-hide px-3 md:px-6 pb-2 snap-x snap-mandatory" style={{ scrollBehavior: 'smooth' }}>
                     <div className="flex gap-2 md:gap-4" style={{ width: 'max-content' }}>
                       {(expandedHidden ? hiddenGems : hiddenGems.slice(0, 6)).map((item) => (
-                        <div key={item.id} className="flex-shrink-0 snap-start w-[130px] md:w-[14%]">
+                        <div key={item.id} className="flex-shrink-0 snap-start w-[130px] md:w-[12%]">
                           <Tile 
                             item={item} 
                             onInfo={() => setModalItem(item)} 
