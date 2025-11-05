@@ -193,7 +193,7 @@ export function ConnectorHeader() {
         onSelectItem={handleSearchSelect}
       />
     <header
-      className="sticky top-0 z-40 backdrop-blur-md border-b relative overflow-hidden"
+      className="sticky top-0 z-40 backdrop-blur-md border-b relative"
       style={{ 
         backgroundColor: charcoal,
         borderColor: `${mint}20`
