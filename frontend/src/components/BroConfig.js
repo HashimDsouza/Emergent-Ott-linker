@@ -59,7 +59,7 @@ export const broChips = [
   },
   {
     id: 'trending-shows',
-    label: 'Everyone's talking about these shows',
+    label: "Everyone's talking about these shows",
     query: {
       type: 'trending',
       params: {
