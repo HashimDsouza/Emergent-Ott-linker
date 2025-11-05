@@ -1,4 +1,5 @@
 import React from "react";
+import { useBro } from "../context/BroContext";
 
 const coral = "#FF4F64", mint = "#30E0B2", charcoalSoft = "#173A35";
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
@@ -6,6 +7,9 @@ const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 export default function Tile({ item, onInfo }) {
   const badgeCls = "text-[8px] md:text-[10px] px-1 md:px-1.5 py-0.5 rounded-full bg-white/10 border border-white/15";
   const counter = "text-[8px] md:text-[10px] opacity-75";
+  
+  // Bro XP System
+  const { addXP } = useBro();
   
   // State for interactive buttons
   const [liked, setLiked] = React.useState(false);
