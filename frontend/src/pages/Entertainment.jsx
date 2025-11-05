@@ -130,6 +130,7 @@ export default function Entertainment() {
             >
               "Whatever your vibe, I've got the perfect watchlist."
             </p>
+            <BroMicroline />
           </div>
         </div>
 
