@@ -373,7 +373,7 @@ export default function Entertainment() {
           <DetailsModal item={modalItem} onClose={() => setModalItem(null)} />
         )}
 
-        {/* CSS for scrollbar hiding */}
+        {/* CSS for scrollbar hiding and animations */}
         <style>{`
           .scrollbar-hide::-webkit-scrollbar {
             display: none;
@@ -381,6 +381,19 @@ export default function Entertainment() {
           .scrollbar-hide {
             -ms-overflow-style: none;
             scrollbar-width: none;
+          }
+          @keyframes fadeIn {
+            from {
+              opacity: 0;
+              transform: translate(-50%, -10px);
+            }
+            to {
+              opacity: 1;
+              transform: translate(-50%, 0);
+            }
+          }
+          .animate-fadeIn {
+            animation: fadeIn 0.3s ease-out;
           }
         `}</style>
       </div>
