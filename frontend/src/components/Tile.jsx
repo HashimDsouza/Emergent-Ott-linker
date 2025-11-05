@@ -47,18 +47,8 @@ export default function Tile({ item, onInfo }) {
         className="relative" 
         style={{ background: `linear-gradient(135deg, ${coral}70 0%, ${mint}45 45%, ${charcoalSoft} 100%)` }}
       >
-        {/* Mobile: 2/3 aspect ratio (portrait) */}
-        <div className="md:hidden" style={{ aspectRatio: "2/3" }}>
-          {item.thumbnail && (
-            <img 
-              src={item.thumbnail} 
-              alt={item.title}
-              className="w-full h-full object-cover"
-            />
-          )}
-        </div>
-        {/* Desktop: 4/3 aspect ratio (compact landscape) */}
-        <div className="hidden md:block" style={{ aspectRatio: "4/3" }}>
+        {/* 2/3 aspect ratio (portrait) - same for mobile and desktop to match Buzz Meter */}
+        <div style={{ aspectRatio: "2/3" }}>
           {item.thumbnail && (
             <img 
               src={item.thumbnail} 
