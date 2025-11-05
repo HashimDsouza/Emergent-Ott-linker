@@ -223,7 +223,7 @@ export default function WatchOn() {
                 <div className="overflow-x-auto scrollbar-hide px-3 md:px-6 pb-2 snap-x snap-mandatory" style={{ scrollBehavior: 'smooth' }}>
                   <div className="flex gap-2 md:gap-3" style={{ width: 'max-content' }}>
                     {netflixTop10.map((item) => (
-                      <div key={item.id} className="flex-shrink-0 snap-start" style={{ width: '120px' }}>
+                      <div key={item.id} className="flex-shrink-0 snap-start" style={{ width: '120px', maxWidth: '120px' }}>
                         <Tile 
                           item={item} 
                           onInfo={() => setModalItem(item)} 
