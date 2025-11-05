@@ -45,7 +45,7 @@ export default function BuzzMeter() {
       id: 'buzz-2',
       title: 'ICC World Cup Final',
       platform: 'YouTube',
-      thumbnail: 'https://image.tmdb.org/t/p/w500/3KICZbBy2BSPX0ZP5oBN58EbLtm.jpg', // Sports documentary
+      thumbnail: `${BACKEND_URL}/api/proxy-image?url=${encodeURIComponent('https://image.tmdb.org/t/p/w500/3KICZbBy2BSPX0ZP5oBN58EbLtm.jpg')}`,
       headline: 'India vs Australia Final - Last Over Drama',
       buzzScore: 88,
       tags: ['Sports', 'Cricket'],
