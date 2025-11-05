@@ -123,24 +123,26 @@ export default function WatchOn() {
   }
 
   return (
-    <div className="min-h-screen" style={{ backgroundColor: charcoal }}>
-      {/* Header */}
-      <div className="px-3 md:px-6 pt-6 md:pt-8 pb-4 md:pb-6">
-        <div className="max-w-7xl mx-auto text-center">
-          <h1 className="text-3xl md:text-5xl font-bold text-white mb-2">
-            Watch On
-          </h1>
-          <p className="text-base md:text-lg text-white/80 mb-1">
-            All your apps. One tap away.
-          </p>
-          <p 
-            className="text-sm md:text-base italic"
-            style={{ color: coral }}
-          >
-            "Netflix, Prime, Hotstar — they all play nice here."
-          </p>
+    <>
+      <ConnectorHeader />
+      <div className="min-h-screen" style={{ backgroundColor: charcoal }}>
+        {/* Header */}
+        <div className="px-3 md:px-6 pt-6 md:pt-8 pb-4 md:pb-6">
+          <div className="max-w-7xl mx-auto text-center">
+            <h1 className="text-3xl md:text-5xl font-bold text-white mb-2">
+              Watch On
+            </h1>
+            <p className="text-base md:text-lg text-white/80 mb-1">
+              All your apps. One tap away.
+            </p>
+            <p 
+              className="text-sm md:text-base italic"
+              style={{ color: coral }}
+            >
+              "Netflix, Prime, Hotstar — they all play nice here."
+            </p>
+          </div>
         </div>
-      </div>
 
       {/* Platform Capsules - 2 Rows, 4 Per Row */}
       <div className="px-3 md:px-6 pb-6 md:pb-8">
