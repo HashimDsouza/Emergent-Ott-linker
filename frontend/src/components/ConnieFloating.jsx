@@ -1,18 +1,21 @@
 import React, { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
+import BroOverlay from "./BroOverlay";
+import { useBroXP } from "../hooks/useBroXP";
 
 // Brand colors
 const coral = "#FF4F64";
 const mint = "#30E0B2";
 const charcoal = "#0E1514";
 
-// Connie button component
-function Connie() {
+// Bro button component with XP badge
+function BroButton({ onClick, xp, xpPulse }) {
   const [hover, setHover] = useState(false);
   
   return (
     <button
-      className="w-14 h-14 md:w-16 md:h-16 rounded-full flex flex-col items-center justify-center shadow-xl cursor-pointer select-none transition-all"
+      onClick={onClick}
+      className="relative w-14 h-14 md:w-16 md:h-16 rounded-full flex flex-col items-center justify-center shadow-xl cursor-pointer select-none transition-all"
       style={{
         background: `linear-gradient(135deg, ${mint}, ${mint}E0)`,
         boxShadow: hover 
@@ -24,6 +27,21 @@ function Connie() {
       onMouseLeave={() => setHover(false)}
       aria-label="Bro AI Assistant"
     >
+      {/* XP Badge */}
+      {xp > 0 && (
+        <div 
+          className="absolute -top-1 -right-1 w-6 h-6 md:w-7 md:h-7 rounded-full flex items-center justify-center text-[9px] md:text-[10px] font-bold"
+          style={{
+            backgroundColor: coral,
+            color: 'white',
+            boxShadow: `0 0 12px ${coral}80, 0 2px 4px ${charcoal}60`,
+            animation: xpPulse ? 'xpPulse 0.6s ease-out' : 'none'
+          }}
+        >
+          {xp}
+        </div>
+      )}
+      
       {/* Sparkle perfectly centered above text */}
       <div className="flex flex-col items-center justify-center gap-0">
         <span 
