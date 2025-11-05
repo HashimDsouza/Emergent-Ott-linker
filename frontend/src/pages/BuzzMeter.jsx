@@ -25,13 +25,13 @@ export default function BuzzMeter() {
     { name: "IMDb", label: "IMDb" },
   ];
 
-  // Static curated Buzz Meter moments (Phase 1A) - Using TMDB poster images
+  // Static curated Buzz Meter moments (Phase 1A) - Using proxied TMDB images
   const buzzMoments = [
     {
       id: 'buzz-1',
       title: 'Fighter Trailer',
       platform: 'YouTube',
-      thumbnail: 'https://image.tmdb.org/t/p/w500/qTxQz6nzSbN39BFfVu9bgDtxxW8.jpg', // Fighter TMDB poster
+      thumbnail: `${BACKEND_URL}/api/proxy-image?url=${encodeURIComponent('https://image.tmdb.org/t/p/w500/qTxQz6nzSbN39BFfVu9bgDtxxW8.jpg')}`,
       headline: 'Fighter Trailer hits 25M views in 12 hours',
       buzzScore: 95,
       tags: ['OTT', 'Bollywood'],
