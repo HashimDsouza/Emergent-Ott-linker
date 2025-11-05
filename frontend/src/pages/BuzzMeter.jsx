@@ -14,6 +14,7 @@ export default function BuzzMeter() {
   const [selectedPlatform, setSelectedPlatform] = useState("All");
   const [visibleFromTheFeeds, setVisibleFromTheFeeds] = useState(true);
   const [expandedFromTheFeeds, setExpandedFromTheFeeds] = useState(false);
+  const [hoveredPlatform, setHoveredPlatform] = useState(null);
 
   // Platform icons configuration (text-based for now, logos to be added)
   const platforms = [
