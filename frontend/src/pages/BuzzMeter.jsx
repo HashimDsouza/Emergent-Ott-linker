@@ -282,7 +282,7 @@ export default function BuzzMeter() {
 
       {/* From the Feeds Tray - Horizontal Scroll (same as Watch On) */}
       <div className="pb-8">
-        <div className="max-w-7xl mx-auto space-y-3 md:space-y-4">
+        <div className="max-w-[1280px] mx-auto space-y-3 md:space-y-4">
           <section>
             <div className="px-3 md:px-6 mb-2 flex items-end justify-between">
               <div>
