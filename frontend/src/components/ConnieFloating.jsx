@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import BroOverlay from "./BroOverlay";
-import { useBroXP } from "../hooks/useBroXP";
+import { useBro } from "../context/BroContext";
 
 // Brand colors
 const coral = "#FF4F64";
