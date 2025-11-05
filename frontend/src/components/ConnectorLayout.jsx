@@ -27,7 +27,8 @@ const languages = [
   { code: "en", name: "English", native: "English" },
   { code: "hi", name: "Hindi", native: "हिंदी" },
   { code: "ta", name: "Tamil", native: "தமிழ்" },
-  { code: "te", name: "Telugu", native: "తెలుగు" },
+  { code: "ml", name: "Malayalam", native: "മലയാളം" },
+  { code: "kn", name: "Kannada", native: "ಕನ್ನಡ" },
   { code: "bn", name: "Bengali", native: "বাংলা" },
 ];
 
