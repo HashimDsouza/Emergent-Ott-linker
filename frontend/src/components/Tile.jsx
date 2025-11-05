@@ -20,6 +20,9 @@ export default function Tile({ item, onInfo }) {
     e.preventDefault();
     if (!item?.id || !item?.platform) return;
     
+    // Give +2 XP for watching
+    addXP(2, 'watch');
+    
     try {
       const response = await fetch(
         `${BACKEND_URL}/api/resolve-link?title_id=${item.id}&provider=${encodeURIComponent(item.platform)}`
