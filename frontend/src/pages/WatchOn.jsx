@@ -195,7 +195,7 @@ export default function WatchOn() {
 
       {/* Trays Section - Grid Layout (3 cols mobile, 6 cols desktop) */}
       <div id="trays-section" className="pb-8">
-        <div className="max-w-7xl mx-auto space-y-3 md:space-y-4">
+        <div className="max-w-[1280px] mx-auto space-y-3 md:space-y-4">
           
           {/* Tray 1: Top 10 on Netflix */}
           {netflixTop10.length > 0 && (
