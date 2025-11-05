@@ -139,6 +139,7 @@ export default function WatchOn() {
             >
               "Netflix, Prime, Hotstar — they all play nice here."
             </p>
+            <BroMicroline />
           </div>
         </div>
 
