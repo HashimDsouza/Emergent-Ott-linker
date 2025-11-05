@@ -30,9 +30,10 @@ export default function WatchOn() {
   const [expandedBroRecommends, setExpandedBroRecommends] = useState(false);
   
   // State for hiding trays
-  const [visibleTrending, setVisibleTrending] = useState(true);
-  const [visibleTop10, setVisibleTop10] = useState(true);
-  const [visibleBroRecommends, setVisibleBroRecommends] = useState(true);
+  const [visibleNetflix, setVisibleNetflix] = useState(true);
+  const [visibleJioHotstar, setVisibleJioHotstar] = useState(true);
+  const [visiblePrime, setVisiblePrime] = useState(true);
+  const [visibleSonyLiv, setVisibleSonyLiv] = useState(true);
 
   // Fetch content
   useEffect(() => {
