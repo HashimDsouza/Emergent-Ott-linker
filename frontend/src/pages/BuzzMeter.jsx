@@ -470,6 +470,7 @@ export default function BuzzMeter() {
         `}</style>
       </div>
       <ConnectorFooter />
+      <ConnieFloating offsetPx={140} />
     </>
   );
 }
