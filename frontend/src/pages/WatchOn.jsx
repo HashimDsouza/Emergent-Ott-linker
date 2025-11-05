@@ -37,6 +37,19 @@ export default function WatchOn() {
   const [visiblePrime, setVisiblePrime] = useState(true);
   const [visibleSonyLiv, setVisibleSonyLiv] = useState(true);
   const [hoveredPlatform, setHoveredPlatform] = useState(null);
+  const [platformTooltip, setPlatformTooltip] = useState(null);
+
+  // Platform tooltip messages (similar to Entertainment capsules)
+  const platformMessages = {
+    'JioHotstar': '"Patience, young Padawan — this feature awakens soon."',
+    'Netflix': '"Hold on, hero — Bro\'s still assembling the features."',
+    'Prime Video': '"One click to rule them all… coming soon."',
+    'Sony Liv': '"The features are coming."',
+    'Zee5': '"Accio features! (Still loading in the Room of Requirement.)"',
+    'Apple TV+': '"Your next feature mission is classified. Stand by."',
+    'Fancode': '"Features loading. Game on soon."',
+    'Dazn': '"Almost there. The features are warming up."'
+  };
 
   // Fetch content
   useEffect(() => {
