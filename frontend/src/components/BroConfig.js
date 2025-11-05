@@ -67,7 +67,7 @@ export const broChips = [
         time_window: 'week'
       }
     },
-    broReply: 'Group chat approved. 💬'
+    broReply: "Group chat approved. 💬"
   },
   {
     id: 'new-week',
