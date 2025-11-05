@@ -101,7 +101,7 @@ export default function BuzzMeter() {
       id: 'buzz-6',
       title: 'Maharaja Social Storm',
       platform: 'X',
-      thumbnail: 'https://image.tmdb.org/t/p/w500/5wQnDMof4VOqfP78OmU31t3KnVd.jpg', // Maharaja
+      thumbnail: `${BACKEND_URL}/api/proxy-image?url=${encodeURIComponent('https://image.tmdb.org/t/p/w500/5wQnDMof4VOqfP78OmU31t3KnVd.jpg')}`,
       headline: '2M tweets about Maharaja in 24 hours',
       buzzScore: 92,
       tags: ['Bollywood', 'OTT'],
