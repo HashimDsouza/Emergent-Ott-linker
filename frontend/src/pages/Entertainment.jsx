@@ -136,23 +136,38 @@ export default function Entertainment() {
           <div className="max-w-[1280px] mx-auto">
             <div className="grid grid-cols-3 gap-2 md:gap-3">
               {capsules.map((capsule) => (
-                <button
-                  key={capsule.id}
-                  onClick={() => handleCapsuleClick(capsule)}
-                  onMouseEnter={() => setHoveredCapsule(capsule.id)}
-                  onMouseLeave={() => setHoveredCapsule(null)}
-                  className="px-3 py-2 md:px-4 md:py-2.5 rounded-full transition-all text-xs md:text-sm font-semibold text-white flex items-center justify-center gap-1.5"
-                  style={{
-                    background: selectedCapsule === capsule.id 
-                      ? `linear-gradient(135deg, ${coral} 0%, ${mint} 100%)`
-                      : `linear-gradient(135deg, ${coral}80 0%, ${mint}60 100%)`,
-                    boxShadow: hoveredCapsule === capsule.id || selectedCapsule === capsule.id ? `0 0 16px ${mint}60` : 'none',
-                    opacity: selectedCapsule === capsule.id ? 1 : 0.85
-                  }}
-                >
-                  <span>{capsule.emoji}</span>
-                  <span>{capsule.label}</span>
-                </button>
+                <div key={capsule.id} className="relative">
+                  <button
+                    onClick={() => handleCapsuleClick(capsule)}
+                    onMouseEnter={() => setHoveredCapsule(capsule.id)}
+                    onMouseLeave={() => setHoveredCapsule(null)}
+                    className="w-full px-2 py-1.5 md:px-3 md:py-2 rounded-full transition-all text-[10px] md:text-xs font-semibold text-white flex items-center justify-center gap-1"
+                    style={{
+                      background: capsuleTooltip === capsule.id || selectedCapsule === capsule.id 
+                        ? `linear-gradient(135deg, ${coral} 0%, ${mint} 100%)`
+                        : `linear-gradient(135deg, ${coral}80 0%, ${mint}60 100%)`,
+                      boxShadow: hoveredCapsule === capsule.id || capsuleTooltip === capsule.id ? `0 0 16px ${mint}60` : 'none',
+                      opacity: selectedCapsule === capsule.id || capsuleTooltip === capsule.id ? 1 : 0.85
+                    }}
+                  >
+                    <span className="text-xs md:text-sm">{capsule.emoji}</span>
+                    <span>{capsule.label}</span>
+                  </button>
+                  
+                  {/* Tooltip */}
+                  {capsuleTooltip === capsule.id && (
+                    <div 
+                      className="absolute left-1/2 -translate-x-1/2 -top-12 md:-top-14 z-50 px-3 py-2 rounded-lg text-xs md:text-sm text-white italic whitespace-nowrap animate-fadeIn"
+                      style={{ 
+                        background: `${charcoalSoft}F0`,
+                        color: coral,
+                        boxShadow: `0 4px 12px ${charcoal}60`
+                      }}
+                    >
+                      {capsuleMessages[capsule.id]}
+                    </div>
+                  )}
+                </div>
               ))}
             </div>
           </div>
