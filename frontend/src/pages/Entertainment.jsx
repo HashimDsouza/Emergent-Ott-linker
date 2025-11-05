@@ -403,6 +403,7 @@ export default function Entertainment() {
         `}</style>
       </div>
       <ConnectorFooter />
+      <ConnieFloating offsetPx={140} />
     </>
   );
 }
