@@ -1,0 +1,442 @@
+import React, { useState, useEffect } from "react";
+import { mapApiToCard } from "../utils/mapApiToCard";
+import Tile from "../components/Tile";
+import DetailsModal from "../components/DetailsModal";
+
+const coral = "#FF4F64", mint = "#30E0B2", charcoal = "#0E1514", charcoalSoft = "#173A35";
+const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
+
+export default function BuzzMeter() {
+  const [content, setContent] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [modalItem, setModalItem] = useState(null);
+  const [selectedPlatform, setSelectedPlatform] = useState("All");
+  const [visibleFromTheFeeds, setVisibleFromTheFeeds] = useState(true);
+  const [expandedFromTheFeeds, setExpandedFromTheFeeds] = useState(false);
+
+  // Platform icons configuration
+  const platforms = [
+    { name: "All", icon: "🌐" },
+    { name: "YouTube", icon: "📺" },
+    { name: "X", icon: "𝕏" },
+    { name: "Reddit", icon: "🗨️" },
+    { name: "IMDb", icon: "⭐" },
+  ];
+
+  // Static curated Buzz Meter moments (Phase 1A)
+  const buzzMoments = [
+    {
+      id: 'buzz-1',
+      title: 'Fighter Trailer',
+      platform: 'YouTube',
+      thumbnail: 'https://img.youtube.com/vi/T6T0ouFer2A/maxresdefault.jpg',
+      headline: 'Fighter Trailer hits 25M views in 12 hours',
+      buzzScore: 95,
+      tags: ['OTT', 'Bollywood'],
+      stats: { views: '25M', comments: '45K', shares: '120K' },
+      summary: 'Hrithik Roshan and Deepika Padukone starrer Fighter trailer breaks YouTube records with massive viewership spike.',
+      broQuip: "Fighter broke YouTube — and the internet's patience.",
+      ctaLink: 'https://www.youtube.com/watch?v=T6T0ouFer2A',
+      category: 'hero'
+    },
+    {
+      id: 'buzz-2',
+      title: 'ICC World Cup Final',
+      platform: 'YouTube',
+      thumbnail: 'https://via.placeholder.com/600x400/173A35/30E0B2?text=ICC+World+Cup+Final',
+      headline: 'India vs Australia Final - Last Over Drama',
+      buzzScore: 88,
+      tags: ['Sports', 'Cricket'],
+      stats: { views: '12M', comments: '89K', shares: '200K' },
+      summary: 'The most thrilling cricket final in years. Last-over six seals India\'s victory.',
+      broQuip: "This clip is everywhere — except your WhatsApp group chat (so far).",
+      ctaLink: 'https://www.youtube.com/results?search_query=ICC+World+Cup+Final',
+      category: 'hero'
+    },
+    {
+      id: 'buzz-3',
+      title: 'Kapil Sharma Goes Viral',
+      platform: 'X',
+      thumbnail: 'https://via.placeholder.com/600x400/173A35/FF4F64?text=Kapil+Sharma',
+      headline: 'Kapil\'s Akshay Kumar roast becomes #1 trending',
+      buzzScore: 82,
+      tags: ['Comedy', 'Entertainment'],
+      stats: { views: '5M', comments: '450K', shares: '89K' },
+      summary: 'Kapil Sharma\'s hilarious roast of Akshay Kumar goes viral on X with 450K likes.',
+      broQuip: "Kapil clips, and dragon drama — all trending harder than deadlines.",
+      ctaLink: 'https://twitter.com/search?q=Kapil+Sharma',
+      category: 'hot_drop'
+    },
+    {
+      id: 'buzz-4',
+      title: 'House of the Dragon S2 Finale',
+      platform: 'Reddit',
+      thumbnail: 'https://via.placeholder.com/600x400/173A35/30E0B2?text=House+of+the+Dragon',
+      headline: 'HOTD fans debate shocking finale twist',
+      buzzScore: 90,
+      tags: ['OTT', 'Fantasy'],
+      stats: { views: '8M', comments: '15K', shares: '45K' },
+      summary: 'Reddit goes wild as House of the Dragon Season 2 finale leaves fans with burning questions.',
+      broQuip: "Reddit has theories. X has opinions. We have popcorn.",
+      ctaLink: 'https://www.reddit.com/r/HouseOfTheDragon/',
+      category: 'hot_drop'
+    },
+    {
+      id: 'buzz-5',
+      title: '12th Fail IMDb Spike',
+      platform: 'IMDb',
+      thumbnail: 'https://via.placeholder.com/600x400/173A35/FF4F64?text=12th+Fail',
+      headline: '12th Fail added to 120K+ watchlists this week',
+      buzzScore: 85,
+      tags: ['Bollywood', 'Drama'],
+      stats: { views: '3M', comments: '25K', shares: '67K' },
+      summary: 'Vidhu Vinod Chopra\'s 12th Fail sees massive IMDb watchlist surge after OTT release.',
+      broQuip: "This film is breaking IMDb — one watchlist at a time.",
+      ctaLink: 'https://www.imdb.com/title/tt23849204/',
+      category: 'hot_drop'
+    },
+    {
+      id: 'buzz-6',
+      title: 'Fighter Social Media Storm',
+      platform: 'X',
+      thumbnail: 'https://via.placeholder.com/600x400/173A35/30E0B2?text=Fighter+Reactions',
+      headline: '2M tweets about Fighter in 24 hours',
+      buzzScore: 92,
+      tags: ['Bollywood', 'OTT'],
+      stats: { views: '18M', comments: '2M', shares: '340K' },
+      summary: 'Fighter dominates social media conversations with 2 million tweets and counting.',
+      broQuip: "Fighter is everywhere. Like, literally everywhere.",
+      ctaLink: 'https://twitter.com/search?q=Fighter+movie',
+      category: 'hot_drop'
+    }
+  ];
+
+  // Filter moments by selected platform
+  const filteredMoments = selectedPlatform === "All" 
+    ? buzzMoments 
+    : buzzMoments.filter(m => m.platform === selectedPlatform);
+
+  // Handle platform icon click (client-side filtering)
+  const handlePlatformClick = (platform) => {
+    setSelectedPlatform(platform.name);
+  };
+
+  // Calculate Buzz Score flames
+  const getBuzzFlames = (score) => {
+    if (score >= 76) return "🔥🔥🔥🔥";
+    if (score >= 51) return "🔥🔥🔥";
+    if (score >= 26) return "🔥🔥";
+    return "🔥";
+  };
+
+  // Buzz Score color gradient
+  const getBuzzColor = (score) => {
+    if (score >= 76) return mint;
+    if (score >= 51) return "#FFB84D";
+    if (score >= 26) return "#FF8C42";
+    return coral;
+  };
+
+  if (loading) {
+    setTimeout(() => setLoading(false), 500);
+    return (
+      <div className="min-h-screen flex items-center justify-center" style={{ backgroundColor: charcoal }}>
+        <div className="text-white text-xl">Loading Buzz...</div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="min-h-screen" style={{ backgroundColor: charcoal }}>
+      {/* Header - Same format as Watch On */}
+      <div className="px-3 md:px-6 pt-6 md:pt-8 pb-4 md:pb-6">
+        <div className="max-w-7xl mx-auto text-center">
+          <h1 className="text-3xl md:text-5xl font-bold text-white mb-2">
+            Buzz Meter
+          </h1>
+          <p className="text-base md:text-lg text-white/80 mb-1">
+            The Internet is Talking About…
+          </p>
+          <p 
+            className="text-sm md:text-base italic"
+            style={{ color: coral }}
+          >
+            "Fighter trailer, Kapil clips, and dragon drama — all trending harder than deadlines."
+          </p>
+        </div>
+      </div>
+
+      {/* Platform Capsules - 2 Rows (same as Watch On) */}
+      <div className="px-3 md:px-6 pb-6 md:pb-8">
+        <div className="max-w-7xl mx-auto">
+          <div className="flex justify-center gap-2 md:gap-3 flex-wrap">
+            {platforms.map((platform) => (
+              <button
+                key={platform.name}
+                onClick={() => handlePlatformClick(platform)}
+                className="group relative px-3 py-1.5 md:px-4 md:py-2 rounded-full transition-all hover:scale-105 text-xs md:text-sm font-semibold text-white"
+                style={{
+                  background: selectedPlatform === platform.name 
+                    ? `linear-gradient(135deg, ${coral} 0%, ${mint} 100%)`
+                    : `linear-gradient(135deg, ${coral}80 0%, ${mint}60 100%)`,
+                  boxShadow: selectedPlatform === platform.name ? `0 0 16px ${mint}60` : 'none',
+                  opacity: selectedPlatform === platform.name ? 1 : 0.85
+                }}
+              >
+                <span className="mr-1">{platform.icon}</span>
+                {platform.name}
+              </button>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* Trending Right Now Section - Grid (3 cols mobile, 6 cols desktop) */}
+      <div className="px-3 md:px-6 pb-6 md:pb-8">
+        <div className="max-w-7xl mx-auto">
+          <div className="mb-3 md:mb-4">
+            <h2 className="text-xl md:text-2xl font-bold text-white flex items-center gap-2">
+              <span>🔥</span> Trending Right Now
+            </h2>
+            <p className="text-sm md:text-base text-white/60 mt-1">
+              Live entertainment moments
+            </p>
+          </div>
+          <div className="grid grid-cols-3 md:grid-cols-6 gap-2 md:gap-3">
+            {filteredMoments.map((moment) => (
+              <div 
+                key={moment.id} 
+                onClick={() => setModalItem(moment)}
+                className="relative cursor-pointer rounded-lg md:rounded-xl overflow-hidden shadow-lg border border-white/10 hover:-translate-y-0.5 transition"
+              >
+                {/* Thumbnail */}
+                <div className="relative aspect-[2/3] bg-gradient-to-br from-coral/20 via-charcoalSoft to-mint/20">
+                  <img 
+                    src={moment.thumbnail} 
+                    alt={moment.title}
+                    className="w-full h-full object-cover"
+                  />
+                  {/* Platform badge */}
+                  <div 
+                    className="absolute top-2 left-2 px-2 py-1 rounded-full text-[8px] md:text-[10px] font-semibold"
+                    style={{ background: `${charcoalSoft}CC`, color: mint }}
+                  >
+                    {moment.platform}
+                  </div>
+                  {/* Buzz Score */}
+                  <div 
+                    className="absolute top-2 right-2 px-2 py-1 rounded-full text-[10px] md:text-xs font-bold flex items-center gap-1"
+                    style={{ background: `${charcoalSoft}CC`, color: getBuzzColor(moment.buzzScore) }}
+                  >
+                    <span>{getBuzzFlames(moment.buzzScore)}</span>
+                    <span>{moment.buzzScore}</span>
+                  </div>
+                </div>
+                {/* Info panel */}
+                <div className="p-2 md:p-2.5" style={{ backgroundColor: charcoalSoft }}>
+                  <p className="text-[10px] md:text-xs text-white font-medium line-clamp-2">
+                    {moment.headline}
+                  </p>
+                  <div className="flex gap-1 mt-1">
+                    {moment.tags.map((tag, i) => (
+                      <span 
+                        key={i}
+                        className="text-[8px] px-1.5 py-0.5 rounded-full"
+                        style={{ background: `${mint}20`, color: mint }}
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* From the Feeds Tray - Horizontal Scroll (same as Watch On) */}
+      <div className="pb-8">
+        <div className="max-w-7xl mx-auto space-y-3 md:space-y-4">
+          <section>
+            <div className="px-3 md:px-6 mb-2 flex items-end justify-between">
+              <div>
+                <h2 className="text-base md:text-xl font-semibold text-white flex items-center gap-1.5 md:gap-2">
+                  <span>📱</span> From the Feeds
+                </h2>
+                {!visibleFromTheFeeds ? null : (
+                  <p className="text-[10px] md:text-sm text-white/60">
+                    What's buzzing on social
+                  </p>
+                )}
+              </div>
+              <div className="flex items-center gap-2 md:gap-4 text-[10px] md:text-sm text-white/85">
+                {!visibleFromTheFeeds ? (
+                  <button onClick={() => setVisibleFromTheFeeds(true)} className="hover:text-white">Show</button>
+                ) : (
+                  <>
+                    <button 
+                      onClick={() => setExpandedFromTheFeeds(!expandedFromTheFeeds)} 
+                      className="hover:text-white"
+                    >
+                      {expandedFromTheFeeds ? "Collapse" : "Go Deeper"}
+                    </button>
+                    <button onClick={() => setVisibleFromTheFeeds(false)} className="hover:text-white">Hide</button>
+                  </>
+                )}
+              </div>
+            </div>
+            {visibleFromTheFeeds && (
+              <div className="overflow-x-auto scrollbar-hide px-3 md:px-6 pb-2 snap-x snap-mandatory" style={{ scrollBehavior: 'smooth' }}>
+                <div className="flex gap-2 md:gap-3" style={{ width: 'max-content' }}>
+                  {filteredMoments.slice(0, 6).map((moment) => (
+                    <div 
+                      key={`feed-${moment.id}`} 
+                      className="flex-shrink-0 snap-start cursor-pointer" 
+                      style={{ width: '120px' }}
+                      onClick={() => setModalItem(moment)}
+                    >
+                      <div className="relative rounded-lg overflow-hidden shadow-lg border border-white/10 hover:-translate-y-0.5 transition">
+                        <div className="relative aspect-[2/3] bg-gradient-to-br from-coral/20 via-charcoalSoft to-mint/20">
+                          <img 
+                            src={moment.thumbnail} 
+                            alt={moment.title}
+                            className="w-full h-full object-cover"
+                          />
+                          <div 
+                            className="absolute top-1 right-1 px-1.5 py-0.5 rounded-full text-[9px] font-bold"
+                            style={{ background: `${charcoalSoft}CC`, color: getBuzzColor(moment.buzzScore) }}
+                          >
+                            {getBuzzFlames(moment.buzzScore)} {moment.buzzScore}
+                          </div>
+                        </div>
+                        <div className="p-1.5" style={{ backgroundColor: charcoalSoft }}>
+                          <p className="text-[9px] text-white font-medium line-clamp-2">
+                            {moment.headline}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+          </section>
+        </div>
+      </div>
+
+      {/* Detail Modal */}
+      {modalItem && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4" style={{ backgroundColor: `${charcoal}E6` }}>
+          <div className="relative max-w-2xl w-full rounded-2xl shadow-2xl border" style={{ backgroundColor: charcoalSoft, borderColor: `${mint}40` }}>
+            {/* Close button */}
+            <button
+              onClick={() => setModalItem(null)}
+              className="absolute top-4 right-4 w-8 h-8 rounded-full flex items-center justify-center transition-all z-10"
+              style={{ background: `${charcoal}CC`, color: mint }}
+            >
+              ✕
+            </button>
+
+            <div className="p-6 md:p-8">
+              {/* Platform icon + title */}
+              <div className="flex items-center gap-3 mb-4">
+                <div 
+                  className="px-3 py-1.5 rounded-full text-sm font-semibold"
+                  style={{ background: `${mint}20`, color: mint }}
+                >
+                  {modalItem.platform}
+                </div>
+                <h2 className="text-2xl md:text-3xl font-bold text-white flex-1">
+                  {modalItem.title}
+                </h2>
+              </div>
+
+              {/* Headline */}
+              <p className="text-lg md:text-xl text-white/90 mb-4">
+                {modalItem.headline}
+              </p>
+
+              {/* Buzz Score with tooltip */}
+              <div className="mb-4 flex items-center gap-3">
+                <div className="flex items-center gap-2">
+                  <span className="text-3xl">{getBuzzFlames(modalItem.buzzScore)}</span>
+                  <span className="text-2xl font-bold" style={{ color: getBuzzColor(modalItem.buzzScore) }}>
+                    {modalItem.buzzScore}
+                  </span>
+                </div>
+                <div className="text-[10px] text-white/60 italic">
+                  Buzz Score = Views + Engagement + Speed
+                </div>
+              </div>
+
+              {/* Tag pills */}
+              <div className="flex gap-2 mb-4">
+                {modalItem.tags?.map((tag, i) => (
+                  <span 
+                    key={i}
+                    className="text-xs px-3 py-1 rounded-full font-medium"
+                    style={{ background: `${coral}20`, color: coral }}
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </div>
+
+              {/* Summary */}
+              <p className="text-base text-white/80 mb-4 leading-relaxed">
+                {modalItem.summary}
+              </p>
+
+              {/* Stats bar */}
+              <div className="flex gap-4 mb-6 text-sm">
+                <div>
+                  <span className="text-white/60">Views: </span>
+                  <span className="text-white font-semibold">{modalItem.stats?.views}</span>
+                </div>
+                <div>
+                  <span className="text-white/60">Comments: </span>
+                  <span className="text-white font-semibold">{modalItem.stats?.comments}</span>
+                </div>
+                <div>
+                  <span className="text-white/60">Shares: </span>
+                  <span className="text-white font-semibold">{modalItem.stats?.shares}</span>
+                </div>
+              </div>
+
+              {/* Bro quip */}
+              <p 
+                className="text-sm italic mb-6 px-4 py-3 rounded-lg"
+                style={{ background: `${coral}15`, color: coral, borderLeft: `3px solid ${coral}` }}
+              >
+                "{modalItem.broQuip}"
+              </p>
+
+              {/* CTA button with gradient */}
+              <a
+                href={modalItem.ctaLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block w-full py-3 rounded-xl text-center text-white font-semibold transition-all hover:scale-105"
+                style={{ background: `linear-gradient(135deg, ${coral} 0%, ${mint} 100%)` }}
+              >
+                See on {modalItem.platform}
+              </a>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* CSS for scrollbar hiding */}
+      <style>{`
+        .scrollbar-hide::-webkit-scrollbar {
+          display: none;
+        }
+        .scrollbar-hide {
+          -ms-overflow-style: none;
+          scrollbar-width: none;
+        }
+      `}</style>
+    </div>
+  );
+}
