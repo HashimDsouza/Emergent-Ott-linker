@@ -87,7 +87,7 @@ export default function BuzzMeter() {
       id: 'buzz-5',
       title: '12th Fail IMDb Spike',
       platform: 'IMDb',
-      thumbnail: 'https://image.tmdb.org/t/p/w500/g4zCId163psddDz7eCoB0r0fML0.jpg', // 12th Fail
+      thumbnail: `${BACKEND_URL}/api/proxy-image?url=${encodeURIComponent('https://image.tmdb.org/t/p/w500/g4zCId163psddDz7eCoB0r0fML0.jpg')}`,
       headline: '12th Fail added to 120K+ watchlists this week',
       buzzScore: 85,
       tags: ['Bollywood', 'Drama'],
