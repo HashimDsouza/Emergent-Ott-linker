@@ -190,9 +190,10 @@ export default function WatchOn() {
 
       {/* Platform Tooltip */}
       {platformTooltip && (
-        <div className="fixed top-20 left-1/2 transform -translate-x-1/2 z-50 px-4 py-2 rounded-lg text-sm font-medium text-white transition-all duration-300"
+        <div className="fixed top-32 left-1/2 transform -translate-x-1/2 z-50 px-4 py-2 rounded-lg text-sm font-medium italic transition-all duration-300 animate-fadeIn"
              style={{
-               background: `linear-gradient(135deg, ${charcoalSoft} 0%, ${charcoal} 100%)`,
+               background: `${charcoalSoft}F0`,
+               color: coral,
                border: `1px solid ${mint}40`,
                boxShadow: `0 4px 12px rgba(0,0,0,0.3), 0 0 8px ${mint}20`
              }}>
