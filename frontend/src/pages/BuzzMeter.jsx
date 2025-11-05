@@ -14,13 +14,13 @@ export default function BuzzMeter() {
   const [visibleFromTheFeeds, setVisibleFromTheFeeds] = useState(true);
   const [expandedFromTheFeeds, setExpandedFromTheFeeds] = useState(false);
 
-  // Platform icons configuration
+  // Platform icons configuration (text-based for now, logos to be added)
   const platforms = [
-    { name: "All", icon: "🌐" },
-    { name: "YouTube", icon: "📺" },
-    { name: "X", icon: "𝕏" },
-    { name: "Reddit", icon: "🗨️" },
-    { name: "IMDb", icon: "⭐" },
+    { name: "All", label: "All" },
+    { name: "YouTube", label: "YT" },
+    { name: "X", label: "X" },
+    { name: "Reddit", label: "Reddit" },
+    { name: "IMDb", label: "IMDb" },
   ];
 
   // Static curated Buzz Meter moments (Phase 1A)
