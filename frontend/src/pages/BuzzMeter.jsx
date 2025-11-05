@@ -202,7 +202,7 @@ export default function BuzzMeter() {
 
       {/* Trending Right Now Section - 1×6 Horizontal Scroll (like Watch On) */}
       <div className="pb-6 md:pb-8">
-        <div className="max-w-7xl mx-auto">
+        <div className="max-w-[1280px] mx-auto">
           <div className="px-3 md:px-6 mb-2 flex items-end justify-between">
             <div>
               <h2 className="text-base md:text-xl font-semibold text-white flex items-center gap-1.5 md:gap-2">
