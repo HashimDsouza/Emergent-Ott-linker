@@ -222,7 +222,7 @@ export default function BuzzMeter() {
               {filteredMoments.map((moment) => (
                 <div 
                   key={moment.id} 
-                  className="flex-shrink-0 snap-start cursor-pointer w-[130px] md:w-[15.5%]"
+                  className="flex-shrink-0 snap-start cursor-pointer w-[130px] md:w-[14%]"
                   onClick={() => setModalItem(moment)}
                 >
                   <div className="relative rounded-lg md:rounded-xl overflow-hidden shadow-lg border border-white/10 hover:-translate-y-0.5 transition">
