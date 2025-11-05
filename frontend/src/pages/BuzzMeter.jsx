@@ -25,13 +25,13 @@ export default function BuzzMeter() {
     { name: "IMDb", label: "IMDb" },
   ];
 
-  // Static curated Buzz Meter moments (Phase 1A) - Using proxied TMDB images
+  // Static curated Buzz Meter moments (Phase 1A) - Using gradient placeholders
   const buzzMoments = [
     {
       id: 'buzz-1',
       title: 'Fighter Trailer',
       platform: 'YouTube',
-      thumbnail: `${BACKEND_URL}/api/proxy-image?url=${encodeURIComponent('https://image.tmdb.org/t/p/w500/qTxQz6nzSbN39BFfVu9bgDtxxW8.jpg')}`,
+      thumbnail: 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="400" height="600"%3E%3Cdefs%3E%3ClinearGradient id="g1" x1="0%25" y1="0%25" x2="100%25" y2="100%25"%3E%3Cstop offset="0%25" style="stop-color:%23FF4F64;stop-opacity:1"/%3E%3Cstop offset="100%25" style="stop-color:%2330E0B2;stop-opacity:1"/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width="400" height="600" fill="url(%23g1)"/%3E%3Ctext x="50%25" y="50%25" font-family="Arial" font-size="24" fill="white" text-anchor="middle" dominant-baseline="middle"%3EFighter%3C/text%3E%3C/svg%3E',
       headline: 'Fighter Trailer hits 25M views in 12 hours',
       buzzScore: 95,
       tags: ['OTT', 'Bollywood'],
@@ -45,7 +45,7 @@ export default function BuzzMeter() {
       id: 'buzz-2',
       title: 'ICC World Cup Final',
       platform: 'YouTube',
-      thumbnail: `${BACKEND_URL}/api/proxy-image?url=${encodeURIComponent('https://image.tmdb.org/t/p/w500/3KICZbBy2BSPX0ZP5oBN58EbLtm.jpg')}`,
+      thumbnail: 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="400" height="600"%3E%3Cdefs%3E%3ClinearGradient id="g2" x1="0%25" y1="0%25" x2="100%25" y2="100%25"%3E%3Cstop offset="0%25" style="stop-color:%2330E0B2;stop-opacity:1"/%3E%3Cstop offset="100%25" style="stop-color:%23FF4F64;stop-opacity:1"/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width="400" height="600" fill="url(%23g2)"/%3E%3Ctext x="50%25" y="50%25" font-family="Arial" font-size="24" fill="white" text-anchor="middle" dominant-baseline="middle"%3EICC%20Final%3C/text%3E%3C/svg%3E',
       headline: 'India vs Australia Final - Last Over Drama',
       buzzScore: 88,
       tags: ['Sports', 'Cricket'],
@@ -59,7 +59,7 @@ export default function BuzzMeter() {
       id: 'buzz-3',
       title: 'Kapil Sharma Goes Viral',
       platform: 'X',
-      thumbnail: `${BACKEND_URL}/api/proxy-image?url=${encodeURIComponent('https://image.tmdb.org/t/p/w500/wj6NMVpKNcIUFALdRx8hx2VqiLV.jpg')}`,
+      thumbnail: 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="400" height="600"%3E%3Cdefs%3E%3ClinearGradient id="g3" x1="0%25" y1="0%25" x2="100%25" y2="100%25"%3E%3Cstop offset="0%25" style="stop-color:%23FF8C42;stop-opacity:1"/%3E%3Cstop offset="100%25" style="stop-color:%2330E0B2;stop-opacity:1"/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width="400" height="600" fill="url(%23g3)"/%3E%3Ctext x="50%25" y="50%25" font-family="Arial" font-size="24" fill="white" text-anchor="middle" dominant-baseline="middle"%3EKapil%20Sharma%3C/text%3E%3C/svg%3E',
       headline: 'Kapil\'s Akshay Kumar roast becomes #1 trending',
       buzzScore: 82,
       tags: ['Comedy', 'Entertainment'],
@@ -73,7 +73,7 @@ export default function BuzzMeter() {
       id: 'buzz-4',
       title: 'House of the Dragon S2 Finale',
       platform: 'Reddit',
-      thumbnail: `${BACKEND_URL}/api/proxy-image?url=${encodeURIComponent('https://image.tmdb.org/t/p/w500/7QMsOTMUswlwxJP0rTTZfmz2tX2.jpg')}`,
+      thumbnail: 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="400" height="600"%3E%3Cdefs%3E%3ClinearGradient id="g4" x1="0%25" y1="0%25" x2="100%25" y2="100%25"%3E%3Cstop offset="0%25" style="stop-color:%23FF4F64;stop-opacity:1"/%3E%3Cstop offset="100%25" style="stop-color:%23FF8C42;stop-opacity:1"/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width="400" height="600" fill="url(%23g4)"/%3E%3Ctext x="50%25" y="50%25" font-family="Arial" font-size="24" fill="white" text-anchor="middle" dominant-baseline="middle"%3EHOTD%3C/text%3E%3C/svg%3E',
       headline: 'HOTD fans debate shocking finale twist',
       buzzScore: 90,
       tags: ['OTT', 'Fantasy'],
@@ -87,7 +87,7 @@ export default function BuzzMeter() {
       id: 'buzz-5',
       title: '12th Fail IMDb Spike',
       platform: 'IMDb',
-      thumbnail: `${BACKEND_URL}/api/proxy-image?url=${encodeURIComponent('https://image.tmdb.org/t/p/w500/g4zCId163psddDz7eCoB0r0fML0.jpg')}`,
+      thumbnail: 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="400" height="600"%3E%3Cdefs%3E%3ClinearGradient id="g5" x1="0%25" y1="0%25" x2="100%25" y2="100%25"%3E%3Cstop offset="0%25" style="stop-color:%2330E0B2;stop-opacity:1"/%3E%3Cstop offset="100%25" style="stop-color:%23FF8C42;stop-opacity:1"/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width="400" height="600" fill="url(%23g5)"/%3E%3Ctext x="50%25" y="50%25" font-family="Arial" font-size="24" fill="white" text-anchor="middle" dominant-baseline="middle"%3E12th%20Fail%3C/text%3E%3C/svg%3E',
       headline: '12th Fail added to 120K+ watchlists this week',
       buzzScore: 85,
       tags: ['Bollywood', 'Drama'],
@@ -101,7 +101,7 @@ export default function BuzzMeter() {
       id: 'buzz-6',
       title: 'Maharaja Social Storm',
       platform: 'X',
-      thumbnail: `${BACKEND_URL}/api/proxy-image?url=${encodeURIComponent('https://image.tmdb.org/t/p/w500/5wQnDMof4VOqfP78OmU31t3KnVd.jpg')}`,
+      thumbnail: 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="400" height="600"%3E%3Cdefs%3E%3ClinearGradient id="g6" x1="0%25" y1="0%25" x2="100%25" y2="100%25"%3E%3Cstop offset="0%25" style="stop-color:%23FF4F64;stop-opacity:1"/%3E%3Cstop offset="100%25" style="stop-color:%2330E0B2;stop-opacity:1"/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width="400" height="600" fill="url(%23g6)"/%3E%3Ctext x="50%25" y="50%25" font-family="Arial" font-size="24" fill="white" text-anchor="middle" dominant-baseline="middle"%3EMaharaja%3C/text%3E%3C/svg%3E',
       headline: '2M tweets about Maharaja in 24 hours',
       buzzScore: 92,
       tags: ['Bollywood', 'OTT'],
