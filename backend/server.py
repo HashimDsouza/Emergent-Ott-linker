@@ -1015,6 +1015,28 @@ async def get_content_by_category(category: str, response: Response):
     content_list = await db.content.find({"category": category}, {"_id": 0}).to_list(100)
     return content_list
 
+
+@api_router.get("/proxy-image")
+async def proxy_image(url: str):
+    """Proxy TMDB images to avoid ORB blocking"""
+    try:
+        async with httpx.AsyncClient() as client:
+            response = await client.get(url, timeout=10.0)
+            if response.status_code == 200:
+                return StreamingResponse(
+                    io.BytesIO(response.content),
+                    media_type=response.headers.get("content-type", "image/jpeg"),
+                    headers={
+                        "Cache-Control": "public, max-age=86400",
+                        "Access-Control-Allow-Origin": "*"
+                    }
+                )
+            else:
+                raise HTTPException(status_code=response.status_code, detail="Image not found")
+    except Exception as e:
+        logging.error(f"Error proxying image: {str(e)}")
+        raise HTTPException(status_code=500, detail="Failed to load image")
+
 @api_router.post("/content", response_model=Content)
 async def create_content(input: ContentCreate):
     content_obj = Content(**input.model_dump(), likes=0, shares=0)
