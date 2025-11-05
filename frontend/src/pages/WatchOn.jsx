@@ -190,7 +190,7 @@ export default function WatchOn() {
 
       {/* Platform Tooltip */}
       {platformTooltip && (
-        <div className="fixed top-32 left-1/2 transform -translate-x-1/2 z-50 px-4 py-2 rounded-lg text-sm font-medium italic transition-all duration-300 animate-fadeIn"
+        <div className="fixed top-24 left-1/2 transform -translate-x-1/2 z-50 px-4 py-2 rounded-lg text-sm md:text-base font-medium italic transition-all duration-300 animate-fadeIn"
              style={{
                background: `${charcoalSoft}F0`,
                color: coral,
