@@ -341,18 +341,18 @@ export default function BuzzMeter() {
 
       {/* Detail Modal */}
       {modalItem && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4" style={{ backgroundColor: `${charcoal}E6` }}>
-          <div className="relative max-w-2xl w-full rounded-2xl shadow-2xl border" style={{ backgroundColor: charcoalSoft, borderColor: `${mint}40` }}>
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-3 overflow-y-auto" style={{ backgroundColor: `${charcoal}E6` }} onClick={() => setModalItem(null)}>
+          <div className="relative max-w-2xl w-full my-4 rounded-xl md:rounded-2xl shadow-2xl border max-h-[85vh] overflow-y-auto" style={{ backgroundColor: charcoalSoft, borderColor: `${mint}40` }} onClick={(e) => e.stopPropagation()}>
             {/* Close button */}
             <button
               onClick={() => setModalItem(null)}
-              className="absolute top-4 right-4 w-8 h-8 rounded-full flex items-center justify-center transition-all z-10"
+              className="sticky top-2 right-2 ml-auto w-7 h-7 md:w-8 md:h-8 rounded-full flex items-center justify-center transition-all z-10 text-sm md:text-base"
               style={{ background: `${charcoal}CC`, color: mint }}
             >
               ✕
             </button>
 
-            <div className="p-6 md:p-8">
+            <div className="p-4 md:p-8 pt-0">
               {/* Platform icon + title */}
               <div className="flex items-center gap-3 mb-4">
                 <div 
