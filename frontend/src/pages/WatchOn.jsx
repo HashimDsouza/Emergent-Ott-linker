@@ -185,9 +185,9 @@ export default function WatchOn() {
         </div>
       </div>
 
-      {/* Trays Section - Horizontal Scroll */}
+      {/* Trays Section - Grid Layout (3 cols mobile, 6 cols desktop) */}
       <div id="trays-section" className="pb-8">
-        <div className="max-w-7xl mx-auto space-y-6 md:space-y-8">
+        <div className="max-w-7xl mx-auto space-y-3 md:space-y-4">
           
           {/* Tray 1: Trending Across Platforms */}
           <section>
