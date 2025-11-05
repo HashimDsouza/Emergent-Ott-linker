@@ -141,6 +141,14 @@ const ConnieFloating = ({
     return () => window.removeEventListener("scroll", onScrollRaf);
   }, [scrollAware]);
 
+  // Pulse XP badge when XP changes
+  useEffect(() => {
+    if (lastAction) {
+      setXpPulse(true);
+      setTimeout(() => setXpPulse(false), 600);
+    }
+  }, [lastAction]);
+
   useEffect(() => setMounted(true), []);
   if (!mounted) return null;
 
@@ -155,22 +163,99 @@ const ConnieFloating = ({
   };
 
   const css = `
-    #connie-orb {
+    #bro-orb {
       bottom: calc(env(safe-area-inset-bottom) + var(--footer-height, ${fallbackFooterHeightPx}px) + ${offsetPx}px);
     }
-    @media (max-width: 480px) { #connie-orb { right: 16px; } }
+    @media (max-width: 480px) { #bro-orb { right: 16px; } }
+    
+    @keyframes xpPulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.3); box-shadow: 0 0 20px ${coral}; }
+      100% { transform: scale(1); }
+    }
   `;
 
   return createPortal(
     <>
       <style dangerouslySetInnerHTML={{ __html: css }} />
       <div
-        id="connie-orb"
+        id="bro-orb"
         style={{ ...style, ["--footer-height"]: `${footerHeight}px` }}
         className="flex items-center justify-center"
       >
-        <Connie />
+        <BroButton onClick={() => setOverlayOpen(true)} xp={xp} xpPulse={xpPulse} />
       </div>
+
+      {/* Bro Overlay */}
+      <BroOverlay 
+        isOpen={overlayOpen} 
+        onClose={() => setOverlayOpen(false)}
+        xp={xp}
+      />
+
+      {/* XP Action Toast */}
+      {lastAction && (
+        <div 
+          className="fixed bottom-32 right-20 md:right-24 z-[10000] px-4 py-2 rounded-lg shadow-xl animate-slideUp"
+          style={{
+            backgroundColor: `${charcoal}F0`,
+            border: `1px solid ${mint}60`,
+            color: mint
+          }}
+        >
+          <p className="text-sm font-medium">+{lastAction.xp} XP</p>
+          <p className="text-xs italic" style={{ color: coral }}>{lastAction.message}</p>
+        </div>
+      )}
+
+      {/* Milestone Toast */}
+      {showMilestone && (
+        <div 
+          className="fixed top-24 left-1/2 transform -translate-x-1/2 z-[10000] px-6 py-4 rounded-xl shadow-2xl animate-bounceIn text-center"
+          style={{
+            background: `linear-gradient(135deg, ${coral}20, ${mint}20)`,
+            border: `2px solid ${mint}`,
+            backdropFilter: 'blur(10px)'
+          }}
+        >
+          <div className="text-4xl mb-2">{showMilestone.emoji}</div>
+          <p className="text-xl font-bold text-white mb-1">{showMilestone.xp} XP!</p>
+          <p className="text-sm italic" style={{ color: coral }}>{showMilestone.message}</p>
+        </div>
+      )}
+
+      {/* Additional Animations */}
+      <style>{`
+        @keyframes slideUp {
+          from {
+            opacity: 0;
+            transform: translateY(20px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+        @keyframes bounceIn {
+          0% {
+            opacity: 0;
+            transform: translate(-50%, -50px) scale(0.8);
+          }
+          50% {
+            transform: translate(-50%, 10px) scale(1.1);
+          }
+          100% {
+            opacity: 1;
+            transform: translate(-50%, 0) scale(1);
+          }
+        }
+        .animate-slideUp {
+          animation: slideUp 0.3s ease-out;
+        }
+        .animate-bounceIn {
+          animation: bounceIn 0.5s ease-out;
+        }
+      `}</style>
     </>,
     document.body
   );
