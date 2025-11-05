@@ -188,6 +188,18 @@ export default function WatchOn() {
         </div>
       </div>
 
+      {/* Platform Tooltip */}
+      {platformTooltip && (
+        <div className="fixed top-20 left-1/2 transform -translate-x-1/2 z-50 px-4 py-2 rounded-lg text-sm font-medium text-white transition-all duration-300"
+             style={{
+               background: `linear-gradient(135deg, ${charcoalSoft} 0%, ${charcoal} 100%)`,
+               border: `1px solid ${mint}40`,
+               boxShadow: `0 4px 12px rgba(0,0,0,0.3), 0 0 8px ${mint}20`
+             }}>
+          {platformMessages[platformTooltip]}
+        </div>
+      )}
+
       {/* Trays Section - Grid Layout (3 cols mobile, 6 cols desktop) */}
       <div id="trays-section" className="pb-8">
         <div className="max-w-[1280px] mx-auto space-y-3 md:space-y-4">
