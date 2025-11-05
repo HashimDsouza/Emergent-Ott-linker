@@ -210,9 +210,10 @@ export function ConnectorHeader() {
 
       {/* Row 1: Logo | USP Chips (Watch On, Buzz Meter, Win) | Search & Me */}
       <div className="relative flex items-center justify-between gap-4 md:gap-6 px-3 md:px-6 py-2 md:py-2.5">
-        {/* Logo with premium glow and tooltip */}
+        {/* Logo with premium glow and tooltip - Home button */}
         <button 
           className="relative group flex-shrink-0"
+          onClick={() => navigate('/')}
           onMouseEnter={(e) => e.currentTarget.querySelector('.logo-tip')?.classList.add('visible')}
           onMouseLeave={(e) => e.currentTarget.querySelector('.logo-tip')?.classList.remove('visible')}
           aria-label="Logo"
