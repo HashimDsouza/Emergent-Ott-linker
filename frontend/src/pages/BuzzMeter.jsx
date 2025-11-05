@@ -191,66 +191,77 @@ export default function BuzzMeter() {
         </div>
       </div>
 
-      {/* Trending Right Now Section - Grid (3 cols mobile, 6 cols desktop) */}
-      <div className="px-3 md:px-6 pb-6 md:pb-8">
+      {/* Trending Right Now Section - 1×6 Horizontal Scroll (like Watch On) */}
+      <div className="pb-6 md:pb-8">
         <div className="max-w-7xl mx-auto">
-          <div className="mb-3 md:mb-4">
-            <h2 className="text-xl md:text-2xl font-bold text-white flex items-center gap-2">
-              <span>🔥</span> Trending Right Now
-            </h2>
-            <p className="text-sm md:text-base text-white/60 mt-1">
-              Live entertainment moments
-            </p>
+          <div className="px-3 md:px-6 mb-2 flex items-end justify-between">
+            <div>
+              <h2 className="text-base md:text-xl font-semibold text-white flex items-center gap-1.5 md:gap-2">
+                <span>🔥</span> Trending Right Now
+              </h2>
+              <p className="text-[10px] md:text-sm text-white/60">
+                Live entertainment moments
+              </p>
+            </div>
+            <div className="flex items-center gap-2 md:gap-4 text-[10px] md:text-sm text-white/85">
+              <button className="hover:text-white">Go Deeper</button>
+              <button className="hover:text-white">Hide</button>
+            </div>
           </div>
-          <div className="grid grid-cols-3 md:grid-cols-6 gap-2 md:gap-3">
-            {filteredMoments.map((moment) => (
-              <div 
-                key={moment.id} 
-                onClick={() => setModalItem(moment)}
-                className="relative cursor-pointer rounded-lg md:rounded-xl overflow-hidden shadow-lg border border-white/10 hover:-translate-y-0.5 transition"
-              >
-                {/* Thumbnail */}
-                <div className="relative aspect-[2/3] bg-gradient-to-br from-coral/20 via-charcoalSoft to-mint/20">
-                  <img 
-                    src={moment.thumbnail} 
-                    alt={moment.title}
-                    className="w-full h-full object-cover"
-                  />
-                  {/* Platform badge */}
-                  <div 
-                    className="absolute top-2 left-2 px-2 py-1 rounded-full text-[8px] md:text-[10px] font-semibold"
-                    style={{ background: `${charcoalSoft}CC`, color: mint }}
-                  >
-                    {moment.platform}
-                  </div>
-                  {/* Buzz Score */}
-                  <div 
-                    className="absolute top-2 right-2 px-2 py-1 rounded-full text-[10px] md:text-xs font-bold flex items-center gap-1"
-                    style={{ background: `${charcoalSoft}CC`, color: getBuzzColor(moment.buzzScore) }}
-                  >
-                    <span>{getBuzzFlames(moment.buzzScore)}</span>
-                    <span>{moment.buzzScore}</span>
-                  </div>
-                </div>
-                {/* Info panel */}
-                <div className="p-2 md:p-2.5" style={{ backgroundColor: charcoalSoft }}>
-                  <p className="text-[10px] md:text-xs text-white font-medium line-clamp-2">
-                    {moment.headline}
-                  </p>
-                  <div className="flex gap-1 mt-1">
-                    {moment.tags.map((tag, i) => (
-                      <span 
-                        key={i}
-                        className="text-[8px] px-1.5 py-0.5 rounded-full"
-                        style={{ background: `${mint}20`, color: mint }}
+          <div className="overflow-x-auto scrollbar-hide px-3 md:px-6 pb-2 snap-x snap-mandatory" style={{ scrollBehavior: 'smooth' }}>
+            <div className="flex gap-2 md:gap-3" style={{ width: 'max-content' }}>
+              {filteredMoments.map((moment) => (
+                <div 
+                  key={moment.id} 
+                  className="flex-shrink-0 snap-start cursor-pointer" 
+                  style={{ width: '160px' }}
+                  onClick={() => setModalItem(moment)}
+                >
+                  <div className="relative rounded-lg md:rounded-xl overflow-hidden shadow-lg border border-white/10 hover:-translate-y-0.5 transition">
+                    {/* Thumbnail */}
+                    <div className="relative aspect-[2/3] bg-gradient-to-br from-coral/20 via-charcoalSoft to-mint/20">
+                      <img 
+                        src={moment.thumbnail} 
+                        alt={moment.title}
+                        className="w-full h-full object-cover"
+                      />
+                      {/* Platform badge */}
+                      <div 
+                        className="absolute top-2 left-2 px-2 py-1 rounded-full text-[8px] md:text-[10px] font-semibold"
+                        style={{ background: `${charcoalSoft}CC`, color: mint }}
                       >
-                        {tag}
-                      </span>
-                    ))}
+                        {moment.platform}
+                      </div>
+                      {/* Buzz Score */}
+                      <div 
+                        className="absolute top-2 right-2 px-2 py-1 rounded-full text-[10px] md:text-xs font-bold flex items-center gap-1"
+                        style={{ background: `${charcoalSoft}CC`, color: getBuzzColor(moment.buzzScore) }}
+                      >
+                        <span>{getBuzzFlames(moment.buzzScore)}</span>
+                        <span>{moment.buzzScore}</span>
+                      </div>
+                    </div>
+                    {/* Info panel */}
+                    <div className="p-2 md:p-2.5" style={{ backgroundColor: charcoalSoft }}>
+                      <p className="text-[10px] md:text-xs text-white font-medium line-clamp-2">
+                        {moment.headline}
+                      </p>
+                      <div className="flex gap-1 mt-1 flex-wrap">
+                        {moment.tags.map((tag, i) => (
+                          <span 
+                            key={i}
+                            className="text-[8px] px-1.5 py-0.5 rounded-full"
+                            style={{ background: `${mint}20`, color: mint }}
+                          >
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </div>
       </div>
