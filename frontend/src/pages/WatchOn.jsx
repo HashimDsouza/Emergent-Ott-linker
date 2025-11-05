@@ -36,6 +36,7 @@ export default function WatchOn() {
   const [visibleJioHotstar, setVisibleJioHotstar] = useState(true);
   const [visiblePrime, setVisiblePrime] = useState(true);
   const [visibleSonyLiv, setVisibleSonyLiv] = useState(true);
+  const [hoveredPlatform, setHoveredPlatform] = useState(null);
 
   // Fetch content
   useEffect(() => {
