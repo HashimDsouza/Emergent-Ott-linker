@@ -150,51 +150,45 @@ export default function WatchOn() {
         <div className="max-w-7xl mx-auto">
           {/* Row 1: First 4 platforms */}
           <div className="flex justify-center gap-2 md:gap-3 mb-2 md:mb-3">
-            {platforms.slice(0, 4).map((platform) => {
-              const [hover, setHover] = React.useState(false);
-              return (
-                <button
-                  key={platform.name}
-                  onClick={() => handlePlatformClick(platform)}
-                  onMouseEnter={() => setHover(true)}
-                  onMouseLeave={() => setHover(false)}
-                  className="group relative px-3 py-1.5 md:px-4 md:py-2 rounded-full transition-all text-xs md:text-sm font-semibold text-white"
-                  style={{
-                    background: selectedPlatform === platform.name 
-                      ? `linear-gradient(135deg, ${coral} 0%, ${mint} 100%)`
-                      : `linear-gradient(135deg, ${coral}80 0%, ${mint}60 100%)`,
-                    boxShadow: hover || selectedPlatform === platform.name ? `0 0 16px ${mint}60` : 'none',
-                    opacity: selectedPlatform === platform.name ? 1 : 0.85
-                  }}
-                >
-                  {platform.name}
-                </button>
-              );
-            })}
+            {platforms.slice(0, 4).map((platform) => (
+              <button
+                key={platform.name}
+                onClick={() => handlePlatformClick(platform)}
+                onMouseEnter={() => setHoveredPlatform(platform.name)}
+                onMouseLeave={() => setHoveredPlatform(null)}
+                className="group relative px-3 py-1.5 md:px-4 md:py-2 rounded-full transition-all text-xs md:text-sm font-semibold text-white"
+                style={{
+                  background: selectedPlatform === platform.name 
+                    ? `linear-gradient(135deg, ${coral} 0%, ${mint} 100%)`
+                    : `linear-gradient(135deg, ${coral}80 0%, ${mint}60 100%)`,
+                  boxShadow: hoveredPlatform === platform.name || selectedPlatform === platform.name ? `0 0 16px ${mint}60` : 'none',
+                  opacity: selectedPlatform === platform.name ? 1 : 0.85
+                }}
+              >
+                {platform.name}
+              </button>
+            ))}
           </div>
           {/* Row 2: Last 4 platforms */}
           <div className="flex justify-center gap-2 md:gap-3">
-            {platforms.slice(4).map((platform) => {
-              const [hover, setHover] = React.useState(false);
-              return (
-                <button
-                  key={platform.name}
-                  onClick={() => handlePlatformClick(platform)}
-                  onMouseEnter={() => setHover(true)}
-                  onMouseLeave={() => setHover(false)}
-                  className="group relative px-3 py-1.5 md:px-4 md:py-2 rounded-full transition-all text-xs md:text-sm font-semibold text-white"
-                  style={{
-                    background: selectedPlatform === platform.name 
-                      ? `linear-gradient(135deg, ${coral} 0%, ${mint} 100%)`
-                      : `linear-gradient(135deg, ${coral}80 0%, ${mint}60 100%)`,
-                    boxShadow: hover || selectedPlatform === platform.name ? `0 0 16px ${mint}60` : 'none',
-                    opacity: selectedPlatform === platform.name ? 1 : 0.85
-                  }}
-                >
-                  {platform.name}
-                </button>
-              );
-            })}
+            {platforms.slice(4).map((platform) => (
+              <button
+                key={platform.name}
+                onClick={() => handlePlatformClick(platform)}
+                onMouseEnter={() => setHoveredPlatform(platform.name)}
+                onMouseLeave={() => setHoveredPlatform(null)}
+                className="group relative px-3 py-1.5 md:px-4 md:py-2 rounded-full transition-all text-xs md:text-sm font-semibold text-white"
+                style={{
+                  background: selectedPlatform === platform.name 
+                    ? `linear-gradient(135deg, ${coral} 0%, ${mint} 100%)`
+                    : `linear-gradient(135deg, ${coral}80 0%, ${mint}60 100%)`,
+                  boxShadow: hoveredPlatform === platform.name || selectedPlatform === platform.name ? `0 0 16px ${mint}60` : 'none',
+                  opacity: selectedPlatform === platform.name ? 1 : 0.85
+                }}
+              >
+                {platform.name}
+              </button>
+            ))}
           </div>
         </div>
       </div>
