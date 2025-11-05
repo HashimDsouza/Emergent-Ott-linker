@@ -25,9 +25,10 @@ export default function WatchOn() {
   ];
 
   // State for "Go Deeper" trays (Phase 1B will expand with more content)
-  const [expandedTrending, setExpandedTrending] = useState(false);
-  const [expandedTop10, setExpandedTop10] = useState(false);
-  const [expandedBroRecommends, setExpandedBroRecommends] = useState(false);
+  const [expandedNetflix, setExpandedNetflix] = useState(false);
+  const [expandedJioHotstar, setExpandedJioHotstar] = useState(false);
+  const [expandedPrime, setExpandedPrime] = useState(false);
+  const [expandedSonyLiv, setExpandedSonyLiv] = useState(false);
   
   // State for hiding trays
   const [visibleNetflix, setVisibleNetflix] = useState(true);
