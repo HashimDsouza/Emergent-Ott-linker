@@ -402,30 +402,32 @@ export default function WatchOn() {
         />
       )}
 
-      {/* CSS for toast animation and scrollbar hiding */}
-      <style>{`
-        @keyframes slideDown {
-          from {
-            transform: translate(-50%, -20px);
-            opacity: 0;
+        {/* CSS for toast animation and scrollbar hiding */}
+        <style>{`
+          @keyframes slideDown {
+            from {
+              transform: translate(-50%, -20px);
+              opacity: 0;
+            }
+            to {
+              transform: translate(-50%, 0);
+              opacity: 1;
+            }
           }
-          to {
-            transform: translate(-50%, 0);
-            opacity: 1;
+
+          /* Hide scrollbar for Chrome, Safari and Opera */
+          .scrollbar-hide::-webkit-scrollbar {
+            display: none;
           }
-        }
 
-        /* Hide scrollbar for Chrome, Safari and Opera */
-        .scrollbar-hide::-webkit-scrollbar {
-          display: none;
-        }
-
-        /* Hide scrollbar for IE, Edge and Firefox */
-        .scrollbar-hide {
-          -ms-overflow-style: none;  /* IE and Edge */
-          scrollbar-width: none;  /* Firefox */
-        }
-      `}</style>
-    </div>
+          /* Hide scrollbar for IE, Edge and Firefox */
+          .scrollbar-hide {
+            -ms-overflow-style: none;  /* IE and Edge */
+            scrollbar-width: none;  /* Firefox */
+          }
+        `}</style>
+      </div>
+      <ConnectorFooter />
+    </>
   );
 }
