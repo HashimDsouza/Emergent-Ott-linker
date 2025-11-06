@@ -207,10 +207,10 @@ export const highlightsVideos = [
 
 // Best Of video data (compilation content)
 export const bestOfVideos = [
-  { id: 'b1', videoId: 'dQw4w9WgXcQ', title: 'Best Of IPL 2024', sport: 'cricket', views: '5.2M', descriptor: 'Season best moments.', league: 'IPL' },
-  { id: 'b2', videoId: 'dQw4w9WgXcQ', title: 'Premier League Top 10', sport: 'football', views: '3.8M', descriptor: 'Goals of the season.', league: 'Premier League' },
-  { id: 'b3', videoId: 'dQw4w9WgXcQ', title: 'NBA Dunks November', sport: 'nba', views: '2.1M', descriptor: 'Rim-wrecking slams.', league: 'NBA' },
-  { id: 'b4', videoId: 'dQw4w9WgXcQ', title: 'Grand Slam Best Rallies', sport: 'tennis', views: '1.9M', descriptor: 'Epic exchanges.', league: 'Grand Slam' },
-  { id: 'b5', videoId: 'dQw4w9WgXcQ', title: 'F1 Overtakes 2024', sport: 'f1', views: '4.5M', descriptor: 'Wheel-to-wheel action.', league: 'F1' },
-  { id: 'b6', videoId: 'dQw4w9WgXcQ', title: 'Cricket Best Catches', sport: 'cricket', views: '6.3M', descriptor: 'Defying gravity.', league: 'Multiple' }
+  { id: 'b1', videoId: 'PaMs87nTThs', title: 'Best Of IND vs AUS Series', sport: 'cricket', views: '5.2M', descriptor: 'Border-Gavaskar epic.', league: 'Test Cricket' },
+  { id: 'b2', videoId: 'NJQyqpaK9zQ', title: 'El Clasico 4-3 Thriller', sport: 'football', views: '3.8M', descriptor: 'Seven goals. Pure chaos.', league: 'La Liga' },
+  { id: 'b3', videoId: 'wF48pxqXtyI', title: 'NBA Top 10 Dunks This Week', sport: 'nba', views: '2.1M', descriptor: 'Rim-wrecking slams.', league: 'NBA' },
+  { id: 'b4', videoId: 'Jz8c17upEwM', title: 'Best Tennis Rallies 2024', sport: 'tennis', views: '1.9M', descriptor: 'Epic exchanges.', league: 'ATP/WTA' },
+  { id: 'b5', videoId: 'nFqC7LoRcFY', title: 'F1 Best Overtakes 2024', sport: 'f1', views: '4.5M', descriptor: 'Wheel-to-wheel action.', league: 'F1' },
+  { id: 'b6', videoId: 'TJRMUZs8pkQ', title: 'IND vs AUS ODI Highlights', sport: 'cricket', views: '6.3M', descriptor: 'Six-hitting masterclass.', league: 'ODI' }
 ];
