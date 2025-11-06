@@ -194,3 +194,23 @@ export const generateMatchDescriptor = (match) => {
   
   return leagueDescriptors[Math.floor(Math.random() * leagueDescriptors.length)];
 };
+
+// Highlights video data (recent match highlights)
+export const highlightsVideos = [
+  { id: 'h1', videoId: 'dQw4w9WgXcQ', title: 'Kohli 78* Match Highlights', sport: 'cricket', views: '1.2M', descriptor: 'Masterclass innings. Pure class.', league: 'IND vs AUS' },
+  { id: 'h2', videoId: 'dQw4w9WgXcQ', title: 'El Clasico All Goals', sport: 'football', views: '2.8M', descriptor: 'Five goals. Endless drama.', league: 'La Liga' },
+  { id: 'h3', videoId: 'dQw4w9WgXcQ', title: 'Lakers vs Warriors OT', sport: 'nba', views: '890K', descriptor: 'LeBron 40pts. Thriller.', league: 'NBA' },
+  { id: 'h4', videoId: 'dQw4w9WgXcQ', title: 'Djokovic 5-Set Win', sport: 'tennis', views: '654K', descriptor: 'Epic comeback. Legend.', league: 'Australian Open' },
+  { id: 'h5', videoId: 'dQw4w9WgXcQ', title: 'F1 Abu Dhabi Highlights', sport: 'f1', views: '1.5M', descriptor: 'Final lap drama.', league: 'F1' },
+  { id: 'h6', videoId: 'dQw4w9WgXcQ', title: 'IPL Best Catches', sport: 'cricket', views: '3.2M', descriptor: 'Gravity-defying catches.', league: 'IPL' }
+];
+
+// Best Of video data (compilation content)
+export const bestOfVideos = [
+  { id: 'b1', videoId: 'dQw4w9WgXcQ', title: 'Best Of IPL 2024', sport: 'cricket', views: '5.2M', descriptor: 'Season best moments.', league: 'IPL' },
+  { id: 'b2', videoId: 'dQw4w9WgXcQ', title: 'Premier League Top 10', sport: 'football', views: '3.8M', descriptor: 'Goals of the season.', league: 'Premier League' },
+  { id: 'b3', videoId: 'dQw4w9WgXcQ', title: 'NBA Dunks November', sport: 'nba', views: '2.1M', descriptor: 'Rim-wrecking slams.', league: 'NBA' },
+  { id: 'b4', videoId: 'dQw4w9WgXcQ', title: 'Grand Slam Best Rallies', sport: 'tennis', views: '1.9M', descriptor: 'Epic exchanges.', league: 'Grand Slam' },
+  { id: 'b5', videoId: 'dQw4w9WgXcQ', title: 'F1 Overtakes 2024', sport: 'f1', views: '4.5M', descriptor: 'Wheel-to-wheel action.', league: 'F1' },
+  { id: 'b6', videoId: 'dQw4w9WgXcQ', title: 'Cricket Best Catches', sport: 'cricket', views: '6.3M', descriptor: 'Defying gravity.', league: 'Multiple' }
+];
