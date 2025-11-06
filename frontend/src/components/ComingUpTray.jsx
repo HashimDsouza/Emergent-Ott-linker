@@ -1,5 +1,6 @@
 import React from 'react';
 import { comingUpMatches, generateMatchDescriptor } from '../config/sportsConfig';
+import FlagIcon from './FlagIcon';
 
 const coral = "#FF4F64";
 const mint = "#30E0B2";
