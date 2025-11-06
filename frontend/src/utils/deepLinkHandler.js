@@ -84,46 +84,16 @@ export const handleDeepLink = (tmdbId, ottPlatform, titleName, titleData = {}) =
   
   // Handle Android
   if (userPlatform === 'android' && config.androidPackage) {
-    // Try app-first approach with intent URL
-    try {
-      // Build Android Intent URL
-      const intentUrl = `intent://${targetUrl.replace('https://', '')}#Intent;scheme=https;package=${config.androidPackage};end`;
-      
-      // Try to open app via intent
-      window.location.href = intentUrl;
-      
-      // Fallback to Play Store after 2.5 seconds if app doesn't open
-      setTimeout(() => {
-        if (document.hasFocus()) {
-          // User is still on page = app didn't open
-          const storeUrl = getStoreUrl(userPlatform, config);
-          if (storeUrl) {
-            const shouldRedirect = window.confirm(
-              `${config.name} app not installed. Open Play Store?`
-            );
-            if (shouldRedirect) {
-              window.open(storeUrl, '_blank');
-            }
-          }
-        }
-      }, 2500);
-      
-      return {
-        method: 'android_intent',
-        platform: userPlatform,
-        hasCuratedLink,
-        url: intentUrl
-      };
-    } catch (e) {
-      // Fallback to direct URL
-      window.open(targetUrl, '_blank');
-      return {
-        method: 'android_fallback',
-        platform: userPlatform,
-        hasCuratedLink,
-        url: targetUrl
-      };
-    }
+    // For Android, try opening URL directly first
+    // Modern Android browsers handle app links automatically via Digital Asset Links
+    window.open(targetUrl, '_blank');
+    
+    return {
+      method: 'android_web_link',
+      platform: userPlatform,
+      hasCuratedLink,
+      url: targetUrl
+    };
   }
   
   // Handle Desktop - just open web URL
