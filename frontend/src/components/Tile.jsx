@@ -78,7 +78,7 @@ export default function Tile({ item, onInfo }) {
         style={{ backgroundColor: 'rgba(23, 58, 53, 0.95)' }}
       >{/* Line 1: Platform + social icons (heart, thumbs, comments) - NO CAPSULE */}
         <div className="flex items-center gap-0.5 md:gap-1.5 mb-0.5 md:mb-1">
-          <span className="text-[8px] md:text-[10px] font-semibold flex-shrink-0" style={{ color: mint }}>{item.platform || "JioHotstar"}</span>
+          <span className="text-[8px] md:text-[9px] font-semibold flex-shrink-0" style={{ color: mint }}>{item.platform || "JioHotstar"}</span>
           <button 
             onClick={(e) => { 
               e.stopPropagation(); 
