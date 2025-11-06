@@ -66,7 +66,7 @@ export default function DetailsModal({ open, onClose, item }) {
           <div>
             <div className="text-xs md:text-sm leading-5 md:leading-6">{item?.description || "A compact, cinematic synopsis (3–5 lines) that gives just enough to decide. Crisp, human copy — no clutter."}</div>
             <div className="flex flex-wrap gap-1.5 md:gap-2 mt-2 md:mt-3">
-              {(item?.genres || ["Thriller","Heist","Dark Comedy"]).map((t, idx) => <span key={idx} className="text-xs px-2 py-1 rounded-full border border-white/15 bg-white/5">{t}</span>)}
+              {(item?.genres || ["Thriller","Heist","Dark Comedy"]).map((t, idx) => <span key={idx} className="text-[10px] md:text-xs px-1.5 md:px-2 py-0.5 md:py-1 rounded-full border border-white/15 bg-white/5">{t}</span>)}
             </div>
             
             {/* Cast Section */}
