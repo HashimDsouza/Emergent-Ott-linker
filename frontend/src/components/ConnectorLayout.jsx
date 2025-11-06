@@ -16,6 +16,7 @@ import {
   ChevronDown,
 } from "lucide-react";
 import SearchOverlay from "./SearchOverlay";
+import DeepLinkAnalytics from "./DeepLinkAnalytics";
 
 // Brand colors - exact match to tiles
 const coral = "#FF4F64";
