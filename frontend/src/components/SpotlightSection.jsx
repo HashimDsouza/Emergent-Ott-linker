@@ -164,142 +164,87 @@ export default function SpotlightSection({ selectedSport, selectedLeague }) {
   );
 }
 
-function SpotlightCard({ match }) {
-  const isLive = match.type === 'live';
-  const isToday = match.type === 'today';
-
-  const getCardGlow = () => {
-    if (isLive) return `${coral}60`;
-    if (isToday) return `${mint}40`;
-    return `${mint}20`;
-  };
-
-  const getStatusColor = () => {
-    if (isLive) return coral;
-    if (isToday) return mint;
-    return '#FFA500'; // orange for weekend
-  };
+function LeagueSpotlightCard({ league }) {
+  const isIndiaRelevant = league.relevance === 'india';
 
   return (
     <div
-      className="snap-start flex-shrink-0 w-[280px] md:w-[320px] rounded-2xl p-4 md:p-5 transition-all hover:scale-[1.02] cursor-pointer"
+      className="snap-start flex-shrink-0 w-[320px] md:w-[360px] rounded-2xl p-5 md:p-6 transition-all hover:scale-[1.02] cursor-pointer"
       style={{
         backgroundColor: charcoal,
-        border: `2px solid ${getCardGlow()}`,
-        boxShadow: `0 4px 20px ${getCardGlow()}`
+        border: `2px solid ${isIndiaRelevant ? `${coral}60` : `${mint}40`}`,
+        boxShadow: `0 4px 20px ${isIndiaRelevant ? `${coral}40` : `${mint}30`}`
       }}
     >
-      {/* Status Badge */}
-      <div className="flex items-center justify-between mb-3">
-        <span
-          className="px-3 py-1 rounded-full text-xs md:text-sm font-bold flex items-center gap-1.5"
-          style={{
-            backgroundColor: `${getStatusColor()}20`,
-            color: getStatusColor(),
-            border: `1px solid ${getStatusColor()}`
-          }}
-        >
-          {isLive && <span className="animate-pulse">🔴</span>}
-          {match.status}
-        </span>
-        <span className="text-xs text-white/60">{match.league}</span>
+      {/* League Header */}
+      <div className="flex items-start justify-between mb-4">
+        <div className="flex items-center gap-3">
+          <span className="text-3xl">{league.logo}</span>
+          <div>
+            <h3 
+              className="text-lg md:text-xl font-bold"
+              style={{ color: isIndiaRelevant ? coral : mint }}
+            >
+              {league.leagueName}
+            </h3>
+            {league.trophy && (
+              <p className="text-xs text-white/60 mt-0.5">{league.trophy}</p>
+            )}
+          </div>
+        </div>
+        <span className="text-2xl">{league.flag}</span>
       </div>
 
-      {/* Teams */}
-      <div className="space-y-3 mb-4">
-        {/* Team 1 */}
-        <div className="flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <span className="text-2xl">{match.team1.flag}</span>
-            <span className="text-white font-semibold text-base md:text-lg">
-              {match.team1.name}
-            </span>
-          </div>
-          {match.team1.score && (
+      {/* League Status */}
+      <div 
+        className="px-4 py-3 rounded-lg mb-4"
+        style={{ 
+          backgroundColor: `${mint}10`,
+          border: `1px solid ${mint}30`
+        }}
+      >
+        <div className="flex items-center justify-between mb-2">
+          <span className="text-sm font-semibold text-white">
+            {league.status}
+          </span>
+          {isIndiaRelevant && (
             <span 
-              className="text-lg md:text-xl font-bold"
-              style={{ color: mint }}
+              className="px-2 py-0.5 rounded-full text-[10px] font-bold"
+              style={{ 
+                backgroundColor: `${coral}30`,
+                color: coral 
+              }}
             >
-              {match.team1.score}
+              🇮🇳 INDIA
             </span>
           )}
         </div>
-
-        {/* VS or Single Event */}
-        {match.team2 ? (
-          <>
-            <div className="text-center text-white/40 text-xs font-semibold">VS</div>
-            
-            {/* Team 2 */}
-            <div className="flex items-center justify-between">
-              <div className="flex items-center gap-2">
-                <span className="text-2xl">{match.team2.flag}</span>
-                <span className="text-white font-semibold text-base md:text-lg">
-                  {match.team2.name}
-                </span>
-              </div>
-              {match.team2.score && (
-                <span 
-                  className="text-lg md:text-xl font-bold"
-                  style={{ color: mint }}
-                >
-                  {match.team2.score}
-                </span>
-              )}
-            </div>
-          </>
-        ) : (
-          <div className="text-center py-2">
-            <p className="text-white/80 text-sm">{match.venue}</p>
-          </div>
-        )}
+        <p className="text-xs text-white/70">
+          {league.nextMatch}
+        </p>
       </div>
 
-      {/* Footer Info */}
-      <div className="pt-3 border-t flex items-center justify-between" style={{ borderColor: `${getStatusColor()}20` }}>
-        <div className="text-xs text-white/60">
-          {match.venue && match.team2 && `📍 ${match.venue}`}
-          {match.time && ` • ${match.time}`}
-        </div>
-        {match.countdown && (
-          <div 
-            className="px-2 py-1 rounded text-xs font-semibold"
-            style={{ 
-              backgroundColor: `${getStatusColor()}20`,
-              color: getStatusColor() 
-            }}
-          >
-            {match.countdown}
-          </div>
-        )}
+      {/* Descriptor */}
+      <div className="mb-4">
+        <p 
+          className="text-sm md:text-base italic text-center"
+          style={{ color: coral }}
+        >
+          "{league.descriptor}"
+        </p>
       </div>
 
       {/* CTA Button */}
       <button
-        className="w-full mt-4 py-2.5 rounded-lg font-semibold text-sm transition-all hover:scale-[1.02]"
+        className="w-full py-3 rounded-lg font-semibold text-sm transition-all hover:scale-[1.02]"
         style={{
-          background: isLive 
-            ? `linear-gradient(135deg, ${coral}, ${coral}E0)`
-            : `linear-gradient(135deg, ${mint}, ${mint}E0)`,
+          background: `linear-gradient(135deg, ${mint}, ${mint}E0)`,
           color: charcoal,
-          boxShadow: `0 4px 12px ${isLive ? `${coral}40` : `${mint}40`}`
+          boxShadow: `0 4px 12px ${mint}40`
         }}
       >
-        {isLive ? '🔴 Watch Live' : '🔔 Set Reminder'}
+        📊 View League Hub
       </button>
-
-      {/* Live pulse animation */}
-      {isLive && (
-        <style>{`
-          @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.5; }
-          }
-          .animate-pulse {
-            animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-          }
-        `}</style>
-      )}
     </div>
   );
 }
