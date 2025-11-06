@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
+import Tile from "./Tile";
 
 const coral = "#FF4F64", mint = "#30E0B2", charcoal = "#0E1514", charcoalSoft = "#173A35";
 
 export default function SearchOverlay({ isOpen, onClose, onSelectItem }) {
+  const [modalItem, setModalItem] = useState(null);
   const [query, setQuery] = useState("");
   const [results, setResults] = useState([]);
   const [broResponse, setBroResponse] = useState("");
