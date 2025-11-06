@@ -164,12 +164,12 @@ export const todayMatches = [
 ];
 
 export const comingUpMatches = [
-  { id: 'c1', sport: 'football', league: 'premier', team1: { name: 'Liverpool', flag: '🏴󠁧󠁢󠁥󠁮󠁧󠁿' }, team2: { name: 'Chelsea', flag: '🏴󠁧󠁢󠁥󠁮󠁧󠁿' }, day: 'Tomorrow', time: '10:00 PM', descriptor: 'Derby day drama.' },
-  { id: 'c2', sport: 'f1', league: 'f1', team1: { name: 'Abu Dhabi GP', flag: '🇦🇪' }, team2: null, day: 'Sunday', time: '5:30 PM', descriptor: 'Season finale. Title shot.' },
-  { id: 'c3', sport: 'cricket', league: 'england', team1: { name: 'Pakistan', flag: '🇵🇰' }, team2: { name: 'England', flag: '🏴󠁧󠁢󠁥󠁮󠁧󠁿' }, day: 'Saturday', time: '2:00 PM', descriptor: 'Rivalry continues.' },
-  { id: 'c4', sport: 'nba', league: 'nba', team1: { name: 'Celtics', flag: '🟢' }, team2: { name: 'Heat', flag: '🔴' }, day: 'Sunday', time: '8:00 AM', descriptor: 'East Conference clash.' },
-  { id: 'c5', sport: 'tennis', league: 'atp', team1: { name: 'Federer', flag: '🇨🇭' }, team2: { name: 'Nadal', flag: '🇪🇸' }, day: 'Saturday', time: '4:00 PM', descriptor: 'Legends return.' },
-  { id: 'c6', sport: 'football', league: 'bundesliga', team1: { name: 'Bayern', flag: '🇩🇪' }, team2: { name: 'Dortmund', flag: '🇩🇪' }, day: 'Tomorrow', time: '9:30 PM', descriptor: 'Der Klassiker.' }
+  { id: 'c1', sport: 'football', league: 'premier', team1: { name: 'Liverpool', flag: '🏴󠁧󠁢󠁥󠁮󠁧󠁿', flagCode: 'gb-eng', logo: getTeamLogo('Liverpool') }, team2: { name: 'Chelsea', flag: '🏴󠁧󠁢󠁥󠁮󠁧󠁿', flagCode: 'gb-eng', logo: getTeamLogo('Chelsea') }, day: 'Tomorrow', time: '10:00 PM', descriptor: 'Derby day drama.' },
+  { id: 'c2', sport: 'f1', league: 'f1', team1: { name: 'Abu Dhabi GP', flag: '🇦🇪', flagCode: 'ae', logo: null }, team2: null, day: 'Sunday', time: '5:30 PM', descriptor: 'Season finale. Title shot.' },
+  { id: 'c3', sport: 'cricket', league: 'england', team1: { name: 'Pakistan', flag: '🇵🇰', flagCode: 'pk', logo: null }, team2: { name: 'England', flag: '🏴󠁧󠁢󠁥󠁮󠁧󠁿', flagCode: 'gb-eng', logo: null }, day: 'Saturday', time: '2:00 PM', descriptor: 'Rivalry continues.' },
+  { id: 'c4', sport: 'nba', league: 'nba', team1: { name: 'Celtics', flag: '🟢', flagCode: null, logo: getTeamLogo('Celtics') }, team2: { name: 'Heat', flag: '🔴', flagCode: null, logo: getTeamLogo('Heat') }, day: 'Sunday', time: '8:00 AM', descriptor: 'East Conference clash.' },
+  { id: 'c5', sport: 'tennis', league: 'atp', team1: { name: 'Federer', flag: '🇨🇭', flagCode: 'ch', logo: null }, team2: { name: 'Nadal', flag: '🇪🇸', flagCode: 'es', logo: null }, day: 'Saturday', time: '4:00 PM', descriptor: 'Legends return.' },
+  { id: 'c6', sport: 'football', league: 'bundesliga', team1: { name: 'Bayern', flag: '🇩🇪', flagCode: null, logo: getTeamLogo('Bayern') }, team2: { name: 'Dortmund', flag: '🇩🇪', flagCode: null, logo: null }, day: 'Tomorrow', time: '9:30 PM', descriptor: 'Der Klassiker.' }
 ];
 
 // Auto-descriptor generator for matches
