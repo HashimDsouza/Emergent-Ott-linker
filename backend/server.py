@@ -598,7 +598,7 @@ class Content(BaseModel):
     category: str
     platform: str
     platform_content_id: Optional[str] = None
-    rating: float  # Can be IMDb or TMDB rating
+    rating: Optional[float] = 0.0  # Can be IMDb or TMDB rating
     thumbnail: str  # TMDB poster URL
     description: str
     release_date: Optional[str] = None
