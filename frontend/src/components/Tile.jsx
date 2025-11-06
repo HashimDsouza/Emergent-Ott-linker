@@ -74,10 +74,10 @@ export default function Tile({ item, onInfo }) {
 
       {/* Info Panel - Below image with all 3 lines */}
       <div 
-        className="px-1.5 py-1.5 md:px-2.5 md:py-2 text-white" 
+        className="px-1.5 py-1.5 md:px-2 md:py-1.5 text-white" 
         style={{ backgroundColor: 'rgba(23, 58, 53, 0.95)' }}
       >{/* Line 1: Platform + social icons (heart, thumbs, comments) - NO CAPSULE */}
-        <div className="flex items-center gap-0.5 md:gap-2 mb-0.5 md:mb-1.5">
+        <div className="flex items-center gap-0.5 md:gap-1.5 mb-0.5 md:mb-1">
           <span className="text-[8px] md:text-[10px] font-semibold flex-shrink-0" style={{ color: mint }}>{item.platform || "JioHotstar"}</span>
           <button 
             onClick={(e) => { 
