@@ -193,14 +193,14 @@ export default function SearchOverlay({ isOpen, onClose, onSelectItem }) {
         </div>
 
         {/* Search Input */}
-        <div className="relative mb-6">
+        <div className="relative mb-4 md:mb-6">
           <input
             type="text"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             onKeyPress={handleKeyPress}
-            placeholder="Type something like 'funny thrillers on Prime'..."
-            className="w-full px-6 py-4 rounded-xl text-lg text-white placeholder-white/50 focus:outline-none focus:ring-2"
+            placeholder="Type like 'funny thriller'..."
+            className="w-full px-4 md:px-6 py-3 md:py-4 pr-20 md:pr-28 rounded-xl text-sm md:text-lg text-white placeholder-white/50 focus:outline-none focus:ring-2"
             style={{ 
               backgroundColor: charcoalSoft,
               boxShadow: `0 0 0 1px ${mint}30`
@@ -209,7 +209,7 @@ export default function SearchOverlay({ isOpen, onClose, onSelectItem }) {
           />
           <button
             onClick={() => handleSearch(query)}
-            className="absolute right-3 top-1/2 -translate-y-1/2 px-6 py-2 rounded-lg font-medium transition hover:scale-105"
+            className="absolute right-2 md:right-3 top-1/2 -translate-y-1/2 px-4 md:px-6 py-1.5 md:py-2 rounded-lg text-xs md:text-sm font-medium transition active:scale-95 hover:scale-105"
             style={{ backgroundColor: mint, color: charcoal }}
           >
             {loading ? "..." : "Search"}
