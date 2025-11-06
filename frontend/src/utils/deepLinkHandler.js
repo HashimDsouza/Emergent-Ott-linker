@@ -16,8 +16,8 @@ const getPlatform = () => {
   return 'desktop';
 };
 
-// Build the final URL based on platform and deep link data
-const buildDeepLinkUrl = (platform, deepLinkData, config, titleName) => {
+// Build the final URL based on deep link data
+const buildDeepLinkUrl = (deepLinkData, config, titleName) => {
   if (!deepLinkData) {
     // Fallback to search URL
     return config.searchFallback.replace('{query}', encodeURIComponent(titleName));
