@@ -6,11 +6,23 @@ const mint = "#30E0B2";
 const charcoal = "#0E1514";
 const charcoalSoft = "#173A35";
 
-export default function BigMomentsTray() {
+export default function BigMomentsTray({ selectedSport }) {
   const handleVideoClick = (videoId) => {
     // Open YouTube video in new tab
     window.open(getYouTubeWatchUrl(videoId), '_blank');
   };
+
+  // Filter videos based on selected sport
+  const filteredVideos = bigMomentsVideos.filter(video => {
+    if (!selectedSport || selectedSport === 'live') return true;
+    if (selectedSport === 'more') {
+      return ['nba', 'f1', 'golf', 'badminton', 'ufc', 'kabaddi', 'esports'].includes(video.sport);
+    }
+    if (video.sport === 'multiple') return true; // Show multi-sport content always
+    return video.sport === selectedSport;
+  });
+
+  if (filteredVideos.length === 0) return null;
 
   return (
     <div className="px-3 md:px-6 pb-6 md:pb-8">
