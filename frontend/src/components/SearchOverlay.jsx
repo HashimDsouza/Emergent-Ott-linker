@@ -155,17 +155,17 @@ export default function SearchOverlay({ isOpen, onClose, onSelectItem }) {
 
   return (
     <div 
-      className="fixed inset-0 z-50 flex items-start justify-center pt-12 px-4"
+      className="fixed inset-0 z-50 flex items-start justify-center pt-4 md:pt-12 px-3 md:px-4 overflow-y-auto"
       style={{ backgroundColor: 'rgba(14, 21, 20, 0.95)' }}
       onClick={onClose}
     >
       <div 
-        className="w-full max-w-4xl"
+        className="w-full max-w-4xl pb-8"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Search Header */}
-        <div className="mb-6 text-center">
-          <h2 className="text-2xl md:text-3xl font-bold text-white mb-2">
+        <div className="mb-4 md:mb-6 text-center">
+          <h2 className="text-lg md:text-3xl font-bold text-white mb-2 px-2">
             Tell me your flavour — chaos, comfort, or cringe?
           </h2>
           <div className="flex items-center justify-center gap-2 text-sm text-white/70">
