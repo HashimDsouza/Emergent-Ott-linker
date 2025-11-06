@@ -3,6 +3,7 @@ import { ConnectorHeader, ConnectorFooter } from "../components/ConnectorLayout"
 import ConnieFloating from "../components/ConnieFloating";
 import GameOnHeader from "../components/GameOnHeader";
 import SpotlightSection from "../components/SpotlightSection";
+import BigMomentsTray from "../components/BigMomentsTray";
 
 const charcoal = "#0E1514";
 
