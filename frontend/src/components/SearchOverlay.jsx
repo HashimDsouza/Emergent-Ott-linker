@@ -278,6 +278,29 @@ export default function SearchOverlay({ isOpen, onClose, onSelectItem }) {
           </div>
         )}
       </div>
+
+      {/* Custom scrollbar styles */}
+      <style>{`
+        /* Webkit browsers (Chrome, Safari, Edge) */
+        .scrollbar-thin::-webkit-scrollbar {
+          width: 6px;
+        }
+        .scrollbar-thin::-webkit-scrollbar-track {
+          background: transparent;
+        }
+        .scrollbar-thin::-webkit-scrollbar-thumb {
+          background: rgba(48, 224, 178, 0.3);
+          border-radius: 3px;
+        }
+        .scrollbar-thin::-webkit-scrollbar-thumb:hover {
+          background: rgba(48, 224, 178, 0.5);
+        }
+        
+        /* Smooth momentum scrolling for iOS */
+        .scrollbar-thin {
+          -webkit-overflow-scrolling: touch;
+        }
+      `}</style>
     </div>
   );
 }
