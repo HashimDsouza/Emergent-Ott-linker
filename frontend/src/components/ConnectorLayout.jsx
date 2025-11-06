@@ -243,7 +243,7 @@ export function ConnectorHeader() {
         </div>
 
         {/* Right: Search & Me with hover effects and tooltips */}
-        <div className="flex items-center gap-3 md:gap-4 flex-shrink-0">
+        <div className="flex items-center gap-2 md:gap-4 flex-shrink-0">
           <button 
             className="relative group p-1.5 rounded-full transition-all"
             style={{
