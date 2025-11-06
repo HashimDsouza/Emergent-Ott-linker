@@ -34,8 +34,8 @@ export default function TodaysMatchesTray({ selectedSport, selectedLeague }) {
         </div>
         <div className="overflow-x-auto scrollbar-hide snap-x snap-mandatory">
           <div className="flex gap-3 md:gap-3" style={{ width: 'max-content' }}>
-            {mockTodayMatches.map((match) => (
-              <TodayMatchTile key={match.id} match={match} />
+            {filteredMatches.map((match) => (
+              <TodayMatchTile key={match.id} match={{ ...match, descriptor: generateMatchDescriptor(match) }} />
             ))}
           </div>
         </div>
