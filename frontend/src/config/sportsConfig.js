@@ -126,12 +126,32 @@ export const getRandomGameBroLine = (sportId = 'default') => {
   return lines[Math.floor(Math.random() * lines.length)];
 };
 
+// Helper to get flag image URL from flagcdn.com
+export const getFlagUrl = (countryCode) => {
+  if (!countryCode) return null;
+  // Convert country code to lowercase for API
+  const code = countryCode.toLowerCase();
+  return `https://flagcdn.com/w40/${code}.png`;
+};
+
+// Helper to get team logo (placeholder for now, can be replaced with actual logo URLs)
+export const getTeamLogo = (teamName, sport) => {
+  // Placeholder colored circles for teams without country flags
+  const teamColors = {
+    'MI': '#004BA0', 'CSK': '#FDB913', 'RCB': '#EC1C24', 'KKR': '#3A225D',
+    'Lakers': '#552583', 'Warriors': '#1D428A', 'Celtics': '#007A33', 'Heat': '#98002E',
+    'Man City': '#6CABDD', 'Arsenal': '#EF0107', 'Liverpool': '#C8102E', 'Chelsea': '#034694',
+    'Real Madrid': '#FEBE10', 'Barcelona': '#A50044', 'Bayern': '#DC052D'
+  };
+  return teamColors[teamName] || '#30E0B2';
+};
+
 // Mock data for all trays
 export const liveMatches = [
-  { id: 'l1', sport: 'cricket', league: 'ipl', team1: { name: 'MI', flag: '🔵' }, team2: { name: 'CSK', flag: '🟡' }, score: '145/3 (18.2)', status: 'LIVE', venue: 'Wankhede', descriptor: 'Classic rivalry. Yellow vs Blue.' },
-  { id: 'l2', sport: 'football', league: 'premier', team1: { name: 'Man City', flag: '🏴󠁧󠁢󠁥󠁮󠁧󠁿' }, team2: { name: 'Arsenal', flag: '🏴󠁧󠁢󠁥󠁮󠁧󠁿' }, score: '2-1', status: '78\'', venue: 'Etihad', descriptor: 'Title race heats up.' },
-  { id: 'l3', sport: 'tennis', league: 'grandslam', team1: { name: 'Djokovic', flag: '🇷🇸' }, team2: { name: 'Alcaraz', flag: '🇪🇸' }, score: '6-4, 3-5', status: 'Set 2', venue: 'Melbourne', descriptor: 'Generational clash.' },
-  { id: 'l4', sport: 'nba', league: 'nba', team1: { name: 'Lakers', flag: '🟣' }, team2: { name: 'Warriors', flag: '🟠' }, score: '98-95', status: 'Q4 2:45', venue: 'LA', descriptor: 'LeBron vs Curry. Legends duel.' }
+  { id: 'l1', sport: 'cricket', league: 'ipl', team1: { name: 'MI', flag: '🔵', flagCode: null, logo: getTeamLogo('MI') }, team2: { name: 'CSK', flag: '🟡', flagCode: null, logo: getTeamLogo('CSK') }, score: '145/3 (18.2)', status: 'LIVE', venue: 'Wankhede', descriptor: 'Classic rivalry. Yellow vs Blue.' },
+  { id: 'l2', sport: 'football', league: 'premier', team1: { name: 'Man City', flag: '🏴󠁧󠁢󠁥󠁮󠁧󠁿', flagCode: 'gb-eng', logo: getTeamLogo('Man City') }, team2: { name: 'Arsenal', flag: '🏴󠁧󠁢󠁥󠁮󠁧󠁿', flagCode: 'gb-eng', logo: getTeamLogo('Arsenal') }, score: '2-1', status: '78\'', venue: 'Etihad', descriptor: 'Title race heats up.' },
+  { id: 'l3', sport: 'tennis', league: 'grandslam', team1: { name: 'Djokovic', flag: '🇷🇸', flagCode: 'rs', logo: null }, team2: { name: 'Alcaraz', flag: '🇪🇸', flagCode: 'es', logo: null }, score: '6-4, 3-5', status: 'Set 2', venue: 'Melbourne', descriptor: 'Generational clash.' },
+  { id: 'l4', sport: 'nba', league: 'nba', team1: { name: 'Lakers', flag: '🟣', flagCode: null, logo: getTeamLogo('Lakers') }, team2: { name: 'Warriors', flag: '🟠', flagCode: null, logo: getTeamLogo('Warriors') }, score: '98-95', status: 'Q4 2:45', venue: 'LA', descriptor: 'LeBron vs Curry. Legends duel.' }
 ];
 
 export const todayMatches = [
