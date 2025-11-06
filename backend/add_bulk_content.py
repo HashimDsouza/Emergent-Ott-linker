@@ -14,10 +14,13 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
 load_dotenv()
 
-# MongoDB connection
+# MongoDB connection  
+load_dotenv()
 MONGO_URL = os.getenv("MONGO_URL", "mongodb://localhost:27017")
+DB_NAME = os.getenv("DB_NAME", "test_database")
 client = AsyncIOMotorClient(MONGO_URL)
-db = client.connector
+db = client[DB_NAME]
+print(f"📊 Using database: {DB_NAME}")
 
 # Import enrichment function from server
 from server import enrich_content_item
