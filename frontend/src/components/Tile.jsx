@@ -165,7 +165,7 @@ export default function Tile({ item, onInfo }) {
               setShowTooltip(!showTooltip); 
             }}
           >
-            <div className={showTooltip ? "" : "line-clamp-1"}>
+            <div className={showTooltip ? "" : "line-clamp-1 md:line-clamp-1"}>
               {item.descriptor || "Trending"}
             </div>
             {/* Expanded tooltip - appears above when clicked */}
