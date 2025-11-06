@@ -41,7 +41,7 @@ const mockSpotlightLeagues = [
     trophy: 'European Cup',
     status: 'Round of 16 Starting',
     nextMatch: 'Knockout rounds begin Tuesday',
-    descriptor: 'Europe's elite battle.',
+    descriptor: "Europe's elite battle.",
     relevance: 'international',
     logo: '🏆',
     flag: '🇪🇺'
