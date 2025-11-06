@@ -63,7 +63,7 @@ export const handleDeepLink = (tmdbId, ottPlatform, titleName, titleData = {}) =
   const hasCuratedLink = deepLinkData !== undefined && deepLinkData !== null;
   
   // Build the URL
-  const targetUrl = buildDeepLinkUrl(ottPlatform, deepLinkData, config, titleName);
+  const targetUrl = buildDeepLinkUrl(deepLinkData, config, titleName);
   
   // Track the click
   trackDeepLinkClick(tmdbId, ottPlatform, hasCuratedLink, userPlatform);
