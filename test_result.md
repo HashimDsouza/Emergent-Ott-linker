@@ -209,6 +209,36 @@ backend:
         comment: "🎉 SEASON-SPECIFIC ENRICHMENT FULLY WORKING! Comprehensive testing shows all Season 2 and Season 3 titles have correct season-specific data: ✅ Squid Game Season 2: Year 2024, Korean language, 7 episodes, season-specific TMDB poster (sXZhtWLo3fecavpDuOyJiayjt32.jpg), IMDb 8.0, TMDB ID 93405. ✅ Mirzapur Season 3: Year 2024, Hindi language, 10 episodes, season-specific TMDB poster (7CFdq8M9ZuP1QRLaBG2ExdcrCBs.jpg), IMDb 8.4, TMDB ID 84105. ✅ Asur Season 3: Year 2020 (original series), Hindi language, 16 episodes, season-specific TMDB poster (njUrr755WzIrNfuUwQhpu2ljjH4.jpg), IMDb 8.5, TMDB ID 100911. All posters are season-specific (NOT Season 1), years reflect season air dates, episode counts are accurate for each season, and descriptions are season-specific. Season detection logic working perfectly with regex pattern matching and TMDB season API integration."
 
 frontend:
+  - task: "Fix DetailsModal button size and image display"
+    implemented: true
+    working: true
+    file: "/app/frontend/src/components/Tile.jsx, /app/frontend/src/components/DetailsModal.jsx"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+      - working: false
+        agent: "user"
+        comment: "The 'i' detail button on landing page (phone) is massive. The 'i' detail for entertainment does not open. The image in the detail modal is empty."
+      - working: true
+        agent: "main"
+        comment: "FIXED: 1) Reduced 'i' button size to 16px mobile, 18px desktop (from 14/20px), 2) Fixed Entertainment and Watch On modal not opening - changed prop from 'isOpen' to 'open' to match DetailsModal API, 3) Added actual poster image display in modal using item.thumbnail with fallback gradient. Tested on mobile and desktop - modals opening correctly with images across all pages."
+
+  - task: "Reduce tile sizing on desktop for compact layout"
+    implemented: true
+    working: true
+    file: "/app/frontend/src/components/Tile.jsx, /app/frontend/src/components/Tray.jsx"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+      - working: false
+        agent: "user"
+        comment: "All tiles on web view are massive. Need to reduce size significantly so we can view 2 trays in one view."
+      - working: true
+        agent: "main"
+        comment: "FIXED: Significantly reduced tile sizing on desktop: 1) Changed Tray grid from 3 columns to 5-6 columns (md:grid-cols-5 lg:grid-cols-6), 2) Reduced padding and spacing in tiles (px-2.5 -> px-2, py-2 -> py-1.5), 3) Reduced text sizes (10px -> 9px for platform, 12px -> 11px for descriptor), 4) Reduced tray margin-bottom (mb-4 -> mb-3), 5) Tightened header spacing. Result: 2 complete trays now visible in one 1920x1080 viewport with 6 tiles per row. Desktop tiles are compact while mobile remains appropriately sized."
+
   - task: "Create Game On page with all 6 trays"
     implemented: true
     working: true
