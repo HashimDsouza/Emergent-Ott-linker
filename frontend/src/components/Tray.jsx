@@ -34,12 +34,12 @@ export default function Tray({ icon, title, subline, items, onInfo }) {
 
       <div className={expanded 
         ? "flex gap-2 md:gap-3 overflow-x-auto pb-2 snap-x snap-mandatory scrollbar-hide" 
-        : "grid grid-cols-3 gap-2 md:gap-4"
+        : "grid grid-cols-3 md:grid-cols-5 lg:grid-cols-6 gap-2 md:gap-3"
       }>
         {items?.map(it => (
           <div 
             key={it.id} 
-            className={expanded ? "flex-none w-[30%] snap-start" : ""}
+            className={expanded ? "flex-none w-[30%] md:w-[18%] snap-start" : ""}
           >
             <Tile item={it} onInfo={onInfo} />
           </div>
