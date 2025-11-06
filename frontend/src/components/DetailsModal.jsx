@@ -1,6 +1,7 @@
 import React from "react";
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
+const coral = "#FF4F64", mint = "#30E0B2";
 
 export default function DetailsModal({ open, onClose, item }) {
   const badge = "text-[10px] px-1.5 py-0.5 rounded-full bg-white/10 border border-white/15";
