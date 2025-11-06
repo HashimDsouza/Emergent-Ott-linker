@@ -235,7 +235,7 @@ function LiveMatchTile({ match }) {
       </div>
 
       {/* Watch Button */}
-      <div className="px-4 pb-4">
+      <div className="px-3 pb-3 md:px-4 md:pb-4">
         <button
           className="w-full py-2.5 rounded-lg font-semibold text-sm transition-all hover:scale-[1.02]"
           style={{
