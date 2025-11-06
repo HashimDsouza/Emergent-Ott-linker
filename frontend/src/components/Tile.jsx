@@ -1,8 +1,8 @@
 import React from "react";
 import { useBro } from "../context/BroContext";
+import { handleDeepLink, hasCuratedDeepLink } from "../utils/deepLinkHandler";
 
 const coral = "#FF4F64", mint = "#30E0B2", charcoalSoft = "#173A35";
-const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 
 export default function Tile({ item, onInfo }) {
   const badgeCls = "text-[8px] md:text-[10px] px-1 md:px-1.5 py-0.5 rounded-full bg-white/10 border border-white/15";
@@ -15,36 +15,25 @@ export default function Tile({ item, onInfo }) {
   const [liked, setLiked] = React.useState(false);
   const [disliked, setDisliked] = React.useState(false);
   const [showTooltip, setShowTooltip] = React.useState(false);
+  
+  // Check if this tile has a curated deep link
+  const hasCuratedLink = item?.tmdb_id && item?.platform 
+    ? hasCuratedDeepLink(item.tmdb_id, item.platform.toLowerCase().replace(/\s+/g, ''))
+    : false;
 
-  const handleClick = async (e) => {
+  const handleClick = (e) => {
     e.preventDefault();
-    if (!item?.id || !item?.platform) return;
+    if (!item?.platform) return;
     
     // Give +2 XP for watching
     addXP(2, 'watch');
     
-    try {
-      const response = await fetch(
-        `${BACKEND_URL}/api/resolve-link?title_id=${item.id}&provider=${encodeURIComponent(item.platform)}`
-      );
-      const data = await response.json();
-      
-      // Try to open deep link first (for mobile), fallback to web URL
-      if (data.scheme_url) {
-        window.location.href = data.scheme_url;
-        // Fallback to web after 1 second if app doesn't open
-        setTimeout(() => {
-          window.open(data.url || data.fallback_search_url, '_blank');
-        }, 1000);
-      } else {
-        window.open(data.url || data.fallback_search_url, '_blank');
-      }
-    } catch (error) {
-      console.error('Error resolving link:', error);
-      // Fallback: search on the platform
-      const platform = item.platform.toLowerCase().replace(' ', '');
-      window.open(`https://www.${platform}.com/`, '_blank');
-    }
+    // Use new deep link handler
+    const platformKey = item.platform.toLowerCase().replace(/\s+/g, '');
+    const tmdbId = item.tmdb_id || item.id;
+    const titleName = item.title || item.name || 'Unknown';
+    
+    handleDeepLink(tmdbId, platformKey, titleName, item);
   };
 
   return (
