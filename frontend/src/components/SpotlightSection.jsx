@@ -140,11 +140,11 @@ export default function SpotlightSection({ selectedSport, selectedLeague }) {
           </p>
         </div>
 
-        {/* Spotlight Cards */}
+        {/* Spotlight Cards - LEAGUES/TOURNAMENTS */}
         <div className="overflow-x-auto scrollbar-hide snap-x snap-mandatory">
           <div className="flex gap-3 md:gap-4 pb-2" style={{ width: 'max-content' }}>
-            {spotlightMatches.map((match) => (
-              <SpotlightCard key={match.id} match={match} />
+            {spotlightLeagues.map((league) => (
+              <LeagueSpotlightCard key={league.id} league={league} />
             ))}
           </div>
         </div>
