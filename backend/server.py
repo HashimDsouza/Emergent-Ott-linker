@@ -663,7 +663,7 @@ class ContentCreate(BaseModel):
     rating: float
     thumbnail: str
     description: str
-    release_date: str
+    release_date: Optional[str] = None
     social_links: Dict[str, str] = Field(default_factory=dict)
     content_type: str
     tagline: str = ""
