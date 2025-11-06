@@ -1,20 +1,26 @@
 import React from 'react';
+import { comingUpMatches, generateMatchDescriptor } from '../config/sportsConfig';
 
 const coral = "#FF4F64";
 const mint = "#30E0B2";
 const charcoal = "#0E1514";
 const charcoalSoft = "#173A35";
 
-const mockComingUp = [
-  { id: 1, sport: 'football', team1: { name: 'Liverpool', flag: '🏴󠁧󠁢󠁥󠁮󠁧󠁿' }, team2: { name: 'Chelsea', flag: '🏴󠁧󠁢󠁥󠁮󠁧󠁿' }, day: 'Tomorrow', time: '10:00 PM', league: 'Premier League', descriptor: 'Derby day drama.' },
-  { id: 2, sport: 'f1', team1: { name: 'Abu Dhabi GP', flag: '🇦🇪' }, team2: null, day: 'Sunday', time: '5:30 PM', league: 'F1', descriptor: 'Season finale. Title shot.' },
-  { id: 3, sport: 'cricket', team1: { name: 'Pakistan', flag: '🇵🇰' }, team2: { name: 'England', flag: '🏴󠁧󠁢󠁥󠁮󠁧󠁿' }, day: 'Saturday', time: '2:00 PM', league: 'ODI', descriptor: 'Rivalry continues.' },
-  { id: 4, sport: 'nba', team1: { name: 'Celtics', flag: '🟢' }, team2: { name: 'Heat', flag: '🔴' }, day: 'Sunday', time: '8:00 AM', league: 'NBA', descriptor: 'East Conference clash.' },
-  { id: 5, sport: 'tennis', team1: { name: 'Federer', flag: '🇨🇭' }, team2: { name: 'Nadal', flag: '🇪🇸' }, day: 'Saturday', time: '4:00 PM', league: 'Exhibition', descriptor: 'Legends return.' },
-  { id: 6, sport: 'football', team1: { name: 'Bayern', flag: '🇩🇪' }, team2: { name: 'Dortmund', flag: '🇩🇪' }, day: 'Tomorrow', time: '9:30 PM', league: 'Bundesliga', descriptor: 'Der Klassiker.' }
-];
+export default function ComingUpTray({ selectedSport, selectedLeague }) {
+  // Filter matches based on selected sport/league
+  const filteredMatches = comingUpMatches.filter(match => {
+    if (!selectedSport || selectedSport === 'live') return true;
+    if (selectedSport === 'more') {
+      return ['nba', 'f1', 'golf', 'badminton', 'ufc', 'kabaddi', 'esports'].includes(match.sport);
+    }
+    if (match.sport !== selectedSport) return false;
+    if (selectedLeague && selectedLeague !== `all-${selectedSport}`) {
+      return match.league === selectedLeague;
+    }
+    return true;
+  });
 
-export default function ComingUpTray() {
+  if (filteredMatches.length === 0) return null;
   return (
     <div className="px-3 md:px-6 pb-6 md:pb-8" style={{ backgroundColor: charcoal }}>
       <div className="max-w-[1280px] mx-auto">
