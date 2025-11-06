@@ -1,20 +1,22 @@
 import React from 'react';
+import { bestOfVideos } from '../config/sportsConfig';
 
 const coral = "#FF4F64";
 const mint = "#30E0B2";
 const charcoal = "#0E1514";
 const charcoalSoft = "#173A35";
 
-const mockBestOf = [
-  { id: 1, videoId: 'best1', title: 'Best Of IPL 2024', sport: 'cricket', views: '5.2M', descriptor: 'Season best moments.' },
-  { id: 2, videoId: 'best2', title: 'Premier League Top 10', sport: 'football', views: '3.8M', descriptor: 'Goals of the season.' },
-  { id: 3, videoId: 'best3', title: 'NBA Dunks November', sport: 'nba', views: '2.1M', descriptor: 'Rim-wrecking slams.' },
-  { id: 4, videoId: 'best4', title: 'Grand Slam Best Rallies', sport: 'tennis', views: '1.9M', descriptor: 'Epic exchanges.' },
-  { id: 5, videoId: 'best5', title: 'F1 Overtakes 2024', sport: 'f1', views: '4.5M', descriptor: 'Wheel-to-wheel action.' },
-  { id: 6, videoId: 'best6', title: 'Cricket Best Catches', sport: 'cricket', views: '6.3M', descriptor: 'Defying gravity.' }
-];
+export default function BestOfTray({ selectedSport, selectedLeague }) {
+  // Filter videos based on selected sport/league
+  const filteredVideos = bestOfVideos.filter(video => {
+    if (!selectedSport || selectedSport === 'live') return true;
+    if (selectedSport === 'more') {
+      return ['nba', 'f1', 'golf', 'badminton', 'ufc', 'kabaddi', 'esports'].includes(video.sport);
+    }
+    return video.sport === selectedSport;
+  });
 
-export default function BestOfTray() {
+  if (filteredVideos.length === 0) return null;
   return (
     <div className="px-3 md:px-6 pb-12 md:pb-16" style={{ backgroundColor: charcoal }}>
       <div className="max-w-[1280px] mx-auto">
