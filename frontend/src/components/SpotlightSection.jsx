@@ -5,51 +5,85 @@ const mint = "#30E0B2";
 const charcoal = "#0E1514";
 const charcoalSoft = "#173A35";
 
-// Mock spotlight data - will be replaced with real API data
-const mockSpotlightMatches = [
+// Mock spotlight data - LEAGUES/TOURNAMENTS ONLY (not individual matches)
+const mockSpotlightLeagues = [
   {
     id: 1,
-    type: 'live',
+    type: 'series',
     sport: 'cricket',
-    team1: { name: 'India', flag: '🇮🇳', score: '234/5' },
-    team2: { name: 'Australia', flag: '🇦🇺', score: '189' },
-    status: 'Live Now',
-    venue: 'Mumbai',
-    league: 'Test Series',
-    time: '34.2 overs'
+    leagueName: 'IND vs AUS Test Series',
+    trophy: 'Border-Gavaskar Trophy',
+    status: 'Series 2-1 (India leads)',
+    nextMatch: 'Final Test - Today in Mumbai',
+    descriptor: 'Trophy decider. All on the line.',
+    relevance: 'india',
+    logo: '🏏',
+    flag: '🇮🇳🆚🇦🇺'
   },
   {
     id: 2,
-    type: 'today',
+    type: 'league',
     sport: 'football',
-    team1: { name: 'Real Madrid', flag: '🇪🇸', logo: null },
-    team2: { name: 'Barcelona', flag: '🇪🇸', logo: null },
-    status: 'Today 8:00 PM',
-    venue: 'Santiago Bernabeu',
-    league: 'El Clasico - La Liga',
-    countdown: '5h 30m'
+    leagueName: 'Premier League 2024-25',
+    trophy: null,
+    status: 'Matchday 12 This Weekend',
+    nextMatch: '10 matches: City vs Arsenal highlight',
+    descriptor: 'Title race heats up.',
+    relevance: 'international',
+    logo: '⚽',
+    flag: '🏴󠁧󠁢󠁥󠁮󠁧󠁿'
   },
   {
     id: 3,
-    type: 'weekend',
-    sport: 'f1',
-    team1: { name: 'Abu Dhabi GP', flag: '🇦🇪', logo: null },
-    team2: null,
-    status: 'Sunday 5:30 PM',
-    venue: 'Yas Marina',
-    league: 'F1 Championship',
-    countdown: '2 days'
+    type: 'league',
+    sport: 'football',
+    leagueName: 'UEFA Champions League',
+    trophy: 'European Cup',
+    status: 'Round of 16 Starting',
+    nextMatch: 'Knockout rounds begin Tuesday',
+    descriptor: 'Europe's elite battle.',
+    relevance: 'international',
+    logo: '🏆',
+    flag: '🇪🇺'
   },
   {
     id: 4,
-    type: 'today',
+    type: 'league',
     sport: 'football',
-    team1: { name: 'Man City', flag: '🏴󠁧󠁢󠁥󠁮󠁧󠁿', logo: null },
-    team2: { name: 'Arsenal', flag: '🏴󠁧󠁢󠁥󠁮󠁧󠁿', logo: null },
-    status: 'Today 10:30 PM',
-    venue: 'Etihad Stadium',
-    league: 'Premier League',
-    countdown: '8h'
+    leagueName: 'Indian Super League',
+    trophy: 'ISL Trophy',
+    status: 'League Stage - Week 8',
+    nextMatch: 'Bengaluru vs Mumbai - Tonight',
+    descriptor: 'Indian football rising.',
+    relevance: 'india',
+    logo: '⚽',
+    flag: '🇮🇳'
+  },
+  {
+    id: 5,
+    type: 'championship',
+    sport: 'f1',
+    leagueName: 'F1 World Championship',
+    trophy: null,
+    status: 'Abu Dhabi GP This Weekend',
+    nextMatch: 'Final race - Sunday 5:30 PM',
+    descriptor: 'Season finale. Verstappen leads.',
+    relevance: 'international',
+    logo: '🏎️',
+    flag: '🏁'
+  },
+  {
+    id: 6,
+    type: 'tournament',
+    sport: 'tennis',
+    leagueName: 'Australian Open 2025',
+    trophy: 'Grand Slam',
+    status: 'Starts Next Monday',
+    nextMatch: 'Draw announced tomorrow',
+    descriptor: 'Grand Slam season kicks off.',
+    relevance: 'international',
+    logo: '🎾',
+    flag: '🇦🇺'
   }
 ];
 
