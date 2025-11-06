@@ -415,15 +415,19 @@ export function ConnectorFooter() {
   };
 
   return (
-    <footer
-      data-footer
-      className="fixed bottom-0 left-0 right-0 z-40 backdrop-blur-md border-t relative overflow-hidden"
-      style={{ 
-        backgroundColor: charcoal,
-        borderColor: `${coral}20`,
-        boxShadow: `0 -4px 16px ${charcoal}80, 0 -1px 4px ${mint}20`
-      }}
-    >
+    <>
+      <DeepLinkAnalytics isOpen={showAnalytics} onClose={() => setShowAnalytics(false)} />
+      
+      <footer
+        data-footer
+        className="fixed bottom-0 left-0 right-0 z-40 backdrop-blur-md border-t relative overflow-hidden"
+        style={{ 
+          backgroundColor: charcoal,
+          borderColor: `${coral}20`,
+          boxShadow: `0 -4px 16px ${charcoal}80, 0 -1px 4px ${mint}20`
+        }}
+        onClick={handleFooterClick}
+      >
       {/* Gradient overlay matching header */}
       <div 
         className="absolute inset-0 pointer-events-none"
