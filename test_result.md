@@ -227,17 +227,17 @@ frontend:
         agent: "main"
         comment: "Enhanced sportsConfig.js with mock data for all match trays (liveMatches, todayMatches, comingUpMatches), video data (highlightsVideos, bestOfVideos), and automated descriptor generator function. Rich descriptor library organized by sport and league for dynamic text generation."
 
-  - task: "Implement 3 content trays with curated content"
+  - task: "Implement smart filtering across all trays"
     implemented: true
     working: true
-    file: "/app/frontend/src/pages/WatchOn.jsx"
+    file: "/app/frontend/src/components/*.jsx"
     stuck_count: 0
     priority: "high"
     needs_retesting: false
     status_history:
       - working: true
         agent: "main"
-        comment: "Implemented 3 trays: 1) Trending Across Platforms (first 6 content items including hero titles), 2) Top 10 Right Now (sorted by IMDb rating, top 10), 3) Bro Recommends (6 curated titles: Fighter, 12th Fail, House of the Dragon, Slow Horses Season 5, The Great Indian Kapil Show, Maharaja). Fixed content filtering to exclude only game_on category, allowing hero content to appear in trays."
+        comment: "All trays now support smart filtering by sport and league. Match trays (LIVE, TODAY, COMING UP) filter by both sport and league. Video trays (BIG MOMENTS, HIGHLIGHTS, BEST OF) filter by sport. Trays automatically hide when no content matches the selected filter. Tested and verified with Cricket filter."
 
   - task: "Mobile responsive design for Watch On page"
     implemented: true
