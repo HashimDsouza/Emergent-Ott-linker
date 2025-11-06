@@ -1,74 +1,27 @@
 import React from 'react';
+import { todayMatches, generateMatchDescriptor } from '../config/sportsConfig';
 
 const coral = "#FF4F64";
 const mint = "#30E0B2";
 const charcoal = "#0E1514";
 const charcoalSoft = "#173A35";
 
-const mockTodayMatches = [
-  {
-    id: 1,
-    sport: 'cricket',
-    team1: { name: 'India', flag: '🇮🇳' },
-    team2: { name: 'Australia', flag: '🇦🇺' },
-    time: '2:00 PM',
-    venue: 'Mumbai',
-    league: 'Test Match',
-    descriptor: 'Series decider. History awaits.'
-  },
-  {
-    id: 2,
-    sport: 'football',
-    team1: { name: 'Real Madrid', flag: '🇪🇸' },
-    team2: { name: 'Barcelona', flag: '🇪🇸' },
-    time: '8:00 PM',
-    venue: 'Bernabeu',
-    league: 'El Clasico',
-    descriptor: '285th battle. Rivalry renewed.'
-  },
-  {
-    id: 3,
-    sport: 'football',
-    team1: { name: 'Man City', flag: '🏴󠁧󠁢󠁥󠁮󠁧󠁿' },
-    team2: { name: 'Arsenal', flag: '🏴󠁧󠁢󠁥󠁮󠁧󠁿' },
-    time: '10:30 PM',
-    venue: 'Etihad',
-    league: 'Premier League',
-    descriptor: 'Title race heats up.'
-  },
-  {
-    id: 4,
-    sport: 'cricket',
-    team1: { name: 'MI', flag: '🔵' },
-    team2: { name: 'CSK', flag: '🟡' },
-    time: '7:30 PM',
-    venue: 'Wankhede',
-    league: 'IPL',
-    descriptor: 'Classic rivalry. Yellow vs Blue.'
-  },
-  {
-    id: 5,
-    sport: 'nba',
-    team1: { name: 'Lakers', flag: '🟣' },
-    team2: { name: 'Warriors', flag: '🟠' },
-    time: '9:00 AM',
-    venue: 'LA',
-    league: 'NBA',
-    descriptor: 'LeBron vs Curry. Legends duel.'
-  },
-  {
-    id: 6,
-    sport: 'tennis',
-    team1: { name: 'Djokovic', flag: '🇷🇸' },
-    team2: { name: 'Alcaraz', flag: '🇪🇸' },
-    time: '3:00 PM',
-    venue: 'Melbourne',
-    league: 'Australian Open',
-    descriptor: 'Generational clash.'
-  }
-];
+export default function TodaysMatchesTray({ selectedSport, selectedLeague }) {
+  // Filter matches based on selected sport/league
+  const filteredMatches = todayMatches.filter(match => {
+    if (!selectedSport || selectedSport === 'live') return true;
+    if (selectedSport === 'more') {
+      // Show NBA, F1, golf, badminton, etc.
+      return ['nba', 'f1', 'golf', 'badminton', 'ufc', 'kabaddi', 'esports'].includes(match.sport);
+    }
+    if (match.sport !== selectedSport) return false;
+    if (selectedLeague && selectedLeague !== `all-${selectedSport}`) {
+      return match.league === selectedLeague;
+    }
+    return true;
+  });
 
-export default function TodaysMatchesTray() {
+  if (filteredMatches.length === 0) return null;
   return (
     <div className="px-3 md:px-6 pb-6 md:pb-8" style={{ backgroundColor: charcoal }}>
       <div className="max-w-[1280px] mx-auto">
