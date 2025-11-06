@@ -251,38 +251,18 @@ export default function SearchOverlay({ isOpen, onClose, onSelectItem }) {
           </div>
         )}
 
-        {/* Results Grid */}
+        {/* Results Grid - Using Tile component for full functionality */}
         {results.length > 0 && (
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4 max-h-[60vh] md:max-h-96 overflow-y-auto overflow-x-hidden scrollbar-thin scrollbar-thumb-mint/30 scrollbar-track-transparent pb-4">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-4 max-h-[60vh] md:max-h-96 overflow-y-auto overflow-x-hidden scrollbar-thin scrollbar-thumb-mint/30 scrollbar-track-transparent pb-4">
             {results.map((item) => (
-              <div
-                key={item.id}
-                onClick={() => onSelectItem(item)}
-                className="cursor-pointer rounded-lg overflow-hidden border border-white/10 hover:border-white/30 transition active:scale-95"
-                style={{ backgroundColor: charcoalSoft }}
-              >
-                {/* Poster */}
-                <div style={{ aspectRatio: "2/3" }} className="bg-gradient-to-br from-coral/10 to-mint/10">
-                  {item.thumbnail && (
-                    <img
-                      src={item.thumbnail}
-                      alt={item.title}
-                      className="w-full h-full object-cover"
-                    />
-                  )}
-                </div>
-                {/* Info */}
-                <div className="p-2 md:p-2.5">
-                  <div className="text-xs md:text-sm font-semibold text-white line-clamp-2 mb-1">
-                    {item.title}
-                  </div>
-                  <div className="flex items-center gap-1.5 text-[10px] md:text-xs">
-                    <span className="text-white/60 line-clamp-1">{item.platform}</span>
-                    {item.imdb && item.imdb !== "N/A" && (
-                      <span className="flex-shrink-0" style={{ color: '#fbbf24' }}>⭐ {typeof item.imdb === 'number' ? item.imdb.toFixed(1) : item.imdb}</span>
-                    )}
-                  </div>
-                </div>
+              <div key={item.id}>
+                <Tile 
+                  item={item} 
+                  onInfo={(clickedItem) => {
+                    setModalItem(clickedItem);
+                    // Don't close search overlay when opening modal
+                  }}
+                />
               </div>
             ))}
           </div>
