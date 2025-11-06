@@ -44,7 +44,7 @@ export default function BigMomentsTray({ selectedSport }) {
         {/* Video Tiles - Horizontal Scroll */}
         <div className="overflow-x-auto scrollbar-hide snap-x snap-mandatory">
           <div className="flex gap-3 md:gap-3" style={{ width: 'max-content' }}>
-            {bigMomentsVideos.map((video) => (
+            {filteredVideos.map((video) => (
               <VideoTile 
                 key={video.id} 
                 video={video}
