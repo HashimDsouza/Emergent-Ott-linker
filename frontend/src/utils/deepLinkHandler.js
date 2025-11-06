@@ -51,8 +51,12 @@ export const handleDeepLink = (tmdbId, ottPlatform, titleName, titleData = {}) =
   const userPlatform = getPlatform();
   const config = platformConfig[ottPlatform];
   
+  console.log('[DeepLink] Starting:', { tmdbId, ottPlatform, titleName, userPlatform });
+  
   if (!config) {
-    console.error(`Platform config not found for: ${ottPlatform}`);
+    console.error(`[DeepLink] Platform config not found for: ${ottPlatform}`);
+    // Fallback: try to open platform homepage
+    window.open(`https://www.${ottPlatform}.com`, '_blank');
     return null;
   }
 
@@ -62,8 +66,16 @@ export const handleDeepLink = (tmdbId, ottPlatform, titleName, titleData = {}) =
   // Check if this is curated content with deep link
   const hasCuratedLink = deepLinkData !== undefined && deepLinkData !== null;
   
+  console.log('[DeepLink] Config found:', { 
+    hasCuratedLink, 
+    deepLinkData,
+    configName: config.name 
+  });
+  
   // Build the URL
   const targetUrl = buildDeepLinkUrl(deepLinkData, config, titleName);
+  
+  console.log('[DeepLink] Target URL:', targetUrl);
   
   // Track the click
   trackDeepLinkClick(tmdbId, ottPlatform, hasCuratedLink, userPlatform);
