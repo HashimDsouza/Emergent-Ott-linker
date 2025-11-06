@@ -4,7 +4,11 @@ import ConnieFloating from "../components/ConnieFloating";
 import GameOnHeader from "../components/GameOnHeader";
 import SpotlightSection from "../components/SpotlightSection";
 import LiveMatchesTray from "../components/LiveMatchesTray";
+import TodaysMatchesTray from "../components/TodaysMatchesTray";
 import BigMomentsTray from "../components/BigMomentsTray";
+import ComingUpTray from "../components/ComingUpTray";
+import HighlightsTray from "../components/HighlightsTray";
+import BestOfTray from "../components/BestOfTray";
 
 const charcoal = "#0E1514";
 
