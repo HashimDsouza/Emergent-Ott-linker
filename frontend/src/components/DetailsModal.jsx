@@ -47,8 +47,8 @@ export default function DetailsModal({ open, onClose, item }) {
               )}
             </div>
             <div>
-              <div className="text-lg font-semibold">{item?.title || "Title Name"}</div>
-              <div className="flex items-center gap-2 mt-1 text-xs">
+              <div className="text-base md:text-lg font-semibold">{item?.title || "Title Name"}</div>
+              <div className="flex items-center gap-1.5 md:gap-2 mt-0.5 md:mt-1 text-[10px] md:text-xs">
                 <span className={badge}>{item?.platform || "JioHotstar"}</span>
                 {item?.imdb && <span className={badge}>⭐ {typeof item.imdb === 'number' ? item.imdb.toFixed(1) : item.imdb}</span>}
                 {/* Dynamic metadata capsule: year • episodes • language */}
