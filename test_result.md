@@ -103,13 +103,19 @@
 #====================================================================================================
 
 user_problem_statement: |
-  Build Phase 1A "Watch On Lite" Page:
-  1. Create unified OTT platform hub with navigation from header
-  2. Display 8 platform icons (JioHotstar, Netflix, Prime Video, Sony Liv, Zee5, Apple TV+, Fancode, Dazn)
-  3. Implement semi-functional icons with glow effect and toast notification
-  4. Create 3 content trays: "Trending Across Platforms," "Top 10 Right Now," "Bro Recommends"
-  5. Ensure mobile-first responsive design
-  6. Integrate with existing DetailsModal for tile interactions
+  Build Phase 1A "Game On" Sports Module:
+  1. Complete Game On page with two-tier header (primary sports + secondary leagues)
+  2. Implement Spotlight section for tournaments/leagues only
+  3. Create and integrate 6 content trays with smart filtering:
+     - LIVE RIGHT NOW (prominent, larger tiles, dynamic descriptors)
+     - TODAY'S MATCHES (upcoming today with times)
+     - BIG MOMENTS (viral YouTube clips)
+     - COMING UP (tomorrow & weekend matches)
+     - HIGHLIGHTS (recent match highlights)
+     - BEST OF (compilation content)
+  4. Implement automated descriptor generation (rule-based, fun, concise)
+  5. Add sport/league filtering across all trays
+  6. Ensure mobile-first responsive design
 
 backend:
   - task: "No backend changes required for Watch On page"
