@@ -185,7 +185,14 @@ function LiveMatchTile({ match }) {
         {/* Team 1 */}
         <div className="flex items-center justify-between mb-3">
           <div className="flex items-center gap-2 flex-1 min-w-0">
-            <span className="text-xl md:text-2xl flex-shrink-0">{match.team1.flag}</span>
+            {match.team1.logo ? (
+              <div 
+                className="w-6 h-6 md:w-8 md:h-8 rounded-full flex-shrink-0"
+                style={{ backgroundColor: match.team1.logo }}
+              />
+            ) : (
+              <FlagIcon flagCode={match.team1.flagCode} emoji={match.team1.flag} size="lg" />
+            )}
             <span className="text-white font-semibold text-sm md:text-base truncate">
               {match.team1.name}
             </span>
