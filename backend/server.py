@@ -775,14 +775,14 @@ def generate_provider_links(provider: str, title: str, platform_content_id: Opti
         if platform_content_id:
             links["web_url"] = f"https://www.hotstar.com/in/{platform_content_id}"
             links["scheme_url"] = f"hotstar://content/{platform_content_id}"
-        # Hotstar search with proper encoding
-        links["app_search_url"] = f"https://www.hotstar.com/in/search?q={encoded_title}"
+        # Hotstar - revert to original path that worked
+        links["app_search_url"] = f"https://www.hotstar.com/in/search/{encoded_title}"
     
     elif provider.lower() == "sonyliv":
         if platform_content_id:
             links["web_url"] = f"https://www.sonyliv.com/shows/{platform_content_id}"
-        # SonyLiv search with proper encoding
-        links["app_search_url"] = f"https://www.sonyliv.com/search?q={encoded_title}"
+        # SonyLiv - revert to homepage (search not supported reliably)
+        links["app_search_url"] = "https://www.sonyliv.com/"
     
     elif provider.lower() == "apple tv":
         if platform_content_id:
