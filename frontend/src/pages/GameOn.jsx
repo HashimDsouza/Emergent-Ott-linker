@@ -46,19 +46,38 @@ export default function GameOn() {
         {/* Content Trays */}
         <div style={{ backgroundColor: charcoal }}>
           {/* TRAY 1: LIVE RIGHT NOW - Prominent First Position */}
-          <LiveMatchesTray />
+          <LiveMatchesTray 
+            selectedSport={selectedSport}
+            selectedLeague={selectedLeague}
+          />
 
-          {/* TRAY 2: TODAY'S MATCHES - Coming Next */}
+          {/* TRAY 2: TODAY'S MATCHES */}
+          <TodaysMatchesTray 
+            selectedSport={selectedSport}
+            selectedLeague={selectedLeague}
+          />
           
           {/* TRAY 3: BIG MOMENTS - Viral Clips */}
-          <BigMomentsTray />
+          <BigMomentsTray 
+            selectedSport={selectedSport}
+          />
 
-          {/* Other trays - Coming Next */}
-          <div className="px-3 md:px-6 pb-12 text-center">
-            <p className="text-white/60 text-sm italic">
-              More trays loading soon... 🚀
-            </p>
-          </div>
+          {/* TRAY 4: COMING UP - Tomorrow & Weekend */}
+          <ComingUpTray 
+            selectedSport={selectedSport}
+            selectedLeague={selectedLeague}
+          />
+
+          {/* TRAY 5: HIGHLIGHTS - Best Moments */}
+          <HighlightsTray 
+            selectedSport={selectedSport}
+          />
+
+          {/* TRAY 6: BEST OF - Greatest Moments */}
+          <BestOfTray 
+            selectedSport={selectedSport}
+            selectedLeague={selectedLeague}
+          />
         </div>
 
       </div>
