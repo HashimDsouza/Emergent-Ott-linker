@@ -33,7 +33,7 @@ export default function GameOn() {
           onLeagueChange={handleLeagueChange}
         />
 
-        {/* Spotlight Hero Section */}
+        {/* Spotlight Hero Section - Tournaments/Events Only */}
         <SpotlightSection 
           selectedSport={selectedSport}
           selectedLeague={selectedLeague}
@@ -41,7 +41,12 @@ export default function GameOn() {
 
         {/* Content Trays */}
         <div style={{ backgroundColor: charcoal }}>
-          {/* TRAY 3: Big Moments */}
+          {/* TRAY 1: LIVE RIGHT NOW - Prominent First Position */}
+          <LiveMatchesTray />
+
+          {/* TRAY 2: TODAY'S MATCHES - Coming Next */}
+          
+          {/* TRAY 3: BIG MOMENTS - Viral Clips */}
           <BigMomentsTray />
 
           {/* Other trays - Coming Next */}
