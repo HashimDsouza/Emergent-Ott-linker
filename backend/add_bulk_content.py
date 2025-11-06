@@ -172,7 +172,7 @@ async def add_content_batch(platform: str, titles: list):
                 "description": "",
                 "poster_url": "",
                 "genres": [],
-                "rating": "N/A",
+                "rating": 0.0,
                 "likes": 0,
                 "shares": 0
             }
