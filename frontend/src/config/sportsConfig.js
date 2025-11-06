@@ -155,12 +155,12 @@ export const liveMatches = [
 ];
 
 export const todayMatches = [
-  { id: 't1', sport: 'cricket', league: 'india', team1: { name: 'India', flag: '🇮🇳' }, team2: { name: 'Australia', flag: '🇦🇺' }, time: '2:00 PM', venue: 'Mumbai', descriptor: 'Series decider. History awaits.' },
-  { id: 't2', sport: 'football', league: 'laliga', team1: { name: 'Real Madrid', flag: '🇪🇸' }, team2: { name: 'Barcelona', flag: '🇪🇸' }, time: '8:00 PM', venue: 'Bernabeu', descriptor: '285th battle. Rivalry renewed.' },
-  { id: 't3', sport: 'football', league: 'premier', team1: { name: 'Man City', flag: '🏴󠁧󠁢󠁥󠁮󠁧󠁿' }, team2: { name: 'Arsenal', flag: '🏴󠁧󠁢󠁥󠁮󠁧󠁿' }, time: '10:30 PM', venue: 'Etihad', descriptor: 'Title race heats up.' },
-  { id: 't4', sport: 'cricket', league: 'ipl', team1: { name: 'MI', flag: '🔵' }, team2: { name: 'CSK', flag: '🟡' }, time: '7:30 PM', venue: 'Wankhede', descriptor: 'Classic rivalry. Yellow vs Blue.' },
-  { id: 't5', sport: 'nba', league: 'nba', team1: { name: 'Lakers', flag: '🟣' }, team2: { name: 'Warriors', flag: '🟠' }, time: '9:00 AM', venue: 'LA', descriptor: 'LeBron vs Curry. Legends duel.' },
-  { id: 't6', sport: 'tennis', league: 'grandslam', team1: { name: 'Djokovic', flag: '🇷🇸' }, team2: { name: 'Alcaraz', flag: '🇪🇸' }, time: '3:00 PM', venue: 'Melbourne', descriptor: 'Generational clash.' }
+  { id: 't1', sport: 'cricket', league: 'india', team1: { name: 'India', flag: '🇮🇳', flagCode: 'in', logo: null }, team2: { name: 'Australia', flag: '🇦🇺', flagCode: 'au', logo: null }, time: '2:00 PM', venue: 'Mumbai', descriptor: 'Series decider. History awaits.' },
+  { id: 't2', sport: 'football', league: 'laliga', team1: { name: 'Real Madrid', flag: '🇪🇸', flagCode: null, logo: getTeamLogo('Real Madrid') }, team2: { name: 'Barcelona', flag: '🇪🇸', flagCode: null, logo: getTeamLogo('Barcelona') }, time: '8:00 PM', venue: 'Bernabeu', descriptor: '285th battle. Rivalry renewed.' },
+  { id: 't3', sport: 'football', league: 'premier', team1: { name: 'Man City', flag: '🏴󠁧󠁢󠁥󠁮󠁧󠁿', flagCode: 'gb-eng', logo: getTeamLogo('Man City') }, team2: { name: 'Arsenal', flag: '🏴󠁧󠁢󠁥󠁮󠁧󠁿', flagCode: 'gb-eng', logo: getTeamLogo('Arsenal') }, time: '10:30 PM', venue: 'Etihad', descriptor: 'Title race heats up.' },
+  { id: 't4', sport: 'cricket', league: 'ipl', team1: { name: 'MI', flag: '🔵', flagCode: null, logo: getTeamLogo('MI') }, team2: { name: 'CSK', flag: '🟡', flagCode: null, logo: getTeamLogo('CSK') }, time: '7:30 PM', venue: 'Wankhede', descriptor: 'Classic rivalry. Yellow vs Blue.' },
+  { id: 't5', sport: 'nba', league: 'nba', team1: { name: 'Lakers', flag: '🟣', flagCode: null, logo: getTeamLogo('Lakers') }, team2: { name: 'Warriors', flag: '🟠', flagCode: null, logo: getTeamLogo('Warriors') }, time: '9:00 AM', venue: 'LA', descriptor: 'LeBron vs Curry. Legends duel.' },
+  { id: 't6', sport: 'tennis', league: 'grandslam', team1: { name: 'Djokovic', flag: '🇷🇸', flagCode: 'rs', logo: null }, team2: { name: 'Alcaraz', flag: '🇪🇸', flagCode: 'es', logo: null }, time: '3:00 PM', venue: 'Melbourne', descriptor: 'Generational clash.' }
 ];
 
 export const comingUpMatches = [
