@@ -7,6 +7,7 @@ import LandingV2_3Wrapper from "@/pages/LandingV2_3Wrapper";
 import WatchOn from "@/pages/WatchOn";
 import BuzzMeter from "@/pages/BuzzMeter";
 import Entertainment from "@/pages/Entertainment";
+import GameOn from "@/pages/GameOn";
 
 function App() {
   return (
