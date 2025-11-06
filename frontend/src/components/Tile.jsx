@@ -158,7 +158,7 @@ export default function Tile({ item, onInfo }) {
         {/* Line 3: Descriptor with click-to-expand + info button */}
         <div className="flex items-center gap-1 md:gap-1.5">
           <div 
-            className="italic flex-1 text-[10px] md:text-[12px] relative cursor-pointer"
+            className="italic flex-1 text-[10px] md:text-[11px] relative cursor-pointer"
             style={{ color: coral }}
             onClick={(e) => { 
               e.stopPropagation(); 
