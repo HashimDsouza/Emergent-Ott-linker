@@ -1064,6 +1064,58 @@ async def get_content_by_category(category: str, response: Response):
     content_list = await db.content.find({"category": category}, {"_id": 0}).to_list(100)
     return content_list
 
+@api_router.get("/search", response_model=List[Content])
+async def search_content(q: str, limit: int = 24, response: Response = None):
+    """
+    Search content with ranking: exact → startsWith → contains
+    """
+    if response:
+        response.headers["Cache-Control"] = "no-cache, no-store, must-revalidate"
+    
+    if not q or len(q) < 2:
+        log_search_query(q, "search", 0)
+        return []
+    
+    # Fetch all content
+    all_content = await db.content.find({}, {"_id": 0}).to_list(1000)
+    
+    query_lower = q.lower().strip()
+    
+    # Rank results
+    exact_matches = []
+    starts_with = []
+    contains = []
+    
+    for item in all_content:
+        title_lower = item.get("title", "").lower()
+        
+        if title_lower == query_lower:
+            exact_matches.append(item)
+        elif title_lower.startswith(query_lower):
+            starts_with.append(item)
+        elif query_lower in title_lower:
+            contains.append(item)
+    
+    # Combine ranked results
+    ranked_results = exact_matches + starts_with + contains
+    
+    # Remove duplicates while preserving order
+    seen = set()
+    unique_results = []
+    for item in ranked_results:
+        item_id = item.get("id")
+        if item_id not in seen:
+            seen.add(item_id)
+            unique_results.append(item)
+    
+    # Limit results
+    final_results = unique_results[:limit]
+    
+    # Log search
+    log_search_query(q, "search", len(final_results))
+    
+    return final_results
+
 
 @api_router.get("/proxy-image")
 async def proxy_image(url: str):
