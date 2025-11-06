@@ -191,17 +191,17 @@ backend:
         comment: "🎉 SEASON-SPECIFIC ENRICHMENT FULLY WORKING! Comprehensive testing shows all Season 2 and Season 3 titles have correct season-specific data: ✅ Squid Game Season 2: Year 2024, Korean language, 7 episodes, season-specific TMDB poster (sXZhtWLo3fecavpDuOyJiayjt32.jpg), IMDb 8.0, TMDB ID 93405. ✅ Mirzapur Season 3: Year 2024, Hindi language, 10 episodes, season-specific TMDB poster (7CFdq8M9ZuP1QRLaBG2ExdcrCBs.jpg), IMDb 8.4, TMDB ID 84105. ✅ Asur Season 3: Year 2020 (original series), Hindi language, 16 episodes, season-specific TMDB poster (njUrr755WzIrNfuUwQhpu2ljjH4.jpg), IMDb 8.5, TMDB ID 100911. All posters are season-specific (NOT Season 1), years reflect season air dates, episode counts are accurate for each season, and descriptions are season-specific. Season detection logic working perfectly with regex pattern matching and TMDB season API integration."
 
 frontend:
-  - task: "Create Watch On page component"
+  - task: "Create Game On page with all 6 trays"
     implemented: true
     working: true
-    file: "/app/frontend/src/pages/WatchOn.jsx"
+    file: "/app/frontend/src/pages/GameOn.jsx"
     stuck_count: 0
     priority: "high"
     needs_retesting: false
     status_history:
       - working: true
         agent: "main"
-        comment: "Created WatchOn.jsx with header, Bro's voice, 8 platform icons (JioHotstar, Netflix, Prime Video, Sony Liv, Zee5, Apple TV+, Fancode, Dazn), and 3 content trays. Implemented semi-functional platform icons with glow effect, toast notification, and smooth scroll to trays. Mobile-first responsive design with proper tile grid layouts."
+        comment: "Created GameOn.jsx with two-tier header, Spotlight section, and all 6 content trays: LIVE RIGHT NOW (prominent), TODAY'S MATCHES, BIG MOMENTS (viral clips), COMING UP, HIGHLIGHTS, BEST OF. All trays integrated with smart sport/league filtering. Mobile-first responsive design."
 
   - task: "Add Watch On route to App.js"
     implemented: true
