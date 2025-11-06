@@ -745,8 +745,11 @@ async def award_points(user_id: str, points: int, badge: Optional[str] = None):
 def generate_provider_links(provider: str, title: str, platform_content_id: Optional[str] = None) -> Dict[str, Optional[str]]:
     """
     Generate web URL, scheme URL, and search fallback for a provider
+    Enhanced to match Prime Video's successful search pattern
     """
-    encoded_title = title.replace(" ", "+")
+    # Better encoding for search URLs - URL encode properly
+    from urllib.parse import quote_plus
+    encoded_title = quote_plus(title)
     
     links = {
         "web_url": None,
@@ -758,32 +761,47 @@ def generate_provider_links(provider: str, title: str, platform_content_id: Opti
         if platform_content_id:
             links["web_url"] = f"https://www.netflix.com/title/{platform_content_id}"
             links["scheme_url"] = f"nflx://www.netflix.com/title/{platform_content_id}"
+        # Netflix search - using proper URL encoding like Prime
         links["app_search_url"] = f"https://www.netflix.com/search?q={encoded_title}"
     
     elif provider.lower() == "prime video":
         if platform_content_id:
             links["web_url"] = f"https://www.primevideo.com/detail/{platform_content_id}"
             links["scheme_url"] = f"aiv://aiv/view?gti={platform_content_id}"
+        # Prime search - already working well
         links["app_search_url"] = f"https://www.primevideo.com/search?phrase={encoded_title}"
     
     elif provider.lower() == "jiohotstar":
         if platform_content_id:
             links["web_url"] = f"https://www.hotstar.com/in/{platform_content_id}"
             links["scheme_url"] = f"hotstar://content/{platform_content_id}"
-        links["app_search_url"] = f"https://www.hotstar.com/in/search/{encoded_title}"
+        # Hotstar search with proper encoding
+        links["app_search_url"] = f"https://www.hotstar.com/in/search?q={encoded_title}"
     
     elif provider.lower() == "sonyliv":
         if platform_content_id:
             links["web_url"] = f"https://www.sonyliv.com/shows/{platform_content_id}"
-        links["app_search_url"] = "https://www.sonyliv.com/"
+        # SonyLiv search with proper encoding
+        links["app_search_url"] = f"https://www.sonyliv.com/search?q={encoded_title}"
     
     elif provider.lower() == "apple tv":
         if platform_content_id:
             links["web_url"] = f"https://tv.apple.com/show/{platform_content_id}"
             links["scheme_url"] = f"com.apple.tv://tv.apple.com/show/{platform_content_id}"
+        # Apple TV search - already working
         links["app_search_url"] = f"https://tv.apple.com/search?term={encoded_title}"
     
-    elif provider.lower() in ["fancode", "mx player", "youtube"]:
+    elif provider.lower() == "fancode":
+        # Fancode search
+        links["web_url"] = f"https://www.fancode.com/search?q={encoded_title}"
+        links["app_search_url"] = links["web_url"]
+    
+    elif provider.lower() == "dazn":
+        # DAZN search
+        links["web_url"] = f"https://www.dazn.com/en-IN/search?q={encoded_title}"
+        links["app_search_url"] = links["web_url"]
+    
+    elif provider.lower() in ["mx player", "youtube"]:
         links["web_url"] = f"https://www.{provider.lower().replace(' ', '')}.com/"
         links["app_search_url"] = links["web_url"]
     
