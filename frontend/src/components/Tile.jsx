@@ -109,7 +109,7 @@ export default function Tile({ item, onInfo }) {
         </div>
 
         {/* Line 2: BUZZ/BUZZ METER + social icons + IMDb rating (clickable) */}
-        <div className="flex items-center gap-1 md:gap-1.5 uppercase tracking-wide opacity-85 mb-1 md:mb-1.5 text-[8px] md:text-[10px]">
+        <div className="flex items-center gap-1 md:gap-1.5 uppercase tracking-wide opacity-85 mb-1 md:mb-1 text-[8px] md:text-[10px]">
           <span className="md:hidden">BUZZ</span>
           <span className="hidden md:inline">BUZZ METER</span>
           <a 
