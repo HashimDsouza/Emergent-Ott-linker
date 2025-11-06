@@ -792,13 +792,13 @@ def generate_provider_links(provider: str, title: str, platform_content_id: Opti
         links["app_search_url"] = f"https://tv.apple.com/search?term={encoded_title}"
     
     elif provider.lower() == "fancode":
-        # Fancode search
-        links["web_url"] = f"https://www.fancode.com/search?q={encoded_title}"
+        # Fancode - homepage only (search not reliable)
+        links["web_url"] = f"https://www.fancode.com/"
         links["app_search_url"] = links["web_url"]
     
     elif provider.lower() == "dazn":
-        # DAZN search
-        links["web_url"] = f"https://www.dazn.com/en-IN/search?q={encoded_title}"
+        # DAZN - homepage only (search not reliable)
+        links["web_url"] = f"https://www.dazn.com/en-IN/"
         links["app_search_url"] = links["web_url"]
     
     elif provider.lower() in ["mx player", "youtube"]:
