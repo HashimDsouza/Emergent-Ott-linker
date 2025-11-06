@@ -78,7 +78,7 @@ function Chip({ icon: Icon, label, tip, onClick }) {
       onTouchStart={handleTouchStart}
       onTouchEnd={handleTouchEnd}
       onClick={onClick}
-      className="relative group flex items-center gap-1 md:gap-1.5 rounded-full px-2.5 md:px-3.5 py-1.5 md:py-2 text-[10px] md:text-[11px] font-medium text-white/90 transition-all whitespace-nowrap"
+      className="relative group flex items-center gap-1 md:gap-1.5 rounded-full px-2 md:px-3.5 py-1 md:py-2 text-[9px] md:text-[11px] font-medium text-white/90 transition-all whitespace-nowrap"
       style={{
         background: hover 
           ? `linear-gradient(135deg, ${coral}30, ${mint}30)` 
