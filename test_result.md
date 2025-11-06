@@ -239,17 +239,17 @@ frontend:
         agent: "main"
         comment: "All trays now support smart filtering by sport and league. Match trays (LIVE, TODAY, COMING UP) filter by both sport and league. Video trays (BIG MOMENTS, HIGHLIGHTS, BEST OF) filter by sport. Trays automatically hide when no content matches the selected filter. Tested and verified with Cricket filter."
 
-  - task: "Mobile responsive design for Watch On page"
+  - task: "Implement automated descriptor generation"
     implemented: true
     working: true
-    file: "/app/frontend/src/pages/WatchOn.jsx"
+    file: "/app/frontend/src/config/sportsConfig.js"
     stuck_count: 0
     priority: "high"
     needs_retesting: false
     status_history:
       - working: true
         agent: "main"
-        comment: "Mobile responsive design fully implemented. Platform icons wrap properly in 4x2 grid on mobile. Content tiles display 3 per row on mobile with proper spacing. All text sizes and paddings adjusted for mobile screens. Header copy and Bro's voice properly sized for both mobile and desktop."
+        comment: "Created generateMatchDescriptor() function with rich descriptor library organized by sport and league. Descriptors are fun, concise, and match Bro's personality (e.g., 'Border-Gavaskar trophy.', 'El Clasico magic.', 'LeBron vs Curry. Legends duel.'). Applied to all match tiles dynamically."
 
 metadata:
   created_by: "main_agent"
