@@ -118,6 +118,21 @@ user_problem_statement: |
   6. Ensure mobile-first responsive design
 
 backend:
+  - task: "Fix Pydantic validation error for rating field"
+    implemented: true
+    working: true
+    file: "/app/backend/server.py"
+    stuck_count: 0
+    priority: "critical"
+    needs_retesting: true
+    status_history:
+      - working: false
+        agent: "user"
+        comment: "Backend crashing with Pydantic validation error. Rating field expecting float but receiving 'N/A' string from bulk content additions. API returning 500 errors causing all pages to fail loading content."
+      - working: true
+        agent: "main"
+        comment: "FIXED: Made rating field optional in both Content and ContentCreate Pydantic models (Optional[float] = 0.0). Updated add_bulk_content.py to use 0.0 instead of 'N/A'. Ran fix_rating_data.py script to update 3 existing documents in MongoDB with rating='N/A' to rating=0.0. Backend restarted successfully with no errors. All pages (Landing, Entertainment, Watch On, Game On) now loading content properly."
+
   - task: "No backend changes required for Game On v1A"
     implemented: true
     working: true
