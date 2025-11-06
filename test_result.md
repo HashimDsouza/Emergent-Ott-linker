@@ -215,17 +215,17 @@ frontend:
         agent: "main"
         comment: "Successfully integrated TodaysMatchesTray, ComingUpTray, HighlightsTray, BestOfTray into GameOn.jsx. All trays display correctly in proper order with filtering support. LiveMatchesTray and BigMomentsTray already integrated."
 
-  - task: "Implement header navigation to Watch On page"
+  - task: "Configure sportsConfig.js with comprehensive data"
     implemented: true
     working: true
-    file: "/app/frontend/src/components/ConnectorLayout.jsx"
+    file: "/app/frontend/src/config/sportsConfig.js"
     stuck_count: 0
     priority: "high"
     needs_retesting: false
     status_history:
       - working: true
         agent: "main"
-        comment: "Updated ConnectorLayout and ConnectorHeader to handle navigation to /watch-on page using React Router's useNavigate. Watch On chip in header successfully navigates to the new page."
+        comment: "Enhanced sportsConfig.js with mock data for all match trays (liveMatches, todayMatches, comingUpMatches), video data (highlightsVideos, bestOfVideos), and automated descriptor generator function. Rich descriptor library organized by sport and league for dynamic text generation."
 
   - task: "Implement 3 content trays with curated content"
     implemented: true
