@@ -48,14 +48,14 @@ export default function Tile({ item, onInfo }) {
   };
 
   return (
-    <div onClick={handleClick} className="relative block rounded-lg md:rounded-xl overflow-hidden shadow-lg border border-white/10 hover:-translate-y-0.5 transition cursor-pointer">
-      {/* Poster - 2:3 on mobile (portrait), 16:9 on desktop (landscape) - CLEAN, NO OVERLAY */}
+    <div onClick={handleClick} className="relative block rounded-lg md:rounded-xl overflow-hidden shadow-lg border border-white/10 hover:-translate-y-0.5 transition cursor-pointer max-w-full">
+      {/* Poster - 2:3 aspect ratio (portrait) */}
       <div 
         className="relative" 
         style={{ background: `linear-gradient(135deg, ${coral}70 0%, ${mint}45 45%, ${charcoalSoft} 100%)` }}
       >
-        {/* 2/3 aspect ratio (portrait) - same for mobile and desktop to match Buzz Meter */}
-        <div style={{ aspectRatio: "2/3" }}>
+        {/* Smaller aspect ratio on desktop for compact tiles */}
+        <div className="aspect-[2/3]">
           {item.thumbnail && (
             <img 
               src={item.thumbnail} 
