@@ -234,10 +234,12 @@ export function ConnectorHeader() {
         </button>
 
         {/* Center: USP Chips (Watch On, Buzz Meter, Win) */}
-        <div className="flex gap-2 md:gap-3 flex-1 justify-center">
+        <div className="flex gap-1.5 md:gap-3 flex-1 justify-center">
           <Chip icon={Play} label="Watch On" tip="Pick your platform. Jump right in." onClick={() => navigate('/watch-on')} />
           <Chip icon={Flame} label="Buzz Meter" tip="If it's trending, it's here." onClick={() => navigate('/buzz-meter')} />
-          <Chip icon={Target} label="Win" tip="Flex your fandom. Score some cred." />
+          <div className="hidden md:block">
+            <Chip icon={Target} label="Win" tip="Flex your fandom. Score some cred." />
+          </div>
         </div>
 
         {/* Right: Search & Me with hover effects and tooltips */}
