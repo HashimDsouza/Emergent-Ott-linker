@@ -369,13 +369,11 @@ export default function Entertainment() {
         </div>
 
         {/* Details Modal */}
-        {modalItem && (
-          <DetailsModal 
-            isOpen={!!modalItem}
-            onClose={() => setModalItem(null)}
-            item={modalItem}
-          />
-        )}
+        <DetailsModal 
+          open={!!modalItem}
+          onClose={() => setModalItem(null)}
+          item={modalItem}
+        />
 
         {/* CSS for scrollbar hiding and animations */}
         <style>{`
