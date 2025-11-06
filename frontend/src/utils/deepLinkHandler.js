@@ -46,7 +46,7 @@ const getStoreUrl = (userPlatform, config) => {
   return null;
 };
 
-// Main deep link handler
+// Main deep link handler with proper mobile app detection
 export const handleDeepLink = (tmdbId, ottPlatform, titleName, titleData = {}) => {
   const userPlatform = getPlatform();
   const config = platformConfig[ottPlatform];
@@ -55,60 +55,42 @@ export const handleDeepLink = (tmdbId, ottPlatform, titleName, titleData = {}) =
   
   if (!config) {
     console.error(`[DeepLink] Platform config not found for: ${ottPlatform}`);
-    // Fallback: try to open platform homepage
-    window.open(`https://www.${ottPlatform}.com`, '_blank');
     return null;
   }
 
   // Get deep link data from curated list
   const deepLinkData = curatedDeepLinks[tmdbId]?.[ottPlatform];
-  
-  // Check if this is curated content with deep link
   const hasCuratedLink = deepLinkData !== undefined && deepLinkData !== null;
-  
-  console.log('[DeepLink] Config found:', { 
-    hasCuratedLink, 
-    deepLinkData,
-    configName: config.name 
-  });
   
   // Build the URL
   const targetUrl = buildDeepLinkUrl(deepLinkData, config, titleName);
   
   console.log('[DeepLink] Target URL:', targetUrl);
+  console.log('[DeepLink] Has Curated Link:', hasCuratedLink);
   
   // Track the click
   trackDeepLinkClick(tmdbId, ottPlatform, hasCuratedLink, userPlatform);
   
-  // Handle iOS
-  if (userPlatform === 'ios') {
-    // iOS Universal Links work best with direct navigation
-    // If app is installed, iOS will automatically open it
-    // If not, it will open in Safari
-    window.location.href = targetUrl;
-    return {
-      method: 'universal_link',
+  // CRITICAL: Mobile needs same-tab navigation for app detection
+  if (userPlatform === 'ios' || userPlatform === 'android') {
+    openWithFallback({
+      url: targetUrl,
+      iosStore: config.iosAppStoreId ? `https://apps.apple.com/app/${config.iosAppStoreId}` : null,
+      androidStore: config.androidPackage ? `https://play.google.com/store/apps/details?id=${config.androidPackage}` : null,
+      androidPackage: config.androidPackage,
       platform: userPlatform,
-      hasCuratedLink,
-      url: targetUrl
-    };
-  }
-  
-  // Handle Android
-  if (userPlatform === 'android' && config.androidPackage) {
-    // For Android, try opening URL directly first
-    // Modern Android browsers handle app links automatically via Digital Asset Links
-    window.open(targetUrl, '_blank');
+      hasCuratedLink
+    });
     
     return {
-      method: 'android_web_link',
+      method: userPlatform === 'ios' ? 'universal_link' : 'android_app_link',
       platform: userPlatform,
       hasCuratedLink,
       url: targetUrl
     };
   }
   
-  // Handle Desktop - just open web URL
+  // Desktop - open in new tab
   window.open(targetUrl, '_blank');
   return {
     method: 'web',
@@ -116,6 +98,62 @@ export const handleDeepLink = (tmdbId, ottPlatform, titleName, titleData = {}) =
     hasCuratedLink,
     url: targetUrl
   };
+};
+
+// Smart app opener with fallback detection (CRITICAL FOR MOBILE)
+function openWithFallback({ url, iosStore, androidStore, androidPackage, platform, hasCuratedLink }) {
+  const isIOS = platform === 'ios';
+  const isAndroid = platform === 'android';
+  
+  let fallbackFired = false;
+  const startTime = Date.now();
+  
+  // Store fallback function
+  const goToStore = () => {
+    if (fallbackFired) return;
+    fallbackFired = true;
+    
+    const storeUrl = isIOS ? iosStore : isAndroid ? androidStore : url;
+    
+    if (storeUrl && hasCuratedLink) {
+      console.log('[DeepLink] App not detected, going to store:', storeUrl);
+      window.location.assign(storeUrl);
+    } else {
+      console.log('[DeepLink] No store fallback or non-curated, staying on web');
+    }
+  };
+  
+  // Listen for page becoming hidden (indicates app opened)
+  const visibilityHandler = () => {
+    if (document.visibilityState !== 'visible') {
+      console.log('[DeepLink] Page hidden - app likely opened!');
+      fallbackFired = true;
+    }
+  };
+  document.addEventListener('visibilitychange', visibilityHandler, { once: true });
+  
+  // For Android, try intent:// scheme first if curated (more reliable)
+  if (isAndroid && androidPackage && hasCuratedLink) {
+    const intentUrl = `intent://${url.replace(/^https?:\/\//, '')}#Intent;scheme=https;package=${androidPackage};S.browser_fallback_url=${encodeURIComponent(url)};end`;
+    console.log('[DeepLink] Trying Android intent:', intentUrl);
+    window.location.assign(intentUrl);
+  } else {
+    // iOS or Android without intent - use direct URL (same-tab navigation)
+    console.log('[DeepLink] Opening with same-tab navigation');
+    window.location.assign(url);
+  }
+  
+  // Set timer to check if app opened
+  // If page is still visible after 1.5s, app probably didn't open
+  setTimeout(() => {
+    const elapsed = Date.now() - startTime;
+    if (document.visibilityState === 'visible' && elapsed > 1200) {
+      console.log('[DeepLink] Timer expired, app did not open');
+      goToStore();
+    } else {
+      console.log('[DeepLink] App appears to have opened (page hidden or timer too quick)');
+    }
+  }, 1500);
 };
 
 // Check if a title has curated deep link
