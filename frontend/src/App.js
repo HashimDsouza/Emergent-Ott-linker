@@ -20,6 +20,7 @@ function App() {
             <Route path="/watch-on" element={<WatchOn />} />
             <Route path="/buzz-meter" element={<BuzzMeter />} />
             <Route path="/entertainment" element={<Entertainment />} />
+            <Route path="/game-on" element={<GameOn />} />
             <Route path="/original" element={<Home />} />
           </Routes>
         </BrowserRouter>
