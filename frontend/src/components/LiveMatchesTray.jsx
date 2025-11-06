@@ -135,7 +135,7 @@ export default function LiveMatchesTray() {
 function LiveMatchTile({ match }) {
   return (
     <div
-      className="snap-start flex-shrink-0 w-[260px] md:w-[280px] rounded-2xl overflow-hidden cursor-pointer transition-all hover:scale-[1.02] group"
+      className="snap-start flex-shrink-0 w-[200px] md:w-[240px] rounded-2xl overflow-hidden cursor-pointer transition-all hover:scale-[1.02] group"
       style={{ 
         backgroundColor: charcoal,
         border: `2px solid ${coral}60`,
