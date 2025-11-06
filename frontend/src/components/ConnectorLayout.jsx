@@ -280,7 +280,7 @@ export function ConnectorHeader() {
       {/* Row 2: Game On, Entertainment, Lang (centered) */}
       <div className="relative px-3 md:px-6 pb-2 md:pb-2.5">
         <div className="flex gap-2 md:gap-3 justify-center">
-          <Chip icon={Trophy} label="Game On" tip="The game never sleeps." />
+          <Chip icon={Trophy} label="Game On" tip="Live action. Real drama." onClick={() => navigate('/game-on')} />
           <Chip icon={Clapperboard} label="Entertainment" tip="Fresh stories. Zero scroll fatigue." onClick={() => navigate('/entertainment')} />
           <LanguageDropdown />
         </div>
