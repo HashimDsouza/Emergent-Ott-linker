@@ -219,7 +219,7 @@ function LiveMatchTile({ match }) {
 
         {/* Descriptor - Fun Smart Line */}
         <div 
-          className="px-3 py-2 rounded-lg mb-3"
+          className="px-3 py-2 rounded-lg"
           style={{ 
             backgroundColor: `${mint}10`,
             border: `1px solid ${mint}30`
@@ -231,11 +231,6 @@ function LiveMatchTile({ match }) {
           >
             {match.descriptor}
           </p>
-        </div>
-
-        {/* Venue */}
-        <div className="text-xs text-white/50 text-center">
-          📍 {match.venue}
         </div>
       </div>
 
