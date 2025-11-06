@@ -172,6 +172,7 @@ export default function SearchOverlay({ isOpen, onClose, onSelectItem }) {
   if (!isOpen) return null;
 
   return (
+    <>
     <div 
       className="fixed inset-0 z-50 flex items-start justify-center pt-4 md:pt-12 px-3 md:px-4 overflow-y-auto"
       style={{ backgroundColor: 'rgba(14, 21, 20, 0.95)' }}
