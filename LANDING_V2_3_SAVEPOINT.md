@@ -104,7 +104,7 @@ sudo supervisorctl restart all
 
 **Preview URL:**
 ```
-https://streamgrid-1.preview.emergentagent.com/landing/v2_3
+https://otthub-1.preview.emergentagent.com/landing/v2_3
 ```
 
 **Local:**

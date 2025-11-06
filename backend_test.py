@@ -11,7 +11,7 @@ import sys
 from typing import Dict, List, Optional
 
 # Backend URL from environment
-BACKEND_URL = "https://streamgrid-1.preview.emergentagent.com"
+BACKEND_URL = "https://otthub-1.preview.emergentagent.com"
 
 class ContentEnrichmentTester:
     def __init__(self):
