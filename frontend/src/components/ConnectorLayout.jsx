@@ -444,6 +444,7 @@ export function ConnectorFooter() {
         <NavItem emoji="⚡" icon={Zap} label="Get With It" tip="The headlines before they trend." />
       </div>
     </footer>
+    </>
   );
 }
 
