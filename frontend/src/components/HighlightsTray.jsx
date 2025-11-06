@@ -29,7 +29,7 @@ export default function HighlightsTray({ selectedSport }) {
         </div>
         <div className="overflow-x-auto scrollbar-hide snap-x snap-mandatory">
           <div className="flex gap-3" style={{ width: 'max-content' }}>
-            {mockHighlights.map((video) => (
+            {filteredVideos.map((video) => (
               <div key={video.id} className="snap-start flex-shrink-0 w-[180px] cursor-pointer group" onClick={() => window.open(`https://youtube.com/watch?v=${video.videoId}`, '_blank')}>
                 <div className="relative rounded-xl overflow-hidden mb-2" style={{ aspectRatio: '16/9', backgroundColor: charcoalSoft }}>
                   <img src={`https://img.youtube.com/vi/${video.videoId}/hqdefault.jpg`} alt={video.title} className="w-full h-full object-cover" />
