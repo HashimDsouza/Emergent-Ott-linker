@@ -32,7 +32,7 @@ export default function DetailsModal({ open, onClose, item }) {
   return (
     <div className={`fixed inset-0 z-50 ${open ? "" : "pointer-events-none"}`} aria-hidden={!open}>
       <div className={`absolute inset-0 bg-black/60 backdrop-blur-sm transition ${open ? "opacity-100" : "opacity-0"}`} onClick={onClose} />
-      <div className={`absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[min(780px,92vw)] rounded-3xl border border-white/10 shadow-2xl transition ${open ? "opacity-100 scale-100" : "opacity-0 scale-95"}`} style={{ background: "linear-gradient(180deg, rgba(15,19,18,0.95), rgba(23,58,53,0.95))" }}>
+      <div className={`absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[min(780px,90vw)] max-h-[85vh] overflow-y-auto rounded-2xl md:rounded-3xl border border-white/10 shadow-2xl transition ${open ? "opacity-100 scale-100" : "opacity-0 scale-95"}`} style={{ background: "linear-gradient(180deg, rgba(15,19,18,0.95), rgba(23,58,53,0.95))" }}>
         <div className="p-5 flex items-start justify-between text-white">
           <div className="flex items-center gap-3">
             <div className="w-14 h-20 rounded-lg bg-white/5 border border-white/10 overflow-hidden flex-shrink-0">
