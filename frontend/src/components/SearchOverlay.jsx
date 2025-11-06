@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Tile from "./Tile";
+import DetailsModal from "./DetailsModal";
 
 const coral = "#FF4F64", mint = "#30E0B2", charcoal = "#0E1514", charcoalSoft = "#173A35";
 
