@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { liveMatches as configLiveMatches } from '../config/sportsConfig';
 
 const coral = "#FF4F64";
 const mint = "#30E0B2";
@@ -6,7 +7,7 @@ const charcoal = "#0E1514";
 const charcoalSoft = "#173A35";
 
 // Mock live matches - will be replaced with API data
-const mockLiveMatches = [
+const mockLiveMatches = configLiveMatches.length > 0 ? configLiveMatches : [
   {
     id: 1,
     sport: 'cricket',
