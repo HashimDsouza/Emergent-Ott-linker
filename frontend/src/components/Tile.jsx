@@ -67,7 +67,22 @@ export default function Tile({ item, onInfo }) {
         style={{ backgroundColor: 'rgba(23, 58, 53, 0.95)' }}
       >{/* Line 1: Platform + social icons (heart, thumbs, comments) - NO CAPSULE */}
         <div className="flex items-center gap-0.5 md:gap-2 mb-0.5 md:mb-1.5">
-          <span className="text-[8px] md:text-[10px] font-semibold flex-shrink-0" style={{ color: mint }}>{item.platform || "JioHotstar"}</span>
+          <span className="text-[8px] md:text-[10px] font-semibold flex-shrink-0 flex items-center gap-1" style={{ color: mint }}>
+            {item.platform || "JioHotstar"}
+            {hasCuratedLink && (
+              <span 
+                className="text-[8px] px-1 py-0.5 rounded-full"
+                style={{ 
+                  backgroundColor: `${mint}20`,
+                  color: mint,
+                  border: `1px solid ${mint}40`
+                }}
+                title="Opens directly in app"
+              >
+                📲
+              </span>
+            )}
+          </span>
           <button 
             onClick={(e) => { 
               e.stopPropagation(); 
