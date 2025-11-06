@@ -111,14 +111,14 @@ export default function LiveMatchesTray({ selectedSport, selectedLeague }) {
             </h2>
           </div>
           <p className="text-sm md:text-base text-white/60 ml-6">
-            {liveMatches.length} match{liveMatches.length > 1 ? 'es' : ''} happening now
+            {filteredMatches.length} match{filteredMatches.length > 1 ? 'es' : ''} happening now
           </p>
         </div>
 
         {/* Live Match Tiles - Larger & Prominent */}
         <div className="overflow-x-auto scrollbar-hide snap-x snap-mandatory">
           <div className="flex gap-4 md:gap-5" style={{ width: 'max-content' }}>
-            {liveMatches.map((match) => (
+            {filteredMatches.map((match) => (
               <LiveMatchTile key={match.id} match={match} />
             ))}
           </div>
