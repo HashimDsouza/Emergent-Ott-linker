@@ -118,7 +118,7 @@ user_problem_statement: |
   6. Ensure mobile-first responsive design
 
 backend:
-  - task: "No backend changes required for Watch On page"
+  - task: "No backend changes required for Game On v1A"
     implemented: true
     working: true
     file: "N/A"
@@ -128,7 +128,7 @@ backend:
     status_history:
       - working: true
         agent: "main"
-        comment: "Watch On page uses existing /api/content endpoint. No backend modifications needed."
+        comment: "Game On v1A uses mock data from frontend config files. Backend API integration planned for v1B."
 
   - task: "Fix duplicate title matching"
     implemented: true
