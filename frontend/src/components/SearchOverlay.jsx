@@ -140,15 +140,30 @@ export default function SearchOverlay({ isOpen, onClose, onSelectItem }) {
     }
   };
 
-  // Close on ESC
+  // Close on ESC and lock body scroll when open
   useEffect(() => {
     const handleEscape = (e) => {
       if (e.key === "Escape" && isOpen) {
         onClose();
       }
     };
+    
+    // Lock body scroll when overlay is open
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+      document.body.style.paddingRight = '0px'; // Prevent layout shift
+    } else {
+      document.body.style.overflow = '';
+      document.body.style.paddingRight = '';
+    }
+    
     window.addEventListener("keydown", handleEscape);
-    return () => window.removeEventListener("keydown", handleEscape);
+    return () => {
+      window.removeEventListener("keydown", handleEscape);
+      // Restore scroll on unmount
+      document.body.style.overflow = '';
+      document.body.style.paddingRight = '';
+    };
   }, [isOpen, onClose]);
 
   if (!isOpen) return null;
