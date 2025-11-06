@@ -203,17 +203,17 @@ frontend:
         agent: "main"
         comment: "Created GameOn.jsx with two-tier header, Spotlight section, and all 6 content trays: LIVE RIGHT NOW (prominent), TODAY'S MATCHES, BIG MOMENTS (viral clips), COMING UP, HIGHLIGHTS, BEST OF. All trays integrated with smart sport/league filtering. Mobile-first responsive design."
 
-  - task: "Add Watch On route to App.js"
+  - task: "Integrate all 6 tray components"
     implemented: true
     working: true
-    file: "/app/frontend/src/App.js"
+    file: "/app/frontend/src/components/*.jsx"
     stuck_count: 0
     priority: "high"
     needs_retesting: false
     status_history:
       - working: true
         agent: "main"
-        comment: "Added /watch-on route to App.js. Route properly configured and accessible."
+        comment: "Successfully integrated TodaysMatchesTray, ComingUpTray, HighlightsTray, BestOfTray into GameOn.jsx. All trays display correctly in proper order with filtering support. LiveMatchesTray and BigMomentsTray already integrated."
 
   - task: "Implement header navigation to Watch On page"
     implemented: true
