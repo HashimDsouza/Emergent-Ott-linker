@@ -1016,13 +1016,44 @@ async def debug_item(title: str = Query(..., description="Title to search for"))
     }
 
 @api_router.get("/content", response_model=List[Content])
-async def get_all_content(response: Response):
+async def get_all_content(response: Response, q: Optional[str] = None):
     # Add cache control headers to prevent caching
     response.headers["Cache-Control"] = "no-cache, no-store, must-revalidate"
     response.headers["Pragma"] = "no-cache"
     response.headers["Expires"] = "0"
+    
+    # Log search queries
+    if q:
+        log_search_query(q, "content_fetch")
+    
     content_list = await db.content.find({}, {"_id": 0}).to_list(1000)
     return content_list
+
+def log_search_query(query: str, event_type: str = "search", result_count: int = 0, content_id: str = None):
+    """Log search events to JSON file for analytics"""
+    try:
+        from datetime import datetime
+        import json
+        import os
+        
+        log_dir = "/app/logs"
+        os.makedirs(log_dir, exist_ok=True)
+        log_file = f"{log_dir}/search_logs.jsonl"
+        
+        log_entry = {
+            "ts": datetime.utcnow().isoformat(),
+            "event": event_type,
+            "q": query,
+            "results": result_count
+        }
+        
+        if content_id:
+            log_entry["content_id"] = content_id
+        
+        with open(log_file, "a") as f:
+            f.write(json.dumps(log_entry) + "\n")
+    except Exception as e:
+        logging.error(f"Failed to log search query: {e}")
 
 @api_router.get("/content/{category}", response_model=List[Content])
 async def get_content_by_category(category: str, response: Response):
