@@ -1,20 +1,22 @@
 import React from 'react';
+import { highlightsVideos } from '../config/sportsConfig';
 
 const coral = "#FF4F64";
 const mint = "#30E0B2";
 const charcoal = "#0E1514";
 const charcoalSoft = "#173A35";
 
-const mockHighlights = [
-  { id: 1, videoId: 'abc123', title: 'Kohli 78* Match Highlights', sport: 'cricket', views: '1.2M', descriptor: 'Masterclass innings. Pure class.' },
-  { id: 2, videoId: 'def456', title: 'El Clasico All Goals', sport: 'football', views: '2.8M', descriptor: 'Five goals. Endless drama.' },
-  { id: 3, videoId: 'ghi789', title: 'Lakers vs Warriors OT', sport: 'nba', views: '890K', descriptor: 'LeBron 40pts. Thriller.' },
-  { id: 4, videoId: 'jkl012', title: 'Djokovic 5-Set Win', sport: 'tennis', views: '654K', descriptor: 'Epic comeback. Legend.' },
-  { id: 5, videoId: 'mno345', title: 'F1 Abu Dhabi Highlights', sport: 'f1', views: '1.5M', descriptor: 'Final lap drama.' },
-  { id: 6, videoId: 'pqr678', title: 'IPL Best Catches', sport: 'cricket', views: '3.2M', descriptor: 'Gravity-defying catches.' }
-];
+export default function HighlightsTray({ selectedSport }) {
+  // Filter videos based on selected sport
+  const filteredVideos = highlightsVideos.filter(video => {
+    if (!selectedSport || selectedSport === 'live') return true;
+    if (selectedSport === 'more') {
+      return ['nba', 'f1', 'golf', 'badminton', 'ufc', 'kabaddi', 'esports'].includes(video.sport);
+    }
+    return video.sport === selectedSport;
+  });
 
-export default function HighlightsTray() {
+  if (filteredVideos.length === 0) return null;
   return (
     <div className="px-3 md:px-6 pb-6 md:pb-8" style={{ backgroundColor: charcoal }}>
       <div className="max-w-[1280px] mx-auto">
