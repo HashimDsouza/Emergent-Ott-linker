@@ -33,7 +33,7 @@ export default function ComingUpTray({ selectedSport, selectedLeague }) {
         </div>
         <div className="overflow-x-auto scrollbar-hide snap-x snap-mandatory">
           <div className="flex gap-3" style={{ width: 'max-content' }}>
-            {mockComingUp.map((match) => (
+            {filteredMatches.map((match) => (
               <div key={match.id} className="snap-start flex-shrink-0 w-[180px] rounded-xl p-3 cursor-pointer transition-all hover:scale-[1.02]" style={{ backgroundColor: charcoalSoft, border: `1px solid ${mint}30` }}>
                 <div className="text-xs text-white/60 mb-2">{match.league}</div>
                 <div className="flex items-center gap-1.5 mb-2">
