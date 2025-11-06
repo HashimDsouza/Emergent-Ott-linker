@@ -70,10 +70,10 @@ export const handleDeepLink = (tmdbId, ottPlatform, titleName, titleData = {}) =
   
   // Handle iOS
   if (userPlatform === 'ios') {
-    // iOS Universal Links - open URL directly
-    // If app is installed, it will open in app
+    // iOS Universal Links work best with direct navigation
+    // If app is installed, iOS will automatically open it
     // If not, it will open in Safari
-    window.open(targetUrl, '_blank');
+    window.location.href = targetUrl;
     return {
       method: 'universal_link',
       platform: userPlatform,
