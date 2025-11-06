@@ -660,7 +660,7 @@ class ContentCreate(BaseModel):
     category: str
     platform: str
     platform_content_id: Optional[str] = None
-    rating: float
+    rating: Optional[float] = 0.0
     thumbnail: str
     description: str
     release_date: Optional[str] = None
