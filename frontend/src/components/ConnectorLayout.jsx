@@ -324,6 +324,38 @@ export function ConnectorHeader() {
 
 // Footer component with emojis + icons and gradient background
 export function ConnectorFooter() {
+  const [showAnalytics, setShowAnalytics] = React.useState(false);
+  const [clickCount, setClickCount] = React.useState(0);
+  const clickTimer = React.useRef(null);
+
+  // Triple-click on footer to open analytics (hidden feature for testing)
+  const handleFooterClick = () => {
+    setClickCount(prev => prev + 1);
+    
+    if (clickTimer.current) {
+      clearTimeout(clickTimer.current);
+    }
+    
+    clickTimer.current = setTimeout(() => {
+      if (clickCount >= 2) { // Triple click = 3 total clicks
+        setShowAnalytics(true);
+      }
+      setClickCount(0);
+    }, 500);
+  };
+
+  // Keyboard shortcut: Ctrl+Shift+D
+  React.useEffect(() => {
+    const handleKeyPress = (e) => {
+      if (e.ctrlKey && e.shiftKey && e.key === 'D') {
+        e.preventDefault();
+        setShowAnalytics(true);
+      }
+    };
+    window.addEventListener('keydown', handleKeyPress);
+    return () => window.removeEventListener('keydown', handleKeyPress);
+  }, []);
+
   const NavItem = ({ emoji, icon: Icon, label, tip }) => {
     const [hover, setHover] = useState(false);
     const [showTip, setShowTip] = useState(false);
