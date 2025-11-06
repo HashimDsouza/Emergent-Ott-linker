@@ -56,7 +56,7 @@ const mockLiveMatches = configLiveMatches.length > 0 ? configLiveMatches : [
   }
 ];
 
-export default function LiveMatchesTray() {
+export default function LiveMatchesTray({ selectedSport, selectedLeague }) {
   const [liveMatches, setLiveMatches] = useState([]);
 
   useEffect(() => {
@@ -64,7 +64,20 @@ export default function LiveMatchesTray() {
     setLiveMatches(mockLiveMatches);
   }, []);
 
-  if (liveMatches.length === 0) {
+  // Filter matches based on selected sport/league
+  const filteredMatches = liveMatches.filter(match => {
+    if (!selectedSport || selectedSport === 'live') return true;
+    if (selectedSport === 'more') {
+      return ['nba', 'f1', 'golf', 'badminton', 'ufc', 'kabaddi', 'esports'].includes(match.sport);
+    }
+    if (match.sport !== selectedSport) return false;
+    if (selectedLeague && selectedLeague !== `all-${selectedSport}`) {
+      return match.league === selectedLeague;
+    }
+    return true;
+  });
+
+  if (filteredMatches.length === 0) {
     return null; // Don't show tray if no live matches
   }
 
