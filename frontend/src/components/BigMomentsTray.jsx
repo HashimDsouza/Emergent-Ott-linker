@@ -81,18 +81,18 @@ function VideoTile({ video, onClick }) {
           }}
         />
         
-        {/* Play Button Overlay */}
+        {/* Small Play Indicator */}
         <div 
-          className="absolute inset-0 flex items-center justify-center bg-black/40 group-hover:bg-black/60 transition-all"
+          className="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-all flex items-center justify-center"
         >
           <div 
-            className="w-12 h-12 md:w-14 md:h-14 rounded-full flex items-center justify-center transition-all group-hover:scale-110"
+            className="opacity-0 group-hover:opacity-100 transition-all w-8 h-8 md:w-10 md:h-10 rounded-full flex items-center justify-center"
             style={{ 
-              backgroundColor: coral,
-              boxShadow: `0 4px 12px ${coral}60`
+              backgroundColor: `${coral}E0`,
+              boxShadow: `0 4px 12px ${coral}80`
             }}
           >
-            <span className="text-white text-xl md:text-2xl ml-1">▶</span>
+            <span className="text-white text-sm md:text-base ml-0.5">▶</span>
           </div>
         </div>
 
