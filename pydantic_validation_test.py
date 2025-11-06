@@ -185,7 +185,7 @@ class PydanticValidationTester:
                         tmdb_id = item.get("tmdb_id")
                         poster_url = item.get("poster_url", "")
                         
-                        if tmdb_id and poster_url.startswith("https://image.tmdb.org"):
+                        if tmdb_id and poster_url and poster_url.startswith("https://image.tmdb.org"):
                             enriched_items.append(title)
                         else:
                             missing_tmdb_items.append(title)
