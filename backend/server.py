@@ -601,7 +601,7 @@ class Content(BaseModel):
     rating: float  # Can be IMDb or TMDB rating
     thumbnail: str  # TMDB poster URL
     description: str
-    release_date: str
+    release_date: Optional[str] = None
     social_links: Dict[str, str] = Field(default_factory=dict)
     content_type: str
     tagline: str = ""
