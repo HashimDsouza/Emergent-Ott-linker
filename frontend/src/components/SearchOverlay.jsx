@@ -300,5 +300,13 @@ export default function SearchOverlay({ isOpen, onClose, onSelectItem }) {
         }
       `}</style>
     </div>
+
+    {/* Details Modal for search results */}
+    <DetailsModal 
+      open={!!modalItem}
+      onClose={() => setModalItem(null)}
+      item={modalItem}
+    />
+    </>
   );
 }
