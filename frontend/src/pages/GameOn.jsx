@@ -38,11 +38,17 @@ export default function GameOn() {
           selectedLeague={selectedLeague}
         />
 
-        {/* Content Trays - Coming Next */}
-        <div className="px-3 md:px-6 pb-12 text-center">
-          <p className="text-white/60 text-sm italic">
-            Content trays loading soon... 🚀
-          </p>
+        {/* Content Trays */}
+        <div style={{ backgroundColor: charcoal }}>
+          {/* TRAY 3: Big Moments */}
+          <BigMomentsTray />
+
+          {/* Other trays - Coming Next */}
+          <div className="px-3 md:px-6 pb-12 text-center">
+            <p className="text-white/60 text-sm italic">
+              More trays loading soon... 🚀
+            </p>
+          </div>
         </div>
 
       </div>
