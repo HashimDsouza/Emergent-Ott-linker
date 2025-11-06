@@ -53,7 +53,7 @@ export const bigMomentsVideos = [
     title: '24 Most Viral Sports Moments 2024',
     sport: 'multiple',
     league: 'Multi-Sport',
-    descriptor: 'Year's wildest moments. Buckle up.',
+    descriptor: "Year's wildest moments. Buckle up.",
     thumbnail: 'https://img.youtube.com/vi/eXVEF3kO_zk/maxresdefault.jpg',
     uploadedAgo: '1 week ago',
     views: '3.2M'
