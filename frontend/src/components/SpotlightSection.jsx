@@ -88,33 +88,37 @@ const mockSpotlightLeagues = [
 ];
 
 export default function SpotlightSection({ selectedSport, selectedLeague }) {
-  const [spotlightMatches, setSpotlightMatches] = useState([]);
+  const [spotlightLeagues, setSpotlightLeagues] = useState([]);
   const [broMessage, setBroMessage] = useState('');
 
   useEffect(() => {
-    // Filter matches based on selected sport/league
-    let filtered = mockSpotlightMatches;
+    // Filter leagues based on selected sport
+    let filtered = mockSpotlightLeagues;
     
     if (selectedSport && selectedSport !== 'live') {
-      filtered = filtered.filter(match => match.sport === selectedSport);
+      filtered = filtered.filter(league => league.sport === selectedSport);
     }
+
+    // Prioritize India-relevant content
+    filtered.sort((a, b) => {
+      if (a.relevance === 'india' && b.relevance !== 'india') return -1;
+      if (a.relevance !== 'india' && b.relevance === 'india') return 1;
+      return 0;
+    });
 
     // Set contextual Bro message
-    const liveCount = filtered.filter(m => m.type === 'live').length;
-    const todayCount = filtered.filter(m => m.type === 'today').length;
-
-    if (liveCount > 0) {
-      setBroMessage(`🔴 ${liveCount} match${liveCount > 1 ? 'es' : ''} live. Pick your drama.`);
-    } else if (todayCount > 0) {
-      setBroMessage(`🔥 ${todayCount} banger${todayCount > 1 ? 's' : ''} today. Couch time confirmed.`);
+    const indiaCount = filtered.filter(l => l.relevance === 'india').length;
+    
+    if (indiaCount > 0) {
+      setBroMessage(`🇮🇳 ${indiaCount} Indian ${indiaCount > 1 ? 'tournaments' : 'tournament'} live. Nation watching.`);
     } else {
-      setBroMessage("⚡ Weekend loaded. Clear your calendar.");
+      setBroMessage("🌟 Top tournaments happening now.");
     }
 
-    setSpotlightMatches(filtered);
+    setSpotlightLeagues(filtered);
   }, [selectedSport, selectedLeague]);
 
-  if (spotlightMatches.length === 0) return null;
+  if (spotlightLeagues.length === 0) return null;
 
   return (
     <div 
