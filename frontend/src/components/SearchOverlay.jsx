@@ -175,12 +175,12 @@ export default function SearchOverlay({ isOpen, onClose, onSelectItem }) {
         </div>
 
         {/* Mood Chips */}
-        <div className="flex flex-wrap justify-center gap-2 mb-4">
+        <div className="flex flex-wrap justify-center gap-2 mb-3 md:mb-4">
           {moodChips.map((chip, idx) => (
             <button
               key={idx}
               onClick={() => handleChipClick(chip.query)}
-              className="px-4 py-2 rounded-full text-sm font-medium transition hover:scale-105"
+              className="px-3 md:px-4 py-1.5 md:py-2 rounded-full text-xs md:text-sm font-medium transition active:scale-95 hover:scale-105"
               style={{ 
                 backgroundColor: 'rgba(23, 58, 53, 0.6)',
                 color: mint,
