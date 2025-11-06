@@ -197,12 +197,12 @@ export const generateMatchDescriptor = (match) => {
 
 // Highlights video data (recent match highlights)
 export const highlightsVideos = [
-  { id: 'h1', videoId: 'dQw4w9WgXcQ', title: 'Kohli 78* Match Highlights', sport: 'cricket', views: '1.2M', descriptor: 'Masterclass innings. Pure class.', league: 'IND vs AUS' },
-  { id: 'h2', videoId: 'dQw4w9WgXcQ', title: 'El Clasico All Goals', sport: 'football', views: '2.8M', descriptor: 'Five goals. Endless drama.', league: 'La Liga' },
-  { id: 'h3', videoId: 'dQw4w9WgXcQ', title: 'Lakers vs Warriors OT', sport: 'nba', views: '890K', descriptor: 'LeBron 40pts. Thriller.', league: 'NBA' },
-  { id: 'h4', videoId: 'dQw4w9WgXcQ', title: 'Djokovic 5-Set Win', sport: 'tennis', views: '654K', descriptor: 'Epic comeback. Legend.', league: 'Australian Open' },
-  { id: 'h5', videoId: 'dQw4w9WgXcQ', title: 'F1 Abu Dhabi Highlights', sport: 'f1', views: '1.5M', descriptor: 'Final lap drama.', league: 'F1' },
-  { id: 'h6', videoId: 'dQw4w9WgXcQ', title: 'IPL Best Catches', sport: 'cricket', views: '3.2M', descriptor: 'Gravity-defying catches.', league: 'IPL' }
+  { id: 'h1', videoId: '4W9YskwfTXE', title: 'IND vs AUS Test Day 2 Highlights', sport: 'cricket', views: '1.2M', descriptor: 'Masterclass innings. Pure class.', league: 'IND vs AUS' },
+  { id: 'h2', videoId: 'LFzrA492gdw', title: 'El Clasico All Goals', sport: 'football', views: '2.8M', descriptor: 'Bellingham winner. Drama.', league: 'La Liga' },
+  { id: 'h3', videoId: 'K_i4srJLw_E', title: 'Lakers vs Warriors Highlights', sport: 'nba', views: '890K', descriptor: 'LeBron 40pts. Thriller.', league: 'NBA' },
+  { id: 'h4', videoId: 'BfWxJ0qh5X8', title: 'Djokovic 5-Set Win', sport: 'tennis', views: '654K', descriptor: 'Epic comeback. Legend.', league: 'Australian Open' },
+  { id: 'h5', videoId: 'Zv5T8SoJXfg', title: 'F1 Abu Dhabi GP Highlights', sport: 'f1', views: '1.5M', descriptor: 'Final lap drama.', league: 'F1' },
+  { id: 'h6', videoId: 'fnIPe8ryzOs', title: 'IPL 2024 Final Highlights', sport: 'cricket', views: '3.2M', descriptor: 'KKR champions. Epic final.', league: 'IPL' }
 ];
 
 // Best Of video data (compilation content)
