@@ -1,0 +1,100 @@
+{
+  "hero_ids": [
+    "tmdb_tv_84105",
+    "tmdb_movie_1239511"
+  ],
+  "buzzing_ids": [
+    "28e97a10-8eed-4c1e-9ab6-85279ebf830c",
+    "tmdb_tv_302696",
+    "prime_video_panchayat_season_3_2020",
+    "7f7c9685-f898-4706-8391-5dc7d8c4c680",
+    "5203dda5-08be-42df-9d3b-d4c57c838191",
+    "jiohotstar_laapataa_ladies_2024",
+    "a6af46c8-ae78-42d5-87ff-4987a8593d56",
+    "060ee55b-8d7d-4064-b107-cd1647a50231"
+  ],
+  "watch_on_ids": {
+    "Netflix": [
+      "tmdb_tv_302696",
+      "tmdb_tv_272418",
+      "tmdb_tv_200875",
+      "tmdb_movie_1062722",
+      "tmdb_tv_225647",
+      "tmdb_movie_701387",
+      "tmdb_tv_225171",
+      "tmdb_movie_1290190",
+      "tmdb_movie_1197137",
+      "tmdb_movie_617126"
+    ],
+    "Prime Video": [
+      "7f7c9685-f898-4706-8391-5dc7d8c4c680",
+      "tmdb_movie_1083637",
+      "prime_video_panchayat_season_3_2020",
+      "060ee55b-8d7d-4064-b107-cd1647a50231",
+      "prime_video_made_in_heaven_season_2_2019",
+      "prime_video_tandav_2021",
+      "prime_video_reacher_2022",
+      "prime_video_guilty_minds_2022",
+      "prime_video_invincible_2021",
+      "prime_video_mumbai_diaries_26/11_2021"
+    ],
+    "JioHotstar": [
+      "2abfa8c7-faf0-4d49-a3f0-56b7ca67ce1d",
+      "jiohotstar_laapataa_ladies_2024",
+      "jiohotstar_house_of_the_dragon_season_2_2022",
+      "jiohotstar_article_370_2024",
+      "jiohotstar_madgaon_express_2024",
+      "jiohotstar_do_aur_do_pyaar_2024",
+      "jiohotstar_teri_baaton_mein_aisa_uljha_jiya_2024",
+      "jiohotstar_showtime_2024",
+      "jiohotstar_murder_mubarak_2024",
+      "jiohotstar_crew_2024"
+    ],
+    "SonyLIV": [
+      "sonyliv_freedom_at_midnight_2024",
+      "bd79212b-1285-47bf-bf8e-6cb7b7c48cf8",
+      "sonyliv_trial_by_fire_2023",
+      "sonyliv_rocket_boys_2022",
+      "sonyliv_tanaav_2022",
+      "sonyliv_tabbar_2021",
+      "sonyliv_maharani_2021",
+      "sonyliv_kathmandu_connection_2021",
+      "sonyliv_scam_1992_2020",
+      "sonyliv_undekhi_2020"
+    ]
+  },
+  "new_noted_ids": [
+    "tmdb_tv_302696",
+    "7f7c9685-f898-4706-8391-5dc7d8c4c680",
+    "5203dda5-08be-42df-9d3b-d4c57c838191",
+    "72cc2c0c-694d-40ca-9063-ac26c975c6f2",
+    "tmdb_tv_272418",
+    "tmdb_movie_1062722",
+    "tmdb_tv_200875",
+    "tmdb_tv_225647"
+  ],
+  "hero_titles": [
+    "Mirzapur",
+    "Lucky Baskhar"
+  ],
+  "buzzing_titles": [
+    "UEFA Champions League",
+    "KPop Demon Hunters Lyric Videos",
+    "Panchayat Season 3",
+    "The Family Man Season 3",
+    "Severance Season 2",
+    "Laapataa Ladies",
+    "Maharaja",
+    "Mirzapur Season 3"
+  ],
+  "new_noted_titles": [
+    "KPop Demon Hunters Lyric Videos",
+    "The Family Man Season 3",
+    "Severance Season 2",
+    "Slow Horses Season 5",
+    "Robin Hood",
+    "Frankenstein",
+    "IT: Welcome to Derry",
+    "Boots"
+  ]
+}
