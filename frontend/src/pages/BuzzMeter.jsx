@@ -165,16 +165,12 @@ export default function BuzzMeter() {
             <h1 className="text-3xl md:text-5xl font-bold text-white mb-2">
               Buzz Meter
             </h1>
-            <p className="text-base md:text-lg text-white/80 mb-1">
-              The Internet is Talking About…
-            </p>
             <p 
-              className="text-sm md:text-base italic"
+              className="text-sm md:text-base"
               style={{ color: coral }}
             >
-              "Fighter trailer, Kapil clips, and dragon drama — all trending harder than deadlines."
+              The Internet is Talking..
             </p>
-            <BroMicroline />
           </div>
         </div>
 
