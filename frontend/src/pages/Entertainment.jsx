@@ -318,14 +318,12 @@ export default function Entertainment() {
               <section>
                 <div className="px-3 md:px-6 mb-2 flex items-end justify-between">
                   <div>
-                    <h2 className="text-base md:text-xl font-semibold text-white flex items-center gap-1.5 md:gap-2">
+                    <div className="text-base md:text-xl font-semibold text-white flex items-center gap-1.5 md:gap-2">
                       <span>💎</span> Hidden Gems
-                    </h2>
-                    {!visibleHidden ? null : (
-                      <p className="text-[10px] md:text-sm text-white/60">
-                        Critics love them. You might too.
-                      </p>
-                    )}
+                    </div>
+                    <div className="text-[10px] md:text-sm italic mt-0.5" style={{ color: coral }}>
+                      Critics love them. You might too
+                    </div>
                   </div>
                   <div className="flex items-center gap-2 md:gap-4 text-[10px] md:text-sm text-white/85">
                     {!visibleHidden ? (
