@@ -1,0 +1,123 @@
+OTT Linker - 3-Year Financial Model,,,,,,,,,,,,
+,,,,,,,,,,,,
+ASSUMPTIONS,,,,,,,,,,,,
+User Growth,,Year 1,Year 2,Year 3,,,,,,,
+New Users per Month (Start),500,20000,50000,,,,,,,
+Growth Rate (MoM),150%,30%,25%,,,,,,,
+Churn Rate (Monthly),5%,5%,5%,,,,,,,
+Premium Conversion Rate,5%,8%,10%,,,,,,,
+,,,,,,,,,,,,
+Revenue Assumptions,,,,,,,,,,,,
+Affiliate CPA,$5.00,$5.00,$5.00,,,,,,,
+Referral Rate (annual),20%,20%,20%,,,,,,,
+Premium Price (monthly),$4.99,$4.99,$4.99,,,,,,,
+Ad CPM,$0.50,$0.50,$0.50,,,,,,,
+Ads per User per Month,20,20,20,,,,,,,
+,,,,,,,,,,,,
+Cost Assumptions,,,,,,,,,,,,
+CAC (Blended),$5.00,$7.00,$10.00,,,,,,,
+Hosting per User (annual),$0.10,$0.08,$0.06,,,,,,,
+API Costs (monthly),$100,$500,$2000,,,,,,,
+,,,,,,,,,,,,
+,,,,,,,,,,,,
+YEAR 1 PROJECTIONS (Monthly),,,,,,,,,,,,
+Month,New Users,Total Users,Active Users (MAU),Premium Users,MRR,Affiliate Revenue,Total Revenue,Marketing Spend,Operating Costs,Total Costs,Profit/Loss
+1,500,500,500,25,$125,$50,$175,$2500,$5000,$7500,-$7325
+2,1250,1725,1725,86,$431,$173,$604,$6250,$5500,$11750,-$11146
+3,3125,4700,4700,235,$1173,$470,$1643,$15625,$6000,$21625,-$19982
+4,7813,11813,11813,591,$2948,$1181,$4129,$39063,$6500,$45563,-$41434
+5,19531,30344,30344,1517,$7571,$3034,$10606,$97656,$7000,$104656,-$94050
+6,48828,76172,76172,3809,$19009,$7617,$26626,$244141,$7500,$251641,-$225015
+7,48828,120000,120000,6000,$29940,$12000,$41940,$244141,$8000,$252141,-$210201
+8,48828,163828,163828,8191,$40874,$16383,$57257,$244141,$8500,$252641,-$195384
+9,48828,207656,207656,10383,$51808,$20766,$72574,$244141,$9000,$253141,-$180567
+10,48828,251484,251484,12574,$62742,$25148,$87890,$244141,$9500,$253641,-$165751
+11,48828,295313,295313,14766,$73676,$29531,$103207,$244141,$10000,$254141,-$150934
+12,48828,339141,339141,16957,$84610,$33914,$118524,$244141,$10500,$254641,-$136117
+Total Year 1,373641,339141,339141,16957,$374907,$150025,$524932,$1869937,$93000,$1962937,-$1438005
+,,,,,,,,,,,,
+,,,,,,,,,,,,
+YEAR 2 PROJECTIONS (Quarterly),,,,,,,,,,,,
+Quarter,New Users,Total Users,Active Users (MAU),Premium Users,MRR,Affiliate Revenue,Premium Revenue,Ad Revenue,Total Revenue,Marketing Spend,Operating Costs,Total Costs,Profit/Loss
+Q1,212685,551826,551826,44146,$220089,$110365,$660268,$0,$770633,$1488795,$150000,$1638795,-$868162
+Q2,276490,828316,828316,66265,$330600,$165530,$991799,$0,$1157329,$1935432,$180000,$2115432,-$958103
+Q3,359437,1187753,1187753,95020,$473850,$237510,$1421550,$0,$1659060,$2516059,$210000,$2726059,-$1066999
+Q4,467268,1655021,1655021,132402,$660449,$331020,$1981346,$247504,$2559870,$3271878,$240000,$3511878,-$952008
+Total Year 2,1315880,1655021,1655021,132402,$1685087,$844425,$5054963,$247504,$6146892,$9212164,$780000,$9992164,-$3845272
+,,,,,,,,,,,,
+,,,,,,,,,,,,
+YEAR 3 PROJECTIONS (Quarterly),,,,,,,,,,,,
+Quarter,New Users,Total Users,Active Users (MAU),Premium Users,MRR,Affiliate Revenue,Premium Revenue,Ad Revenue,Total Revenue,Marketing Spend,Operating Costs,Total Costs,Profit/Loss
+Q1,516719,2171740,2171740,217174,$1083659,$434348,$3250976,$1955568,$5640892,$5167190,$800000,$5967190,-$326298
+Q2,645899,2817639,2817639,281764,$1405619,$563812,$4216856,$2534323,$7314991,$6458990,$850000,$7308990,$5001
+Q3,807374,3625013,3625013,362501,$1808256,$725001,$5424769,$3262501,$9412271,$8073740,$900000,$8973740,$438531
+Q4,1009217,4634230,4634230,463423,$2312538,$926015,$6937613,$4170538,$12034166,$10092170,$950000,$11042170,$991996
+Total Year 3,2979209,4634230,4634230,463423,$6610072,$2649176,$19830214,$11922930,$34402320,$29792090,$3500000,$33292090,$1110230
+,,,,,,,,,,,,
+,,,,,,,,,,,,
+SUMMARY METRICS,,,,,,,,,,,,
+Metric,Year 1,Year 2,Year 3,,,,,,,
+Total Users (End of Year),339141,1655021,4634230,,,,,,,
+Active Users (MAU),339141,1655021,4634230,,,,,,,
+Premium Users,16957,132402,463423,,,,,,,
+Premium Conversion %,5.0%,8.0%,10.0%,,,,,,,
+Annual Revenue,$524932,$6146892,$34402320,,,,,,,
+Annual Costs,$1962937,$9992164,$33292090,,,,,,,
+Annual Profit/Loss,-$1438005,-$3845272,$1110230,,,,,,,
+Monthly Burn Rate (Avg),$119834,$320439,-$92519,,,,,,,
+Cumulative Burn,$1438005,$5283277,$4173047,,,,,,,
+Total Funding Required,$1500000,$5500000,$5500000,,,,,,,
+Runway (Months),12,17,N/A (Profitable),,,,,,,
+,,,,,,,,,,,,
+Unit Economics,,,,,,,,,,,,
+Metric,Year 1,Year 2,Year 3,,,,,,,
+CAC,$5.00,$7.00,$10.00,,,,,,,
+LTV (Free User),$11.50,$11.50,$11.50,,,,,,,
+LTV (Premium User),$159.70,$159.70,$159.70,,,,,,,
+Blended LTV,$19.02,$24.48,$30.67,,,,,,,
+LTV:CAC Ratio,3.80,3.50,3.07,,,,,,,
+Payback Period (Months),4,5,6,,,,,,,
+ARPU (Monthly),$1.55,$3.09,$6.18,,,,,,,
+,,,,,,,,,,,,
+Growth Metrics,,,,,,,,,,,,
+Metric,Year 1,Year 2,Year 3,,,,,,,
+User Growth Rate,N/A (Launch),388%,180%,,,,,,,
+Revenue Growth Rate,N/A,1071%,460%,,,,,,,
+DAU/MAU Ratio (Target),20%,25%,30%,,,,,,,
+Referral Rate,20%,20%,20%,,,,,,,
+Viral Coefficient,1.2,1.3,1.3,,,,,,,
+Monthly Churn Rate,5%,5%,5%,,,,,,,
+,,,,,,,,,,,,
+Revenue Mix (Year 3),,,,,,,,,,,,
+Source,Amount,% of Total,,,,,,,,
+Affiliates,$2649176,7.7%,,,,,,,,
+Premium Subscriptions,$19830214,57.6%,,,,,,,,
+Advertising,$11922930,34.7%,,,,,,,,
+Total,$34402320,100.0%,,,,,,,,
+,,,,,,,,,,,,
+Cost Breakdown (Year 3),,,,,,,,,,,,
+Category,Amount,% of Total,,,,,,,,
+Marketing (User Acquisition),$29792090,89.5%,,,,,,,,
+Operations (Hosting APIs Team),$3500000,10.5%,,,,,,,,
+Total,$33292090,100.0%,,,,,,,,
+,,,,,,,,,,,,
+Funding Rounds,,,,,,,,,,,,
+Round,Amount,Timing,Valuation (Pre),Equity,Use of Funds,,,,,,
+Seed,$500000,Month 1,$3000000,14.3%,Product + Marketing,,,,,,
+Series A,$5000000,Month 18,$30000000,14.3%,Scale Marketing,,,,,,
+Series B,$20000000,Month 36,$150000000,11.8%,Global Expansion,,,,,,
+,,,,,,,,,,,,
+Exit Scenarios,,,,,,,,,,,,
+Scenario,Revenue Multiple,Annual Revenue,Valuation,Return on Seed,Return on Series A,,,,,,
+Conservative,10x,$34402320,$344000000,114x,11x,,,,,,
+Base Case,15x,$34402320,$516000000,172x,17x,,,,,,
+Optimistic,20x,$34402320,$688000000,229x,23x,,,,,,
+,,,,,,,,,,,,
+Key Assumptions Validation,,,,,,,,,,,,
+Assumption,Source,Benchmark,,,,,,,,
+Affiliate CPA $5,$5-20 industry standard,JustWatch Reelgood,,,,,,,,
+Premium Conversion 10%,Letterboxd 8-12%,Streaming app average,,,,,,,,
+LTV:CAC 3.8:1,Target 3:1+,SaaS benchmark,,,,,,,,
+User Growth Rate,Comparable to Letterboxd,10M users in 5 years,,,,,,,,
+Ad CPM $0.50,Social media apps $0.30-1.00,Mobile ad average,,,,,,,,
+Churn Rate 5%,Industry average 20-25% annual,Premium apps 60% retention,,,,,,,,
