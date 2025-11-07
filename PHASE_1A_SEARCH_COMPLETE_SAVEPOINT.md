@@ -124,7 +124,7 @@
 **Environment:**
 - Backend: 0.0.0.0:8001
 - Frontend: Port 3000
-- External URL: https://content-bridge-14.preview.emergentagent.com
+- External URL: https://ottagent.preview.emergentagent.com
 
 ---
 
@@ -217,12 +217,12 @@
 
 4. **Re-seed content:**
    ```bash
-   curl -X POST https://content-bridge-14.preview.emergentagent.com/api/content/seed
+   curl -X POST https://ottagent.preview.emergentagent.com/api/content/seed
    ```
 
 5. **Re-enrich content:**
    ```bash
-   curl -X POST https://content-bridge-14.preview.emergentagent.com/api/enrich-all-content
+   curl -X POST https://ottagent.preview.emergentagent.com/api/enrich-all-content
    ```
 
 ---

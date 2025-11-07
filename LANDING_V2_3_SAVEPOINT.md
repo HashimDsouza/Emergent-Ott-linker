@@ -104,7 +104,7 @@ sudo supervisorctl restart all
 
 **Preview URL:**
 ```
-https://content-bridge-14.preview.emergentagent.com/landing/v2_3
+https://ottagent.preview.emergentagent.com/landing/v2_3
 ```
 
 **Local:**

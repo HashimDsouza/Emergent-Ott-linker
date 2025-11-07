@@ -11,7 +11,7 @@ import sys
 from typing import Dict, List, Optional
 
 # Backend URL from environment
-BACKEND_URL = "https://content-bridge-14.preview.emergentagent.com"
+BACKEND_URL = "https://ottagent.preview.emergentagent.com"
 
 class PydanticValidationTester:
     def __init__(self):
