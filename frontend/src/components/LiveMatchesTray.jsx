@@ -93,29 +93,12 @@ export default function LiveMatchesTray({ selectedSport, selectedLeague }) {
       }}
     >
       <div className="max-w-[1280px] mx-auto">
-        {/* Tray Header - Prominent */}
-        <div className="mb-4 md:mb-6">
-          <div className="flex items-center gap-3 mb-2">
-            <div 
-              className="w-3 h-3 rounded-full animate-pulse"
-              style={{ backgroundColor: coral }}
-            />
-            <h2 
-              className="text-2xl md:text-3xl font-bold"
-              style={{ 
-                background: `linear-gradient(135deg, ${coral}, ${mint})`,
-                WebkitBackgroundClip: 'text',
-                WebkitTextFillColor: 'transparent',
-                backgroundClip: 'text'
-              }}
-            >
-              LIVE RIGHT NOW
-            </h2>
-          </div>
-          <p className="text-sm md:text-base text-white/60 ml-6">
-            {filteredMatches.length} match{filteredMatches.length > 1 ? 'es' : ''} happening now
-          </p>
-        </div>
+        {/* Standardized Tray Header */}
+        <TrayHeader 
+          emoji="🔴"
+          title="LIVE RIGHT NOW"
+          subline={`${filteredMatches.length} match${filteredMatches.length > 1 ? 'es' : ''} happening now`}
+        />
 
         {/* Live Match Tiles - Larger & Prominent */}
         <div className="overflow-x-auto scrollbar-hide snap-x snap-mandatory">
