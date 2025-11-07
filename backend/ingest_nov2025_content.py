@@ -254,25 +254,39 @@ async def ingest_title(title_data, platform):
         print_info(f"Skipping (exists): {title_data['title']}")
         return False
     
+    # Convert genre IDs to genre names
+    genre_ids = title_data.get('genres', [])
+    genre_names = []
+    for genre_id in genre_ids:
+        if genre_id in TMDB_GENRE_MAPPING:
+            genre_names.append(TMDB_GENRE_MAPPING[genre_id])
+    
+    # If no genres mapped, default to a generic one
+    if not genre_names:
+        genre_names = ['Entertainment']
+    
     # Create content document
     content_doc = {
+        'id': str(__import__('uuid').uuid4()),
         'title': title_data['title'],
+        'category': 'buzzing',  # Required field - all trending content goes to buzzing category
         'platform': platform,
         'content_type': title_data['media_type'],
         'rating': float(title_data.get('rating', 0.0)),
         'year': title_data.get('year'),
         'language': title_data.get('language', 'en'),
         'description': title_data.get('overview', ''),
-        'genres': title_data.get('genres', []),
+        'genres': genre_names,  # Now list of strings, not integers
         'tmdb_id': title_data.get('tmdb_id'),
         'thumbnail': f"https://image.tmdb.org/t/p/w500{title_data['poster_path']}" if title_data.get('poster_path') else '',
+        'tagline': '',  # Required field
         'is_trending': True,
         'added_date': datetime.now().isoformat()
     }
     
     try:
         await db.content.insert_one(content_doc)
-        print_success(f"Added: {title_data['title']} ({platform}) - Rating: {title_data.get('rating', 0.0)}")
+        print_success(f"Added: {title_data['title']} ({platform}) - Rating: {title_data.get('rating', 0.0)} - Genres: {', '.join(genre_names[:2])}")
         return True
     except Exception as e:
         print_error(f"Error adding {title_data['title']}: {e}")
