@@ -388,10 +388,10 @@ export function ConnectorFooter() {
         aria-label={label}
       >
         <div className="relative">
-          {emoji && <span className="text-base md:text-lg">{emoji}</span>}
+          {emoji && <span className="text-xl md:text-2xl">{emoji}</span>}
           {Icon && (
             <Icon 
-              className="absolute inset-0 w-5 h-5 md:w-6 md:h-6 opacity-0 hover:opacity-100 transition-opacity" 
+              className="absolute inset-0 w-6 h-6 md:w-7 md:h-7 opacity-0 hover:opacity-100 transition-opacity" 
               style={{ 
                 color: hover ? mint : coral,
                 filter: hover ? `drop-shadow(0 0 4px ${mint})` : 'none'
@@ -401,7 +401,7 @@ export function ConnectorFooter() {
         </div>
         {label && (
           <span 
-            className="text-[9px] md:text-[10px] font-medium"
+            className="text-[10px] md:text-[11px] font-medium"
             style={{ color: hover ? mint : 'inherit' }}
           >
             {label}
