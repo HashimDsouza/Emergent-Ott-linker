@@ -341,7 +341,7 @@ export function ConnectorFooter() {
     return () => window.removeEventListener('keydown', handleKeyPress);
   }, []);
 
-  const NavItem = ({ emoji, icon: Icon, label, tip }) => {
+  const NavItem = ({ emoji, icon: Icon, label, tip, onClick }) => {
     const [hover, setHover] = useState(false);
     const [showTip, setShowTip] = useState(false);
     const longPressTimer = React.useRef(null);
@@ -367,6 +367,7 @@ export function ConnectorFooter() {
         onMouseLeave={() => setHover(false)}
         onTouchStart={handleTouchStart}
         onTouchEnd={handleTouchEnd}
+        onClick={onClick}
         className="relative group flex flex-col items-center gap-1 text-white/80 hover:text-white transition-all py-0.5"
         style={{
           textShadow: hover ? `0 0 8px ${mint}80` : 'none'
