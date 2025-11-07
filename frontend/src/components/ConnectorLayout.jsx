@@ -456,7 +456,9 @@ export function ConnectorLayout({ children }) {
   return (
     <>
       <ConnectorHeader />
-      {children}
+      <main className="pb-20 md:pb-24">
+        {children}
+      </main>
       <ConnectorFooter />
     </>
   );
