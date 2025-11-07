@@ -38,11 +38,12 @@ function Tip({ text }) {
   if (!text || typeof text !== "string") return null;
   return (
     <span 
-      className="pointer-events-none absolute -bottom-10 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full px-2 py-1 text-[9px] md:text-[10px] text-white shadow-lg border z-50 opacity-0 group-hover:opacity-100 transition-opacity"
+      className="pointer-events-none absolute -bottom-10 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full px-2 py-1 text-[9px] md:text-[10px] shadow-lg border z-50 opacity-0 group-hover:opacity-100 transition-opacity"
       style={{
         backgroundColor: `${charcoal}F0`,
         borderColor: `${mint}30`,
-        boxShadow: `0 0 12px ${mint}40`
+        boxShadow: `0 0 12px ${mint}40`,
+        color: coral
       }}
     >
       {text}
