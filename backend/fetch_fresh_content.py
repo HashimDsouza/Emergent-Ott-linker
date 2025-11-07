@@ -310,7 +310,7 @@ def calculate_freshness_score(details):
 async def ingest_content_batch(content_items):
     """Ingest content batch into MongoDB"""
     if not content_items:
-        return 0
+        return 0, 0
     
     inserted = 0
     skipped = 0
