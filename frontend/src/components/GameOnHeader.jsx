@@ -20,6 +20,8 @@ export default function GameOnHeader({ onSportChange, onLeagueChange }) {
     setLiveCount(3); // Mock for now
   }, []);
 
+  const [hoveredSport, setHoveredSport] = useState(null);
+
   const handlePrimarySportClick = (sport) => {
     if (sport.id === 'live') {
       // Show all live matches
