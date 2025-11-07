@@ -210,7 +210,7 @@ backend:
 
   - task: "Nov 2025 content ingestion with 60-40 balance"
     implemented: true
-    working: false
+    working: "NA"
     file: "/app/backend/ingest_nov2025_content.py, /app/backend/curate_balanced_trays.py"
     stuck_count: 0
     priority: "high"
@@ -222,6 +222,9 @@ backend:
       - working: false
         agent: "testing"
         comment: "❌ CRITICAL BACKEND FAILURE: All content API endpoints returning 500 Internal Server Error due to Pydantic validation errors. ROOT CAUSE: The ingest_nov2025_content.py script is missing the required 'category' field when inserting new content (line 226-239). Additionally, 'genres' field is storing TMDB genre IDs (integers like 28, 18, 53) instead of genre name strings as required by the Content Pydantic model. IMPACT: Backend completely broken - cannot retrieve any content. All 15 tests failed. New titles (Kurukshetra, Pushpa 2, Wednesday, etc.) are in database but cannot be returned due to validation errors. REQUIRED FIX: 1) Add 'category' field to content_doc in ingest_nov2025_content.py (should be 'buzzing', 'hero', 'hot_drop', etc.), 2) Convert genre IDs to genre names using TMDB genre mapping, 3) Re-run ingestion or fix existing documents in database."
+      - working: "NA"
+        agent: "main"
+        comment: "FIXED CRITICAL BUGS: Testing agent found two Pydantic validation errors in the ingestion script. 1) Missing 'category' field - Added 'category': 'buzzing' to content_doc (required by Content model). 2) Invalid genres data type - Script was storing TMDB genre IDs as integers [28, 18, 53] instead of genre names. Created TMDB_GENRE_MAPPING dict with 30+ genre mappings and added conversion logic to transform IDs to names ['Action', 'Drama', 'Thriller']. Also added 'id' and 'tagline' required fields. Deleted 12 broken documents and successfully re-ran ingestion with all fixes. All 12 titles now properly ingested with correct field types. Re-ran curation script successfully. Ready for re-testing."
 
 frontend:
   - task: "Fix DetailsModal button size and image display"
