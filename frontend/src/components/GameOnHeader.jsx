@@ -93,16 +93,23 @@ export default function GameOnHeader({ onSportChange, onLeagueChange }) {
               <button
                 key={sport.id}
                 onClick={() => handlePrimarySportClick(sport)}
-                className="flex-shrink-0 px-4 py-2.5 md:px-6 md:py-3 rounded-full transition-all text-sm md:text-base font-semibold whitespace-nowrap"
+                onMouseEnter={(e) => {
+                  if (sport.id !== 'live') {
+                    e.currentTarget.style.boxShadow = `0 0 16px ${mint}60`;
+                  }
+                }}
+                onMouseLeave={(e) => {
+                  if (sport.id !== selectedSport) {
+                    e.currentTarget.style.boxShadow = 'none';
+                  }
+                }}
+                className="flex-shrink-0 px-4 py-2.5 md:px-6 md:py-3 rounded-full transition-all text-sm md:text-base font-semibold whitespace-nowrap text-white"
                 style={{
                   background: selectedSport === sport.id 
-                    ? mint
-                    : `linear-gradient(135deg, ${coral}15, ${mint}15)`,
-                  border: `2px solid ${selectedSport === sport.id ? mint : `${mint}40`}`,
-                  color: selectedSport === sport.id ? charcoal : 'white',
-                  boxShadow: selectedSport === sport.id 
-                    ? `0 0 16px ${mint}60` 
-                    : 'none'
+                    ? `linear-gradient(135deg, ${coral} 0%, ${mint} 100%)`
+                    : `linear-gradient(135deg, ${coral}80 0%, ${mint}60 100%)`,
+                  boxShadow: selectedSport === sport.id ? `0 0 16px ${mint}60` : 'none',
+                  opacity: selectedSport === sport.id ? 1 : 0.85
                 }}
               >
                 <span className="mr-2">{sport.icon}</span>
