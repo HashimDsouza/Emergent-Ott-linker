@@ -210,11 +210,11 @@ backend:
 
   - task: "Nov 2025 content ingestion with 60-40 balance"
     implemented: true
-    working: "NA"
+    working: true
     file: "/app/backend/ingest_nov2025_content.py, /app/backend/curate_balanced_trays.py"
     stuck_count: 0
     priority: "high"
-    needs_retesting: true
+    needs_retesting: false
     status_history:
       - working: "NA"
         agent: "main"
@@ -225,6 +225,9 @@ backend:
       - working: "NA"
         agent: "main"
         comment: "FIXED CRITICAL BUGS: Testing agent found two Pydantic validation errors in the ingestion script. 1) Missing 'category' field - Added 'category': 'buzzing' to content_doc (required by Content model). 2) Invalid genres data type - Script was storing TMDB genre IDs as integers [28, 18, 53] instead of genre names. Created TMDB_GENRE_MAPPING dict with 30+ genre mappings and added conversion logic to transform IDs to names ['Action', 'Drama', 'Thriller']. Also added 'id' and 'tagline' required fields. Deleted 12 broken documents and successfully re-ran ingestion with all fixes. All 12 titles now properly ingested with correct field types. Re-ran curation script successfully. Ready for re-testing."
+      - working: true
+        agent: "testing"
+        comment: "✅ ALL CRITICAL FIXES VERIFIED: Comprehensive testing confirms Nov 2025 content ingestion is working perfectly after bug fixes. BACKEND API HEALTH: GET /api/content returns 200 OK with exactly 171 titles (no 500 errors). CRITICAL FIXES CONFIRMED: 1) ✅ All 171 items have 'category' field present, 2) ✅ All items have 'genres' as List[str] with proper genre names (NO integers found), 3) ✅ All items have 'id' field present, 4) ✅ All items have 'tagline' field present. NEW TITLES VERIFIED: All 4 new titles searchable and retrievable: Kurukshetra (History/Drama/Fantasy), Pushpa 2 - The Rule (Action/Drama/Thriller/Crime, rating 6.3, year 2024), Wednesday (Drama), 12th Fail (Drama, rating 8.7, year 2023). TRENDING CONTENT: 12 titles marked as is_trending=True including all new Nov 2025 titles. PLATFORM DISTRIBUTION: Netflix (76), JioHotstar (34), Prime Video (29), SonyLIV (17), Apple TV (12). METADATA QUALITY: All new titles have proper thumbnails (TMDB URLs), descriptions, ratings, years, and genres. PYDANTIC VALIDATION: No validation errors - all field types correct. Backend logs show no errors. The critical bugs (missing category field and integer genres) have been completely resolved."
 
 frontend:
   - task: "Fix DetailsModal button size and image display"
