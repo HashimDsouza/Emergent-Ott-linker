@@ -1,5 +1,6 @@
 import React from 'react';
 import { bigMomentsVideos, getYouTubeWatchUrl } from '../config/bigMomentsConfig';
+import TrayHeader from './TrayHeader';
 
 const coral = "#FF4F64";
 const mint = "#30E0B2";
