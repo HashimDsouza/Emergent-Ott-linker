@@ -1,6 +1,7 @@
 import React from 'react';
 import { todayMatches, generateMatchDescriptor } from '../config/sportsConfig';
 import FlagIcon from './FlagIcon';
+import TrayHeader from './TrayHeader';
 
 const coral = "#FF4F64";
 const mint = "#30E0B2";
