@@ -418,7 +418,7 @@ export function ConnectorFooter() {
       
       <footer
         data-footer
-        className="fixed bottom-0 left-0 right-0 z-50 backdrop-blur-md border-t relative overflow-hidden"
+        className="fixed bottom-0 left-0 right-0 z-50 backdrop-blur-md border-t overflow-hidden"
         style={{ 
           backgroundColor: `${charcoal}F5`,
           borderColor: `${coral}30`,
