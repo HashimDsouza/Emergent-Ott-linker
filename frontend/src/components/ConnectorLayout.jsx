@@ -51,47 +51,42 @@ function Tip({ text }) {
   );
 }
 
-// Enhanced chip component with mobile tooltip support via long-press
-function Chip({ icon: Icon, label, tip, onClick }) {
+// Enhanced chip component with permanent subline
+function Chip({ icon: Icon, label, subline, onClick }) {
   const [hover, setHover] = useState(false);
-  const [showTip, setShowTip] = useState(false);
-  const longPressTimer = React.useRef(null);
-  
-  const handleTouchStart = () => {
-    if (tip) {
-      longPressTimer.current = setTimeout(() => {
-        setShowTip(true);
-        setTimeout(() => setShowTip(false), 2000); // Hide after 2s
-      }, 500); // Show tooltip after 500ms long press
-    }
-  };
-  
-  const handleTouchEnd = () => {
-    if (longPressTimer.current) {
-      clearTimeout(longPressTimer.current);
-    }
-  };
   
   return (
     <button
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
-      onTouchStart={handleTouchStart}
-      onTouchEnd={handleTouchEnd}
       onClick={onClick}
-      className="relative group flex items-center gap-1 md:gap-1.5 rounded-full px-2 md:px-3.5 py-1 md:py-2 text-[9px] md:text-[11px] font-medium text-white/90 transition-all whitespace-nowrap"
-      style={{
-        background: hover 
-          ? `linear-gradient(135deg, ${coral}30, ${mint}30)` 
-          : `${charcoal}80`,
-        border: `1px solid ${hover ? mint : 'rgba(255,255,255,0.1)'}`,
-        boxShadow: hover ? `0 0 16px ${coral}60, 0 0 8px ${mint}40` : 'none'
-      }}
+      className="relative group flex flex-col items-center text-center transition-all"
       aria-label={label}
     >
-      {Icon && <Icon className="w-3.5 h-3.5 md:w-4 md:h-4" style={{ color: hover ? mint : coral }} />}
-      {label && <span>{label}</span>}
-      {(hover || showTip) && tip && <Tip text={tip} />}
+      {/* Chip with icon and label */}
+      <div
+        className="flex items-center gap-1 md:gap-1.5 rounded-full px-2 md:px-3.5 py-1 md:py-2 text-[9px] md:text-[11px] font-medium text-white/90 transition-all whitespace-nowrap"
+        style={{
+          background: hover 
+            ? `linear-gradient(135deg, ${coral}30, ${mint}30)` 
+            : `${charcoal}80`,
+          border: `1px solid ${hover ? mint : 'rgba(255,255,255,0.1)'}`,
+          boxShadow: hover ? `0 0 16px ${coral}60, 0 0 8px ${mint}40` : 'none'
+        }}
+      >
+        {Icon && <Icon className="w-3.5 h-3.5 md:w-4 md:h-4" style={{ color: hover ? mint : coral }} />}
+        {label && <span>{label}</span>}
+      </div>
+      
+      {/* Permanent subline in coral */}
+      {subline && (
+        <div 
+          className="text-[8px] md:text-[9px] mt-0.5 whitespace-nowrap"
+          style={{ color: coral }}
+        >
+          {subline}
+        </div>
+      )}
     </button>
   );
 }
