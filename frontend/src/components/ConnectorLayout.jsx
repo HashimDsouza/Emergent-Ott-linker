@@ -418,11 +418,11 @@ export function ConnectorFooter() {
       
       <footer
         data-footer
-        className="fixed bottom-0 left-0 right-0 z-40 backdrop-blur-md border-t relative overflow-hidden"
+        className="fixed bottom-0 left-0 right-0 z-50 backdrop-blur-md border-t relative overflow-hidden"
         style={{ 
-          backgroundColor: charcoal,
-          borderColor: `${coral}20`,
-          boxShadow: `0 -4px 16px ${charcoal}80, 0 -1px 4px ${mint}20`
+          backgroundColor: `${charcoal}F5`,
+          borderColor: `${coral}30`,
+          boxShadow: `0 -4px 20px ${charcoal}CC, 0 -2px 8px ${mint}30`
         }}
         onClick={handleFooterClick}
       >
@@ -431,11 +431,11 @@ export function ConnectorFooter() {
         className="absolute inset-0 pointer-events-none"
         style={{
           background: `linear-gradient(135deg, ${coral}30, ${mint}30, ${charcoal}10)`,
-          opacity: 0.4
+          opacity: 0.5
         }}
       />
       
-      <div className="relative flex items-center justify-around max-w-md mx-auto px-4 py-2 md:py-2.5">
+      <div className="relative flex items-center justify-around max-w-md mx-auto px-3 py-3 md:py-3.5">
         <NavItem emoji="🏠" icon={Home} label="Home" tip="Back to where the buzz begins." />
         <NavItem emoji="🧭" icon={Compass} label="Dive In" tip="Deep cuts. Hot picks. Dive already." />
         <NavItem emoji="👥" icon={Users} label="Crew" tip="Where fans become fam." />
