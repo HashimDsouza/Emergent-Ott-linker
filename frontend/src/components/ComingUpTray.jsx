@@ -26,13 +26,11 @@ export default function ComingUpTray({ selectedSport, selectedLeague }) {
   return (
     <div className="px-3 md:px-6 pb-6 md:pb-8" style={{ backgroundColor: charcoal }}>
       <div className="max-w-[1280px] mx-auto">
-        <div className="mb-3 md:mb-4">
-          <h2 className="text-lg md:text-xl font-bold flex items-center gap-2" style={{ color: mint }}>
-            <span>🔜</span>
-            COMING UP
-          </h2>
-          <p className="text-xs md:text-sm text-white/60 mt-1">Tomorrow & Weekend</p>
-        </div>
+        <TrayHeader 
+          emoji="🔜"
+          title="COMING UP"
+          subline="Tomorrow & Weekend"
+        />
         <div className="overflow-x-auto scrollbar-hide snap-x snap-mandatory">
           <div className="flex gap-3" style={{ width: 'max-content' }}>
             {filteredMatches.map((match) => (
