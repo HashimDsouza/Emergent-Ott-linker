@@ -122,16 +122,12 @@ export default function Entertainment() {
             <h1 className="text-3xl md:text-5xl font-bold text-white mb-2">
               Entertainment
             </h1>
-            <p className="text-base md:text-lg text-white/80 mb-1">
-              Everything worth watching, sorted.
-            </p>
             <p 
-              className="text-sm md:text-base italic"
+              className="text-sm md:text-base"
               style={{ color: coral }}
             >
-              "Whatever your vibe, I've got the perfect watchlist."
+              Whatever your vibe. I've got you.
             </p>
-            <BroMicroline />
           </div>
         </div>
 
