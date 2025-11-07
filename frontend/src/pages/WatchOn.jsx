@@ -130,16 +130,12 @@ export default function WatchOn() {
             <h1 className="text-3xl md:text-5xl font-bold text-white mb-2">
               Watch On
             </h1>
-            <p className="text-base md:text-lg text-white/80 mb-1">
-              All your apps. One tap away.
-            </p>
             <p 
-              className="text-sm md:text-base italic"
+              className="text-sm md:text-base"
               style={{ color: coral }}
             >
-              "Netflix, Prime, Hotstar — they all play nice here."
+              All Your Apps. One Tap Away
             </p>
-            <BroMicroline />
           </div>
         </div>
 
