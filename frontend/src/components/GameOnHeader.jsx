@@ -75,10 +75,10 @@ export default function GameOnHeader({ onSportChange, onLeagueChange }) {
           Game On
         </h1>
         <p 
-          className="text-sm md:text-base italic mb-3"
+          className="text-sm md:text-base mb-3"
           style={{ color: coral }}
         >
-          {broLine}
+          Live Action Real Drama
         </p>
       </div>
 
