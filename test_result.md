@@ -210,7 +210,7 @@ backend:
 
   - task: "Nov 2025 content ingestion with 60-40 balance"
     implemented: true
-    working: "NA"
+    working: false
     file: "/app/backend/ingest_nov2025_content.py, /app/backend/curate_balanced_trays.py"
     stuck_count: 0
     priority: "high"
@@ -219,6 +219,9 @@ backend:
       - working: "NA"
         agent: "main"
         comment: "Created two new scripts: 1) ingest_nov2025_content.py - Fetches and ingests Nov 2025 trending titles from TMDB including Netflix top 10 (Kurukshetra, Witcher, Squid Game S2, Wednesday, etc.) and recent Indian titles (Pushpa 2, 12th Fail, etc.). Script intelligently balances 60% international and 40% Indian content during ingestion. Successfully added 12 new titles (7 international, 5 Indian = 58.3%-41.7% balance achieved). 2) curate_balanced_trays.py - Re-curates all content trays with strict 60-40 international-Indian ratio. Separates content by language detection and distributes accordingly. Results: Top 10 (5 int + 3 ind), Buzzing Now (6 int + 4 ind = perfect 60-40), New Content (2 int + 2 ind), Platform Top 10s balanced per platform. Total database now has 171 titles. Curation data saved to curation_ids.json. Need testing to verify: 1) Content API returns all 171 titles, 2) Trending content properly flagged, 3) Search works with new titles, 4) Platform-specific queries return balanced content."
+      - working: false
+        agent: "testing"
+        comment: "❌ CRITICAL BACKEND FAILURE: All content API endpoints returning 500 Internal Server Error due to Pydantic validation errors. ROOT CAUSE: The ingest_nov2025_content.py script is missing the required 'category' field when inserting new content (line 226-239). Additionally, 'genres' field is storing TMDB genre IDs (integers like 28, 18, 53) instead of genre name strings as required by the Content Pydantic model. IMPACT: Backend completely broken - cannot retrieve any content. All 15 tests failed. New titles (Kurukshetra, Pushpa 2, Wednesday, etc.) are in database but cannot be returned due to validation errors. REQUIRED FIX: 1) Add 'category' field to content_doc in ingest_nov2025_content.py (should be 'buzzing', 'hero', 'hot_drop', etc.), 2) Convert genre IDs to genre names using TMDB genre mapping, 3) Re-run ingestion or fix existing documents in database."
 
 frontend:
   - task: "Fix DetailsModal button size and image display"
