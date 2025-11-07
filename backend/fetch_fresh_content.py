@@ -19,7 +19,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 # TMDB Configuration
-TMDB_API_KEY = "8c0e8b3bd67c0c7835ca319332855c38"  # Public demo key
+TMDB_API_KEY = os.environ.get('TMDB_API_KEY', "0ec85c952e2d4ee771180e3068544ddf")
 TMDB_BASE_URL = "https://api.themoviedb.org/3"
 
 # Platform mapping (TMDB Watch Provider IDs for India)
