@@ -29,7 +29,7 @@ PLATFORM_MAPPING = {
     122: "JioHotstar",
     531: "Sony Liv",
     283: "Zee5",
-    Apple: "Apple TV"
+    350: "Apple TV"
 }
 
 # MongoDB connection
