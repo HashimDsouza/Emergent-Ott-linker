@@ -28,19 +28,11 @@ export default function BigMomentsTray({ selectedSport }) {
   return (
     <div className="px-3 md:px-6 pb-6 md:pb-8">
       <div className="max-w-[1280px] mx-auto">
-        {/* Tray Header */}
-        <div className="mb-3 md:mb-4">
-          <h2 
-            className="text-lg md:text-xl font-bold flex items-center gap-2"
-            style={{ color: mint }}
-          >
-            <span>⚡</span>
-            BIG MOMENTS
-          </h2>
-          <p className="text-xs md:text-sm text-white/60 mt-1">
-            Trending viral sports clips
-          </p>
-        </div>
+        <TrayHeader 
+          emoji="⚡"
+          title="BIG MOMENTS"
+          subline="Trending viral sports clips"
+        />
 
         {/* Video Tiles - Horizontal Scroll */}
         <div className="overflow-x-auto scrollbar-hide snap-x snap-mandatory">
