@@ -424,7 +424,7 @@ export function ConnectorFooter() {
       />
       
       <div className="relative flex items-center justify-around max-w-md mx-auto px-3 py-3 md:py-3.5">
-        <NavItem emoji="🏠" icon={Home} label="Home" tip="Back to where the buzz begins." />
+        <NavItem emoji="🏠" icon={Home} label="Home" tip="Back to where the buzz begins." onClick={() => navigate('/')} />
         <NavItem emoji="🧭" icon={Compass} label="Dive In" tip="Deep cuts. Hot picks. Dive already." />
         <NavItem emoji="👥" icon={Users} label="Crew" tip="Where fans become fam." />
         <NavItem emoji="⚡" icon={Zap} label="Get With It" tip="The headlines before they trend." />
