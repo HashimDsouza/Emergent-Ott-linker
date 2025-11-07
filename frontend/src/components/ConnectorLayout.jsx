@@ -51,8 +51,8 @@ function Tip({ text }) {
   );
 }
 
-// Enhanced chip component with permanent subline
-function Chip({ icon: Icon, label, subline, onClick }) {
+// Enhanced chip component with hover tooltip
+function Chip({ icon: Icon, label, tip, onClick }) {
   const [hover, setHover] = useState(false);
   
   return (
@@ -60,33 +60,19 @@ function Chip({ icon: Icon, label, subline, onClick }) {
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
       onClick={onClick}
-      className="relative group flex flex-col items-center text-center transition-all"
+      className="relative group flex items-center gap-1 md:gap-1.5 rounded-full px-2 md:px-3.5 py-1 md:py-2 text-[9px] md:text-[11px] font-medium text-white/90 transition-all whitespace-nowrap"
+      style={{
+        background: hover 
+          ? `linear-gradient(135deg, ${coral}30, ${mint}30)` 
+          : `${charcoal}80`,
+        border: `1px solid ${hover ? mint : 'rgba(255,255,255,0.1)'}`,
+        boxShadow: hover ? `0 0 16px ${coral}60, 0 0 8px ${mint}40` : 'none'
+      }}
       aria-label={label}
     >
-      {/* Chip with icon and label */}
-      <div
-        className="flex items-center gap-1 md:gap-1.5 rounded-full px-2 md:px-3.5 py-1 md:py-2 text-[9px] md:text-[11px] font-medium text-white/90 transition-all whitespace-nowrap"
-        style={{
-          background: hover 
-            ? `linear-gradient(135deg, ${coral}30, ${mint}30)` 
-            : `${charcoal}80`,
-          border: `1px solid ${hover ? mint : 'rgba(255,255,255,0.1)'}`,
-          boxShadow: hover ? `0 0 16px ${coral}60, 0 0 8px ${mint}40` : 'none'
-        }}
-      >
-        {Icon && <Icon className="w-3.5 h-3.5 md:w-4 md:h-4" style={{ color: hover ? mint : coral }} />}
-        {label && <span>{label}</span>}
-      </div>
-      
-      {/* Permanent subline in coral */}
-      {subline && (
-        <div 
-          className="text-[8px] md:text-[9px] mt-0.5 whitespace-nowrap"
-          style={{ color: coral }}
-        >
-          {subline}
-        </div>
-      )}
+      {Icon && <Icon className="w-3.5 h-3.5 md:w-4 md:h-4" style={{ color: hover ? mint : coral }} />}
+      {label && <span>{label}</span>}
+      {hover && tip && <Tip text={tip} />}
     </button>
   );
 }
