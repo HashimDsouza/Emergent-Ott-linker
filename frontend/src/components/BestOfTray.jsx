@@ -1,5 +1,6 @@
 import React from 'react';
 import { bestOfVideos } from '../config/sportsConfig';
+import TrayHeader from './TrayHeader';
 
 const coral = "#FF4F64";
 const mint = "#30E0B2";
