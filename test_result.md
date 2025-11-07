@@ -319,7 +319,7 @@ metadata:
 
 test_plan:
   current_focus:
-    - "Pydantic validation fix testing completed successfully"
+    - "Nov 2025 content ingestion with 60-40 balance"
   stuck_tasks: []
   test_all: false
   test_priority: "high_first"
