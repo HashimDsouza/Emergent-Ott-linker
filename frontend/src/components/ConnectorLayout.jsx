@@ -309,6 +309,7 @@ export function ConnectorHeader() {
 
 // Footer component with emojis + icons and gradient background
 export function ConnectorFooter() {
+  const navigate = useNavigate();
   const [showAnalytics, setShowAnalytics] = React.useState(false);
   const [clickCount, setClickCount] = React.useState(0);
   const clickTimer = React.useRef(null);
