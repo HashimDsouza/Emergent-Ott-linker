@@ -381,7 +381,7 @@ export function ConnectorFooter() {
         onMouseLeave={() => setHover(false)}
         onTouchStart={handleTouchStart}
         onTouchEnd={handleTouchEnd}
-        className="relative group flex flex-col items-center gap-0.5 md:gap-1 text-white/80 hover:text-white transition-all py-1"
+        className="relative group flex flex-col items-center gap-1 text-white/80 hover:text-white transition-all py-0.5"
         style={{
           textShadow: hover ? `0 0 8px ${mint}80` : 'none'
         }}
