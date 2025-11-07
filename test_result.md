@@ -208,6 +208,18 @@ backend:
         agent: "testing"
         comment: "🎉 SEASON-SPECIFIC ENRICHMENT FULLY WORKING! Comprehensive testing shows all Season 2 and Season 3 titles have correct season-specific data: ✅ Squid Game Season 2: Year 2024, Korean language, 7 episodes, season-specific TMDB poster (sXZhtWLo3fecavpDuOyJiayjt32.jpg), IMDb 8.0, TMDB ID 93405. ✅ Mirzapur Season 3: Year 2024, Hindi language, 10 episodes, season-specific TMDB poster (7CFdq8M9ZuP1QRLaBG2ExdcrCBs.jpg), IMDb 8.4, TMDB ID 84105. ✅ Asur Season 3: Year 2020 (original series), Hindi language, 16 episodes, season-specific TMDB poster (njUrr755WzIrNfuUwQhpu2ljjH4.jpg), IMDb 8.5, TMDB ID 100911. All posters are season-specific (NOT Season 1), years reflect season air dates, episode counts are accurate for each season, and descriptions are season-specific. Season detection logic working perfectly with regex pattern matching and TMDB season API integration."
 
+  - task: "Nov 2025 content ingestion with 60-40 balance"
+    implemented: true
+    working: "NA"
+    file: "/app/backend/ingest_nov2025_content.py, /app/backend/curate_balanced_trays.py"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: true
+    status_history:
+      - working: "NA"
+        agent: "main"
+        comment: "Created two new scripts: 1) ingest_nov2025_content.py - Fetches and ingests Nov 2025 trending titles from TMDB including Netflix top 10 (Kurukshetra, Witcher, Squid Game S2, Wednesday, etc.) and recent Indian titles (Pushpa 2, 12th Fail, etc.). Script intelligently balances 60% international and 40% Indian content during ingestion. Successfully added 12 new titles (7 international, 5 Indian = 58.3%-41.7% balance achieved). 2) curate_balanced_trays.py - Re-curates all content trays with strict 60-40 international-Indian ratio. Separates content by language detection and distributes accordingly. Results: Top 10 (5 int + 3 ind), Buzzing Now (6 int + 4 ind = perfect 60-40), New Content (2 int + 2 ind), Platform Top 10s balanced per platform. Total database now has 171 titles. Curation data saved to curation_ids.json. Need testing to verify: 1) Content API returns all 171 titles, 2) Trending content properly flagged, 3) Search works with new titles, 4) Platform-specific queries return balanced content."
+
 frontend:
   - task: "Fix DetailsModal button size and image display"
     implemented: true
