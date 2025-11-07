@@ -209,9 +209,8 @@ export default function BuzzMeter() {
                 <span>🔥</span> Trending Right Now
               </div>
               <div className="text-[10px] md:text-sm italic mt-0.5" style={{ color: coral }}>
-                What's blowing up right now
+                🔥 Blowing up right now
               </div>
-              <BuzzMoment />
             </div>
             <div className="flex items-center gap-2 md:gap-4 text-[10px] md:text-sm text-white/85">
               <button className="hover:text-white">Go Deeper</button>
