@@ -1,0 +1,3125 @@
+{
+  "hero": [
+    {
+      "id": "tmdb_tv_84105",
+      "title": "Mirzapur",
+      "platform": "Prime Video",
+      "content_type": "series",
+      "category": "entertainment",
+      "year": 2018,
+      "description": "The iron-fisted Akhandanand Tripathi is a millionaire carpet exporter and the mafia don of Mirzapur. His son, Munna, is an unworthy, power-hungry heir who will stop at nothing to inherit his father's legacy. An incident at a wedding procession forces him to cross paths with Ramakant Pandit, an upstanding lawyer, and his sons, Guddu and Bablu. It snowballs into a game of ambition, power and greed that threatens the fabric of this lawless city.",
+      "poster_url": "https://image.tmdb.org/t/p/w500/p0qM8hhlMF5DuxHBzl2EZR6TehX.jpg",
+      "backdrop_url": "https://image.tmdb.org/t/p/original/3dV7pWAdwIPKR2lMIACMfObXdgK.jpg",
+      "genres": [
+        "Crime",
+        "Action & Adventure",
+        "Drama"
+      ],
+      "rating": 8.052,
+      "release_date": "2018-11-15",
+      "thumbnail": "https://image.tmdb.org/t/p/w500/p0qM8hhlMF5DuxHBzl2EZR6TehX.jpg",
+      "likes": 0,
+      "shares": 0,
+      "tmdb_id": 84105,
+      "trending_india": true,
+      "ingestion_date": "2024-11-07T00:00:00"
+    },
+    {
+      "id": "tmdb_movie_1239511",
+      "title": "Lucky Baskhar",
+      "platform": "Netflix",
+      "content_type": "movie",
+      "category": "entertainment",
+      "year": 2024,
+      "description": "A cash-strapped bank cashier embarks on a risky investment scheme and soon gets drawn into the murky world of money laundering.",
+      "poster_url": "https://image.tmdb.org/t/p/w500/a47JQFl9L7VDa79tEvnTOJe0rPa.jpg",
+      "backdrop_url": "https://image.tmdb.org/t/p/original/q8UyN4XhpmChtneZXdZ8fktQka6.jpg",
+      "genres": [
+        "Drama",
+        "Thriller",
+        "Crime"
+      ],
+      "rating": 7.6,
+      "release_date": "2024-10-30",
+      "thumbnail": "https://image.tmdb.org/t/p/w500/a47JQFl9L7VDa79tEvnTOJe0rPa.jpg",
+      "likes": 0,
+      "shares": 0,
+      "tmdb_id": 1239511,
+      "trending_india": true,
+      "ingestion_date": "2024-11-07T00:00:00"
+    }
+  ],
+  "buzzing": [
+    {
+      "id": "28e97a10-8eed-4c1e-9ab6-85279ebf830c",
+      "title": "UEFA Champions League",
+      "category": "sports",
+      "platform": "SonyLIV",
+      "platform_content_id": null,
+      "rating": 9.4,
+      "thumbnail": "https://images.unsplash.com/photo-1522778119026-d647f0596c20?w=400&h=600&fit=crop",
+      "description": "",
+      "release_date": "2025-02",
+      "social_links": {
+        "youtube": "https://www.youtube.com/results?search_query=UEFA+Champions+League+highlights",
+        "twitter": "https://twitter.com/search?q=%23UCL",
+        "reddit": "https://www.reddit.com/r/soccer"
+      },
+      "content_type": "sports_event",
+      "tagline": "Glory awaits",
+      "likes": 4800,
+      "shares": 1300,
+      "backdrop_path": null,
+      "cast": [
+        {
+          "name": "Oliver Kahn",
+          "character": "Self",
+          "profile_url": "https://image.tmdb.org/t/p/w185/151HlHs8SQfvJIXVzmiyDhdnUQx.jpg"
+        },
+        {
+          "name": "Lars Ricken",
+          "character": "Self",
+          "profile_url": null
+        },
+        {
+          "name": "Tommi Schmitt",
+          "character": "Self",
+          "profile_url": "https://image.tmdb.org/t/p/w185/du7ZYzkRQV4b7kd77n0YtxcmrUI.jpg"
+        },
+        {
+          "name": "Klaus Hempel",
+          "character": "Self",
+          "profile_url": null
+        },
+        {
+          "name": "J\u00fcrgen Lenz",
+          "character": "Self",
+          "profile_url": null
+        }
+      ],
+      "crew": {
+        "directors": [
+          "Christian Twente",
+          "Markus Brauckmann"
+        ]
+      },
+      "episodes": null,
+      "genres": [
+        "Documentary"
+      ],
+      "imdb_id": "tt37178878",
+      "imdb_rating": null,
+      "imdb_votes": null,
+      "language": "German",
+      "last_enriched": "2025-11-06T17:29:33.774483+00:00",
+      "normalized_title": "Trophy Men \u2013 Die Erfindung der UEFA Champions League",
+      "poster_path": null,
+      "poster_url": null,
+      "providers_in": [],
+      "rating_source": "tmdb",
+      "runtime": null,
+      "seasons": null,
+      "streaming_platforms": [],
+      "tmdb_id": 1501796,
+      "trailer_url": null,
+      "vote_average": null,
+      "vote_count": null,
+      "watchmode_id": null,
+      "year": 2025
+    },
+    {
+      "id": "tmdb_tv_302696",
+      "title": "KPop Demon Hunters Lyric Videos",
+      "platform": "Netflix",
+      "content_type": "series",
+      "category": "entertainment",
+      "year": 2025,
+      "description": "Some of the smash film's hottest hits come to life as lyric videos in a line-up featuring \"How It's Done,\" \"Golden,\" \"Soda Pop,\" \"Takedown\" and \"Free.\"",
+      "poster_url": "https://image.tmdb.org/t/p/w500/dTqYRhRzKayrCcDVqIS3bXOiRR5.jpg",
+      "backdrop_url": "https://image.tmdb.org/t/p/original/qyj4vs8223qaaWRoa5V37NMKTYt.jpg",
+      "genres": [
+        "Animation"
+      ],
+      "rating": 9.277,
+      "release_date": "2025-10-08",
+      "thumbnail": "https://image.tmdb.org/t/p/w500/dTqYRhRzKayrCcDVqIS3bXOiRR5.jpg",
+      "likes": 0,
+      "shares": 0,
+      "tmdb_id": 302696,
+      "ingestion_date": "2025-11-07T07:09:08.186620",
+      "freshness_score": 81
+    },
+    {
+      "id": "prime_video_panchayat_season_3_2020",
+      "title": "Panchayat Season 3",
+      "platform": "Prime Video",
+      "content_type": "series",
+      "category": "entertainment",
+      "year": 2024,
+      "description": "As the Panchayat elections approach, both Pradhan and Bhushan gangs engage in a fierce battle to uplift their public image. Navigating the murky waters of Phulera politics, Abhishek does his best to maintain his objectivity.",
+      "poster_url": "https://image.tmdb.org/t/p/w500/wsgfe8YmntJ1uVIkBjBdRdYpJyN.jpg",
+      "genres": [
+        "Comedy",
+        "Drama"
+      ],
+      "rating": 9.0,
+      "likes": 0,
+      "shares": 0,
+      "backdrop_path": "https://image.tmdb.org/t/p/original/iZ8EtGAqKWZdRJPzWfFseNfVxjh.jpg",
+      "cast": [
+        {
+          "name": "Jitendra Kumar",
+          "character": "Abhishek Tripathi",
+          "profile_url": "https://image.tmdb.org/t/p/w185/562Mucw9YaDHUlFBqK5aot3H2lJ.jpg"
+        },
+        {
+          "name": "Raghubir Yadav",
+          "character": "Brij Bhushan Dubey",
+          "profile_url": "https://image.tmdb.org/t/p/w185/khyp4vnuGKVxrtszyB7kSf3vuzw.jpg"
+        },
+        {
+          "name": "Neena Gupta",
+          "character": "Manju Devi",
+          "profile_url": "https://image.tmdb.org/t/p/w185/znCPPYR79c1DU2MvA61JXhdMeCs.jpg"
+        },
+        {
+          "name": "Chandan Roy",
+          "character": "Vikas",
+          "profile_url": "https://image.tmdb.org/t/p/w185/2zIIonCsFrdcmmZD0g5YIaCPnQY.jpg"
+        },
+        {
+          "name": "Faisal Malik",
+          "character": "Prahlad Pandey",
+          "profile_url": "https://image.tmdb.org/t/p/w185/eztI7Y1VUqHz7OYZ4ytoyEz0amz.jpg"
+        }
+      ],
+      "crew": {
+        "directors": [
+          "Akshat Vijaywargiya",
+          "Deepak Kumar Mishra"
+        ],
+        "writers": [
+          "Chandan Kumar"
+        ]
+      },
+      "episodes": 8,
+      "imdb_id": "tt12004706",
+      "imdb_rating": 9.0,
+      "imdb_votes": "102,532",
+      "language": "Hindi",
+      "last_enriched": "2025-11-06T17:29:46.144257+00:00",
+      "normalized_title": "Panchayat",
+      "poster_path": "https://image.tmdb.org/t/p/w500/wsgfe8YmntJ1uVIkBjBdRdYpJyN.jpg",
+      "providers_in": [
+        "Amazon Prime Video",
+        "Amazon Prime Video with Ads"
+      ],
+      "rating_source": "imdb",
+      "runtime": 30,
+      "season_number": 3,
+      "streaming_platforms": [
+        {
+          "platform_name": "Amazon Prime Video",
+          "platform_logo": "https://image.tmdb.org/t/p/original/pvske1MyAoymrs5bguRfVqYiM9a.jpg",
+          "type": "flatrate"
+        },
+        {
+          "platform_name": "Amazon Prime Video with Ads",
+          "platform_logo": "https://image.tmdb.org/t/p/original/8aBqoNeGGr0oSA85iopgNZUOTOc.jpg",
+          "type": "flatrate"
+        }
+      ],
+      "thumbnail": "https://image.tmdb.org/t/p/w500/wsgfe8YmntJ1uVIkBjBdRdYpJyN.jpg",
+      "tmdb_id": 101352,
+      "trailer_url": "https://www.youtube.com/watch?v=AHMEtNAZTP4",
+      "vote_average": 8.2,
+      "vote_count": 116,
+      "platform_content_id": null,
+      "seasons": null,
+      "watchmode_id": null
+    },
+    {
+      "id": "7f7c9685-f898-4706-8391-5dc7d8c4c680",
+      "title": "The Family Man Season 3",
+      "category": "buzzing",
+      "platform": "Prime Video",
+      "platform_content_id": null,
+      "rating": 8.7,
+      "thumbnail": "https://image.tmdb.org/t/p/w500/tE1NUJqw9gV6AVjQ1GTK78LbWJ9.jpg",
+      "description": "The story of a middle-class man who works for a special cell of the National Investigation Agency. While he tries to protect the nation from terrorists, he also has to protect his family from the impact of his secretive, high-pressure, and low paying job.",
+      "release_date": "2025-03",
+      "social_links": {
+        "youtube": "https://www.youtube.com/results?search_query=The+Family+Man+Season+3+trailer",
+        "twitter": "https://twitter.com/search?q=%23TheFamilyMan",
+        "reddit": "https://www.reddit.com/r/TheFamilyMan"
+      },
+      "content_type": "series",
+      "tagline": "Mission impossible",
+      "likes": 3400,
+      "shares": 920,
+      "backdrop_path": "https://image.tmdb.org/t/p/original/eEzKigDI64OomZV6VTJvoPGmVu1.jpg",
+      "cast": [
+        {
+          "name": "Manoj Bajpayee",
+          "character": "Srikant Tiwari",
+          "profile_url": "https://image.tmdb.org/t/p/w185/hBiAldG2BGMVoZUPbvK3FNDSw22.jpg"
+        },
+        {
+          "name": "Priyamani",
+          "character": "Suchitra Tiwari",
+          "profile_url": "https://image.tmdb.org/t/p/w185/zB365nF9wec5KBczviUTAX9MwHj.jpg"
+        },
+        {
+          "name": "Vedant Sinha",
+          "character": "Atharv",
+          "profile_url": "https://image.tmdb.org/t/p/w185/vPzVMeiMYKRH9tpeDZXVYB3tk5i.jpg"
+        },
+        {
+          "name": "Ashlesha Thakur",
+          "character": "Dhriti",
+          "profile_url": "https://image.tmdb.org/t/p/w185/cu3uUco7xRa4UZnMvP6dtrQnOby.jpg"
+        },
+        {
+          "name": "Darshan Kumaar",
+          "character": "Sameer",
+          "profile_url": "https://image.tmdb.org/t/p/w185/aKDYD0wDq7BRwdJmSjoqfOPleOf.jpg"
+        }
+      ],
+      "crew": {},
+      "episodes": 1,
+      "genres": [
+        "Drama",
+        "Action & Adventure"
+      ],
+      "imdb_id": "tt9544034",
+      "imdb_rating": 8.7,
+      "imdb_votes": "105,311",
+      "language": "Hindi",
+      "last_enriched": "2025-11-06T17:29:26.406514+00:00",
+      "normalized_title": "The Family Man",
+      "poster_path": "https://image.tmdb.org/t/p/w500/tE1NUJqw9gV6AVjQ1GTK78LbWJ9.jpg",
+      "poster_url": "https://image.tmdb.org/t/p/w500/tE1NUJqw9gV6AVjQ1GTK78LbWJ9.jpg",
+      "providers_in": [
+        "Amazon Prime Video",
+        "Amazon Prime Video with Ads"
+      ],
+      "rating_source": "imdb",
+      "runtime": null,
+      "seasons": null,
+      "streaming_platforms": [
+        {
+          "platform_name": "Amazon Prime Video",
+          "platform_logo": "https://image.tmdb.org/t/p/original/pvske1MyAoymrs5bguRfVqYiM9a.jpg",
+          "type": "flatrate"
+        },
+        {
+          "platform_name": "Amazon Prime Video with Ads",
+          "platform_logo": "https://image.tmdb.org/t/p/original/8aBqoNeGGr0oSA85iopgNZUOTOc.jpg",
+          "type": "flatrate"
+        }
+      ],
+      "tmdb_id": 93352,
+      "trailer_url": null,
+      "vote_average": 7.7,
+      "vote_count": 159,
+      "watchmode_id": null,
+      "year": 2025
+    },
+    {
+      "id": "5203dda5-08be-42df-9d3b-d4c57c838191",
+      "title": "Severance Season 2",
+      "category": "buzzing",
+      "platform": "Apple TV",
+      "platform_content_id": null,
+      "rating": 8.7,
+      "thumbnail": "https://image.tmdb.org/t/p/w500/Rb7sga832Cyqvafd7CqOzbwdK4.jpg",
+      "description": "Mark and his friends learn the dire consequences of trifling with the severance barrier, leading them further down a path of woe.",
+      "release_date": "2025-02",
+      "social_links": {
+        "youtube": "https://www.youtube.com/results?search_query=Severance+Season+2+trailer",
+        "twitter": "https://twitter.com/search?q=%23Severance",
+        "reddit": "https://www.reddit.com/r/SeveranceAppleTVPlus"
+      },
+      "content_type": "series",
+      "tagline": "Mind = Blown",
+      "likes": 3200,
+      "shares": 850,
+      "backdrop_path": "https://image.tmdb.org/t/p/original/ixgFmf1X59PUZam2qbAfskx2gQr.jpg",
+      "cast": [
+        {
+          "name": "Adam Scott",
+          "character": "Mark Scout",
+          "profile_url": "https://image.tmdb.org/t/p/w185/b82C29R6fGiPoqIglQ4lzS6q2YX.jpg"
+        },
+        {
+          "name": "Britt Lower",
+          "character": "Helly Riggs",
+          "profile_url": "https://image.tmdb.org/t/p/w185/5fao2JxLELM72dMexZ9d0LptLIF.jpg"
+        },
+        {
+          "name": "Tramell Tillman",
+          "character": "Seth Milchick",
+          "profile_url": "https://image.tmdb.org/t/p/w185/bEA15zMnkcXlRroYjKrFUWiiK7y.jpg"
+        },
+        {
+          "name": "Zach Cherry",
+          "character": "Dylan George",
+          "profile_url": "https://image.tmdb.org/t/p/w185/fT3Wv8ef0Vn0daHWAObCp2Bd4Y.jpg"
+        },
+        {
+          "name": "Jen Tullock",
+          "character": "Devon Scout-Hale",
+          "profile_url": "https://image.tmdb.org/t/p/w185/n8SF2SEuJLRGrY3BNHgXdgMfGAK.jpg"
+        }
+      ],
+      "crew": {},
+      "episodes": 10,
+      "genres": [
+        "Drama",
+        "Mystery",
+        "Sci-Fi & Fantasy"
+      ],
+      "imdb_id": "tt11280740",
+      "imdb_rating": 8.7,
+      "imdb_votes": "347,945",
+      "language": "English",
+      "last_enriched": "2025-11-06T17:29:25.371664+00:00",
+      "normalized_title": "Severance",
+      "poster_path": "https://image.tmdb.org/t/p/w500/Rb7sga832Cyqvafd7CqOzbwdK4.jpg",
+      "poster_url": "https://image.tmdb.org/t/p/w500/Rb7sga832Cyqvafd7CqOzbwdK4.jpg",
+      "providers_in": [
+        "Apple TV",
+        "Apple TV Amazon Channel"
+      ],
+      "rating_source": "imdb",
+      "runtime": null,
+      "seasons": null,
+      "streaming_platforms": [
+        {
+          "platform_name": "Apple TV",
+          "platform_logo": "https://image.tmdb.org/t/p/original/kd7Y56rUFjk6EgEsJ5sMCUasvBd.jpg",
+          "type": "flatrate"
+        },
+        {
+          "platform_name": "Apple TV Amazon Channel",
+          "platform_logo": "https://image.tmdb.org/t/p/original/mHrYMgnZIp6lgW2aXg7ix9zGOnA.jpg",
+          "type": "flatrate"
+        }
+      ],
+      "tmdb_id": 95396,
+      "trailer_url": "https://www.youtube.com/watch?v=xEQP4VVuyrY",
+      "vote_average": 8.4,
+      "vote_count": 2253,
+      "watchmode_id": null,
+      "year": 2025
+    },
+    {
+      "id": "jiohotstar_laapataa_ladies_2024",
+      "title": "Laapataa Ladies",
+      "platform": "JioHotstar",
+      "content_type": "movie",
+      "category": "entertainment",
+      "year": 2024,
+      "description": "In 2001, somewhere in rural India, two young brides get accidentally swapped on a train. In the ensuing chaos, they both encounter a host of colourful characters, resulting in hilarious and unexpected consequences.",
+      "poster_url": "https://image.tmdb.org/t/p/w500/cGG5hCwPnMvuKzvUBnxo5y3DcVM.jpg",
+      "genres": [
+        "Comedy",
+        "Drama",
+        "Romance"
+      ],
+      "rating": 8.4,
+      "likes": 0,
+      "shares": 0,
+      "backdrop_path": "https://image.tmdb.org/t/p/original/uUVXEEyMsyWxrcbmAppUCYg6egV.jpg",
+      "cast": [
+        {
+          "name": "Nitanshi Goel",
+          "character": "Phool",
+          "profile_url": "https://image.tmdb.org/t/p/w185/tssZxJMnOGBaliP4NaNta8V22nd.jpg"
+        },
+        {
+          "name": "Pratibha Ranta",
+          "character": "Jaya",
+          "profile_url": "https://image.tmdb.org/t/p/w185/vsvTUQKQjnggxCJBVfHuLeYY9w3.jpg"
+        },
+        {
+          "name": "Sparsh Shrivastava",
+          "character": "Deepak Kumar",
+          "profile_url": "https://image.tmdb.org/t/p/w185/d123XZfocCLnc5LAjrlBifffYFf.jpg"
+        },
+        {
+          "name": "Ravi Kishan",
+          "character": "Sub-Inspector Shyam Manohar",
+          "profile_url": "https://image.tmdb.org/t/p/w185/rkUTRk0tuA98RepP9jhgcCbhHqy.jpg"
+        },
+        {
+          "name": "Chhaya Kadam",
+          "character": "Manju Maai",
+          "profile_url": "https://image.tmdb.org/t/p/w185/umOPkpPA4JUWLkVziYU5GF6gELD.jpg"
+        }
+      ],
+      "crew": {
+        "directors": [
+          "Kiran Rao"
+        ],
+        "writers": [
+          "Sneha Desai"
+        ]
+      },
+      "imdb_id": "tt21626284",
+      "imdb_rating": 8.4,
+      "imdb_votes": "48,169",
+      "language": "Hindi",
+      "last_enriched": "2025-11-06T17:29:58.602459+00:00",
+      "normalized_title": "Lost Ladies",
+      "poster_path": "https://image.tmdb.org/t/p/w500/cGG5hCwPnMvuKzvUBnxo5y3DcVM.jpg",
+      "providers_in": [
+        "Netflix"
+      ],
+      "rating_source": "imdb",
+      "runtime": 123,
+      "streaming_platforms": [
+        {
+          "platform_name": "Netflix",
+          "platform_logo": "https://image.tmdb.org/t/p/original/pbpMk2JmcoNnQwx5JGpXngfoWtp.jpg",
+          "type": "flatrate"
+        }
+      ],
+      "thumbnail": "https://image.tmdb.org/t/p/w500/cGG5hCwPnMvuKzvUBnxo5y3DcVM.jpg",
+      "tmdb_id": 1163194,
+      "trailer_url": "https://www.youtube.com/watch?v=hGM87LCJxRc",
+      "vote_average": 7.8,
+      "vote_count": 120,
+      "episodes": null,
+      "platform_content_id": null,
+      "seasons": null,
+      "watchmode_id": null
+    },
+    {
+      "id": "a6af46c8-ae78-42d5-87ff-4987a8593d56",
+      "title": "Maharaja",
+      "category": "hot_drop",
+      "platform": "Netflix",
+      "platform_content_id": null,
+      "rating": 8.4,
+      "thumbnail": "https://image.tmdb.org/t/p/w500/s0m4TM1XRAftQStgKpw024RvkJo.jpg",
+      "description": "A barber seeks vengeance after his home is burglarized, cryptically telling police his \"Lakshmi\" has been taken, leaving them uncertain if it's a person or object, jeer at his request until they learn what they're really looking for.",
+      "release_date": "2024-12",
+      "social_links": {
+        "youtube": "https://www.youtube.com/results?search_query=Maharaja+movie+trailer",
+        "twitter": "https://twitter.com/search?q=%23Maharaja",
+        "reddit": "https://www.reddit.com/r/kollywood"
+      },
+      "content_type": "movie",
+      "tagline": "Revenge served cold",
+      "likes": 2800,
+      "shares": 750,
+      "backdrop_path": "https://image.tmdb.org/t/p/original/if61bpqSXngkGoGNjMdHZt02wZS.jpg",
+      "cast": [
+        {
+          "name": "Vijay Sethupathi",
+          "character": "Maharaja",
+          "profile_url": "https://image.tmdb.org/t/p/w185/a3HWdfCAbplrvoMNEJCjnkbqqOo.jpg"
+        },
+        {
+          "name": "Anurag Kashyap",
+          "character": "Selvam",
+          "profile_url": "https://image.tmdb.org/t/p/w185/8QnTVaQbRz9nuwbrTm57MYRDAJc.jpg"
+        },
+        {
+          "name": "Sachana Namidass",
+          "character": "Jothi",
+          "profile_url": "https://image.tmdb.org/t/p/w185/vKAZo6Vs04qO9cUacLJa0FiliuY.jpg"
+        },
+        {
+          "name": "Natarajan Subramaniam",
+          "character": "Inspector S. Varadharajan",
+          "profile_url": "https://image.tmdb.org/t/p/w185/1sKmgVKSw8qJUzBTJGvL45wlDss.jpg"
+        },
+        {
+          "name": "Abhirami",
+          "character": "Kokila",
+          "profile_url": "https://image.tmdb.org/t/p/w185/1TVXmU20s1mrIHEM5f8WpxWDEsd.jpg"
+        }
+      ],
+      "crew": {
+        "directors": [
+          "Nithilan Saminathan"
+        ],
+        "writers": [
+          "Nithilan Saminathan"
+        ]
+      },
+      "episodes": null,
+      "genres": [
+        "Action",
+        "Thriller",
+        "Mystery"
+      ],
+      "imdb_id": "tt26548265",
+      "imdb_rating": 8.4,
+      "imdb_votes": "73,431",
+      "language": "Tamil",
+      "last_enriched": "2025-11-06T17:29:28.157083+00:00",
+      "normalized_title": "Maharaja",
+      "poster_path": "https://image.tmdb.org/t/p/w500/s0m4TM1XRAftQStgKpw024RvkJo.jpg",
+      "poster_url": "https://image.tmdb.org/t/p/w500/s0m4TM1XRAftQStgKpw024RvkJo.jpg",
+      "providers_in": [
+        "Netflix"
+      ],
+      "rating_source": "imdb",
+      "runtime": 141,
+      "seasons": null,
+      "streaming_platforms": [
+        {
+          "platform_name": "Netflix",
+          "platform_logo": "https://image.tmdb.org/t/p/original/pbpMk2JmcoNnQwx5JGpXngfoWtp.jpg",
+          "type": "flatrate"
+        }
+      ],
+      "tmdb_id": 1118224,
+      "trailer_url": "https://www.youtube.com/watch?v=Otcr-vRuaQs",
+      "vote_average": 7.7,
+      "vote_count": 177,
+      "watchmode_id": null,
+      "year": 2024
+    },
+    {
+      "id": "060ee55b-8d7d-4064-b107-cd1647a50231",
+      "title": "Mirzapur Season 3",
+      "category": "buzzing",
+      "platform": "Prime Video",
+      "platform_content_id": null,
+      "rating": 8.4,
+      "thumbnail": "https://image.tmdb.org/t/p/w500/7CFdq8M9ZuP1QRLaBG2ExdcrCBs.jpg",
+      "description": "The reign of the Tripathis in Purvanchal is over. Guddu and Golu are pitted against a new contender as they stake their claim to the throne. Will they pass the baptism of fire to become the undisputed rulers or will external forces seek to destroy the seat of\u00a0power\u00a0forever.",
+      "release_date": "2025-02",
+      "social_links": {
+        "youtube": "https://www.youtube.com/results?search_query=Mirzapur+Season+3+trailer",
+        "twitter": "https://twitter.com/search?q=%23Mirzapur",
+        "reddit": "https://www.reddit.com/r/mirzapur"
+      },
+      "content_type": "series",
+      "tagline": "Power ki jung",
+      "likes": 3800,
+      "shares": 950,
+      "backdrop_path": "https://image.tmdb.org/t/p/original/3dV7pWAdwIPKR2lMIACMfObXdgK.jpg",
+      "cast": [
+        {
+          "name": "Ali Fazal",
+          "character": "Govind Pandit / Guddu",
+          "profile_url": "https://image.tmdb.org/t/p/w185/lLDmx3RDuMXObASvdFXeUh1GOgd.jpg"
+        },
+        {
+          "name": "Pankaj Tripathi",
+          "character": "Akhanda Tripathi / Kaleen Bhaiya",
+          "profile_url": "https://image.tmdb.org/t/p/w185/f3Vxz0QB7PHeyPcXrfJX14Xkxnu.jpg"
+        },
+        {
+          "name": "Shweta Tripathi Sharma",
+          "character": "Gajgamini Gupta / Golu",
+          "profile_url": "https://image.tmdb.org/t/p/w185/xZ0pk5qKzfK1oB54Mmfo1lUSSEu.jpg"
+        },
+        {
+          "name": "Rasika Dugal",
+          "character": "Beena Tripathi",
+          "profile_url": "https://image.tmdb.org/t/p/w185/cMJP2OEOrKwF05BFh3zI3TyS5Ft.jpg"
+        },
+        {
+          "name": "Harshita Gaur",
+          "character": "Dimpy Pandit",
+          "profile_url": "https://image.tmdb.org/t/p/w185/rYO4VrYRiCWrEq5MgM0fZnlAMwX.jpg"
+        }
+      ],
+      "crew": {
+        "writers": [
+          "Avinash Singh Tomar",
+          "Vijay Narayan Verma"
+        ]
+      },
+      "episodes": 10,
+      "genres": [
+        "Crime",
+        "Action & Adventure",
+        "Drama"
+      ],
+      "imdb_id": "tt6473300",
+      "imdb_rating": 8.4,
+      "imdb_votes": "90,681",
+      "language": "Hindi",
+      "last_enriched": "2025-11-06T17:29:24.800252+00:00",
+      "normalized_title": "Mirzapur",
+      "poster_path": "https://image.tmdb.org/t/p/w500/7CFdq8M9ZuP1QRLaBG2ExdcrCBs.jpg",
+      "poster_url": "https://image.tmdb.org/t/p/w500/7CFdq8M9ZuP1QRLaBG2ExdcrCBs.jpg",
+      "providers_in": [
+        "Amazon Prime Video",
+        "Amazon Prime Video with Ads"
+      ],
+      "rating_source": "imdb",
+      "runtime": 45,
+      "seasons": null,
+      "streaming_platforms": [
+        {
+          "platform_name": "Amazon Prime Video",
+          "platform_logo": "https://image.tmdb.org/t/p/original/pvske1MyAoymrs5bguRfVqYiM9a.jpg",
+          "type": "flatrate"
+        },
+        {
+          "platform_name": "Amazon Prime Video with Ads",
+          "platform_logo": "https://image.tmdb.org/t/p/original/8aBqoNeGGr0oSA85iopgNZUOTOc.jpg",
+          "type": "flatrate"
+        }
+      ],
+      "tmdb_id": 84105,
+      "trailer_url": "https://www.youtube.com/watch?v=33o3s4Vs4Sw",
+      "vote_average": 8.1,
+      "vote_count": 164,
+      "watchmode_id": null,
+      "year": 2024
+    }
+  ],
+  "watch_on": {
+    "Netflix": [
+      {
+        "id": "tmdb_tv_302696",
+        "title": "KPop Demon Hunters Lyric Videos",
+        "platform": "Netflix",
+        "content_type": "series",
+        "category": "entertainment",
+        "year": 2025,
+        "description": "Some of the smash film's hottest hits come to life as lyric videos in a line-up featuring \"How It's Done,\" \"Golden,\" \"Soda Pop,\" \"Takedown\" and \"Free.\"",
+        "poster_url": "https://image.tmdb.org/t/p/w500/dTqYRhRzKayrCcDVqIS3bXOiRR5.jpg",
+        "backdrop_url": "https://image.tmdb.org/t/p/original/qyj4vs8223qaaWRoa5V37NMKTYt.jpg",
+        "genres": [
+          "Animation"
+        ],
+        "rating": 9.277,
+        "release_date": "2025-10-08",
+        "thumbnail": "https://image.tmdb.org/t/p/w500/dTqYRhRzKayrCcDVqIS3bXOiRR5.jpg",
+        "likes": 0,
+        "shares": 0,
+        "tmdb_id": 302696,
+        "ingestion_date": "2025-11-07T07:09:08.186620",
+        "freshness_score": 81
+      },
+      {
+        "id": "a6af46c8-ae78-42d5-87ff-4987a8593d56",
+        "title": "Maharaja",
+        "category": "hot_drop",
+        "platform": "Netflix",
+        "platform_content_id": null,
+        "rating": 8.4,
+        "thumbnail": "https://image.tmdb.org/t/p/w500/s0m4TM1XRAftQStgKpw024RvkJo.jpg",
+        "description": "A barber seeks vengeance after his home is burglarized, cryptically telling police his \"Lakshmi\" has been taken, leaving them uncertain if it's a person or object, jeer at his request until they learn what they're really looking for.",
+        "release_date": "2024-12",
+        "social_links": {
+          "youtube": "https://www.youtube.com/results?search_query=Maharaja+movie+trailer",
+          "twitter": "https://twitter.com/search?q=%23Maharaja",
+          "reddit": "https://www.reddit.com/r/kollywood"
+        },
+        "content_type": "movie",
+        "tagline": "Revenge served cold",
+        "likes": 2800,
+        "shares": 750,
+        "backdrop_path": "https://image.tmdb.org/t/p/original/if61bpqSXngkGoGNjMdHZt02wZS.jpg",
+        "cast": [
+          {
+            "name": "Vijay Sethupathi",
+            "character": "Maharaja",
+            "profile_url": "https://image.tmdb.org/t/p/w185/a3HWdfCAbplrvoMNEJCjnkbqqOo.jpg"
+          },
+          {
+            "name": "Anurag Kashyap",
+            "character": "Selvam",
+            "profile_url": "https://image.tmdb.org/t/p/w185/8QnTVaQbRz9nuwbrTm57MYRDAJc.jpg"
+          },
+          {
+            "name": "Sachana Namidass",
+            "character": "Jothi",
+            "profile_url": "https://image.tmdb.org/t/p/w185/vKAZo6Vs04qO9cUacLJa0FiliuY.jpg"
+          },
+          {
+            "name": "Natarajan Subramaniam",
+            "character": "Inspector S. Varadharajan",
+            "profile_url": "https://image.tmdb.org/t/p/w185/1sKmgVKSw8qJUzBTJGvL45wlDss.jpg"
+          },
+          {
+            "name": "Abhirami",
+            "character": "Kokila",
+            "profile_url": "https://image.tmdb.org/t/p/w185/1TVXmU20s1mrIHEM5f8WpxWDEsd.jpg"
+          }
+        ],
+        "crew": {
+          "directors": [
+            "Nithilan Saminathan"
+          ],
+          "writers": [
+            "Nithilan Saminathan"
+          ]
+        },
+        "episodes": null,
+        "genres": [
+          "Action",
+          "Thriller",
+          "Mystery"
+        ],
+        "imdb_id": "tt26548265",
+        "imdb_rating": 8.4,
+        "imdb_votes": "73,431",
+        "language": "Tamil",
+        "last_enriched": "2025-11-06T17:29:28.157083+00:00",
+        "normalized_title": "Maharaja",
+        "poster_path": "https://image.tmdb.org/t/p/w500/s0m4TM1XRAftQStgKpw024RvkJo.jpg",
+        "poster_url": "https://image.tmdb.org/t/p/w500/s0m4TM1XRAftQStgKpw024RvkJo.jpg",
+        "providers_in": [
+          "Netflix"
+        ],
+        "rating_source": "imdb",
+        "runtime": 141,
+        "seasons": null,
+        "streaming_platforms": [
+          {
+            "platform_name": "Netflix",
+            "platform_logo": "https://image.tmdb.org/t/p/original/pbpMk2JmcoNnQwx5JGpXngfoWtp.jpg",
+            "type": "flatrate"
+          }
+        ],
+        "tmdb_id": 1118224,
+        "trailer_url": "https://www.youtube.com/watch?v=Otcr-vRuaQs",
+        "vote_average": 7.7,
+        "vote_count": 177,
+        "watchmode_id": null,
+        "year": 2024
+      },
+      {
+        "id": "tmdb_tv_272418",
+        "title": "Robin Hood",
+        "platform": "Netflix",
+        "content_type": "series",
+        "category": "entertainment",
+        "year": 2025,
+        "description": "A modern reimagining of the classic tale. After the Norman invasion of England, Rob, a Saxon forester\u2019s son, and Marian, a Norman lord\u2019s daughter, fall in love and unite to fight for justice, challenge corruption, and restore peace to the land.",
+        "poster_url": "https://image.tmdb.org/t/p/w500/3teWChNzKJdbfen46IdeKTygdZa.jpg",
+        "backdrop_url": "https://image.tmdb.org/t/p/original/uoIOfRNmu47P2fET2KnrYHt3TH.jpg",
+        "genres": [
+          "Drama",
+          "Action & Adventure"
+        ],
+        "rating": 8.188,
+        "release_date": "2025-11-02",
+        "thumbnail": "https://image.tmdb.org/t/p/w500/3teWChNzKJdbfen46IdeKTygdZa.jpg",
+        "likes": 0,
+        "shares": 0,
+        "tmdb_id": 272418,
+        "ingestion_date": "2025-11-07T07:09:08.006615",
+        "freshness_score": 88
+      },
+      {
+        "id": "b3143a08-3ffe-4533-96cf-615e46afb4fc",
+        "title": "Squid Game Season 2",
+        "category": "buzzing",
+        "platform": "Netflix",
+        "platform_content_id": null,
+        "rating": 8.0,
+        "thumbnail": "https://image.tmdb.org/t/p/w500/sXZhtWLo3fecavpDuOyJiayjt32.jpg",
+        "description": "Ready to run for your lives? Player 456 returns for more heart-pounding children's games, facing deadly new challenges \u2014 but armed with a hidden agenda.",
+        "release_date": "2025-01",
+        "social_links": {
+          "youtube": "https://www.youtube.com/results?search_query=Squid+Game+Season+2+trailer",
+          "twitter": "https://twitter.com/search?q=%23SquidGame",
+          "reddit": "https://www.reddit.com/r/squidgame"
+        },
+        "content_type": "series",
+        "tagline": "Survival of the fittest",
+        "likes": 4500,
+        "shares": 1200,
+        "backdrop_path": "https://image.tmdb.org/t/p/original/2meX1nMdScFOoV4370rqHWKmXhY.jpg",
+        "cast": [
+          {
+            "name": "Lee Jung-jae",
+            "character": "Seong Gi-hun / Player 456",
+            "profile_url": "https://image.tmdb.org/t/p/w185/s3Sv4bZORQ5DuZJahgU2X0RgMUQ.jpg"
+          },
+          {
+            "name": "Wi Ha-jun",
+            "character": "Detective Hwang Jun-ho",
+            "profile_url": "https://image.tmdb.org/t/p/w185/tEZuIaMESdBw4LfNq3vshGR4VlP.jpg"
+          },
+          {
+            "name": "Yim Si-wan",
+            "character": "Lee Myung-gi / Player 333",
+            "profile_url": "https://image.tmdb.org/t/p/w185/8XbMzvYE3KUNDW1jEHSCjM9t89n.jpg"
+          },
+          {
+            "name": "Jo Yu-ri",
+            "character": "Kim Jun-hee / Player 222",
+            "profile_url": "https://image.tmdb.org/t/p/w185/4GwoDQFPwpaKldOTpGrIJUzBa9h.jpg"
+          },
+          {
+            "name": "Lee Byung-hun",
+            "character": "Front Man / Hwang In-ho",
+            "profile_url": "https://image.tmdb.org/t/p/w185/j7SUd9Qi8iOxgrQGb3nQyEYcXur.jpg"
+          }
+        ],
+        "crew": {},
+        "episodes": 7,
+        "genres": [
+          "Action & Adventure",
+          "Mystery",
+          "Drama"
+        ],
+        "imdb_id": "tt10919420",
+        "imdb_rating": 8.0,
+        "imdb_votes": "721,036",
+        "language": "Korean",
+        "last_enriched": "2025-11-06T17:29:24.275024+00:00",
+        "normalized_title": "Squid Game",
+        "poster_path": "https://image.tmdb.org/t/p/w500/sXZhtWLo3fecavpDuOyJiayjt32.jpg",
+        "poster_url": "https://image.tmdb.org/t/p/w500/sXZhtWLo3fecavpDuOyJiayjt32.jpg",
+        "providers_in": [
+          "Netflix"
+        ],
+        "rating_source": "imdb",
+        "runtime": null,
+        "seasons": null,
+        "streaming_platforms": [
+          {
+            "platform_name": "Netflix",
+            "platform_logo": "https://image.tmdb.org/t/p/original/pbpMk2JmcoNnQwx5JGpXngfoWtp.jpg",
+            "type": "flatrate"
+          }
+        ],
+        "tmdb_id": 93405,
+        "trailer_url": "https://www.youtube.com/watch?v=oqxAJKy0ii4",
+        "vote_average": 7.9,
+        "vote_count": 16865,
+        "watchmode_id": null,
+        "year": 2024
+      },
+      {
+        "id": "tmdb_movie_1062722",
+        "title": "Frankenstein",
+        "platform": "Netflix",
+        "content_type": "movie",
+        "category": "entertainment",
+        "year": 2025,
+        "description": "Dr. Victor Frankenstein, a brilliant but egotistical scientist, brings a creature to life in a monstrous experiment that ultimately leads to the undoing of both the creator and his tragic creation.",
+        "poster_url": "https://image.tmdb.org/t/p/w500/v9NLaLBbrkDwq44qG51v8T6sPuI.jpg",
+        "backdrop_url": "https://image.tmdb.org/t/p/original/hpXBJxLD2SEf8l2CspmSeiHrBKX.jpg",
+        "genres": [
+          "Horror",
+          "Science Fiction",
+          "Fantasy"
+        ],
+        "rating": 7.9,
+        "release_date": "2025-10-17",
+        "thumbnail": "https://image.tmdb.org/t/p/w500/v9NLaLBbrkDwq44qG51v8T6sPuI.jpg",
+        "likes": 0,
+        "shares": 0,
+        "tmdb_id": 1062722,
+        "ingestion_date": "2025-11-07T07:09:06.817026",
+        "freshness_score": 79
+      },
+      {
+        "id": "tmdb_tv_200875",
+        "title": "IT: Welcome to Derry",
+        "platform": "Netflix",
+        "content_type": "series",
+        "category": "entertainment",
+        "year": 2025,
+        "description": "In 1962, a couple with their son move to Derry, Maine just as a young boy disappears. With their arrival, very bad things begin to happen in the town.",
+        "poster_url": "https://image.tmdb.org/t/p/w500/nyy3BITeIjviv6PFIXtqvc8i6xi.jpg",
+        "backdrop_url": "https://image.tmdb.org/t/p/original/2746UvsbkZINd873Yd3o3TxOwCP.jpg",
+        "genres": [
+          "Mystery",
+          "Drama"
+        ],
+        "rating": 7.9,
+        "release_date": "2025-10-26",
+        "thumbnail": "https://image.tmdb.org/t/p/w500/nyy3BITeIjviv6PFIXtqvc8i6xi.jpg",
+        "likes": 0,
+        "shares": 0,
+        "tmdb_id": 200875,
+        "ingestion_date": "2025-11-07T07:09:06.702599",
+        "freshness_score": 83
+      },
+      {
+        "id": "tmdb_tv_225647",
+        "title": "Boots",
+        "platform": "Netflix",
+        "content_type": "series",
+        "category": "entertainment",
+        "year": 2025,
+        "description": "In 1990, a bullied, gay high school student named Cameron joins the Marine Corps with his straight best friend, Ray \u2014 a dangerous move when being gay in the military meant jail time or worse. As these two friends plunge into Marine Corps boot camp, where the landmines are both literal and metaphorical, they join a platoon of young men on a harrowing journey of transformation.",
+        "poster_url": "https://image.tmdb.org/t/p/w500/eEwe68oPFFDU4ehZ3sXiETE44Rt.jpg",
+        "backdrop_url": "https://image.tmdb.org/t/p/original/7a78G7fisRp9N9upjyX5b3GNRNI.jpg",
+        "genres": [
+          "Comedy",
+          "Drama",
+          "War & Politics"
+        ],
+        "rating": 7.853,
+        "release_date": "2025-10-09",
+        "thumbnail": "https://image.tmdb.org/t/p/w500/eEwe68oPFFDU4ehZ3sXiETE44Rt.jpg",
+        "likes": 0,
+        "shares": 0,
+        "tmdb_id": 225647,
+        "ingestion_date": "2025-11-07T07:09:08.278913",
+        "freshness_score": 74
+      },
+      {
+        "id": "tmdb_movie_701387",
+        "title": "Bugonia",
+        "platform": "Netflix",
+        "content_type": "movie",
+        "category": "entertainment",
+        "year": 2025,
+        "description": "Two conspiracy obsessed young men kidnap the high-powered CEO of a major company, convinced that she is an alien intent on destroying planet Earth.",
+        "poster_url": "https://image.tmdb.org/t/p/w500/oxgsAQDAAxA92mFGYCZllgWkH9J.jpg",
+        "backdrop_url": "https://image.tmdb.org/t/p/original/3JFsKuQkTh7ZtmPWKGDq2BoLtTI.jpg",
+        "genres": [
+          "Science Fiction",
+          "Crime"
+        ],
+        "rating": 7.783,
+        "release_date": "2025-10-23",
+        "thumbnail": "https://image.tmdb.org/t/p/w500/oxgsAQDAAxA92mFGYCZllgWkH9J.jpg",
+        "likes": 0,
+        "shares": 0,
+        "tmdb_id": 701387,
+        "ingestion_date": "2025-11-07T07:09:07.196317",
+        "freshness_score": 81
+      },
+      {
+        "id": "tmdb_movie_1239511",
+        "title": "Lucky Baskhar",
+        "platform": "Netflix",
+        "content_type": "movie",
+        "category": "entertainment",
+        "year": 2024,
+        "description": "A cash-strapped bank cashier embarks on a risky investment scheme and soon gets drawn into the murky world of money laundering.",
+        "poster_url": "https://image.tmdb.org/t/p/w500/a47JQFl9L7VDa79tEvnTOJe0rPa.jpg",
+        "backdrop_url": "https://image.tmdb.org/t/p/original/q8UyN4XhpmChtneZXdZ8fktQka6.jpg",
+        "genres": [
+          "Drama",
+          "Thriller",
+          "Crime"
+        ],
+        "rating": 7.6,
+        "release_date": "2024-10-30",
+        "thumbnail": "https://image.tmdb.org/t/p/w500/a47JQFl9L7VDa79tEvnTOJe0rPa.jpg",
+        "likes": 0,
+        "shares": 0,
+        "tmdb_id": 1239511,
+        "trending_india": true,
+        "ingestion_date": "2024-11-07T00:00:00"
+      },
+      {
+        "id": "tmdb_tv_225171",
+        "title": "Pluribus",
+        "platform": "Netflix",
+        "content_type": "series",
+        "category": "entertainment",
+        "year": 2025,
+        "description": "The most miserable person on Earth must save the world from happiness.",
+        "poster_url": "https://image.tmdb.org/t/p/w500/nrM2xFUfKJJEmZzd5d7kohT2G0C.jpg",
+        "backdrop_url": "https://image.tmdb.org/t/p/original/vNCNUxNHHgP0WsA19hxztUsG3yG.jpg",
+        "genres": [
+          "Drama",
+          "Sci-Fi & Fantasy"
+        ],
+        "rating": 7.5,
+        "release_date": "2025-11-06",
+        "thumbnail": "https://image.tmdb.org/t/p/w500/nrM2xFUfKJJEmZzd5d7kohT2G0C.jpg",
+        "likes": 0,
+        "shares": 0,
+        "tmdb_id": 225171,
+        "ingestion_date": "2025-11-07T07:09:06.519862",
+        "freshness_score": 87
+      }
+    ],
+    "Prime Video": [
+      {
+        "id": "prime_video_panchayat_season_3_2020",
+        "title": "Panchayat Season 3",
+        "platform": "Prime Video",
+        "content_type": "series",
+        "category": "entertainment",
+        "year": 2024,
+        "description": "As the Panchayat elections approach, both Pradhan and Bhushan gangs engage in a fierce battle to uplift their public image. Navigating the murky waters of Phulera politics, Abhishek does his best to maintain his objectivity.",
+        "poster_url": "https://image.tmdb.org/t/p/w500/wsgfe8YmntJ1uVIkBjBdRdYpJyN.jpg",
+        "genres": [
+          "Comedy",
+          "Drama"
+        ],
+        "rating": 9.0,
+        "likes": 0,
+        "shares": 0,
+        "backdrop_path": "https://image.tmdb.org/t/p/original/iZ8EtGAqKWZdRJPzWfFseNfVxjh.jpg",
+        "cast": [
+          {
+            "name": "Jitendra Kumar",
+            "character": "Abhishek Tripathi",
+            "profile_url": "https://image.tmdb.org/t/p/w185/562Mucw9YaDHUlFBqK5aot3H2lJ.jpg"
+          },
+          {
+            "name": "Raghubir Yadav",
+            "character": "Brij Bhushan Dubey",
+            "profile_url": "https://image.tmdb.org/t/p/w185/khyp4vnuGKVxrtszyB7kSf3vuzw.jpg"
+          },
+          {
+            "name": "Neena Gupta",
+            "character": "Manju Devi",
+            "profile_url": "https://image.tmdb.org/t/p/w185/znCPPYR79c1DU2MvA61JXhdMeCs.jpg"
+          },
+          {
+            "name": "Chandan Roy",
+            "character": "Vikas",
+            "profile_url": "https://image.tmdb.org/t/p/w185/2zIIonCsFrdcmmZD0g5YIaCPnQY.jpg"
+          },
+          {
+            "name": "Faisal Malik",
+            "character": "Prahlad Pandey",
+            "profile_url": "https://image.tmdb.org/t/p/w185/eztI7Y1VUqHz7OYZ4ytoyEz0amz.jpg"
+          }
+        ],
+        "crew": {
+          "directors": [
+            "Akshat Vijaywargiya",
+            "Deepak Kumar Mishra"
+          ],
+          "writers": [
+            "Chandan Kumar"
+          ]
+        },
+        "episodes": 8,
+        "imdb_id": "tt12004706",
+        "imdb_rating": 9.0,
+        "imdb_votes": "102,532",
+        "language": "Hindi",
+        "last_enriched": "2025-11-06T17:29:46.144257+00:00",
+        "normalized_title": "Panchayat",
+        "poster_path": "https://image.tmdb.org/t/p/w500/wsgfe8YmntJ1uVIkBjBdRdYpJyN.jpg",
+        "providers_in": [
+          "Amazon Prime Video",
+          "Amazon Prime Video with Ads"
+        ],
+        "rating_source": "imdb",
+        "runtime": 30,
+        "season_number": 3,
+        "streaming_platforms": [
+          {
+            "platform_name": "Amazon Prime Video",
+            "platform_logo": "https://image.tmdb.org/t/p/original/pvske1MyAoymrs5bguRfVqYiM9a.jpg",
+            "type": "flatrate"
+          },
+          {
+            "platform_name": "Amazon Prime Video with Ads",
+            "platform_logo": "https://image.tmdb.org/t/p/original/8aBqoNeGGr0oSA85iopgNZUOTOc.jpg",
+            "type": "flatrate"
+          }
+        ],
+        "thumbnail": "https://image.tmdb.org/t/p/w500/wsgfe8YmntJ1uVIkBjBdRdYpJyN.jpg",
+        "tmdb_id": 101352,
+        "trailer_url": "https://www.youtube.com/watch?v=AHMEtNAZTP4",
+        "vote_average": 8.2,
+        "vote_count": 116,
+        "platform_content_id": null,
+        "seasons": null,
+        "watchmode_id": null
+      },
+      {
+        "id": "7f7c9685-f898-4706-8391-5dc7d8c4c680",
+        "title": "The Family Man Season 3",
+        "category": "buzzing",
+        "platform": "Prime Video",
+        "platform_content_id": null,
+        "rating": 8.7,
+        "thumbnail": "https://image.tmdb.org/t/p/w500/tE1NUJqw9gV6AVjQ1GTK78LbWJ9.jpg",
+        "description": "The story of a middle-class man who works for a special cell of the National Investigation Agency. While he tries to protect the nation from terrorists, he also has to protect his family from the impact of his secretive, high-pressure, and low paying job.",
+        "release_date": "2025-03",
+        "social_links": {
+          "youtube": "https://www.youtube.com/results?search_query=The+Family+Man+Season+3+trailer",
+          "twitter": "https://twitter.com/search?q=%23TheFamilyMan",
+          "reddit": "https://www.reddit.com/r/TheFamilyMan"
+        },
+        "content_type": "series",
+        "tagline": "Mission impossible",
+        "likes": 3400,
+        "shares": 920,
+        "backdrop_path": "https://image.tmdb.org/t/p/original/eEzKigDI64OomZV6VTJvoPGmVu1.jpg",
+        "cast": [
+          {
+            "name": "Manoj Bajpayee",
+            "character": "Srikant Tiwari",
+            "profile_url": "https://image.tmdb.org/t/p/w185/hBiAldG2BGMVoZUPbvK3FNDSw22.jpg"
+          },
+          {
+            "name": "Priyamani",
+            "character": "Suchitra Tiwari",
+            "profile_url": "https://image.tmdb.org/t/p/w185/zB365nF9wec5KBczviUTAX9MwHj.jpg"
+          },
+          {
+            "name": "Vedant Sinha",
+            "character": "Atharv",
+            "profile_url": "https://image.tmdb.org/t/p/w185/vPzVMeiMYKRH9tpeDZXVYB3tk5i.jpg"
+          },
+          {
+            "name": "Ashlesha Thakur",
+            "character": "Dhriti",
+            "profile_url": "https://image.tmdb.org/t/p/w185/cu3uUco7xRa4UZnMvP6dtrQnOby.jpg"
+          },
+          {
+            "name": "Darshan Kumaar",
+            "character": "Sameer",
+            "profile_url": "https://image.tmdb.org/t/p/w185/aKDYD0wDq7BRwdJmSjoqfOPleOf.jpg"
+          }
+        ],
+        "crew": {},
+        "episodes": 1,
+        "genres": [
+          "Drama",
+          "Action & Adventure"
+        ],
+        "imdb_id": "tt9544034",
+        "imdb_rating": 8.7,
+        "imdb_votes": "105,311",
+        "language": "Hindi",
+        "last_enriched": "2025-11-06T17:29:26.406514+00:00",
+        "normalized_title": "The Family Man",
+        "poster_path": "https://image.tmdb.org/t/p/w500/tE1NUJqw9gV6AVjQ1GTK78LbWJ9.jpg",
+        "poster_url": "https://image.tmdb.org/t/p/w500/tE1NUJqw9gV6AVjQ1GTK78LbWJ9.jpg",
+        "providers_in": [
+          "Amazon Prime Video",
+          "Amazon Prime Video with Ads"
+        ],
+        "rating_source": "imdb",
+        "runtime": null,
+        "seasons": null,
+        "streaming_platforms": [
+          {
+            "platform_name": "Amazon Prime Video",
+            "platform_logo": "https://image.tmdb.org/t/p/original/pvske1MyAoymrs5bguRfVqYiM9a.jpg",
+            "type": "flatrate"
+          },
+          {
+            "platform_name": "Amazon Prime Video with Ads",
+            "platform_logo": "https://image.tmdb.org/t/p/original/8aBqoNeGGr0oSA85iopgNZUOTOc.jpg",
+            "type": "flatrate"
+          }
+        ],
+        "tmdb_id": 93352,
+        "trailer_url": null,
+        "vote_average": 7.7,
+        "vote_count": 159,
+        "watchmode_id": null,
+        "year": 2025
+      },
+      {
+        "id": "060ee55b-8d7d-4064-b107-cd1647a50231",
+        "title": "Mirzapur Season 3",
+        "category": "buzzing",
+        "platform": "Prime Video",
+        "platform_content_id": null,
+        "rating": 8.4,
+        "thumbnail": "https://image.tmdb.org/t/p/w500/7CFdq8M9ZuP1QRLaBG2ExdcrCBs.jpg",
+        "description": "The reign of the Tripathis in Purvanchal is over. Guddu and Golu are pitted against a new contender as they stake their claim to the throne. Will they pass the baptism of fire to become the undisputed rulers or will external forces seek to destroy the seat of\u00a0power\u00a0forever.",
+        "release_date": "2025-02",
+        "social_links": {
+          "youtube": "https://www.youtube.com/results?search_query=Mirzapur+Season+3+trailer",
+          "twitter": "https://twitter.com/search?q=%23Mirzapur",
+          "reddit": "https://www.reddit.com/r/mirzapur"
+        },
+        "content_type": "series",
+        "tagline": "Power ki jung",
+        "likes": 3800,
+        "shares": 950,
+        "backdrop_path": "https://image.tmdb.org/t/p/original/3dV7pWAdwIPKR2lMIACMfObXdgK.jpg",
+        "cast": [
+          {
+            "name": "Ali Fazal",
+            "character": "Govind Pandit / Guddu",
+            "profile_url": "https://image.tmdb.org/t/p/w185/lLDmx3RDuMXObASvdFXeUh1GOgd.jpg"
+          },
+          {
+            "name": "Pankaj Tripathi",
+            "character": "Akhanda Tripathi / Kaleen Bhaiya",
+            "profile_url": "https://image.tmdb.org/t/p/w185/f3Vxz0QB7PHeyPcXrfJX14Xkxnu.jpg"
+          },
+          {
+            "name": "Shweta Tripathi Sharma",
+            "character": "Gajgamini Gupta / Golu",
+            "profile_url": "https://image.tmdb.org/t/p/w185/xZ0pk5qKzfK1oB54Mmfo1lUSSEu.jpg"
+          },
+          {
+            "name": "Rasika Dugal",
+            "character": "Beena Tripathi",
+            "profile_url": "https://image.tmdb.org/t/p/w185/cMJP2OEOrKwF05BFh3zI3TyS5Ft.jpg"
+          },
+          {
+            "name": "Harshita Gaur",
+            "character": "Dimpy Pandit",
+            "profile_url": "https://image.tmdb.org/t/p/w185/rYO4VrYRiCWrEq5MgM0fZnlAMwX.jpg"
+          }
+        ],
+        "crew": {
+          "writers": [
+            "Avinash Singh Tomar",
+            "Vijay Narayan Verma"
+          ]
+        },
+        "episodes": 10,
+        "genres": [
+          "Crime",
+          "Action & Adventure",
+          "Drama"
+        ],
+        "imdb_id": "tt6473300",
+        "imdb_rating": 8.4,
+        "imdb_votes": "90,681",
+        "language": "Hindi",
+        "last_enriched": "2025-11-06T17:29:24.800252+00:00",
+        "normalized_title": "Mirzapur",
+        "poster_path": "https://image.tmdb.org/t/p/w500/7CFdq8M9ZuP1QRLaBG2ExdcrCBs.jpg",
+        "poster_url": "https://image.tmdb.org/t/p/w500/7CFdq8M9ZuP1QRLaBG2ExdcrCBs.jpg",
+        "providers_in": [
+          "Amazon Prime Video",
+          "Amazon Prime Video with Ads"
+        ],
+        "rating_source": "imdb",
+        "runtime": 45,
+        "seasons": null,
+        "streaming_platforms": [
+          {
+            "platform_name": "Amazon Prime Video",
+            "platform_logo": "https://image.tmdb.org/t/p/original/pvske1MyAoymrs5bguRfVqYiM9a.jpg",
+            "type": "flatrate"
+          },
+          {
+            "platform_name": "Amazon Prime Video with Ads",
+            "platform_logo": "https://image.tmdb.org/t/p/original/8aBqoNeGGr0oSA85iopgNZUOTOc.jpg",
+            "type": "flatrate"
+          }
+        ],
+        "tmdb_id": 84105,
+        "trailer_url": "https://www.youtube.com/watch?v=33o3s4Vs4Sw",
+        "vote_average": 8.1,
+        "vote_count": 164,
+        "watchmode_id": null,
+        "year": 2024
+      },
+      {
+        "id": "prime_video_made_in_heaven_season_2_2019",
+        "title": "Made in Heaven Season 2",
+        "platform": "Prime Video",
+        "content_type": "series",
+        "category": "entertainment",
+        "year": 2023,
+        "description": "Financial challenges, a depleted client roster, and a crumbling bungalow for an office force wedding planners Tara Khanna and Karan Mehra to adapt to a new uncomfortable status quo. With repercussions being felt in their personal lives as well, they continue to deliver fairy-tale weddings. But beneath the glitz and glamour of Delhi weddings lie prejudices as deeply rooted as its traditions.",
+        "poster_url": "https://image.tmdb.org/t/p/w500/z1zP0Usym5HxfwZiX8V2q6cSiE8.jpg",
+        "genres": [
+          "Drama"
+        ],
+        "rating": 8.2,
+        "likes": 0,
+        "shares": 0,
+        "backdrop_path": "https://image.tmdb.org/t/p/original/1sBBZGtJj31IgYQoQ26hb3t1Do3.jpg",
+        "cast": [
+          {
+            "name": "Sobhita Dhulipala",
+            "character": "Tara Khanna",
+            "profile_url": "https://image.tmdb.org/t/p/w185/yL8E8ShjuOachUWRUu2MjcmKOQR.jpg"
+          },
+          {
+            "name": "Arjun Mathur",
+            "character": "Karan Mehra",
+            "profile_url": "https://image.tmdb.org/t/p/w185/t40XQvdCY2jBLmfqAHZBc4aAkRW.jpg"
+          },
+          {
+            "name": "Jim Sarbh",
+            "character": "Adil Khanna",
+            "profile_url": "https://image.tmdb.org/t/p/w185/lJPX2ehRqqtrJOqx5PS9dkSAw7.jpg"
+          },
+          {
+            "name": "Kalki Koechlin",
+            "character": "Faiza Naqvi",
+            "profile_url": "https://image.tmdb.org/t/p/w185/5lVx30awwxvvyKIG8Pok9tu9P8r.jpg"
+          },
+          {
+            "name": "Shashank Arora",
+            "character": "Kabir Basrai",
+            "profile_url": "https://image.tmdb.org/t/p/w185/q5S5TlJabJz13E8CK6nZzkv6kOu.jpg"
+          }
+        ],
+        "episodes": 7,
+        "imdb_id": "tt6494622",
+        "imdb_rating": 8.2,
+        "imdb_votes": "15,121",
+        "language": "Hindi",
+        "last_enriched": "2025-11-06T17:29:46.743054+00:00",
+        "normalized_title": "Made in Heaven",
+        "poster_path": "https://image.tmdb.org/t/p/w500/z1zP0Usym5HxfwZiX8V2q6cSiE8.jpg",
+        "providers_in": [
+          "Amazon Prime Video",
+          "Amazon Prime Video with Ads"
+        ],
+        "rating_source": "imdb",
+        "runtime": 47,
+        "season_number": 2,
+        "streaming_platforms": [
+          {
+            "platform_name": "Amazon Prime Video",
+            "platform_logo": "https://image.tmdb.org/t/p/original/pvske1MyAoymrs5bguRfVqYiM9a.jpg",
+            "type": "flatrate"
+          },
+          {
+            "platform_name": "Amazon Prime Video with Ads",
+            "platform_logo": "https://image.tmdb.org/t/p/original/8aBqoNeGGr0oSA85iopgNZUOTOc.jpg",
+            "type": "flatrate"
+          }
+        ],
+        "thumbnail": "https://image.tmdb.org/t/p/w500/z1zP0Usym5HxfwZiX8V2q6cSiE8.jpg",
+        "tmdb_id": 87407,
+        "trailer_url": "https://www.youtube.com/watch?v=Qyg9_a7avTI",
+        "vote_average": 7.2,
+        "vote_count": 40,
+        "crew": {},
+        "platform_content_id": null,
+        "seasons": null,
+        "watchmode_id": null
+      },
+      {
+        "id": "prime_video_tandav_2021",
+        "title": "Tandav",
+        "platform": "Prime Video",
+        "content_type": "series",
+        "category": "entertainment",
+        "year": 2023,
+        "description": "Explore the journey of Lord Shiva and goddess Parvati's love, duty, sacrifice, and separation.",
+        "poster_url": "https://image.tmdb.org/t/p/w500/zavvPeVab5SzwFbInvbT66N30ar.jpg",
+        "genres": [
+          "Drama",
+          "Mystery"
+        ],
+        "rating": 8.1,
+        "likes": 0,
+        "shares": 0,
+        "backdrop_path": "https://image.tmdb.org/t/p/original/7IXrCqJjNat1fjFkPO9S0kHrTA9.jpg",
+        "cast": [
+          {
+            "name": "Ram Yashvardhan",
+            "character": "Shiv",
+            "profile_url": "https://image.tmdb.org/t/p/w185/s2bWyZlH44KN9Y4kDDbA71OBI2Z.jpg"
+          },
+          {
+            "name": "Subha Rajput",
+            "character": "Devi Shakti",
+            "profile_url": null
+          },
+          {
+            "name": "Vishwajeet Pradhan",
+            "character": "Maharaj Daksha",
+            "profile_url": "https://image.tmdb.org/t/p/w185/fk5mBFnclEBE8AtgUfoa1i79oqt.jpg"
+          },
+          {
+            "name": "Puneet Vashisht",
+            "character": "Narad",
+            "profile_url": "https://image.tmdb.org/t/p/w185/tv4PIoV9XQpIFH4q87yF5Hc341F.jpg"
+          },
+          {
+            "name": "Tarun Khanna",
+            "character": "Devraj Indra",
+            "profile_url": "https://image.tmdb.org/t/p/w185/puUE8PufQhZfqKiVbTuvzuct6s.jpg"
+          }
+        ],
+        "episodes": 192,
+        "imdb_id": "tt27719227",
+        "imdb_rating": 8.1,
+        "imdb_votes": "280",
+        "language": "Hindi",
+        "last_enriched": "2025-11-06T17:29:54.137088+00:00",
+        "normalized_title": "Shiv Shakti - Tap Tyaag Tandav",
+        "poster_path": "https://image.tmdb.org/t/p/w500/zavvPeVab5SzwFbInvbT66N30ar.jpg",
+        "rating_source": "imdb",
+        "runtime": 22,
+        "seasons": 1,
+        "thumbnail": "https://image.tmdb.org/t/p/w500/zavvPeVab5SzwFbInvbT66N30ar.jpg",
+        "tmdb_id": 242180,
+        "vote_average": 10.0,
+        "vote_count": 1,
+        "crew": {},
+        "platform_content_id": null,
+        "providers_in": [],
+        "streaming_platforms": [],
+        "trailer_url": null,
+        "watchmode_id": null
+      },
+      {
+        "id": "tmdb_movie_1083637",
+        "title": "Kantara - A Legend: Chapter 1",
+        "platform": "Prime Video",
+        "content_type": "movie",
+        "category": "entertainment",
+        "year": 2025,
+        "description": "During the Kadamba reign, King Vijayendra, the ruler of the fictional feudatory land of Bangra, meets his final fate while venturing into the mystical forest of Kantara. Witnessing this, his son Rajashekara seals the borders of their realm. Later, Prince Kulashekara reopens them through a brutal massacre. The protagonist, Berme, in search of prosperity, crosses the divide and ignites a conflict of faith, power, and destiny between the Kingdom and Nature.",
+        "poster_url": "https://image.tmdb.org/t/p/w500/ehQPboTPaIMkMUOoNOh8e7pZ5Rp.jpg",
+        "backdrop_url": "https://image.tmdb.org/t/p/original/puxTHWUau0X5mkuY85pQkmkHBga.jpg",
+        "genres": [
+          "Action",
+          "Drama",
+          "Fantasy"
+        ],
+        "rating": 7.8,
+        "release_date": "2025-10-01",
+        "thumbnail": "https://image.tmdb.org/t/p/w500/ehQPboTPaIMkMUOoNOh8e7pZ5Rp.jpg",
+        "likes": 0,
+        "shares": 0,
+        "tmdb_id": 1083637,
+        "ingestion_date": "2025-11-07T07:09:07.588107",
+        "freshness_score": 70
+      }
+    ],
+    "JioHotstar": [
+      {
+        "id": "accf12cd-226c-4ceb-9ba5-a808aca14bc1",
+        "title": "12th Fail",
+        "category": "hot_drop",
+        "platform": "JioHotstar",
+        "platform_content_id": null,
+        "rating": 8.7,
+        "thumbnail": "https://image.tmdb.org/t/p/w500/eebUPRI4Z5e1Z7Hev4JZAwMIFkX.jpg",
+        "description": "Based on the true story of IPS officer Manoj Kumar Sharma, 12th Fail sheds limelight on fearlessly embracing the idea of restarting the academic journey despite the setbacks and challenges and reclaiming one's destiny at a place where millions of students attempt the world's toughest competitive exam: UPSC.",
+        "release_date": "2024-12",
+        "social_links": {
+          "youtube": "https://www.youtube.com/results?search_query=12th+Fail+trailer",
+          "twitter": "https://twitter.com/search?q=%2312thFail",
+          "reddit": "https://www.reddit.com/r/bollywood"
+        },
+        "content_type": "movie",
+        "tagline": "Restart. Rebuild. Reclaim.",
+        "likes": 4100,
+        "shares": 1050,
+        "backdrop_path": "https://image.tmdb.org/t/p/original/6RV2o8PBCEyw9ylOWViV1CtULIF.jpg",
+        "cast": [
+          {
+            "name": "Vikrant Massey",
+            "character": "Manoj Kumar Sharma",
+            "profile_url": "https://image.tmdb.org/t/p/w185/zvpP52P7CtVXYONmvWrH1aOcRTx.jpg"
+          },
+          {
+            "name": "Medha Shankr",
+            "character": "Shraddha Joshi",
+            "profile_url": "https://image.tmdb.org/t/p/w185/aVemlgs6LIf1GzrpTPjyoV14Y2s.jpg"
+          },
+          {
+            "name": "Anant Joshi",
+            "character": "Pritam Pandey",
+            "profile_url": "https://image.tmdb.org/t/p/w185/jcYbmTJZolVfFknhulko7i2KHSL.jpg"
+          },
+          {
+            "name": "Anshumaan Pushkar",
+            "character": "Gaurinandan",
+            "profile_url": "https://image.tmdb.org/t/p/w185/ktbqCXjoqLuD96tTkHo1PVqVi14.jpg"
+          },
+          {
+            "name": "Priyanshu Chatterjee",
+            "character": "Dushyant Singh",
+            "profile_url": "https://image.tmdb.org/t/p/w185/fPAIAZcdGD2UBMwBluqiYi5pXHb.jpg"
+          }
+        ],
+        "crew": {
+          "directors": [
+            "Vidhu Vinod Chopra"
+          ],
+          "writers": [
+            "Vidhu Vinod Chopra",
+            "Jaskunwar Kohli"
+          ]
+        },
+        "episodes": null,
+        "genres": [
+          "Drama"
+        ],
+        "imdb_id": "tt23849204",
+        "imdb_rating": 8.7,
+        "imdb_votes": "158,786",
+        "language": "Hindi",
+        "last_enriched": "2025-11-06T17:29:30.454502+00:00",
+        "normalized_title": "12th Fail",
+        "poster_path": "https://image.tmdb.org/t/p/w500/eebUPRI4Z5e1Z7Hev4JZAwMIFkX.jpg",
+        "poster_url": "https://image.tmdb.org/t/p/w500/eebUPRI4Z5e1Z7Hev4JZAwMIFkX.jpg",
+        "providers_in": [
+          "JioHotstar"
+        ],
+        "rating_source": "imdb",
+        "runtime": 146,
+        "seasons": null,
+        "streaming_platforms": [
+          {
+            "platform_name": "JioHotstar",
+            "platform_logo": "https://image.tmdb.org/t/p/original/kVqjgpcwvDJOhCupjcLzwwtOp52.jpg",
+            "type": "flatrate"
+          }
+        ],
+        "tmdb_id": 1163258,
+        "trailer_url": null,
+        "vote_average": 8.0,
+        "vote_count": 190,
+        "watchmode_id": null,
+        "year": 2023
+      },
+      {
+        "id": "a96139e8-ad88-4bf7-8054-505ed4a11d9c",
+        "title": "Asur Season 2",
+        "category": "buzzing",
+        "platform": "JioHotstar",
+        "platform_content_id": null,
+        "rating": 8.5,
+        "thumbnail": "https://image.tmdb.org/t/p/w500/j46aS5y81KEcKLhdBSWGc9mtaWy.jpg",
+        "description": "Shubh returns for revenge and this season he takes the challenge to a whole new level. With the heroes fallen apart, will a desolate Dhananjay Rajpoot and a torn Nikhil Nair be able to stop him?",
+        "release_date": "2025-02",
+        "social_links": {
+          "youtube": "https://www.youtube.com/results?search_query=Asur+Season+2+trailer",
+          "twitter": "https://twitter.com/search?q=%23Asur",
+          "reddit": "https://www.reddit.com/r/IndianWebSeries"
+        },
+        "content_type": "series",
+        "tagline": "Evil never dies",
+        "likes": 2700,
+        "shares": 690,
+        "backdrop_path": "https://image.tmdb.org/t/p/original/wdhiCXssyIXdkjtow6Ld7dZ15n7.jpg",
+        "cast": [
+          {
+            "name": "Arshad Warsi",
+            "character": "Dhananjay Rajput",
+            "profile_url": "https://image.tmdb.org/t/p/w185/iXSA1C7B5mtoUrfDZ2sULE28bww.jpg"
+          },
+          {
+            "name": "Anupriya Goenka",
+            "character": "Naina Nair",
+            "profile_url": "https://image.tmdb.org/t/p/w185/yU73MlKR4rTtxWXPqeqIBxsKY3q.jpg"
+          },
+          {
+            "name": "Ridhi Dogra",
+            "character": "Nusrat Saeed",
+            "profile_url": "https://image.tmdb.org/t/p/w185/7uSK4fvDDPtpKcTBfR0ogKhl3DN.jpg"
+          },
+          {
+            "name": "Sharib Hashmi",
+            "character": "Lolark Dubey",
+            "profile_url": "https://image.tmdb.org/t/p/w185/S3J1QbSDE7wqvlQjVKVF5jLHT.jpg"
+          },
+          {
+            "name": "Barun Sobti",
+            "character": "Nikhil Nair",
+            "profile_url": "https://image.tmdb.org/t/p/w185/gYym8a5dje9Aj3uT8VZsY2r3jya.jpg"
+          }
+        ],
+        "crew": {
+          "directors": [
+            "Oni Sen"
+          ]
+        },
+        "episodes": 8,
+        "genres": [
+          "Crime",
+          "Drama",
+          "Mystery"
+        ],
+        "imdb_id": "tt11912196",
+        "imdb_rating": 8.5,
+        "imdb_votes": "67,268",
+        "language": "Hindi",
+        "last_enriched": "2025-11-06T17:29:27.141840+00:00",
+        "normalized_title": "Asur",
+        "poster_path": "https://image.tmdb.org/t/p/w500/j46aS5y81KEcKLhdBSWGc9mtaWy.jpg",
+        "poster_url": "https://image.tmdb.org/t/p/w500/j46aS5y81KEcKLhdBSWGc9mtaWy.jpg",
+        "providers_in": [
+          "JioHotstar"
+        ],
+        "rating_source": "imdb",
+        "runtime": null,
+        "seasons": null,
+        "streaming_platforms": [
+          {
+            "platform_name": "JioHotstar",
+            "platform_logo": "https://image.tmdb.org/t/p/original/kVqjgpcwvDJOhCupjcLzwwtOp52.jpg",
+            "type": "flatrate"
+          }
+        ],
+        "tmdb_id": 100911,
+        "trailer_url": "https://www.youtube.com/watch?v=0ZwyCRhhK60",
+        "vote_average": 7.8,
+        "vote_count": 79,
+        "watchmode_id": null,
+        "year": 2023
+      },
+      {
+        "id": "jiohotstar_the_railway_men_2023",
+        "title": "The Railway Men",
+        "platform": "JioHotstar",
+        "content_type": "series",
+        "category": "entertainment",
+        "year": 2023,
+        "description": "India, 1984. After a deadly gas leaks from a factory in Bhopal, brave railway workers risk their lives to save others in the face of an unspeakable disaster.",
+        "poster_url": "https://image.tmdb.org/t/p/w500/kOYlMHtNSqnf1FgsoK1JJypfkrY.jpg",
+        "genres": [
+          "Drama"
+        ],
+        "rating": 8.5,
+        "likes": 0,
+        "shares": 0,
+        "backdrop_path": "https://image.tmdb.org/t/p/original/s7dpEDsAan8mvC5cikvWidOupsO.jpg",
+        "cast": [
+          {
+            "name": "Kay Kay Menon",
+            "character": "Iftekaar Siddiqui",
+            "profile_url": "https://image.tmdb.org/t/p/w185/lcCMzGpxHXTStLMN7G9SQovxSQo.jpg"
+          },
+          {
+            "name": "Divyendu Sharma",
+            "character": "Balwant Yadav",
+            "profile_url": "https://image.tmdb.org/t/p/w185/rGlCCQtOBiNJULfB5w0FXgPPKw0.jpg"
+          },
+          {
+            "name": "Babil Khan",
+            "character": "Imad Riaz",
+            "profile_url": "https://image.tmdb.org/t/p/w185/izUfgIyPqPPldqKvWYqCEgFiGpX.jpg"
+          },
+          {
+            "name": "R. Madhavan",
+            "character": "Rati Pandey",
+            "profile_url": "https://image.tmdb.org/t/p/w185/gaDrAdXxIrbBRCd9cX8YvJDEuLb.jpg"
+          },
+          {
+            "name": "Sunny Hinduja",
+            "character": "Jagmohan Kumawat",
+            "profile_url": "https://image.tmdb.org/t/p/w185/8x08qf2ESUpU5aVh1m4PfLdqBkG.jpg"
+          }
+        ],
+        "crew": {
+          "directors": [
+            "Shiv Rawail"
+          ],
+          "writers": [
+            "Aayush Gupta"
+          ]
+        },
+        "episodes": 4,
+        "imdb_id": "tt16296870",
+        "imdb_rating": 8.5,
+        "imdb_votes": "25,273",
+        "language": "Hindi",
+        "last_enriched": "2025-11-06T17:30:04.771920+00:00",
+        "normalized_title": "The Railway Men - The Untold Story of Bhopal 1984",
+        "poster_path": "https://image.tmdb.org/t/p/w500/kOYlMHtNSqnf1FgsoK1JJypfkrY.jpg",
+        "providers_in": [
+          "Netflix"
+        ],
+        "rating_source": "imdb",
+        "seasons": 1,
+        "streaming_platforms": [
+          {
+            "platform_name": "Netflix",
+            "platform_logo": "https://image.tmdb.org/t/p/original/pbpMk2JmcoNnQwx5JGpXngfoWtp.jpg",
+            "type": "flatrate"
+          }
+        ],
+        "thumbnail": "https://image.tmdb.org/t/p/w500/kOYlMHtNSqnf1FgsoK1JJypfkrY.jpg",
+        "tmdb_id": 213895,
+        "trailer_url": "https://www.youtube.com/watch?v=htQsI-b9dgc",
+        "vote_average": 8.2,
+        "vote_count": 63,
+        "platform_content_id": null,
+        "runtime": null,
+        "watchmode_id": null
+      },
+      {
+        "id": "2abfa8c7-faf0-4d49-a3f0-56b7ca67ce1d",
+        "title": "Dune Part 2",
+        "category": "hot_drop",
+        "platform": "JioHotstar",
+        "platform_content_id": null,
+        "rating": 8.4,
+        "thumbnail": "https://image.tmdb.org/t/p/w500/1pdfLvkbY9ohJlCjQH2CZjjYVvJ.jpg",
+        "description": "Follow the mythic journey of Paul Atreides as he unites with Chani and the Fremen while on a path of revenge against the conspirators who destroyed his family. Facing a choice between the love of his life and the fate of the known universe, Paul endeavors to prevent a terrible future only he can foresee.",
+        "release_date": "2024-12",
+        "social_links": {
+          "youtube": "https://www.youtube.com/results?search_query=Dune+Part+2+trailer",
+          "twitter": "https://twitter.com/search?q=%23DunePartTwo",
+          "reddit": "https://www.reddit.com/r/dune"
+        },
+        "content_type": "movie",
+        "tagline": "The prophecy is real",
+        "likes": 3900,
+        "shares": 980,
+        "backdrop_path": "https://image.tmdb.org/t/p/original/ylkdrn23p3gQcHx7ukIfuy2CkTE.jpg",
+        "cast": [
+          {
+            "name": "Timoth\u00e9e Chalamet",
+            "character": "Paul Atreides",
+            "profile_url": "https://image.tmdb.org/t/p/w185/dFxpwRpmzpVfP1zjluH68DeQhyj.jpg"
+          },
+          {
+            "name": "Zendaya",
+            "character": "Chani",
+            "profile_url": "https://image.tmdb.org/t/p/w185/3WdOloHpjtjL96uVOhFRRCcYSwq.jpg"
+          },
+          {
+            "name": "Rebecca Ferguson",
+            "character": "Jessica",
+            "profile_url": "https://image.tmdb.org/t/p/w185/lJloTOheuQSirSLXNA3JHsrMNfH.jpg"
+          },
+          {
+            "name": "Javier Bardem",
+            "character": "Stilgar",
+            "profile_url": "https://image.tmdb.org/t/p/w185/p5xjCovj1uzvA2SXrWLH78Nh1Jf.jpg"
+          },
+          {
+            "name": "Josh Brolin",
+            "character": "Gurney Halleck",
+            "profile_url": "https://image.tmdb.org/t/p/w185/7QpneI3HoZCCDVPyWx3p3t7yeo7.jpg"
+          }
+        ],
+        "crew": {
+          "directors": [
+            "Denis Villeneuve"
+          ],
+          "writers": [
+            "Denis Villeneuve",
+            "Jon Spaihts"
+          ]
+        },
+        "episodes": null,
+        "genres": [
+          "Science Fiction",
+          "Adventure"
+        ],
+        "imdb_id": "tt15239678",
+        "imdb_rating": 8.4,
+        "imdb_votes": "673,904",
+        "language": "English",
+        "last_enriched": "2025-11-06T17:29:29.271857+00:00",
+        "normalized_title": "Dune: Part Two",
+        "poster_path": "https://image.tmdb.org/t/p/w500/1pdfLvkbY9ohJlCjQH2CZjjYVvJ.jpg",
+        "poster_url": "https://image.tmdb.org/t/p/w500/1pdfLvkbY9ohJlCjQH2CZjjYVvJ.jpg",
+        "providers_in": [
+          "Apple TV",
+          "Google Play Movies",
+          "YouTube",
+          "Amazon Video"
+        ],
+        "rating_source": "imdb",
+        "runtime": 167,
+        "seasons": null,
+        "streaming_platforms": [
+          {
+            "platform_name": "Apple TV",
+            "platform_logo": "https://image.tmdb.org/t/p/original/SPnB1qiCkYfirS2it3hZORwGVn.jpg",
+            "type": "buy"
+          },
+          {
+            "platform_name": "Google Play Movies",
+            "platform_logo": "https://image.tmdb.org/t/p/original/8z7rC8uIDaTM91X0ZfkRf04ydj2.jpg",
+            "type": "buy"
+          },
+          {
+            "platform_name": "YouTube",
+            "platform_logo": "https://image.tmdb.org/t/p/original/pTnn5JwWr4p3pG8H6VrpiQo7Vs0.jpg",
+            "type": "buy"
+          },
+          {
+            "platform_name": "Amazon Video",
+            "platform_logo": "https://image.tmdb.org/t/p/original/seGSXajazLMCKGB5hnRCidtjay1.jpg",
+            "type": "rent"
+          }
+        ],
+        "tmdb_id": 693134,
+        "trailer_url": "https://www.youtube.com/watch?v=U2Qp5pL3ovA",
+        "vote_average": 8.1,
+        "vote_count": 7169,
+        "watchmode_id": null,
+        "year": 2024
+      },
+      {
+        "id": "jiohotstar_laapataa_ladies_2024",
+        "title": "Laapataa Ladies",
+        "platform": "JioHotstar",
+        "content_type": "movie",
+        "category": "entertainment",
+        "year": 2024,
+        "description": "In 2001, somewhere in rural India, two young brides get accidentally swapped on a train. In the ensuing chaos, they both encounter a host of colourful characters, resulting in hilarious and unexpected consequences.",
+        "poster_url": "https://image.tmdb.org/t/p/w500/cGG5hCwPnMvuKzvUBnxo5y3DcVM.jpg",
+        "genres": [
+          "Comedy",
+          "Drama",
+          "Romance"
+        ],
+        "rating": 8.4,
+        "likes": 0,
+        "shares": 0,
+        "backdrop_path": "https://image.tmdb.org/t/p/original/uUVXEEyMsyWxrcbmAppUCYg6egV.jpg",
+        "cast": [
+          {
+            "name": "Nitanshi Goel",
+            "character": "Phool",
+            "profile_url": "https://image.tmdb.org/t/p/w185/tssZxJMnOGBaliP4NaNta8V22nd.jpg"
+          },
+          {
+            "name": "Pratibha Ranta",
+            "character": "Jaya",
+            "profile_url": "https://image.tmdb.org/t/p/w185/vsvTUQKQjnggxCJBVfHuLeYY9w3.jpg"
+          },
+          {
+            "name": "Sparsh Shrivastava",
+            "character": "Deepak Kumar",
+            "profile_url": "https://image.tmdb.org/t/p/w185/d123XZfocCLnc5LAjrlBifffYFf.jpg"
+          },
+          {
+            "name": "Ravi Kishan",
+            "character": "Sub-Inspector Shyam Manohar",
+            "profile_url": "https://image.tmdb.org/t/p/w185/rkUTRk0tuA98RepP9jhgcCbhHqy.jpg"
+          },
+          {
+            "name": "Chhaya Kadam",
+            "character": "Manju Maai",
+            "profile_url": "https://image.tmdb.org/t/p/w185/umOPkpPA4JUWLkVziYU5GF6gELD.jpg"
+          }
+        ],
+        "crew": {
+          "directors": [
+            "Kiran Rao"
+          ],
+          "writers": [
+            "Sneha Desai"
+          ]
+        },
+        "imdb_id": "tt21626284",
+        "imdb_rating": 8.4,
+        "imdb_votes": "48,169",
+        "language": "Hindi",
+        "last_enriched": "2025-11-06T17:29:58.602459+00:00",
+        "normalized_title": "Lost Ladies",
+        "poster_path": "https://image.tmdb.org/t/p/w500/cGG5hCwPnMvuKzvUBnxo5y3DcVM.jpg",
+        "providers_in": [
+          "Netflix"
+        ],
+        "rating_source": "imdb",
+        "runtime": 123,
+        "streaming_platforms": [
+          {
+            "platform_name": "Netflix",
+            "platform_logo": "https://image.tmdb.org/t/p/original/pbpMk2JmcoNnQwx5JGpXngfoWtp.jpg",
+            "type": "flatrate"
+          }
+        ],
+        "thumbnail": "https://image.tmdb.org/t/p/w500/cGG5hCwPnMvuKzvUBnxo5y3DcVM.jpg",
+        "tmdb_id": 1163194,
+        "trailer_url": "https://www.youtube.com/watch?v=hGM87LCJxRc",
+        "vote_average": 7.8,
+        "vote_count": 120,
+        "episodes": null,
+        "platform_content_id": null,
+        "seasons": null,
+        "watchmode_id": null
+      },
+      {
+        "id": "jiohotstar_house_of_the_dragon_season_2_2022",
+        "title": "House of the Dragon Season 2",
+        "platform": "JioHotstar",
+        "content_type": "series",
+        "category": "entertainment",
+        "year": 2024,
+        "description": "The Dance of the Dragons erupts as Rhaenyra and Aegon II both assert their claims to the Iron Throne, plunging Westeros into a brutal civil war. The season delves into the complexities of loyalty, power, and family as both sides employ dragons and armies to assert dominance. Key events include the tragic assassination of Prince Jaehaerys, escalating the conflict, and the shifting dynamics among key players like Daemon Targaryen and Alicent Hightower. As the war intensifies, the realm witnesses the devastating consequences of ambition and the high cost of succession disputes.",
+        "poster_url": "https://image.tmdb.org/t/p/w500/lZwxqNWnT1dRl76ry6BM0FPqCUg.jpg",
+        "genres": [
+          "Sci-Fi & Fantasy",
+          "Drama",
+          "Action & Adventure"
+        ],
+        "rating": 8.3,
+        "likes": 0,
+        "shares": 0,
+        "backdrop_path": "https://image.tmdb.org/t/p/original/2xGcSLyTAzConiHAByWqhfLiatT.jpg",
+        "cast": [
+          {
+            "name": "Emma D'Arcy",
+            "character": "Princess Rhaenyra Targaryen",
+            "profile_url": "https://image.tmdb.org/t/p/w185/9Zlmb7VmtVCxkLq5yqFFRRxCaED.jpg"
+          },
+          {
+            "name": "Matt Smith",
+            "character": "Prince Daemon Targaryen",
+            "profile_url": "https://image.tmdb.org/t/p/w185/xr2GSp8Pm6fT5VGm0I9tsWVcZ8q.jpg"
+          },
+          {
+            "name": "Olivia Cooke",
+            "character": "Alicent Hightower",
+            "profile_url": "https://image.tmdb.org/t/p/w185/7LYm4jGDq8IxAe4D6TTPkWwU0Ft.jpg"
+          },
+          {
+            "name": "Patrick Sass",
+            "character": "Arilon",
+            "profile_url": "https://image.tmdb.org/t/p/w185/vuNJSbka67J69akd9hgvqoVTFXA.jpg"
+          }
+        ],
+        "episodes": 8,
+        "imdb_id": "tt11198330",
+        "imdb_rating": 8.3,
+        "imdb_votes": "492,351",
+        "language": "English",
+        "last_enriched": "2025-11-06T17:29:56.265756+00:00",
+        "normalized_title": "House of the Dragon",
+        "poster_path": "https://image.tmdb.org/t/p/w500/lZwxqNWnT1dRl76ry6BM0FPqCUg.jpg",
+        "providers_in": [
+          "JioHotstar"
+        ],
+        "rating_source": "imdb",
+        "season_number": 2,
+        "streaming_platforms": [
+          {
+            "platform_name": "JioHotstar",
+            "platform_logo": "https://image.tmdb.org/t/p/original/kVqjgpcwvDJOhCupjcLzwwtOp52.jpg",
+            "type": "flatrate"
+          }
+        ],
+        "thumbnail": "https://image.tmdb.org/t/p/w500/lZwxqNWnT1dRl76ry6BM0FPqCUg.jpg",
+        "tmdb_id": 94997,
+        "trailer_url": "https://www.youtube.com/watch?v=DotnJ7tTA34",
+        "vote_average": 8.3,
+        "vote_count": 5548,
+        "crew": {},
+        "platform_content_id": null,
+        "runtime": null,
+        "seasons": null,
+        "watchmode_id": null
+      },
+      {
+        "id": "jiohotstar_loki_season_2_2021",
+        "title": "Loki Season 2",
+        "platform": "JioHotstar",
+        "content_type": "series",
+        "category": "entertainment",
+        "year": 2023,
+        "description": "In the aftermath of Season 1, Loki finds himself in a battle for the soul of the Time Variance Authority. Along with Mobius, Hunter B-15 and a team of new and returning characters, Loki navigates an ever-expanding and increasingly dangerous multiverse in search of Sylvie, Judge Renslayer, Miss Minutes and the truth of what it means to possess free will and glorious purpose.",
+        "poster_url": "https://image.tmdb.org/t/p/w500/oJdVHUYrjdS2IqiNztVIP4GPB1p.jpg",
+        "genres": [
+          "Drama",
+          "Sci-Fi & Fantasy"
+        ],
+        "rating": 8.2,
+        "likes": 0,
+        "shares": 0,
+        "backdrop_path": "https://image.tmdb.org/t/p/original/q3jHCb4dMfYF6ojikKuHd6LscxC.jpg",
+        "cast": [
+          {
+            "name": "Tom Hiddleston",
+            "character": "Loki Laufeyson",
+            "profile_url": "https://image.tmdb.org/t/p/w185/mclHxMm8aPlCPKptP67257F5GPo.jpg"
+          },
+          {
+            "name": "Sophia Di Martino",
+            "character": "Sylvie / The Variant",
+            "profile_url": "https://image.tmdb.org/t/p/w185/qZdFp18btpQJfDoknxr7DgfRpcB.jpg"
+          },
+          {
+            "name": "Wunmi Mosaku",
+            "character": "Hunter B-15",
+            "profile_url": "https://image.tmdb.org/t/p/w185/yWM19CjCv66MqNkwHBp6Dpvtn9x.jpg"
+          },
+          {
+            "name": "Eugene Cordero",
+            "character": "Casey / Hunter K-5E",
+            "profile_url": "https://image.tmdb.org/t/p/w185/waruLSR8lXBjhAFL0J6ihuVY62d.jpg"
+          },
+          {
+            "name": "Ke Huy Quan",
+            "character": "Ouroboros 'OB'",
+            "profile_url": "https://image.tmdb.org/t/p/w185/iestHyn7PLuVowj5Jaa1SGPboQ4.jpg"
+          }
+        ],
+        "episodes": 6,
+        "imdb_id": "tt9140554",
+        "imdb_rating": 8.2,
+        "imdb_votes": "458,017",
+        "language": "English",
+        "last_enriched": "2025-11-06T17:29:57.200882+00:00",
+        "normalized_title": "Loki",
+        "poster_path": "https://image.tmdb.org/t/p/w500/oJdVHUYrjdS2IqiNztVIP4GPB1p.jpg",
+        "providers_in": [
+          "JioHotstar",
+          "VI movies and tv"
+        ],
+        "rating_source": "imdb",
+        "season_number": 2,
+        "streaming_platforms": [
+          {
+            "platform_name": "JioHotstar",
+            "platform_logo": "https://image.tmdb.org/t/p/original/kVqjgpcwvDJOhCupjcLzwwtOp52.jpg",
+            "type": "flatrate"
+          },
+          {
+            "platform_name": "VI movies and tv",
+            "platform_logo": "https://image.tmdb.org/t/p/original/9YJY5OwsIPMoX3xC3TdtZVbKBpE.jpg",
+            "type": "flatrate"
+          }
+        ],
+        "thumbnail": "https://image.tmdb.org/t/p/w500/oJdVHUYrjdS2IqiNztVIP4GPB1p.jpg",
+        "tmdb_id": 84958,
+        "trailer_url": "https://www.youtube.com/watch?v=nW948Va-l10",
+        "vote_average": 8.2,
+        "vote_count": 12081,
+        "crew": {},
+        "platform_content_id": null,
+        "runtime": null,
+        "seasons": null,
+        "watchmode_id": null
+      },
+      {
+        "id": "jiohotstar_kaala_paani_2023",
+        "title": "Kaala Paani",
+        "platform": "JioHotstar",
+        "content_type": "series",
+        "category": "entertainment",
+        "year": 2023,
+        "description": "Set in the near future, the Andaman and Nicobar Islands are quarantined from the rest of the world as a mystery disease engulfs them, prompting the islanders to attempt an unprecedented feat in human history - escaping the Kaala Paani.",
+        "poster_url": "https://image.tmdb.org/t/p/w500/wQJFHysapAr1eXB5BWNSRbfgTbU.jpg",
+        "genres": [
+          "Drama"
+        ],
+        "rating": 8.0,
+        "likes": 0,
+        "shares": 0,
+        "backdrop_path": "https://image.tmdb.org/t/p/original/8wZJ3G3u936QHuQ6FCtZWwNDnFF.jpg",
+        "cast": [
+          {
+            "name": "Ashutosh Gowariker",
+            "character": "Zibran Qadri",
+            "profile_url": "https://image.tmdb.org/t/p/w185/68HDY3mVDLtx4GI4jMHCkzhSICy.jpg"
+          },
+          {
+            "name": "Sukant Goel",
+            "character": "Chiranjeevi \"Chiru\" Prabhu",
+            "profile_url": "https://image.tmdb.org/t/p/w185/tpHr9khY5XIwFOFB8LbLgSelCY9.jpg"
+          },
+          {
+            "name": "Amey Wagh",
+            "character": "Ketan Kamat",
+            "profile_url": "https://image.tmdb.org/t/p/w185/aGGnvRLozVnFgjZSuROHKDstAXT.jpg"
+          },
+          {
+            "name": "Vikas Kumar",
+            "character": "Santosh Savla",
+            "profile_url": "https://image.tmdb.org/t/p/w185/qxLrmsNJXeuxuq96vFMXEXw3jbM.jpg"
+          },
+          {
+            "name": "Arushi Sharma",
+            "character": "Jyotsna Dey",
+            "profile_url": "https://image.tmdb.org/t/p/w185/f4a3f6oo0NqyRFKNS7q8BxTYWGy.jpg"
+          }
+        ],
+        "crew": {
+          "directors": [
+            "Amit Golani",
+            "Sameer Saxena"
+          ],
+          "writers": [
+            "Biswapati Sarkar"
+          ]
+        },
+        "episodes": 7,
+        "imdb_id": "tt19072562",
+        "imdb_rating": 8.0,
+        "imdb_votes": "11,301",
+        "language": "Hindi",
+        "last_enriched": "2025-11-06T17:30:05.178798+00:00",
+        "normalized_title": "Kaala Paani",
+        "poster_path": "https://image.tmdb.org/t/p/w500/wQJFHysapAr1eXB5BWNSRbfgTbU.jpg",
+        "providers_in": [
+          "Netflix"
+        ],
+        "rating_source": "imdb",
+        "seasons": 1,
+        "streaming_platforms": [
+          {
+            "platform_name": "Netflix",
+            "platform_logo": "https://image.tmdb.org/t/p/original/pbpMk2JmcoNnQwx5JGpXngfoWtp.jpg",
+            "type": "flatrate"
+          }
+        ],
+        "thumbnail": "https://image.tmdb.org/t/p/w500/wQJFHysapAr1eXB5BWNSRbfgTbU.jpg",
+        "tmdb_id": 235356,
+        "trailer_url": "https://www.youtube.com/watch?v=o85JpyFa-Bs",
+        "vote_average": 7.2,
+        "vote_count": 41,
+        "platform_content_id": null,
+        "runtime": null,
+        "watchmode_id": null
+      },
+      {
+        "id": "jiohotstar_article_370_2024",
+        "title": "Article 370",
+        "platform": "JioHotstar",
+        "content_type": "movie",
+        "category": "entertainment",
+        "year": 2024,
+        "description": "Ahead of a major constitutional decision which rendered the Article 370 of the Indian state ineffective, special agent Zooni Haksar is tasked with a secret mission to quell violence in the conflict-ridden region.",
+        "poster_url": "https://image.tmdb.org/t/p/w500/9VTemjHMpyxzfC3JsG2aFy8Bf9Y.jpg",
+        "genres": [
+          "Action",
+          "Thriller",
+          "Drama"
+        ],
+        "rating": 7.8,
+        "likes": 0,
+        "shares": 0,
+        "backdrop_path": "https://image.tmdb.org/t/p/original/ixX3aPr4rcCYFM0UsAH81T4eZ0e.jpg",
+        "cast": [
+          {
+            "name": "Yami Gautam",
+            "character": "Zooni Haksar",
+            "profile_url": "https://image.tmdb.org/t/p/w185/u4LFwi4mA0qyK0zTuqHoPL5LPi9.jpg"
+          },
+          {
+            "name": "Priyamani",
+            "character": "Rajeshwari Swaminathan",
+            "profile_url": "https://image.tmdb.org/t/p/w185/zB365nF9wec5KBczviUTAX9MwHj.jpg"
+          },
+          {
+            "name": "Skand Thakur",
+            "character": "Wasim Abbasi",
+            "profile_url": "https://image.tmdb.org/t/p/w185/qcADLKkBWLFW1hbPuUYmpFUHajW.jpg"
+          },
+          {
+            "name": "Vaibhav Tatwawadi",
+            "character": "Yash Chauhan",
+            "profile_url": "https://image.tmdb.org/t/p/w185/pw6IBvvZyEssdfJvtTbq01ta1l.jpg"
+          },
+          {
+            "name": "Raj Arjun",
+            "character": "Khawar Ali",
+            "profile_url": "https://image.tmdb.org/t/p/w185/3lW4MxXhkeBavAkvPLpYdExFIZ.jpg"
+          }
+        ],
+        "crew": {
+          "directors": [
+            "Aditya Suhas Jambhale"
+          ],
+          "writers": [
+            "Arjun Dhawan",
+            "Aarsh Vora"
+          ]
+        },
+        "imdb_id": "tt30970235",
+        "imdb_rating": 7.8,
+        "imdb_votes": "25,339",
+        "language": "Hindi",
+        "last_enriched": "2025-11-06T17:29:59.973538+00:00",
+        "normalized_title": "Article 370",
+        "poster_path": "https://image.tmdb.org/t/p/w500/9VTemjHMpyxzfC3JsG2aFy8Bf9Y.jpg",
+        "providers_in": [
+          "Netflix",
+          "Zee5"
+        ],
+        "rating_source": "imdb",
+        "runtime": 160,
+        "streaming_platforms": [
+          {
+            "platform_name": "Netflix",
+            "platform_logo": "https://image.tmdb.org/t/p/original/pbpMk2JmcoNnQwx5JGpXngfoWtp.jpg",
+            "type": "flatrate"
+          },
+          {
+            "platform_name": "Zee5",
+            "platform_logo": "https://image.tmdb.org/t/p/original/gP67NRy1ShUJilrzMsbOmEmdmcv.jpg",
+            "type": "flatrate"
+          }
+        ],
+        "thumbnail": "https://image.tmdb.org/t/p/w500/9VTemjHMpyxzfC3JsG2aFy8Bf9Y.jpg",
+        "tmdb_id": 1233531,
+        "vote_average": 6.9,
+        "vote_count": 34,
+        "episodes": null,
+        "platform_content_id": null,
+        "seasons": null,
+        "trailer_url": null,
+        "watchmode_id": null
+      },
+      {
+        "id": "jiohotstar_aarya_season_3_2020",
+        "title": "Aarya Season 3",
+        "platform": "JioHotstar",
+        "content_type": "series",
+        "category": "entertainment",
+        "year": 2023,
+        "description": "The Sherni is back again, and she is all set to end it all. Will she succeed?",
+        "poster_url": "https://image.tmdb.org/t/p/w500/8FiYNECy6JOSs0wef86Mj8PyGiQ.jpg",
+        "genres": [
+          "Crime",
+          "Drama"
+        ],
+        "rating": 7.7,
+        "likes": 0,
+        "shares": 0,
+        "backdrop_path": "https://image.tmdb.org/t/p/original/wPYnXZg8kXUA9vlpHSLXhXB87SY.jpg",
+        "cast": [
+          {
+            "name": "Sushmita Sen",
+            "character": "Aarya Sareen",
+            "profile_url": "https://image.tmdb.org/t/p/w185/arteijssIoHzs8wFLjs6pvqRnlJ.jpg"
+          },
+          {
+            "name": "Vikas Kumar",
+            "character": "ACP Khan",
+            "profile_url": "https://image.tmdb.org/t/p/w185/qxLrmsNJXeuxuq96vFMXEXw3jbM.jpg"
+          },
+          {
+            "name": "Viren Vazirani",
+            "character": "Veer Sareen",
+            "profile_url": "https://image.tmdb.org/t/p/w185/iIm4SQccjb2A8TMYVoeJDlLk2Q9.jpg"
+          },
+          {
+            "name": "Sikandar Kher",
+            "character": "Daulat",
+            "profile_url": "https://image.tmdb.org/t/p/w185/sULXachczStfQLegNVmxcvuUTWZ.jpg"
+          },
+          {
+            "name": "Pratyaksh Panwar",
+            "character": "Adi",
+            "profile_url": "https://image.tmdb.org/t/p/w185/2I5BgyHLAxTHt7Bz0MtBciXBzht.jpg"
+          }
+        ],
+        "episodes": 8,
+        "imdb_id": "tt12448030",
+        "imdb_rating": 7.7,
+        "imdb_votes": "16,386",
+        "language": "Hindi",
+        "last_enriched": "2025-11-06T17:30:06.584986+00:00",
+        "normalized_title": "Aarya",
+        "poster_path": "https://image.tmdb.org/t/p/w500/8FiYNECy6JOSs0wef86Mj8PyGiQ.jpg",
+        "providers_in": [
+          "JioHotstar",
+          "VI movies and tv"
+        ],
+        "rating_source": "imdb",
+        "runtime": 52,
+        "season_number": 3,
+        "streaming_platforms": [
+          {
+            "platform_name": "JioHotstar",
+            "platform_logo": "https://image.tmdb.org/t/p/original/kVqjgpcwvDJOhCupjcLzwwtOp52.jpg",
+            "type": "flatrate"
+          },
+          {
+            "platform_name": "VI movies and tv",
+            "platform_logo": "https://image.tmdb.org/t/p/original/9YJY5OwsIPMoX3xC3TdtZVbKBpE.jpg",
+            "type": "flatrate"
+          }
+        ],
+        "thumbnail": "https://image.tmdb.org/t/p/w500/8FiYNECy6JOSs0wef86Mj8PyGiQ.jpg",
+        "tmdb_id": 104913,
+        "trailer_url": "https://www.youtube.com/watch?v=KSVD5w1zw0g",
+        "vote_average": 7.3,
+        "vote_count": 21,
+        "crew": {},
+        "platform_content_id": null,
+        "seasons": null,
+        "watchmode_id": null
+      }
+    ],
+    "SonyLIV": [
+      {
+        "id": "28e97a10-8eed-4c1e-9ab6-85279ebf830c",
+        "title": "UEFA Champions League",
+        "category": "sports",
+        "platform": "SonyLIV",
+        "platform_content_id": null,
+        "rating": 9.4,
+        "thumbnail": "https://images.unsplash.com/photo-1522778119026-d647f0596c20?w=400&h=600&fit=crop",
+        "description": "",
+        "release_date": "2025-02",
+        "social_links": {
+          "youtube": "https://www.youtube.com/results?search_query=UEFA+Champions+League+highlights",
+          "twitter": "https://twitter.com/search?q=%23UCL",
+          "reddit": "https://www.reddit.com/r/soccer"
+        },
+        "content_type": "sports_event",
+        "tagline": "Glory awaits",
+        "likes": 4800,
+        "shares": 1300,
+        "backdrop_path": null,
+        "cast": [
+          {
+            "name": "Oliver Kahn",
+            "character": "Self",
+            "profile_url": "https://image.tmdb.org/t/p/w185/151HlHs8SQfvJIXVzmiyDhdnUQx.jpg"
+          },
+          {
+            "name": "Lars Ricken",
+            "character": "Self",
+            "profile_url": null
+          },
+          {
+            "name": "Tommi Schmitt",
+            "character": "Self",
+            "profile_url": "https://image.tmdb.org/t/p/w185/du7ZYzkRQV4b7kd77n0YtxcmrUI.jpg"
+          },
+          {
+            "name": "Klaus Hempel",
+            "character": "Self",
+            "profile_url": null
+          },
+          {
+            "name": "J\u00fcrgen Lenz",
+            "character": "Self",
+            "profile_url": null
+          }
+        ],
+        "crew": {
+          "directors": [
+            "Christian Twente",
+            "Markus Brauckmann"
+          ]
+        },
+        "episodes": null,
+        "genres": [
+          "Documentary"
+        ],
+        "imdb_id": "tt37178878",
+        "imdb_rating": null,
+        "imdb_votes": null,
+        "language": "German",
+        "last_enriched": "2025-11-06T17:29:33.774483+00:00",
+        "normalized_title": "Trophy Men \u2013 Die Erfindung der UEFA Champions League",
+        "poster_path": null,
+        "poster_url": null,
+        "providers_in": [],
+        "rating_source": "tmdb",
+        "runtime": null,
+        "seasons": null,
+        "streaming_platforms": [],
+        "tmdb_id": 1501796,
+        "trailer_url": null,
+        "vote_average": null,
+        "vote_count": null,
+        "watchmode_id": null,
+        "year": 2025
+      },
+      {
+        "id": "sonyliv_freedom_at_midnight_2024",
+        "title": "Freedom at Midnight",
+        "platform": "SonyLIV",
+        "content_type": "series",
+        "category": "entertainment",
+        "year": 2024,
+        "description": "Freedom at Midnight is the electrifying story of India's struggle for independence. Based on the bestselling book of the same name, it recounts the partition of India and Pakistan, and the religious and socio-political dynamics of the era.",
+        "poster_url": "https://image.tmdb.org/t/p/w500/gCId3CjVHGePMYtu1pYzhZDXtEc.jpg",
+        "genres": [
+          "Drama"
+        ],
+        "rating": 8.4,
+        "likes": 0,
+        "shares": 0,
+        "backdrop_path": "https://image.tmdb.org/t/p/original/tRiE07p2RbK88Fua4Zx6WOkaxRm.jpg",
+        "cast": [
+          {
+            "name": "Sidhant Gupta",
+            "character": "Jawaharlal Nehru",
+            "profile_url": "https://image.tmdb.org/t/p/w185/yZhQVBwIQChwwa7SUyqYl76KEGC.jpg"
+          },
+          {
+            "name": "Chirag Vohra",
+            "character": "Mahatma Gandhi",
+            "profile_url": "https://image.tmdb.org/t/p/w185/AoOQWaYS45dIWLpGrlxn4CTGcNh.jpg"
+          },
+          {
+            "name": "Rajendra Chawla",
+            "character": "Sardar Vallabhbhai Patel",
+            "profile_url": "https://image.tmdb.org/t/p/w185/rwldmP0tneEflAVgOaQsYmvTZju.jpg"
+          },
+          {
+            "name": "Arif Zakaria",
+            "character": "Muhammad Ali Jinnah",
+            "profile_url": "https://image.tmdb.org/t/p/w185/fQx14DwQV2Z2p25t4bogVn9A2c.jpg"
+          },
+          {
+            "name": "Ira Dubey",
+            "character": "Fatima Jinnah",
+            "profile_url": "https://image.tmdb.org/t/p/w185/wWhx6gaN6SyogwcAR1LsuT69lOo.jpg"
+          }
+        ],
+        "crew": {
+          "directors": [
+            "Nikkhil Advani"
+          ],
+          "writers": [
+            "Abhinandan Gupta",
+            "Adwitiya Kareng"
+          ]
+        },
+        "episodes": 7,
+        "imdb_id": "tt28102595",
+        "imdb_rating": 8.4,
+        "imdb_votes": "834",
+        "language": "Hindi",
+        "last_enriched": "2025-11-06T17:30:13.203845+00:00",
+        "normalized_title": "Freedom at Midnight",
+        "poster_path": "https://image.tmdb.org/t/p/w500/gCId3CjVHGePMYtu1pYzhZDXtEc.jpg",
+        "providers_in": [
+          "VI movies and tv"
+        ],
+        "rating_source": "imdb",
+        "seasons": 1,
+        "streaming_platforms": [
+          {
+            "platform_name": "VI movies and tv",
+            "platform_logo": "https://image.tmdb.org/t/p/original/9YJY5OwsIPMoX3xC3TdtZVbKBpE.jpg",
+            "type": "flatrate"
+          }
+        ],
+        "thumbnail": "https://image.tmdb.org/t/p/w500/gCId3CjVHGePMYtu1pYzhZDXtEc.jpg",
+        "tmdb_id": 258427,
+        "trailer_url": "https://www.youtube.com/watch?v=Pc3Qhwoi8-Y",
+        "vote_average": 8.3,
+        "vote_count": 7,
+        "platform_content_id": null,
+        "runtime": null,
+        "watchmode_id": null
+      },
+      {
+        "id": "bd79212b-1285-47bf-bf8e-6cb7b7c48cf8",
+        "title": "Scam 2003",
+        "category": "buzzing",
+        "platform": "SonyLIV",
+        "platform_content_id": null,
+        "rating": 7.9,
+        "thumbnail": "https://image.tmdb.org/t/p/w500/wsTVqPNNOOvUXKRJv0DstHUDIw8.jpg",
+        "description": "It will follow the life of Telgi, born in Khanapur in the state of Karnataka, as he became the mastermind behind one of India\u2019s most ingenious scams, which spread across 18 states and shook the entire country",
+        "release_date": "2025-01",
+        "social_links": {
+          "youtube": "https://www.youtube.com/results?search_query=Scam+2003+trailer",
+          "twitter": "https://twitter.com/search?q=%23Scam2003",
+          "reddit": "https://www.reddit.com/r/IndianWebSeries"
+        },
+        "content_type": "series",
+        "tagline": "The stamp of deception",
+        "likes": 2900,
+        "shares": 780,
+        "backdrop_path": "https://image.tmdb.org/t/p/original/cpt1ag1Oy4yOch8qd4TUPHIwCsX.jpg",
+        "cast": [
+          {
+            "name": "Gagan Dev Riar",
+            "character": "Abdul Karim Telgi",
+            "profile_url": "https://image.tmdb.org/t/p/w185/AcizB76RpBpmS5i58JbprI2szCK.jpg"
+          },
+          {
+            "name": "Sana Amin Sheikh",
+            "character": "Nafisa",
+            "profile_url": "https://image.tmdb.org/t/p/w185/udtIsg9MWnwmI0ZielLgBteTKYY.jpg"
+          },
+          {
+            "name": "Shashank Ketkar",
+            "character": "JK",
+            "profile_url": null
+          },
+          {
+            "name": "Mukesh Tiwari",
+            "character": "Suryapratap Gehlot",
+            "profile_url": "https://image.tmdb.org/t/p/w185/37GTjltEJHpi1lQmLmHKJYTpxjj.jpg"
+          },
+          {
+            "name": "Sameer Dharmadhikari",
+            "character": "Tukaram",
+            "profile_url": "https://image.tmdb.org/t/p/w185/1Mwd5xW7jFyfiGK3Zg4AfAuMbWI.jpg"
+          }
+        ],
+        "crew": {
+          "directors": [
+            "Tushar Hiranandani"
+          ],
+          "writers": [
+            "Kiran Yadnyopavit",
+            "Kedar Patankar"
+          ]
+        },
+        "episodes": 10,
+        "genres": [
+          "Drama",
+          "Crime"
+        ],
+        "imdb_id": "tt28804856",
+        "imdb_rating": 7.9,
+        "imdb_votes": "10,653",
+        "language": "Hindi",
+        "last_enriched": "2025-11-06T17:29:25.822639+00:00",
+        "normalized_title": "Scam 2003: The Telgi Story",
+        "poster_path": "https://image.tmdb.org/t/p/w500/wsTVqPNNOOvUXKRJv0DstHUDIw8.jpg",
+        "poster_url": "https://image.tmdb.org/t/p/w500/wsTVqPNNOOvUXKRJv0DstHUDIw8.jpg",
+        "providers_in": [
+          "Sony Liv",
+          "VI movies and tv"
+        ],
+        "rating_source": "imdb",
+        "runtime": null,
+        "seasons": 1,
+        "streaming_platforms": [
+          {
+            "platform_name": "Sony Liv",
+            "platform_logo": "https://image.tmdb.org/t/p/original/3973zlBbBXdXxaWqRWzGG2GYxbT.jpg",
+            "type": "flatrate"
+          },
+          {
+            "platform_name": "VI movies and tv",
+            "platform_logo": "https://image.tmdb.org/t/p/original/9YJY5OwsIPMoX3xC3TdtZVbKBpE.jpg",
+            "type": "flatrate"
+          }
+        ],
+        "tmdb_id": 229403,
+        "trailer_url": "https://www.youtube.com/watch?v=JrotIxxCXiA",
+        "vote_average": 8.1,
+        "vote_count": 14,
+        "watchmode_id": null,
+        "year": 2023
+      },
+      {
+        "id": "sonyliv_trial_by_fire_2023",
+        "title": "Trial by Fire",
+        "platform": "SonyLIV",
+        "content_type": "series",
+        "category": "entertainment",
+        "year": 2023,
+        "description": "After the deadly Uphaar cinema fire, two grief-stricken parents navigate the loss of their kids and a dogged fight for justice.",
+        "poster_url": "https://image.tmdb.org/t/p/w500/rhxP4qaHvheSzM5iVIxSg9D6nU4.jpg",
+        "genres": [
+          "Drama",
+          "Crime"
+        ],
+        "rating": 7.7,
+        "likes": 0,
+        "shares": 0,
+        "backdrop_path": "https://image.tmdb.org/t/p/original/p2vOVks5CpzywWjEecF3u88QCoI.jpg",
+        "cast": [
+          {
+            "name": "Rajshri Deshpande",
+            "character": "Neelam Krishnamoorthy",
+            "profile_url": "https://image.tmdb.org/t/p/w185/gc20jmH0gzo9qUOIo9Slgn7uQHf.jpg"
+          },
+          {
+            "name": "Abhay Deol",
+            "character": "Shekhar Krishnamoorthy",
+            "profile_url": "https://image.tmdb.org/t/p/w185/l5bV9hKbTLJLY9vYjcEz9BOo5Xr.jpg"
+          },
+          {
+            "name": "Ashish Vidhyarthi",
+            "character": "Neeraj Suri",
+            "profile_url": "https://image.tmdb.org/t/p/w185/iBUUpfHZIfpC5afHrHwcyGTHKQF.jpg"
+          },
+          {
+            "name": "Shilpa Shukla",
+            "character": "Shalini",
+            "profile_url": "https://image.tmdb.org/t/p/w185/tSOAtTPNJbIb2Ldp52XgW27exFD.jpg"
+          },
+          {
+            "name": "Rajesh Tailang",
+            "character": "Veer Singh",
+            "profile_url": "https://image.tmdb.org/t/p/w185/ou1zcrNfhXBKcpnPgtKs64SRGXm.jpg"
+          }
+        ],
+        "crew": {
+          "directors": [
+            "Prashant Nair",
+            "Randeep Jha"
+          ]
+        },
+        "episodes": 7,
+        "imdb_id": "tt11611698",
+        "imdb_rating": 7.7,
+        "imdb_votes": "4,454",
+        "language": "Hindi",
+        "last_enriched": "2025-11-06T17:30:12.735466+00:00",
+        "normalized_title": "Trial by Fire",
+        "poster_path": "https://image.tmdb.org/t/p/w500/rhxP4qaHvheSzM5iVIxSg9D6nU4.jpg",
+        "providers_in": [
+          "Netflix"
+        ],
+        "rating_source": "imdb",
+        "seasons": 1,
+        "streaming_platforms": [
+          {
+            "platform_name": "Netflix",
+            "platform_logo": "https://image.tmdb.org/t/p/original/pbpMk2JmcoNnQwx5JGpXngfoWtp.jpg",
+            "type": "flatrate"
+          }
+        ],
+        "thumbnail": "https://image.tmdb.org/t/p/w500/rhxP4qaHvheSzM5iVIxSg9D6nU4.jpg",
+        "tmdb_id": 217699,
+        "trailer_url": "https://www.youtube.com/watch?v=7rMFBiglRXI",
+        "vote_average": 7.9,
+        "vote_count": 23,
+        "platform_content_id": null,
+        "runtime": null,
+        "watchmode_id": null
+      },
+      {
+        "id": "7b459c61-dc95-433c-ada0-53ff5c87698f",
+        "title": "Planet Earth III",
+        "category": "docu_series",
+        "platform": "SonyLIV",
+        "platform_content_id": null,
+        "rating": 5.9,
+        "thumbnail": "https://image.tmdb.org/t/p/w500/5jr6ulNc6u613cmT7di7MtfusjC.jpg",
+        "description": "Ramon's parents are killed by men of landowner John Barrett. While trying to get revenge, Ramon is wounded but has saved the life of Rezza, an old disillusioned killer. While nursing his wounds, the men become reluctanfriends and Rezza teaches Ramon the art of shooting, surviving and the loneliness a killer has to bear. Ramon becomes threat for Barrett, the landowner engages Rezza to kill Ramon.",
+        "release_date": "2025-01",
+        "social_links": {
+          "youtube": "https://www.youtube.com/results?search_query=Planet+Earth+III+trailer",
+          "twitter": "https://twitter.com/search?q=%23PlanetEarth",
+          "reddit": "https://www.reddit.com/r/Documentaries"
+        },
+        "content_type": "documentary",
+        "tagline": "Nature's masterpiece",
+        "likes": 2900,
+        "shares": 760,
+        "backdrop_path": "https://image.tmdb.org/t/p/original/3TOUvY2NZx8r31UHA3CQdRAY271.jpg",
+        "cast": [
+          {
+            "name": "George Eastman",
+            "character": "Ram\u00f3n / Chico",
+            "profile_url": "https://image.tmdb.org/t/p/w185/ehjBEKKfk9Bx5l22JvUSPbdv64c.jpg"
+          },
+          {
+            "name": "Dragomir 'Gidra' Bojani\u0107",
+            "character": "Rezza / Rocco",
+            "profile_url": "https://image.tmdb.org/t/p/w185/rX9P5grkUxgD6ZxWH1kuxqI1FKS.jpg"
+          },
+          {
+            "name": "Dana Ghia",
+            "character": "Lola / Molly - Saloon Owner",
+            "profile_url": "https://image.tmdb.org/t/p/w185/MYAhhRjTn9ovVGhVeMjAANVoqm.jpg"
+          },
+          {
+            "name": "Daniele Vargas",
+            "character": "John Barrett",
+            "profile_url": "https://image.tmdb.org/t/p/w185/fb5Qgqt8I4i0tNjAEcEsGemiMwl.jpg"
+          },
+          {
+            "name": "Mirko Ellis",
+            "character": "Stevens",
+            "profile_url": "https://image.tmdb.org/t/p/w185/xeVNpzxsPGi6Nhsp34rmnU21THJ.jpg"
+          }
+        ],
+        "crew": {
+          "directors": [
+            "Giuseppe Vari"
+          ],
+          "writers": [
+            "Augusto Caminito"
+          ]
+        },
+        "episodes": null,
+        "genres": [
+          "Western"
+        ],
+        "imdb_id": "tt0062413",
+        "imdb_rating": 5.9,
+        "imdb_votes": "456",
+        "language": "Italian",
+        "last_enriched": "2025-11-06T17:29:32.461003+00:00",
+        "normalized_title": "Planet Earth III",
+        "poster_path": "https://image.tmdb.org/t/p/w500/5jr6ulNc6u613cmT7di7MtfusjC.jpg",
+        "poster_url": "https://image.tmdb.org/t/p/w500/5jr6ulNc6u613cmT7di7MtfusjC.jpg",
+        "providers_in": [],
+        "rating_source": "imdb",
+        "runtime": null,
+        "seasons": null,
+        "streaming_platforms": [],
+        "tmdb_id": 116156,
+        "trailer_url": "https://www.youtube.com/watch?v=pjkxHUYCvOs",
+        "vote_average": 6.1,
+        "vote_count": 19,
+        "watchmode_id": null,
+        "year": 2023
+      }
+    ]
+  },
+  "new_noted": [
+    {
+      "id": "tmdb_tv_302696",
+      "title": "KPop Demon Hunters Lyric Videos",
+      "platform": "Netflix",
+      "content_type": "series",
+      "category": "entertainment",
+      "year": 2025,
+      "description": "Some of the smash film's hottest hits come to life as lyric videos in a line-up featuring \"How It's Done,\" \"Golden,\" \"Soda Pop,\" \"Takedown\" and \"Free.\"",
+      "poster_url": "https://image.tmdb.org/t/p/w500/dTqYRhRzKayrCcDVqIS3bXOiRR5.jpg",
+      "backdrop_url": "https://image.tmdb.org/t/p/original/qyj4vs8223qaaWRoa5V37NMKTYt.jpg",
+      "genres": [
+        "Animation"
+      ],
+      "rating": 9.277,
+      "release_date": "2025-10-08",
+      "thumbnail": "https://image.tmdb.org/t/p/w500/dTqYRhRzKayrCcDVqIS3bXOiRR5.jpg",
+      "likes": 0,
+      "shares": 0,
+      "tmdb_id": 302696,
+      "ingestion_date": "2025-11-07T07:09:08.186620",
+      "freshness_score": 81
+    },
+    {
+      "id": "7f7c9685-f898-4706-8391-5dc7d8c4c680",
+      "title": "The Family Man Season 3",
+      "category": "buzzing",
+      "platform": "Prime Video",
+      "platform_content_id": null,
+      "rating": 8.7,
+      "thumbnail": "https://image.tmdb.org/t/p/w500/tE1NUJqw9gV6AVjQ1GTK78LbWJ9.jpg",
+      "description": "The story of a middle-class man who works for a special cell of the National Investigation Agency. While he tries to protect the nation from terrorists, he also has to protect his family from the impact of his secretive, high-pressure, and low paying job.",
+      "release_date": "2025-03",
+      "social_links": {
+        "youtube": "https://www.youtube.com/results?search_query=The+Family+Man+Season+3+trailer",
+        "twitter": "https://twitter.com/search?q=%23TheFamilyMan",
+        "reddit": "https://www.reddit.com/r/TheFamilyMan"
+      },
+      "content_type": "series",
+      "tagline": "Mission impossible",
+      "likes": 3400,
+      "shares": 920,
+      "backdrop_path": "https://image.tmdb.org/t/p/original/eEzKigDI64OomZV6VTJvoPGmVu1.jpg",
+      "cast": [
+        {
+          "name": "Manoj Bajpayee",
+          "character": "Srikant Tiwari",
+          "profile_url": "https://image.tmdb.org/t/p/w185/hBiAldG2BGMVoZUPbvK3FNDSw22.jpg"
+        },
+        {
+          "name": "Priyamani",
+          "character": "Suchitra Tiwari",
+          "profile_url": "https://image.tmdb.org/t/p/w185/zB365nF9wec5KBczviUTAX9MwHj.jpg"
+        },
+        {
+          "name": "Vedant Sinha",
+          "character": "Atharv",
+          "profile_url": "https://image.tmdb.org/t/p/w185/vPzVMeiMYKRH9tpeDZXVYB3tk5i.jpg"
+        },
+        {
+          "name": "Ashlesha Thakur",
+          "character": "Dhriti",
+          "profile_url": "https://image.tmdb.org/t/p/w185/cu3uUco7xRa4UZnMvP6dtrQnOby.jpg"
+        },
+        {
+          "name": "Darshan Kumaar",
+          "character": "Sameer",
+          "profile_url": "https://image.tmdb.org/t/p/w185/aKDYD0wDq7BRwdJmSjoqfOPleOf.jpg"
+        }
+      ],
+      "crew": {},
+      "episodes": 1,
+      "genres": [
+        "Drama",
+        "Action & Adventure"
+      ],
+      "imdb_id": "tt9544034",
+      "imdb_rating": 8.7,
+      "imdb_votes": "105,311",
+      "language": "Hindi",
+      "last_enriched": "2025-11-06T17:29:26.406514+00:00",
+      "normalized_title": "The Family Man",
+      "poster_path": "https://image.tmdb.org/t/p/w500/tE1NUJqw9gV6AVjQ1GTK78LbWJ9.jpg",
+      "poster_url": "https://image.tmdb.org/t/p/w500/tE1NUJqw9gV6AVjQ1GTK78LbWJ9.jpg",
+      "providers_in": [
+        "Amazon Prime Video",
+        "Amazon Prime Video with Ads"
+      ],
+      "rating_source": "imdb",
+      "runtime": null,
+      "seasons": null,
+      "streaming_platforms": [
+        {
+          "platform_name": "Amazon Prime Video",
+          "platform_logo": "https://image.tmdb.org/t/p/original/pvske1MyAoymrs5bguRfVqYiM9a.jpg",
+          "type": "flatrate"
+        },
+        {
+          "platform_name": "Amazon Prime Video with Ads",
+          "platform_logo": "https://image.tmdb.org/t/p/original/8aBqoNeGGr0oSA85iopgNZUOTOc.jpg",
+          "type": "flatrate"
+        }
+      ],
+      "tmdb_id": 93352,
+      "trailer_url": null,
+      "vote_average": 7.7,
+      "vote_count": 159,
+      "watchmode_id": null,
+      "year": 2025
+    },
+    {
+      "id": "5203dda5-08be-42df-9d3b-d4c57c838191",
+      "title": "Severance Season 2",
+      "category": "buzzing",
+      "platform": "Apple TV",
+      "platform_content_id": null,
+      "rating": 8.7,
+      "thumbnail": "https://image.tmdb.org/t/p/w500/Rb7sga832Cyqvafd7CqOzbwdK4.jpg",
+      "description": "Mark and his friends learn the dire consequences of trifling with the severance barrier, leading them further down a path of woe.",
+      "release_date": "2025-02",
+      "social_links": {
+        "youtube": "https://www.youtube.com/results?search_query=Severance+Season+2+trailer",
+        "twitter": "https://twitter.com/search?q=%23Severance",
+        "reddit": "https://www.reddit.com/r/SeveranceAppleTVPlus"
+      },
+      "content_type": "series",
+      "tagline": "Mind = Blown",
+      "likes": 3200,
+      "shares": 850,
+      "backdrop_path": "https://image.tmdb.org/t/p/original/ixgFmf1X59PUZam2qbAfskx2gQr.jpg",
+      "cast": [
+        {
+          "name": "Adam Scott",
+          "character": "Mark Scout",
+          "profile_url": "https://image.tmdb.org/t/p/w185/b82C29R6fGiPoqIglQ4lzS6q2YX.jpg"
+        },
+        {
+          "name": "Britt Lower",
+          "character": "Helly Riggs",
+          "profile_url": "https://image.tmdb.org/t/p/w185/5fao2JxLELM72dMexZ9d0LptLIF.jpg"
+        },
+        {
+          "name": "Tramell Tillman",
+          "character": "Seth Milchick",
+          "profile_url": "https://image.tmdb.org/t/p/w185/bEA15zMnkcXlRroYjKrFUWiiK7y.jpg"
+        },
+        {
+          "name": "Zach Cherry",
+          "character": "Dylan George",
+          "profile_url": "https://image.tmdb.org/t/p/w185/fT3Wv8ef0Vn0daHWAObCp2Bd4Y.jpg"
+        },
+        {
+          "name": "Jen Tullock",
+          "character": "Devon Scout-Hale",
+          "profile_url": "https://image.tmdb.org/t/p/w185/n8SF2SEuJLRGrY3BNHgXdgMfGAK.jpg"
+        }
+      ],
+      "crew": {},
+      "episodes": 10,
+      "genres": [
+        "Drama",
+        "Mystery",
+        "Sci-Fi & Fantasy"
+      ],
+      "imdb_id": "tt11280740",
+      "imdb_rating": 8.7,
+      "imdb_votes": "347,945",
+      "language": "English",
+      "last_enriched": "2025-11-06T17:29:25.371664+00:00",
+      "normalized_title": "Severance",
+      "poster_path": "https://image.tmdb.org/t/p/w500/Rb7sga832Cyqvafd7CqOzbwdK4.jpg",
+      "poster_url": "https://image.tmdb.org/t/p/w500/Rb7sga832Cyqvafd7CqOzbwdK4.jpg",
+      "providers_in": [
+        "Apple TV",
+        "Apple TV Amazon Channel"
+      ],
+      "rating_source": "imdb",
+      "runtime": null,
+      "seasons": null,
+      "streaming_platforms": [
+        {
+          "platform_name": "Apple TV",
+          "platform_logo": "https://image.tmdb.org/t/p/original/kd7Y56rUFjk6EgEsJ5sMCUasvBd.jpg",
+          "type": "flatrate"
+        },
+        {
+          "platform_name": "Apple TV Amazon Channel",
+          "platform_logo": "https://image.tmdb.org/t/p/original/mHrYMgnZIp6lgW2aXg7ix9zGOnA.jpg",
+          "type": "flatrate"
+        }
+      ],
+      "tmdb_id": 95396,
+      "trailer_url": "https://www.youtube.com/watch?v=xEQP4VVuyrY",
+      "vote_average": 8.4,
+      "vote_count": 2253,
+      "watchmode_id": null,
+      "year": 2025
+    },
+    {
+      "id": "72cc2c0c-694d-40ca-9063-ac26c975c6f2",
+      "title": "Slow Horses Season 5",
+      "category": "hero",
+      "platform": "Apple TV",
+      "platform_content_id": null,
+      "rating": 8.3,
+      "thumbnail": "https://image.tmdb.org/t/p/w500/5RuZZIouptatjV96BdPmKmRsnGg.jpg",
+      "description": "In season five, everyone is suspicious when resident tech nerd Roddy Ho has a glamorous new girlfriend. When a series of increasingly bizarre events occur across the city, it falls to the Slow Horses to work out how everything is connected. After all, Lamb knows that in the world of espionage, the London Rules \u2014 cover your back \u2014 always apply.",
+      "release_date": "2024-12",
+      "social_links": {
+        "youtube": "https://www.youtube.com/results?search_query=Slow+Horses+Season+5",
+        "twitter": "https://twitter.com/search?q=%23SlowHorses",
+        "reddit": "https://www.reddit.com/r/SlowHorses"
+      },
+      "content_type": "series",
+      "tagline": "Old spies never die",
+      "likes": 1800,
+      "shares": 420,
+      "backdrop_path": "https://image.tmdb.org/t/p/original/bDfboQUb45Cv9MYyVBDZw8M8xSM.jpg",
+      "cast": [
+        {
+          "name": "Gary Oldman",
+          "character": "Jackson Lamb",
+          "profile_url": "https://image.tmdb.org/t/p/w185/2v9FVVBUrrkW2m3QOcYkuhq9A6o.jpg"
+        },
+        {
+          "name": "Jack Lowden",
+          "character": "River Cartwright",
+          "profile_url": "https://image.tmdb.org/t/p/w185/vbABvpEGvr2wJev8Uy35ULProX8.jpg"
+        },
+        {
+          "name": "Kristin Scott Thomas",
+          "character": "Diana Taverner",
+          "profile_url": "https://image.tmdb.org/t/p/w185/axksw0vAjBPSW02ZqpcC0V8rPD7.jpg"
+        },
+        {
+          "name": "Saskia Reeves",
+          "character": "Catherine Standish",
+          "profile_url": "https://image.tmdb.org/t/p/w185/dTzb4BHZ9T9O2kNgNgTuMtGQ8rB.jpg"
+        },
+        {
+          "name": "Christopher Chung",
+          "character": "Roddy Ho",
+          "profile_url": "https://image.tmdb.org/t/p/w185/wV4r6tVjP9Prk2acj7bYTmdtaMF.jpg"
+        }
+      ],
+      "crew": {},
+      "episodes": 6,
+      "genres": [
+        "Crime",
+        "Drama",
+        "Comedy"
+      ],
+      "imdb_id": "tt5875444",
+      "imdb_rating": 8.3,
+      "imdb_votes": "128,681",
+      "language": "English",
+      "last_enriched": "2025-11-06T17:29:22.892170+00:00",
+      "normalized_title": "Slow Horses",
+      "poster_path": "https://image.tmdb.org/t/p/w500/5RuZZIouptatjV96BdPmKmRsnGg.jpg",
+      "poster_url": "https://image.tmdb.org/t/p/w500/5RuZZIouptatjV96BdPmKmRsnGg.jpg",
+      "providers_in": [
+        "Apple TV",
+        "Apple TV Amazon Channel"
+      ],
+      "rating_source": "imdb",
+      "runtime": null,
+      "seasons": null,
+      "streaming_platforms": [
+        {
+          "platform_name": "Apple TV",
+          "platform_logo": "https://image.tmdb.org/t/p/original/kd7Y56rUFjk6EgEsJ5sMCUasvBd.jpg",
+          "type": "flatrate"
+        },
+        {
+          "platform_name": "Apple TV Amazon Channel",
+          "platform_logo": "https://image.tmdb.org/t/p/original/mHrYMgnZIp6lgW2aXg7ix9zGOnA.jpg",
+          "type": "flatrate"
+        }
+      ],
+      "tmdb_id": 95480,
+      "trailer_url": "https://www.youtube.com/watch?v=O9ZJChzPn0U",
+      "vote_average": 8.0,
+      "vote_count": 682,
+      "watchmode_id": null,
+      "year": 2025
+    },
+    {
+      "id": "tmdb_tv_272418",
+      "title": "Robin Hood",
+      "platform": "Netflix",
+      "content_type": "series",
+      "category": "entertainment",
+      "year": 2025,
+      "description": "A modern reimagining of the classic tale. After the Norman invasion of England, Rob, a Saxon forester\u2019s son, and Marian, a Norman lord\u2019s daughter, fall in love and unite to fight for justice, challenge corruption, and restore peace to the land.",
+      "poster_url": "https://image.tmdb.org/t/p/w500/3teWChNzKJdbfen46IdeKTygdZa.jpg",
+      "backdrop_url": "https://image.tmdb.org/t/p/original/uoIOfRNmu47P2fET2KnrYHt3TH.jpg",
+      "genres": [
+        "Drama",
+        "Action & Adventure"
+      ],
+      "rating": 8.188,
+      "release_date": "2025-11-02",
+      "thumbnail": "https://image.tmdb.org/t/p/w500/3teWChNzKJdbfen46IdeKTygdZa.jpg",
+      "likes": 0,
+      "shares": 0,
+      "tmdb_id": 272418,
+      "ingestion_date": "2025-11-07T07:09:08.006615",
+      "freshness_score": 88
+    },
+    {
+      "id": "tmdb_movie_1062722",
+      "title": "Frankenstein",
+      "platform": "Netflix",
+      "content_type": "movie",
+      "category": "entertainment",
+      "year": 2025,
+      "description": "Dr. Victor Frankenstein, a brilliant but egotistical scientist, brings a creature to life in a monstrous experiment that ultimately leads to the undoing of both the creator and his tragic creation.",
+      "poster_url": "https://image.tmdb.org/t/p/w500/v9NLaLBbrkDwq44qG51v8T6sPuI.jpg",
+      "backdrop_url": "https://image.tmdb.org/t/p/original/hpXBJxLD2SEf8l2CspmSeiHrBKX.jpg",
+      "genres": [
+        "Horror",
+        "Science Fiction",
+        "Fantasy"
+      ],
+      "rating": 7.9,
+      "release_date": "2025-10-17",
+      "thumbnail": "https://image.tmdb.org/t/p/w500/v9NLaLBbrkDwq44qG51v8T6sPuI.jpg",
+      "likes": 0,
+      "shares": 0,
+      "tmdb_id": 1062722,
+      "ingestion_date": "2025-11-07T07:09:06.817026",
+      "freshness_score": 79
+    },
+    {
+      "id": "tmdb_tv_200875",
+      "title": "IT: Welcome to Derry",
+      "platform": "Netflix",
+      "content_type": "series",
+      "category": "entertainment",
+      "year": 2025,
+      "description": "In 1962, a couple with their son move to Derry, Maine just as a young boy disappears. With their arrival, very bad things begin to happen in the town.",
+      "poster_url": "https://image.tmdb.org/t/p/w500/nyy3BITeIjviv6PFIXtqvc8i6xi.jpg",
+      "backdrop_url": "https://image.tmdb.org/t/p/original/2746UvsbkZINd873Yd3o3TxOwCP.jpg",
+      "genres": [
+        "Mystery",
+        "Drama"
+      ],
+      "rating": 7.9,
+      "release_date": "2025-10-26",
+      "thumbnail": "https://image.tmdb.org/t/p/w500/nyy3BITeIjviv6PFIXtqvc8i6xi.jpg",
+      "likes": 0,
+      "shares": 0,
+      "tmdb_id": 200875,
+      "ingestion_date": "2025-11-07T07:09:06.702599",
+      "freshness_score": 83
+    },
+    {
+      "id": "tmdb_tv_225647",
+      "title": "Boots",
+      "platform": "Netflix",
+      "content_type": "series",
+      "category": "entertainment",
+      "year": 2025,
+      "description": "In 1990, a bullied, gay high school student named Cameron joins the Marine Corps with his straight best friend, Ray \u2014 a dangerous move when being gay in the military meant jail time or worse. As these two friends plunge into Marine Corps boot camp, where the landmines are both literal and metaphorical, they join a platoon of young men on a harrowing journey of transformation.",
+      "poster_url": "https://image.tmdb.org/t/p/w500/eEwe68oPFFDU4ehZ3sXiETE44Rt.jpg",
+      "backdrop_url": "https://image.tmdb.org/t/p/original/7a78G7fisRp9N9upjyX5b3GNRNI.jpg",
+      "genres": [
+        "Comedy",
+        "Drama",
+        "War & Politics"
+      ],
+      "rating": 7.853,
+      "release_date": "2025-10-09",
+      "thumbnail": "https://image.tmdb.org/t/p/w500/eEwe68oPFFDU4ehZ3sXiETE44Rt.jpg",
+      "likes": 0,
+      "shares": 0,
+      "tmdb_id": 225647,
+      "ingestion_date": "2025-11-07T07:09:08.278913",
+      "freshness_score": 74
+    }
+  ]
+}
