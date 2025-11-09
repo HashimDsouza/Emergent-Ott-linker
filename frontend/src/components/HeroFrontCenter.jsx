@@ -99,7 +99,7 @@ export default function HeroFrontCenter({ onInfo }) {
               ? `url(${currentSlide.backdrop_path})` 
               : `linear-gradient(135deg, ${coral} 0%, ${mint} 55%, ${charcoalSoft} 100%)`,
             backgroundSize: 'cover',
-            backgroundPosition: 'center 40%'
+            backgroundPosition: 'center center'
           }}
         />
         
