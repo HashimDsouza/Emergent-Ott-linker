@@ -219,9 +219,7 @@ export function ConnectorHeader() {
         <div className="flex gap-1.5 md:gap-3 flex-1 justify-center">
           <Chip icon={Play} label="Watch On" tip="All Your Apps. One Tap Away" onClick={() => navigate('/watch-on')} />
           <Chip icon={Flame} label="Buzz Meter" tip="The Internet is Talking.." onClick={() => navigate('/buzz-meter')} />
-          <div className="hidden md:block">
-            <Chip icon={Target} label="Win" tip="Flex your fandom. Score some cred." />
-          </div>
+          <Chip icon={Target} label="Win" tip="Flex your fandom. Score some cred." />
         </div>
 
         {/* Right: Search & Me with hover effects and tooltips */}
