@@ -134,16 +134,30 @@ export const getFlagUrl = (countryCode) => {
   return `https://flagcdn.com/w40/${code}.png`;
 };
 
-// Helper to get team logo (placeholder for now, can be replaced with actual logo URLs)
+// Helper to get team logo with color and initials
 export const getTeamLogo = (teamName, sport) => {
-  // Placeholder colored circles for teams without country flags
-  const teamColors = {
-    'MI': '#004BA0', 'CSK': '#FDB913', 'RCB': '#EC1C24', 'KKR': '#3A225D',
-    'Lakers': '#552583', 'Warriors': '#1D428A', 'Celtics': '#007A33', 'Heat': '#98002E',
-    'Man City': '#6CABDD', 'Arsenal': '#EF0107', 'Liverpool': '#C8102E', 'Chelsea': '#034694',
-    'Real Madrid': '#FEBE10', 'Barcelona': '#A50044', 'Bayern': '#DC052D'
+  const teamData = {
+    'MI': { color: '#004BA0', initials: 'MI' },
+    'CSK': { color: '#FDB913', initials: 'CSK' },
+    'RCB': { color: '#EC1C24', initials: 'RCB' },
+    'KKR': { color: '#3A225D', initials: 'KKR' },
+    'DC': { color: '#17479E', initials: 'DC' },
+    'RR': { color: '#254AA5', initials: 'RR' },
+    'PBKS': { color: '#DD1F2D', initials: 'PBKS' },
+    'SRH': { color: '#FF822A', initials: 'SRH' },
+    'Lakers': { color: '#552583', initials: 'LAL' },
+    'Warriors': { color: '#1D428A', initials: 'GSW' },
+    'Celtics': { color: '#007A33', initials: 'BOS' },
+    'Heat': { color: '#98002E', initials: 'MIA' },
+    'Man City': { color: '#6CABDD', initials: 'MCI' },
+    'Arsenal': { color: '#EF0107', initials: 'ARS' },
+    'Liverpool': { color: '#C8102E', initials: 'LIV' },
+    'Chelsea': { color: '#034694', initials: 'CHE' },
+    'Real Madrid': { color: '#FEBE10', initials: 'RMA' },
+    'Barcelona': { color: '#A50044', initials: 'FCB' },
+    'Bayern': { color: '#DC052D', initials: 'FCB' }
   };
-  return teamColors[teamName] || '#30E0B2';
+  return teamData[teamName] || { color: '#30E0B2', initials: teamName.substring(0, 3).toUpperCase() };
 };
 
 // Mock data for all trays
