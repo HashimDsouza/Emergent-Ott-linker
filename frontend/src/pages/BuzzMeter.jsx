@@ -262,24 +262,24 @@ export default function BuzzMeter() {
                         <span>{moment.buzzScore}</span>
                       </div>
 
-                      {/* "i" Info Button - Bottom Right (Consistent with other pages) */}
+                      {/* "i" Info Button - Always Visible, Bottom Right */}
                       <button 
                         aria-label="More info"
                         onClick={(e) => { 
                           e.stopPropagation(); 
                           setModalItem(moment); 
                         }} 
-                        className="absolute bottom-2 right-2 z-10 inline-flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity"
+                        className="absolute bottom-2 right-2 z-10 inline-flex items-center justify-center"
                       >
                         <span 
-                          className="rounded-full w-[16px] h-[16px] md:w-[20px] md:h-[20px]" 
+                          className="rounded-full w-[18px] h-[18px] md:w-[20px] md:h-[20px]" 
                           style={{ 
                             background: mint, 
                             boxShadow: "0 0 12px rgba(48,224,178,0.6)" 
                           }} 
                         />
                         <span 
-                          className="absolute text-[9px] md:text-[11px] font-bold" 
+                          className="absolute text-[10px] md:text-[11px] font-bold" 
                           style={{ color: charcoal }}
                         >
                           i
