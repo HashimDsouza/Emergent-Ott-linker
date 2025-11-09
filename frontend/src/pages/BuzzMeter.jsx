@@ -230,22 +230,21 @@ export default function BuzzMeter() {
                 <div 
                   key={moment.id} 
                   className="flex-shrink-0 snap-start cursor-pointer w-[130px] md:w-[14%]"
-                  onClick={() => setModalItem(moment)}
+                  onClick={() => window.open(moment.ctaLink, '_blank')}
                 >
-                  <div className="relative rounded-lg md:rounded-xl overflow-hidden shadow-lg border border-white/10 hover:-translate-y-0.5 transition">
-                    {/* Thumbnail with gradient background */}
+                  <div className="relative rounded-lg md:rounded-xl overflow-hidden shadow-lg border border-white/10 hover:-translate-y-0.5 transition group">
+                    {/* Thumbnail with TMDB image */}
                     <div 
-                      className="relative aspect-[2/3] flex items-center justify-center text-white font-bold text-lg"
+                      className="relative aspect-[2/3]"
                       style={{
-                        background: moment.id === 'buzz-1' ? `linear-gradient(135deg, ${coral} 0%, ${mint} 100%)` :
-                                   moment.id === 'buzz-2' ? `linear-gradient(135deg, ${mint} 0%, ${coral} 100%)` :
-                                   moment.id === 'buzz-3' ? `linear-gradient(135deg, #FF8C42 0%, ${mint} 100%)` :
-                                   moment.id === 'buzz-4' ? `linear-gradient(135deg, ${coral} 0%, #FF8C42 100%)` :
-                                   moment.id === 'buzz-5' ? `linear-gradient(135deg, ${mint} 0%, #FF8C42 100%)` :
-                                   `linear-gradient(135deg, ${coral} 0%, ${mint} 100%)`
+                        backgroundImage: `url(${moment.thumbnail})`,
+                        backgroundSize: 'cover',
+                        backgroundPosition: 'center'
                       }}
                     >
-                      <span className="opacity-80">{moment.title}</span>
+                      {/* Dark overlay */}
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+                      
                       {/* Platform badge */}
                       <div 
                         className="absolute top-2 left-2 px-2 py-1 rounded-full text-[8px] md:text-[10px] font-semibold"
@@ -253,6 +252,7 @@ export default function BuzzMeter() {
                       >
                         {moment.platform}
                       </div>
+                      
                       {/* Buzz Score */}
                       <div 
                         className="absolute top-2 right-2 px-2 py-1 rounded-full text-[10px] md:text-xs font-bold flex items-center gap-1"
@@ -261,6 +261,30 @@ export default function BuzzMeter() {
                         <span>{getBuzzFlames(moment.buzzScore)}</span>
                         <span>{moment.buzzScore}</span>
                       </div>
+
+                      {/* "i" Info Button - Bottom Right (Consistent with other pages) */}
+                      <button 
+                        aria-label="More info"
+                        onClick={(e) => { 
+                          e.stopPropagation(); 
+                          setModalItem(moment); 
+                        }} 
+                        className="absolute bottom-2 right-2 z-10 inline-flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity"
+                      >
+                        <span 
+                          className="rounded-full w-[16px] h-[16px] md:w-[20px] md:h-[20px]" 
+                          style={{ 
+                            background: mint, 
+                            boxShadow: "0 0 12px rgba(48,224,178,0.6)" 
+                          }} 
+                        />
+                        <span 
+                          className="absolute text-[9px] md:text-[11px] font-bold" 
+                          style={{ color: charcoal }}
+                        >
+                          i
+                        </span>
+                      </button>
                     </div>
                     {/* Info panel */}
                     <div className="p-2 md:p-2.5" style={{ backgroundColor: charcoalSoft }}>
