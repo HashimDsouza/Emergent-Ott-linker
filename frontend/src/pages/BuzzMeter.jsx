@@ -249,7 +249,7 @@ export default function BuzzMeter() {
   return (
     <>
       <ConnectorHeader />
-      <div className="min-h-screen" style={{ backgroundColor: charcoal }}>
+      <div className="min-h-screen pb-32" style={{ backgroundColor: charcoal }}>
         {/* Header - Same format as Watch On */}
         <div className="px-3 md:px-6 pt-6 md:pt-8 pb-4 md:pb-6">
           <div className="max-w-7xl mx-auto text-center">
