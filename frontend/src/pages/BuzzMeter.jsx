@@ -368,24 +368,24 @@ export default function BuzzMeter() {
                             {getBuzzFlames(moment.buzzScore)} {moment.buzzScore}
                           </div>
 
-                          {/* "i" Info Button */}
+                          {/* "i" Info Button - Always Visible */}
                           <button 
                             aria-label="More info"
                             onClick={(e) => { 
                               e.stopPropagation(); 
                               setModalItem(moment); 
                             }} 
-                            className="absolute bottom-1.5 right-1.5 z-10 inline-flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity"
+                            className="absolute bottom-1.5 right-1.5 z-10 inline-flex items-center justify-center"
                           >
                             <span 
-                              className="rounded-full w-[14px] h-[14px]" 
+                              className="rounded-full w-[16px] h-[16px]" 
                               style={{ 
                                 background: mint, 
                                 boxShadow: "0 0 8px rgba(48,224,178,0.6)" 
                               }} 
                             />
                             <span 
-                              className="absolute text-[8px] font-bold" 
+                              className="absolute text-[9px] font-bold" 
                               style={{ color: charcoal }}
                             >
                               i
