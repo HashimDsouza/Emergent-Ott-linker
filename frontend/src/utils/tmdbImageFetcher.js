@@ -95,7 +95,7 @@ export async function enrichBuzzMomentsWithImages(buzzMoments) {
       if (moment.title.includes('Fighter')) {
         searchTitle = 'Fighter';
         mediaType = 'movie';
-      } else if (moment.title.includes('ICC') || moment.title.includes('World Cup')) {
+      } else if (moment.title.includes('ICC') || moment.title.includes('World Cup') || moment.title.includes('Women')) {
         // Sports content - use gradient placeholder
         return {
           ...moment,
@@ -113,6 +113,24 @@ export async function enrichBuzzMomentsWithImages(buzzMoments) {
       } else if (moment.title.includes('Maharaja')) {
         searchTitle = 'Maharaja';
         mediaType = 'movie';
+      } else if (moment.title.includes('Squid Game')) {
+        searchTitle = 'Squid Game';
+        mediaType = 'tv';
+      } else if (moment.title.includes('Pushpa')) {
+        searchTitle = 'Pushpa 2 The Rule';
+        mediaType = 'movie';
+      } else if (moment.title.includes('The Bear')) {
+        searchTitle = 'The Bear';
+        mediaType = 'tv';
+      } else if (moment.title.includes('Scam 1992')) {
+        searchTitle = 'Scam 1992';
+        mediaType = 'tv';
+      } else if (moment.title.includes('Wednesday')) {
+        searchTitle = 'Wednesday';
+        mediaType = 'tv';
+      } else if (moment.title.includes('Asur')) {
+        searchTitle = 'Asur';
+        mediaType = 'tv';
       }
 
       // Fetch TMDB image
