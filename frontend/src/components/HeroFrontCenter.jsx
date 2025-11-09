@@ -7,7 +7,7 @@ const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 export default function HeroFrontCenter({ onInfo }) {
   const [heroSlides, setHeroSlides] = useState([]);
   const [heroIndex, setHeroIndex] = useState(0);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
 
   // Fetch hero carousel content from API
   useEffect(() => {
@@ -17,10 +17,8 @@ export default function HeroFrontCenter({ onInfo }) {
         const data = await response.json();
         const heroItems = data.filter(item => item.category === 'hero').map(mapApiToCard);
         setHeroSlides(heroItems);
-        setLoading(false);
       } catch (error) {
         console.error('Error fetching hero content:', error);
-        setLoading(false);
       }
     }
     fetchHeroContent();
