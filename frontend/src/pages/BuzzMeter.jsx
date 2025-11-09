@@ -118,10 +118,10 @@ export default function BuzzMeter() {
     }
   ];
 
-  // Filter moments by selected platform
+  // Filter moments by selected platform (use enriched moments)
   const filteredMoments = selectedPlatform === "All" 
-    ? buzzMoments 
-    : buzzMoments.filter(m => m.platform === selectedPlatform);
+    ? buzzMomentsWithImages 
+    : buzzMomentsWithImages.filter(m => m.platform === selectedPlatform);
 
   // Handle platform icon click (client-side filtering)
   const handlePlatformClick = (platform) => {
