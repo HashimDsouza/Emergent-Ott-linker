@@ -6,6 +6,7 @@ import { ConnectorHeader, ConnectorFooter } from "../components/ConnectorLayout"
 import ConnieFloating from "../components/ConnieFloating";
 import BroMicroline from "../components/BroMicroline";
 import BuzzMoment from "../components/BuzzMoment";
+import { enrichBuzzMomentsWithImages } from "../utils/tmdbImageFetcher";
 
 const coral = "#FF4F64", mint = "#30E0B2", charcoal = "#0E1514", charcoalSoft = "#173A35";
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
@@ -18,6 +19,7 @@ export default function BuzzMeter() {
   const [visibleFromTheFeeds, setVisibleFromTheFeeds] = useState(true);
   const [expandedFromTheFeeds, setExpandedFromTheFeeds] = useState(false);
   const [hoveredPlatform, setHoveredPlatform] = useState(null);
+  const [buzzMomentsWithImages, setBuzzMomentsWithImages] = useState([]);
 
   // Platform icons configuration (text-based for now, logos to be added)
   const platforms = [
