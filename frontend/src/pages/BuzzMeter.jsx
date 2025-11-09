@@ -430,7 +430,7 @@ export default function BuzzMeter() {
                   {filteredMoments.slice(6, 12).map((moment) => (
                     <div 
                       key={`feed-${moment.id}`} 
-                      className="flex-shrink-0 snap-start cursor-pointer w-[120px] md:w-[14%]"
+                      className="flex-shrink-0 snap-start cursor-pointer w-[120px] md:w-[180px]"
                       onClick={() => window.open(moment.ctaLink, '_blank')}
                     >
                       <div className="relative rounded-lg overflow-hidden shadow-lg border border-white/10 hover:-translate-y-0.5 transition group">
