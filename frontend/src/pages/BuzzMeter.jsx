@@ -347,27 +347,50 @@ export default function BuzzMeter() {
                     <div 
                       key={`feed-${moment.id}`} 
                       className="flex-shrink-0 snap-start cursor-pointer w-[120px] md:w-[14%]"
-                      onClick={() => setModalItem(moment)}
+                      onClick={() => window.open(moment.ctaLink, '_blank')}
                     >
-                      <div className="relative rounded-lg overflow-hidden shadow-lg border border-white/10 hover:-translate-y-0.5 transition">
+                      <div className="relative rounded-lg overflow-hidden shadow-lg border border-white/10 hover:-translate-y-0.5 transition group">
                         <div 
-                          className="relative aspect-[2/3] flex items-center justify-center text-white font-bold text-sm"
+                          className="relative aspect-[2/3]"
                           style={{
-                            background: moment.id === 'buzz-1' ? `linear-gradient(135deg, ${coral} 0%, ${mint} 100%)` :
-                                       moment.id === 'buzz-2' ? `linear-gradient(135deg, ${mint} 0%, ${coral} 100%)` :
-                                       moment.id === 'buzz-3' ? `linear-gradient(135deg, #FF8C42 0%, ${mint} 100%)` :
-                                       moment.id === 'buzz-4' ? `linear-gradient(135deg, ${coral} 0%, #FF8C42 100%)` :
-                                       moment.id === 'buzz-5' ? `linear-gradient(135deg, ${mint} 0%, #FF8C42 100%)` :
-                                       `linear-gradient(135deg, ${coral} 0%, ${mint} 100%)`
+                            backgroundImage: `url(${moment.thumbnail})`,
+                            backgroundSize: 'cover',
+                            backgroundPosition: 'center'
                           }}
                         >
-                          <span className="opacity-70 text-center px-2">{moment.title}</span>
+                          {/* Dark overlay */}
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+                          
                           <div 
                             className="absolute top-1 right-1 px-1.5 py-0.5 rounded-full text-[9px] font-bold"
                             style={{ background: `${charcoalSoft}CC`, color: getBuzzColor(moment.buzzScore) }}
                           >
                             {getBuzzFlames(moment.buzzScore)} {moment.buzzScore}
                           </div>
+
+                          {/* "i" Info Button */}
+                          <button 
+                            aria-label="More info"
+                            onClick={(e) => { 
+                              e.stopPropagation(); 
+                              setModalItem(moment); 
+                            }} 
+                            className="absolute bottom-1.5 right-1.5 z-10 inline-flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity"
+                          >
+                            <span 
+                              className="rounded-full w-[14px] h-[14px]" 
+                              style={{ 
+                                background: mint, 
+                                boxShadow: "0 0 8px rgba(48,224,178,0.6)" 
+                              }} 
+                            />
+                            <span 
+                              className="absolute text-[8px] font-bold" 
+                              style={{ color: charcoal }}
+                            >
+                              i
+                            </span>
+                          </button>
                         </div>
                         <div className="p-1.5" style={{ backgroundColor: charcoalSoft }}>
                           <p className="text-[9px] text-white font-medium line-clamp-2">
