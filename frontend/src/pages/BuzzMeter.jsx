@@ -144,9 +144,14 @@ export default function BuzzMeter() {
     return coral;
   };
 
-  // Auto-hide loading after mount
+  // Fetch TMDB images for buzz moments
   useEffect(() => {
-    setLoading(false);
+    async function loadBuzzImages() {
+      const enrichedMoments = await enrichBuzzMomentsWithImages(buzzMoments);
+      setBuzzMomentsWithImages(enrichedMoments);
+      setLoading(false);
+    }
+    loadBuzzImages();
   }, []);
 
   if (loading) {
