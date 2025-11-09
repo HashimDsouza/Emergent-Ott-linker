@@ -34,7 +34,7 @@ export default function BuzzMeter() {
   const buzzMoments = [
     {
       id: 'buzz-1',
-      title: 'Fighter Trailer',
+      title: 'Fighter',
       platform: 'YouTube',
       thumbnail: 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="400" height="600"%3E%3Cdefs%3E%3ClinearGradient id="g1" x1="0%25" y1="0%25" x2="100%25" y2="100%25"%3E%3Cstop offset="0%25" style="stop-color:%23FF4F64;stop-opacity:1"/%3E%3Cstop offset="100%25" style="stop-color:%2330E0B2;stop-opacity:1"/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width="400" height="600" fill="url(%23g1)"/%3E%3Ctext x="50%25" y="50%25" font-family="Arial" font-size="24" fill="white" text-anchor="middle" dominant-baseline="middle"%3EFighter%3C/text%3E%3C/svg%3E',
       headline: 'Fighter Trailer hits 25M views in 12 hours',
@@ -43,21 +43,21 @@ export default function BuzzMeter() {
       stats: { views: '25M', comments: '45K', shares: '120K' },
       summary: 'Hrithik Roshan and Deepika Padukone starrer Fighter trailer breaks YouTube records with massive viewership spike.',
       broQuip: "Fighter broke YouTube — and the internet's patience.",
-      ctaLink: 'https://www.youtube.com/watch?v=T6T0ouFer2A',
+      ctaLink: 'https://www.youtube.com/watch?v=Yw84ew0AkuE',
       category: 'hero'
     },
     {
       id: 'buzz-2',
-      title: 'ICC World Cup Final',
+      title: 'India vs Australia 2025 Women\'s World Cup ODI Final',
       platform: 'YouTube',
       thumbnail: 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="400" height="600"%3E%3Cdefs%3E%3ClinearGradient id="g2" x1="0%25" y1="0%25" x2="100%25" y2="100%25"%3E%3Cstop offset="0%25" style="stop-color:%2330E0B2;stop-opacity:1"/%3E%3Cstop offset="100%25" style="stop-color:%23FF4F64;stop-opacity:1"/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width="400" height="600" fill="url(%23g2)"/%3E%3Ctext x="50%25" y="50%25" font-family="Arial" font-size="24" fill="white" text-anchor="middle" dominant-baseline="middle"%3EICC%20Final%3C/text%3E%3C/svg%3E',
-      headline: 'India vs Australia Final - Last Over Drama',
+      headline: 'India vs Australia - Women\'s World Cup ODI Final',
       buzzScore: 88,
       tags: ['Sports', 'Cricket'],
       stats: { views: '12M', comments: '89K', shares: '200K' },
-      summary: 'The most thrilling cricket final in years. Last-over six seals India\'s victory.',
-      broQuip: "This clip is everywhere — except your WhatsApp group chat (so far).",
-      ctaLink: 'https://www.youtube.com/results?search_query=ICC+World+Cup+Final',
+      summary: 'Historic Women\'s World Cup ODI final between India and Australia. Dramatic finish has cricket fans glued to screens.',
+      broQuip: "This final is pure drama — every ball counts.",
+      ctaLink: 'https://www.youtube.com/results?search_query=India+vs+Australia+Women+World+Cup+2025+Final',
       category: 'hero'
     },
     {
