@@ -521,8 +521,12 @@ class TheSportsDBTester:
         print("\n📋 Test 6: API Response Structure")
         await self.test_api_response_structure()
         
-        # Test 7: Caching Behavior
-        print("\n📋 Test 7: Caching Behavior")
+        # Test 7: Dynamic API Image URLs
+        print("\n📋 Test 7: Dynamic API Image URLs")
+        await self.test_dynamic_api_image_urls()
+        
+        # Test 8: Caching Behavior
+        print("\n📋 Test 8: Caching Behavior")
         await self.test_caching_behavior()
         
         # Summary
