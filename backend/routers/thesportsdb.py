@@ -131,10 +131,10 @@ async def get_team_logo(team_name: str = Query(..., description="Team name or ab
         return {
             "status": "success",
             "team_name": team.get("strTeam"),
-            "badge": team.get("strTeamBadge"),  # Square badge
-            "logo": team.get("strTeamLogo"),    # Circular logo
-            "banner": team.get("strTeamBanner"), # Wide banner
-            "jersey": team.get("strTeamJersey"), # Team jersey
+            "badge": team.get("strBadge"),  # Square badge
+            "logo": team.get("strLogo"),    # Circular logo
+            "banner": team.get("strBanner"), # Wide banner
+            "jersey": team.get("strEquipment"), # Team jersey/equipment
             "stadium": team.get("strStadium"),
             "league": team.get("strLeague")
         }
