@@ -13,15 +13,15 @@ export default function LandingV2_3({ apiData }) {
 
   const onInfo = (item) => { setModalItem(item); setModalOpen(true); };
 
-  // Sports tiles for Game On tray - Using TheSportsDB team/league badges via proxy
+  // Sports tiles for Game On tray - Using working TheSportsDB images via proxy
   const backendUrl = process.env.REACT_APP_BACKEND_URL || window.location.origin;
   const sportsCards = useMemo(() => [
     {
       id: 'sport-1',
       title: "ICC Women's World Cup 2025 Final",
       platform: 'Jiohotstar',
-      thumbnail: `${backendUrl}/api/thesportsdb/proxy-image?image_url=${encodeURIComponent('https://r2.thesportsdb.com/images/media/team/badge/xqwpup1420382849.png')}`,
-      posterUrl: `${backendUrl}/api/thesportsdb/proxy-image?image_url=${encodeURIComponent('https://r2.thesportsdb.com/images/media/team/badge/xqwpup1420382849.png')}`,
+      thumbnail: `${backendUrl}/api/thesportsdb/proxy-image?image_url=${encodeURIComponent('https://r2.thesportsdb.com/images/media/team/badge/ytwwqt1467982667.png')}`,
+      posterUrl: `${backendUrl}/api/thesportsdb/proxy-image?image_url=${encodeURIComponent('https://r2.thesportsdb.com/images/media/team/badge/ytwwqt1467982667.png')}`,
       description: "Women's Cricket World Cup Final - Live coverage",
       category: 'Cricket',
       imdb: 'LIVE',
