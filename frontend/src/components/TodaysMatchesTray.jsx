@@ -46,7 +46,7 @@ export default function TodaysMatchesTray({ selectedSport, selectedLeague }) {
         <div className="overflow-x-auto scrollbar-hide snap-x snap-mandatory">
           <div className="flex gap-3 md:gap-3" style={{ width: 'max-content' }}>
             {filteredMatches.map((match) => (
-              <TodayMatchTile key={match.id} match={{ ...match, descriptor: generateMatchDescriptor(match) }} />
+              <TodayMatchTile key={match.id} match={{ ...match, descriptor: generateMatchDescriptor(match) }} sportsImages={sportsImages} />
             ))}
           </div>
         </div>
