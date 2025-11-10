@@ -257,57 +257,62 @@ class TheSportsDBTester:
             self.log_test("Health Endpoint", "FAIL", f"Exception: {str(e)}")
             return False
     
-    async def verify_tray_content_accuracy(self, content_list: List[Dict], category: str) -> bool:
-        """Verify accuracy of content in specific trays"""
-        issues = []
-        
-        for item in content_list:
-            title = item.get("title", "")
-            
-            # Check for specific problematic titles
-            if "12th Fail" in title:
-                imdb_rating = item.get("imdb_rating")
-                if imdb_rating and float(imdb_rating) < 8.5:
-                    issues.append(f"12th Fail has low IMDb rating: {imdb_rating} (expected ~8.7)")
-            
-            elif "Fighter" in title:
-                # CRITICAL TEST: Check TMDB ID for Fighter
-                tmdb_id = item.get("tmdb_id")
-                if tmdb_id == 125702:
-                    issues.append(f"CRITICAL: Fighter has wrong TMDB ID {tmdb_id} (2000 English film) - should be 784651 (2024 Hindi)")
-                elif tmdb_id != 784651:
-                    issues.append(f"Fighter has unexpected TMDB ID {tmdb_id} (expected 784651 for 2024 Hindi film)")
+    async def test_image_url_accessibility(self) -> bool:
+        """Test 5: Verify that returned image URLs are accessible"""
+        try:
+            # Get sports images first
+            async with self.session.get(f"{self.base_url}/api/thesportsdb/sports-images") as response:
+                if response.status != 200:
+                    self.log_test("Image URL Accessibility", "FAIL", 
+                                "Could not fetch sports images")
+                    return False
                 
-                language = item.get("language")
-                year = item.get("year")
-                if language != "Hindi":
-                    issues.append(f"Fighter shows wrong language: {language} (expected Hindi)")
-                if year and year != 2024:
-                    issues.append(f"Fighter shows wrong year: {year} (expected 2024)")
-            
-            elif "Asur" in title:
-                year = item.get("year")
-                if year and year != 2020:
-                    issues.append(f"Asur shows wrong year: {year} (expected 2020 for Indian series)")
-            
-            elif "Maharaja" in title:
-                year = item.get("year")
-                if year and year != 2024:
-                    issues.append(f"Maharaja shows wrong year: {year} (expected 2024 Tamil film)")
-            
-            # Check poster URLs
-            poster_url = item.get("poster_url") or ""
-            thumbnail = item.get("thumbnail") or ""
-            if "unsplash" in poster_url.lower() or "unsplash" in thumbnail.lower():
-                issues.append(f"{title} using placeholder image instead of TMDB")
-        
-        if not issues:
-            self.log_test(f"Tray Content Accuracy - {category}", "PASS", 
-                        f"All {len(content_list)} items have correct metadata")
-            return True
-        else:
-            self.log_test(f"Tray Content Accuracy - {category}", "FAIL", 
-                        f"Issues found: {'; '.join(issues[:3])}...")
+                data = await response.json()
+                images = data.get("images", {})
+                
+                if not images:
+                    self.log_test("Image URL Accessibility", "FAIL", 
+                                "No images to test")
+                    return False
+                
+                # Test a few sample URLs
+                test_teams = ['MI', 'Arsenal', 'Lakers']
+                accessible_count = 0
+                total_tested = 0
+                
+                for team in test_teams:
+                    if team in images:
+                        url = images[team]
+                        total_tested += 1
+                        
+                        try:
+                            async with self.session.head(url, timeout=10) as img_response:
+                                if img_response.status == 200:
+                                    accessible_count += 1
+                                    self.log_test(f"Image Access - {team}", "PASS", 
+                                                f"URL accessible: {url[:50]}...")
+                                else:
+                                    self.log_test(f"Image Access - {team}", "FAIL", 
+                                                f"HTTP {img_response.status}: {url[:50]}...")
+                        except Exception as e:
+                            self.log_test(f"Image Access - {team}", "FAIL", 
+                                        f"Exception accessing {url[:50]}...: {str(e)}")
+                
+                if accessible_count == total_tested and total_tested > 0:
+                    self.log_test("Image URL Accessibility Overall", "PASS", 
+                                f"All {accessible_count}/{total_tested} tested URLs accessible")
+                    return True
+                elif accessible_count > 0:
+                    self.log_test("Image URL Accessibility Overall", "WARN", 
+                                f"Only {accessible_count}/{total_tested} URLs accessible")
+                    return True
+                else:
+                    self.log_test("Image URL Accessibility Overall", "FAIL", 
+                                f"No URLs accessible ({accessible_count}/{total_tested})")
+                    return False
+                    
+        except Exception as e:
+            self.log_test("Image URL Accessibility", "FAIL", f"Exception: {str(e)}")
             return False
     
     async def test_asur_season_3_specifically(self) -> bool:
