@@ -61,9 +61,17 @@ const mockLiveMatches = configLiveMatches.length > 0 ? configLiveMatches : [
 
 export default function LiveMatchesTray({ selectedSport, selectedLeague }) {
   const [liveMatches, setLiveMatches] = useState([]);
+  const [sportsImages, setSportsImages] = useState({});
 
   useEffect(() => {
-    // TODO: Fetch from API
+    // Fetch team logos from backend
+    const loadSportsImages = async () => {
+      const images = await fetchSportsImages();
+      setSportsImages(images);
+    };
+    loadSportsImages();
+
+    // TODO: Fetch live matches from API
     setLiveMatches(mockLiveMatches);
   }, []);
 
