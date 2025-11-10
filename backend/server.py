@@ -1872,6 +1872,7 @@ async def chat_with_ai(message: ChatMessage):
 api_router.include_router(cricket.router)
 api_router.include_router(football.router)
 api_router.include_router(sports.router)
+api_router.include_router(thesportsdb.router)
 
 app.include_router(api_router)
 
