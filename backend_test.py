@@ -399,6 +399,52 @@ class TheSportsDBTester:
             self.log_test("API Response Structure", "FAIL", f"Exception: {str(e)}")
             return False
     
+    async def test_dynamic_api_image_urls(self) -> bool:
+        """Test 7: Verify that dynamic API endpoints return working image URLs"""
+        try:
+            # Test team-logo endpoint URLs
+            test_teams = ["Arsenal", "Chelsea"]
+            accessible_count = 0
+            total_tested = 0
+            
+            for team in test_teams:
+                async with self.session.get(f"{self.base_url}/api/thesportsdb/team-logo?team_name={team}") as response:
+                    if response.status == 200:
+                        data = await response.json()
+                        if data.get("status") == "success":
+                            badge_url = data.get("badge")
+                            if badge_url:
+                                total_tested += 1
+                                try:
+                                    async with self.session.head(badge_url, timeout=10) as img_response:
+                                        if img_response.status == 200:
+                                            accessible_count += 1
+                                            self.log_test(f"Dynamic API Image - {team}", "PASS", 
+                                                        f"Badge URL accessible: {badge_url[:50]}...")
+                                        else:
+                                            self.log_test(f"Dynamic API Image - {team}", "FAIL", 
+                                                        f"Badge URL HTTP {img_response.status}: {badge_url[:50]}...")
+                                except Exception as e:
+                                    self.log_test(f"Dynamic API Image - {team}", "FAIL", 
+                                                f"Exception accessing badge: {str(e)}")
+            
+            if accessible_count == total_tested and total_tested > 0:
+                self.log_test("Dynamic API Image URLs Overall", "PASS", 
+                            f"All {accessible_count}/{total_tested} dynamic URLs accessible")
+                return True
+            elif accessible_count > 0:
+                self.log_test("Dynamic API Image URLs Overall", "PASS", 
+                            f"{accessible_count}/{total_tested} dynamic URLs accessible")
+                return True
+            else:
+                self.log_test("Dynamic API Image URLs Overall", "FAIL", 
+                            f"No dynamic URLs accessible ({accessible_count}/{total_tested})")
+                return False
+                
+        except Exception as e:
+            self.log_test("Dynamic API Image URLs", "FAIL", f"Exception: {str(e)}")
+            return False
+
     async def test_caching_behavior(self) -> bool:
         """Test 7: Verify API caching is working (24-hour cache)"""
         try:
