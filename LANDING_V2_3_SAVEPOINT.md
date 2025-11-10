@@ -104,7 +104,7 @@ sudo supervisorctl restart all
 
 **Preview URL:**
 ```
-https://ottagent.preview.emergentagent.com/landing/v2_3
+https://connector-app.preview.emergentagent.com/landing/v2_3
 ```
 
 **Local:**
