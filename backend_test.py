@@ -315,7 +315,7 @@ class TheSportsDBTester:
             self.log_test("Image URL Accessibility", "FAIL", f"Exception: {str(e)}")
             return False
     
-    async def test_asur_season_3_specifically(self) -> bool:
+    async def test_api_response_structure(self) -> bool:
         """CRITICAL TEST: Verify Asur Season 3 has correct Indian series metadata (not Chinese film)"""
         try:
             # Get buzzing content to find Asur Season 3
