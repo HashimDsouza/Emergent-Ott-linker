@@ -316,76 +316,87 @@ class TheSportsDBTester:
             return False
     
     async def test_api_response_structure(self) -> bool:
-        """CRITICAL TEST: Verify Asur Season 3 has correct Indian series metadata (not Chinese film)"""
+        """Test 6: Verify API response structures match expected format"""
         try:
-            # Get buzzing content to find Asur Season 3
-            async with self.session.get(f"{self.base_url}/api/content?category=buzzing") as response:
+            all_passed = True
+            
+            # Test sports-images response structure
+            async with self.session.get(f"{self.base_url}/api/thesportsdb/sports-images") as response:
                 if response.status == 200:
-                    content_list = await response.json()
+                    data = await response.json()
+                    required_fields = ["status", "images"]
+                    missing_fields = [field for field in required_fields if field not in data]
                     
-                    asur_item = None
-                    for item in content_list:
-                        if "Asur Season 3" in item.get("title", ""):
-                            asur_item = item
-                            break
-                    
-                    if not asur_item:
-                        self.log_test("Asur Season 3 Critical Test", "FAIL", 
-                                    "Asur Season 3 not found in buzzing category")
-                        return False
-                    
-                    # Check critical fields
-                    tmdb_id = asur_item.get("tmdb_id")
-                    year = asur_item.get("year")
-                    language = asur_item.get("language")
-                    imdb_rating = asur_item.get("imdb_rating")
-                    description = asur_item.get("description", "").lower()
-                    
-                    issues = []
-                    
-                    # MOST CRITICAL: Check if it's the wrong Chinese film
-                    if tmdb_id == 256744:
-                        issues.append("CRITICAL FAILURE: Using Chinese film 'Dying to Survive' (TMDB ID: 256744)")
-                    
-                    # Check year - should be around 2020-2023 for Indian series, NOT 2025
-                    if year and year == 2025:
-                        issues.append(f"Wrong year: {year} (Chinese film year, expected 2020-2023 for Indian series)")
-                    elif year and (year < 2020 or year > 2023):
-                        issues.append(f"Unexpected year: {year} (expected 2020-2023 for Indian series)")
-                    
-                    # Check language - should be Hindi, NOT Japanese/Chinese
-                    if language and language.lower() in ["japanese", "chinese", "mandarin"]:
-                        issues.append(f"Wrong language: {language} (Chinese film language, expected Hindi)")
-                    elif language and language != "Hindi":
-                        issues.append(f"Unexpected language: {language} (expected Hindi for Indian series)")
-                    
-                    # Check IMDb rating - should be around 8.5-8.6 for Indian series
-                    if imdb_rating:
-                        rating_val = float(imdb_rating)
-                        if rating_val < 8.0 or rating_val > 9.0:
-                            issues.append(f"Unexpected IMDb rating: {imdb_rating} (expected ~8.5-8.6 for Indian series)")
-                    
-                    # Check description for crime/thriller keywords
-                    crime_keywords = ["psychological", "thriller", "serial killer", "forensic", "murder", "crime", "suspense"]
-                    if description and not any(keyword in description for keyword in crime_keywords):
-                        issues.append("Description doesn't mention crime/thriller keywords (expected for Indian Asur series)")
-                    
-                    if not issues:
-                        self.log_test("Asur Season 3 Critical Test", "PASS", 
-                                    f"✅ Correct Indian series (TMDB: {tmdb_id}, Year: {year}, Lang: {language}, IMDb: {imdb_rating})")
-                        return True
+                    if missing_fields:
+                        self.log_test("API Structure - Sports Images", "FAIL", 
+                                    f"Missing fields: {missing_fields}")
+                        all_passed = False
                     else:
-                        self.log_test("Asur Season 3 Critical Test", "FAIL", 
-                                    f"❌ {'; '.join(issues)}")
-                        return False
-                        
+                        self.log_test("API Structure - Sports Images", "PASS", 
+                                    "All required fields present")
                 else:
-                    error_text = await response.text()
-                    self.log_test("Asur Season 3 Critical Test", "FAIL", 
-                                f"HTTP {response.status}: {error_text}")
-                    return False
+                    self.log_test("API Structure - Sports Images", "FAIL", 
+                                f"HTTP {response.status}")
+                    all_passed = False
+            
+            # Test team-logo response structure
+            async with self.session.get(f"{self.base_url}/api/thesportsdb/team-logo?team_name=Arsenal") as response:
+                if response.status == 200:
+                    data = await response.json()
+                    required_fields = ["status", "team_name"]
+                    missing_fields = [field for field in required_fields if field not in data]
+                    
+                    if missing_fields:
+                        self.log_test("API Structure - Team Logo", "FAIL", 
+                                    f"Missing fields: {missing_fields}")
+                        all_passed = False
+                    else:
+                        # Check if success response has logo data
+                        if data.get("status") == "success":
+                            if not data.get("badge") and not data.get("logo"):
+                                self.log_test("API Structure - Team Logo", "FAIL", 
+                                            "Success response missing badge/logo")
+                                all_passed = False
+                            else:
+                                self.log_test("API Structure - Team Logo", "PASS", 
+                                            "Success response has logo data")
+                        else:
+                            self.log_test("API Structure - Team Logo", "PASS", 
+                                        f"Response structure valid (status: {data.get('status')})")
+                else:
+                    self.log_test("API Structure - Team Logo", "FAIL", 
+                                f"HTTP {response.status}")
+                    all_passed = False
+            
+            # Test bulk-team-logos response structure
+            async with self.session.get(f"{self.base_url}/api/thesportsdb/bulk-team-logos?team_names=Arsenal,Chelsea") as response:
+                if response.status == 200:
+                    data = await response.json()
+                    required_fields = ["status", "teams"]
+                    missing_fields = [field for field in required_fields if field not in data]
+                    
+                    if missing_fields:
+                        self.log_test("API Structure - Bulk Logos", "FAIL", 
+                                    f"Missing fields: {missing_fields}")
+                        all_passed = False
+                    else:
+                        teams_data = data.get("teams", {})
+                        if isinstance(teams_data, dict):
+                            self.log_test("API Structure - Bulk Logos", "PASS", 
+                                        f"Teams object contains {len(teams_data)} entries")
+                        else:
+                            self.log_test("API Structure - Bulk Logos", "FAIL", 
+                                        "Teams field is not an object")
+                            all_passed = False
+                else:
+                    self.log_test("API Structure - Bulk Logos", "FAIL", 
+                                f"HTTP {response.status}")
+                    all_passed = False
+            
+            return all_passed
+            
         except Exception as e:
-            self.log_test("Asur Season 3 Critical Test", "FAIL", f"Exception: {str(e)}")
+            self.log_test("API Response Structure", "FAIL", f"Exception: {str(e)}")
             return False
     
     async def test_fighter_movie_specifically(self) -> bool:
