@@ -155,6 +155,7 @@ function LiveMatchTile({ match, sportsImages }) {
           src={sportsImages[teamName]} 
           alt={teamName}
           className="w-6 h-6 md:w-8 md:h-8 rounded-full flex-shrink-0 object-contain"
+          crossOrigin="anonymous"
           onError={() => handleImageError(teamName === match.team1.name ? 'team1' : 'team2')}
         />
       );
