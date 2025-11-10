@@ -446,51 +446,42 @@ class TheSportsDBTester:
             return False
 
     async def run_all_tests(self):
-        """Run comprehensive season-specific enrichment tests"""
-        print(f"🚀 Starting Season-Specific Enrichment Tests")
+        """Run comprehensive TheSportsDB API tests"""
+        print(f"🚀 Starting TheSportsDB API Tests")
         print(f"📡 Backend URL: {self.base_url}")
         print("=" * 60)
         
-        # Test 1: Trigger re-enrichment for season-specific logic
-        print("\n📋 Step 1: Triggering Content Re-Enrichment")
-        enrichment_success = await self.test_enrich_all_content()
+        # Test 1: Sports Images Endpoint (Pre-cached team logos)
+        print("\n📋 Test 1: GET /api/thesportsdb/sports-images")
+        await self.test_sports_images_endpoint()
         
-        # Test 2: CRITICAL - Season-Specific Data Verification
-        print("\n📋 Step 2: CRITICAL Season-Specific Data Verification")
-        season_success = await self.test_season_specific_enrichment()
+        # Test 2: Individual Team Logo Endpoint
+        print("\n📋 Test 2: GET /api/thesportsdb/team-logo")
+        await self.test_team_logo_endpoint()
         
-        # Test 3: Get buzzing content for detailed verification
-        print("\n📋 Step 3: Testing Buzzing Now Tray (Season Titles)")
-        buzzing_content = await self.test_content_category("buzzing")
+        # Test 3: Bulk Team Logos Endpoint
+        print("\n📋 Test 3: GET /api/thesportsdb/bulk-team-logos")
+        await self.test_bulk_team_logos_endpoint()
         
-        # Test 4: Verify specific season titles individually
-        print("\n📋 Step 4: Individual Season Title Verification")
+        # Test 4: Health Check Endpoint
+        print("\n📋 Test 4: GET /api/thesportsdb/health")
+        await self.test_health_endpoint()
         
-        season_titles = [
-            {
-                "title": "Squid Game Season 2",
-                "expected_year": 2024,  # Season 2 air date
-                "expected_language": "Korean"
-            },
-            {
-                "title": "Mirzapur Season 3", 
-                "expected_year": 2024,  # Season 3 air date
-                "expected_language": "Hindi"
-            },
-            {
-                "title": "Asur Season 3",
-                "expected_imdb_rating": 8.5,  # Around 8.5-8.6 for Indian series
-                "expected_year": 2020,  # Original series year for TMDB search
-                "expected_language": "Hindi"
-            }
-        ]
+        # Test 5: Image URL Accessibility
+        print("\n📋 Test 5: Image URL Accessibility")
+        await self.test_image_url_accessibility()
         
-        for title_data in season_titles:
-            await self.test_specific_title_metadata(title_data["title"], title_data)
+        # Test 6: API Response Structure Validation
+        print("\n📋 Test 6: API Response Structure")
+        await self.test_api_response_structure()
+        
+        # Test 7: Caching Behavior
+        print("\n📋 Test 7: Caching Behavior")
+        await self.test_caching_behavior()
         
         # Summary
         print("\n" + "=" * 60)
-        print("📊 TEST SUMMARY")
+        print("📊 THESPORTSDB API TEST SUMMARY")
         print("=" * 60)
         
         passed = len([r for r in self.test_results if r["status"] == "PASS"])
@@ -506,6 +497,12 @@ class TheSportsDBTester:
             print("\n❌ FAILED TESTS:")
             for result in self.test_results:
                 if result["status"] == "FAIL":
+                    print(f"   • {result['test']}: {result['details']}")
+        
+        if warnings > 0:
+            print("\n⚠️  WARNINGS:")
+            for result in self.test_results:
+                if result["status"] == "WARN":
                     print(f"   • {result['test']}: {result['details']}")
         
         return failed == 0
