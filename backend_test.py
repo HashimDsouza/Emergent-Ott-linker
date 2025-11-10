@@ -13,7 +13,7 @@ from typing import Dict, List, Optional
 # Backend URL from environment
 BACKEND_URL = "https://connector-app.preview.emergentagent.com"
 
-class ContentEnrichmentTester:
+class TheSportsDBTester:
     def __init__(self):
         self.base_url = BACKEND_URL
         self.session = None
