@@ -140,7 +140,41 @@ export default function LiveMatchesTray({ selectedSport, selectedLeague }) {
   );
 }
 
-function LiveMatchTile({ match }) {
+function LiveMatchTile({ match, sportsImages }) {
+  const [imageErrors, setImageErrors] = useState({ team1: false, team2: false });
+
+  const handleImageError = (team) => {
+    setImageErrors(prev => ({ ...prev, [team]: true }));
+  };
+
+  const getTeamImage = (teamName, teamLogo) => {
+    // Check if we have a real image from TheSportsDB
+    if (sportsImages[teamName] && !imageErrors[teamName === match.team1.name ? 'team1' : 'team2']) {
+      return (
+        <img 
+          src={sportsImages[teamName]} 
+          alt={teamName}
+          className="w-6 h-6 md:w-8 md:h-8 rounded-full flex-shrink-0 object-contain"
+          onError={() => handleImageError(teamName === match.team1.name ? 'team1' : 'team2')}
+        />
+      );
+    }
+
+    // Fallback to colored circle with initials
+    if (teamLogo && typeof teamLogo === 'object') {
+      return (
+        <div 
+          className="w-6 h-6 md:w-8 md:h-8 rounded-full flex-shrink-0 flex items-center justify-center text-[8px] md:text-[10px] font-bold"
+          style={{ backgroundColor: teamLogo.color, color: '#fff' }}
+        >
+          {teamLogo.initials}
+        </div>
+      );
+    }
+
+    return null;
+  };
+
   return (
     <div
       className="snap-start flex-shrink-0 w-[200px] md:w-[240px] rounded-2xl overflow-hidden cursor-pointer transition-all hover:scale-[1.02] group"
@@ -178,19 +212,7 @@ function LiveMatchTile({ match }) {
         {/* Team 1 */}
         <div className="flex items-center justify-between mb-3">
           <div className="flex items-center gap-2 flex-1 min-w-0">
-            {match.team1.logo && typeof match.team1.logo === 'object' ? (
-              <div 
-                className="w-6 h-6 md:w-8 md:h-8 rounded-full flex-shrink-0 flex items-center justify-center text-[8px] md:text-[10px] font-bold"
-                style={{ backgroundColor: match.team1.logo.color, color: '#fff' }}
-              >
-                {match.team1.logo.initials}
-              </div>
-            ) : match.team1.logo ? (
-              <div 
-                className="w-6 h-6 md:w-8 md:h-8 rounded-full flex-shrink-0"
-                style={{ backgroundColor: match.team1.logo }}
-              />
-            ) : (
+            {getTeamImage(match.team1.name, match.team1.logo) || (
               <FlagIcon flagCode={match.team1.flagCode} emoji={match.team1.flag} size="lg" />
             )}
             <span className="text-white font-semibold text-sm md:text-base truncate">
