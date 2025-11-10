@@ -40,30 +40,59 @@ class TheSportsDBTester:
         if details:
             print(f"   {details}")
     
-    async def test_enrich_all_content(self) -> bool:
-        """Test 1: Trigger content enrichment"""
+    async def test_sports_images_endpoint(self) -> bool:
+        """Test 1: GET /api/thesportsdb/sports-images - Pre-cached team logos"""
         try:
-            async with self.session.post(f"{self.base_url}/api/enrich-all-content") as response:
+            async with self.session.get(f"{self.base_url}/api/thesportsdb/sports-images") as response:
                 if response.status == 200:
                     data = await response.json()
-                    enriched_count = data.get("enriched", 0)
-                    total_count = data.get("total", 0)
                     
-                    if enriched_count > 0:
-                        self.log_test("Enrich All Content", "PASS", 
-                                    f"Enriched {enriched_count}/{total_count} items")
-                        return True
-                    else:
-                        self.log_test("Enrich All Content", "FAIL", 
-                                    f"No items enriched (0/{total_count})")
+                    # Check response structure
+                    if data.get("status") != "success":
+                        self.log_test("Sports Images Endpoint", "FAIL", 
+                                    f"Status not success: {data.get('status')}")
                         return False
+                    
+                    images = data.get("images", {})
+                    if not images:
+                        self.log_test("Sports Images Endpoint", "FAIL", 
+                                    "No images returned")
+                        return False
+                    
+                    # Test specific teams mentioned in requirements
+                    required_teams = ['MI', 'CSK', 'RCB', 'Man City', 'Arsenal', 'Lakers', 'Warriors', 'Real Madrid', 'Barcelona']
+                    missing_teams = []
+                    invalid_urls = []
+                    
+                    for team in required_teams:
+                        if team not in images:
+                            missing_teams.append(team)
+                        else:
+                            url = images[team]
+                            if not url or not url.startswith('https://'):
+                                invalid_urls.append(f"{team}: {url}")
+                    
+                    if missing_teams:
+                        self.log_test("Sports Images Endpoint", "FAIL", 
+                                    f"Missing teams: {', '.join(missing_teams)}")
+                        return False
+                    
+                    if invalid_urls:
+                        self.log_test("Sports Images Endpoint", "FAIL", 
+                                    f"Invalid URLs: {'; '.join(invalid_urls)}")
+                        return False
+                    
+                    self.log_test("Sports Images Endpoint", "PASS", 
+                                f"Found {len(images)} team images, all required teams present")
+                    return True
+                    
                 else:
                     error_text = await response.text()
-                    self.log_test("Enrich All Content", "FAIL", 
+                    self.log_test("Sports Images Endpoint", "FAIL", 
                                 f"HTTP {response.status}: {error_text}")
                     return False
         except Exception as e:
-            self.log_test("Enrich All Content", "FAIL", f"Exception: {str(e)}")
+            self.log_test("Sports Images Endpoint", "FAIL", f"Exception: {str(e)}")
             return False
     
     async def test_debug_sample(self) -> Dict:
