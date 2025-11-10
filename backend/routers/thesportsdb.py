@@ -213,10 +213,17 @@ async def get_bulk_team_logos(team_names: str = Query(..., description="Comma-se
             
             if data and data.get("teams"):
                 team = data["teams"][0]
+                
+                # Convert www.thesportsdb.com URLs to r2.thesportsdb.com (CDN with CORS support)
+                def convert_to_cdn_url(url):
+                    if url and "www.thesportsdb.com" in url:
+                        return url.replace("www.thesportsdb.com", "r2.thesportsdb.com")
+                    return url
+                
                 results[team_name] = {
-                    "badge": team.get("strBadge"),
-                    "logo": team.get("strLogo"),
-                    "banner": team.get("strBanner")
+                    "badge": convert_to_cdn_url(team.get("strBadge")),
+                    "logo": convert_to_cdn_url(team.get("strLogo")),
+                    "banner": convert_to_cdn_url(team.get("strBanner"))
                 }
             else:
                 results[team_name] = {
