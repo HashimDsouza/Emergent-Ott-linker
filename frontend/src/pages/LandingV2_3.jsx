@@ -13,14 +13,14 @@ export default function LandingV2_3({ apiData }) {
 
   const onInfo = (item) => { setModalItem(item); setModalOpen(true); };
 
-  // Sports tiles for Game On tray
+  // Sports tiles for Game On tray - Using TheSportsDB league badges
   const sportsCards = useMemo(() => [
     {
       id: 'sport-1',
       title: "ICC Women's World Cup 2025 Final",
       platform: 'Jiohotstar',
-      thumbnail: 'https://img.youtube.com/vi/TdWzfjdPJFs/maxresdefault.jpg',
-      posterUrl: 'https://img.youtube.com/vi/TdWzfjdPJFs/maxresdefault.jpg',
+      thumbnail: 'https://www.thesportsdb.com/images/media/league/badge/cricket-icc.png',
+      posterUrl: 'https://www.thesportsdb.com/images/media/league/badge/cricket-icc.png',
       description: "Women's Cricket World Cup Final - Live coverage",
       category: 'Cricket',
       imdb: 'LIVE',
