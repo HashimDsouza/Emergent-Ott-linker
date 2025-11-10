@@ -215,76 +215,46 @@ class TheSportsDBTester:
             self.log_test("Bulk Team Logos Endpoint", "FAIL", f"Exception: {str(e)}")
             return False
     
-    async def test_specific_title_metadata(self, title: str, expected_data: Dict) -> bool:
-        """Test specific title for correct metadata"""
+    async def test_health_endpoint(self) -> bool:
+        """Test 4: GET /api/thesportsdb/health - Health check endpoint"""
         try:
-            async with self.session.get(f"{self.base_url}/api/debug/item?title={title}") as response:
+            async with self.session.get(f"{self.base_url}/api/thesportsdb/health") as response:
                 if response.status == 200:
                     data = await response.json()
-                    item = data.get("item", {})
                     
-                    issues = []
+                    # Check response structure
+                    status = data.get("status")
+                    api_name = data.get("api")
+                    connected = data.get("connected")
                     
-                    # CRITICAL: Check TMDB ID for Fighter movie
-                    tmdb_id = item.get("tmdb_id")
-                    expected_tmdb_id = expected_data.get("expected_tmdb_id")
-                    if expected_tmdb_id and tmdb_id != expected_tmdb_id:
-                        issues.append(f"CRITICAL: TMDB ID {tmdb_id} vs expected {expected_tmdb_id}")
+                    if not status:
+                        self.log_test("Health Endpoint", "FAIL", "Missing status field")
+                        return False
                     
-                    # Check IMDb rating
-                    imdb_rating = item.get("imdb_rating")
-                    expected_rating = expected_data.get("expected_imdb_rating")
-                    if expected_rating and imdb_rating:
-                        if abs(float(imdb_rating) - expected_rating) > 0.5:
-                            issues.append(f"IMDb rating {imdb_rating} vs expected ~{expected_rating}")
-                    elif expected_rating and not imdb_rating:
-                        issues.append("Missing IMDb rating")
+                    if api_name != "TheSportsDB":
+                        self.log_test("Health Endpoint", "FAIL", 
+                                    f"Wrong API name: {api_name}")
+                        return False
                     
-                    # Check poster URL (should be TMDB, not unsplash)
-                    poster_url = item.get("poster_url", "")
-                    if "unsplash" in poster_url.lower():
-                        issues.append("Using placeholder image instead of TMDB poster")
-                    elif not poster_url.startswith("https://image.tmdb.org"):
-                        issues.append("Poster not from TMDB")
-                    
-                    # Check year
-                    year = item.get("year")
-                    expected_year = expected_data.get("expected_year")
-                    if expected_year and year != expected_year:
-                        issues.append(f"Year {year} vs expected {expected_year}")
-                    
-                    # Check language
-                    language = item.get("language")
-                    expected_language = expected_data.get("expected_language")
-                    if expected_language and language != expected_language:
-                        issues.append(f"Language '{language}' vs expected '{expected_language}'")
-                    
-                    # Check description for Fighter (should mention aerial action or Hrithik Roshan)
-                    if title == "Fighter":
-                        description = item.get("description", "").lower()
-                        if "aerial" not in description and "hrithik" not in description and "roshan" not in description:
-                            issues.append("Description doesn't mention aerial action or Hrithik Roshan")
-                    
-                    if not issues:
-                        self.log_test(f"Title Metadata - {title}", "PASS", 
-                                    f"All metadata correct (TMDB ID: {tmdb_id})")
+                    if status == "healthy" and connected:
+                        self.log_test("Health Endpoint", "PASS", 
+                                    f"API healthy, connected: {connected}")
+                        return True
+                    elif status == "degraded":
+                        self.log_test("Health Endpoint", "WARN", 
+                                    "API degraded but responding")
                         return True
                     else:
-                        self.log_test(f"Title Metadata - {title}", "FAIL", 
-                                    f"Issues: {'; '.join(issues)}")
+                        self.log_test("Health Endpoint", "FAIL", 
+                                    f"API unhealthy: {status}, connected: {connected}")
                         return False
-                        
-                elif response.status == 404:
-                    self.log_test(f"Title Metadata - {title}", "FAIL", 
-                                f"Title not found in database")
-                    return False
                 else:
                     error_text = await response.text()
-                    self.log_test(f"Title Metadata - {title}", "FAIL", 
+                    self.log_test("Health Endpoint", "FAIL", 
                                 f"HTTP {response.status}: {error_text}")
                     return False
         except Exception as e:
-            self.log_test(f"Title Metadata - {title}", "FAIL", f"Exception: {str(e)}")
+            self.log_test("Health Endpoint", "FAIL", f"Exception: {str(e)}")
             return False
     
     async def verify_tray_content_accuracy(self, content_list: List[Dict], category: str) -> bool:
