@@ -247,13 +247,17 @@ async def get_bulk_team_logos(team_names: str = Query(..., description="Comma-se
 @router.get("/sports-images")
 async def get_sports_images():
     """
-    Get pre-cached sports images for commonly used teams
-    This endpoint is optimized for Game On landing page
+    Get pre-cached sports images for commonly used teams via proxy
+    This endpoint is optimized for Game On landing page and bypasses CORS issues
     """
     try:
-        # Pre-defined image URLs for commonly used teams (using CDN with CORS support)
-        # Using r2.thesportsdb.com instead of www.thesportsdb.com for proper CORS headers
-        sports_images = {
+        from fastapi import Request
+        # Get the base URL for proxying
+        backend_url = os.environ.get('BACKEND_URL', 'https://connector-app.preview.emergentagent.com')
+        
+        # Pre-defined image URLs for commonly used teams
+        # These will be proxied through our backend to bypass CORS
+        sports_images_raw = {
             # Cricket - IPL
             'MI': 'https://r2.thesportsdb.com/images/media/team/badge/xqwpup1420382849.png',
             'CSK': 'https://r2.thesportsdb.com/images/media/team/badge/ytwwqt1467982667.png',
@@ -281,10 +285,16 @@ async def get_sports_images():
             'Heat': 'https://r2.thesportsdb.com/images/media/team/badge/bd98dm1648809803.png',
         }
         
+        # Convert to proxied URLs
+        from urllib.parse import quote
+        sports_images = {}
+        for team, url in sports_images_raw.items():
+            sports_images[team] = f"{backend_url}/api/thesportsdb/proxy-image?image_url={quote(url)}"
+        
         return {
             "status": "success",
             "images": sports_images,
-            "note": "Pre-cached images for common teams"
+            "note": "Pre-cached images proxied through backend to bypass CORS"
         }
         
     except Exception as e:
