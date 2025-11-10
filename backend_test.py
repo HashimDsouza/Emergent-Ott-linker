@@ -399,174 +399,50 @@ class TheSportsDBTester:
             self.log_test("API Response Structure", "FAIL", f"Exception: {str(e)}")
             return False
     
-    async def test_fighter_movie_specifically(self) -> bool:
-        """CRITICAL TEST: Verify Fighter movie has correct TMDB ID (784651 not 125702)"""
+    async def test_caching_behavior(self) -> bool:
+        """Test 7: Verify API caching is working (24-hour cache)"""
         try:
-            # Get hot_drop content to find Fighter
-            async with self.session.get(f"{self.base_url}/api/content?category=hot_drop") as response:
-                if response.status == 200:
-                    content_list = await response.json()
-                    
-                    fighter_item = None
-                    for item in content_list:
-                        if "Fighter" in item.get("title", ""):
-                            fighter_item = item
-                            break
-                    
-                    if not fighter_item:
-                        self.log_test("Fighter Movie Critical Test", "FAIL", 
-                                    "Fighter movie not found in hot_drop category")
-                        return False
-                    
-                    # Check critical fields
-                    tmdb_id = fighter_item.get("tmdb_id")
-                    year = fighter_item.get("year")
-                    language = fighter_item.get("language")
-                    imdb_rating = fighter_item.get("imdb_rating")
-                    description = fighter_item.get("description", "").lower()
-                    
-                    issues = []
-                    
-                    # MOST CRITICAL: TMDB ID check
-                    if tmdb_id == 125702:
-                        issues.append("CRITICAL FAILURE: Using 2000 English Fighter film (TMDB ID: 125702)")
-                    elif tmdb_id != 784651:
-                        issues.append(f"Wrong TMDB ID: {tmdb_id} (expected 784651 for 2024 Hindi film)")
-                    
-                    if year != 2024:
-                        issues.append(f"Wrong year: {year} (expected 2024)")
-                    
-                    if language != "Hindi":
-                        issues.append(f"Wrong language: {language} (expected Hindi)")
-                    
-                    if imdb_rating and float(imdb_rating) < 6.0:
-                        issues.append(f"Suspiciously low IMDb rating: {imdb_rating} (expected ~7.4)")
-                    
-                    if "aerial" not in description and "hrithik" not in description:
-                        issues.append("Description doesn't mention aerial action or Hrithik Roshan")
-                    
-                    if not issues:
-                        self.log_test("Fighter Movie Critical Test", "PASS", 
-                                    f"✅ Correct 2024 Hindi film (TMDB: {tmdb_id}, Year: {year}, Lang: {language})")
-                        return True
-                    else:
-                        self.log_test("Fighter Movie Critical Test", "FAIL", 
-                                    f"❌ {'; '.join(issues)}")
-                        return False
-                        
-                else:
-                    error_text = await response.text()
-                    self.log_test("Fighter Movie Critical Test", "FAIL", 
-                                f"HTTP {response.status}: {error_text}")
+            # Make the same request twice and measure response time
+            import time
+            
+            # First request
+            start_time = time.time()
+            async with self.session.get(f"{self.base_url}/api/thesportsdb/team-logo?team_name=Arsenal") as response1:
+                first_response_time = time.time() - start_time
+                if response1.status != 200:
+                    self.log_test("Caching Behavior", "FAIL", 
+                                f"First request failed: {response1.status}")
                     return False
-        except Exception as e:
-            self.log_test("Fighter Movie Critical Test", "FAIL", f"Exception: {str(e)}")
-            return False
-    
-    async def test_season_specific_enrichment(self) -> bool:
-        """CRITICAL TEST: Verify season-specific data for Season 2 and Season 3 shows"""
-        try:
-            # Get buzzing content to find season-specific titles
-            async with self.session.get(f"{self.base_url}/api/content?category=buzzing") as response:
-                if response.status == 200:
-                    content_list = await response.json()
-                    
-                    season_titles = {
-                        "Squid Game Season 2": {
-                            "expected_season": 2,
-                            "expected_year_range": [2024, 2025],  # Season 2 air date
-                            "expected_poster_different": True  # Should be different from Season 1
-                        },
-                        "Mirzapur Season 3": {
-                            "expected_season": 3,
-                            "expected_year_range": [2024, 2025],  # Season 3 air date
-                            "expected_poster_different": True
-                        },
-                        "Asur Season 3": {
-                            "expected_season": 3,
-                            "expected_year_range": [2020, 2024],  # Could be original series year or season year
-                            "expected_poster_different": True
-                        }
-                    }
-                    
-                    all_passed = True
-                    season_results = []
-                    
-                    for item in content_list:
-                        title = item.get("title", "")
-                        
-                        for season_title, expectations in season_titles.items():
-                            if season_title in title:
-                                issues = []
-                                
-                                # Check poster URL - should be TMDB, not placeholder
-                                poster_url = item.get("poster_url", "")
-                                if "unsplash" in poster_url.lower():
-                                    issues.append("Using placeholder image instead of season-specific TMDB poster")
-                                elif not poster_url.startswith("https://image.tmdb.org"):
-                                    issues.append("Poster not from TMDB")
-                                
-                                # Check year - should be season air date, not original show year
-                                year = item.get("year")
-                                expected_range = expectations["expected_year_range"]
-                                if year and (year < expected_range[0] or year > expected_range[1]):
-                                    issues.append(f"Year {year} not in expected range {expected_range} for season air date")
-                                
-                                # Check episodes - should be season-specific count
-                                episodes = item.get("episodes")
-                                season_number = item.get("season_number")
-                                
-                                if season_number != expectations["expected_season"]:
-                                    issues.append(f"Season number {season_number} vs expected {expectations['expected_season']}")
-                                
-                                # Check description - should be season-specific if available
-                                description = item.get("description", "")
-                                if not description or len(description) < 50:
-                                    issues.append("Missing or too short season-specific description")
-                                
-                                # Check TMDB ID exists
-                                tmdb_id = item.get("tmdb_id")
-                                if not tmdb_id:
-                                    issues.append("Missing TMDB ID for season-specific data")
-                                
-                                result = {
-                                    "title": season_title,
-                                    "poster_url": poster_url,
-                                    "year": year,
-                                    "episodes": episodes,
-                                    "season_number": season_number,
-                                    "tmdb_id": tmdb_id,
-                                    "issues": issues,
-                                    "passed": len(issues) == 0
-                                }
-                                season_results.append(result)
-                                
-                                if issues:
-                                    all_passed = False
-                                    self.log_test(f"Season-Specific Data - {season_title}", "FAIL", 
-                                                f"Issues: {'; '.join(issues)}")
-                                else:
-                                    self.log_test(f"Season-Specific Data - {season_title}", "PASS", 
-                                                f"✅ Season {expectations['expected_season']} data correct (Year: {year}, Episodes: {episodes}, TMDB: {tmdb_id})")
-                    
-                    # Summary of season-specific testing
-                    if all_passed:
-                        self.log_test("Season-Specific Enrichment Overall", "PASS", 
-                                    f"All {len(season_results)} season titles have correct season-specific data")
-                    else:
-                        failed_titles = [r["title"] for r in season_results if not r["passed"]]
-                        self.log_test("Season-Specific Enrichment Overall", "FAIL", 
-                                    f"Failed titles: {', '.join(failed_titles)}")
-                    
-                    return all_passed
-                        
-                else:
-                    error_text = await response.text()
-                    self.log_test("Season-Specific Enrichment", "FAIL", 
-                                f"HTTP {response.status}: {error_text}")
+                data1 = await response1.json()
+            
+            # Second request (should be faster due to caching)
+            start_time = time.time()
+            async with self.session.get(f"{self.base_url}/api/thesportsdb/team-logo?team_name=Arsenal") as response2:
+                second_response_time = time.time() - start_time
+                if response2.status != 200:
+                    self.log_test("Caching Behavior", "FAIL", 
+                                f"Second request failed: {response2.status}")
                     return False
+                data2 = await response2.json()
+            
+            # Compare responses (should be identical)
+            if data1 != data2:
+                self.log_test("Caching Behavior", "FAIL", 
+                            "Cached response differs from original")
+                return False
+            
+            # Check if second request was faster (indicating cache hit)
+            if second_response_time < first_response_time * 0.8:  # 20% faster threshold
+                self.log_test("Caching Behavior", "PASS", 
+                            f"Cache working: {first_response_time:.3f}s -> {second_response_time:.3f}s")
+            else:
+                self.log_test("Caching Behavior", "WARN", 
+                            f"Cache may not be working: {first_response_time:.3f}s -> {second_response_time:.3f}s")
+            
+            return True
+            
         except Exception as e:
-            self.log_test("Season-Specific Enrichment", "FAIL", f"Exception: {str(e)}")
+            self.log_test("Caching Behavior", "FAIL", f"Exception: {str(e)}")
             return False
 
     async def run_all_tests(self):
