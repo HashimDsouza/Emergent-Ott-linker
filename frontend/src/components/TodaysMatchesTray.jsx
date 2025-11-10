@@ -70,6 +70,7 @@ function TodayMatchTile({ match, sportsImages }) {
           src={sportsImages[teamName]} 
           alt={teamName}
           className="w-5 h-5 rounded-full flex-shrink-0 object-contain"
+          crossOrigin="anonymous"
           onError={() => handleImageError(teamKey)}
         />
       );
