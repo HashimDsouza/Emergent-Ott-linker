@@ -108,18 +108,12 @@ function ComingUpMatchTile({ match, sportsImages }) {
           </div>
         </>
       )}
-                <div className="text-center mb-2">
-                  <div className="text-xs font-bold" style={{ color: coral }}>{match.day}</div>
-                  <div className="text-sm font-bold" style={{ color: mint }}>{match.time}</div>
-                </div>
-                <p className="text-[10px] italic text-center mb-2" style={{ color: coral }}>{generateMatchDescriptor(match)}</p>
-                <button className="w-full py-1.5 rounded text-xs font-semibold" style={{ backgroundColor: `${mint}30`, color: mint }}>🔔 Remind Me</button>
-              </div>
-            ))}
-          </div>
-        </div>
+      <div className="text-center mb-2">
+        <div className="text-xs font-bold" style={{ color: coral }}>{match.day}</div>
+        <div className="text-sm font-bold" style={{ color: mint }}>{match.time}</div>
       </div>
-      <style>{".scrollbar-hide::-webkit-scrollbar { display: none; } .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }"}</style>
+      <p className="text-[10px] italic text-center mb-2" style={{ color: coral }}>{generateMatchDescriptor(match)}</p>
+      <button className="w-full py-1.5 rounded text-xs font-semibold" style={{ backgroundColor: `${mint}30`, color: mint }}>🔔 Remind Me</button>
     </div>
   );
 }
