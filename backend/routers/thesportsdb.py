@@ -208,9 +208,9 @@ async def get_bulk_team_logos(team_names: str = Query(..., description="Comma-se
             if data and data.get("teams"):
                 team = data["teams"][0]
                 results[team_name] = {
-                    "badge": team.get("strTeamBadge"),
-                    "logo": team.get("strTeamLogo"),
-                    "banner": team.get("strTeamBanner")
+                    "badge": team.get("strBadge"),
+                    "logo": team.get("strLogo"),
+                    "banner": team.get("strBanner")
                 }
             else:
                 results[team_name] = {
