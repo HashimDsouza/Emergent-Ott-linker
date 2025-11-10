@@ -128,13 +128,19 @@ async def get_team_logo(team_name: str = Query(..., description="Team name or ab
         
         team = data["teams"][0]
         
+        # Convert www.thesportsdb.com URLs to r2.thesportsdb.com (CDN with CORS support)
+        def convert_to_cdn_url(url):
+            if url and "www.thesportsdb.com" in url:
+                return url.replace("www.thesportsdb.com", "r2.thesportsdb.com")
+            return url
+        
         return {
             "status": "success",
             "team_name": team.get("strTeam"),
-            "badge": team.get("strBadge"),  # Square badge
-            "logo": team.get("strLogo"),    # Circular logo
-            "banner": team.get("strBanner"), # Wide banner
-            "jersey": team.get("strEquipment"), # Team jersey/equipment
+            "badge": convert_to_cdn_url(team.get("strBadge")),  # Square badge
+            "logo": convert_to_cdn_url(team.get("strLogo")),    # Circular logo
+            "banner": convert_to_cdn_url(team.get("strBanner")), # Wide banner
+            "jersey": convert_to_cdn_url(team.get("strEquipment")), # Team jersey/equipment
             "stadium": team.get("strStadium"),
             "league": team.get("strLeague")
         }
