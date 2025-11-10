@@ -95,42 +95,62 @@ class TheSportsDBTester:
             self.log_test("Sports Images Endpoint", "FAIL", f"Exception: {str(e)}")
             return False
     
-    async def test_debug_sample(self) -> Dict:
-        """Test 2: Verify sample enriched content"""
+    async def test_team_logo_endpoint(self) -> bool:
+        """Test 2: GET /api/thesportsdb/team-logo?team_name={name} - Individual team logos"""
         try:
-            async with self.session.get(f"{self.base_url}/api/debug/sample") as response:
-                if response.status == 200:
-                    data = await response.json()
-                    samples = data.get("samples", [])
-                    enriched_count = data.get("enriched_count", 0)
-                    
-                    if enriched_count > 0:
-                        # Check metadata fields for first sample
-                        sample = samples[0] if samples else {}
-                        required_fields = ["imdb_rating", "poster_url", "tmdb_id"]
-                        missing_fields = [field for field in required_fields 
-                                        if not sample.get(field)]
+            test_teams = ["Arsenal", "Man City", "Lakers", "Mumbai Indians"]
+            all_passed = True
+            
+            for team_name in test_teams:
+                async with self.session.get(f"{self.base_url}/api/thesportsdb/team-logo?team_name={team_name}") as response:
+                    if response.status == 200:
+                        data = await response.json()
                         
-                        if not missing_fields:
-                            self.log_test("Debug Sample Metadata", "PASS", 
-                                        f"All required fields present in {enriched_count} samples")
+                        # Check response structure
+                        if data.get("status") not in ["success", "not_found"]:
+                            self.log_test(f"Team Logo - {team_name}", "FAIL", 
+                                        f"Invalid status: {data.get('status')}")
+                            all_passed = False
+                            continue
+                        
+                        if data.get("status") == "success":
+                            # Check for badge/logo URLs
+                            badge = data.get("badge")
+                            logo = data.get("logo")
+                            
+                            if not badge and not logo:
+                                self.log_test(f"Team Logo - {team_name}", "FAIL", 
+                                            "No badge or logo URL returned")
+                                all_passed = False
+                            else:
+                                # Verify URLs are valid
+                                valid_urls = []
+                                if badge and badge.startswith('https://'):
+                                    valid_urls.append("badge")
+                                if logo and logo.startswith('https://'):
+                                    valid_urls.append("logo")
+                                
+                                if valid_urls:
+                                    self.log_test(f"Team Logo - {team_name}", "PASS", 
+                                                f"Found {', '.join(valid_urls)}")
+                                else:
+                                    self.log_test(f"Team Logo - {team_name}", "FAIL", 
+                                                "Invalid URLs returned")
+                                    all_passed = False
                         else:
-                            self.log_test("Debug Sample Metadata", "WARN", 
-                                        f"Missing fields: {missing_fields}")
-                        
-                        return data
+                            self.log_test(f"Team Logo - {team_name}", "WARN", 
+                                        "Team not found in TheSportsDB")
                     else:
-                        self.log_test("Debug Sample Metadata", "FAIL", 
-                                    "No enriched samples found")
-                        return {}
-                else:
-                    error_text = await response.text()
-                    self.log_test("Debug Sample Metadata", "FAIL", 
-                                f"HTTP {response.status}: {error_text}")
-                    return {}
+                        error_text = await response.text()
+                        self.log_test(f"Team Logo - {team_name}", "FAIL", 
+                                    f"HTTP {response.status}: {error_text}")
+                        all_passed = False
+            
+            return all_passed
+            
         except Exception as e:
-            self.log_test("Debug Sample Metadata", "FAIL", f"Exception: {str(e)}")
-            return {}
+            self.log_test("Team Logo Endpoint", "FAIL", f"Exception: {str(e)}")
+            return False
     
     async def test_content_category(self, category: str) -> List[Dict]:
         """Test content by category (buzzing, hot_drop)"""
