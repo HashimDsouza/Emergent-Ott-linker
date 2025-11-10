@@ -113,7 +113,7 @@ export default function LiveMatchesTray({ selectedSport, selectedLeague }) {
         <div className="overflow-x-auto scrollbar-hide snap-x snap-mandatory">
           <div className="flex gap-4 md:gap-5" style={{ width: 'max-content' }}>
             {filteredMatches.map((match) => (
-              <LiveMatchTile key={match.id} match={match} />
+              <LiveMatchTile key={match.id} match={match} sportsImages={sportsImages} />
             ))}
           </div>
         </div>
