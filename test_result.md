@@ -346,7 +346,7 @@ metadata:
 
 test_plan:
   current_focus:
-    - "Nov 2025 content ingestion with 60-40 balance"
+    - "TheSportsDB API Integration for Game On section"
   stuck_tasks: []
   test_all: false
   test_priority: "high_first"
