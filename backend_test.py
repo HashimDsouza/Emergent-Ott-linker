@@ -152,33 +152,68 @@ class TheSportsDBTester:
             self.log_test("Team Logo Endpoint", "FAIL", f"Exception: {str(e)}")
             return False
     
-    async def test_content_category(self, category: str) -> List[Dict]:
-        """Test content by category (buzzing, hot_drop)"""
+    async def test_bulk_team_logos_endpoint(self) -> bool:
+        """Test 3: GET /api/thesportsdb/bulk-team-logos?team_names={comma-separated} - Multiple team logos"""
         try:
-            async with self.session.get(f"{self.base_url}/api/content?category={category}") as response:
-                if response.status == 200:
-                    content_list = await response.json()
-                    
-                    if content_list:
-                        # Check for specific titles and their metadata
-                        titles_found = [item.get("title") for item in content_list]
+            # Test with IPL teams
+            test_cases = [
+                {"teams": "MI,CSK,RCB", "description": "IPL teams"},
+                {"teams": "Arsenal,Liverpool,Chelsea", "description": "Premier League teams"}
+            ]
+            
+            all_passed = True
+            
+            for test_case in test_cases:
+                team_names = test_case["teams"]
+                description = test_case["description"]
+                
+                async with self.session.get(f"{self.base_url}/api/thesportsdb/bulk-team-logos?team_names={team_names}") as response:
+                    if response.status == 200:
+                        data = await response.json()
                         
-                        self.log_test(f"Content Category - {category}", "PASS", 
-                                    f"Found {len(content_list)} items: {', '.join(titles_found[:3])}...")
+                        # Check response structure
+                        if data.get("status") != "success":
+                            self.log_test(f"Bulk Team Logos - {description}", "FAIL", 
+                                        f"Status not success: {data.get('status')}")
+                            all_passed = False
+                            continue
                         
-                        return content_list
+                        teams_data = data.get("teams", {})
+                        expected_teams = team_names.split(",")
+                        
+                        if len(teams_data) != len(expected_teams):
+                            self.log_test(f"Bulk Team Logos - {description}", "FAIL", 
+                                        f"Expected {len(expected_teams)} teams, got {len(teams_data)}")
+                            all_passed = False
+                            continue
+                        
+                        # Check each team has logo data
+                        teams_with_logos = 0
+                        for team in expected_teams:
+                            team = team.strip()
+                            if team in teams_data:
+                                team_data = teams_data[team]
+                                if team_data.get("badge") or team_data.get("logo"):
+                                    teams_with_logos += 1
+                        
+                        if teams_with_logos > 0:
+                            self.log_test(f"Bulk Team Logos - {description}", "PASS", 
+                                        f"{teams_with_logos}/{len(expected_teams)} teams have logos")
+                        else:
+                            self.log_test(f"Bulk Team Logos - {description}", "FAIL", 
+                                        "No teams have logo data")
+                            all_passed = False
                     else:
-                        self.log_test(f"Content Category - {category}", "FAIL", 
-                                    "No content found")
-                        return []
-                else:
-                    error_text = await response.text()
-                    self.log_test(f"Content Category - {category}", "FAIL", 
-                                f"HTTP {response.status}: {error_text}")
-                    return []
+                        error_text = await response.text()
+                        self.log_test(f"Bulk Team Logos - {description}", "FAIL", 
+                                    f"HTTP {response.status}: {error_text}")
+                        all_passed = False
+            
+            return all_passed
+            
         except Exception as e:
-            self.log_test(f"Content Category - {category}", "FAIL", f"Exception: {str(e)}")
-            return []
+            self.log_test("Bulk Team Logos Endpoint", "FAIL", f"Exception: {str(e)}")
+            return False
     
     async def test_specific_title_metadata(self, title: str, expected_data: Dict) -> bool:
         """Test specific title for correct metadata"""
