@@ -292,6 +292,34 @@ async def get_sports_images():
         raise HTTPException(status_code=500, detail="Internal server error")
 
 
+@router.get("/proxy-image")
+async def proxy_team_image(image_url: str = Query(..., description="TheSportsDB image URL to proxy")):
+    """
+    Proxy TheSportsDB images to bypass CORS issues
+    This endpoint fetches the image from TheSportsDB and returns it with proper headers
+    """
+    try:
+        async with httpx.AsyncClient(timeout=15.0) as client:
+            response = await client.get(image_url)
+            
+            if response.status_code == 200:
+                from fastapi.responses import Response
+                return Response(
+                    content=response.content,
+                    media_type=response.headers.get("content-type", "image/png"),
+                    headers={
+                        "Cache-Control": "public, max-age=86400",  # Cache for 24 hours
+                        "Access-Control-Allow-Origin": "*"
+                    }
+                )
+            else:
+                raise HTTPException(status_code=404, detail="Image not found")
+                
+    except Exception as e:
+        logging.error(f"Error proxying image: {str(e)}")
+        raise HTTPException(status_code=500, detail="Failed to proxy image")
+
+
 @router.get("/health")
 async def thesportsdb_health_check():
     """Health check endpoint to verify TheSportsDB API connectivity"""
