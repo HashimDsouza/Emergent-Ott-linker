@@ -509,11 +509,11 @@ class TheSportsDBTester:
 
 async def main():
     """Main test runner"""
-    async with ContentEnrichmentTester() as tester:
+    async with TheSportsDBTester() as tester:
         success = await tester.run_all_tests()
         
         if success:
-            print("\n🎉 All tests passed! Content enrichment is working correctly.")
+            print("\n🎉 All TheSportsDB API tests passed! Integration is working correctly.")
             sys.exit(0)
         else:
             print("\n💥 Some tests failed. Check the issues above.")
