@@ -72,17 +72,12 @@ export async function getTeamLogo(teamName, sport = 'football') {
 export async function getLeagueBadge(leagueName) {
   try {
     const response = await fetch(
-      `${SPORTSDB_BASE_URL}/search_all_leagues.php?s=Soccer`
+      `${BACKEND_URL}/api/thesportsdb/league-badge?league_name=${encodeURIComponent(leagueName)}`
     );
     const data = await response.json();
     
-    if (data.countries) {
-      const league = data.countries.find(l => 
-        l.strLeague.toLowerCase().includes(leagueName.toLowerCase())
-      );
-      if (league) {
-        return league.strBadge;
-      }
+    if (data.status === 'success') {
+      return data.badge || data.logo || null;
     }
     return null;
   } catch (error) {
