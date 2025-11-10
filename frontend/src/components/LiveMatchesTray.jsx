@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { liveMatches as configLiveMatches } from '../config/sportsConfig';
 import FlagIcon from './FlagIcon';
 import TrayHeader from './TrayHeader';
+import { fetchSportsImages } from '../utils/sportsImageFetcher';
 
 const coral = "#FF4F64";
 const mint = "#30E0B2";
