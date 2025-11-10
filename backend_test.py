@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
-Backend API Testing for OTT Linker Content Enrichment
-Tests the content enrichment functionality focusing on metadata accuracy
+Backend API Testing for TheSportsDB Integration
+Tests the new TheSportsDB API endpoints for Game On section
 """
 
 import asyncio
