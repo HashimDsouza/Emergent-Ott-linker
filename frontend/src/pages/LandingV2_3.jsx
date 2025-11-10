@@ -148,7 +148,7 @@ export default function LandingV2_3({ apiData }) {
         reddit: 'https://www.reddit.com/r/soccer'
       }
     }
-  ], []);
+  ], [backendUrl]);
 
   return (
     <div className="min-h-screen pb-20 md:pb-24 landing-v23-bg text-white">
