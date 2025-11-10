@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { todayMatches, generateMatchDescriptor } from '../config/sportsConfig';
 import FlagIcon from './FlagIcon';
 import TrayHeader from './TrayHeader';
+import { fetchSportsImages } from '../utils/sportsImageFetcher';
 
 const coral = "#FF4F64";
 const mint = "#30E0B2";
@@ -9,6 +10,16 @@ const charcoal = "#0E1514";
 const charcoalSoft = "#173A35";
 
 export default function TodaysMatchesTray({ selectedSport, selectedLeague }) {
+  const [sportsImages, setSportsImages] = useState({});
+
+  useEffect(() => {
+    const loadSportsImages = async () => {
+      const images = await fetchSportsImages();
+      setSportsImages(images);
+    };
+    loadSportsImages();
+  }, []);
+
   // Filter matches based on selected sport/league
   const filteredMatches = todayMatches.filter(match => {
     if (!selectedSport || selectedSport === 'live') return true;
