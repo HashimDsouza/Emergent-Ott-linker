@@ -251,34 +251,34 @@ async def get_sports_images():
     This endpoint is optimized for Game On landing page
     """
     try:
-        # Pre-defined image URLs for commonly used teams
-        # This reduces API calls and provides instant loading
+        # Pre-defined image URLs for commonly used teams (using CDN with CORS support)
+        # Using r2.thesportsdb.com instead of www.thesportsdb.com for proper CORS headers
         sports_images = {
             # Cricket - IPL
-            'MI': 'https://www.thesportsdb.com/images/media/team/badge/xqwpup1420382849.png',
-            'CSK': 'https://www.thesportsdb.com/images/media/team/badge/ytwwqt1467982667.png',
-            'RCB': 'https://www.thesportsdb.com/images/media/team/badge/v2qnuv1467982635.png',
-            'KKR': 'https://www.thesportsdb.com/images/media/team/badge/trqxyx1467982616.png',
-            'DC': 'https://www.thesportsdb.com/images/media/team/badge/xvsvuv1467982703.png',
-            'RR': 'https://www.thesportsdb.com/images/media/team/badge/wtqsvx1467982758.png',
-            'PBKS': 'https://www.thesportsdb.com/images/media/team/badge/urwxuv1467982777.png',
-            'SRH': 'https://www.thesportsdb.com/images/media/team/badge/vtppsy1467982794.png',
+            'MI': 'https://r2.thesportsdb.com/images/media/team/badge/xqwpup1420382849.png',
+            'CSK': 'https://r2.thesportsdb.com/images/media/team/badge/ytwwqt1467982667.png',
+            'RCB': 'https://r2.thesportsdb.com/images/media/team/badge/v2qnuv1467982635.png',
+            'KKR': 'https://r2.thesportsdb.com/images/media/team/badge/trqxyx1467982616.png',
+            'DC': 'https://r2.thesportsdb.com/images/media/team/badge/xvsvuv1467982703.png',
+            'RR': 'https://r2.thesportsdb.com/images/media/team/badge/wtqsvx1467982758.png',
+            'PBKS': 'https://r2.thesportsdb.com/images/media/team/badge/urwxuv1467982777.png',
+            'SRH': 'https://r2.thesportsdb.com/images/media/team/badge/vtppsy1467982794.png',
             
             # Football - Premier League
-            'Man City': 'https://www.thesportsdb.com/images/media/team/badge/vwpvry1467462651.png',
-            'Arsenal': 'https://www.thesportsdb.com/images/media/team/badge/vrtrtp1448813175.png',
-            'Liverpool': 'https://www.thesportsdb.com/images/media/team/badge/uvxvty1448813447.png',
-            'Chelsea': 'https://www.thesportsdb.com/images/media/team/badge/yvwvtu1448813033.png',
+            'Man City': 'https://r2.thesportsdb.com/images/media/team/badge/vwpvry1467462651.png',
+            'Arsenal': 'https://r2.thesportsdb.com/images/media/team/badge/vrtrtp1448813175.png',
+            'Liverpool': 'https://r2.thesportsdb.com/images/media/team/badge/uvxvty1448813447.png',
+            'Chelsea': 'https://r2.thesportsdb.com/images/media/team/badge/yvwvtu1448813033.png',
             
             # Football - La Liga
-            'Real Madrid': 'https://www.thesportsdb.com/images/media/team/badge/yxwvrw1448813371.png',
-            'Barcelona': 'https://www.thesportsdb.com/images/media/team/badge/txqrxy1448813303.png',
+            'Real Madrid': 'https://r2.thesportsdb.com/images/media/team/badge/yxwvrw1448813371.png',
+            'Barcelona': 'https://r2.thesportsdb.com/images/media/team/badge/txqrxy1448813303.png',
             
             # NBA
-            'Lakers': 'https://www.thesportsdb.com/images/media/team/badge/a77e1i1547214763.png',
-            'Warriors': 'https://www.thesportsdb.com/images/media/team/badge/o7y1hd1648809742.png',
-            'Celtics': 'https://www.thesportsdb.com/images/media/team/badge/dh1d7u1650037530.png',
-            'Heat': 'https://www.thesportsdb.com/images/media/team/badge/bd98dm1648809803.png',
+            'Lakers': 'https://r2.thesportsdb.com/images/media/team/badge/a77e1i1547214763.png',
+            'Warriors': 'https://r2.thesportsdb.com/images/media/team/badge/o7y1hd1648809742.png',
+            'Celtics': 'https://r2.thesportsdb.com/images/media/team/badge/dh1d7u1650037530.png',
+            'Heat': 'https://r2.thesportsdb.com/images/media/team/badge/bd98dm1648809803.png',
         }
         
         return {
