@@ -1,10 +1,38 @@
 /**
  * TheSportsDB Image Fetcher for Game On
- * Fetches team logos, league badges, and match preview images
+ * Fetches team logos, league badges, and match preview images via backend API
  */
 
-const SPORTSDB_API_KEY = '3'; // Free tier key
-const SPORTSDB_BASE_URL = 'https://www.thesportsdb.com/api/v1/json/3';
+const BACKEND_URL = process.env.REACT_APP_BACKEND_URL || import.meta.env.VITE_REACT_APP_BACKEND_URL;
+
+// Cache for sports images
+let cachedSportsImages = null;
+
+/**
+ * Fetch pre-cached sports images from backend
+ * This is optimized for quick loading on Game On page
+ */
+export async function fetchSportsImages() {
+  if (cachedSportsImages) {
+    return cachedSportsImages;
+  }
+
+  try {
+    const response = await fetch(`${BACKEND_URL}/api/thesportsdb/sports-images`);
+    
+    if (!response.ok) {
+      console.error('Failed to fetch sports images:', response.status);
+      return {};
+    }
+
+    const data = await response.json();
+    cachedSportsImages = data.images || {};
+    return cachedSportsImages;
+  } catch (error) {
+    console.error('Error fetching sports images:', error);
+    return {};
+  }
+}
 
 /**
  * Get team logo by team name
@@ -14,13 +42,20 @@ const SPORTSDB_BASE_URL = 'https://www.thesportsdb.com/api/v1/json/3';
  */
 export async function getTeamLogo(teamName, sport = 'football') {
   try {
+    // First check cache
+    const images = await fetchSportsImages();
+    if (images[teamName]) {
+      return images[teamName];
+    }
+
+    // If not in cache, fetch from API
     const response = await fetch(
-      `${SPORTSDB_BASE_URL}/searchteams.php?t=${encodeURIComponent(teamName)}`
+      `${BACKEND_URL}/api/thesportsdb/team-logo?team_name=${encodeURIComponent(teamName)}`
     );
     const data = await response.json();
     
-    if (data.teams && data.teams.length > 0) {
-      return data.teams[0].strTeamBadge || data.teams[0].strTeamLogo;
+    if (data.status === 'success') {
+      return data.badge || data.logo || null;
     }
     return null;
   } catch (error) {
