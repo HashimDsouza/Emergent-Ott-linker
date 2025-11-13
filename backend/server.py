@@ -605,7 +605,7 @@ class Content(BaseModel):
     release_date: Optional[str] = None
     social_links: Dict[str, str] = Field(default_factory=dict)
     content_type: str
-    tagline: str = ""
+    tagline: Optional[str] = None
     likes: int = 0
     shares: int = 0
     # Enhanced metadata fields
