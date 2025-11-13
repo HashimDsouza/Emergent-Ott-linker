@@ -11,7 +11,7 @@ import sys
 from typing import Dict, List, Optional
 
 # Backend URL from environment
-BACKEND_URL = "https://connector-app.preview.emergentagent.com"
+BACKEND_URL = "https://media-unifier.preview.emergentagent.com"
 
 class YouTubeAPITester:
     def __init__(self):

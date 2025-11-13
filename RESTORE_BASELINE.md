@@ -98,7 +98,7 @@ mongodb: RUNNING on port 27017
 MONGO_URL=mongodb://localhost:27017
 DB_NAME=test_database
 EMERGENT_LLM_KEY=sk-emergent-49512AdA74c0594C2D
-REACT_APP_BACKEND_URL=https://connector-app.preview.emergentagent.com
+REACT_APP_BACKEND_URL=https://media-unifier.preview.emergentagent.com
 ```
 
 ---

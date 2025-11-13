@@ -190,7 +190,7 @@ sudo supervisorctl restart all
 
 **Preview URL:**
 ```
-https://connector-app.preview.emergentagent.com/landing/v2_3
+https://media-unifier.preview.emergentagent.com/landing/v2_3
 ```
 
 **Local:**
