@@ -782,7 +782,9 @@ async def process_excel_file(file_path: str, dry_run: bool = False, batch_name: 
                     enrichment['omdb_data'],
                     parsed,
                     enrichment,
-                    TMDB_API_KEY
+                    TMDB_API_KEY,
+                    batch_name,
+                    default_year
                 )
                 
                 db_action = await safe_upsert_content(content, db, dry_run)
