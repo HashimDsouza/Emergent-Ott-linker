@@ -736,8 +736,7 @@ async def safe_upsert_content(new_content: Dict, db, dry_run: bool = False) -> D
         duplicate_reason = f"Matches existing manual entry (id={existing_by_metadata['id']})"
         logging.warning(f"⚠️  POSSIBLE DUPLICATE: {new_content['title']} matches existing manual entry (id={existing_by_metadata['id']})")
     
-    # Generate new UUID and timestamps
-    new_content['id'] = str(uuid.uuid4())
+    # Add timestamps (id already generated in map_tmdb_to_content)
     new_content['created_at'] = datetime.now(timezone.utc).isoformat()
     new_content['updated_at'] = datetime.now(timezone.utc).isoformat()
     
