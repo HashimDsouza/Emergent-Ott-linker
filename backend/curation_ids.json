@@ -35,49 +35,54 @@
   ],
   "platforms": {
     "Netflix": [
-      "690da8d25da2bfe7d2b854fb",
-      "690d9b14e036863144a84b2d",
-      "690da8d15da2bfe7d2b854fa",
-      "690cd579ba1a588bf68ce621",
-      "690d9b14e036863144a84b20",
-      "690da8cf5da2bfe7d2b854f5",
-      "690cd57eba1a588bf68ce626",
-      "690cd57dba1a588bf68ce624",
-      "690cd57cba1a588bf68ce623",
-      "6909d6d4c5e1829952fb5887"
+      "9ad2aa13-4c18-4f03-adc2-b4295ee24558",
+      "d64814e3-dfbb-4b5d-93a9-2eb769e4275f",
+      "a10fbf15-ab34-4542-8e83-29555608f710",
+      "9ca374b1-1046-485a-829a-6447b3844c80",
+      "fbf9755f-f85a-4dd1-ba9d-7db12db18728",
+      "f74ae4ab-6db4-4c25-a024-55b462c07223",
+      "8549be57-82e8-41bf-b3c7-964eb06f3832",
+      "b92308bf-10be-4f69-a9e8-438f3cdf6c1e",
+      "e0bb210c-a909-4b72-ae4a-0d98aba55eeb",
+      "84bb3f56-ed9d-429e-bf72-6251051949ed"
     ],
     "Prime Video": [
+      "a9adba7e-9175-42bc-9da9-6a5f2fdb1808",
+      "54310a4e-0760-48bb-84d1-8720ed1a6de4",
+      "634ce73b-52f7-4b90-8de4-04f7a462a863",
       "690cd592ba1a588bf68ce63a",
       "6909d6d4c5e1829952fb587e",
       "690cd5af776f0a31ee735594",
       "690cd599ba1a588bf68ce641",
       "690cd5ad776f0a31ee735592",
       "690d9b14e036863144a84b21",
-      "690cd5b1776f0a31ee735596",
-      "690cd59bba1a588bf68ce643",
-      "690cd593ba1a588bf68ce63b",
-      "690cd597ba1a588bf68ce63f"
+      "690cd5b1776f0a31ee735596"
     ],
     "Disney+": [],
     "JioHotstar": [
-      "6909d6d4c5e1829952fb588c",
-      "690cd5b6776f0a31ee73559b",
-      "6909d6d4c5e1829952fb5885",
-      "690cd5cd776f0a31ee7355b2",
-      "690cd5b9776f0a31ee73559e",
-      "6909d6d4c5e1829952fb587f",
-      "6909d6d4c5e1829952fb5888",
-      "6909d6d4c5e1829952fb588e",
-      "6909d6d4c5e1829952fb5891",
-      "690cd5c8776f0a31ee7355ad"
+      "51f1bd3a-371a-4ed8-a58e-6980fb304001",
+      "8432cf82-7ee7-4ad7-bc72-951cede9c2ff",
+      "0e7e5160-b681-4183-8e40-30cbbd05eb35",
+      "b7d62eae-4c12-460a-a281-b6589cf45c5a",
+      "2209db3d-791b-4fbc-82ec-0743a38dc902",
+      "5721bd6d-c352-4452-a7db-9f5b80af5016",
+      "d02fd784-f931-4be9-bf67-f029703c5896",
+      "abb184d5-c44e-4cfd-8c5a-ee9e4d22cf29",
+      "2dfb0ad1-b720-48cf-8e09-43d7bfb8ac09",
+      "9e46a0c3-05f7-4be4-baaa-52b95e4b7446"
     ],
     "Apple TV": [
+      "b7f22e94-b818-4306-a112-47cfd21c2d03",
+      "bb96807f-e250-4ada-9b81-06e3ee09a52c",
+      "d4275dfc-4ece-4260-8ae8-cb812616482b",
+      "be4f28b5-d39b-48a6-a627-025c36d8b3d0",
       "690cd5dc776f0a31ee7355c1",
-      "6909d6d4c5e1829952fb587c",
-      "690cd5e2776f0a31ee7355c7",
-      "6909d6d4c5e1829952fb5878",
-      "690cd5df776f0a31ee7355c4",
-      "690cd5e3776f0a31ee7355c8"
+      "6909d6d4c5e1829952fb587c"
+    ],
+    "SonyLIV": [
+      "504185d0-cb01-48b6-999b-fdefd6a06d20",
+      "073bde45-2ecf-4e74-ad3a-b88ddb7282ff",
+      "c1aab3ad-d4de-4f9f-8027-83e719816418"
     ]
   },
   "hero": [
