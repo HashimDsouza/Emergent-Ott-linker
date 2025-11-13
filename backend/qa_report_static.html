@@ -1,0 +1,1205 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QA Report</title>
+    <style>
+        body { font-family: Arial; margin: 10px; font-size: 12px; }
+        h2 { font-size: 16px; }
+        table { width: 100%; border-collapse: collapse; font-size: 11px; }
+        th { background: #FF4F64; color: white; padding: 8px 4px; position: sticky; top: 0; }
+        td { padding: 6px 4px; border-bottom: 1px solid #ddd; }
+        tr:nth-child(even) { background: #f9f9f9; }
+        .summary { background: #e8f5e9; padding: 10px; margin-bottom: 15px; border-radius: 5px; }
+    </style>
+</head>
+<body>
+    <h2>📊 QA Report - Nov25 Catalog</h2>
+    <div class="summary">
+        <p><b>Total:</b> 61 | <b>Matched:</b> 41 | <b>IMDb Ratings:</b> 22 | <b>High Confidence:</b> 15</p>
+    </div>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Original Excel Title</th>
+      <th>Parsed Title</th>
+      <th>Platform (Normalized)</th>
+      <th>Season</th>
+      <th>Volume</th>
+      <th>Release Year (Excel)</th>
+      <th>TMDB Match Found</th>
+      <th>TMDB Title</th>
+      <th>TMDB Year</th>
+      <th>Year Mismatch</th>
+      <th>Confidence</th>
+      <th>IMDb Rating Found</th>
+      <th>IMDb Rating</th>
+      <th>Status</th>
+      <th>Action Taken</th>
+      <th>Possible Duplicate</th>
+      <th>Match Reason</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Laughter Chefs S3 (JioHotstar)</td>
+      <td>Laughter Chefs</td>
+      <td>jiohotstar</td>
+      <td>3.0</td>
+      <td>NaN</td>
+      <td>2025</td>
+      <td>No</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>TMDB year missing</td>
+      <td>low</td>
+      <td>No</td>
+      <td>NaN</td>
+      <td>needs_review</td>
+      <td>no_match</td>
+      <td>NaN</td>
+      <td>No match found</td>
+    </tr>
+    <tr>
+      <td>Ziddi Ishq (JioHotstar)</td>
+      <td>Ziddi Ishq</td>
+      <td>jiohotstar</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>2025</td>
+      <td>No</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>TMDB year missing</td>
+      <td>low</td>
+      <td>No</td>
+      <td>NaN</td>
+      <td>needs_review</td>
+      <td>no_match</td>
+      <td>NaN</td>
+      <td>No match found</td>
+    </tr>
+    <tr>
+      <td>Mahabharat : Ek Dharmyuddh (JioHotstar)</td>
+      <td>Mahabharat : Ek Dharmyuddh</td>
+      <td>jiohotstar</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>2025</td>
+      <td>No</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>TMDB year missing</td>
+      <td>low</td>
+      <td>No</td>
+      <td>NaN</td>
+      <td>needs_review</td>
+      <td>no_match</td>
+      <td>NaN</td>
+      <td>No match found</td>
+    </tr>
+    <tr>
+      <td>The Naina Murder Case (JioHotstar)</td>
+      <td>The Naina Murder Case</td>
+      <td>jiohotstar</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>2025</td>
+      <td>Yes</td>
+      <td>Search: The Naina Murder Case</td>
+      <td>2025.0</td>
+      <td>No</td>
+      <td>medium</td>
+      <td>No</td>
+      <td>NaN</td>
+      <td>needs_review</td>
+      <td>dry_run</td>
+      <td>NaN</td>
+      <td>Title match + year proximity (confidence: medium)</td>
+    </tr>
+    <tr>
+      <td>Stranger Things S5 Vol 1 (Netflix)</td>
+      <td>Stranger Things</td>
+      <td>netflix</td>
+      <td>5.0</td>
+      <td>1.0</td>
+      <td>2025</td>
+      <td>No</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>TMDB year missing</td>
+      <td>low</td>
+      <td>No</td>
+      <td>NaN</td>
+      <td>needs_review</td>
+      <td>no_match</td>
+      <td>NaN</td>
+      <td>No match found</td>
+    </tr>
+    <tr>
+      <td>Dining With Kapoors (Netflix)</td>
+      <td>Dining With Kapoors</td>
+      <td>netflix</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>2025</td>
+      <td>No</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>TMDB year missing</td>
+      <td>low</td>
+      <td>No</td>
+      <td>NaN</td>
+      <td>needs_review</td>
+      <td>no_match</td>
+      <td>NaN</td>
+      <td>No match found</td>
+    </tr>
+    <tr>
+      <td>Family Man S3 (Prime)</td>
+      <td>Family Man</td>
+      <td>prime_video</td>
+      <td>3.0</td>
+      <td>NaN</td>
+      <td>2025</td>
+      <td>No</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>TMDB year missing</td>
+      <td>low</td>
+      <td>No</td>
+      <td>NaN</td>
+      <td>needs_review</td>
+      <td>no_match</td>
+      <td>NaN</td>
+      <td>No match found</td>
+    </tr>
+    <tr>
+      <td>Delhi Crimes S3 (Netflix)</td>
+      <td>Delhi Crimes</td>
+      <td>netflix</td>
+      <td>3.0</td>
+      <td>NaN</td>
+      <td>2025</td>
+      <td>No</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>TMDB year missing</td>
+      <td>low</td>
+      <td>No</td>
+      <td>NaN</td>
+      <td>needs_review</td>
+      <td>no_match</td>
+      <td>NaN</td>
+      <td>No match found</td>
+    </tr>
+    <tr>
+      <td>Maharani S4 (SonyLIV)</td>
+      <td>Maharani</td>
+      <td>sonyliv</td>
+      <td>4.0</td>
+      <td>NaN</td>
+      <td>2025</td>
+      <td>No</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>TMDB year missing</td>
+      <td>low</td>
+      <td>No</td>
+      <td>NaN</td>
+      <td>needs_review</td>
+      <td>no_match</td>
+      <td>NaN</td>
+      <td>No match found</td>
+    </tr>
+    <tr>
+      <td>Thhode Door Thhode Paas (Zee5)</td>
+      <td>Thhode Door Thhode Paas</td>
+      <td>zee5</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Missing</td>
+      <td>No</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Excel year missing</td>
+      <td>low</td>
+      <td>No</td>
+      <td>NaN</td>
+      <td>needs_review</td>
+      <td>no_match</td>
+      <td>NaN</td>
+      <td>No match found</td>
+    </tr>
+    <tr>
+      <td>Indian Idol S16 (Sony LIV)</td>
+      <td>Indian Idol</td>
+      <td>sonyliv</td>
+      <td>16.0</td>
+      <td>NaN</td>
+      <td>Missing</td>
+      <td>Yes</td>
+      <td>Indian Idol</td>
+      <td>2004.0</td>
+      <td>Excel year missing</td>
+      <td>low</td>
+      <td>Yes</td>
+      <td>5.1</td>
+      <td>needs_review</td>
+      <td>dry_run</td>
+      <td>NaN</td>
+      <td>Title match + year proximity (confidence: low)</td>
+    </tr>
+    <tr>
+      <td>Kurukshetra (Netflix)</td>
+      <td>Kurukshetra</td>
+      <td>netflix</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Missing</td>
+      <td>Yes</td>
+      <td>Kurukshetra</td>
+      <td>2025.0</td>
+      <td>Excel year missing</td>
+      <td>low</td>
+      <td>No</td>
+      <td>NaN</td>
+      <td>needs_review</td>
+      <td>dry_run</td>
+      <td>NaN</td>
+      <td>Title match + year proximity (confidence: low)</td>
+    </tr>
+    <tr>
+      <td>India's Got Talent S11 (SonyLIV)</td>
+      <td>India's Got Talent</td>
+      <td>sonyliv</td>
+      <td>11.0</td>
+      <td>NaN</td>
+      <td>Missing</td>
+      <td>Yes</td>
+      <td>India's Got Talent</td>
+      <td>2009.0</td>
+      <td>Excel year missing</td>
+      <td>low</td>
+      <td>Yes</td>
+      <td>5.4</td>
+      <td>needs_review</td>
+      <td>dry_run</td>
+      <td>NaN</td>
+      <td>Title match + year proximity (confidence: low)</td>
+    </tr>
+    <tr>
+      <td>Landman S2 (JioHotstar)</td>
+      <td>Landman</td>
+      <td>jiohotstar</td>
+      <td>2.0</td>
+      <td>NaN</td>
+      <td>2025</td>
+      <td>No</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>TMDB year missing</td>
+      <td>low</td>
+      <td>No</td>
+      <td>NaN</td>
+      <td>needs_review</td>
+      <td>no_match</td>
+      <td>NaN</td>
+      <td>No match found</td>
+    </tr>
+    <tr>
+      <td>All Her Fault (JioHotstar)</td>
+      <td>All Her Fault</td>
+      <td>jiohotstar</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>2025</td>
+      <td>Yes</td>
+      <td>All Her Fault</td>
+      <td>2025.0</td>
+      <td>No</td>
+      <td>high</td>
+      <td>No</td>
+      <td>NaN</td>
+      <td>ok</td>
+      <td>dry_run</td>
+      <td>NaN</td>
+      <td>Title match + year proximity (confidence: high)</td>
+    </tr>
+    <tr>
+      <td>IT : Welcome to Derry (JioHotstar)</td>
+      <td>IT : Welcome to Derry</td>
+      <td>jiohotstar</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>2025</td>
+      <td>Yes</td>
+      <td>IT: Welcome to Derry</td>
+      <td>2025.0</td>
+      <td>No</td>
+      <td>high</td>
+      <td>No</td>
+      <td>NaN</td>
+      <td>ok</td>
+      <td>dry_run</td>
+      <td>NaN</td>
+      <td>Title match + year proximity (confidence: high)</td>
+    </tr>
+    <tr>
+      <td>Maxton Hall S2 (Prime)</td>
+      <td>Maxton Hall</td>
+      <td>prime_video</td>
+      <td>2.0</td>
+      <td>NaN</td>
+      <td>2025</td>
+      <td>No</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>TMDB year missing</td>
+      <td>low</td>
+      <td>No</td>
+      <td>NaN</td>
+      <td>needs_review</td>
+      <td>no_match</td>
+      <td>NaN</td>
+      <td>No match found</td>
+    </tr>
+    <tr>
+      <td>The Witcher S4 (Netflix)</td>
+      <td>The Witcher</td>
+      <td>netflix</td>
+      <td>4.0</td>
+      <td>NaN</td>
+      <td>Missing</td>
+      <td>Yes</td>
+      <td>The Witcher</td>
+      <td>2019.0</td>
+      <td>Excel year missing</td>
+      <td>low</td>
+      <td>Yes</td>
+      <td>7.9</td>
+      <td>needs_review</td>
+      <td>dry_run</td>
+      <td>NaN</td>
+      <td>Title match + year proximity (confidence: low)</td>
+    </tr>
+    <tr>
+      <td>Nobody Wants This (Netflix)</td>
+      <td>Nobody Wants This</td>
+      <td>netflix</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Missing</td>
+      <td>Yes</td>
+      <td>Nobody Wants This</td>
+      <td>2024.0</td>
+      <td>Excel year missing</td>
+      <td>low</td>
+      <td>Yes</td>
+      <td>7.8</td>
+      <td>needs_review</td>
+      <td>dry_run</td>
+      <td>NaN</td>
+      <td>Title match + year proximity (confidence: low)</td>
+    </tr>
+    <tr>
+      <td>Monster : The Ed Gein Story (Netflix)</td>
+      <td>Monster : The Ed Gein Story</td>
+      <td>netflix</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Missing</td>
+      <td>Yes</td>
+      <td>Monster: The Ed Gein Story</td>
+      <td>2025.0</td>
+      <td>Excel year missing</td>
+      <td>low</td>
+      <td>No</td>
+      <td>NaN</td>
+      <td>needs_review</td>
+      <td>dry_run</td>
+      <td>NaN</td>
+      <td>Title match + year proximity (confidence: low)</td>
+    </tr>
+    <tr>
+      <td>Spice It Up (JioHotstar)</td>
+      <td>Spice It Up</td>
+      <td>jiohotstar</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>2025</td>
+      <td>Yes</td>
+      <td>Spice It Up</td>
+      <td>2025.0</td>
+      <td>No</td>
+      <td>high</td>
+      <td>No</td>
+      <td>NaN</td>
+      <td>ok</td>
+      <td>dry_run</td>
+      <td>NaN</td>
+      <td>Title match + year proximity (confidence: high)</td>
+    </tr>
+    <tr>
+      <td>Baramulla (Netflix)</td>
+      <td>Baramulla</td>
+      <td>netflix</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Missing</td>
+      <td>Yes</td>
+      <td>Baramulla</td>
+      <td>2025.0</td>
+      <td>Excel year missing</td>
+      <td>low</td>
+      <td>No</td>
+      <td>NaN</td>
+      <td>needs_review</td>
+      <td>dry_run</td>
+      <td>NaN</td>
+      <td>Title match + year proximity (confidence: low)</td>
+    </tr>
+    <tr>
+      <td>Frankenstein (Netflix)</td>
+      <td>Frankenstein</td>
+      <td>netflix</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Missing</td>
+      <td>Yes</td>
+      <td>Frankenstein</td>
+      <td>2004.0</td>
+      <td>Excel year missing</td>
+      <td>low</td>
+      <td>Yes</td>
+      <td>6.2</td>
+      <td>needs_review</td>
+      <td>dry_run</td>
+      <td>NaN</td>
+      <td>Title match + year proximity (confidence: low)</td>
+    </tr>
+    <tr>
+      <td>A House of Dynamite (Netflix)</td>
+      <td>A House of Dynamite</td>
+      <td>netflix</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Missing</td>
+      <td>Yes</td>
+      <td>A House of Dynamite</td>
+      <td>2025.0</td>
+      <td>Excel year missing</td>
+      <td>low</td>
+      <td>Yes</td>
+      <td>7.2</td>
+      <td>needs_review</td>
+      <td>dry_run</td>
+      <td>NaN</td>
+      <td>Title match + year proximity (confidence: low)</td>
+    </tr>
+    <tr>
+      <td>Greater Kalesh (Netflix)</td>
+      <td>Greater Kalesh</td>
+      <td>netflix</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Missing</td>
+      <td>Yes</td>
+      <td>Greater Kalesh</td>
+      <td>2025.0</td>
+      <td>Excel year missing</td>
+      <td>low</td>
+      <td>No</td>
+      <td>NaN</td>
+      <td>needs_review</td>
+      <td>dry_run</td>
+      <td>NaN</td>
+      <td>Title match + year proximity (confidence: low)</td>
+    </tr>
+    <tr>
+      <td>Bhagwat : Chapter 1 (Zee5)</td>
+      <td>Bhagwat : Chapter 1</td>
+      <td>zee5</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Missing</td>
+      <td>No</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Excel year missing</td>
+      <td>low</td>
+      <td>No</td>
+      <td>NaN</td>
+      <td>needs_review</td>
+      <td>no_match</td>
+      <td>NaN</td>
+      <td>No match found</td>
+    </tr>
+    <tr>
+      <td>Baaghi 4 (Prime)</td>
+      <td>Baaghi 4</td>
+      <td>prime_video</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Missing</td>
+      <td>Yes</td>
+      <td>Baaghi 4</td>
+      <td>2025.0</td>
+      <td>Excel year missing</td>
+      <td>low</td>
+      <td>No</td>
+      <td>NaN</td>
+      <td>needs_review</td>
+      <td>dry_run</td>
+      <td>NaN</td>
+      <td>Title match + year proximity (confidence: low)</td>
+    </tr>
+    <tr>
+      <td>Param Sundari (Prime)</td>
+      <td>Param Sundari</td>
+      <td>prime_video</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Missing</td>
+      <td>Yes</td>
+      <td>Param Sundari</td>
+      <td>2025.0</td>
+      <td>Excel year missing</td>
+      <td>low</td>
+      <td>Yes</td>
+      <td>5.3</td>
+      <td>needs_review</td>
+      <td>dry_run</td>
+      <td>NaN</td>
+      <td>Title match + year proximity (confidence: low)</td>
+    </tr>
+    <tr>
+      <td>War 2 (Netflix)</td>
+      <td>War 2</td>
+      <td>netflix</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Missing</td>
+      <td>No</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Excel year missing</td>
+      <td>low</td>
+      <td>No</td>
+      <td>NaN</td>
+      <td>needs_review</td>
+      <td>no_match</td>
+      <td>NaN</td>
+      <td>No match found</td>
+    </tr>
+    <tr>
+      <td>Jurassic World : Rebirth (JioHotstar)</td>
+      <td>Jurassic World : Rebirth</td>
+      <td>jiohotstar</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>2025</td>
+      <td>Yes</td>
+      <td>Jurassic World Rebirth</td>
+      <td>2025.0</td>
+      <td>No</td>
+      <td>high</td>
+      <td>Yes</td>
+      <td>5.9</td>
+      <td>ok</td>
+      <td>dry_run</td>
+      <td>NaN</td>
+      <td>Title match + year proximity (confidence: high)</td>
+    </tr>
+    <tr>
+      <td>Freakier Friday (JioHotstar)</td>
+      <td>Freakier Friday</td>
+      <td>jiohotstar</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>2025</td>
+      <td>Yes</td>
+      <td>Freakier Friday</td>
+      <td>2025.0</td>
+      <td>No</td>
+      <td>high</td>
+      <td>Yes</td>
+      <td>6.5</td>
+      <td>ok</td>
+      <td>dry_run</td>
+      <td>NaN</td>
+      <td>Title match + year proximity (confidence: high)</td>
+    </tr>
+    <tr>
+      <td>The Fantastic Four : First Steps (JioHotstar)</td>
+      <td>The Fantastic Four : First Steps</td>
+      <td>jiohotstar</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>2025</td>
+      <td>Yes</td>
+      <td>Marvel Studios' The Fantastic Four: First Steps - World Premiere</td>
+      <td>2025.0</td>
+      <td>No</td>
+      <td>low</td>
+      <td>No</td>
+      <td>NaN</td>
+      <td>needs_review</td>
+      <td>dry_run</td>
+      <td>NaN</td>
+      <td>Title match + year proximity (confidence: low)</td>
+    </tr>
+    <tr>
+      <td>M3GAN 2.0 (JioHotstar)</td>
+      <td>M3GAN 2.0</td>
+      <td>jiohotstar</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>2025</td>
+      <td>Yes</td>
+      <td>M3GAN 2.0</td>
+      <td>2025.0</td>
+      <td>No</td>
+      <td>high</td>
+      <td>Yes</td>
+      <td>6.1</td>
+      <td>ok</td>
+      <td>dry_run</td>
+      <td>NaN</td>
+      <td>Title match + year proximity (confidence: high)</td>
+    </tr>
+    <tr>
+      <td>Final Destination : Bloodlines (JioHotstar)</td>
+      <td>Final Destination : Bloodlines</td>
+      <td>jiohotstar</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>2025</td>
+      <td>Yes</td>
+      <td>Final Destination Bloodlines</td>
+      <td>2025.0</td>
+      <td>No</td>
+      <td>high</td>
+      <td>Yes</td>
+      <td>6.7</td>
+      <td>ok</td>
+      <td>dry_run</td>
+      <td>NaN</td>
+      <td>Title match + year proximity (confidence: high)</td>
+    </tr>
+    <tr>
+      <td>How to Train Your Dragon (JioHotstar)</td>
+      <td>How to Train Your Dragon</td>
+      <td>jiohotstar</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>2025</td>
+      <td>Yes</td>
+      <td>How to Train Your Dragon</td>
+      <td>2025.0</td>
+      <td>No</td>
+      <td>high</td>
+      <td>Yes</td>
+      <td>7.8</td>
+      <td>ok</td>
+      <td>dry_run</td>
+      <td>NaN</td>
+      <td>Title match + year proximity (confidence: high)</td>
+    </tr>
+    <tr>
+      <td>Lokah Chapter 1 : Chandra (JioHotstar)</td>
+      <td>Lokah Chapter 1 : Chandra</td>
+      <td>jiohotstar</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>2025</td>
+      <td>Yes</td>
+      <td>Lokah Chapter 1: Chandra</td>
+      <td>2025.0</td>
+      <td>No</td>
+      <td>high</td>
+      <td>Yes</td>
+      <td>8.1</td>
+      <td>ok</td>
+      <td>dry_run</td>
+      <td>NaN</td>
+      <td>Title match + year proximity (confidence: high)</td>
+    </tr>
+    <tr>
+      <td>Idli Kadai (Netflix)</td>
+      <td>Idli Kadai</td>
+      <td>netflix</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Missing</td>
+      <td>Yes</td>
+      <td>Idli Kadai</td>
+      <td>2025.0</td>
+      <td>Excel year missing</td>
+      <td>low</td>
+      <td>No</td>
+      <td>NaN</td>
+      <td>needs_review</td>
+      <td>dry_run</td>
+      <td>NaN</td>
+      <td>Title match + year proximity (confidence: low)</td>
+    </tr>
+    <tr>
+      <td>They Call Him OG (Netflix)</td>
+      <td>They Call Him OG</td>
+      <td>netflix</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Missing</td>
+      <td>Yes</td>
+      <td>They Call Him OG</td>
+      <td>2025.0</td>
+      <td>Excel year missing</td>
+      <td>low</td>
+      <td>No</td>
+      <td>NaN</td>
+      <td>needs_review</td>
+      <td>dry_run</td>
+      <td>NaN</td>
+      <td>Title match + year proximity (confidence: low)</td>
+    </tr>
+    <tr>
+      <td>Vash Vivash Level 2 (Netflix)</td>
+      <td>Vash Vivash Level 2</td>
+      <td>netflix</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Missing</td>
+      <td>No</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Excel year missing</td>
+      <td>low</td>
+      <td>No</td>
+      <td>NaN</td>
+      <td>needs_review</td>
+      <td>no_match</td>
+      <td>NaN</td>
+      <td>No match found</td>
+    </tr>
+    <tr>
+      <td>Nadu Center (JioHotstar)</td>
+      <td>Nadu Center</td>
+      <td>jiohotstar</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>2025</td>
+      <td>No</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>TMDB year missing</td>
+      <td>low</td>
+      <td>No</td>
+      <td>NaN</td>
+      <td>needs_review</td>
+      <td>no_match</td>
+      <td>NaN</td>
+      <td>No match found</td>
+    </tr>
+    <tr>
+      <td>Pharma (JioHotstar)</td>
+      <td>Pharma</td>
+      <td>jiohotstar</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Missing</td>
+      <td>No</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Excel year missing</td>
+      <td>low</td>
+      <td>No</td>
+      <td>NaN</td>
+      <td>needs_review</td>
+      <td>no_match</td>
+      <td>NaN</td>
+      <td>No match found</td>
+    </tr>
+    <tr>
+      <td>Bigg Boss S9 (JioHotstar)</td>
+      <td>Bigg Boss</td>
+      <td>jiohotstar</td>
+      <td>9.0</td>
+      <td>NaN</td>
+      <td>Missing</td>
+      <td>Yes</td>
+      <td>Bigg Boss</td>
+      <td>2013.0</td>
+      <td>Excel year missing</td>
+      <td>low</td>
+      <td>Yes</td>
+      <td>6.2</td>
+      <td>needs_review</td>
+      <td>dry_run</td>
+      <td>NaN</td>
+      <td>Title match + year proximity (confidence: low)</td>
+    </tr>
+    <tr>
+      <td>Bigg Boss S9 (JioHotstar)</td>
+      <td>Bigg Boss</td>
+      <td>jiohotstar</td>
+      <td>9.0</td>
+      <td>NaN</td>
+      <td>Missing</td>
+      <td>Yes</td>
+      <td>Bigg Boss</td>
+      <td>2013.0</td>
+      <td>Excel year missing</td>
+      <td>low</td>
+      <td>Yes</td>
+      <td>6.2</td>
+      <td>needs_review</td>
+      <td>dry_run</td>
+      <td>NaN</td>
+      <td>Title match + year proximity (confidence: low)</td>
+    </tr>
+    <tr>
+      <td>Anandalahari (Aha)</td>
+      <td>Anandalahari</td>
+      <td>aha</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>2025</td>
+      <td>No</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>TMDB year missing</td>
+      <td>low</td>
+      <td>No</td>
+      <td>NaN</td>
+      <td>needs_review</td>
+      <td>no_match</td>
+      <td>NaN</td>
+      <td>No match found</td>
+    </tr>
+    <tr>
+      <td>Chiranjeeva (Aha)</td>
+      <td>Chiranjeeva</td>
+      <td>aha</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>2025</td>
+      <td>Yes</td>
+      <td>Chiranjeeva</td>
+      <td>2025.0</td>
+      <td>No</td>
+      <td>high</td>
+      <td>No</td>
+      <td>NaN</td>
+      <td>ok</td>
+      <td>dry_run</td>
+      <td>NaN</td>
+      <td>Title match + year proximity (confidence: high)</td>
+    </tr>
+    <tr>
+      <td>Bad Girl (JioHotstar)</td>
+      <td>Bad Girl</td>
+      <td>jiohotstar</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>2025</td>
+      <td>Yes</td>
+      <td>Bad Girl</td>
+      <td>2025.0</td>
+      <td>No</td>
+      <td>high</td>
+      <td>No</td>
+      <td>NaN</td>
+      <td>ok</td>
+      <td>dry_run</td>
+      <td>NaN</td>
+      <td>Title match + year proximity (confidence: high)</td>
+    </tr>
+    <tr>
+      <td>Shakthi Thirumagan  (JioHotstar)</td>
+      <td>Shakthi Thirumagan</td>
+      <td>jiohotstar</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Missing</td>
+      <td>Yes</td>
+      <td>Shakthi Thirumagan</td>
+      <td>2025.0</td>
+      <td>Excel year missing</td>
+      <td>low</td>
+      <td>No</td>
+      <td>NaN</td>
+      <td>needs_review</td>
+      <td>dry_run</td>
+      <td>NaN</td>
+      <td>Title match + year proximity (confidence: low)</td>
+    </tr>
+    <tr>
+      <td>Mirai (JioHotstar)</td>
+      <td>Mirai</td>
+      <td>jiohotstar</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Missing</td>
+      <td>No</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Excel year missing</td>
+      <td>low</td>
+      <td>No</td>
+      <td>NaN</td>
+      <td>needs_review</td>
+      <td>no_match</td>
+      <td>NaN</td>
+      <td>No match found</td>
+    </tr>
+    <tr>
+      <td>They Call Him OG (Netflix)</td>
+      <td>They Call Him OG</td>
+      <td>netflix</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>2025</td>
+      <td>Yes</td>
+      <td>They Call Him OG</td>
+      <td>2025.0</td>
+      <td>No</td>
+      <td>high</td>
+      <td>No</td>
+      <td>NaN</td>
+      <td>ok</td>
+      <td>dry_run</td>
+      <td>NaN</td>
+      <td>Title match + year proximity (confidence: high)</td>
+    </tr>
+    <tr>
+      <td>Mirage (SonyLIV)</td>
+      <td>Mirage</td>
+      <td>sonyliv</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>2025</td>
+      <td>Yes</td>
+      <td>Mirage</td>
+      <td>2025.0</td>
+      <td>No</td>
+      <td>high</td>
+      <td>No</td>
+      <td>NaN</td>
+      <td>ok</td>
+      <td>dry_run</td>
+      <td>NaN</td>
+      <td>Title match + year proximity (confidence: high)</td>
+    </tr>
+    <tr>
+      <td>Aabhyanthara Kuttavali (Zee5)</td>
+      <td>Aabhyanthara Kuttavali</td>
+      <td>zee5</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>2025</td>
+      <td>No</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>TMDB year missing</td>
+      <td>low</td>
+      <td>No</td>
+      <td>NaN</td>
+      <td>needs_review</td>
+      <td>no_match</td>
+      <td>NaN</td>
+      <td>No match found</td>
+    </tr>
+    <tr>
+      <td>Kishkindhapuri (Zee 5 )</td>
+      <td>Kishkindhapuri</td>
+      <td>zee_5_</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>2025</td>
+      <td>Yes</td>
+      <td>Kishkindhapuri</td>
+      <td>2025.0</td>
+      <td>No</td>
+      <td>high</td>
+      <td>No</td>
+      <td>NaN</td>
+      <td>ok</td>
+      <td>dry_run</td>
+      <td>NaN</td>
+      <td>Title match + year proximity (confidence: high)</td>
+    </tr>
+    <tr>
+      <td>Madharaasi (Prime)</td>
+      <td>Madharaasi</td>
+      <td>prime_video</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>2025</td>
+      <td>Yes</td>
+      <td>Madharaasi</td>
+      <td>2025.0</td>
+      <td>No</td>
+      <td>high</td>
+      <td>Yes</td>
+      <td>8.6</td>
+      <td>ok</td>
+      <td>dry_run</td>
+      <td>NaN</td>
+      <td>Title match + year proximity (confidence: high)</td>
+    </tr>
+    <tr>
+      <td>Pluribus (Appletv)</td>
+      <td>Pluribus</td>
+      <td>apple_tv</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Missing</td>
+      <td>Yes</td>
+      <td>Pluribus</td>
+      <td>2025.0</td>
+      <td>Excel year missing</td>
+      <td>low</td>
+      <td>No</td>
+      <td>NaN</td>
+      <td>needs_review</td>
+      <td>dry_run</td>
+      <td>NaN</td>
+      <td>Title match + year proximity (confidence: low)</td>
+    </tr>
+    <tr>
+      <td>The Morning Show S4 (Appletv)</td>
+      <td>The Morning Show</td>
+      <td>apple_tv</td>
+      <td>4.0</td>
+      <td>NaN</td>
+      <td>Missing</td>
+      <td>Yes</td>
+      <td>The Morning Show</td>
+      <td>2019.0</td>
+      <td>Excel year missing</td>
+      <td>low</td>
+      <td>Yes</td>
+      <td>8.1</td>
+      <td>needs_review</td>
+      <td>dry_run</td>
+      <td>NaN</td>
+      <td>Title match + year proximity (confidence: low)</td>
+    </tr>
+    <tr>
+      <td>The Last Frontier (Appletv)</td>
+      <td>The Last Frontier</td>
+      <td>apple_tv</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Missing</td>
+      <td>Yes</td>
+      <td>The Last Frontier</td>
+      <td>2025.0</td>
+      <td>Excel year missing</td>
+      <td>low</td>
+      <td>Yes</td>
+      <td>7.0</td>
+      <td>needs_review</td>
+      <td>dry_run</td>
+      <td>NaN</td>
+      <td>Title match + year proximity (confidence: low)</td>
+    </tr>
+    <tr>
+      <td>Invasion (Appletv)</td>
+      <td>Invasion</td>
+      <td>apple_tv</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Missing</td>
+      <td>Yes</td>
+      <td>Invasion</td>
+      <td>2021.0</td>
+      <td>Excel year missing</td>
+      <td>low</td>
+      <td>Yes</td>
+      <td>6.2</td>
+      <td>needs_review</td>
+      <td>dry_run</td>
+      <td>NaN</td>
+      <td>Title match + year proximity (confidence: low)</td>
+    </tr>
+    <tr>
+      <td>The Studio (Appletv)</td>
+      <td>The Studio</td>
+      <td>apple_tv</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Missing</td>
+      <td>Yes</td>
+      <td>The Studio</td>
+      <td>2025.0</td>
+      <td>Excel year missing</td>
+      <td>low</td>
+      <td>Yes</td>
+      <td>8.1</td>
+      <td>needs_review</td>
+      <td>dry_run</td>
+      <td>NaN</td>
+      <td>Title match + year proximity (confidence: low)</td>
+    </tr>
+    <tr>
+      <td>Ted Lasso (Appletv)</td>
+      <td>Ted Lasso</td>
+      <td>apple_tv</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Missing</td>
+      <td>Yes</td>
+      <td>Ted Lasso</td>
+      <td>2020.0</td>
+      <td>Excel year missing</td>
+      <td>low</td>
+      <td>Yes</td>
+      <td>8.8</td>
+      <td>needs_review</td>
+      <td>dry_run</td>
+      <td>NaN</td>
+      <td>Title match + year proximity (confidence: low)</td>
+    </tr>
+    <tr>
+      <td>The Lost Bus (Appletv)</td>
+      <td>The Lost Bus</td>
+      <td>apple_tv</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Missing</td>
+      <td>No</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Excel year missing</td>
+      <td>low</td>
+      <td>No</td>
+      <td>NaN</td>
+      <td>needs_review</td>
+      <td>no_match</td>
+      <td>NaN</td>
+      <td>No match found</td>
+    </tr>
+    <tr>
+      <td>Chief Of War (Appletv)</td>
+      <td>Chief Of War</td>
+      <td>apple_tv</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Missing</td>
+      <td>Yes</td>
+      <td>Chief of War</td>
+      <td>2025.0</td>
+      <td>Excel year missing</td>
+      <td>low</td>
+      <td>Yes</td>
+      <td>7.5</td>
+      <td>needs_review</td>
+      <td>dry_run</td>
+      <td>NaN</td>
+      <td>Title match + year proximity (confidence: low)</td>
+    </tr>
+  </tbody>
+</table></body></html>
