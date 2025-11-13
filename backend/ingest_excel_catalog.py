@@ -601,8 +601,20 @@ async def map_tmdb_to_content(tmdb_data: Dict, omdb_data: Optional[Dict], parsed
         rating_source = 'tmdb'
     
     # Category assignment (match existing DB categories)
-    # Use 'entertainment' as default for movies/series
-    category = 'entertainment'
+    # Assign based on rating and content type
+    # hero: high-rated content (8.0+)
+    # buzzing: very high-rated (8.5+) or popular series
+    # hot_drop: new seasons with high ratings (7.5+)
+    # entertainment: default
+    
+    if rating >= 8.5:
+        category = 'buzzing'
+    elif is_new_season and rating >= 7.5:
+        category = 'hot_drop'
+    elif rating >= 8.0:
+        category = 'hero'
+    else:
+        category = 'entertainment'
     
     # Build content object matching existing DB schema EXACTLY
     content = {
