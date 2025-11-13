@@ -604,7 +604,7 @@ async def map_tmdb_to_content(tmdb_data: Dict, omdb_data: Optional[Dict], parsed
     # Use 'entertainment' as default for movies/series
     category = 'entertainment'
     
-    # Build content object matching canonical schema EXACTLY
+    # Build content object matching existing DB schema EXACTLY
     content = {
         # IDs
         'id': str(uuid.uuid4()),
@@ -616,7 +616,7 @@ async def map_tmdb_to_content(tmdb_data: Dict, omdb_data: Optional[Dict], parsed
         'normalized_title': canonical_title,
         
         # Category and type
-        'category': 'hero',
+        'category': category,
         'content_type': 'series' if is_tv else 'movie',
         
         # Platform (SINGLE STRING, not array)
