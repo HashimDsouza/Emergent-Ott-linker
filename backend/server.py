@@ -635,6 +635,15 @@ class Content(BaseModel):
     language: Optional[str] = None  # Original language (Hindi, English, etc.)
     episodes: Optional[int] = None  # Number of episodes (for series)
     seasons: Optional[int] = None  # Number of seasons (for series)
+    # Season-aware fields (Nov25 ingestion)
+    season: Optional[int] = None  # Current season number
+    series_title: Optional[str] = None  # Canonical series name
+    display_title: Optional[str] = None  # Display name for new seasons (e.g., "Show – Season 4")
+    is_new_season: Optional[bool] = None  # True for S2+
+    season_year: Optional[int] = None  # Year of season release
+    season_release_date: Optional[str] = None  # ISO date
+    series_start_year: Optional[int] = None  # Original series start year
+    freshness_batch: Optional[str] = None  # Batch identifier (e.g., "nov25")
 
 class TitleLink(BaseModel):
     model_config = ConfigDict(extra="ignore")
