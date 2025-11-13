@@ -1894,7 +1894,7 @@ logger = logging.getLogger(__name__)
 @app.on_event("shutdown")
 async def shutdown_db_client():
     client.close()
-# QA Report Download Endpoint
+# QA Report Endpoints
 @api_router.get("/download/qa-report")
 async def download_qa_report():
     """Download the latest QA report CSV"""
@@ -1911,3 +1911,29 @@ async def download_qa_report():
         )
     else:
         raise HTTPException(status_code=404, detail="QA report not found")
+
+
+@api_router.get("/download/qa-report-json")
+async def download_qa_report_json():
+    """Get QA report as JSON for web viewer"""
+    import pandas as pd
+    import os
+    
+    file_path = "/app/qa_report_nov25.csv"
+    
+    if os.path.exists(file_path):
+        df = pd.read_csv(file_path)
+        return df.to_dict(orient='records')
+    else:
+        raise HTTPException(status_code=404, detail="QA report not found")
+
+
+@api_router.get("/qa-report-viewer")
+async def qa_report_viewer():
+    """View QA report in browser"""
+    from fastapi.responses import HTMLResponse
+    
+    with open("/app/backend/qa_report_viewer.html", "r") as f:
+        html_content = f.read()
+    
+    return HTMLResponse(content=html_content)
