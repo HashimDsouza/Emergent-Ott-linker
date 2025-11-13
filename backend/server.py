@@ -1894,3 +1894,20 @@ logger = logging.getLogger(__name__)
 @app.on_event("shutdown")
 async def shutdown_db_client():
     client.close()
+# QA Report Download Endpoint
+@api_router.get("/download/qa-report")
+async def download_qa_report():
+    """Download the latest QA report CSV"""
+    from fastapi.responses import FileResponse
+    import os
+    
+    file_path = "/app/qa_report_nov25.csv"
+    
+    if os.path.exists(file_path):
+        return FileResponse(
+            path=file_path,
+            filename="qa_report_nov25.csv",
+            media_type="text/csv"
+        )
+    else:
+        raise HTTPException(status_code=404, detail="QA report not found")
