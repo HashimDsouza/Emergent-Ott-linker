@@ -585,9 +585,24 @@ async def map_tmdb_to_content(tmdb_data: Dict, omdb_data: Optional[Dict], parsed
     # Tagline
     tagline = f"Season {season_number}" if is_new_season else None
     
-    # Rating and source
-    rating = enrichment_data.get('imdb_rating') or enrichment_data.get('tmdb_rating') or 0
-    rating_source = 'imdb' if enrichment_data.get('imdb_rating') else 'tmdb'
+    # Rating and source (match existing DB schema)
+    # Primary rating: IMDb if available, otherwise TMDB
+    imdb_rating_value = enrichment_data.get('imdb_rating')
+    tmdb_rating_value = enrichment_data.get('tmdb_rating')
+    
+    if imdb_rating_value:
+        rating = imdb_rating_value
+        rating_source = 'imdb'
+    elif tmdb_rating_value:
+        rating = tmdb_rating_value
+        rating_source = 'tmdb'
+    else:
+        rating = 0
+        rating_source = 'tmdb'
+    
+    # Category assignment (match existing DB categories)
+    # Use 'entertainment' as default for movies/series
+    category = 'entertainment'
     
     # Build content object matching canonical schema EXACTLY
     content = {
