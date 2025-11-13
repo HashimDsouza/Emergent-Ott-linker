@@ -1873,6 +1873,7 @@ api_router.include_router(cricket.router)
 api_router.include_router(football.router)
 api_router.include_router(sports.router)
 api_router.include_router(thesportsdb.router)
+api_router.include_router(youtube.router)
 
 app.include_router(api_router)
 
