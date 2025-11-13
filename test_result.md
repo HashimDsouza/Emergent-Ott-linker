@@ -361,7 +361,7 @@ metadata:
 
 test_plan:
   current_focus:
-    - "TheSportsDB API Integration for Game On section"
+    - "YouTube Data API Integration for Game On sports highlights"
   stuck_tasks: []
   test_all: false
   test_priority: "high_first"
