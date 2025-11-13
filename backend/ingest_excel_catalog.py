@@ -745,6 +745,8 @@ def main():
     parser = argparse.ArgumentParser(description='Excel Catalog Ingestion Script')
     parser.add_argument('--file', required=True, help='Path to Excel file')
     parser.add_argument('--dry-run', action='store_true', help='Dry run mode (no DB writes)')
+    parser.add_argument('--batch-name', default='nov25', help='Batch identifier (e.g., nov25, dec25)')
+    parser.add_argument('--default-year', type=int, default=2025, help='Default year for entries with missing dates')
     
     args = parser.parse_args()
     
