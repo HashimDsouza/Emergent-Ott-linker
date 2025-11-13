@@ -589,21 +589,73 @@ async def map_tmdb_to_content(tmdb_data: Dict, omdb_data: Optional[Dict], parsed
     
     # Build content object matching canonical schema EXACTLY
     content = {
+        # IDs
+        'id': str(uuid.uuid4()),
+        
         # Title fields
         'title': canonical_title,
         'series_title': canonical_title if is_tv else None,
         'display_title': display_title,
+        'normalized_title': canonical_title,
         
-        # Content type
-        'type': 'series' if is_tv else 'movie',
-        'platforms': [parsed_excel['platform']],
+        # Category and type
+        'category': 'hero',
+        'content_type': 'series' if is_tv else 'movie',
         
-        # Year logic (user-facing year for sorting/filtering)
-        'year': year,
+        # Platform (SINGLE STRING, not array)
+        'platform': platform_display,
+        'platform_content_id': None,
         
-        # Series metadata
-        'series_start_year': series_start_year,
+        # Rating
+        'rating': rating,
+        
+        # Images
+        'thumbnail': poster_path,
+        'poster_path': poster_path,
+        'poster_url': poster_path,
+        'backdrop_path': backdrop_path,
+        
+        # Description
+        'description': tmdb_data.get('overview', 'No description available'),
+        'tagline': tagline,
+        
+        # Release info
+        'release_date': release_date_iso,
+        
+        # Social
+        'social_links': social_links,
+        'likes': 0,
+        'shares': 0,
+        
+        # Cast and crew (CORRECT STRUCTURE)
+        'cast': cast,
+        'crew': crew,
+        
+        # Episode and season info
+        'episodes': episodes,
+        'genres': genres,
+        'seasons': season_number if is_tv else None,
         'season': season_number,
+        
+        # IDs
+        'imdb_id': enrichment_data.get('imdb_id'),
+        'tmdb_id': tmdb_id,
+        'watchmode_id': None,
+        
+        # Ratings
+        'imdb_rating': enrichment_data.get('imdb_rating'),
+        'imdb_votes': imdb_votes,
+        'rating_source': rating_source,
+        'vote_average': enrichment_data.get('tmdb_rating'),
+        'vote_count': tmdb_data.get('vote_count', 0),
+        
+        # Language and runtime
+        'language': language,
+        'runtime': runtime,
+        
+        # Year fields (user-facing year for sorting/filtering)
+        'year': year,
+        'series_start_year': series_start_year,
         'season_year': season_year,
         'season_release_date': season_release_date,
         'is_new_season': is_new_season,
@@ -611,27 +663,15 @@ async def map_tmdb_to_content(tmdb_data: Dict, omdb_data: Optional[Dict], parsed
         # Freshness tracking
         'freshness_batch': batch_name,
         
-        # Standard metadata
-        'episodes': episodes,
-        'poster_url': f"https://image.tmdb.org/t/p/w500{tmdb_data['poster_path']}" if tmdb_data.get('poster_path') else None,
-        'backdrop_url': f"https://image.tmdb.org/t/p/original{tmdb_data['backdrop_path']}" if tmdb_data.get('backdrop_path') else None,
-        'description': tmdb_data.get('overview', 'No description available'),
-        'genres': [str(g) for g in tmdb_data.get('genre_ids', [])],
-        'languages': ['English'],  # Default
-        'cast': cast,
+        # Streaming
+        'streaming_platforms': streaming_platforms,
+        'providers_in': [platform_display],
         
-        # Ratings
-        'imdb': enrichment_data['imdb_rating'],
-        'tmdb_rating': enrichment_data['tmdb_rating'],
-        'tmdb_id': tmdb_id,
-        'imdb_id': enrichment_data['imdb_id'],
+        # Trailer
+        'trailer_url': None,
         
-        # System fields
-        'source': f'excel_{batch_name}_v1',
-        'status': enrichment_data['status'],
-        'descriptor': tmdb_data.get('overview', '')[:100] if tmdb_data.get('overview') else 'New release',
-        'release_date': parsed_excel.get('release_date').isoformat() if parsed_excel.get('release_date') else None,
-        'volume': parsed_excel.get('volume')  # Keep for backwards compatibility
+        # Timestamps
+        'last_enriched': datetime.now(timezone.utc).isoformat()
     }
     
     return content
