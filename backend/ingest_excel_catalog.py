@@ -520,10 +520,10 @@ async def map_tmdb_to_content(tmdb_data: Dict, omdb_data: Optional[Dict], parsed
     elif is_tv and tmdb_data.get('first_air_date'):
         release_date_iso = tmdb_data['first_air_date'][:7]  # YYYY-MM
     
-    # Platform handling - convert to string (single value)
+    # Platform handling - match existing DB display names exactly
     platform_str = parsed_excel['platform']
     if platform_str == 'jiohotstar':
-        platform_display = 'Jiohotstar'
+        platform_display = 'JioHotstar'
     elif platform_str == 'netflix':
         platform_display = 'Netflix'
     elif platform_str == 'prime_video':
@@ -535,7 +535,9 @@ async def map_tmdb_to_content(tmdb_data: Dict, omdb_data: Optional[Dict], parsed
     elif platform_str == 'aha':
         platform_display = 'Aha'
     elif platform_str == 'apple_tv':
-        platform_display = 'Apple TV+'
+        platform_display = 'Apple TV'
+    elif platform_str == 'dazn':
+        platform_display = 'Dazn'
     else:
         platform_display = platform_str.title()
     
