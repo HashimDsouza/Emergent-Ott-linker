@@ -406,30 +406,31 @@ async def enrich_title(parsed_data: Dict, tmdb_api_key: str, omdb_api_key: str) 
 async def map_tmdb_to_content(tmdb_data: Dict, omdb_data: Optional[Dict], parsed_excel: Dict, 
                                enrichment_data: Dict, tmdb_api_key: str, batch_name: str, default_year: int) -> Dict:
     """
-    Map TMDB/OMDb data to Content schema
+    Map TMDB/OMDb data to Content schema with season-aware fields
     
     Field Mapping:
-    - title: TMDB 'title' (movie) or 'name' (TV)
-    - type: 'movie' or 'series' (from media_type)
-    - platforms: [parsed_excel['platform']]
-    - year: from release_date or first_air_date (TMDB)
-    - poster_url: TMDB poster_path → w500 image
-    - backdrop_url: TMDB backdrop_path → original image
-    - description: TMDB 'overview'
-    - genres: TMDB genres (needs separate API call for full genre names)
-    - languages: TMDB spoken_languages
-    - cast: TMDB credits endpoint → top 5 actors
-    - imdb: OMDb 'imdbRating'
-    - tmdb_rating: TMDB 'vote_average'
-    - season: parsed_excel['season']
-    - episodes: TMDB season endpoint → episode count
-    - release_date: parsed_excel['release_date']
-    - source: 'excel_nov25_v1'
-    - status: enrichment_data['status']
+    - title: Canonical series/movie name (e.g., "Indian Idol", "Squid Game")
+    - series_title: Mirrors title for series, None for movies
+    - display_title: Computed for S2+ (e.g., "Indian Idol – Season 16"), None otherwise
+    - type: 'movie' or 'series'
+    - year: User-facing year for sorting/filtering
+        * Movies: release_year
+        * Series S1: series_start_year
+        * Series S2+: season_year (from Excel or default_year)
+    - series_start_year: Original air year from TMDB (series only)
+    - season: Season number from Excel
+    - season_year: Year this season released (S2+ only)
+    - season_release_date: ISO date from Excel if available
+    - is_new_season: True ONLY for season > 1 (False for movies, S1, None)
+    - freshness_batch: Batch identifier (e.g., "nov25")
+    - episodes: Episode count from TMDB season endpoint
     """
     is_tv = tmdb_data.get('media_type') == 'tv' or 'first_air_date' in tmdb_data
     tmdb_id = tmdb_data['id']
     media_type = 'tv' if is_tv else 'movie'
+    
+    # Get canonical title
+    canonical_title = tmdb_data.get('title') or tmdb_data.get('name')
     
     # Fetch additional data
     credits = await fetch_tmdb_credits(tmdb_id, media_type, tmdb_api_key)
