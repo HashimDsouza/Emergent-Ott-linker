@@ -435,7 +435,23 @@ async def map_tmdb_to_content(tmdb_data: Dict, omdb_data: Optional[Dict], parsed
     
     # Fetch additional data
     credits = await fetch_tmdb_credits(tmdb_id, media_type, tmdb_api_key)
-    cast = [actor['name'] for actor in credits.get('cast', [])[:5]]
+    
+    # Build cast array with full structure: {name, character, profile_url}
+    cast = []
+    for actor in credits.get('cast', [])[:10]:  # Get top 10 cast
+        cast.append({
+            'name': actor.get('name', ''),
+            'character': actor.get('character', ''),
+            'profile_url': f"https://image.tmdb.org/t/p/w185{actor['profile_path']}" if actor.get('profile_path') else None
+        })
+    
+    # Build crew structure
+    crew = {'directors': [], 'writers': []}
+    for person in credits.get('crew', []):
+        if person.get('job') == 'Director':
+            crew['directors'].append(person.get('name', ''))
+        elif person.get('job') in ['Writer', 'Screenplay']:
+            crew['writers'].append(person.get('name', ''))
     
     # Season logic
     season_number = parsed_excel.get('season')
