@@ -710,7 +710,7 @@ def generate_qa_report(ingestion_results: List[Dict], output_path: str):
     return df
 
 
-async def process_excel_file(file_path: str, dry_run: bool = False):
+async def process_excel_file(file_path: str, dry_run: bool = False, batch_name: str = 'nov25', default_year: int = 2025):
     """
     Main processing function
     
@@ -718,11 +718,15 @@ async def process_excel_file(file_path: str, dry_run: bool = False):
     1. Load Excel file
     2. Parse each row
     3. Enrich with TMDB + OMDb
-    4. Map to Content schema
+    4. Map to Content schema (with season-aware fields)
     5. Safe upsert to MongoDB (if not dry-run)
     6. Generate QA report
+    
+    Parameters:
+    - batch_name: Identifier for this ingestion batch (e.g., 'nov25', 'dec25')
+    - default_year: Default year for entries with missing dates (e.g., 2025)
     """
-    logging.info(f"Starting ingestion from {file_path} (dry_run={dry_run})")
+    logging.info(f"Starting ingestion from {file_path} (dry_run={dry_run}, batch={batch_name}, default_year={default_year})")
     
     # Load Excel
     try:
