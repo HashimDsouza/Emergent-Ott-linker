@@ -436,20 +436,63 @@ async def map_tmdb_to_content(tmdb_data: Dict, omdb_data: Optional[Dict], parsed
     credits = await fetch_tmdb_credits(tmdb_id, media_type, tmdb_api_key)
     cast = [actor['name'] for actor in credits.get('cast', [])[:5]]
     
+    # Season logic
+    season_number = parsed_excel.get('season')
+    
     # Get episode count for TV series with season
     episodes = None
-    if is_tv and parsed_excel.get('season'):
-        season_details = await fetch_tmdb_season(tmdb_id, parsed_excel['season'], tmdb_api_key)
+    if is_tv and season_number:
+        season_details = await fetch_tmdb_season(tmdb_id, season_number, tmdb_api_key)
         episodes = len(season_details.get('episodes', []))
     
-    # Extract year safely
-    year = None
-    if 'release_date' in tmdb_data and tmdb_data['release_date']:
-        year = int(tmdb_data['release_date'][:4])
-    elif 'first_air_date' in tmdb_data and tmdb_data['first_air_date']:
-        year = int(tmdb_data['first_air_date'][:4])
+    # Extract series_start_year safely (for TV series)
+    series_start_year = None
+    if is_tv:
+        if 'first_air_date' in tmdb_data and tmdb_data['first_air_date']:
+            series_start_year = int(tmdb_data['first_air_date'][:4])
+    
+    # Compute season_year (for new seasons)
+    season_year = None
+    season_release_date = None
+    
+    if season_number and season_number > 1:
+        # This is a new season
+        if parsed_excel.get('release_date'):
+            season_release_date = parsed_excel['release_date'].isoformat()
+            season_year = parsed_excel['release_date'].year
+        else:
+            # Missing date: use default_year from batch
+            season_year = default_year
+            logging.info(f"Missing date for {canonical_title} S{season_number}: defaulting season_year={default_year}")
+    
+    # Compute is_new_season (ONLY True for S2+)
+    is_new_season = False
+    if season_number and season_number > 1:
+        is_new_season = True
+    
+    # Compute display_title (ONLY for new seasons)
+    display_title = None
+    if is_new_season:
+        display_title = f"{canonical_title} – Season {season_number}"
+    
+    # Compute user-facing year
+    # Movies: release_year
+    # Series S1 or None: series_start_year
+    # Series S2+: season_year
+    if not is_tv:
+        # Movie
+        if 'release_date' in tmdb_data and tmdb_data['release_date']:
+            year = int(tmdb_data['release_date'][:4])
+        else:
+            year = parsed_excel.get('year') or default_year
     else:
-        year = parsed_excel.get('year')
+        # Series
+        if is_new_season:
+            # New season: use season_year
+            year = season_year
+        else:
+            # S1 or no season: use series_start_year
+            year = series_start_year or parsed_excel.get('year') or default_year
     
     # Build content object
     content = {
