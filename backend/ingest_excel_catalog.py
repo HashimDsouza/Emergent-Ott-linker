@@ -825,8 +825,8 @@ def main():
     # Create logs directory if not exists
     Path('/app/ingestion_logs').mkdir(exist_ok=True)
     
-    # Run async process
-    asyncio.run(process_excel_file(args.file, args.dry_run))
+    # Run async process with batch parameters
+    asyncio.run(process_excel_file(args.file, args.dry_run, args.batch_name, args.default_year))
 
 
 if __name__ == '__main__':
