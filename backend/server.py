@@ -1928,12 +1928,17 @@ async def download_qa_report_json():
         raise HTTPException(status_code=404, detail="QA report not found")
 
 
-@api_router.get("/qa-report-viewer")
+@api_router.get("/qa-report-viewer", response_class=HTMLResponse)
 async def qa_report_viewer():
     """View QA report in browser"""
     from fastapi.responses import HTMLResponse
+    import os
     
-    with open("/app/backend/qa_report_viewer.html", "r") as f:
-        html_content = f.read()
+    file_path = "/app/backend/qa_report_static.html"
     
-    return HTMLResponse(content=html_content)
+    if os.path.exists(file_path):
+        with open(file_path, "r") as f:
+            html_content = f.read()
+        return HTMLResponse(content=html_content)
+    else:
+        return HTMLResponse(content="<h1>QA Report not found. Please run ingestion first.</h1>")
