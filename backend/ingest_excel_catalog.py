@@ -799,6 +799,9 @@ async def process_excel_file(file_path: str, dry_run: bool = False, batch_name: 
                     default_year
                 )
                 
+                # Store content data in result for QA report
+                result['content_data'] = content
+                
                 db_action = await safe_upsert_content(content, db, dry_run)
                 result['db_action'] = db_action
             else:
