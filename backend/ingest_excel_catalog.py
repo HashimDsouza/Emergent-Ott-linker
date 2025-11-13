@@ -404,7 +404,7 @@ async def enrich_title(parsed_data: Dict, tmdb_api_key: str, omdb_api_key: str) 
 
 
 async def map_tmdb_to_content(tmdb_data: Dict, omdb_data: Optional[Dict], parsed_excel: Dict, 
-                               enrichment_data: Dict, tmdb_api_key: str) -> Dict:
+                               enrichment_data: Dict, tmdb_api_key: str, batch_name: str, default_year: int) -> Dict:
     """
     Map TMDB/OMDb data to Content schema
     
