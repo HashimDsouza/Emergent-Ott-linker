@@ -2,61 +2,61 @@ Original Excel Title,Parsed Title,Display Title,Platform (Normalized),Season,Is 
 Laughter Chefs S3 (JioHotstar),Laughter Chefs,N/A,jiohotstar,3.0,N/A,2025,No,N/A,N/A,N/A,TMDB year missing,low,No,N/A,needs_review,no_match,N/A,No match found
 Ziddi Ishq (JioHotstar),Ziddi Ishq,N/A,jiohotstar,,N/A,2025,No,N/A,N/A,N/A,TMDB year missing,low,No,N/A,needs_review,no_match,N/A,No match found
 Mahabharat : Ek Dharmyuddh (JioHotstar),Mahabharat : Ek Dharmyuddh,N/A,jiohotstar,,N/A,2025,No,N/A,N/A,N/A,TMDB year missing,low,No,N/A,needs_review,no_match,N/A,No match found
-The Naina Murder Case (JioHotstar),The Naina Murder Case,Search: The Naina Murder Case,jiohotstar,,No,2025,Yes,Search: The Naina Murder Case,2025,2025,No,medium,No,N/A,needs_review,inserted,No,Title match + year proximity (confidence: medium)
+The Naina Murder Case (JioHotstar),The Naina Murder Case,Search: The Naina Murder Case,jiohotstar,,No,2025,Yes,Search: The Naina Murder Case,2025,2025,No,medium,No,N/A,needs_review,dry_run,N/A,Title match + year proximity (confidence: medium)
 Stranger Things S5 Vol 1 (Netflix),Stranger Things,N/A,netflix,5.0,N/A,2025,No,N/A,N/A,N/A,TMDB year missing,low,No,N/A,needs_review,no_match,N/A,No match found
 Dining With Kapoors (Netflix),Dining With Kapoors,N/A,netflix,,N/A,2025,No,N/A,N/A,N/A,TMDB year missing,low,No,N/A,needs_review,no_match,N/A,No match found
 Family Man S3 (Prime),Family Man,N/A,prime_video,3.0,N/A,2025,No,N/A,N/A,N/A,TMDB year missing,low,No,N/A,needs_review,no_match,N/A,No match found
 Delhi Crimes S3 (Netflix),Delhi Crimes,N/A,netflix,3.0,N/A,2025,No,N/A,N/A,N/A,TMDB year missing,low,No,N/A,needs_review,no_match,N/A,No match found
 Maharani S4 (SonyLIV),Maharani,N/A,sonyliv,4.0,N/A,2025,No,N/A,N/A,N/A,TMDB year missing,low,No,N/A,needs_review,no_match,N/A,No match found
 Thhode Door Thhode Paas (Zee5),Thhode Door Thhode Paas,N/A,zee5,,N/A,Missing,No,N/A,N/A,N/A,Excel year missing,low,No,N/A,needs_review,no_match,N/A,No match found
-Indian Idol S16 (Sony LIV),Indian Idol,Indian Idol – Season 16,sonyliv,16.0,Yes,Missing,Yes,Indian Idol,2004,2025,Excel year missing,low,Yes,5.1,needs_review,inserted,No,Title match + year proximity (confidence: low)
-Kurukshetra (Netflix),Kurukshetra,Kurukshetra,netflix,,No,Missing,Yes,Kurukshetra,2025,2025,Excel year missing,low,No,N/A,needs_review,inserted,No,Title match + year proximity (confidence: low)
-India's Got Talent S11 (SonyLIV),India's Got Talent,India's Got Talent – Season 11,sonyliv,11.0,Yes,Missing,Yes,India's Got Talent,2009,2025,Excel year missing,low,Yes,5.4,needs_review,inserted,No,Title match + year proximity (confidence: low)
+Indian Idol S16 (Sony LIV),Indian Idol,Indian Idol – Season 16,sonyliv,16.0,Yes,Missing,Yes,Indian Idol,2004,2025,Excel year missing,low,Yes,5.1,needs_review,dry_run,N/A,Title match + year proximity (confidence: low)
+Kurukshetra (Netflix),Kurukshetra,Kurukshetra,netflix,,No,Missing,Yes,Kurukshetra,2025,2025,Excel year missing,low,No,N/A,needs_review,dry_run,N/A,Title match + year proximity (confidence: low)
+India's Got Talent S11 (SonyLIV),India's Got Talent,India's Got Talent – Season 11,sonyliv,11.0,Yes,Missing,Yes,India's Got Talent,2009,2025,Excel year missing,low,Yes,5.4,needs_review,dry_run,N/A,Title match + year proximity (confidence: low)
 Landman S2 (JioHotstar),Landman,N/A,jiohotstar,2.0,N/A,2025,No,N/A,N/A,N/A,TMDB year missing,low,No,N/A,needs_review,no_match,N/A,No match found
-All Her Fault (JioHotstar),All Her Fault,All Her Fault,jiohotstar,,No,2025,Yes,All Her Fault,2025,2025,No,high,No,N/A,ok,inserted,No,Title match + year proximity (confidence: high)
-IT : Welcome to Derry (JioHotstar),IT : Welcome to Derry,IT: Welcome to Derry,jiohotstar,,No,2025,Yes,IT: Welcome to Derry,2025,2025,No,high,No,N/A,ok,skipped,No,Title match + year proximity (confidence: high)
+All Her Fault (JioHotstar),All Her Fault,All Her Fault,jiohotstar,,No,2025,Yes,All Her Fault,2025,2025,No,high,No,N/A,ok,dry_run,N/A,Title match + year proximity (confidence: high)
+IT : Welcome to Derry (JioHotstar),IT : Welcome to Derry,IT: Welcome to Derry,jiohotstar,,No,2025,Yes,IT: Welcome to Derry,2025,2025,No,high,No,N/A,ok,dry_run,N/A,Title match + year proximity (confidence: high)
 Maxton Hall S2 (Prime),Maxton Hall,N/A,prime_video,2.0,N/A,2025,No,N/A,N/A,N/A,TMDB year missing,low,No,N/A,needs_review,no_match,N/A,No match found
-The Witcher S4 (Netflix),The Witcher,The Witcher – Season 4,netflix,4.0,Yes,Missing,Yes,The Witcher,2019,2025,Excel year missing,low,Yes,7.9,needs_review,inserted,No,Title match + year proximity (confidence: low)
-Nobody Wants This (Netflix),Nobody Wants This,Nobody Wants This,netflix,,No,Missing,Yes,Nobody Wants This,2024,2024,Excel year missing,low,Yes,7.8,needs_review,inserted,No,Title match + year proximity (confidence: low)
-Monster : The Ed Gein Story (Netflix),Monster : The Ed Gein Story,Monster: The Ed Gein Story,netflix,,No,Missing,Yes,Monster: The Ed Gein Story,2025,2025,Excel year missing,low,No,N/A,needs_review,inserted,No,Title match + year proximity (confidence: low)
-Spice It Up (JioHotstar),Spice It Up,Spice It Up,jiohotstar,,No,2025,Yes,Spice It Up,2025,2025,No,high,No,N/A,ok,inserted,No,Title match + year proximity (confidence: high)
-Baramulla (Netflix),Baramulla,Baramulla,netflix,,No,Missing,Yes,Baramulla,2025,2025,Excel year missing,low,No,N/A,needs_review,inserted,No,Title match + year proximity (confidence: low)
-Frankenstein (Netflix),Frankenstein,Frankenstein,netflix,,No,Missing,Yes,Frankenstein,2004,2004,Excel year missing,low,Yes,6.2,needs_review,inserted,No,Title match + year proximity (confidence: low)
-A House of Dynamite (Netflix),A House of Dynamite,A House of Dynamite,netflix,,No,Missing,Yes,A House of Dynamite,2025,2025,Excel year missing,low,Yes,7.2,needs_review,skipped,No,Title match + year proximity (confidence: low)
-Greater Kalesh (Netflix),Greater Kalesh,Greater Kalesh,netflix,,No,Missing,Yes,Greater Kalesh,2025,2025,Excel year missing,low,No,N/A,needs_review,inserted,No,Title match + year proximity (confidence: low)
-Bhagwat : Chapter 1 (Zee5),Bhagwat : Chapter 1,Bhagwat - Chapter One: Raakshas,zee5,,No,Missing,Yes,Bhagwat - Chapter One: Raakshas,2025,2025,Excel year missing,low,No,N/A,needs_review,inserted,No,Title match + year proximity (confidence: low)
-Baaghi 4 (Prime),Baaghi 4,Baaghi 4,prime_video,,No,Missing,Yes,Baaghi 4,2025,2025,Excel year missing,low,No,N/A,needs_review,inserted,No,Title match + year proximity (confidence: low)
-Param Sundari (Prime),Param Sundari,Param Sundari,prime_video,,No,Missing,Yes,Param Sundari,2025,2025,Excel year missing,low,Yes,5.3,needs_review,inserted,No,Title match + year proximity (confidence: low)
+The Witcher S4 (Netflix),The Witcher,The Witcher – Season 4,netflix,4.0,Yes,Missing,Yes,The Witcher,2019,2025,Excel year missing,low,Yes,7.9,needs_review,dry_run,N/A,Title match + year proximity (confidence: low)
+Nobody Wants This (Netflix),Nobody Wants This,Nobody Wants This,netflix,,No,Missing,Yes,Nobody Wants This,2024,2024,Excel year missing,low,Yes,7.8,needs_review,dry_run,N/A,Title match + year proximity (confidence: low)
+Monster : The Ed Gein Story (Netflix),Monster : The Ed Gein Story,Monster: The Ed Gein Story,netflix,,No,Missing,Yes,Monster: The Ed Gein Story,2025,2025,Excel year missing,low,No,N/A,needs_review,dry_run,N/A,Title match + year proximity (confidence: low)
+Spice It Up (JioHotstar),Spice It Up,Spice It Up,jiohotstar,,No,2025,Yes,Spice It Up,2025,2025,No,high,No,N/A,ok,dry_run,N/A,Title match + year proximity (confidence: high)
+Baramulla (Netflix),Baramulla,Baramulla,netflix,,No,Missing,Yes,Baramulla,2025,2025,Excel year missing,low,No,N/A,needs_review,dry_run,N/A,Title match + year proximity (confidence: low)
+Frankenstein (Netflix),Frankenstein,Frankenstein,netflix,,No,Missing,Yes,Frankenstein,2004,2004,Excel year missing,low,Yes,6.2,needs_review,dry_run,N/A,Title match + year proximity (confidence: low)
+A House of Dynamite (Netflix),A House of Dynamite,A House of Dynamite,netflix,,No,Missing,Yes,A House of Dynamite,2025,2025,Excel year missing,low,Yes,7.2,needs_review,dry_run,N/A,Title match + year proximity (confidence: low)
+Greater Kalesh (Netflix),Greater Kalesh,Greater Kalesh,netflix,,No,Missing,Yes,Greater Kalesh,2025,2025,Excel year missing,low,No,N/A,needs_review,dry_run,N/A,Title match + year proximity (confidence: low)
+Bhagwat : Chapter 1 (Zee5),Bhagwat : Chapter 1,Bhagwat - Chapter One: Raakshas,zee5,,No,Missing,Yes,Bhagwat - Chapter One: Raakshas,2025,2025,Excel year missing,low,No,N/A,needs_review,dry_run,N/A,Title match + year proximity (confidence: low)
+Baaghi 4 (Prime),Baaghi 4,Baaghi 4,prime_video,,No,Missing,Yes,Baaghi 4,2025,2025,Excel year missing,low,No,N/A,needs_review,dry_run,N/A,Title match + year proximity (confidence: low)
+Param Sundari (Prime),Param Sundari,Param Sundari,prime_video,,No,Missing,Yes,Param Sundari,2025,2025,Excel year missing,low,Yes,5.3,needs_review,dry_run,N/A,Title match + year proximity (confidence: low)
 War 2 (Netflix),War 2,N/A,netflix,,N/A,Missing,No,N/A,N/A,N/A,Excel year missing,low,No,N/A,needs_review,no_match,N/A,No match found
-Jurassic World : Rebirth (JioHotstar),Jurassic World : Rebirth,Jurassic World Rebirth,jiohotstar,,No,2025,Yes,Jurassic World Rebirth,2025,2025,No,high,Yes,5.9,ok,inserted,No,Title match + year proximity (confidence: high)
-Freakier Friday (JioHotstar),Freakier Friday,Freakier Friday,jiohotstar,,No,2025,Yes,Freakier Friday,2025,2025,No,high,Yes,6.5,ok,inserted,No,Title match + year proximity (confidence: high)
-The Fantastic Four : First Steps (JioHotstar),The Fantastic Four : First Steps,Marvel Studios' The Fantastic Four: First Steps - World Premiere,jiohotstar,,No,2025,Yes,Marvel Studios' The Fantastic Four: First Steps - World Premiere,2025,2025,No,low,No,N/A,needs_review,inserted,No,Title match + year proximity (confidence: low)
-M3GAN 2.0 (JioHotstar),M3GAN 2.0,M3GAN 2.0,jiohotstar,,No,2025,Yes,M3GAN 2.0,2025,2025,No,high,Yes,6.1,ok,inserted,No,Title match + year proximity (confidence: high)
-Final Destination : Bloodlines (JioHotstar),Final Destination : Bloodlines,Final Destination Bloodlines,jiohotstar,,No,2025,Yes,Final Destination Bloodlines,2025,2025,No,high,Yes,6.7,ok,inserted,No,Title match + year proximity (confidence: high)
-How to Train Your Dragon (JioHotstar),How to Train Your Dragon,How to Train Your Dragon,jiohotstar,,No,2025,Yes,How to Train Your Dragon,2025,2025,No,high,Yes,7.8,ok,inserted,No,Title match + year proximity (confidence: high)
-Lokah Chapter 1 : Chandra (JioHotstar),Lokah Chapter 1 : Chandra,Lokah Chapter 1: Chandra,jiohotstar,,No,2025,Yes,Lokah Chapter 1: Chandra,2025,2025,No,high,Yes,8.1,ok,skipped,No,Title match + year proximity (confidence: high)
-Idli Kadai (Netflix),Idli Kadai,Idli Kadai,netflix,,No,Missing,Yes,Idli Kadai,2025,2025,Excel year missing,low,No,N/A,needs_review,inserted,No,Title match + year proximity (confidence: low)
-They Call Him OG (Netflix),They Call Him OG,They Call Him OG,netflix,,No,Missing,Yes,They Call Him OG,2025,2025,Excel year missing,low,No,N/A,needs_review,inserted,No,Title match + year proximity (confidence: low)
+Jurassic World : Rebirth (JioHotstar),Jurassic World : Rebirth,Jurassic World Rebirth,jiohotstar,,No,2025,Yes,Jurassic World Rebirth,2025,2025,No,high,Yes,5.9,ok,dry_run,N/A,Title match + year proximity (confidence: high)
+Freakier Friday (JioHotstar),Freakier Friday,Freakier Friday,jiohotstar,,No,2025,Yes,Freakier Friday,2025,2025,No,high,Yes,6.5,ok,dry_run,N/A,Title match + year proximity (confidence: high)
+The Fantastic Four : First Steps (JioHotstar),The Fantastic Four : First Steps,Marvel Studios' The Fantastic Four: First Steps - World Premiere,jiohotstar,,No,2025,Yes,Marvel Studios' The Fantastic Four: First Steps - World Premiere,2025,2025,No,low,No,N/A,needs_review,dry_run,N/A,Title match + year proximity (confidence: low)
+M3GAN 2.0 (JioHotstar),M3GAN 2.0,M3GAN 2.0,jiohotstar,,No,2025,Yes,M3GAN 2.0,2025,2025,No,high,Yes,6.1,ok,dry_run,N/A,Title match + year proximity (confidence: high)
+Final Destination : Bloodlines (JioHotstar),Final Destination : Bloodlines,Final Destination Bloodlines,jiohotstar,,No,2025,Yes,Final Destination Bloodlines,2025,2025,No,high,Yes,6.7,ok,dry_run,N/A,Title match + year proximity (confidence: high)
+How to Train Your Dragon (JioHotstar),How to Train Your Dragon,How to Train Your Dragon,jiohotstar,,No,2025,Yes,How to Train Your Dragon,2025,2025,No,high,Yes,7.8,ok,dry_run,N/A,Title match + year proximity (confidence: high)
+Lokah Chapter 1 : Chandra (JioHotstar),Lokah Chapter 1 : Chandra,Lokah Chapter 1: Chandra,jiohotstar,,No,2025,Yes,Lokah Chapter 1: Chandra,2025,2025,No,high,Yes,8.1,ok,dry_run,N/A,Title match + year proximity (confidence: high)
+Idli Kadai (Netflix),Idli Kadai,Idli Kadai,netflix,,No,Missing,Yes,Idli Kadai,2025,2025,Excel year missing,low,No,N/A,needs_review,dry_run,N/A,Title match + year proximity (confidence: low)
+They Call Him OG (Netflix),They Call Him OG,They Call Him OG,netflix,,No,Missing,Yes,They Call Him OG,2025,2025,Excel year missing,low,No,N/A,needs_review,dry_run,N/A,Title match + year proximity (confidence: low)
 Vash Vivash Level 2 (Netflix),Vash Vivash Level 2,N/A,netflix,,N/A,Missing,No,N/A,N/A,N/A,Excel year missing,low,No,N/A,needs_review,no_match,N/A,No match found
 Nadu Center (JioHotstar),Nadu Center,N/A,jiohotstar,,N/A,2025,No,N/A,N/A,N/A,TMDB year missing,low,No,N/A,needs_review,no_match,N/A,No match found
 Pharma (JioHotstar),Pharma,N/A,jiohotstar,,N/A,Missing,No,N/A,N/A,N/A,Excel year missing,low,No,N/A,needs_review,no_match,N/A,No match found
-Bigg Boss S9 (JioHotstar),Bigg Boss,Bigg Boss – Season 9,jiohotstar,9.0,Yes,Missing,Yes,Bigg Boss,2013,2025,Excel year missing,low,Yes,6.2,needs_review,inserted,No,Title match + year proximity (confidence: low)
-Bigg Boss S9 (JioHotstar),Bigg Boss,Bigg Boss – Season 9,jiohotstar,9.0,Yes,Missing,Yes,Bigg Boss,2013,2025,Excel year missing,low,Yes,6.2,needs_review,skipped,No,Title match + year proximity (confidence: low)
+Bigg Boss S9 (JioHotstar),Bigg Boss,Bigg Boss – Season 9,jiohotstar,9.0,Yes,Missing,Yes,Bigg Boss,2013,2025,Excel year missing,low,Yes,6.2,needs_review,dry_run,N/A,Title match + year proximity (confidence: low)
+Bigg Boss S9 (JioHotstar),Bigg Boss,Bigg Boss – Season 9,jiohotstar,9.0,Yes,Missing,Yes,Bigg Boss,2013,2025,Excel year missing,low,Yes,6.2,needs_review,dry_run,N/A,Title match + year proximity (confidence: low)
 Anandalahari (Aha),Anandalahari,N/A,aha,,N/A,2025,No,N/A,N/A,N/A,TMDB year missing,low,No,N/A,needs_review,no_match,N/A,No match found
-Chiranjeeva (Aha),Chiranjeeva,Chiranjeeva,aha,,No,2025,Yes,Chiranjeeva,2025,2025,No,high,No,N/A,ok,inserted,No,Title match + year proximity (confidence: high)
-Bad Girl (JioHotstar),Bad Girl,Bad Girl,jiohotstar,,No,2025,Yes,Bad Girl,2025,2025,No,high,No,N/A,ok,inserted,No,Title match + year proximity (confidence: high)
-Shakthi Thirumagan  (JioHotstar),Shakthi Thirumagan,Shakthi Thirumagan,jiohotstar,,No,Missing,Yes,Shakthi Thirumagan,2025,2025,Excel year missing,low,No,N/A,needs_review,inserted,No,Title match + year proximity (confidence: low)
+Chiranjeeva (Aha),Chiranjeeva,Chiranjeeva,aha,,No,2025,Yes,Chiranjeeva,2025,2025,No,high,No,N/A,ok,dry_run,N/A,Title match + year proximity (confidence: high)
+Bad Girl (JioHotstar),Bad Girl,Bad Girl,jiohotstar,,No,2025,Yes,Bad Girl,2025,2025,No,high,No,N/A,ok,dry_run,N/A,Title match + year proximity (confidence: high)
+Shakthi Thirumagan  (JioHotstar),Shakthi Thirumagan,Shakthi Thirumagan,jiohotstar,,No,Missing,Yes,Shakthi Thirumagan,2025,2025,Excel year missing,low,No,N/A,needs_review,dry_run,N/A,Title match + year proximity (confidence: low)
 Mirai (JioHotstar),Mirai,N/A,jiohotstar,,N/A,Missing,No,N/A,N/A,N/A,Excel year missing,low,No,N/A,needs_review,no_match,N/A,No match found
-They Call Him OG (Netflix),They Call Him OG,They Call Him OG,netflix,,No,2025,Yes,They Call Him OG,2025,2025,No,high,No,N/A,ok,skipped,No,Title match + year proximity (confidence: high)
-Mirage (SonyLIV),Mirage,Mirage,sonyliv,,No,2025,Yes,Mirage,2025,2025,No,high,No,N/A,ok,inserted,No,Title match + year proximity (confidence: high)
+They Call Him OG (Netflix),They Call Him OG,They Call Him OG,netflix,,No,2025,Yes,They Call Him OG,2025,2025,No,high,No,N/A,ok,dry_run,N/A,Title match + year proximity (confidence: high)
+Mirage (SonyLIV),Mirage,Mirage,sonyliv,,No,2025,Yes,Mirage,2025,2025,No,high,No,N/A,ok,dry_run,N/A,Title match + year proximity (confidence: high)
 Aabhyanthara Kuttavali (Zee5),Aabhyanthara Kuttavali,N/A,zee5,,N/A,2025,No,N/A,N/A,N/A,TMDB year missing,low,No,N/A,needs_review,no_match,N/A,No match found
-Kishkindhapuri (Zee 5 ),Kishkindhapuri,Kishkindhapuri,zee_5_,,No,2025,Yes,Kishkindhapuri,2025,2025,No,high,No,N/A,ok,inserted,No,Title match + year proximity (confidence: high)
-Madharaasi (Prime),Madharaasi,Madharaasi,prime_video,,No,2025,Yes,Madharaasi,2025,2025,No,high,Yes,8.6,ok,inserted,No,Title match + year proximity (confidence: high)
-Pluribus (Appletv),Pluribus,Pluribus,apple_tv,,No,Missing,Yes,Pluribus,2025,2025,Excel year missing,low,No,N/A,needs_review,skipped,No,Title match + year proximity (confidence: low)
-The Morning Show S4 (Appletv),The Morning Show,The Morning Show – Season 4,apple_tv,4.0,Yes,Missing,Yes,The Morning Show,2019,2025,Excel year missing,low,Yes,8.1,needs_review,inserted,No,Title match + year proximity (confidence: low)
-The Last Frontier (Appletv),The Last Frontier,The Last Frontier,apple_tv,,No,Missing,Yes,The Last Frontier,2025,2025,Excel year missing,low,Yes,7.0,needs_review,skipped,No,Title match + year proximity (confidence: low)
-Invasion (Appletv),Invasion,Invasion,apple_tv,,No,Missing,Yes,Invasion,2021,2021,Excel year missing,low,Yes,6.2,needs_review,inserted,No,Title match + year proximity (confidence: low)
-The Studio (Appletv),The Studio,The Studio,apple_tv,,No,Missing,Yes,The Studio,2025,2025,Excel year missing,low,Yes,8.1,needs_review,inserted,No,Title match + year proximity (confidence: low)
-Ted Lasso (Appletv),Ted Lasso,Ted Lasso,apple_tv,,No,Missing,Yes,Ted Lasso,2020,2020,Excel year missing,low,Yes,8.8,needs_review,skipped,No,Title match + year proximity (confidence: low)
+Kishkindhapuri (Zee 5 ),Kishkindhapuri,Kishkindhapuri,zee_5_,,No,2025,Yes,Kishkindhapuri,2025,2025,No,high,No,N/A,ok,dry_run,N/A,Title match + year proximity (confidence: high)
+Madharaasi (Prime),Madharaasi,Madharaasi,prime_video,,No,2025,Yes,Madharaasi,2025,2025,No,high,Yes,8.6,ok,dry_run,N/A,Title match + year proximity (confidence: high)
+Pluribus (Appletv),Pluribus,Pluribus,apple_tv,,No,Missing,Yes,Pluribus,2025,2025,Excel year missing,low,No,N/A,needs_review,dry_run,N/A,Title match + year proximity (confidence: low)
+The Morning Show S4 (Appletv),The Morning Show,The Morning Show – Season 4,apple_tv,4.0,Yes,Missing,Yes,The Morning Show,2019,2025,Excel year missing,low,Yes,8.1,needs_review,dry_run,N/A,Title match + year proximity (confidence: low)
+The Last Frontier (Appletv),The Last Frontier,The Last Frontier,apple_tv,,No,Missing,Yes,The Last Frontier,2025,2025,Excel year missing,low,Yes,7.0,needs_review,dry_run,N/A,Title match + year proximity (confidence: low)
+Invasion (Appletv),Invasion,Invasion,apple_tv,,No,Missing,Yes,Invasion,2021,2021,Excel year missing,low,Yes,6.2,needs_review,dry_run,N/A,Title match + year proximity (confidence: low)
+The Studio (Appletv),The Studio,The Studio,apple_tv,,No,Missing,Yes,The Studio,2025,2025,Excel year missing,low,Yes,8.1,needs_review,dry_run,N/A,Title match + year proximity (confidence: low)
+Ted Lasso (Appletv),Ted Lasso,Ted Lasso,apple_tv,,No,Missing,Yes,Ted Lasso,2020,2020,Excel year missing,low,Yes,8.8,needs_review,dry_run,N/A,Title match + year proximity (confidence: low)
 The Lost Bus (Appletv),The Lost Bus,N/A,apple_tv,,N/A,Missing,No,N/A,N/A,N/A,Excel year missing,low,No,N/A,needs_review,no_match,N/A,No match found
-Chief Of War (Appletv),Chief Of War,Chief of War,apple_tv,,No,Missing,Yes,Chief of War,2025,2025,Excel year missing,low,Yes,7.5,needs_review,inserted,No,Title match + year proximity (confidence: low)
+Chief Of War (Appletv),Chief Of War,Chief of War,apple_tv,,No,Missing,Yes,Chief of War,2025,2025,Excel year missing,low,Yes,7.5,needs_review,dry_run,N/A,Title match + year proximity (confidence: low)
