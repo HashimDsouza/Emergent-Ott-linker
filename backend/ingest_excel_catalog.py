@@ -494,29 +494,51 @@ async def map_tmdb_to_content(tmdb_data: Dict, omdb_data: Optional[Dict], parsed
             # S1 or no season: use series_start_year
             year = series_start_year or parsed_excel.get('year') or default_year
     
-    # Build content object
+    # Build content object with season-aware fields
     content = {
-        'title': tmdb_data.get('title') or tmdb_data.get('name'),
+        # Title fields
+        'title': canonical_title,
+        'series_title': canonical_title if is_tv else None,
+        'display_title': display_title,
+        
+        # Content type
         'type': 'series' if is_tv else 'movie',
         'platforms': [parsed_excel['platform']],
+        
+        # Year logic (user-facing year for sorting/filtering)
         'year': year,
+        
+        # Series metadata
+        'series_start_year': series_start_year,
+        'season': season_number,
+        'season_year': season_year,
+        'season_release_date': season_release_date,
+        'is_new_season': is_new_season,
+        
+        # Freshness tracking
+        'freshness_batch': batch_name,
+        
+        # Standard metadata
+        'episodes': episodes,
         'poster_url': f"https://image.tmdb.org/t/p/w500{tmdb_data['poster_path']}" if tmdb_data.get('poster_path') else None,
         'backdrop_url': f"https://image.tmdb.org/t/p/original{tmdb_data['backdrop_path']}" if tmdb_data.get('backdrop_path') else None,
         'description': tmdb_data.get('overview', 'No description available'),
-        'genres': [str(g) for g in tmdb_data.get('genre_ids', [])],  # Will be IDs, can be mapped to names later
-        'languages': ['English'],  # Default, can be enhanced with TMDB language data
+        'genres': [str(g) for g in tmdb_data.get('genre_ids', [])],
+        'languages': ['English'],  # Default
         'cast': cast,
+        
+        # Ratings
         'imdb': enrichment_data['imdb_rating'],
         'tmdb_rating': enrichment_data['tmdb_rating'],
         'tmdb_id': tmdb_id,
         'imdb_id': enrichment_data['imdb_id'],
-        'season': parsed_excel.get('season'),
-        'volume': parsed_excel.get('volume'),
-        'episodes': episodes,
-        'release_date': parsed_excel.get('release_date').isoformat() if parsed_excel.get('release_date') else None,
-        'source': 'excel_nov25_v1',
+        
+        # System fields
+        'source': f'excel_{batch_name}_v1',
         'status': enrichment_data['status'],
-        'descriptor': tmdb_data.get('overview', '')[:100] if tmdb_data.get('overview') else 'New release'
+        'descriptor': tmdb_data.get('overview', '')[:100] if tmdb_data.get('overview') else 'New release',
+        'release_date': parsed_excel.get('release_date').isoformat() if parsed_excel.get('release_date') else None,
+        'volume': parsed_excel.get('volume')  # Keep for backwards compatibility
     }
     
     return content
