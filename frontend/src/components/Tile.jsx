@@ -72,11 +72,19 @@ export default function Tile({ item, onInfo }) {
         style={{ background: `linear-gradient(90deg, ${coral} 0%, ${mint} 100%)` }}
       />
 
-      {/* Info Panel - Below image with all 3 lines */}
+      {/* Info Panel - Below image with title and all lines */}
       <div 
         className="px-1.5 py-1.5 md:px-2 md:py-1.5 text-white" 
         style={{ backgroundColor: 'rgba(23, 58, 53, 0.95)' }}
-      >{/* Line 1: Platform + social icons (heart, thumbs, comments) - NO CAPSULE */}
+      >
+        {/* Title - displayed if present */}
+        {item.title && (
+          <div className="text-[10px] md:text-xs font-semibold mb-1 line-clamp-2 text-white">
+            {item.title}
+          </div>
+        )}
+        
+        {/* Line 1: Platform + social icons (heart, thumbs, comments) - NO CAPSULE */}
         <div className="flex items-center gap-0.5 md:gap-1.5 mb-0.5 md:mb-1">
           <span className="text-[8px] md:text-[9px] font-semibold flex-shrink-0" style={{ color: mint }}>{item.platform || "JioHotstar"}</span>
           <button 
