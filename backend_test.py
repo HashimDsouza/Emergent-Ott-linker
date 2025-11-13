@@ -40,7 +40,7 @@ class YouTubeAPITester:
         if details:
             print(f"   {details}")
     
-    async def test_sports_images_endpoint(self) -> bool:
+    async def test_youtube_health_endpoint(self) -> bool:
         """Test 1: GET /api/thesportsdb/sports-images - Pre-cached team logos"""
         try:
             async with self.session.get(f"{self.base_url}/api/thesportsdb/sports-images") as response:
