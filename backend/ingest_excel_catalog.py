@@ -726,7 +726,7 @@ async def safe_upsert_content(new_content: Dict, db, dry_run: bool = False) -> D
     duplicate_query = {
         'title': {'$regex': f'^{re.escape(new_content["title"])}', '$options': 'i'},
         'year': new_content.get('year'),
-        'platforms': {'$in': new_content['platforms']}
+        'platform': new_content.get('platform')
     }
     
     existing_by_metadata = await db.content.find_one(duplicate_query)
