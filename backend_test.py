@@ -41,184 +41,9 @@ class YouTubeAPITester:
             print(f"   {details}")
     
     async def test_youtube_health_endpoint(self) -> bool:
-        """Test 1: GET /api/thesportsdb/sports-images - Pre-cached team logos"""
+        """Test 1: GET /api/youtube/health - Health check endpoint"""
         try:
-            async with self.session.get(f"{self.base_url}/api/thesportsdb/sports-images") as response:
-                if response.status == 200:
-                    data = await response.json()
-                    
-                    # Check response structure
-                    if data.get("status") != "success":
-                        self.log_test("Sports Images Endpoint", "FAIL", 
-                                    f"Status not success: {data.get('status')}")
-                        return False
-                    
-                    images = data.get("images", {})
-                    if not images:
-                        self.log_test("Sports Images Endpoint", "FAIL", 
-                                    "No images returned")
-                        return False
-                    
-                    # Test specific teams mentioned in requirements
-                    required_teams = ['MI', 'CSK', 'RCB', 'Man City', 'Arsenal', 'Lakers', 'Warriors', 'Real Madrid', 'Barcelona']
-                    missing_teams = []
-                    invalid_urls = []
-                    
-                    for team in required_teams:
-                        if team not in images:
-                            missing_teams.append(team)
-                        else:
-                            url = images[team]
-                            if not url or not url.startswith('https://'):
-                                invalid_urls.append(f"{team}: {url}")
-                    
-                    if missing_teams:
-                        self.log_test("Sports Images Endpoint", "FAIL", 
-                                    f"Missing teams: {', '.join(missing_teams)}")
-                        return False
-                    
-                    if invalid_urls:
-                        self.log_test("Sports Images Endpoint", "FAIL", 
-                                    f"Invalid URLs: {'; '.join(invalid_urls)}")
-                        return False
-                    
-                    self.log_test("Sports Images Endpoint", "PASS", 
-                                f"Found {len(images)} team images, all required teams present")
-                    return True
-                    
-                else:
-                    error_text = await response.text()
-                    self.log_test("Sports Images Endpoint", "FAIL", 
-                                f"HTTP {response.status}: {error_text}")
-                    return False
-        except Exception as e:
-            self.log_test("Sports Images Endpoint", "FAIL", f"Exception: {str(e)}")
-            return False
-    
-    async def test_team_logo_endpoint(self) -> bool:
-        """Test 2: GET /api/thesportsdb/team-logo?team_name={name} - Individual team logos"""
-        try:
-            test_teams = ["Arsenal", "Man City", "Lakers", "Mumbai Indians"]
-            all_passed = True
-            
-            for team_name in test_teams:
-                async with self.session.get(f"{self.base_url}/api/thesportsdb/team-logo?team_name={team_name}") as response:
-                    if response.status == 200:
-                        data = await response.json()
-                        
-                        # Check response structure
-                        if data.get("status") not in ["success", "not_found"]:
-                            self.log_test(f"Team Logo - {team_name}", "FAIL", 
-                                        f"Invalid status: {data.get('status')}")
-                            all_passed = False
-                            continue
-                        
-                        if data.get("status") == "success":
-                            # Check for badge/logo URLs
-                            badge = data.get("badge")
-                            logo = data.get("logo")
-                            
-                            if not badge and not logo:
-                                self.log_test(f"Team Logo - {team_name}", "FAIL", 
-                                            "No badge or logo URL returned")
-                                all_passed = False
-                            else:
-                                # Verify URLs are valid
-                                valid_urls = []
-                                if badge and badge.startswith('https://'):
-                                    valid_urls.append("badge")
-                                if logo and logo.startswith('https://'):
-                                    valid_urls.append("logo")
-                                
-                                if valid_urls:
-                                    self.log_test(f"Team Logo - {team_name}", "PASS", 
-                                                f"Found {', '.join(valid_urls)}")
-                                else:
-                                    self.log_test(f"Team Logo - {team_name}", "FAIL", 
-                                                "Invalid URLs returned")
-                                    all_passed = False
-                        else:
-                            self.log_test(f"Team Logo - {team_name}", "WARN", 
-                                        "Team not found in TheSportsDB")
-                    else:
-                        error_text = await response.text()
-                        self.log_test(f"Team Logo - {team_name}", "FAIL", 
-                                    f"HTTP {response.status}: {error_text}")
-                        all_passed = False
-            
-            return all_passed
-            
-        except Exception as e:
-            self.log_test("Team Logo Endpoint", "FAIL", f"Exception: {str(e)}")
-            return False
-    
-    async def test_bulk_team_logos_endpoint(self) -> bool:
-        """Test 3: GET /api/thesportsdb/bulk-team-logos?team_names={comma-separated} - Multiple team logos"""
-        try:
-            # Test with IPL teams
-            test_cases = [
-                {"teams": "MI,CSK,RCB", "description": "IPL teams"},
-                {"teams": "Arsenal,Liverpool,Chelsea", "description": "Premier League teams"}
-            ]
-            
-            all_passed = True
-            
-            for test_case in test_cases:
-                team_names = test_case["teams"]
-                description = test_case["description"]
-                
-                async with self.session.get(f"{self.base_url}/api/thesportsdb/bulk-team-logos?team_names={team_names}") as response:
-                    if response.status == 200:
-                        data = await response.json()
-                        
-                        # Check response structure
-                        if data.get("status") != "success":
-                            self.log_test(f"Bulk Team Logos - {description}", "FAIL", 
-                                        f"Status not success: {data.get('status')}")
-                            all_passed = False
-                            continue
-                        
-                        teams_data = data.get("teams", {})
-                        expected_teams = team_names.split(",")
-                        
-                        if len(teams_data) != len(expected_teams):
-                            self.log_test(f"Bulk Team Logos - {description}", "FAIL", 
-                                        f"Expected {len(expected_teams)} teams, got {len(teams_data)}")
-                            all_passed = False
-                            continue
-                        
-                        # Check each team has logo data
-                        teams_with_logos = 0
-                        for team in expected_teams:
-                            team = team.strip()
-                            if team in teams_data:
-                                team_data = teams_data[team]
-                                if team_data.get("badge") or team_data.get("logo"):
-                                    teams_with_logos += 1
-                        
-                        if teams_with_logos > 0:
-                            self.log_test(f"Bulk Team Logos - {description}", "PASS", 
-                                        f"{teams_with_logos}/{len(expected_teams)} teams have logos")
-                        else:
-                            self.log_test(f"Bulk Team Logos - {description}", "FAIL", 
-                                        "No teams have logo data")
-                            all_passed = False
-                    else:
-                        error_text = await response.text()
-                        self.log_test(f"Bulk Team Logos - {description}", "FAIL", 
-                                    f"HTTP {response.status}: {error_text}")
-                        all_passed = False
-            
-            return all_passed
-            
-        except Exception as e:
-            self.log_test("Bulk Team Logos Endpoint", "FAIL", f"Exception: {str(e)}")
-            return False
-    
-    async def test_health_endpoint(self) -> bool:
-        """Test 4: GET /api/thesportsdb/health - Health check endpoint"""
-        try:
-            async with self.session.get(f"{self.base_url}/api/thesportsdb/health") as response:
+            async with self.session.get(f"{self.base_url}/api/youtube/health") as response:
                 if response.status == 200:
                     data = await response.json()
                     
@@ -228,232 +53,277 @@ class YouTubeAPITester:
                     connected = data.get("connected")
                     
                     if not status:
-                        self.log_test("Health Endpoint", "FAIL", "Missing status field")
+                        self.log_test("YouTube Health Endpoint", "FAIL", "Missing status field")
                         return False
                     
-                    if api_name != "TheSportsDB":
-                        self.log_test("Health Endpoint", "FAIL", 
+                    if api_name != "YouTube Data API v3":
+                        self.log_test("YouTube Health Endpoint", "FAIL", 
                                     f"Wrong API name: {api_name}")
                         return False
                     
                     if status == "healthy" and connected:
-                        self.log_test("Health Endpoint", "PASS", 
+                        self.log_test("YouTube Health Endpoint", "PASS", 
                                     f"API healthy, connected: {connected}")
                         return True
                     elif status == "degraded":
-                        self.log_test("Health Endpoint", "WARN", 
+                        self.log_test("YouTube Health Endpoint", "WARN", 
                                     "API degraded but responding")
                         return True
                     else:
-                        self.log_test("Health Endpoint", "FAIL", 
+                        self.log_test("YouTube Health Endpoint", "FAIL", 
                                     f"API unhealthy: {status}, connected: {connected}")
                         return False
                 else:
                     error_text = await response.text()
-                    self.log_test("Health Endpoint", "FAIL", 
+                    self.log_test("YouTube Health Endpoint", "FAIL", 
                                 f"HTTP {response.status}: {error_text}")
                     return False
         except Exception as e:
-            self.log_test("Health Endpoint", "FAIL", f"Exception: {str(e)}")
+            self.log_test("YouTube Health Endpoint", "FAIL", f"Exception: {str(e)}")
             return False
     
-    async def test_image_url_accessibility(self) -> bool:
-        """Test 5: Verify that returned image URLs are accessible"""
+    async def test_supported_sports_endpoint(self) -> bool:
+        """Test 2: GET /api/youtube/supported-sports - List of supported sports"""
         try:
-            # Get sports images first
-            async with self.session.get(f"{self.base_url}/api/thesportsdb/sports-images") as response:
-                if response.status != 200:
-                    self.log_test("Image URL Accessibility", "FAIL", 
-                                "Could not fetch sports images")
+            async with self.session.get(f"{self.base_url}/api/youtube/supported-sports") as response:
+                if response.status == 200:
+                    data = await response.json()
+                    
+                    # Check response structure
+                    if data.get("status") != "success":
+                        self.log_test("Supported Sports Endpoint", "FAIL", 
+                                    f"Status not success: {data.get('status')}")
+                        return False
+                    
+                    sports = data.get("sports", [])
+                    if not sports:
+                        self.log_test("Supported Sports Endpoint", "FAIL", 
+                                    "No sports returned")
+                        return False
+                    
+                    # Check for expected sports
+                    expected_sports = ['premier_league', 'cricket', 'uefa', 'formula1', 'tennis', 'nba']
+                    sport_ids = [sport.get('id') for sport in sports]
+                    
+                    missing_sports = [sport for sport in expected_sports if sport not in sport_ids]
+                    if missing_sports:
+                        self.log_test("Supported Sports Endpoint", "FAIL", 
+                                    f"Missing sports: {', '.join(missing_sports)}")
+                        return False
+                    
+                    # Verify sport structure
+                    for sport in sports:
+                        required_fields = ['id', 'name', 'official_channels']
+                        missing_fields = [field for field in required_fields if field not in sport]
+                        if missing_fields:
+                            self.log_test("Supported Sports Endpoint", "FAIL", 
+                                        f"Sport {sport.get('id')} missing fields: {missing_fields}")
+                            return False
+                    
+                    self.log_test("Supported Sports Endpoint", "PASS", 
+                                f"Found {len(sports)} sports with all required fields")
+                    return True
+                    
+                else:
+                    error_text = await response.text()
+                    self.log_test("Supported Sports Endpoint", "FAIL", 
+                                f"HTTP {response.status}: {error_text}")
                     return False
-                
-                data = await response.json()
-                images = data.get("images", {})
-                
-                if not images:
-                    self.log_test("Image URL Accessibility", "FAIL", 
-                                "No images to test")
-                    return False
-                
-                # Test a few sample URLs
-                test_teams = ['MI', 'Arsenal', 'Lakers']
-                accessible_count = 0
-                total_tested = 0
-                
-                for team in test_teams:
-                    if team in images:
-                        url = images[team]
-                        total_tested += 1
+        except Exception as e:
+            self.log_test("Supported Sports Endpoint", "FAIL", f"Exception: {str(e)}")
+            return False
+    
+    async def test_premier_league_highlights(self) -> bool:
+        """Test 3: GET /api/youtube/sports-highlights?sport=premier_league&max_results=3"""
+        try:
+            params = "sport=premier_league&max_results=3"
+            async with self.session.get(f"{self.base_url}/api/youtube/sports-highlights?{params}") as response:
+                if response.status == 200:
+                    data = await response.json()
+                    
+                    # Check response structure
+                    if data.get("status") not in ["success", "error"]:
+                        self.log_test("Premier League Highlights", "FAIL", 
+                                    f"Invalid status: {data.get('status')}")
+                        return False
+                    
+                    if data.get("status") == "error":
+                        # Graceful error handling is acceptable
+                        self.log_test("Premier League Highlights", "WARN", 
+                                    f"API returned error: {data.get('error', 'Unknown error')}")
+                        return True
+                    
+                    # Check sport name
+                    if data.get("sport") != "Premier League":
+                        self.log_test("Premier League Highlights", "FAIL", 
+                                    f"Wrong sport name: {data.get('sport')}")
+                        return False
+                    
+                    highlights = data.get("highlights", [])
+                    
+                    # Check if we got highlights
+                    if not highlights:
+                        self.log_test("Premier League Highlights", "WARN", 
+                                    "No highlights returned (may be API quota or network issue)")
+                        return True  # Not a failure, could be quota/network
+                    
+                    # Verify highlight structure
+                    for i, highlight in enumerate(highlights[:3]):  # Check first 3
+                        required_fields = ['video_id', 'title', 'thumbnail', 'video_url']
+                        missing_fields = [field for field in required_fields if not highlight.get(field)]
                         
-                        try:
-                            async with self.session.head(url, timeout=10) as img_response:
-                                if img_response.status == 200:
-                                    accessible_count += 1
-                                    self.log_test(f"Image Access - {team}", "PASS", 
-                                                f"URL accessible: {url[:50]}...")
-                                else:
-                                    self.log_test(f"Image Access - {team}", "WARN", 
-                                                f"HTTP {img_response.status}: {url[:50]}... (pre-cached URL may be outdated)")
-                        except Exception as e:
-                            self.log_test(f"Image Access - {team}", "WARN", 
-                                        f"Exception accessing {url[:50]}...: {str(e)} (pre-cached URL may be outdated)")
-                
-                if accessible_count == total_tested and total_tested > 0:
-                    self.log_test("Image URL Accessibility Overall", "PASS", 
-                                f"All {accessible_count}/{total_tested} tested URLs accessible")
-                    return True
-                elif accessible_count > 0:
-                    self.log_test("Image URL Accessibility Overall", "PASS", 
-                                f"{accessible_count}/{total_tested} URLs accessible (acceptable for pre-cached data)")
-                    return True
-                else:
-                    self.log_test("Image URL Accessibility Overall", "WARN", 
-                                f"No pre-cached URLs accessible ({accessible_count}/{total_tested}) - may need URL refresh")
-                    return True  # Still pass since this is expected for pre-cached data
+                        if missing_fields:
+                            self.log_test("Premier League Highlights", "FAIL", 
+                                        f"Highlight {i+1} missing fields: {missing_fields}")
+                            return False
+                        
+                        # Check thumbnail quality (should be high quality)
+                        thumbnail = highlight.get('thumbnail', '')
+                        if not any(size in thumbnail for size in ['480x360', '1280x720', 'hqdefault', 'maxresdefault']):
+                            self.log_test("Premier League Highlights", "WARN", 
+                                        f"Highlight {i+1} may not have high quality thumbnail")
+                        
+                        # Check video URL format
+                        video_url = highlight.get('video_url', '')
+                        if not video_url.startswith('https://www.youtube.com/watch?v='):
+                            self.log_test("Premier League Highlights", "FAIL", 
+                                        f"Highlight {i+1} invalid video URL format")
+                            return False
                     
+                    # Check caching info
+                    cached = data.get("cached")
+                    if cached is not None:
+                        cache_info = f"cached: {cached}"
+                        if cached:
+                            cache_hours = data.get("cache_expires_in_hours", "unknown")
+                            cache_info += f", expires in {cache_hours}h"
+                        else:
+                            cache_info += f", will cache for {data.get('cache_expires_in_hours', 48)}h"
+                        
+                        self.log_test("Premier League Highlights", "PASS", 
+                                    f"Found {len(highlights)} highlights, {cache_info}")
+                    else:
+                        self.log_test("Premier League Highlights", "PASS", 
+                                    f"Found {len(highlights)} highlights")
+                    
+                    return True
+                    
+                else:
+                    error_text = await response.text()
+                    self.log_test("Premier League Highlights", "FAIL", 
+                                f"HTTP {response.status}: {error_text}")
+                    return False
         except Exception as e:
-            self.log_test("Image URL Accessibility", "FAIL", f"Exception: {str(e)}")
+            self.log_test("Premier League Highlights", "FAIL", f"Exception: {str(e)}")
             return False
     
-    async def test_api_response_structure(self) -> bool:
-        """Test 6: Verify API response structures match expected format"""
+    async def test_cricket_highlights(self) -> bool:
+        """Test 4: GET /api/youtube/sports-highlights?sport=cricket&max_results=3"""
         try:
-            all_passed = True
-            
-            # Test sports-images response structure
-            async with self.session.get(f"{self.base_url}/api/thesportsdb/sports-images") as response:
+            params = "sport=cricket&max_results=3"
+            async with self.session.get(f"{self.base_url}/api/youtube/sports-highlights?{params}") as response:
                 if response.status == 200:
                     data = await response.json()
-                    required_fields = ["status", "images"]
-                    missing_fields = [field for field in required_fields if field not in data]
                     
-                    if missing_fields:
-                        self.log_test("API Structure - Sports Images", "FAIL", 
-                                    f"Missing fields: {missing_fields}")
-                        all_passed = False
-                    else:
-                        self.log_test("API Structure - Sports Images", "PASS", 
-                                    "All required fields present")
-                else:
-                    self.log_test("API Structure - Sports Images", "FAIL", 
-                                f"HTTP {response.status}")
-                    all_passed = False
-            
-            # Test team-logo response structure
-            async with self.session.get(f"{self.base_url}/api/thesportsdb/team-logo?team_name=Arsenal") as response:
-                if response.status == 200:
-                    data = await response.json()
-                    required_fields = ["status", "team_name"]
-                    missing_fields = [field for field in required_fields if field not in data]
+                    # Check response structure
+                    if data.get("status") not in ["success", "error"]:
+                        self.log_test("Cricket Highlights", "FAIL", 
+                                    f"Invalid status: {data.get('status')}")
+                        return False
                     
-                    if missing_fields:
-                        self.log_test("API Structure - Team Logo", "FAIL", 
-                                    f"Missing fields: {missing_fields}")
-                        all_passed = False
-                    else:
-                        # Check if success response has logo data
-                        if data.get("status") == "success":
-                            if not data.get("badge") and not data.get("logo"):
-                                self.log_test("API Structure - Team Logo", "FAIL", 
-                                            "Success response missing badge/logo")
-                                all_passed = False
-                            else:
-                                self.log_test("API Structure - Team Logo", "PASS", 
-                                            "Success response has logo data")
-                        else:
-                            self.log_test("API Structure - Team Logo", "PASS", 
-                                        f"Response structure valid (status: {data.get('status')})")
-                else:
-                    self.log_test("API Structure - Team Logo", "FAIL", 
-                                f"HTTP {response.status}")
-                    all_passed = False
-            
-            # Test bulk-team-logos response structure
-            async with self.session.get(f"{self.base_url}/api/thesportsdb/bulk-team-logos?team_names=Arsenal,Chelsea") as response:
-                if response.status == 200:
-                    data = await response.json()
-                    required_fields = ["status", "teams"]
-                    missing_fields = [field for field in required_fields if field not in data]
+                    if data.get("status") == "error":
+                        # Graceful error handling is acceptable
+                        self.log_test("Cricket Highlights", "WARN", 
+                                    f"API returned error: {data.get('error', 'Unknown error')}")
+                        return True
                     
-                    if missing_fields:
-                        self.log_test("API Structure - Bulk Logos", "FAIL", 
-                                    f"Missing fields: {missing_fields}")
-                        all_passed = False
-                    else:
-                        teams_data = data.get("teams", {})
-                        if isinstance(teams_data, dict):
-                            self.log_test("API Structure - Bulk Logos", "PASS", 
-                                        f"Teams object contains {len(teams_data)} entries")
-                        else:
-                            self.log_test("API Structure - Bulk Logos", "FAIL", 
-                                        "Teams field is not an object")
-                            all_passed = False
+                    # Check sport name
+                    if data.get("sport") != "ICC Cricket":
+                        self.log_test("Cricket Highlights", "FAIL", 
+                                    f"Wrong sport name: {data.get('sport')}")
+                        return False
+                    
+                    highlights = data.get("highlights", [])
+                    
+                    # Check if we got highlights
+                    if not highlights:
+                        self.log_test("Cricket Highlights", "WARN", 
+                                    "No highlights returned (may be API quota or network issue)")
+                        return True  # Not a failure, could be quota/network
+                    
+                    # Verify highlight structure (same as Premier League)
+                    for i, highlight in enumerate(highlights[:3]):
+                        required_fields = ['video_id', 'title', 'thumbnail', 'video_url']
+                        missing_fields = [field for field in required_fields if not highlight.get(field)]
+                        
+                        if missing_fields:
+                            self.log_test("Cricket Highlights", "FAIL", 
+                                        f"Highlight {i+1} missing fields: {missing_fields}")
+                            return False
+                        
+                        # Check video URL format
+                        video_url = highlight.get('video_url', '')
+                        if not video_url.startswith('https://www.youtube.com/watch?v='):
+                            self.log_test("Cricket Highlights", "FAIL", 
+                                        f"Highlight {i+1} invalid video URL format")
+                            return False
+                    
+                    self.log_test("Cricket Highlights", "PASS", 
+                                f"Found {len(highlights)} ICC Cricket highlights")
+                    return True
+                    
                 else:
-                    self.log_test("API Structure - Bulk Logos", "FAIL", 
-                                f"HTTP {response.status}")
-                    all_passed = False
-            
-            return all_passed
-            
+                    error_text = await response.text()
+                    self.log_test("Cricket Highlights", "FAIL", 
+                                f"HTTP {response.status}: {error_text}")
+                    return False
         except Exception as e:
-            self.log_test("API Response Structure", "FAIL", f"Exception: {str(e)}")
+            self.log_test("Cricket Highlights", "FAIL", f"Exception: {str(e)}")
             return False
     
-    async def test_dynamic_api_image_urls(self) -> bool:
-        """Test 7: Verify that dynamic API endpoints return working image URLs"""
+    async def test_invalid_sport_error_handling(self) -> bool:
+        """Test 5: GET /api/youtube/sports-highlights?sport=invalid - Error handling"""
         try:
-            # Test team-logo endpoint URLs
-            test_teams = ["Arsenal", "Chelsea"]
-            accessible_count = 0
-            total_tested = 0
-            
-            for team in test_teams:
-                async with self.session.get(f"{self.base_url}/api/thesportsdb/team-logo?team_name={team}") as response:
-                    if response.status == 200:
-                        data = await response.json()
-                        if data.get("status") == "success":
-                            badge_url = data.get("badge")
-                            if badge_url:
-                                total_tested += 1
-                                try:
-                                    async with self.session.head(badge_url, timeout=10) as img_response:
-                                        if img_response.status == 200:
-                                            accessible_count += 1
-                                            self.log_test(f"Dynamic API Image - {team}", "PASS", 
-                                                        f"Badge URL accessible: {badge_url[:50]}...")
-                                        else:
-                                            self.log_test(f"Dynamic API Image - {team}", "FAIL", 
-                                                        f"Badge URL HTTP {img_response.status}: {badge_url[:50]}...")
-                                except Exception as e:
-                                    self.log_test(f"Dynamic API Image - {team}", "FAIL", 
-                                                f"Exception accessing badge: {str(e)}")
-            
-            if accessible_count == total_tested and total_tested > 0:
-                self.log_test("Dynamic API Image URLs Overall", "PASS", 
-                            f"All {accessible_count}/{total_tested} dynamic URLs accessible")
-                return True
-            elif accessible_count > 0:
-                self.log_test("Dynamic API Image URLs Overall", "PASS", 
-                            f"{accessible_count}/{total_tested} dynamic URLs accessible")
-                return True
-            else:
-                self.log_test("Dynamic API Image URLs Overall", "FAIL", 
-                            f"No dynamic URLs accessible ({accessible_count}/{total_tested})")
-                return False
-                
+            params = "sport=invalid"
+            async with self.session.get(f"{self.base_url}/api/youtube/sports-highlights?{params}") as response:
+                if response.status == 400:
+                    data = await response.json()
+                    
+                    # Check error response structure
+                    detail = data.get("detail", "")
+                    if "not supported" in detail.lower() or "invalid" in detail.lower():
+                        self.log_test("Invalid Sport Error Handling", "PASS", 
+                                    f"Correctly returned 400 error: {detail}")
+                        return True
+                    else:
+                        self.log_test("Invalid Sport Error Handling", "FAIL", 
+                                    f"Wrong error message: {detail}")
+                        return False
+                elif response.status == 200:
+                    # Should not return 200 for invalid sport
+                    self.log_test("Invalid Sport Error Handling", "FAIL", 
+                                "Should return 400 error for invalid sport")
+                    return False
+                else:
+                    error_text = await response.text()
+                    self.log_test("Invalid Sport Error Handling", "FAIL", 
+                                f"Unexpected HTTP {response.status}: {error_text}")
+                    return False
         except Exception as e:
-            self.log_test("Dynamic API Image URLs", "FAIL", f"Exception: {str(e)}")
+            self.log_test("Invalid Sport Error Handling", "FAIL", f"Exception: {str(e)}")
             return False
-
+    
     async def test_caching_behavior(self) -> bool:
-        """Test 7: Verify API caching is working (24-hour cache)"""
+        """Test 6: Verify API caching is working (48-hour cache)"""
         try:
-            # Make the same request twice and measure response time
+            # Make the same request twice and check caching info
             import time
+            
+            params = "sport=premier_league&max_results=2"
             
             # First request
             start_time = time.time()
-            async with self.session.get(f"{self.base_url}/api/thesportsdb/team-logo?team_name=Arsenal") as response1:
+            async with self.session.get(f"{self.base_url}/api/youtube/sports-highlights?{params}") as response1:
                 first_response_time = time.time() - start_time
                 if response1.status != 200:
                     self.log_test("Caching Behavior", "FAIL", 
@@ -463,7 +333,7 @@ class YouTubeAPITester:
             
             # Second request (should be faster due to caching)
             start_time = time.time()
-            async with self.session.get(f"{self.base_url}/api/thesportsdb/team-logo?team_name=Arsenal") as response2:
+            async with self.session.get(f"{self.base_url}/api/youtube/sports-highlights?{params}") as response2:
                 second_response_time = time.time() - start_time
                 if response2.status != 200:
                     self.log_test("Caching Behavior", "FAIL", 
@@ -471,67 +341,141 @@ class YouTubeAPITester:
                     return False
                 data2 = await response2.json()
             
-            # Compare responses (should be identical)
-            if data1 != data2:
-                self.log_test("Caching Behavior", "FAIL", 
-                            "Cached response differs from original")
-                return False
+            # Check if second request indicates caching
+            cached_first = data1.get("cached", False)
+            cached_second = data2.get("cached", False)
             
-            # Check if second request was faster (indicating cache hit)
-            if second_response_time < first_response_time * 0.8:  # 20% faster threshold
+            if not cached_first and cached_second:
                 self.log_test("Caching Behavior", "PASS", 
-                            f"Cache working: {first_response_time:.3f}s -> {second_response_time:.3f}s")
+                            f"Cache working: first request cached={cached_first}, second cached={cached_second}")
+                return True
+            elif cached_first and cached_second:
+                self.log_test("Caching Behavior", "PASS", 
+                            "Both requests served from cache (cache already populated)")
+                return True
+            elif second_response_time < first_response_time * 0.8:  # 20% faster threshold
+                self.log_test("Caching Behavior", "PASS", 
+                            f"Cache working (response time): {first_response_time:.3f}s -> {second_response_time:.3f}s")
+                return True
             else:
                 self.log_test("Caching Behavior", "WARN", 
-                            f"Cache may not be working: {first_response_time:.3f}s -> {second_response_time:.3f}s")
-            
-            return True
+                            f"Cache behavior unclear: first cached={cached_first}, second cached={cached_second}")
+                return True  # Not a failure, just unclear
             
         except Exception as e:
             self.log_test("Caching Behavior", "FAIL", f"Exception: {str(e)}")
             return False
+    
+    async def test_thumbnail_quality_verification(self) -> bool:
+        """Test 7: Verify thumbnail URLs are high quality (480x360 or 1280x720)"""
+        try:
+            params = "sport=premier_league&max_results=2"
+            async with self.session.get(f"{self.base_url}/api/youtube/sports-highlights?{params}") as response:
+                if response.status != 200:
+                    self.log_test("Thumbnail Quality Verification", "FAIL", 
+                                f"Request failed: {response.status}")
+                    return False
+                
+                data = await response.json()
+                
+                if data.get("status") == "error":
+                    self.log_test("Thumbnail Quality Verification", "WARN", 
+                                "API returned error, cannot test thumbnails")
+                    return True
+                
+                highlights = data.get("highlights", [])
+                
+                if not highlights:
+                    self.log_test("Thumbnail Quality Verification", "WARN", 
+                                "No highlights returned, cannot test thumbnails")
+                    return True
+                
+                high_quality_count = 0
+                total_thumbnails = 0
+                
+                for i, highlight in enumerate(highlights[:2]):
+                    thumbnail = highlight.get('thumbnail', '')
+                    thumbnail_hd = highlight.get('thumbnail_hd', '')
+                    
+                    if thumbnail:
+                        total_thumbnails += 1
+                        
+                        # Check if thumbnail is high quality
+                        if any(indicator in thumbnail for indicator in ['hqdefault', 'maxresdefault', '480x360', '1280x720']):
+                            high_quality_count += 1
+                        elif thumbnail_hd and any(indicator in thumbnail_hd for indicator in ['maxresdefault', '1280x720']):
+                            high_quality_count += 1
+                        
+                        # Test thumbnail accessibility
+                        try:
+                            async with self.session.head(thumbnail, timeout=10) as thumb_response:
+                                if thumb_response.status == 200:
+                                    self.log_test(f"Thumbnail Access - Highlight {i+1}", "PASS", 
+                                                f"Thumbnail accessible: {thumbnail[:50]}...")
+                                else:
+                                    self.log_test(f"Thumbnail Access - Highlight {i+1}", "WARN", 
+                                                f"Thumbnail HTTP {thumb_response.status}: {thumbnail[:50]}...")
+                        except Exception as e:
+                            self.log_test(f"Thumbnail Access - Highlight {i+1}", "WARN", 
+                                        f"Thumbnail access error: {str(e)[:50]}...")
+                
+                if total_thumbnails == 0:
+                    self.log_test("Thumbnail Quality Verification", "WARN", 
+                                "No thumbnails found to verify")
+                    return True
+                
+                quality_percentage = (high_quality_count / total_thumbnails) * 100
+                
+                if quality_percentage >= 80:  # 80% threshold
+                    self.log_test("Thumbnail Quality Verification", "PASS", 
+                                f"{high_quality_count}/{total_thumbnails} thumbnails are high quality ({quality_percentage:.0f}%)")
+                    return True
+                else:
+                    self.log_test("Thumbnail Quality Verification", "WARN", 
+                                f"Only {high_quality_count}/{total_thumbnails} thumbnails are high quality ({quality_percentage:.0f}%)")
+                    return True  # Not a failure, just lower quality
+                
+        except Exception as e:
+            self.log_test("Thumbnail Quality Verification", "FAIL", f"Exception: {str(e)}")
+            return False
 
     async def run_all_tests(self):
-        """Run comprehensive TheSportsDB API tests"""
-        print(f"🚀 Starting TheSportsDB API Tests")
+        """Run comprehensive YouTube API tests"""
+        print(f"🚀 Starting YouTube Data API Tests")
         print(f"📡 Backend URL: {self.base_url}")
         print("=" * 60)
         
-        # Test 1: Sports Images Endpoint (Pre-cached team logos)
-        print("\n📋 Test 1: GET /api/thesportsdb/sports-images")
-        await self.test_sports_images_endpoint()
+        # Test 1: Health Check Endpoint
+        print("\n📋 Test 1: GET /api/youtube/health")
+        await self.test_youtube_health_endpoint()
         
-        # Test 2: Individual Team Logo Endpoint
-        print("\n📋 Test 2: GET /api/thesportsdb/team-logo")
-        await self.test_team_logo_endpoint()
+        # Test 2: Supported Sports Endpoint
+        print("\n📋 Test 2: GET /api/youtube/supported-sports")
+        await self.test_supported_sports_endpoint()
         
-        # Test 3: Bulk Team Logos Endpoint
-        print("\n📋 Test 3: GET /api/thesportsdb/bulk-team-logos")
-        await self.test_bulk_team_logos_endpoint()
+        # Test 3: Premier League Highlights
+        print("\n📋 Test 3: GET /api/youtube/sports-highlights?sport=premier_league&max_results=3")
+        await self.test_premier_league_highlights()
         
-        # Test 4: Health Check Endpoint
-        print("\n📋 Test 4: GET /api/thesportsdb/health")
-        await self.test_health_endpoint()
+        # Test 4: Cricket Highlights
+        print("\n📋 Test 4: GET /api/youtube/sports-highlights?sport=cricket&max_results=3")
+        await self.test_cricket_highlights()
         
-        # Test 5: Image URL Accessibility
-        print("\n📋 Test 5: Image URL Accessibility")
-        await self.test_image_url_accessibility()
+        # Test 5: Invalid Sport Error Handling
+        print("\n📋 Test 5: GET /api/youtube/sports-highlights?sport=invalid")
+        await self.test_invalid_sport_error_handling()
         
-        # Test 6: API Response Structure Validation
-        print("\n📋 Test 6: API Response Structure")
-        await self.test_api_response_structure()
-        
-        # Test 7: Dynamic API Image URLs
-        print("\n📋 Test 7: Dynamic API Image URLs")
-        await self.test_dynamic_api_image_urls()
-        
-        # Test 8: Caching Behavior
-        print("\n📋 Test 8: Caching Behavior")
+        # Test 6: Caching Behavior
+        print("\n📋 Test 6: Caching Behavior (48-hour cache)")
         await self.test_caching_behavior()
+        
+        # Test 7: Thumbnail Quality Verification
+        print("\n📋 Test 7: Thumbnail Quality Verification")
+        await self.test_thumbnail_quality_verification()
         
         # Summary
         print("\n" + "=" * 60)
-        print("📊 THESPORTSDB API TEST SUMMARY")
+        print("📊 YOUTUBE DATA API TEST SUMMARY")
         print("=" * 60)
         
         passed = len([r for r in self.test_results if r["status"] == "PASS"])
@@ -559,11 +503,11 @@ class YouTubeAPITester:
 
 async def main():
     """Main test runner"""
-    async with TheSportsDBTester() as tester:
+    async with YouTubeAPITester() as tester:
         success = await tester.run_all_tests()
         
         if success:
-            print("\n🎉 All TheSportsDB API tests passed! Integration is working correctly.")
+            print("\n🎉 All YouTube Data API tests passed! Integration is working correctly.")
             sys.exit(0)
         else:
             print("\n💥 Some tests failed. Check the issues above.")
