@@ -91,14 +91,14 @@ export default function DetailsModal({ open, onClose, item }) {
             )}
           </div>
           <div>
-            <div className="text-[11px] uppercase tracking-wider opacity-80">Buzz Meter</div>
-            <div className="flex items-center gap-3 mt-1">
+            <div className="text-[10px] md:text-[11px] uppercase tracking-wider opacity-80 mb-1.5 md:mb-2">Buzz Meter</div>
+            <div className="flex flex-wrap items-center gap-1.5 md:gap-3">
               {item?.trailer_url ? (
                 <a 
                   href={item.trailer_url} 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-2 py-1 rounded-xl border border-white/10 bg-white/5 hover:bg-white/10 transition"
+                  className="inline-flex items-center text-[10px] md:text-xs px-2 md:px-2.5 py-1 rounded-lg md:rounded-xl border border-white/10 bg-white/5 hover:bg-white/10 transition"
                 >
                   YouTube
                 </a>
@@ -107,7 +107,7 @@ export default function DetailsModal({ open, onClose, item }) {
                   href={item?.social_links?.youtube || `https://www.youtube.com/results?search_query=${encodeURIComponent(item?.title || '')}`} 
                   target="_blank" 
                   rel="noopener noreferrer" 
-                  className="inline-flex items-center gap-2 px-2 py-1 rounded-xl border border-white/10 bg-white/5 hover:bg-white/10 transition"
+                  className="inline-flex items-center text-[10px] md:text-xs px-2 md:px-2.5 py-1 rounded-lg md:rounded-xl border border-white/10 bg-white/5 hover:bg-white/10 transition"
                   onClick={(e) => e.stopPropagation()}
                 >
                   YouTube
@@ -117,7 +117,7 @@ export default function DetailsModal({ open, onClose, item }) {
                 href={item?.social_links?.twitter || `https://twitter.com/search?q=${encodeURIComponent((item?.title || '') + ' movie')}&f=live`} 
                 target="_blank" 
                 rel="noopener noreferrer" 
-                className="inline-flex items-center gap-2 px-2 py-1 rounded-xl border border-white/10 bg-white/5 hover:bg-white/10 transition"
+                className="inline-flex items-center text-[10px] md:text-xs px-2 md:px-2.5 py-1 rounded-lg md:rounded-xl border border-white/10 bg-white/5 hover:bg-white/10 transition"
                 onClick={(e) => e.stopPropagation()}
               >
                 X
@@ -126,17 +126,17 @@ export default function DetailsModal({ open, onClose, item }) {
                 href={item?.social_links?.reddit || `https://www.reddit.com/search/?q=${encodeURIComponent(item?.title || '')}`} 
                 target="_blank" 
                 rel="noopener noreferrer" 
-                className="inline-flex items-center gap-2 px-2 py-1 rounded-xl border border-white/10 bg-white/5 hover:bg-white/10 transition"
+                className="inline-flex items-center text-[10px] md:text-xs px-2 md:px-2.5 py-1 rounded-lg md:rounded-xl border border-white/10 bg-white/5 hover:bg-white/10 transition"
                 onClick={(e) => e.stopPropagation()}
               >
                 Reddit
               </a>
             </div>
-            <div className="mt-3 flex items-center gap-2">
-              <button className="inline-flex items-center gap-1 px-2 py-1 rounded-xl border border-white/10 bg-white/5">❤️</button>
-              <button className="inline-flex items-center gap-1 px-2 py-1 rounded-xl border border-white/10 bg-white/5">👎</button>
-              <button className="inline-flex items-center gap-1 px-2 py-1 rounded-xl border border-white/10 bg-white/5">💬</button>
-              <button onClick={handleWatchNow} className="inline-flex items-center gap-2 px-3 py-1.5 rounded-xl border border-white/10 bg-white/5 hover:bg-white/10 transition"><span className="text-xs">Watch on {item?.platform || "JioHotstar"} ↗</span></button>
+            <div className="mt-2 md:mt-3 flex flex-wrap items-center gap-1.5 md:gap-2">
+              <button className="inline-flex items-center text-xs md:text-sm gap-1 px-2 py-1 rounded-lg md:rounded-xl border border-white/10 bg-white/5">❤️</button>
+              <button className="inline-flex items-center text-xs md:text-sm gap-1 px-2 py-1 rounded-lg md:rounded-xl border border-white/10 bg-white/5">👎</button>
+              <button className="inline-flex items-center text-xs md:text-sm gap-1 px-2 py-1 rounded-lg md:rounded-xl border border-white/10 bg-white/5">💬</button>
+              <button onClick={handleWatchNow} className="inline-flex items-center gap-1.5 px-2.5 md:px-3 py-1 md:py-1.5 rounded-lg md:rounded-xl border border-white/10 bg-white/5 hover:bg-white/10 transition"><span className="text-[10px] md:text-xs">Watch on {item?.platform || "JioHotstar"} ↗</span></button>
             </div>
           </div>
         </div>
