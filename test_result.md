@@ -226,6 +226,21 @@ backend:
         agent: "testing"
         comment: "🎉 SEASON-SPECIFIC ENRICHMENT FULLY WORKING! Comprehensive testing shows all Season 2 and Season 3 titles have correct season-specific data: ✅ Squid Game Season 2: Year 2024, Korean language, 7 episodes, season-specific TMDB poster (sXZhtWLo3fecavpDuOyJiayjt32.jpg), IMDb 8.0, TMDB ID 93405. ✅ Mirzapur Season 3: Year 2024, Hindi language, 10 episodes, season-specific TMDB poster (7CFdq8M9ZuP1QRLaBG2ExdcrCBs.jpg), IMDb 8.4, TMDB ID 84105. ✅ Asur Season 3: Year 2020 (original series), Hindi language, 16 episodes, season-specific TMDB poster (njUrr755WzIrNfuUwQhpu2ljjH4.jpg), IMDb 8.5, TMDB ID 100911. All posters are season-specific (NOT Season 1), years reflect season air dates, episode counts are accurate for each season, and descriptions are season-specific. Season detection logic working perfectly with regex pattern matching and TMDB season API integration."
 
+  - task: "YouTube Data API Integration for Game On sports highlights"
+    implemented: true
+    working: true
+    file: "/app/backend/routers/youtube.py"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+      - working: "NA"
+        agent: "main"
+        comment: "Created YouTube Data API v3 integration at /app/backend/routers/youtube.py with API key stored in .env as YOUTUBE_API_KEY. Router registered at /api/youtube with 3 endpoints: GET /api/youtube/health (connectivity check), GET /api/youtube/supported-sports (lists 6 sports: premier_league, cricket, uefa, formula1, tennis, nba), GET /api/youtube/sports-highlights (fetches highlights from official channels with 48-hour caching). Provides sports highlights for Game On page Highlights tray."
+      - working: true
+        agent: "testing"
+        comment: "🎉 YOUTUBE DATA API INTEGRATION FULLY WORKING! Comprehensive testing confirms all endpoints working perfectly with YouTube API key. ENDPOINTS TESTED: 1) ✅ GET /api/youtube/health returns status 'healthy' with connected: true, API: 'YouTube Data API v3' ✅, 2) ✅ GET /api/youtube/supported-sports returns 6 sports (premier_league, cricket, uefa, formula1, tennis, nba) with all required fields (id, name, official_channels) ✅, 3) ✅ GET /api/youtube/sports-highlights?sport=premier_league&max_results=3 returns 3 Premier League highlights with high-quality thumbnails (hqdefault), proper video URLs, and caching info (cached: false initially, then true) ✅, 4) ✅ GET /api/youtube/sports-highlights?sport=cricket&max_results=3 returns 3 ICC Cricket highlights from official channel ✅, 5) ✅ GET /api/youtube/sports-highlights?sport=invalid correctly returns 400 error 'Sport invalid not supported' ✅. QUALITY VERIFICATION: All thumbnails are high quality (480x360 hqdefault), all video URLs follow correct YouTube format, all thumbnails accessible (HTTP 200). CACHING: 48-hour cache working perfectly - first request cached=false, second request cached=true. API CONNECTIVITY: YouTube API key valid, official channel IDs working (Premier League: UCG5qGWdu8nIRZqJ_GgDwQ-w, ICC Cricket: UChi1pCfCy-7jZT5Z7NR5kUQ). YouTube Data API integration ready for Game On sports highlights!"
+
   - task: "Nov 2025 content ingestion with 60-40 balance"
     implemented: true
     working: true
