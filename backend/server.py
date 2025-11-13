@@ -1036,7 +1036,20 @@ async def get_all_content(response: Response, q: Optional[str] = None):
     if q:
         log_search_query(q, "content_fetch")
     
-    content_list = await db.content.find({}, {"_id": 0}).to_list(1000)
+    # Fetch content with Nov25 batch prioritized and sorted by rating
+    # Nov25 content first, then rest
+    nov25_content = await db.content.find(
+        {"freshness_batch": "nov25"}, 
+        {"_id": 0}
+    ).sort("rating", -1).to_list(100)
+    
+    other_content = await db.content.find(
+        {"freshness_batch": {"$ne": "nov25"}}, 
+        {"_id": 0}
+    ).sort("rating", -1).to_list(900)
+    
+    # Combine with Nov25 first
+    content_list = nov25_content + other_content
     return content_list
 
 def log_search_query(query: str, event_type: str = "search", result_count: int = 0, content_id: str = None):
