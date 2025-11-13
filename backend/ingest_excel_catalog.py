@@ -669,16 +669,28 @@ def generate_qa_report(ingestion_results: List[Dict], output_path: str):
         elif not tmdb_year:
             year_mismatch = 'TMDB year missing'
         
+        # Get display_title and is_new_season from result if available
+        display_title = 'N/A'
+        is_new_season = 'N/A'
+        computed_year = 'N/A'
+        
+        if result.get('content_data'):
+            display_title = result['content_data'].get('display_title') or result['content_data'].get('title', 'N/A')
+            is_new_season = 'Yes' if result['content_data'].get('is_new_season') else 'No'
+            computed_year = result['content_data'].get('year', 'N/A')
+        
         rows.append({
             'Original Excel Title': result['original_title'],
             'Parsed Title': result['parsed']['title'],
+            'Display Title': display_title,
             'Platform (Normalized)': result['parsed']['platform'],
             'Season': result['parsed'].get('season', 'N/A'),
-            'Volume': result['parsed'].get('volume', 'N/A'),
+            'Is New Season': is_new_season,
             'Release Year (Excel)': excel_year or 'Missing',
             'TMDB Match Found': 'Yes' if result.get('tmdb_match') else 'No',
             'TMDB Title': result['tmdb_match']['title'] if result.get('tmdb_match') and 'title' in result['tmdb_match'] else (result['tmdb_match']['name'] if result.get('tmdb_match') else 'N/A'),
             'TMDB Year': tmdb_year or 'N/A',
+            'Computed Year (Final)': computed_year,
             'Year Mismatch': year_mismatch,
             'Confidence': result.get('confidence', 'N/A'),
             'IMDb Rating Found': 'Yes' if result.get('imdb_rating') else 'No',
