@@ -511,7 +511,83 @@ async def map_tmdb_to_content(tmdb_data: Dict, omdb_data: Optional[Dict], parsed
             # S1 or no season: use series_start_year
             year = series_start_year or parsed_excel.get('year') or default_year
     
-    # Build content object with season-aware fields
+    # Get release date
+    release_date_iso = None
+    if parsed_excel.get('release_date'):
+        release_date_iso = parsed_excel['release_date'].strftime('%Y-%m')
+    elif not is_tv and tmdb_data.get('release_date'):
+        release_date_iso = tmdb_data['release_date'][:7]  # YYYY-MM
+    elif is_tv and tmdb_data.get('first_air_date'):
+        release_date_iso = tmdb_data['first_air_date'][:7]  # YYYY-MM
+    
+    # Platform handling - convert to string (single value)
+    platform_str = parsed_excel['platform']
+    if platform_str == 'jiohotstar':
+        platform_display = 'Jiohotstar'
+    elif platform_str == 'netflix':
+        platform_display = 'Netflix'
+    elif platform_str == 'prime_video':
+        platform_display = 'Prime Video'
+    elif platform_str == 'sonyliv':
+        platform_display = 'SonyLIV'
+    elif platform_str == 'zee5':
+        platform_display = 'Zee5'
+    elif platform_str == 'aha':
+        platform_display = 'Aha'
+    elif platform_str == 'apple_tv':
+        platform_display = 'Apple TV+'
+    else:
+        platform_display = platform_str.title()
+    
+    # Social links structure
+    search_query = canonical_title.replace(' ', '+')
+    social_links = {
+        'youtube': f"https://www.youtube.com/results?search_query={search_query}",
+        'twitter': f"https://twitter.com/search?q=%23{canonical_title.replace(' ', '')}",
+        'reddit': f"https://www.reddit.com/r/{canonical_title.replace(' ', '')}"
+    }
+    
+    # Poster and backdrop paths
+    poster_path = f"https://image.tmdb.org/t/p/w500{tmdb_data['poster_path']}" if tmdb_data.get('poster_path') else None
+    backdrop_path = f"https://image.tmdb.org/t/p/original{tmdb_data['backdrop_path']}" if tmdb_data.get('backdrop_path') else None
+    
+    # Streaming platforms structure
+    streaming_platforms = [{
+        'platform_name': platform_display,
+        'platform_logo': None,
+        'type': 'flatrate'
+    }]
+    
+    # Extract genres (need genre names, not IDs - for now use IDs)
+    genres = [str(g) for g in tmdb_data.get('genre_ids', [])]
+    
+    # Get language
+    language = omdb_data.get('Language', 'English') if omdb_data else 'English'
+    if ',' in language:
+        language = language.split(',')[0].strip()
+    
+    # Get runtime
+    runtime = None
+    if omdb_data and omdb_data.get('Runtime') and omdb_data['Runtime'] != 'N/A':
+        runtime_str = omdb_data['Runtime'].replace(' min', '').strip()
+        try:
+            runtime = int(runtime_str)
+        except:
+            runtime = None
+    
+    # Get IMDb votes
+    imdb_votes = None
+    if omdb_data and omdb_data.get('imdbVotes') and omdb_data['imdbVotes'] != 'N/A':
+        imdb_votes = omdb_data['imdbVotes']
+    
+    # Tagline
+    tagline = f"Season {season_number}" if is_new_season else None
+    
+    # Rating and source
+    rating = enrichment_data.get('imdb_rating') or enrichment_data.get('tmdb_rating') or 0
+    rating_source = 'imdb' if enrichment_data.get('imdb_rating') else 'tmdb'
+    
+    # Build content object matching canonical schema EXACTLY
     content = {
         # Title fields
         'title': canonical_title,
