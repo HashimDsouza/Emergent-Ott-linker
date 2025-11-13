@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
-Backend API Testing for TheSportsDB Integration
-Tests the new TheSportsDB API endpoints for Game On section
+Backend API Testing for YouTube Data API Integration
+Tests the new YouTube Data API endpoints for Game On section sports highlights
 """
 
 import asyncio
@@ -13,7 +13,7 @@ from typing import Dict, List, Optional
 # Backend URL from environment
 BACKEND_URL = "https://connector-app.preview.emergentagent.com"
 
-class TheSportsDBTester:
+class YouTubeAPITester:
     def __init__(self):
         self.base_url = BACKEND_URL
         self.session = None
