@@ -407,12 +407,13 @@ async def map_tmdb_to_content(tmdb_data: Dict, omdb_data: Optional[Dict], parsed
                                enrichment_data: Dict, tmdb_api_key: str, batch_name: str, default_year: int) -> Dict:
     """
     Map TMDB/OMDb data to Content schema with season-aware fields
+    Matches canonical JSON schema exactly
     
     Field Mapping:
     - title: Canonical series/movie name (e.g., "Indian Idol", "Squid Game")
     - series_title: Mirrors title for series, None for movies
     - display_title: Computed for S2+ (e.g., "Indian Idol – Season 16"), None otherwise
-    - type: 'movie' or 'series'
+    - content_type: 'movie' or 'series'
     - year: User-facing year for sorting/filtering
         * Movies: release_year
         * Series S1: series_start_year
