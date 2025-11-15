@@ -10,7 +10,7 @@ import sys
 from typing import Dict, Any
 
 # Backend URL from frontend .env
-BACKEND_URL = "https://media-unifier.preview.emergentagent.com/api"
+BACKEND_URL = "https://streamfinder-37.preview.emergentagent.com/api"
 
 def test_api_endpoint(endpoint: str, params: Dict[str, Any] = None, method: str = "GET") -> Dict[str, Any]:
     """Test an API endpoint and return response data"""

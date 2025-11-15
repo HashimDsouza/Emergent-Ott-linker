@@ -7,7 +7,7 @@ import subprocess
 import time
 from datetime import datetime
 
-BACKEND_URL = "https://media-unifier.preview.emergentagent.com"
+BACKEND_URL = "https://streamfinder-37.preview.emergentagent.com"
 
 def ping_backend():
     """Ping backend to keep it warm using curl"""
