@@ -736,6 +736,106 @@ class ShareAction(BaseModel):
     content_id: str
     platform: str
 
+
+# ============================================================================
+# GET WITH IT - FEED MODELS
+# ============================================================================
+
+class FeedItem(BaseModel):
+    """Feed item for Get With It feature"""
+    model_config = ConfigDict(extra="ignore")
+    
+    id: str = Field(default_factory=lambda: str(uuid.uuid4()))
+    
+    # Core fields
+    title: str
+    description: str
+    image_url: str
+    source_url: str
+    category: str  # entertainment, sports, ott, local, music
+    published_at: str = Field(default_factory=lambda: datetime.now(timezone.utc).isoformat())
+    
+    # Priority & hero
+    is_hero: bool = False
+    priority: int = 5  # 1-10, higher = more important
+    
+    # Optional linking to catalog
+    linked_content_id: Optional[str] = None
+    
+    # Future automation fields (Phase 2)
+    source: str = "manual"  # manual | auto
+    source_name: str = "Manual"  # Manual | YouTube | TMDB | RSS
+    source_type: Optional[str] = None  # trailer | highlight | article | drop | trend
+    tags: List[str] = Field(default_factory=list)
+    entity_type: Optional[str] = None  # movie | series | league | sport
+    
+    # Metadata
+    created_at: str = Field(default_factory=lambda: datetime.now(timezone.utc).isoformat())
+    created_by: str = "admin"
+    updated_at: Optional[str] = None
+
+class FeedItemCreate(BaseModel):
+    """Create feed item request"""
+    title: str
+    description: str
+    image_url: str
+    source_url: str
+    category: str
+    is_hero: bool = False
+    priority: int = 5
+    linked_content_id: Optional[str] = None
+    source_type: Optional[str] = None
+    tags: List[str] = Field(default_factory=list)
+    entity_type: Optional[str] = None
+
+class FeedItemUpdate(BaseModel):
+    """Update feed item request"""
+    title: Optional[str] = None
+    description: Optional[str] = None
+    image_url: Optional[str] = None
+    source_url: Optional[str] = None
+    category: Optional[str] = None
+    is_hero: Optional[bool] = None
+    priority: Optional[int] = None
+    linked_content_id: Optional[str] = None
+    source_type: Optional[str] = None
+    tags: Optional[List[str]] = None
+    entity_type: Optional[str] = None
+
+class IncomingAutoFeedItem(BaseModel):
+    """Incoming auto feed item for future automation (Phase 2)"""
+    model_config = ConfigDict(extra="ignore")
+    
+    id: str = Field(default_factory=lambda: str(uuid.uuid4()))
+    
+    # Same fields as FeedItem
+    title: str
+    description: str
+    image_url: str
+    source_url: str
+    category: str
+    published_at: str = Field(default_factory=lambda: datetime.now(timezone.utc).isoformat())
+    is_hero: bool = False
+    priority: int = 5
+    linked_content_id: Optional[str] = None
+    
+    # Automation fields
+    source: str = "auto"
+    source_name: str  # YouTube | TMDB | RSS
+    source_type: str  # trailer | highlight | article | drop | trend
+    tags: List[str] = Field(default_factory=list)
+    entity_type: Optional[str] = None
+    
+    # Approval workflow
+    status: str = "pending"  # pending | approved | rejected
+    confidence_score: Optional[float] = None  # For future ranking
+    
+    # Metadata
+    created_at: str = Field(default_factory=lambda: datetime.now(timezone.utc).isoformat())
+    reviewed_at: Optional[str] = None
+    reviewed_by: Optional[str] = None
+
+
 async def award_points(user_id: str, points: int, badge: Optional[str] = None):
     user = await db.users.find_one({"id": user_id}, {"_id": 0})
     if not user:
