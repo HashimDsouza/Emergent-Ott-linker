@@ -23,7 +23,9 @@ const GetWithIt = () => {
   const fetchFeed = async () => {
     try {
       setLoading(true);
-      const backendUrl = import.meta.env.REACT_APP_BACKEND_URL || process.env.REACT_APP_BACKEND_URL;
+      const backendUrl = import.meta.env.VITE_REACT_APP_BACKEND_URL || 
+                         process.env.REACT_APP_BACKEND_URL || 
+                         "https://streamfinder-37.preview.emergentagent.com";
       
       // Fetch hero item
       const heroResponse = await fetch(`${backendUrl}/api/feed/hero`);
