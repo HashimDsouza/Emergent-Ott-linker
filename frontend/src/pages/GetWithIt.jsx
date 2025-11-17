@@ -196,12 +196,19 @@ const GetWithIt = () => {
                         className="w-24 h-24 sm:w-32 sm:h-32 rounded-lg object-cover flex-shrink-0 group-hover:scale-105 transition-transform"
                       />
                       <div className="flex-1 min-w-0">
-                        <span className={`inline-block px-2 py-1 rounded-full text-xs font-medium mb-2 ${getCategoryBadgeColor(item.category)}`}>
-                          {item.category.toUpperCase()}
-                        </span>
-                        <h3 className="font-bold text-base sm:text-lg mb-1 line-clamp-2">{item.title}</h3>
-                        <p className="text-sm text-gray-400 line-clamp-2 mb-2">{item.description}</p>
-                        <p className="text-xs text-gray-500">{formatTimestamp(item.published_at)}</p>
+                        <div className="flex gap-2 mb-2 flex-wrap">
+                          <span className={`inline-block px-2 py-1 rounded-full text-xs font-medium ${getCategoryBadgeColor(item.category)}`}>
+                            {item.category.toUpperCase()}
+                          </span>
+                          {item.tags && item.tags.length > 0 && item.tags[0] && (
+                            <span className="inline-block px-2 py-1 rounded-full text-xs font-bold bg-[#FF6B9D] text-white">
+                              {item.tags[0]}
+                            </span>
+                          )}
+                        </div>
+                        <h3 className="font-bold text-base sm:text-lg mb-1 line-clamp-2 leading-tight">{item.title}</h3>
+                        <p className="text-sm text-gray-400 line-clamp-2 mb-2 leading-snug">{item.description}</p>
+                        <p className="text-xs text-[#C8E6C9]">{formatTimestamp(item.published_at)}</p>
                         {item.linked_content_id && (
                           <span className="inline-block mt-2 text-xs text-[#FF6B9D] font-medium">
                             Watch on Connector →
