@@ -200,6 +200,16 @@ const FeedAdmin = () => {
                 className="w-full px-4 py-2 rounded-lg bg-white/10 border border-white/20 focus:outline-none focus:border-[#FF6B9D]"
                 placeholder="https://..."
               />
+              {formData.image_url && (
+                <div className="mt-2 p-2 bg-white/5 rounded-lg border border-white/10">
+                  <img 
+                    src={formData.image_url} 
+                    alt="Preview" 
+                    className="w-32 h-32 object-cover rounded-lg"
+                    onError={(e) => {e.target.style.display = 'none'}}
+                  />
+                </div>
+              )}
             </div>
 
             <div>
@@ -212,6 +222,14 @@ const FeedAdmin = () => {
                 className="w-full px-4 py-2 rounded-lg bg-white/10 border border-white/20 focus:outline-none focus:border-[#FF6B9D]"
                 placeholder="https://..."
               />
+              {formData.source_url && (
+                <div className="mt-2 p-2 bg-white/5 rounded-lg border border-white/10 text-xs">
+                  <span className="text-gray-400">Domain: </span>
+                  <span className="text-[#C8E6C9]">
+                    {formData.source_url.split('/')[2] || 'Invalid URL'}
+                  </span>
+                </div>
+              )}
             </div>
           </div>
 
