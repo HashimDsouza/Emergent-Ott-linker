@@ -125,7 +125,7 @@ const GetWithIt = () => {
         </div>
 
         {/* Category Capsules - Match Watch On Design (2 Rows) */}
-        <div className="px-3 md:px-6 pb-6 md:pb-8">
+        <div className="px-3 md:px-6 pb-4 md:pb-6">
           <div className="max-w-7xl mx-auto">
             {/* Row 1: First 3 categories */}
             <div className="flex justify-center gap-2 md:gap-3 mb-2 md:mb-3">
