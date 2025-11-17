@@ -277,9 +277,9 @@ const GetWithIt = () => {
                         </div>
                         <h3 className="font-bold text-base sm:text-lg mb-1 line-clamp-2 leading-tight">{item.title}</h3>
                         <p className="text-sm text-gray-400 line-clamp-2 mb-2 leading-snug">{item.description}</p>
-                        <p className="text-xs text-[#C8E6C9]">{formatTimestamp(item.published_at)}</p>
+                        <p className="text-xs" style={{ color: mint }}>{formatTimestamp(item.published_at)}</p>
                         {item.linked_content_id && (
-                          <span className="inline-block mt-2 text-xs text-[#FF6B9D] font-medium">
+                          <span className="inline-block mt-2 text-xs font-medium" style={{ color: coral }}>
                             Watch on Connector →
                           </span>
                         )}
