@@ -27,19 +27,25 @@ const GetWithIt = () => {
                          process.env.REACT_APP_BACKEND_URL || 
                          "https://streamfinder-37.preview.emergentagent.com";
       
+      console.log("Fetching from:", backendUrl);
+      
       // Fetch hero item
       const heroResponse = await fetch(`${backendUrl}/api/feed/hero`);
+      console.log("Hero response status:", heroResponse.status);
       if (heroResponse.ok) {
         const hero = await heroResponse.json();
+        console.log("Hero item:", hero);
         setHeroItem(hero);
       }
       
       // Fetch feed items
       const categoryParam = selectedCategory !== "all" ? `?category=${selectedCategory}` : "";
       const feedResponse = await fetch(`${backendUrl}/api/feed${categoryParam}`);
+      console.log("Feed response status:", feedResponse.status);
       
       if (feedResponse.ok) {
         const items = await feedResponse.json();
+        console.log("Feed items count:", items.length);
         // Filter out hero item from regular feed
         const nonHeroItems = items.filter(item => !item.is_hero);
         setFeedItems(nonHeroItems);
