@@ -236,7 +236,7 @@ const GetWithIt = () => {
                     </div>
                     <h2 className="text-2xl font-bold mb-2 leading-tight">{heroItem.title}</h2>
                     <p className="text-sm text-gray-300 line-clamp-2 mb-2 leading-snug">{heroItem.description}</p>
-                    <p className="text-xs text-[#C8E6C9]">{formatTimestamp(heroItem.published_at)}</p>
+                    <p className="text-xs" style={{ color: mint }}>{formatTimestamp(heroItem.published_at)}</p>
                   </div>
                 </div>
               </motion.div>
