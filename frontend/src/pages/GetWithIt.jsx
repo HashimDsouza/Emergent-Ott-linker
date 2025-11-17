@@ -24,7 +24,7 @@ const GetWithIt = () => {
     try {
       setLoading(true);
       // Use the same pattern as other pages
-      const backendUrl = process.env.REACT_APP_BACKEND_URL || "https://streamfinder-37.preview.emergentagent.com";
+      const backendUrl = process.env.REACT_APP_BACKEND_URL || "https://connector-hub-2.preview.emergentagent.com";
       
       console.log("Fetching from:", backendUrl);
       

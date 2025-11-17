@@ -104,7 +104,7 @@ sudo supervisorctl restart all
 
 **Preview URL:**
 ```
-https://streamfinder-37.preview.emergentagent.com/landing/v2_3
+https://connector-hub-2.preview.emergentagent.com/landing/v2_3
 ```
 
 **Local:**

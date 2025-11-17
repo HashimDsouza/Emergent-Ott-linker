@@ -11,7 +11,7 @@ import sys
 from typing import Dict, List, Optional
 
 # Backend URL from environment
-BACKEND_URL = "https://streamfinder-37.preview.emergentagent.com"
+BACKEND_URL = "https://connector-hub-2.preview.emergentagent.com"
 
 class Nov2025ContentTester:
     def __init__(self):

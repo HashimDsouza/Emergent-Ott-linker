@@ -1,80 +1,73 @@
 <analysis>
-The trajectory chronicles the development of the Connector application, transitioning from an AI engineer to a human expert. Initially, the work focused on enhancing the UI/UX for an upcoming focus group, particularly the Game On section. This involved a lengthy, iterative process to fix the landing page's Game On hero tray. The engineer first attempted integration with TheSportsDB API, which failed due to persistent CORS and 404 errors, despite trying backend proxying and different URL formats. A pivot to YouTube thumbnails was rejected by the user for brand inconsistency. The final, approved short-term solution involved using static, publicly-hosted images with titles displayed below, which required modifying the  component.
+The trajectory chronicles the work of an AI engineer transitioning from data cleanup to rapid feature development for a Connector application. The initial task involved resolving a data export issue for the user, who was unable to import a database dump into Google Sheets. This led to a deeper data quality audit. The AI identified and, upon user approval (Option C), removed 22 low-quality/mock entries from the database, backfilled missing  fields for the remaining 176 entries, and provided a clean CSV export.
 
-The focus then shifted to a major data engineering task: ingesting 60 new titles from an Excel sheet. This process was highly collaborative and iterative. The user provided detailed specifications for a Python ingestion script (), including parsing rules, a TMDB/OMDb enrichment flow, and a safe, non-destructive database upsert strategy. A critical refinement was the introduction of a season-aware schema to correctly handle new seasons of existing shows as fresh content, introducing fields like  and .
+The core focus then pivoted to preparing the app for a focus group within a two-week timeframe. The user's goal was to showcase a broader vision of the app as an entertainment and engagement hub. A strategic plan was developed to implement minimal viable versions of new features: Get With It (a trending news feed), Crew (social groups), and Win (polls/quizzes).
 
-However, the production ingestion run failed. The newly added content's schema did not match the existing Pydantic model in the backend, causing the  endpoint to crash and the frontend entertainment trays to disappear. The engineer correctly diagnosed the issue, rolled back the database changes, and restored the application. The final state of the work is a clear directive from the user to fix the ingestion script to match a precise, canonical JSON schema provided as a contract.
+The AI began implementing the Get With It feature. The initial versions were functionally correct but failed on content quality—using placeholder images and incorrect links, which the user flagged as critical issues that erode trust. After several iterations and increasingly specific user feedback, the final work cycle involved performing extensive, verified web research for 20 recent (November 2025) news items, creating a new population script (), and deploying this high-accuracy content. The trajectory concludes immediately after this deployment. The user's language is English, so future interactions should be in English.
 </analysis>
 
 <product_requirements>
-The Connector application is a mobile-first content discovery hub designed to unify offerings from various OTT platforms (e.g., Netflix, JioHotstar, Prime Video). The core user problem is to find relevant and fresh content to watch in one place.
+The primary objective is to prepare the Connector application for a focus group review within two weeks. The app, a content discovery hub, must evolve beyond its current state to showcase a broader vision as an entertainment and engagement hub.
 
-Key features implemented include:
-- A main landing page with a hero carousel and content trays.
-- Watch On: A unified catalog of movies and series.
-- Buzz Meter: Socially trending content.
-- Game On: A dedicated section for sports content, including live matches, highlights, and upcoming events.
+This involves implementing three new core features in a minimal-viable-product (MVP) state:
+1.  **Get With It:** A trending news feed displaying the latest updates across entertainment, sports, and OTT platforms. This feature must be populated with fresh, accurate content (news from Nov 7-17, 2025) with verified source links and correct, relevant images.
+2.  **Crew:** A basic social feature allowing users to see and join predefined fan crews (e.g., Bollywood Buffs, Cricket Fanatics).
+3.  **Win:** A simple engagement mechanic, starting with a single, active poll where users can vote and see live results.
 
-The immediate product goal was to prepare the application for user focus groups. This required fixing visual and functional issues, especially making the Game On landing page tray visually appealing and representative. Following the UI fixes, the focus shifted to expanding the content catalog with 60 new, relevant titles provided via an Excel sheet. The objective is to ensure the app showcases the hottest content playing right now with accurate metadata (posters, ratings, synopsis, etc.) to provide immediate value to users. Future planned features include gamification (Win) and community (Crew).
+In parallel, core functionalities like deep-linking and mobile responsiveness must be polished to ensure a seamless foundation. The immediate priority was to build and refine the Get With It feature to a high standard of content quality and visual polish, as this is the first new feature to be developed.
 </product_requirements>
 
 <key_technical_concepts>
-- **Full-stack:** React (Vite) frontend with Tailwind CSS, FastAPI (Python) backend.
-- **Database:** MongoDB.
-- **Data Validation:** Pydantic models in the backend are crucial for schema enforcement and caused a critical failure when mismatched.
-- **API Integration:** Extensive use of external APIs: TheMovieDB (TMDB) and OMDb for movie/series metadata, TheSportsDB for sports logos, and YouTube Data API for video content.
-- **Data Ingestion:** A custom Python script () using / to parse Excel files and enrich data via API calls.
+- **Full-stack Development:** React (Vite) frontend with a FastAPI (Python) backend.
+- **Database:** MongoDB, with the AI performing cleanup and update operations directly.
+- **API and Data Modeling:** Pydantic models for schema definition and validation in FastAPI. New models and API endpoints () were created.
+- **Frontend State & UI:** React components, routing with , and UI styling with Tailwind CSS and  for animations.
+- **Data Curation & Ingestion:** Manual web research followed by scripted data population using Python.
 </key_technical_concepts>
 
 <code_architecture>
-The application follows a standard modern full-stack architecture with a React frontend and a FastAPI backend.
+The application is a monorepo with separate  and  directories. The backend is a FastAPI server, and the frontend is a React application.
 
 
 
 - ****
-  - **Importance:** The main FastAPI application file. It defines API routes, middleware, and Pydantic models for data validation.
-  - **Changes:** This file was modified to add new routers for TheSportsDB and YouTube. A critical Pydantic validation error occurred here because the  model did not match the schema of data inserted by , causing the  endpoint to fail. The file was also modified to add temporary endpoints for serving QA reports, which ultimately failed.
-
-- ** (NEW)**
-  - **Importance:** This is a critical, complex script responsible for the entire content ingestion workflow. It was built to parse a user-provided Excel file, clean the data, enrich it with metadata from TMDB and OMDb, and safely upsert it into MongoDB.
-  - **Changes:** This script underwent significant evolution. It started with basic parsing and was later updated with a highly specific, season-aware schema to correctly handle new seasons of existing shows (e.g., storing  and ). It currently produces data with a schema that is incompatible with the existing  model in , leading to the application's failure. It needs to be fixed.
+  - **Importance:** The core FastAPI application defining all data models (Pydantic) and API endpoints.
+  - **Summary of Changes:** It was significantly modified to support the Get With It feature. New Pydantic models (, ) were added to define the schema for feed content, including future-proofing fields like , , and . New API endpoints were created: a public endpoint to fetch the feed () and admin-only endpoints to manage feed content (, , ).
 
 - ****
-  - **Importance:** The main landing page component. A significant portion of the work revolved around fixing the Game On tray within this file.
-  - **Changes:** The component's  data was updated multiple times: from SVG placeholders to failing TheSportsDB URLs, to failing YouTube thumbnails, and finally to a working set of static, publicly hosted image URLs. This was the primary focus before the content ingestion task.
+  - **Importance:** A new page created to render the Get With It feed.
+  - **Summary of Changes:** Created from scratch. It fetches data from the  endpoint and renders a hero item and a list of feed cards. It was iteratively updated to add category filters, contextual badges (e.g., OFFICIAL, TRENDING), and branding elements (Coral/Mint colors), and to fix a critical bug related to accessing environment variables in Vite.
 
 - ****
-  - **Importance:** This component renders individual content tiles across the application.
-  - **Changes:** It was modified to display a  field below the image. This was a crucial UX fix to solve the ambiguity of using generic sports images in the Game On tray, allowing users to identify the content.
+  - **Importance:** A new, simple admin page for manually adding and editing feed content.
+  - **Summary of Changes:** Created to provide a basic content management interface. It was later enhanced to include an image preview and URL validation to address content accuracy issues flagged by the user.
 
-- ** (NEW)**
-  - **Importance:** Created to interface with TheSportsDB API. It includes an image proxy endpoint () to work around CORS issues.
-  - **Changes:** The proxy logic was created and modified, but TheSportsDB's image availability proved unreliable, leading to its partial abandonment for the landing page tray.
+- ** & **
+  - **Importance:** These files manage the application's routing and main layout, including navigation.
+  - **Summary of Changes:**  was updated to add routes for the new  and  pages.  was modified to make the Get With It navigation tab functional, routing the user to the new page.
 
-- ** (NEW)**
-  - **Importance:** Created to integrate with the YouTube Data API.
-  - **Changes:** A backend endpoint to search for videos was created and tested successfully. It is intended to power a future Highlights tray but is not yet integrated into the frontend.
+- ****
+  - **Importance:** This is the latest and most accurate script for populating the feed.
+  - **Summary of Changes:** Created after two previous failed attempts (, ) that had incorrect or placeholder content. This version contains 20 fully verified news items from November 2025, with accurate source URLs and image links, based on extensive web research prompted by specific user feedback.
+
 </code_architecture>
 
 <pending_tasks>
-- **Game On Final Solution:** Implement the user-approved Final solution for the hero tray: using league logos on branded backgrounds (Option 3).
-- **Highlights Tray:** Build the frontend Highlights tray inside the  page, powered by the already-created YouTube API backend endpoint.
-- **Fix Data Ingestion:** Correct the  script to align its output with the application's existing  schema to prevent backend crashes.
-- **Run Production Ingestion:** After the script is fixed, re-run the ingestion for the 60 new titles.
+- **Implement Preview Mode:** Build the  page and the  status workflow for content QA.
+- **Implement Win Feature:** Build the MVP polling feature.
+- **Implement Crew Feature:** Build the MVP social groups feature.
+- **Core Polish:** Conduct a thorough QA pass on existing features like deep-linking and search, and perform mobile UX testing.
+- **Full Automation:** Implement the Phase 2 plan for Get With It, including auto-ingestion from TMDB, YouTube, and RSS feeds.
 </pending_tasks>
 
 <current_work>
-The most recent and critical task was the bulk ingestion of 60 new content titles from a user-provided Excel file. A sophisticated Python script, , was developed to automate this. The script was designed to parse the Excel data, enrich it with metadata from TMDB and OMDb, and handle new seasons of existing shows by introducing a season-aware schema (, , ).
+The immediate past work was an intensive Content Accuracy Sprint to fix the Get With It feature in preparation for a focus group. The previous versions, while functionally live, suffered from critical content errors: mismatched images, incorrect or generic source URLs, and outdated news.
 
-After a successful dry run and user confirmation, the script was executed in production. This resulted in a critical failure: the entertainment-related content trays on the frontend disappeared.
+Following direct and specific user feedback, the AI performed a comprehensive web search to gather 20 highly relevant and recent news items from November 7-17, 2025. This involved verifying every story, its source URL, and finding an appropriate, high-quality image (e.g., official posters, real sports photos, video thumbnails).
 
-The root cause was identified as a Pydantic validation error in the backend. The schema of the newly ingested documents did not match the  model expected by the  endpoint. Key mismatches included  (string vs. array) and  (array of objects vs. array of strings), among other missing fields.
-
-As an immediate fix, the engineer successfully rolled back the database by deleting the 34 newly inserted titles, which restored the API and frontend functionality with the original 171 titles.
-
-The work has concluded with a clear path forward: the user provided exact canonical JSON examples for how the ingested documents must be structured. The current, immediate task is to modify  to produce data that perfectly matches this required schema, ensuring it is additive and does not break the existing application logic.
+The culmination of this effort was the creation and execution of a new script, . This script cleared the old, inaccurate feed items from the database and populated it with the 20 new, fully verified items. The last action in the trajectory was the successful deployment of this new content. The frontend had already been updated with visual polish (branding colors, badges) and an enhanced admin form with image previews, so the new content should now be displaying correctly with the improved UI. The next logical step is to verify this deployment.
 </current_work>
 
 <optional_next_step>
-I will now update the  script to ensure its output precisely matches the canonical JSON schema provided by you, including all required fields and correct data types, before running another dry-run for validation.
+Take a screenshot of the live  page to visually confirm that the newly deployed, accurate content and images are rendering correctly, and share it with the user for final approval before moving on.
 </optional_next_step>

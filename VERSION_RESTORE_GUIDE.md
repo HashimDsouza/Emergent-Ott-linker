@@ -156,7 +156,7 @@ git show v1a-phase1a5-fixes-complete
 
 After restoring this version, verify:
 
-- [ ] Frontend loads: https://streamfinder-37.preview.emergentagent.com
+- [ ] Frontend loads: https://connector-hub-2.preview.emergentagent.com
 - [ ] Backend responds: `curl http://localhost:8001/api/content`
 - [ ] Hero carousel displays properly
 - [ ] Buzz Meter images load

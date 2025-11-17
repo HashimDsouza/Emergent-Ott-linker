@@ -6,7 +6,7 @@
 ## PRE-DEMO SETUP (Do this before meeting)
 
 ### Technical Checklist:
-- [ ] Open app: https://streamfinder-37.preview.emergentagent.com
+- [ ] Open app: https://connector-hub-2.preview.emergentagent.com
 - [ ] Test on your phone (investors prefer seeing mobile-first products)
 - [ ] Clear browser cache (ensure latest version loads)
 - [ ] Check internet connection (4G/5G or strong WiFi)
