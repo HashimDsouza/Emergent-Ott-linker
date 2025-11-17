@@ -197,15 +197,16 @@ const GetWithIt = () => {
         </div>
 
       {/* Content */}
-      <div className="px-4 py-4">
-        {loading ? (
-          // Loading skeleton
-          <div className="space-y-4">
-            {[1, 2, 3].map((i) => (
-              <div key={i} className="bg-white/5 rounded-2xl h-32 animate-pulse" />
-            ))}
-          </div>
-        ) : (
+      <div className="px-3 md:px-6 py-4">
+        <div className="max-w-7xl mx-auto">
+          {loading ? (
+            // Loading skeleton
+            <div className="space-y-4">
+              {[1, 2, 3].map((i) => (
+                <div key={i} className="bg-white/5 rounded-2xl h-32 animate-pulse" />
+              ))}
+            </div>
+          ) : (
           <>
             {/* Hero Card */}
             {heroItem && (
