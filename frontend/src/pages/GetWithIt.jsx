@@ -270,7 +270,7 @@ const GetWithIt = () => {
                             {item.category.toUpperCase()}
                           </span>
                           {item.tags && item.tags.length > 0 && item.tags[0] && (
-                            <span className="inline-block px-2 py-1 rounded-full text-xs font-bold bg-[#FF6B9D] text-white">
+                            <span className="inline-block px-2 py-1 rounded-full text-xs font-bold text-white" style={{ backgroundColor: coral }}>
                               {item.tags[0]}
                             </span>
                           )}
