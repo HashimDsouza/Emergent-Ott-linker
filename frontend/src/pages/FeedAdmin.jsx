@@ -247,14 +247,19 @@ const FeedAdmin = () => {
             </div>
 
             <div>
-              <label className="block text-sm font-medium mb-2">Linked Content ID</label>
-              <input
-                type="text"
-                value={formData.linked_content_id}
-                onChange={(e) => setFormData({ ...formData, linked_content_id: e.target.value })}
+              <label className="block text-sm font-medium mb-2">Badge</label>
+              <select
+                value={formData.tags[0] || ""}
+                onChange={(e) => setFormData({ ...formData, tags: e.target.value ? [e.target.value] : [] })}
                 className="w-full px-4 py-2 rounded-lg bg-white/10 border border-white/20 focus:outline-none focus:border-[#FF6B9D]"
-                placeholder="Optional"
-              />
+              >
+                <option value="">None</option>
+                <option value="OFFICIAL">OFFICIAL</option>
+                <option value="TRENDING">TRENDING</option>
+                <option value="NEW SEASON">NEW SEASON</option>
+                <option value="TRAILER">TRAILER</option>
+                <option value="HIGHLIGHT">HIGHLIGHT</option>
+              </select>
             </div>
 
             <div className="flex items-center pt-8">
@@ -268,6 +273,17 @@ const FeedAdmin = () => {
                 <span className="text-sm font-medium">Set as Hero</span>
               </label>
             </div>
+          </div>
+          
+          <div className="mb-4">
+            <label className="block text-sm font-medium mb-2">Linked Content ID (Optional)</label>
+            <input
+              type="text"
+              value={formData.linked_content_id}
+              onChange={(e) => setFormData({ ...formData, linked_content_id: e.target.value })}
+              className="w-full px-4 py-2 rounded-lg bg-white/10 border border-white/20 focus:outline-none focus:border-[#FF6B9D]"
+              placeholder="Enter content ID from catalog to link"
+            />
           </div>
 
           <div className="flex gap-4">
