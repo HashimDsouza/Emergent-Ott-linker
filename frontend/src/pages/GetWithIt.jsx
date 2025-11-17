@@ -193,7 +193,7 @@ const GetWithIt = () => {
                       <img
                         src={item.image_url}
                         alt={item.title}
-                        className="w-24 h-24 sm:w-32 sm:h-32 rounded-lg object-cover flex-shrink-0 group-hover:scale-105 transition-transform"
+                        className="w-24 h-24 sm:w-32 sm:h-32 rounded-xl object-cover flex-shrink-0 group-hover:scale-105 transition-transform border border-white/10"
                       />
                       <div className="flex-1 min-w-0">
                         <div className="flex gap-2 mb-2 flex-wrap">
