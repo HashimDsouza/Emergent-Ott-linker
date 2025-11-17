@@ -222,7 +222,7 @@ const GetWithIt = () => {
                     alt={heroItem.title}
                     className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-black/60 to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent" style={{ background: `linear-gradient(to top, ${charcoal}, rgba(0,0,0,0.6), transparent)` }} />
                   <div className="absolute bottom-0 left-0 right-0 p-6">
                     <div className="flex gap-2 mb-2">
                       <span className={`inline-block px-3 py-1 rounded-full text-xs font-medium ${getCategoryBadgeColor(heroItem.category)}`}>
