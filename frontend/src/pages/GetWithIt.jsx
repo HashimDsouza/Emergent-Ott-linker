@@ -291,8 +291,12 @@ const GetWithIt = () => {
             )}
           </>
         )}
+        </div>
       </div>
-    </div>
+      </div>
+      <ConnectorFooter />
+      <ConnieFloating offsetPx={140} />
+    </>
   );
 };
 
