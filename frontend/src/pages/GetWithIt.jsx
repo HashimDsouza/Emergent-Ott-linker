@@ -186,7 +186,7 @@ const GetWithIt = () => {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: index * 0.05 }}
-                    className="bg-white/5 rounded-xl overflow-hidden cursor-pointer hover:bg-white/10 transition-all group"
+                    className="bg-white/5 rounded-2xl overflow-hidden cursor-pointer hover:bg-white/10 transition-all group border border-white/10"
                     onClick={() => handleCardClick(item)}
                   >
                     <div className="flex gap-4 p-4">
