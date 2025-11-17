@@ -1240,6 +1240,117 @@ async def search_content(q: str, limit: int = 24, response: Response = None):
     return final_results
 
 
+
+# ============================================================================
+# GET WITH IT - FEED ENDPOINTS
+# ============================================================================
+
+@api_router.get("/feed", response_model=List[FeedItem])
+async def get_feed(
+    category: Optional[str] = None,
+    limit: int = 50,
+    response: Response = None
+):
+    """Get feed items, optionally filtered by category"""
+    if response:
+        response.headers["Cache-Control"] = "no-cache, no-store, must-revalidate"
+    
+    query = {}
+    if category and category != "all":
+        query["category"] = category
+    
+    # Get feed items sorted by priority (desc) then published_at (desc)
+    feed_items = await db.feed_items.find(query, {"_id": 0}) \
+        .sort([("is_hero", -1), ("priority", -1), ("published_at", -1)]) \
+        .limit(limit) \
+        .to_list(limit)
+    
+    return feed_items
+
+@api_router.get("/feed/hero", response_model=Optional[FeedItem])
+async def get_hero_item(response: Response = None):
+    """Get the current hero feed item"""
+    if response:
+        response.headers["Cache-Control"] = "no-cache, no-store, must-revalidate"
+    
+    hero_item = await db.feed_items.find_one({"is_hero": True}, {"_id": 0})
+    return hero_item
+
+@api_router.post("/feed", response_model=FeedItem)
+async def create_feed_item(input: FeedItemCreate):
+    """Create a new feed item (admin only for MVP)"""
+    
+    # If setting as hero, unset any existing hero
+    if input.is_hero:
+        await db.feed_items.update_many(
+            {"is_hero": True},
+            {"$set": {"is_hero": False}}
+        )
+    
+    feed_item = FeedItem(**input.model_dump())
+    doc = feed_item.model_dump()
+    await db.feed_items.insert_one(doc)
+    
+    return feed_item
+
+@api_router.put("/feed/{feed_id}", response_model=FeedItem)
+async def update_feed_item(feed_id: str, update: FeedItemUpdate):
+    """Update a feed item"""
+    
+    # Check if item exists
+    existing = await db.feed_items.find_one({"id": feed_id}, {"_id": 0})
+    if not existing:
+        raise HTTPException(status_code=404, detail="Feed item not found")
+    
+    # If setting as hero, unset any existing hero
+    if update.is_hero is True:
+        await db.feed_items.update_many(
+            {"is_hero": True, "id": {"$ne": feed_id}},
+            {"$set": {"is_hero": False}}
+        )
+    
+    # Update item
+    update_data = {k: v for k, v in update.model_dump().items() if v is not None}
+    update_data["updated_at"] = datetime.now(timezone.utc).isoformat()
+    
+    await db.feed_items.update_one(
+        {"id": feed_id},
+        {"$set": update_data}
+    )
+    
+    # Return updated item
+    updated_item = await db.feed_items.find_one({"id": feed_id}, {"_id": 0})
+    return FeedItem(**updated_item)
+
+@api_router.delete("/feed/{feed_id}")
+async def delete_feed_item(feed_id: str):
+    """Delete a feed item"""
+    result = await db.feed_items.delete_one({"id": feed_id})
+    
+    if result.deleted_count == 0:
+        raise HTTPException(status_code=404, detail="Feed item not found")
+    
+    return {"message": "Feed item deleted successfully"}
+
+@api_router.get("/feed/stats")
+async def get_feed_stats():
+    """Get feed statistics"""
+    total = await db.feed_items.count_documents({})
+    by_category = {}
+    
+    for category in ["entertainment", "sports", "ott", "local", "music"]:
+        count = await db.feed_items.count_documents({"category": category})
+        by_category[category] = count
+    
+    hero_count = await db.feed_items.count_documents({"is_hero": True})
+    
+    return {
+        "total": total,
+        "by_category": by_category,
+        "hero_items": hero_count
+    }
+
+
 @api_router.get("/proxy-image")
 async def proxy_image(url: str):
     """Proxy TMDB images to avoid ORB blocking"""
