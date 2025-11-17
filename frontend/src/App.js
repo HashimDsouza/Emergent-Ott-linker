@@ -8,6 +8,8 @@ import WatchOn from "@/pages/WatchOn";
 import BuzzMeter from "@/pages/BuzzMeter";
 import Entertainment from "@/pages/Entertainment";
 import GameOn from "@/pages/GameOn";
+import GetWithIt from "@/pages/GetWithIt";
+import FeedAdmin from "@/pages/FeedAdmin";
 
 function App() {
   return (
@@ -21,6 +23,8 @@ function App() {
             <Route path="/buzz-meter" element={<BuzzMeter />} />
             <Route path="/entertainment" element={<Entertainment />} />
             <Route path="/game-on" element={<GameOn />} />
+            <Route path="/get-with-it" element={<GetWithIt />} />
+            <Route path="/feed-admin" element={<FeedAdmin />} />
             <Route path="/original" element={<Home />} />
           </Routes>
         </BrowserRouter>
