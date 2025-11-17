@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { useNavigate } from "react-router-dom";
-import { Home } from "lucide-react";
 import { ConnectorHeader, ConnectorFooter } from "../components/ConnectorLayout";
 import ConnieFloating from "../components/ConnieFloating";
 
