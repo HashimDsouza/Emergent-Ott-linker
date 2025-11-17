@@ -109,35 +109,92 @@ const GetWithIt = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#0a0a0a] text-white pb-24">
-      {/* Header */}
-      <div className="sticky top-0 z-40 bg-[#0a0a0a]/95 backdrop-blur-xl border-b border-white/5">
-        <div className="px-4 py-4">
-          <h1 className="text-2xl font-bold bg-gradient-to-r from-[#FF6B9D] to-[#C8E6C9] bg-clip-text text-transparent">
-            ⚡ Get With It
-          </h1>
-          <p className="text-sm text-gray-400 mt-1">Stay updated with the latest</p>
-        </div>
-
-        {/* Category Filters */}
-        <div className="px-4 pb-3 overflow-x-auto hide-scrollbar">
-          <div className="flex gap-2 min-w-max">
-            {categories.map((cat) => (
+    <>
+      <ConnectorHeader />
+      <div className="min-h-screen" style={{ backgroundColor: charcoal }}>
+        {/* Header - Match Watch On Design */}
+        <div className="px-3 md:px-6 pt-6 md:pt-8 pb-4 md:pb-6">
+          <div className="max-w-7xl mx-auto text-center">
+            {/* Home Button - Top Left */}
+            <div className="absolute top-6 md:top-8 left-3 md:left-6">
               <button
-                key={cat.id}
-                onClick={() => setSelectedCategory(cat.id)}
-                className={`px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap transition-all ${
-                  selectedCategory === cat.id
-                    ? "bg-gradient-to-r from-[#FF6B9D] to-[#ff8db3] text-white shadow-lg shadow-[#FF6B9D]/20"
-                    : "bg-white/5 text-gray-300 hover:bg-white/10 border border-white/10"
-                }`}
+                onClick={() => navigate('/')}
+                className="group flex items-center gap-2 px-3 py-1.5 md:px-4 md:py-2 rounded-full transition-all text-xs md:text-sm font-semibold text-white"
+                style={{
+                  background: `linear-gradient(135deg, ${coral}60 0%, ${mint}40 100%)`,
+                  border: `1px solid ${mint}30`,
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.boxShadow = `0 0 16px ${mint}60`;
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.boxShadow = 'none';
+                }}
               >
-                {cat.icon} {cat.label}
+                <Home className="w-4 h-4" />
+                <span className="hidden md:inline">Home</span>
               </button>
-            ))}
+            </div>
+
+            <h1 className="text-3xl md:text-5xl font-bold text-white mb-2">
+              Get With It
+            </h1>
+            <p 
+              className="text-sm md:text-base"
+              style={{ color: coral }}
+            >
+              Stay Updated with the Latest
+            </p>
           </div>
         </div>
-      </div>
+
+        {/* Category Capsules - Match Watch On Design (2 Rows) */}
+        <div className="px-3 md:px-6 pb-6 md:pb-8">
+          <div className="max-w-7xl mx-auto">
+            {/* Row 1: First 3 categories */}
+            <div className="flex justify-center gap-2 md:gap-3 mb-2 md:mb-3">
+              {categories.slice(0, 3).map((cat) => (
+                <button
+                  key={cat.id}
+                  onClick={() => setSelectedCategory(cat.id)}
+                  onMouseEnter={() => setHoveredCategory(cat.id)}
+                  onMouseLeave={() => setHoveredCategory(null)}
+                  className="group relative px-3 py-1.5 md:px-4 md:py-2 rounded-full transition-all text-xs md:text-sm font-semibold text-white"
+                  style={{
+                    background: selectedCategory === cat.id 
+                      ? `linear-gradient(135deg, ${coral} 0%, ${mint} 100%)`
+                      : `linear-gradient(135deg, ${coral}80 0%, ${mint}60 100%)`,
+                    boxShadow: hoveredCategory === cat.id || selectedCategory === cat.id ? `0 0 16px ${mint}60` : 'none',
+                    opacity: selectedCategory === cat.id ? 1 : 0.85
+                  }}
+                >
+                  {cat.icon} {cat.label}
+                </button>
+              ))}
+            </div>
+            {/* Row 2: Last 3 categories */}
+            <div className="flex justify-center gap-2 md:gap-3">
+              {categories.slice(3).map((cat) => (
+                <button
+                  key={cat.id}
+                  onClick={() => setSelectedCategory(cat.id)}
+                  onMouseEnter={() => setHoveredCategory(cat.id)}
+                  onMouseLeave={() => setHoveredCategory(null)}
+                  className="group relative px-3 py-1.5 md:px-4 md:py-2 rounded-full transition-all text-xs md:text-sm font-semibold text-white"
+                  style={{
+                    background: selectedCategory === cat.id 
+                      ? `linear-gradient(135deg, ${coral} 0%, ${mint} 100%)`
+                      : `linear-gradient(135deg, ${coral}80 0%, ${mint}60 100%)`,
+                    boxShadow: hoveredCategory === cat.id || selectedCategory === cat.id ? `0 0 16px ${mint}60` : 'none',
+                    opacity: selectedCategory === cat.id ? 1 : 0.85
+                  }}
+                >
+                  {cat.icon} {cat.label}
+                </button>
+              ))}
+            </div>
+          </div>
+        </div>
 
       {/* Content */}
       <div className="px-4 py-4">
