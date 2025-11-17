@@ -113,38 +113,44 @@ const GetWithIt = () => {
       <ConnectorHeader />
       <div className="min-h-screen" style={{ backgroundColor: charcoal }}>
         {/* Header - Match Watch On Design */}
-        <div className="px-3 md:px-6 pt-6 md:pt-8 pb-4 md:pb-6">
-          <div className="max-w-7xl mx-auto text-center">
-            {/* Home Button - Top Left */}
-            <div className="absolute top-6 md:top-8 left-3 md:left-6">
+        <div className="px-3 md:px-6 pt-6 md:pt-8 pb-4 md:pb-6 relative">
+          <div className="max-w-7xl mx-auto">
+            {/* Home Button - Top Left, positioned relative to content */}
+            <div className="flex justify-between items-start mb-4">
               <button
                 onClick={() => navigate('/')}
-                className="group flex items-center gap-2 px-3 py-1.5 md:px-4 md:py-2 rounded-full transition-all text-xs md:text-sm font-semibold text-white"
+                className="group flex items-center gap-2 px-3 py-1.5 md:px-4 md:py-2 rounded-full transition-all text-xs md:text-sm font-semibold text-white z-10"
                 style={{
-                  background: `linear-gradient(135deg, ${coral}60 0%, ${mint}40 100%)`,
-                  border: `1px solid ${mint}30`,
+                  background: `linear-gradient(135deg, ${coral} 0%, ${mint} 100%)`,
+                  border: `1px solid ${mint}40`,
+                  boxShadow: '0 0 8px rgba(48, 224, 178, 0.3)'
                 }}
                 onMouseEnter={(e) => {
-                  e.currentTarget.style.boxShadow = `0 0 16px ${mint}60`;
+                  e.currentTarget.style.boxShadow = `0 0 20px ${mint}80`;
+                  e.currentTarget.style.transform = 'scale(1.05)';
                 }}
                 onMouseLeave={(e) => {
-                  e.currentTarget.style.boxShadow = 'none';
+                  e.currentTarget.style.boxShadow = '0 0 8px rgba(48, 224, 178, 0.3)';
+                  e.currentTarget.style.transform = 'scale(1)';
                 }}
               >
                 <Home className="w-4 h-4" />
-                <span className="hidden md:inline">Home</span>
+                <span className="hidden sm:inline">Home</span>
               </button>
+              <div className="flex-1"></div>
             </div>
-
-            <h1 className="text-3xl md:text-5xl font-bold text-white mb-2">
-              Get With It
-            </h1>
-            <p 
-              className="text-sm md:text-base"
-              style={{ color: coral }}
-            >
-              Stay Updated with the Latest
-            </p>
+            
+            <div className="text-center">
+              <h1 className="text-3xl md:text-5xl font-bold text-white mb-2">
+                Get With It
+              </h1>
+              <p 
+                className="text-sm md:text-base"
+                style={{ color: coral }}
+              >
+                Stay Updated with the Latest
+              </p>
+            </div>
           </div>
         </div>
 
