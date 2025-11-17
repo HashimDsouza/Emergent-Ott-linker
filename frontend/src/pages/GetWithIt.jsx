@@ -1,11 +1,22 @@
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
+import { Home } from "lucide-react";
+import { ConnectorHeader, ConnectorFooter } from "../components/ConnectorLayout";
+import ConnieFloating from "../components/ConnieFloating";
+
+// Brand colors - match the app's visual identity
+const coral = "#FF4F64";
+const mint = "#30E0B2";
+const charcoal = "#0E1514";
 
 const GetWithIt = () => {
+  const navigate = useNavigate();
   const [feedItems, setFeedItems] = useState([]);
   const [heroItem, setHeroItem] = useState(null);
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [loading, setLoading] = useState(true);
+  const [hoveredCategory, setHoveredCategory] = useState(null);
 
   const categories = [
     { id: "all", label: "All", icon: "⚡" },
