@@ -9,7 +9,6 @@ const mint = "#30E0B2";
 const charcoal = "#0E1514";
 
 const GetWithIt = () => {
-  const navigate = useNavigate();
   const [feedItems, setFeedItems] = useState([]);
   const [heroItem, setHeroItem] = useState(null);
   const [selectedCategory, setSelectedCategory] = useState("all");
