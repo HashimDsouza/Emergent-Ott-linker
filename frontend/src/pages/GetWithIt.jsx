@@ -23,9 +23,8 @@ const GetWithIt = () => {
   const fetchFeed = async () => {
     try {
       setLoading(true);
-      const backendUrl = import.meta.env.VITE_REACT_APP_BACKEND_URL || 
-                         process.env.REACT_APP_BACKEND_URL || 
-                         "https://streamfinder-37.preview.emergentagent.com";
+      // Use the same pattern as other pages
+      const backendUrl = process.env.REACT_APP_BACKEND_URL || "https://streamfinder-37.preview.emergentagent.com";
       
       console.log("Fetching from:", backendUrl);
       
