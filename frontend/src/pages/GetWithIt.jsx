@@ -155,12 +155,19 @@ const GetWithIt = () => {
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent" />
                   <div className="absolute bottom-0 left-0 right-0 p-6">
-                    <span className={`inline-block px-3 py-1 rounded-full text-xs font-medium mb-2 ${getCategoryBadgeColor(heroItem.category)}`}>
-                      {heroItem.category.toUpperCase()}
-                    </span>
-                    <h2 className="text-2xl font-bold mb-2">{heroItem.title}</h2>
-                    <p className="text-sm text-gray-300 line-clamp-2 mb-2">{heroItem.description}</p>
-                    <p className="text-xs text-gray-400">{formatTimestamp(heroItem.published_at)}</p>
+                    <div className="flex gap-2 mb-2">
+                      <span className={`inline-block px-3 py-1 rounded-full text-xs font-medium ${getCategoryBadgeColor(heroItem.category)}`}>
+                        {heroItem.category.toUpperCase()}
+                      </span>
+                      {heroItem.tags && heroItem.tags.length > 0 && heroItem.tags[0] && (
+                        <span className="inline-block px-3 py-1 rounded-full text-xs font-bold bg-[#FF6B9D] text-white">
+                          {heroItem.tags[0]}
+                        </span>
+                      )}
+                    </div>
+                    <h2 className="text-2xl font-bold mb-2 leading-tight">{heroItem.title}</h2>
+                    <p className="text-sm text-gray-300 line-clamp-2 mb-2 leading-snug">{heroItem.description}</p>
+                    <p className="text-xs text-[#C8E6C9]">{formatTimestamp(heroItem.published_at)}</p>
                   </div>
                 </div>
               </motion.div>
