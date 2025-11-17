@@ -425,7 +425,7 @@ export function ConnectorFooter() {
         <NavItem emoji="🏠" icon={Home} label="Home" tip="Back to where the buzz begins." onClick={() => { window.scrollTo(0, 0); navigate('/'); }} />
         <NavItem emoji="🧭" icon={Compass} label="Dive In" tip="Deep cuts. Hot picks. Dive already." />
         <NavItem emoji="👥" icon={Users} label="Crew" tip="Where fans become fam." />
-        <NavItem emoji="⚡" icon={Zap} label="Get With It" tip="The headlines before they trend." />
+        <NavItem emoji="⚡" icon={Zap} label="Get With It" tip="The headlines before they trend." onClick={() => navigate('/get-with-it')} />
       </div>
     </footer>
     </>
