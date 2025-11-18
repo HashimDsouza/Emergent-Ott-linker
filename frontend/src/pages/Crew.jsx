@@ -181,7 +181,7 @@ const Crew = () => {
               ))}
 
               {/* More Dropdown */}
-              <div className="relative">
+              <div className="relative" style={{ zIndex: 100 }}>
                 <button
                   onClick={() => setShowMoreDropdown(!showMoreDropdown)}
                   onMouseEnter={() => setHoveredCapsule("more")}
@@ -191,48 +191,54 @@ const Crew = () => {
                     background: showMoreDropdown
                       ? `linear-gradient(135deg, ${coral} 0%, ${mint} 100%)`
                       : `linear-gradient(135deg, ${coral}80 0%, ${mint}60 100%)`,
-                    boxShadow: hoveredCapsule === "more" ? `0 0 16px ${mint}60` : 'none',
+                    boxShadow: hoveredCapsule === "more" || showMoreDropdown ? `0 0 16px ${mint}60` : 'none',
                     opacity: showMoreDropdown ? 1 : 0.85
                   }}
                 >
-                  ⚡ More <ChevronDown className="w-3 h-3" />
+                  ⚡ More <ChevronDown className={`w-3 h-3 transition-transform ${showMoreDropdown ? 'rotate-180' : ''}`} />
                 </button>
                 
                 {/* Dropdown Menu */}
-                <AnimatePresence>
-                  {showMoreDropdown && (
-                    <motion.div
-                      initial={{ opacity: 0, y: -10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: -10 }}
-                      className="absolute top-full right-0 mt-2 bg-white/10 backdrop-blur-lg rounded-xl border border-white/20 overflow-hidden z-50 min-w-[160px] shadow-xl"
-                    >
-                      {[
-                        { id: "popular", label: "Popular", icon: "🔥" },
-                        { id: "new", label: "New", icon: "✨" },
-                        { id: "trending", label: "Trending", icon: "📈" },
-                        { id: "recommended", label: "Recommended", icon: "💡" },
-                        { id: "all", label: "All Crews", icon: "🌟" }
-                      ].map((option) => (
-                        <button
-                          key={option.id}
-                          onClick={() => {
-                            setFilterView(option.id);
-                            setShowMoreDropdown(false);
-                          }}
-                          className="w-full px-4 py-2.5 text-left text-sm text-white hover:bg-white/10 transition-all flex items-center gap-2"
-                          style={{
-                            background: filterView === option.id ? 'rgba(255, 79, 100, 0.2)' : 'transparent'
-                          }}
-                        >
-                          <span>{option.icon}</span>
-                          <span>{option.label}</span>
-                          {filterView === option.id && <Check className="w-3 h-3 ml-auto" style={{ color: mint }} />}
-                        </button>
-                      ))}
-                    </motion.div>
-                  )}
-                </AnimatePresence>
+                {showMoreDropdown && (
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.95, y: -10 }}
+                    animate={{ opacity: 1, scale: 1, y: 0 }}
+                    exit={{ opacity: 0, scale: 0.95, y: -10 }}
+                    transition={{ duration: 0.15 }}
+                    className="absolute top-full right-0 mt-2 rounded-xl border overflow-hidden shadow-2xl"
+                    style={{
+                      background: 'rgba(14, 21, 20, 0.95)',
+                      backdropFilter: 'blur(20px)',
+                      borderColor: 'rgba(255, 255, 255, 0.2)',
+                      minWidth: '180px',
+                      zIndex: 1000
+                    }}
+                  >
+                    {[
+                      { id: "popular", label: "Popular", icon: "🔥" },
+                      { id: "new", label: "New", icon: "✨" },
+                      { id: "trending", label: "Trending", icon: "📈" },
+                      { id: "recommended", label: "Recommended", icon: "💡" },
+                      { id: "all", label: "All Crews", icon: "🌟" }
+                    ].map((option) => (
+                      <button
+                        key={option.id}
+                        onClick={() => {
+                          setFilterView(option.id);
+                          setShowMoreDropdown(false);
+                        }}
+                        className="w-full px-4 py-3 text-left text-sm text-white hover:bg-white/10 transition-all flex items-center gap-2 border-b border-white/5 last:border-0"
+                        style={{
+                          background: filterView === option.id ? 'rgba(255, 79, 100, 0.15)' : 'transparent'
+                        }}
+                      >
+                        <span className="text-base">{option.icon}</span>
+                        <span className="flex-1">{option.label}</span>
+                        {filterView === option.id && <Check className="w-4 h-4" style={{ color: mint }} />}
+                      </button>
+                    ))}
+                  </motion.div>
+                )}
               </div>
             </div>
           </div>
