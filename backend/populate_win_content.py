@@ -105,7 +105,7 @@ QUIZZES = [
             },
             {
                 "id": "q4",
-                "question": "The Kapoors invited Netflix over for dinner. What's the show called?",
+                "question": "The Kapoors just invited Netflix over for dinner. What's the show called?",
                 "options": ["A", "B", "C", "D"],
                 "option_texts": [
                     "Keeping Up with the Kapoors (Reality style)",
