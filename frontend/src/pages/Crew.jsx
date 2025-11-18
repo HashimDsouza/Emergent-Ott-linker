@@ -33,12 +33,12 @@ const Crew = () => {
   // State for filtering
   const [filterView, setFilterView] = useState("all"); // "all", "popular", "new", "trending", "recommended"
 
-  // Mock data for trending content - using real catalog images
+  // Mock data for trending content - using TMDB URLs
   const trendingContent = [
-    { title: "Sacred Games", reactions: 156, crews: 8, thumbnail: "https://m.media-amazon.com/images/M/MV5BMjMwYmE2NWMtODdmOS00YzY0LWEzZjctNjg1MGJjM2EwYTM0XkEyXkFqcGc@._V1_.jpg" },
-    { title: "Pushpa 2", reactions: 134, crews: 6, thumbnail: "https://m.media-amazon.com/images/M/MV5BMTk5NzI0ODEyMl5BMl5BanBnXkFtZTgwMDcwOTU2MjI@._V1_.jpg" },
-    { title: "Mirzapur S3", reactions: 98, crews: 5, thumbnail: "https://m.media-amazon.com/images/M/MV5BYzg5ODNmZmYtZmI3OS00ZGIyLWE5NzMtNWQyZjg1ZWMwOWU3XkEyXkFqcGc@._V1_.jpg" },
-    { title: "Squid Game S2", reactions: 87, crews: 7, thumbnail: "https://m.media-amazon.com/images/M/MV5BYjhiMTMzNDUtMDk0MS00NmE4LWI5OTctZmNlMzQ1ZjY5YTZhXkEyXkFqcGc@._V1_.jpg" },
+    { title: "Sacred Games", reactions: 156, crews: 8, thumbnail: "https://image.tmdb.org/t/p/w500/jzIeFqVvZ5iJzP6P7XlzRbZdQvy.jpg" },
+    { title: "Pushpa 2", reactions: 134, crews: 6, thumbnail: "https://image.tmdb.org/t/p/w500/3G4CswOozqceFVbe7pP6BYCpOmH.jpg" },
+    { title: "Mirzapur S3", reactions: 98, crews: 5, thumbnail: "https://image.tmdb.org/t/p/w500/7CFdq8M9ZuP1QRLaBG2ExdcrCBs.jpg" },
+    { title: "Squid Game S2", reactions: 87, crews: 7, thumbnail: "https://image.tmdb.org/t/p/w500/sXZhtWLo3fecavpDuOyJiayjt32.jpg" },
   ];
 
   // Mock leaderboard
