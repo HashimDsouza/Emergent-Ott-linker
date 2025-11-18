@@ -199,9 +199,12 @@ const Crew = () => {
               ))}
 
               {/* More Dropdown */}
-              <div className="relative" style={{ zIndex: 100 }}>
+              <div className="relative" style={{ zIndex: 9999 }}>
                 <button
-                  onClick={() => setShowMoreDropdown(!showMoreDropdown)}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setShowMoreDropdown(!showMoreDropdown);
+                  }}
                   onMouseEnter={() => setHoveredCapsule("more")}
                   onMouseLeave={() => setHoveredCapsule(null)}
                   className="group relative px-3 py-1.5 md:px-4 md:py-2 rounded-full transition-all text-xs md:text-sm font-semibold text-white whitespace-nowrap flex items-center gap-1"
