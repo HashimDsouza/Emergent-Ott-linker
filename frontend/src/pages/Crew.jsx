@@ -152,63 +152,91 @@ const Crew = () => {
           </div>
         </div>
 
-        {/* Category Capsules - Match GetWithIt Design */}
+        {/* Crew Capsules - Horizontal Scroll with 6 Popular + Create + More */}
         <div className="px-3 md:px-6 pb-4 md:pb-6">
           <div className="max-w-7xl mx-auto">
-            <div className="flex justify-center gap-2 md:gap-3">
-              <button
-                onClick={() => {
-                  setActiveView("discover");
-                  setShowCreateForm(false);
-                }}
-                onMouseEnter={() => setHoveredCapsule("discover")}
-                onMouseLeave={() => setHoveredCapsule(null)}
-                className="group relative px-3 py-1.5 md:px-4 md:py-2 rounded-full transition-all text-xs md:text-sm font-semibold text-white"
-                style={{
-                  background: activeView === "discover"
-                    ? `linear-gradient(135deg, ${coral} 0%, ${mint} 100%)`
-                    : `linear-gradient(135deg, ${coral}80 0%, ${mint}60 100%)`,
-                  boxShadow: hoveredCapsule === "discover" || activeView === "discover" ? `0 0 16px ${mint}60` : 'none',
-                  opacity: activeView === "discover" ? 1 : 0.85
-                }}
-              >
-                🔍 Discover Crews
-              </button>
+            <div className="flex gap-2 md:gap-3 overflow-x-auto pb-2 scrollbar-hide">
+              {/* First 6 Popular Crews */}
+              {crews.slice(0, 6).map((crew) => (
+                <button
+                  key={crew.id}
+                  onClick={() => handleJoinCrew(crew.id)}
+                  onMouseEnter={() => setHoveredCapsule(crew.id)}
+                  onMouseLeave={() => setHoveredCapsule(null)}
+                  className="group relative px-3 py-1.5 md:px-4 md:py-2 rounded-full transition-all text-xs md:text-sm font-semibold text-white whitespace-nowrap flex items-center gap-1.5"
+                  style={{
+                    background: isJoined(crew.id)
+                      ? `linear-gradient(135deg, ${coral} 0%, ${mint} 100%)`
+                      : `linear-gradient(135deg, ${coral}80 0%, ${mint}60 100%)`,
+                    boxShadow: hoveredCapsule === crew.id ? `0 0 16px ${mint}60` : 'none',
+                    opacity: isJoined(crew.id) ? 1 : 0.85
+                  }}
+                >
+                  {crew.name === "Regional Riders" ? "🇮🇳" : crew.icon} {crew.name}
+                  {isJoined(crew.id) && <Check className="w-3 h-3" />}
+                </button>
+              ))}
               
+              {/* Create Crew Capsule */}
               <button
-                onClick={() => {
-                  setActiveView("create");
-                  setShowCreateForm(true);
-                }}
+                onClick={() => setShowCreateForm(!showCreateForm)}
                 onMouseEnter={() => setHoveredCapsule("create")}
                 onMouseLeave={() => setHoveredCapsule(null)}
-                className="group relative px-3 py-1.5 md:px-4 md:py-2 rounded-full transition-all text-xs md:text-sm font-semibold text-white"
+                className="group relative px-3 py-1.5 md:px-4 md:py-2 rounded-full transition-all text-xs md:text-sm font-semibold text-white whitespace-nowrap"
                 style={{
-                  background: activeView === "create"
+                  background: showCreateForm
                     ? `linear-gradient(135deg, ${coral} 0%, ${mint} 100%)`
                     : `linear-gradient(135deg, ${coral}80 0%, ${mint}60 100%)`,
-                  boxShadow: hoveredCapsule === "create" || activeView === "create" ? `0 0 16px ${mint}60` : 'none',
-                  opacity: activeView === "create" ? 1 : 0.85
+                  boxShadow: hoveredCapsule === "create" ? `0 0 16px ${mint}60` : 'none',
+                  opacity: showCreateForm ? 1 : 0.85
                 }}
               >
                 ✨ Create Crew
               </button>
 
-              <button
-                onClick={() => setActiveView("more")}
-                onMouseEnter={() => setHoveredCapsule("more")}
-                onMouseLeave={() => setHoveredCapsule(null)}
-                className="group relative px-3 py-1.5 md:px-4 md:py-2 rounded-full transition-all text-xs md:text-sm font-semibold text-white"
-                style={{
-                  background: activeView === "more"
-                    ? `linear-gradient(135deg, ${coral} 0%, ${mint} 100%)`
-                    : `linear-gradient(135deg, ${coral}80 0%, ${mint}60 100%)`,
-                  boxShadow: hoveredCapsule === "more" || activeView === "more" ? `0 0 16px ${mint}60` : 'none',
-                  opacity: activeView === "more" ? 1 : 0.85
-                }}
-              >
-                ⚡ More
-              </button>
+              {/* More Dropdown */}
+              <div className="relative">
+                <button
+                  onClick={() => setShowMoreDropdown(!showMoreDropdown)}
+                  onMouseEnter={() => setHoveredCapsule("more")}
+                  onMouseLeave={() => setHoveredCapsule(null)}
+                  className="group relative px-3 py-1.5 md:px-4 md:py-2 rounded-full transition-all text-xs md:text-sm font-semibold text-white whitespace-nowrap flex items-center gap-1"
+                  style={{
+                    background: showMoreDropdown
+                      ? `linear-gradient(135deg, ${coral} 0%, ${mint} 100%)`
+                      : `linear-gradient(135deg, ${coral}80 0%, ${mint}60 100%)`,
+                    boxShadow: hoveredCapsule === "more" ? `0 0 16px ${mint}60` : 'none',
+                    opacity: showMoreDropdown ? 1 : 0.85
+                  }}
+                >
+                  ⚡ More <ChevronDown className="w-3 h-3" />
+                </button>
+                
+                {/* Dropdown Menu */}
+                <AnimatePresence>
+                  {showMoreDropdown && (
+                    <motion.div
+                      initial={{ opacity: 0, y: -10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -10 }}
+                      className="absolute top-full right-0 mt-2 bg-white/10 backdrop-blur-lg rounded-xl border border-white/20 overflow-hidden z-50 min-w-[160px]"
+                    >
+                      {["Popular", "New", "Trending", "Recommended", "All Crews"].map((option) => (
+                        <button
+                          key={option}
+                          onClick={() => {
+                            setShowMoreDropdown(false);
+                            // TODO: Handle filter logic
+                          }}
+                          className="w-full px-4 py-2.5 text-left text-sm text-white hover:bg-white/10 transition-all"
+                        >
+                          {option}
+                        </button>
+                      ))}
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
             </div>
           </div>
         </div>
