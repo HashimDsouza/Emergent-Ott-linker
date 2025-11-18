@@ -27,7 +27,7 @@ const Win = () => {
 
   const fetchContent = async () => {
     try {
-      const backendUrl = import.meta.env.VITE_REACT_APP_BACKEND_URL || process.env.REACT_APP_BACKEND_URL;
+      const backendUrl = process.env.REACT_APP_BACKEND_URL || "https://connector-hub-2.preview.emergentagent.com";
       
       const [pollsRes, quizzesRes] = await Promise.all([
         fetch(`${backendUrl}/api/win/polls`),
