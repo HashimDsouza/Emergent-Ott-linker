@@ -183,7 +183,7 @@ const Crew = () => {
               {crews.filter(crew => crew.is_predefined).slice(0, 6).map((crew) => (
                 <button
                   key={crew.id}
-                  onClick={() => handleJoinCrew(crew.id)}
+                  onClick={() => navigate(`/crew/${crew.id}`)}
                   onMouseEnter={() => setHoveredCapsule(crew.id)}
                   onMouseLeave={() => setHoveredCapsule(null)}
                   className="group relative px-3 py-1.5 md:px-4 md:py-2 rounded-full transition-all text-xs md:text-sm font-semibold text-white whitespace-nowrap flex items-center gap-1.5"
