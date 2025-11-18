@@ -46,7 +46,32 @@ const Crew = () => {
   useEffect(() => {
     fetchCrews();
     fetchMyCrews();
+    fetchTrendingContent();
   }, []);
+
+  const fetchTrendingContent = async () => {
+    try {
+      const backendUrl = process.env.REACT_APP_BACKEND_URL || "https://crew-discovery.preview.emergentagent.com";
+      const response = await fetch(`${backendUrl}/api/content`);
+      const data = await response.json();
+      
+      // Filter for Nov 2025 trending titles that we want to show
+      const trendingTitles = ["Pushpa 2 - The Rule", "Squid Game", "Mirzapur", "Sacred Games"];
+      const trending = data
+        .filter(item => trendingTitles.some(title => item.title.includes(title)))
+        .slice(0, 4)
+        .map(item => ({
+          title: item.title,
+          reactions: Math.floor(Math.random() * 100) + 50, // Mock reactions
+          crews: Math.floor(Math.random() * 8) + 3, // Mock crew count
+          thumbnail: item.thumbnail
+        }));
+      
+      setTrendingContent(trending);
+    } catch (error) {
+      console.error("Error fetching trending content:", error);
+    }
+  };
 
   const fetchCrews = async () => {
     try {
