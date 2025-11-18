@@ -27,6 +27,7 @@ function App() {
             <Route path="/game-on" element={<GameOn />} />
             <Route path="/get-with-it" element={<GetWithIt />} />
             <Route path="/win" element={<Win />} />
+            <Route path="/crew" element={<Crew />} />
             <Route path="/feed-admin" element={<FeedAdmin />} />
             <Route path="/original" element={<Home />} />
           </Routes>
