@@ -240,7 +240,8 @@ const Crew = () => {
                     ].map((option) => (
                       <button
                         key={option.id}
-                        onClick={() => {
+                        onClick={(e) => {
+                          e.stopPropagation();
                           setFilterView(option.id);
                           setShowMoreDropdown(false);
                         }}
@@ -254,7 +255,7 @@ const Crew = () => {
                         {filterView === option.id && <Check className="w-4 h-4" style={{ color: mint }} />}
                       </button>
                     ))}
-                  </motion.div>
+                  </div>
                 )}
               </div>
             </div>
