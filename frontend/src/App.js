@@ -11,6 +11,7 @@ import GameOn from "@/pages/GameOn";
 import GetWithIt from "@/pages/GetWithIt";
 import Win from "@/pages/Win";
 import Crew from "@/pages/Crew";
+import CrewDetail from "@/pages/CrewDetail";
 import FeedAdmin from "@/pages/FeedAdmin";
 
 function App() {
