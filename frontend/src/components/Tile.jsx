@@ -49,12 +49,29 @@ export default function Tile({ item, onInfo, onShare }) {
   };
 
   return (
-    <div onClick={handleClick} className="relative block rounded-lg md:rounded-xl overflow-hidden shadow-lg border border-white/10 hover:-translate-y-0.5 transition cursor-pointer max-w-full">
+    <div onClick={handleClick} className="relative block rounded-lg md:rounded-xl overflow-hidden shadow-lg border border-white/10 hover:-translate-y-0.5 transition cursor-pointer max-w-full group">
       {/* Poster - 2:3 aspect ratio (portrait) */}
       <div 
         className="relative" 
         style={{ background: `linear-gradient(135deg, ${coral}70 0%, ${mint}45 45%, ${charcoalSoft} 100%)` }}
       >
+        {/* Share Icon - Top Right Corner */}
+        {onShare && (
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              onShare(item);
+            }}
+            className="absolute top-2 right-2 z-10 p-1.5 md:p-2 rounded-full backdrop-blur-md transition-all opacity-0 group-hover:opacity-100 transform hover:scale-110"
+            style={{
+              background: 'rgba(0, 0, 0, 0.6)',
+              border: `1px solid ${mint}40`
+            }}
+          >
+            <Share2 className="w-3 h-3 md:w-4 md:h-4" style={{ color: mint }} />
+          </button>
+        )}
+
         {/* Smaller aspect ratio on desktop for compact tiles */}
         <div className="aspect-[2/3]">
           {item.thumbnail && (
