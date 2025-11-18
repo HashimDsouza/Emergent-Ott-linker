@@ -173,10 +173,10 @@ const Crew = () => {
           </div>
         </div>
 
-        {/* Crew Capsules - Horizontal Scroll with 6 Popular + Create + More */}
+        {/* Crew Capsules - Horizontal Scroll with 6 Popular + More */}
         <div className="px-3 md:px-6 pb-4 md:pb-6">
           <div className="max-w-7xl mx-auto">
-            <div className="flex gap-2 md:gap-3 overflow-x-auto pb-2 scrollbar-hide">
+            <div className="flex gap-2 md:gap-3 overflow-x-auto pb-2 scrollbar-hide" style={{ overflowY: 'visible' }}>
               {/* First 6 Popular Predefined Crews (exclude user-created) */}
               {crews.filter(crew => crew.is_predefined).slice(0, 6).map((crew) => (
                 <button
