@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ConnectorHeader, ConnectorFooter } from "../components/ConnectorLayout";
 import ConnieFloating from "../components/ConnieFloating";
-import { Users, Plus, Check, X, Sparkles } from "lucide-react";
+import { Users, Plus, Check, X, Sparkles, TrendingUp, Activity, Trophy, ChevronDown, Flame } from "lucide-react";
 
 // Brand colors
 const coral = "#FF4F64";
@@ -14,12 +14,38 @@ const Crew = () => {
   const [myCrews, setMyCrews] = useState([]);
   const [loading, setLoading] = useState(true);
   const [showCreateForm, setShowCreateForm] = useState(false);
+  const [showMoreDropdown, setShowMoreDropdown] = useState(false);
   const [newCrew, setNewCrew] = useState({ name: "", icon: "🎬", description: "" });
   const [joiningCrew, setJoiningCrew] = useState(null);
-  const [activeView, setActiveView] = useState("discover"); // "discover", "create", "more"
   const [hoveredCapsule, setHoveredCapsule] = useState(null);
 
   const iconOptions = ["🎬", "🏏", "📺", "⚽", "🎵", "🌍", "🎮", "🍿", "🎭", "📚", "🏀", "🎸"];
+
+  // Mock data for activity feed
+  const recentActivity = [
+    { crew: "Cricket Crazy", action: "shared Lagaan", reactions: 23, time: "2h ago", emoji: "🏏" },
+    { crew: "Bollywood Buffs", action: "added 3 new items", reactions: 15, time: "4h ago", emoji: "🎬" },
+    { crew: "Regional Riders", action: "reacted to Pushpa 2", reactions: 45, time: "5h ago", emoji: "🇮🇳" },
+    { crew: "International Bingers", action: "shared Squid Game S2", reactions: 67, time: "6h ago", emoji: "🌍" },
+    { crew: "Music Mavens", action: "added Spotify playlist", reactions: 12, time: "8h ago", emoji: "🎵" },
+  ];
+
+  // Mock data for trending content
+  const trendingContent = [
+    { title: "Sacred Games", reactions: 156, crews: 8, thumbnail: "https://image.tmdb.org/t/p/w500/jzIeFqVvZ5iJzP6P7XlzRbZdQvy.jpg" },
+    { title: "Pushpa 2", reactions: 134, crews: 6, thumbnail: "https://image.tmdb.org/t/p/w500/8lbf4nOeHqR9OQGXS2E4TipziQB.jpg" },
+    { title: "Mirzapur S3", reactions: 98, crews: 5, thumbnail: "https://image.tmdb.org/t/p/w500/7CFdq8M9ZuP1QRLaBG2ExdcrCBs.jpg" },
+    { title: "Squid Game S2", reactions: 87, crews: 7, thumbnail: "https://image.tmdb.org/t/p/w500/sXZhtWLo3fecavpDuOyJiayjt32.jpg" },
+  ];
+
+  // Mock leaderboard
+  const topCrews = [
+    { name: "Cricket Crazy", reactions: 234, emoji: "🏏" },
+    { name: "Bollywood Buffs", reactions: 189, emoji: "🎬" },
+    { name: "International Bingers", reactions: 156, emoji: "🌍" },
+    { name: "Regional Riders", reactions: 134, emoji: "🇮🇳" },
+    { name: "Football Fanatics", reactions: 98, emoji: "⚽" },
+  ];
 
   useEffect(() => {
     fetchCrews();
