@@ -368,10 +368,10 @@ const Crew = () => {
                   )}
                 </AnimatePresence>
 
-                {/* Your Crews - Quick Access */}
+                {/* My Crews - Quick Access */}
                 <div>
                   <h2 className="text-lg md:text-xl font-bold text-white mb-3 flex items-center gap-2">
-                    <span style={{ color: mint }}>🎯</span> Your Crews
+                    <span style={{ color: mint }}>🎯</span> My Crews
                   </h2>
                   <div className="flex gap-3 overflow-x-auto pb-2 scrollbar-hide">
                     {/* Create Crew Card */}
