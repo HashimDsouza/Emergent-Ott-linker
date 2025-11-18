@@ -318,6 +318,32 @@ const Win = () => {
           </div>
         </div>
 
+        {/* Category Capsules - Match Get With It Design */}
+        <div className="px-3 md:px-6 pb-4 md:pb-6">
+          <div className="max-w-7xl mx-auto">
+            <div className="flex justify-center gap-2 md:gap-3">
+              {categories.map((cat) => (
+                <button
+                  key={cat.id}
+                  onClick={() => setSelectedCategory(cat.id)}
+                  onMouseEnter={() => setHoveredCategory(cat.id)}
+                  onMouseLeave={() => setHoveredCategory(null)}
+                  className="group relative px-3 py-1.5 md:px-4 md:py-2 rounded-full transition-all text-xs md:text-sm font-semibold text-white"
+                  style={{
+                    background: selectedCategory === cat.id 
+                      ? `linear-gradient(135deg, ${coral} 0%, ${mint} 100%)`
+                      : `linear-gradient(135deg, ${coral}80 0%, ${mint}60 100%)`,
+                    boxShadow: hoveredCategory === cat.id || selectedCategory === cat.id ? `0 0 16px ${mint}60` : 'none',
+                    opacity: selectedCategory === cat.id ? 1 : 0.85
+                  }}
+                >
+                  {cat.icon} {cat.label}
+                </button>
+              ))}
+            </div>
+          </div>
+        </div>
+
         {/* Content */}
         <div className="px-3 md:px-6 py-4">
           <div className="max-w-7xl mx-auto">
