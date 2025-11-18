@@ -3,7 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { ConnectorHeader, ConnectorFooter } from "../components/ConnectorLayout";
 import ConnieFloating from "../components/ConnieFloating";
-import { Users, ArrowLeft, Check, Flame, Heart, Laugh, Clap } from "lucide-react";
+import { Users, ArrowLeft, Check, Flame, Heart, Laugh, Hand } from "lucide-react";
 
 // Brand colors
 const coral = "#FF4F64";
