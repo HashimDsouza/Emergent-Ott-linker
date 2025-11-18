@@ -222,18 +222,29 @@ const Crew = () => {
                       initial={{ opacity: 0, y: -10 }}
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: -10 }}
-                      className="absolute top-full right-0 mt-2 bg-white/10 backdrop-blur-lg rounded-xl border border-white/20 overflow-hidden z-50 min-w-[160px]"
+                      className="absolute top-full right-0 mt-2 bg-white/10 backdrop-blur-lg rounded-xl border border-white/20 overflow-hidden z-50 min-w-[160px] shadow-xl"
                     >
-                      {["Popular", "New", "Trending", "Recommended", "All Crews"].map((option) => (
+                      {[
+                        { id: "popular", label: "Popular", icon: "🔥" },
+                        { id: "new", label: "New", icon: "✨" },
+                        { id: "trending", label: "Trending", icon: "📈" },
+                        { id: "recommended", label: "Recommended", icon: "💡" },
+                        { id: "all", label: "All Crews", icon: "🌟" }
+                      ].map((option) => (
                         <button
-                          key={option}
+                          key={option.id}
                           onClick={() => {
+                            setFilterView(option.id);
                             setShowMoreDropdown(false);
-                            // TODO: Handle filter logic
                           }}
-                          className="w-full px-4 py-2.5 text-left text-sm text-white hover:bg-white/10 transition-all"
+                          className="w-full px-4 py-2.5 text-left text-sm text-white hover:bg-white/10 transition-all flex items-center gap-2"
+                          style={{
+                            background: filterView === option.id ? 'rgba(255, 79, 100, 0.2)' : 'transparent'
+                          }}
                         >
-                          {option}
+                          <span>{option.icon}</span>
+                          <span>{option.label}</span>
+                          {filterView === option.id && <Check className="w-3 h-3 ml-auto" style={{ color: mint }} />}
                         </button>
                       ))}
                     </motion.div>
