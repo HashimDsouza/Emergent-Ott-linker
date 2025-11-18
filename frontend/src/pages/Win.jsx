@@ -184,7 +184,7 @@ const Win = () => {
                   key={option}
                   onClick={() => selectAnswer(option)}
                   disabled={showFeedback}
-                  className="w-full p-4 rounded-xl text-left transition-all text-white"
+                  className="w-full p-3 md:p-4 rounded-xl text-left transition-all text-white text-sm md:text-base"
                   style={{
                     backgroundColor: showCorrect ? mint : showIncorrect ? `${coral}80` : isSelected ? 'rgba(255, 255, 255, 0.1)' : 'rgba(255, 255, 255, 0.05)',
                     border: `2px solid ${showCorrect ? mint : showIncorrect ? coral : isSelected ? 'rgba(255, 255, 255, 0.2)' : 'rgba(255, 255, 255, 0.1)'}`,
