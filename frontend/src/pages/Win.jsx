@@ -92,7 +92,7 @@ const Win = () => {
     setShowFeedback(true);
     setQuizAnswers([...quizAnswers, selectedAnswer]);
 
-    // Auto-advance after 2 seconds
+    // Auto-advance after 3 seconds (more time to read feedback)
     setTimeout(() => {
       if (currentQuestion < activeQuiz.questions.length - 1) {
         setCurrentQuestion(currentQuestion + 1);
@@ -102,7 +102,7 @@ const Win = () => {
         // Quiz complete, submit for results
         submitQuiz([...quizAnswers, selectedAnswer]);
       }
-    }, 2000);
+    }, 3000);
   };
 
   const submitQuiz = async (answers) => {
