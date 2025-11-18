@@ -108,10 +108,10 @@ QUIZZES = [
                 "question": "The Kapoors invited Netflix over for dinner. What's the show called?",
                 "options": ["A", "B", "C", "D"],
                 "option_texts": [
-                    "Keeping Up with the Kapoors (Not that kind of show)",
-                    "Dining with the Kapoors (Literally on the tin)",
-                    "Kapoor & Sons: The Real Story (That's a different movie)",
-                    "The Kapoor Chronicles (Sounds epic, but nope)"
+                    "Keeping Up with the Kapoors (Reality style)",
+                    "Dining with the Kapoors (Food meets family)",
+                    "Kapoor & Sons: The Real Story (Behind the scenes)",
+                    "The Kapoor Chronicles (Legacy edition)"
                 ],
                 "correct_answer": "B",
                 "explanation_correct": "Nailed it! Pass the biryani! Ranbir, Kareena, Karisma spilling the chai. Nov 21 on Netflix.",
