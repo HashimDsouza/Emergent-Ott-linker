@@ -24,7 +24,7 @@ const FeedAdmin = () => {
 
   const fetchFeedItems = async () => {
     try {
-      const backendUrl = process.env.REACT_APP_BACKEND_URL || "https://connector-hub-2.preview.emergentagent.com";
+      const backendUrl = process.env.REACT_APP_BACKEND_URL || "https://crew-discovery.preview.emergentagent.com";
       const response = await fetch(`${backendUrl}/api/feed?limit=100`);
       if (response.ok) {
         const items = await response.json();
@@ -40,7 +40,7 @@ const FeedAdmin = () => {
     setMessage("");
 
     try {
-      const backendUrl = process.env.REACT_APP_BACKEND_URL || "https://connector-hub-2.preview.emergentagent.com";
+      const backendUrl = process.env.REACT_APP_BACKEND_URL || "https://crew-discovery.preview.emergentagent.com";
       
       // Prepare data
       const submitData = { ...formData };
@@ -96,7 +96,7 @@ const FeedAdmin = () => {
     if (!confirm("Are you sure you want to delete this feed item?")) return;
 
     try {
-      const backendUrl = process.env.REACT_APP_BACKEND_URL || "https://connector-hub-2.preview.emergentagent.com";
+      const backendUrl = process.env.REACT_APP_BACKEND_URL || "https://crew-discovery.preview.emergentagent.com";
       const response = await fetch(`${backendUrl}/api/feed/${id}`, {
         method: "DELETE"
       });

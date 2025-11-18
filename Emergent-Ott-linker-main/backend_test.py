@@ -10,7 +10,7 @@ import sys
 from typing import Dict, Any
 
 # Backend URL from frontend .env
-BACKEND_URL = "https://connector-hub-2.preview.emergentagent.com/api"
+BACKEND_URL = "https://crew-discovery.preview.emergentagent.com/api"
 
 def test_api_endpoint(endpoint: str, params: Dict[str, Any] = None, method: str = "GET") -> Dict[str, Any]:
     """Test an API endpoint and return response data"""

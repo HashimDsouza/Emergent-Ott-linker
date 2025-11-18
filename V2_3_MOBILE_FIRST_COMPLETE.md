@@ -190,7 +190,7 @@ sudo supervisorctl restart all
 
 **Preview URL:**
 ```
-https://connector-hub-2.preview.emergentagent.com/landing/v2_3
+https://crew-discovery.preview.emergentagent.com/landing/v2_3
 ```
 
 **Local:**
