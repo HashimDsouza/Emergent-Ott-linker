@@ -243,7 +243,7 @@ const Crew = () => {
 
         {/* Content */}
         <div className="px-3 md:px-6 py-4">
-          <div className="max-w-7xl mx-auto">
+          <div className="max-w-7xl mx-auto space-y-6">
             {loading ? (
               <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-3 md:gap-4">
                 {[1, 2, 3, 4, 5, 6].map((i) => (
@@ -254,7 +254,7 @@ const Crew = () => {
               <>
                 {/* Create Crew Form */}
                 <AnimatePresence>
-                  {showCreateForm && activeView === "create" && (
+                  {showCreateForm && (
                     <motion.div
                       initial={{ opacity: 0, y: -20 }}
                       animate={{ opacity: 1, y: 0 }}
