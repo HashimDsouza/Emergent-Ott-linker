@@ -159,8 +159,8 @@ const Crew = () => {
         <div className="px-3 md:px-6 pb-4 md:pb-6">
           <div className="max-w-7xl mx-auto">
             <div className="flex gap-2 md:gap-3 overflow-x-auto pb-2 scrollbar-hide">
-              {/* First 6 Popular Crews */}
-              {crews.slice(0, 6).map((crew) => (
+              {/* First 6 Popular Predefined Crews (exclude user-created) */}
+              {crews.filter(crew => crew.is_predefined).slice(0, 6).map((crew) => (
                 <button
                   key={crew.id}
                   onClick={() => handleJoinCrew(crew.id)}
