@@ -63,10 +63,10 @@ QUIZZES = [
                 "question": "Who's the genius duo behind The Family Man Season 3 dropping Nov 21?",
                 "options": ["A", "B", "C", "D"],
                 "option_texts": [
-                    "Raj & DK (The OGs!)",
-                    "Russo Brothers (Wrong universe, buddy)",
-                    "Zoya Akhtar (She's busy with other masterpieces)",
-                    "Farah Khan (Main Hoon Na 2 when?)"
+                    "Raj & DK (Spy thriller specialists)",
+                    "Russo Brothers (Marvel's finest)",
+                    "Zoya Akhtar (Bollywood royalty)",
+                    "Farah Khan (Main Hoon Na vibes)"
                 ],
                 "correct_answer": "A",
                 "explanation_correct": "Yes! Raj & DK are back! The dynamic duo continues Srikant's spy saga. Binge-watching starts now.",
