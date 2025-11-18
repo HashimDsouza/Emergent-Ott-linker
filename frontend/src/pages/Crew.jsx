@@ -351,18 +351,33 @@ const Crew = () => {
                 </AnimatePresence>
 
                 {/* Your Crews - Quick Access */}
-                {myCrews.length > 0 && (
-                  <div>
-                    <h2 className="text-lg md:text-xl font-bold text-white mb-3 flex items-center gap-2">
-                      <span style={{ color: mint }}>🎯</span> Your Crews
-                    </h2>
-                    <div className="flex gap-3 overflow-x-auto pb-2 scrollbar-hide">
-                      {myCrews.map((crew) => (
-                        <QuickCrewCard key={crew.id} crew={crew} />
-                      ))}
+                <div>
+                  <h2 className="text-lg md:text-xl font-bold text-white mb-3 flex items-center gap-2">
+                    <span style={{ color: mint }}>🎯</span> Your Crews
+                  </h2>
+                  <div className="flex gap-3 overflow-x-auto pb-2 scrollbar-hide">
+                    {/* Create Crew Card */}
+                    <div className="flex-shrink-0 w-20 md:w-24">
+                      <button
+                        onClick={() => setShowCreateForm(!showCreateForm)}
+                        className="w-full bg-white/10 backdrop-blur-sm rounded-xl p-3 md:p-4 border-2 border-dashed border-white/30 hover:border-mint/50 transition-all cursor-pointer text-center"
+                      >
+                        <div className="text-3xl md:text-4xl mb-2">✨</div>
+                        <p className="text-xs text-white font-semibold">Create</p>
+                      </button>
                     </div>
+                    
+                    {/* User's Joined Crews */}
+                    {myCrews.map((crew) => (
+                      <QuickCrewCard key={crew.id} crew={crew} />
+                    ))}
+                    
+                    {/* Empty State if no crews */}
+                    {myCrews.length === 0 && (
+                      <p className="text-sm text-gray-400 py-4">Join crews from the capsules above to see them here!</p>
+                    )}
                   </div>
-                )}
+                </div>
 
                 {/* What's Trending */}
                 <div>
