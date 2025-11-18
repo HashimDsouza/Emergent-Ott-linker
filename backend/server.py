@@ -802,6 +802,76 @@ class FeedItemUpdate(BaseModel):
     tags: Optional[List[str]] = None
     entity_type: Optional[str] = None
 
+# ============================================================================
+# WIN FEATURE MODELS (Polls & Quizzes)
+# ============================================================================
+
+class PollOption(BaseModel):
+    """Poll option with vote count"""
+    id: str
+    text: str
+    votes: int = 0
+
+class Poll(BaseModel):
+    """Poll for Win feature"""
+    model_config = ConfigDict(extra="ignore")
+    
+    id: str = Field(default_factory=lambda: str(uuid.uuid4()))
+    question: str
+    description: Optional[str] = None
+    options: List[PollOption]
+    category: str  # movies, sports, ott, music
+    active: bool = True
+    total_votes: int = 0
+    ends_at: Optional[str] = None
+    created_at: str = Field(default_factory=lambda: datetime.now(timezone.utc).isoformat())
+
+class PollVote(BaseModel):
+    """User vote on a poll"""
+    poll_id: str
+    option_id: str
+    user_id: Optional[str] = "anonymous"
+
+class QuizQuestion(BaseModel):
+    """Single quiz question"""
+    id: str
+    question: str
+    options: List[str]  # A, B, C, D labels
+    option_texts: List[str]  # Actual answer texts
+    correct_answer: str  # A, B, C, or D
+    explanation_correct: str
+    explanation_incorrect: str
+    difficulty: str = "medium"  # easy, medium, hard
+
+class Quiz(BaseModel):
+    """Quiz for Win feature"""
+    model_config = ConfigDict(extra="ignore")
+    
+    id: str = Field(default_factory=lambda: str(uuid.uuid4()))
+    title: str
+    description: str
+    questions: List[QuizQuestion]
+    category: str  # entertainment, bollywood, sports, etc
+    active: bool = True
+    total_attempts: int = 0
+    date: str
+    created_at: str = Field(default_factory=lambda: datetime.now(timezone.utc).isoformat())
+
+class QuizResponse(BaseModel):
+    """User's quiz response"""
+    quiz_id: str
+    answers: List[str]  # A, B, C, D for each question
+    user_id: Optional[str] = "anonymous"
+
+class QuizResult(BaseModel):
+    """Quiz result with score"""
+    quiz_id: str
+    score: int
+    total: int
+    percentage: int
+    percentile: int  # You're in top X% of players
+    correct_answers: List[bool]
+
 class IncomingAutoFeedItem(BaseModel):
     """Incoming auto feed item for future automation (Phase 2)"""
     model_config = ConfigDict(extra="ignore")
