@@ -1421,6 +1421,92 @@ async def get_feed_stats():
     }
 
 
+# ============================================================================
+# WIN FEATURE ENDPOINTS (Polls & Quizzes)
+# ============================================================================
+
+@api_router.get("/win/polls", response_model=List[Poll])
+async def get_polls(active_only: bool = True):
+    """Get all active polls"""
+    query = {"active": True} if active_only else {}
+    polls = await db.polls.find(query).to_list(length=None)
+    return [Poll(**poll) for poll in polls]
+
+@api_router.post("/win/polls/{poll_id}/vote")
+async def vote_on_poll(poll_id: str, vote: PollVote):
+    """Vote on a poll"""
+    # Find the poll
+    poll = await db.polls.find_one({"id": poll_id})
+    if not poll:
+        raise HTTPException(status_code=404, detail="Poll not found")
+    
+    # Update vote count for the option
+    await db.polls.update_one(
+        {"id": poll_id, "options.id": vote.option_id},
+        {"$inc": {"options.$.votes": 1, "total_votes": 1}}
+    )
+    
+    # Get updated poll
+    updated_poll = await db.polls.find_one({"id": poll_id})
+    return Poll(**updated_poll)
+
+@api_router.get("/win/quizzes", response_model=List[Quiz])
+async def get_quizzes(active_only: bool = True):
+    """Get all active quizzes"""
+    query = {"active": True} if active_only else {}
+    quizzes = await db.quizzes.find(query).to_list(length=None)
+    return [Quiz(**quiz) for quiz in quizzes]
+
+@api_router.post("/win/quizzes/{quiz_id}/submit")
+async def submit_quiz(quiz_id: str, response: QuizResponse):
+    """Submit quiz answers and get results"""
+    # Find the quiz
+    quiz = await db.quizzes.find_one({"id": quiz_id})
+    if not quiz:
+        raise HTTPException(status_code=404, detail="Quiz not found")
+    
+    quiz_obj = Quiz(**quiz)
+    
+    # Calculate score
+    correct_answers = []
+    score = 0
+    for idx, answer in enumerate(response.answers):
+        if idx < len(quiz_obj.questions):
+            is_correct = answer == quiz_obj.questions[idx].correct_answer
+            correct_answers.append(is_correct)
+            if is_correct:
+                score += 1
+    
+    total = len(quiz_obj.questions)
+    percentage = int((score / total) * 100) if total > 0 else 0
+    
+    # Calculate percentile (mock for now - in real app, compare with other users)
+    # Higher score = better percentile
+    percentile_map = {
+        5: 8,   # 5/5 = top 8%
+        4: 32,  # 4/5 = top 32%
+        3: 52,  # 3/5 = top 52%
+        2: 75,  # 2/5 = top 75%
+        1: 85,  # 1/5 = top 85%
+        0: 95   # 0/5 = top 95%
+    }
+    percentile = percentile_map.get(score, 50)
+    
+    # Increment attempt counter
+    await db.quizzes.update_one(
+        {"id": quiz_id},
+        {"$inc": {"total_attempts": 1}}
+    )
+    
+    return QuizResult(
+        quiz_id=quiz_id,
+        score=score,
+        total=total,
+        percentage=percentage,
+        percentile=percentile,
+        correct_answers=correct_answers
+    )
+
 @api_router.get("/proxy-image")
 async def proxy_image(url: str):
     """Proxy TMDB images to avoid ORB blocking"""
