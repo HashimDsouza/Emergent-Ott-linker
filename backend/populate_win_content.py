@@ -114,7 +114,7 @@ QUIZZES = [
                     "The Kapoor Chronicles (Legacy edition)"
                 ],
                 "correct_answer": "B",
-                "explanation_correct": "Nailed it! Pass the biryani! Ranbir, Kareena, Karisma spilling the chai. Nov 21 on Netflix.",
+                "explanation_correct": "Nailed it! Pass the biryani! Ranbir, Kareena, Karisma spilling the chai. Streaming now on Netflix.",
                 "explanation_incorrect": "Close! It's Dining with the Kapoors. Because nothing says Bollywood royalty like food and family drama.",
                 "difficulty": "medium"
             },
