@@ -23,7 +23,7 @@ const CrewDetail = () => {
     { id: "fire", icon: <Flame className="w-4 h-4" />, emoji: "🔥", color: "#FF6B35" },
     { id: "heart", icon: <Heart className="w-4 h-4" />, emoji: "❤️", color: "#FF1744" },
     { id: "laugh", icon: <Laugh className="w-4 h-4" />, emoji: "😂", color: "#FFD700" },
-    { id: "clap", icon: <Clap className="w-4 h-4" />, emoji: "👏", color: mint },
+    { id: "clap", icon: <Hand className="w-4 h-4" />, emoji: "👏", color: mint },
   ];
 
   useEffect(() => {
