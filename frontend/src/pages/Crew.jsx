@@ -426,16 +426,33 @@ const Crew = () => {
                   </div>
                 </div>
 
-                {/* Crews You Might Like */}
+                {/* Crews You Might Like / Filtered View */}
                 <div>
                   <h2 className="text-lg md:text-xl font-bold text-white mb-3 flex items-center gap-2">
-                    <Sparkles className="w-5 h-5" style={{ color: mint }} /> Crews You Might Like
+                    <Sparkles className="w-5 h-5" style={{ color: mint }} /> 
+                    {filterView === "all" && "Crews You Might Like"}
+                    {filterView === "popular" && "🔥 Popular Crews"}
+                    {filterView === "new" && "✨ New Crews"}
+                    {filterView === "trending" && "📈 Trending Crews"}
+                    {filterView === "recommended" && "💡 Recommended For You"}
                   </h2>
                   <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
-                    {crews
-                      .filter(crew => !isJoined(crew.id))
-                      .slice(0, 3)
-                      .map((crew) => (
+                    {(() => {
+                      let filteredCrews = crews.filter(crew => !isJoined(crew.id));
+                      
+                      // Apply mock filtering logic
+                      if (filterView === "popular") {
+                        filteredCrews = filteredCrews.sort((a, b) => b.member_count - a.member_count);
+                      } else if (filterView === "new") {
+                        filteredCrews = filteredCrews.filter(crew => !crew.is_predefined);
+                      } else if (filterView === "trending") {
+                        filteredCrews = filteredCrews.filter(crew => crew.member_count > 10000);
+                      } else if (filterView === "recommended") {
+                        // Mock recommendation based on joined crews
+                        filteredCrews = filteredCrews.slice(0, 3);
+                      }
+                      
+                      return filteredCrews.slice(0, filterView === "all" ? 3 : 6).map((crew) => (
                         <CrewCard
                           key={crew.id}
                           crew={crew}
@@ -443,7 +460,8 @@ const Crew = () => {
                           onAction={() => handleJoinCrew(crew.id)}
                           isLoading={joiningCrew === crew.id}
                         />
-                      ))}
+                      ));
+                    })()}
                   </div>
                 </div>
               </>
