@@ -354,9 +354,38 @@ const Crew = () => {
   );
 };
 
-// Crew Card Component
+// Crew Card Component - Premium Design
 const CrewCard = ({ crew, isJoined, onAction, isLoading }) => {
   const [isHovered, setIsHovered] = useState(false);
+
+  // Special handling for Regional Riders - use India flag
+  const getCrewIcon = () => {
+    if (crew.name === "Regional Riders") {
+      return "🇮🇳";
+    }
+    return crew.icon;
+  };
+
+  // Generate gradient background for each crew
+  const getGradientBg = () => {
+    const gradients = {
+      "International Bingers": `linear-gradient(135deg, #FF4F6415 0%, #30E0B215 100%)`,
+      "Cricket Crazy": `linear-gradient(135deg, #10B98115 0%, #34D39915 100%)`,
+      "Binge Buddies": `linear-gradient(135deg, #8B5CF615 0%, #C084FC15 100%)`,
+      "Weekend Warriors": `linear-gradient(135deg, #F59E0B15 0%, #EF444415 100%)`,
+      "Regional Riders": `linear-gradient(135deg, #FF9F4015 0%, #FF6B9515 100%)`,
+      "Music Maniacs": `linear-gradient(135deg, #EC489915 0%, #F4343415 100%)`
+    };
+    return gradients[crew.name] || `linear-gradient(135deg, ${coral}10 0%, ${mint}10 100%)`;
+  };
+
+  // Get glow color based on crew
+  const getGlowColor = () => {
+    if (crew.name === "Cricket Crazy") return "#10B981";
+    if (crew.name === "Regional Riders") return "#FF6B95";
+    if (crew.name === "Music Maniacs") return "#F43434";
+    return mint;
+  };
 
   return (
     <motion.div
@@ -364,51 +393,82 @@ const CrewCard = ({ crew, isJoined, onAction, isLoading }) => {
       animate={{ opacity: 1, y: 0 }}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      className="bg-white/5 rounded-2xl p-6 border border-white/10 hover:border-white/20 transition-all cursor-pointer"
+      className="relative overflow-hidden rounded-2xl p-4 md:p-6 border transition-all cursor-pointer group"
+      style={{
+        background: getGradientBg(),
+        borderColor: isHovered ? `${getGlowColor()}60` : 'rgba(255, 255, 255, 0.1)',
+        boxShadow: isHovered ? `0 8px 32px ${getGlowColor()}30` : 'none',
+        transform: isHovered ? 'translateY(-4px)' : 'translateY(0)'
+      }}
     >
-      <div className="flex items-start justify-between mb-4">
-        <div className="text-5xl">{crew.icon}</div>
+      {/* Background Glow Effect */}
+      <div 
+        className="absolute -top-12 -right-12 w-32 h-32 rounded-full blur-3xl opacity-0 group-hover:opacity-30 transition-opacity duration-500"
+        style={{ background: `radial-gradient(circle, ${getGlowColor()} 0%, transparent 70%)` }}
+      />
+
+      {/* Header with Icon and Badge */}
+      <div className="flex items-start justify-between mb-3 md:mb-4 relative z-10">
+        <div className="text-4xl md:text-5xl transform group-hover:scale-110 transition-transform duration-300">
+          {getCrewIcon()}
+        </div>
         {crew.is_predefined && (
-          <span className="px-2 py-1 rounded-full text-xs font-semibold bg-white/10 text-gray-400">
+          <span 
+            className="px-2 py-1 rounded-full text-xs font-bold backdrop-blur-sm"
+            style={{
+              background: `linear-gradient(135deg, ${coral}30 0%, ${mint}30 100%)`,
+              color: mint,
+              border: `1px solid ${mint}40`
+            }}
+          >
             Official
           </span>
         )}
       </div>
 
-      <h3 className="text-xl font-bold text-white mb-2">{crew.name}</h3>
-      <p className="text-sm text-gray-400 mb-4 line-clamp-2">{crew.description}</p>
+      {/* Content */}
+      <div className="relative z-10">
+        <h3 className="text-base md:text-xl font-bold text-white mb-1.5 md:mb-2 line-clamp-1">
+          {crew.name}
+        </h3>
+        <p className="text-xs md:text-sm text-gray-300 mb-3 md:mb-4 line-clamp-2 leading-relaxed">
+          {crew.description}
+        </p>
 
-      <div className="flex items-center justify-between">
-        <div className="flex items-center gap-2 text-sm" style={{ color: mint }}>
-          <Users className="w-4 h-4" />
-          <span>{crew.member_count.toLocaleString()} members</span>
+        {/* Footer with Members and Action */}
+        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2 md:gap-0">
+          <div className="flex items-center gap-1.5 text-xs md:text-sm font-semibold" style={{ color: getGlowColor() }}>
+            <Users className="w-3.5 h-3.5 md:w-4 md:h-4" />
+            <span>{crew.member_count.toLocaleString()}</span>
+          </div>
+
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              onAction();
+            }}
+            disabled={isLoading}
+            className="px-3 py-1.5 md:px-4 md:py-2 rounded-full text-xs md:text-sm font-bold text-white transition-all flex items-center justify-center gap-1.5 transform hover:scale-105"
+            style={{
+              background: isJoined 
+                ? 'rgba(255, 255, 255, 0.15)' 
+                : `linear-gradient(135deg, ${coral} 0%, ${mint} 100%)`,
+              border: isJoined ? `1px solid ${coral}60` : 'none',
+              opacity: isLoading ? 0.5 : 1,
+              boxShadow: !isJoined ? `0 4px 12px ${coral}30` : 'none'
+            }}
+          >
+            {isLoading ? (
+              "..."
+            ) : isJoined ? (
+              <>
+                <Check className="w-3 h-3 md:w-4 md:h-4" /> Joined
+              </>
+            ) : (
+              "Join"
+            )}
+          </button>
         </div>
-
-        <button
-          onClick={(e) => {
-            e.stopPropagation();
-            onAction();
-          }}
-          disabled={isLoading}
-          className="px-4 py-2 rounded-full text-sm font-semibold text-white transition-all flex items-center gap-2"
-          style={{
-            background: isJoined 
-              ? 'rgba(255, 255, 255, 0.1)' 
-              : `linear-gradient(135deg, ${coral} 0%, ${mint} 100%)`,
-            border: isJoined ? `1px solid ${coral}` : 'none',
-            opacity: isLoading ? 0.5 : 1
-          }}
-        >
-          {isLoading ? (
-            "..."
-          ) : isJoined ? (
-            <>
-              <Check className="w-4 h-4" /> Joined
-            </>
-          ) : (
-            "Join Crew"
-          )}
-        </button>
       </div>
     </motion.div>
   );
