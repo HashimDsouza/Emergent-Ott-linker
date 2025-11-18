@@ -167,12 +167,12 @@ const Win = () => {
           </div>
 
           {/* Question */}
-          <h2 className="text-2xl md:text-3xl font-bold text-white text-center mb-12 leading-tight">
+          <h2 className="text-xl md:text-3xl font-bold text-white text-center mb-6 md:mb-12 leading-tight px-4">
             {question.question}
           </h2>
 
           {/* Options */}
-          <div className="space-y-3 mb-8">
+          <div className="space-y-2 md:space-y-3 mb-6 md:mb-8">
             {question.options.map((option, idx) => {
               const isSelected = selectedAnswer === option;
               const isCorrectAnswer = option === question.correct_answer;
