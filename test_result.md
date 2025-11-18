@@ -103,19 +103,18 @@
 #====================================================================================================
 
 user_problem_statement: |
-  Build Phase 1A "Game On" Sports Module:
-  1. Complete Game On page with two-tier header (primary sports + secondary leagues)
-  2. Implement Spotlight section for tournaments/leagues only
-  3. Create and integrate 6 content trays with smart filtering:
-     - LIVE RIGHT NOW (prominent, larger tiles, dynamic descriptors)
-     - TODAY'S MATCHES (upcoming today with times)
-     - BIG MOMENTS (viral YouTube clips)
-     - COMING UP (tomorrow & weekend matches)
-     - HIGHLIGHTS (recent match highlights)
-     - BEST OF (compilation content)
-  4. Implement automated descriptor generation (rule-based, fun, concise)
-  5. Add sport/league filtering across all trays
-  6. Ensure mobile-first responsive design
+  Redesign Crew Page to Match Premium Brand Identity:
+  1. Update header to match GetWithIt/Win page style (centered, coral tagline)
+  2. Add capsule navigation (Discover Crews, Create Crew, More) with brand gradients
+  3. Redesign crew cards with premium look:
+     - Unique gradient backgrounds per crew
+     - Hover effects with glow and lift animation
+     - Better mobile layout (2 columns minimum)
+     - Larger icons with scale animation
+  4. Update all crew descriptions to remove "From X to Y" old-school copy
+  5. Replace Regional Riders globe icon with India flag 🇮🇳
+  6. Enhance Create Crew form with premium gradient background
+  7. Ensure consistent coral/mint branding throughout
 
 backend:
   - task: "TheSportsDB API Integration for Game On section"
