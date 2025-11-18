@@ -347,56 +347,76 @@ const Crew = () => {
                   )}
                 </AnimatePresence>
 
-                {/* My Crews Section */}
-                {myCrews.length > 0 && activeView === "discover" && (
-                  <div className="mb-8">
-                    <h2 className="text-xl md:text-2xl font-bold text-white mb-4 flex items-center gap-2">
-                      <span style={{ color: mint }}>●</span> Your Crews
+                {/* Your Crews - Quick Access */}
+                {myCrews.length > 0 && (
+                  <div>
+                    <h2 className="text-lg md:text-xl font-bold text-white mb-3 flex items-center gap-2">
+                      <span style={{ color: mint }}>🎯</span> Your Crews
                     </h2>
-                    <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4">
+                    <div className="flex gap-3 overflow-x-auto pb-2 scrollbar-hide">
                       {myCrews.map((crew) => (
-                        <CrewCard
-                          key={crew.id}
-                          crew={crew}
-                          isJoined={true}
-                          onAction={() => handleLeaveCrew(crew.id)}
-                          isLoading={joiningCrew === crew.id}
-                        />
+                        <QuickCrewCard key={crew.id} crew={crew} />
                       ))}
                     </div>
                   </div>
                 )}
 
-                {/* All Crews Section */}
-                {activeView === "discover" && (
-                  <div>
-                    <h2 className="text-xl md:text-2xl font-bold text-white mb-4 flex items-center gap-2">
-                      <span style={{ color: coral }}>●</span> {myCrews.length > 0 ? "Explore More" : "All Crews"}
-                    </h2>
-                    <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4">
-                      {crews
-                        .filter(crew => !isJoined(crew.id))
-                        .map((crew) => (
-                          <CrewCard
-                            key={crew.id}
-                            crew={crew}
-                            isJoined={false}
-                            onAction={() => handleJoinCrew(crew.id)}
-                            isLoading={joiningCrew === crew.id}
-                          />
-                        ))}
-                    </div>
+                {/* What's Trending */}
+                <div>
+                  <h2 className="text-lg md:text-xl font-bold text-white mb-3 flex items-center gap-2">
+                    <Flame className="w-5 h-5" style={{ color: coral }} /> What's Trending
+                  </h2>
+                  <div className="flex gap-3 overflow-x-auto pb-2 scrollbar-hide">
+                    {trendingContent.map((item, idx) => (
+                      <TrendingCard key={idx} item={item} />
+                    ))}
                   </div>
-                )}
+                </div>
 
-                {/* More Section - Placeholder */}
-                {activeView === "more" && (
-                  <div className="text-center py-16">
-                    <div className="text-6xl mb-4">🚀</div>
-                    <h3 className="text-2xl font-bold text-white mb-2">Coming Soon</h3>
-                    <p className="text-gray-400">More crew features are on the way!</p>
+                {/* Recent Activity Feed */}
+                <div>
+                  <h2 className="text-lg md:text-xl font-bold text-white mb-3 flex items-center gap-2">
+                    <Activity className="w-5 h-5" style={{ color: mint }} /> Recent Activity
+                  </h2>
+                  <div className="space-y-2">
+                    {recentActivity.map((activity, idx) => (
+                      <ActivityItem key={idx} activity={activity} />
+                    ))}
                   </div>
-                )}
+                </div>
+
+                {/* Top Crews Leaderboard */}
+                <div>
+                  <h2 className="text-lg md:text-xl font-bold text-white mb-3 flex items-center gap-2">
+                    <Trophy className="w-5 h-5" style={{ color: "#FFD700" }} /> Top Crews This Week
+                  </h2>
+                  <div className="space-y-2">
+                    {topCrews.map((crew, idx) => (
+                      <LeaderboardItem key={idx} crew={crew} rank={idx + 1} />
+                    ))}
+                  </div>
+                </div>
+
+                {/* Crews You Might Like */}
+                <div>
+                  <h2 className="text-lg md:text-xl font-bold text-white mb-3 flex items-center gap-2">
+                    <Sparkles className="w-5 h-5" style={{ color: mint }} /> Crews You Might Like
+                  </h2>
+                  <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+                    {crews
+                      .filter(crew => !isJoined(crew.id))
+                      .slice(0, 3)
+                      .map((crew) => (
+                        <CrewCard
+                          key={crew.id}
+                          crew={crew}
+                          isJoined={false}
+                          onAction={() => handleJoinCrew(crew.id)}
+                          isLoading={joiningCrew === crew.id}
+                        />
+                      ))}
+                  </div>
+                </div>
               </>
             )}
           </div>
