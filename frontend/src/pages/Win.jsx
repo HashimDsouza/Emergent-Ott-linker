@@ -208,9 +208,9 @@ const Win = () => {
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              className="text-center"
+              className="text-center mt-4"
             >
-              <p className="text-white text-lg mb-4">
+              <p className="text-white text-sm md:text-lg">
                 {isCorrect ? question.explanation_correct : question.explanation_incorrect}
               </p>
             </motion.div>
@@ -219,7 +219,7 @@ const Win = () => {
           {!showFeedback && selectedAnswer && (
             <motion.button
               onClick={submitAnswer}
-              className="w-full py-3 rounded-full text-white font-semibold"
+              className="w-full py-3 rounded-full text-white font-semibold text-sm md:text-base"
               style={{ background: `linear-gradient(135deg, ${coral} 0%, ${mint} 100%)` }}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
