@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ConnectorHeader, ConnectorFooter } from "../components/ConnectorLayout";
 import ConnieFloating from "../components/ConnieFloating";
-import { Users, Plus, Check, X } from "lucide-react";
+import { Users, Plus, Check, X, Sparkles } from "lucide-react";
 
 // Brand colors
 const coral = "#FF4F64";
@@ -16,6 +16,8 @@ const Crew = () => {
   const [showCreateForm, setShowCreateForm] = useState(false);
   const [newCrew, setNewCrew] = useState({ name: "", icon: "🎬", description: "" });
   const [joiningCrew, setJoiningCrew] = useState(null);
+  const [activeView, setActiveView] = useState("discover"); // "discover", "create", "more"
+  const [hoveredCapsule, setHoveredCapsule] = useState(null);
 
   const iconOptions = ["🎬", "🏏", "📺", "⚽", "🎵", "🌍", "🎮", "🍿", "🎭", "📚", "🏀", "🎸"];
 
@@ -56,7 +58,6 @@ const Crew = () => {
         method: "POST"
       });
       
-      // Refresh crews and my crews
       await fetchCrews();
       await fetchMyCrews();
     } catch (error) {
@@ -73,7 +74,6 @@ const Crew = () => {
         method: "POST"
       });
       
-      // Refresh crews and my crews
       await fetchCrews();
       await fetchMyCrews();
     } catch (error) {
@@ -96,9 +96,9 @@ const Crew = () => {
         })
       });
 
-      // Reset form and refresh
       setNewCrew({ name: "", icon: "🎬", description: "" });
       setShowCreateForm(false);
+      setActiveView("discover");
       await fetchCrews();
       await fetchMyCrews();
     } catch (error) {
@@ -114,7 +114,7 @@ const Crew = () => {
     <>
       <ConnectorHeader />
       <div className="min-h-screen pb-32" style={{ backgroundColor: charcoal }}>
-        {/* Header */}
+        {/* Header - Match GetWithIt Style */}
         <div className="px-3 md:px-6 pt-4 md:pt-6 pb-3 md:pb-4">
           <div className="max-w-7xl mx-auto text-center">
             <h1 className="text-3xl md:text-5xl font-bold text-white mb-2">
@@ -126,24 +126,180 @@ const Crew = () => {
           </div>
         </div>
 
+        {/* Category Capsules - Match GetWithIt Design */}
+        <div className="px-3 md:px-6 pb-4 md:pb-6">
+          <div className="max-w-7xl mx-auto">
+            <div className="flex justify-center gap-2 md:gap-3">
+              <button
+                onClick={() => {
+                  setActiveView("discover");
+                  setShowCreateForm(false);
+                }}
+                onMouseEnter={() => setHoveredCapsule("discover")}
+                onMouseLeave={() => setHoveredCapsule(null)}
+                className="group relative px-3 py-1.5 md:px-4 md:py-2 rounded-full transition-all text-xs md:text-sm font-semibold text-white"
+                style={{
+                  background: activeView === "discover"
+                    ? `linear-gradient(135deg, ${coral} 0%, ${mint} 100%)`
+                    : `linear-gradient(135deg, ${coral}80 0%, ${mint}60 100%)`,
+                  boxShadow: hoveredCapsule === "discover" || activeView === "discover" ? `0 0 16px ${mint}60` : 'none',
+                  opacity: activeView === "discover" ? 1 : 0.85
+                }}
+              >
+                🔍 Discover Crews
+              </button>
+              
+              <button
+                onClick={() => {
+                  setActiveView("create");
+                  setShowCreateForm(true);
+                }}
+                onMouseEnter={() => setHoveredCapsule("create")}
+                onMouseLeave={() => setHoveredCapsule(null)}
+                className="group relative px-3 py-1.5 md:px-4 md:py-2 rounded-full transition-all text-xs md:text-sm font-semibold text-white"
+                style={{
+                  background: activeView === "create"
+                    ? `linear-gradient(135deg, ${coral} 0%, ${mint} 100%)`
+                    : `linear-gradient(135deg, ${coral}80 0%, ${mint}60 100%)`,
+                  boxShadow: hoveredCapsule === "create" || activeView === "create" ? `0 0 16px ${mint}60` : 'none',
+                  opacity: activeView === "create" ? 1 : 0.85
+                }}
+              >
+                ✨ Create Crew
+              </button>
+
+              <button
+                onClick={() => setActiveView("more")}
+                onMouseEnter={() => setHoveredCapsule("more")}
+                onMouseLeave={() => setHoveredCapsule(null)}
+                className="group relative px-3 py-1.5 md:px-4 md:py-2 rounded-full transition-all text-xs md:text-sm font-semibold text-white"
+                style={{
+                  background: activeView === "more"
+                    ? `linear-gradient(135deg, ${coral} 0%, ${mint} 100%)`
+                    : `linear-gradient(135deg, ${coral}80 0%, ${mint}60 100%)`,
+                  boxShadow: hoveredCapsule === "more" || activeView === "more" ? `0 0 16px ${mint}60` : 'none',
+                  opacity: activeView === "more" ? 1 : 0.85
+                }}
+              >
+                ⚡ More
+              </button>
+            </div>
+          </div>
+        </div>
+
         {/* Content */}
         <div className="px-3 md:px-6 py-4">
           <div className="max-w-7xl mx-auto">
             {loading ? (
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-3 md:gap-4">
                 {[1, 2, 3, 4, 5, 6].map((i) => (
                   <div key={i} className="bg-white/5 rounded-2xl h-48 animate-pulse" />
                 ))}
               </div>
             ) : (
               <>
+                {/* Create Crew Form */}
+                <AnimatePresence>
+                  {showCreateForm && activeView === "create" && (
+                    <motion.div
+                      initial={{ opacity: 0, y: -20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -20 }}
+                      className="mb-6"
+                    >
+                      <form onSubmit={handleCreateCrew} className="relative overflow-hidden rounded-3xl p-6 md:p-8 border border-white/20"
+                        style={{
+                          background: `linear-gradient(135deg, ${coral}15 0%, ${mint}10 100%)`
+                        }}
+                      >
+                        <div className="absolute top-0 right-0 w-64 h-64 rounded-full blur-3xl opacity-20"
+                          style={{ background: `radial-gradient(circle, ${mint} 0%, transparent 70%)` }}
+                        />
+                        
+                        <h3 className="text-xl md:text-2xl font-bold text-white mb-6 relative z-10">
+                          Start Your Own Crew
+                        </h3>
+                        
+                        <div className="space-y-5 relative z-10">
+                          <div>
+                            <label className="block text-sm font-semibold text-white mb-2">
+                              Crew Name *
+                            </label>
+                            <input
+                              type="text"
+                              maxLength={30}
+                              value={newCrew.name}
+                              onChange={(e) => setNewCrew({ ...newCrew, name: e.target.value })}
+                              placeholder="e.g., Thriller Junkies"
+                              className="w-full px-4 py-3 rounded-xl bg-white/10 backdrop-blur-sm border border-white/30 text-white placeholder-gray-400 focus:outline-none focus:border-mint transition-all"
+                              required
+                            />
+                            <p className="text-xs text-gray-400 mt-1.5">{newCrew.name.length}/30</p>
+                          </div>
+
+                          <div>
+                            <label className="block text-sm font-semibold text-white mb-3">
+                              Choose Icon
+                            </label>
+                            <div className="flex flex-wrap gap-2">
+                              {iconOptions.map((icon) => (
+                                <button
+                                  key={icon}
+                                  type="button"
+                                  onClick={() => setNewCrew({ ...newCrew, icon })}
+                                  className="w-14 h-14 rounded-xl flex items-center justify-center text-2xl transition-all transform hover:scale-110"
+                                  style={{
+                                    background: newCrew.icon === icon 
+                                      ? `linear-gradient(135deg, ${coral}30 0%, ${mint}30 100%)`
+                                      : 'rgba(255, 255, 255, 0.08)',
+                                    border: `2px solid ${newCrew.icon === icon ? mint : 'transparent'}`,
+                                    boxShadow: newCrew.icon === icon ? `0 0 20px ${mint}40` : 'none'
+                                  }}
+                                >
+                                  {icon}
+                                </button>
+                              ))}
+                            </div>
+                          </div>
+
+                          <div>
+                            <label className="block text-sm font-semibold text-white mb-2">
+                              Description (optional)
+                            </label>
+                            <textarea
+                              maxLength={200}
+                              value={newCrew.description}
+                              onChange={(e) => setNewCrew({ ...newCrew, description: e.target.value })}
+                              placeholder="What's your crew about?"
+                              className="w-full px-4 py-3 rounded-xl bg-white/10 backdrop-blur-sm border border-white/30 text-white placeholder-gray-400 focus:outline-none focus:border-mint resize-none transition-all"
+                              rows={3}
+                            />
+                            <p className="text-xs text-gray-400 mt-1.5">{newCrew.description.length}/200</p>
+                          </div>
+
+                          <button
+                            type="submit"
+                            className="w-full py-4 rounded-full text-white font-bold text-base shadow-lg transform hover:scale-[1.02] transition-all"
+                            style={{ 
+                              background: `linear-gradient(135deg, ${coral} 0%, ${mint} 100%)`,
+                              boxShadow: `0 8px 24px ${coral}40`
+                            }}
+                          >
+                            Create Crew
+                          </button>
+                        </div>
+                      </form>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+
                 {/* My Crews Section */}
-                {myCrews.length > 0 && (
+                {myCrews.length > 0 && activeView === "discover" && (
                   <div className="mb-8">
-                    <h2 className="text-xl md:text-2xl font-bold text-white mb-4">
-                      My Crews
+                    <h2 className="text-xl md:text-2xl font-bold text-white mb-4 flex items-center gap-2">
+                      <span style={{ color: mint }}>●</span> Your Crews
                     </h2>
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4">
                       {myCrews.map((crew) => (
                         <CrewCard
                           key={crew.id}
@@ -158,118 +314,35 @@ const Crew = () => {
                 )}
 
                 {/* All Crews Section */}
-                <div>
-                  <div className="flex justify-between items-center mb-4">
-                    <h2 className="text-xl md:text-2xl font-bold text-white">
-                      {myCrews.length > 0 ? "Discover More Crews" : "All Crews"}
+                {activeView === "discover" && (
+                  <div>
+                    <h2 className="text-xl md:text-2xl font-bold text-white mb-4 flex items-center gap-2">
+                      <span style={{ color: coral }}>●</span> {myCrews.length > 0 ? "Explore More" : "All Crews"}
                     </h2>
-                    <button
-                      onClick={() => setShowCreateForm(!showCreateForm)}
-                      className="flex items-center gap-2 px-4 py-2 rounded-full text-sm font-semibold text-white transition-all"
-                      style={{
-                        background: showCreateForm ? 'rgba(255, 255, 255, 0.1)' : `linear-gradient(135deg, ${coral} 0%, ${mint} 100%)`,
-                        border: showCreateForm ? `1px solid ${coral}` : 'none'
-                      }}
-                    >
-                      {showCreateForm ? <X className="w-4 h-4" /> : <Plus className="w-4 h-4" />}
-                      {showCreateForm ? "Cancel" : "Create Crew"}
-                    </button>
+                    <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4">
+                      {crews
+                        .filter(crew => !isJoined(crew.id))
+                        .map((crew) => (
+                          <CrewCard
+                            key={crew.id}
+                            crew={crew}
+                            isJoined={false}
+                            onAction={() => handleJoinCrew(crew.id)}
+                            isLoading={joiningCrew === crew.id}
+                          />
+                        ))}
+                    </div>
                   </div>
+                )}
 
-                  {/* Create Crew Form */}
-                  <AnimatePresence>
-                    {showCreateForm && (
-                      <motion.div
-                        initial={{ opacity: 0, height: 0 }}
-                        animate={{ opacity: 1, height: "auto" }}
-                        exit={{ opacity: 0, height: 0 }}
-                        className="mb-6"
-                      >
-                        <form onSubmit={handleCreateCrew} className="bg-white/5 rounded-2xl p-6 border border-white/10">
-                          <h3 className="text-lg font-bold text-white mb-4">Create Your Crew</h3>
-                          
-                          <div className="space-y-4">
-                            <div>
-                              <label className="block text-sm font-medium text-gray-400 mb-2">
-                                Crew Name *
-                              </label>
-                              <input
-                                type="text"
-                                maxLength={30}
-                                value={newCrew.name}
-                                onChange={(e) => setNewCrew({ ...newCrew, name: e.target.value })}
-                                placeholder="e.g., Thriller Junkies"
-                                className="w-full px-4 py-2 rounded-xl bg-white/10 border border-white/20 text-white placeholder-gray-500 focus:outline-none focus:border-mint"
-                                required
-                              />
-                              <p className="text-xs text-gray-500 mt-1">{newCrew.name.length}/30</p>
-                            </div>
-
-                            <div>
-                              <label className="block text-sm font-medium text-gray-400 mb-2">
-                                Choose Icon
-                              </label>
-                              <div className="flex flex-wrap gap-2">
-                                {iconOptions.map((icon) => (
-                                  <button
-                                    key={icon}
-                                    type="button"
-                                    onClick={() => setNewCrew({ ...newCrew, icon })}
-                                    className="w-12 h-12 rounded-xl flex items-center justify-center text-2xl transition-all"
-                                    style={{
-                                      backgroundColor: newCrew.icon === icon ? `${mint}30` : 'rgba(255, 255, 255, 0.05)',
-                                      border: `2px solid ${newCrew.icon === icon ? mint : 'transparent'}`
-                                    }}
-                                  >
-                                    {icon}
-                                  </button>
-                                ))}
-                              </div>
-                            </div>
-
-                            <div>
-                              <label className="block text-sm font-medium text-gray-400 mb-2">
-                                Description (optional)
-                              </label>
-                              <textarea
-                                maxLength={200}
-                                value={newCrew.description}
-                                onChange={(e) => setNewCrew({ ...newCrew, description: e.target.value })}
-                                placeholder="What's your crew about?"
-                                className="w-full px-4 py-2 rounded-xl bg-white/10 border border-white/20 text-white placeholder-gray-500 focus:outline-none focus:border-mint resize-none"
-                                rows={3}
-                              />
-                              <p className="text-xs text-gray-500 mt-1">{newCrew.description.length}/200</p>
-                            </div>
-
-                            <button
-                              type="submit"
-                              className="w-full py-3 rounded-full text-white font-semibold"
-                              style={{ background: `linear-gradient(135deg, ${coral} 0%, ${mint} 100%)` }}
-                            >
-                              Create Crew
-                            </button>
-                          </div>
-                        </form>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
-
-                  {/* Crews Grid */}
-                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                    {crews
-                      .filter(crew => !isJoined(crew.id))
-                      .map((crew) => (
-                        <CrewCard
-                          key={crew.id}
-                          crew={crew}
-                          isJoined={false}
-                          onAction={() => handleJoinCrew(crew.id)}
-                          isLoading={joiningCrew === crew.id}
-                        />
-                      ))}
+                {/* More Section - Placeholder */}
+                {activeView === "more" && (
+                  <div className="text-center py-16">
+                    <div className="text-6xl mb-4">🚀</div>
+                    <h3 className="text-2xl font-bold text-white mb-2">Coming Soon</h3>
+                    <p className="text-gray-400">More crew features are on the way!</p>
                   </div>
-                </div>
+                )}
               </>
             )}
           </div>
