@@ -179,23 +179,6 @@ const Crew = () => {
                   {isJoined(crew.id) && <Check className="w-3 h-3" />}
                 </button>
               ))}
-              
-              {/* Create Crew Capsule */}
-              <button
-                onClick={() => setShowCreateForm(!showCreateForm)}
-                onMouseEnter={() => setHoveredCapsule("create")}
-                onMouseLeave={() => setHoveredCapsule(null)}
-                className="group relative px-3 py-1.5 md:px-4 md:py-2 rounded-full transition-all text-xs md:text-sm font-semibold text-white whitespace-nowrap"
-                style={{
-                  background: showCreateForm
-                    ? `linear-gradient(135deg, ${coral} 0%, ${mint} 100%)`
-                    : `linear-gradient(135deg, ${coral}80 0%, ${mint}60 100%)`,
-                  boxShadow: hoveredCapsule === "create" ? `0 0 16px ${mint}60` : 'none',
-                  opacity: showCreateForm ? 1 : 0.85
-                }}
-              >
-                ✨ Create Crew
-              </button>
 
               {/* More Dropdown */}
               <div className="relative">
