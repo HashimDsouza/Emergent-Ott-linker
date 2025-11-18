@@ -20,6 +20,14 @@ const Win = () => {
   const [showFeedback, setShowFeedback] = useState(false);
   const [quizAnswers, setQuizAnswers] = useState([]);
   const [quizResult, setQuizResult] = useState(null);
+  const [selectedCategory, setSelectedCategory] = useState("all");
+  const [hoveredCategory, setHoveredCategory] = useState(null);
+
+  const categories = [
+    { id: "all", label: "All", icon: "⚡" },
+    { id: "polls", label: "Polls", icon: "🗳️" },
+    { id: "challenges", label: "Daily Challenge", icon: "🏆" }
+  ];
 
   useEffect(() => {
     fetchContent();
