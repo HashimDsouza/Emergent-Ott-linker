@@ -345,7 +345,7 @@ const Win = () => {
         </div>
 
         {/* Content */}
-        <div className="px-3 md:px-6 py-4">
+        <div className="px-3 md:px-6 py-4 pb-32">
           <div className="max-w-7xl mx-auto">
             {loading ? (
               <div className="space-y-4">
@@ -356,7 +356,7 @@ const Win = () => {
             ) : (
               <>
                 {/* Polls Section */}
-                {polls.length > 0 && (
+                {(selectedCategory === "all" || selectedCategory === "polls") && polls.length > 0 && (
                   <div className="mb-8">
                     <h2 className="text-xl md:text-2xl font-bold text-white mb-4 flex items-center gap-2">
                       🔥 Active Polls
@@ -375,7 +375,7 @@ const Win = () => {
                 )}
 
                 {/* Quizzes Section */}
-                {quizzes.length > 0 && (
+                {(selectedCategory === "all" || selectedCategory === "challenges") && quizzes.length > 0 && (
                   <div>
                     <h2 className="text-xl md:text-2xl font-bold text-white mb-4 flex items-center gap-2">
                       🏆 Daily Challenges
