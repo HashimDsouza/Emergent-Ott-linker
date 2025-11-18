@@ -17,7 +17,7 @@ CREWS = [
         "id": str(uuid.uuid4()),
         "name": "Bollywood Buffs",
         "icon": "🎬",
-        "description": "From SRK to Ranbir, every frame is a feeling. Bollywood runs in our veins.",
+        "description": "Where every premiere is an event. Every debate is personal. Bollywood isn't just cinema—it's our culture.",
         "founder_id": None,
         "member_count": 12543,
         "is_predefined": True,
