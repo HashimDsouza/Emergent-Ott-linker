@@ -872,6 +872,85 @@ class QuizResult(BaseModel):
     percentile: int  # You're in top X% of players
     correct_answers: List[bool]
 
+# ============================================================================
+# CREW FEATURE MODELS (Social Communities)
+# ============================================================================
+
+class Crew(BaseModel):
+    """Crew/Community model"""
+    model_config = ConfigDict(extra="ignore")
+    
+    id: str = Field(default_factory=lambda: str(uuid.uuid4()))
+    name: str
+    icon: str  # Emoji
+    description: str
+    founder_id: Optional[str] = None
+    member_count: int = 0
+    is_predefined: bool = False  # True for default 6 crews
+    created_at: str = Field(default_factory=lambda: datetime.now(timezone.utc).isoformat())
+
+class CrewCreate(BaseModel):
+    """Create a new crew"""
+    name: str = Field(max_length=30)
+    icon: str
+    description: Optional[str] = Field(default="", max_length=200)
+    founder_id: Optional[str] = "anonymous"
+
+class UserCrew(BaseModel):
+    """User membership in a crew"""
+    user_id: str
+    crew_id: str
+    is_founder: bool = False
+    joined_at: str = Field(default_factory=lambda: datetime.now(timezone.utc).isoformat())
+
+class Watchlist(BaseModel):
+    """User's watchlist item"""
+    model_config = ConfigDict(extra="ignore")
+    
+    id: str = Field(default_factory=lambda: str(uuid.uuid4()))
+    user_id: str
+    content_id: str
+    content_type: str  # movie, series, news
+    content_title: str
+    content_image: Optional[str] = None
+    status: str = "want_to_watch"  # want_to_watch, watched
+    shared_with_crews: List[str] = []
+    added_at: str = Field(default_factory=lambda: datetime.now(timezone.utc).isoformat())
+
+class WatchlistCreate(BaseModel):
+    """Add item to watchlist"""
+    user_id: str = "anonymous"
+    content_id: str
+    content_type: str
+    content_title: str
+    content_image: Optional[str] = None
+    status: str = "want_to_watch"
+    shared_with_crews: List[str] = []
+
+class Reaction(BaseModel):
+    """User reaction to content"""
+    user_id: str
+    content_id: str
+    reaction_type: str  # love, fire, must_watch, funny, emotional, dislike
+    created_at: str = Field(default_factory=lambda: datetime.now(timezone.utc).isoformat())
+
+class ReactionCreate(BaseModel):
+    """Add a reaction"""
+    user_id: str = "anonymous"
+    content_id: str
+    reaction_type: str  # love, fire, must_watch, funny, emotional, dislike
+
+class ReactionCounts(BaseModel):
+    """Aggregated reaction counts for content"""
+    content_id: str
+    love: int = 0
+    fire: int = 0
+    must_watch: int = 0
+    funny: int = 0
+    emotional: int = 0
+    dislike: int = 0
+    total: int = 0
+
 class IncomingAutoFeedItem(BaseModel):
     """Incoming auto feed item for future automation (Phase 2)"""
     model_config = ConfigDict(extra="ignore")
