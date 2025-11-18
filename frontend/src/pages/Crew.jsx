@@ -11,6 +11,7 @@ const mint = "#30E0B2";
 const charcoal = "#0E1514";
 
 const Crew = () => {
+  const navigate = useNavigate();
   const [crews, setCrews] = useState([]);
   const [myCrews, setMyCrews] = useState([]);
   const [loading, setLoading] = useState(true);
