@@ -33,12 +33,12 @@ const Crew = () => {
   // State for filtering
   const [filterView, setFilterView] = useState("all"); // "all", "popular", "new", "trending", "recommended"
 
-  // Mock data for trending content - using TMDB URLs
+  // Mock data for trending content - using placeholder with gradient
   const trendingContent = [
-    { title: "Sacred Games", reactions: 156, crews: 8, thumbnail: "https://image.tmdb.org/t/p/w500/jzIeFqVvZ5iJzP6P7XlzRbZdQvy.jpg" },
-    { title: "Pushpa 2", reactions: 134, crews: 6, thumbnail: "https://image.tmdb.org/t/p/w500/3G4CswOozqceFVbe7pP6BYCpOmH.jpg" },
-    { title: "Mirzapur S3", reactions: 98, crews: 5, thumbnail: "https://image.tmdb.org/t/p/w500/7CFdq8M9ZuP1QRLaBG2ExdcrCBs.jpg" },
-    { title: "Squid Game S2", reactions: 87, crews: 7, thumbnail: "https://image.tmdb.org/t/p/w500/sXZhtWLo3fecavpDuOyJiayjt32.jpg" },
+    { title: "Sacred Games", reactions: 156, crews: 8, thumbnail: null },
+    { title: "Pushpa 2", reactions: 134, crews: 6, thumbnail: null },
+    { title: "Mirzapur S3", reactions: 98, crews: 5, thumbnail: null },
+    { title: "Squid Game S2", reactions: 87, crews: 7, thumbnail: null },
   ];
 
   // Mock leaderboard
