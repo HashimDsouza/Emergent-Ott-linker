@@ -123,10 +123,10 @@ QUIZZES = [
                 "question": "India just had a rough day at Eden Gardens vs South Africa. How badly did we lose the Test?",
                 "options": ["A", "B", "C", "D"],
                 "option_texts": [
-                    "By 15 runs (If only...)",
-                    "By 20 runs (Closer, but still hurts)",
-                    "By 30 runs (Yeah, it stung)",
-                    "By 45 runs (Let's not make it worse)"
+                    "By 15 runs (Nail-biter territory)",
+                    "By 20 runs (Close finish vibes)",
+                    "By 30 runs (Painful margin)",
+                    "By 45 runs (Ouch moment)"
                 ],
                 "correct_answer": "C",
                 "explanation_correct": "You're a cricket nerd! Respect! 🙌 SA's first Test win in India in 15 years. Eden Gardens witnessed history (painful history).",
