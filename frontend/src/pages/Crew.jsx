@@ -30,12 +30,15 @@ const Crew = () => {
     { crew: "Music Mavens", action: "added Spotify playlist", reactions: 12, time: "8h ago", emoji: "🎵" },
   ];
 
-  // Mock data for trending content
+  // State for filtering
+  const [filterView, setFilterView] = useState("all"); // "all", "popular", "new", "trending", "recommended"
+
+  // Mock data for trending content - using real catalog images
   const trendingContent = [
-    { title: "Sacred Games", reactions: 156, crews: 8, thumbnail: "https://image.tmdb.org/t/p/w500/jzIeFqVvZ5iJzP6P7XlzRbZdQvy.jpg" },
-    { title: "Pushpa 2", reactions: 134, crews: 6, thumbnail: "https://image.tmdb.org/t/p/w500/8lbf4nOeHqR9OQGXS2E4TipziQB.jpg" },
-    { title: "Mirzapur S3", reactions: 98, crews: 5, thumbnail: "https://image.tmdb.org/t/p/w500/7CFdq8M9ZuP1QRLaBG2ExdcrCBs.jpg" },
-    { title: "Squid Game S2", reactions: 87, crews: 7, thumbnail: "https://image.tmdb.org/t/p/w500/sXZhtWLo3fecavpDuOyJiayjt32.jpg" },
+    { title: "Sacred Games", reactions: 156, crews: 8, thumbnail: "https://m.media-amazon.com/images/M/MV5BMjMwYmE2NWMtODdmOS00YzY0LWEzZjctNjg1MGJjM2EwYTM0XkEyXkFqcGc@._V1_.jpg" },
+    { title: "Pushpa 2", reactions: 134, crews: 6, thumbnail: "https://m.media-amazon.com/images/M/MV5BMTk5NzI0ODEyMl5BMl5BanBnXkFtZTgwMDcwOTU2MjI@._V1_.jpg" },
+    { title: "Mirzapur S3", reactions: 98, crews: 5, thumbnail: "https://m.media-amazon.com/images/M/MV5BYzg5ODNmZmYtZmI3OS00ZGIyLWE5NzMtNWQyZjg1ZWMwOWU3XkEyXkFqcGc@._V1_.jpg" },
+    { title: "Squid Game S2", reactions: 87, crews: 7, thumbnail: "https://m.media-amazon.com/images/M/MV5BYjhiMTMzNDUtMDk0MS00NmE4LWI5OTctZmNlMzQ1ZjY5YTZhXkEyXkFqcGc@._V1_.jpg" },
   ];
 
   // Mock leaderboard
