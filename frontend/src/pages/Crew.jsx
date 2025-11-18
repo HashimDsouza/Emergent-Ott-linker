@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 import { ConnectorHeader, ConnectorFooter } from "../components/ConnectorLayout";
 import ConnieFloating from "../components/ConnieFloating";
 import { Users, Plus, Check, X, Sparkles, TrendingUp, Activity, Trophy, ChevronDown, Flame } from "lucide-react";
