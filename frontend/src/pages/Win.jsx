@@ -98,7 +98,7 @@ const Win = () => {
   };
 
   const submitQuiz = async (answers) => {
-    try:
+    try {
       const backendUrl = process.env.REACT_APP_BACKEND_URL || "https://connector-hub-2.preview.emergentagent.com";
       const response = await fetch(`${backendUrl}/api/win/quizzes/${activeQuiz.id}/submit`, {
         method: "POST",
