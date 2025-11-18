@@ -221,18 +221,14 @@ const Crew = () => {
                 
                 {/* Dropdown Menu */}
                 {showMoreDropdown && (
-                  <motion.div
-                    initial={{ opacity: 0, scale: 0.95, y: -10 }}
-                    animate={{ opacity: 1, scale: 1, y: 0 }}
-                    exit={{ opacity: 0, scale: 0.95, y: -10 }}
-                    transition={{ duration: 0.15 }}
+                  <div
                     className="absolute top-full right-0 mt-2 rounded-xl border overflow-hidden shadow-2xl"
                     style={{
-                      background: 'rgba(14, 21, 20, 0.95)',
+                      background: 'rgba(14, 21, 20, 0.98)',
                       backdropFilter: 'blur(20px)',
-                      borderColor: 'rgba(255, 255, 255, 0.2)',
-                      minWidth: '180px',
-                      zIndex: 1000
+                      borderColor: 'rgba(48, 224, 178, 0.3)',
+                      minWidth: '200px',
+                      zIndex: 99999
                     }}
                   >
                     {[
