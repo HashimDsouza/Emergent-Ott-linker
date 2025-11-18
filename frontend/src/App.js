@@ -9,6 +9,7 @@ import BuzzMeter from "@/pages/BuzzMeter";
 import Entertainment from "@/pages/Entertainment";
 import GameOn from "@/pages/GameOn";
 import GetWithIt from "@/pages/GetWithIt";
+import Win from "@/pages/Win";
 import FeedAdmin from "@/pages/FeedAdmin";
 
 function App() {
