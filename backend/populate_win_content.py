@@ -93,10 +93,10 @@ QUIZZES = [
                 "question": "Rishabh Pant just broke the bank at ₹27 CRORE. Which team went all in?",
                 "options": ["A", "B", "C", "D"],
                 "option_texts": [
-                    "CSK (Dhoni's wallet said no)",
-                    "MI (They've got enough stars)",
-                    "LSG (Lucknow said 'shut up and take our money')",
-                    "RCB (Still waiting for that first trophy)"
+                    "CSK (Dhoni's legacy squad)",
+                    "MI (Rohit's dream team)",
+                    "LSG (Lucknow's big bet)",
+                    "RCB (Kohli's brigade)"
                 ],
                 "correct_answer": "C",
                 "explanation_correct": "You're in the top tier! LSG it is! Most expensive player EVER. Pant is now captain too. No pressure! 😅",
