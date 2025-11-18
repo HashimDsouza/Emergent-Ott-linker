@@ -78,10 +78,10 @@ QUIZZES = [
                 "question": "Farhan Akhtar is going full Jawan mode in 120 Bahadur (Nov 21). What's the vibe?",
                 "options": ["A", "B", "C", "D"],
                 "option_texts": [
-                    "Rom-com (Sir, this is not Rock On)",
-                    "War drama (Battle of Rezang La, baby!)",
-                    "Biopic (Close, but no cigar)",
-                    "Horror (The only horror is missing this film)"
+                    "Rom-com (Rock On energy)",
+                    "War drama (Intense action mode)",
+                    "Biopic (Real-life hero story)",
+                    "Horror (Jump scare territory)"
                 ],
                 "correct_answer": "B",
                 "explanation_correct": "Hell yeah! It's a war drama! Farhan's paying tribute to the heroes of Rezang La. Tissues recommended.",
