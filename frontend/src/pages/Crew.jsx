@@ -18,6 +18,7 @@ const Crew = () => {
   const [newCrew, setNewCrew] = useState({ name: "", icon: "🎬", description: "" });
   const [joiningCrew, setJoiningCrew] = useState(null);
   const [hoveredCapsule, setHoveredCapsule] = useState(null);
+  const [trendingContent, setTrendingContent] = useState([]);
 
   const iconOptions = ["🎬", "🏏", "📺", "⚽", "🎵", "🌍", "🎮", "🍿", "🎭", "📚", "🏀", "🎸"];
 
@@ -32,14 +33,6 @@ const Crew = () => {
 
   // State for filtering
   const [filterView, setFilterView] = useState("all"); // "all", "popular", "new", "trending", "recommended"
-
-  // Mock data for trending content - using placeholder with gradient
-  const trendingContent = [
-    { title: "Sacred Games", reactions: 156, crews: 8, thumbnail: null },
-    { title: "Pushpa 2", reactions: 134, crews: 6, thumbnail: null },
-    { title: "Mirzapur S3", reactions: 98, crews: 5, thumbnail: null },
-    { title: "Squid Game S2", reactions: 87, crews: 7, thumbnail: null },
-  ];
 
   // Mock leaderboard
   const topCrews = [
