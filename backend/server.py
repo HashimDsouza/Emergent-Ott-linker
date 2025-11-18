@@ -1586,6 +1586,258 @@ async def submit_quiz(quiz_id: str, response: QuizResponse):
         correct_answers=correct_answers
     )
 
+# ============================================================================
+# CREW FEATURE ENDPOINTS
+# ============================================================================
+
+@api_router.get("/crew/list", response_model=List[Crew])
+async def get_crews():
+    """Get all crews"""
+    crews = await db.crews.find().to_list(length=None)
+    return [Crew(**crew) for crew in crews]
+
+@api_router.post("/crew/create", response_model=Crew)
+async def create_crew(crew_data: CrewCreate):
+    """Create a new crew"""
+    crew = Crew(
+        name=crew_data.name,
+        icon=crew_data.icon,
+        description=crew_data.description or "",
+        founder_id=crew_data.founder_id,
+        member_count=1,  # Creator is first member
+        is_predefined=False
+    )
+    
+    crew_dict = crew.model_dump()
+    await db.crews.insert_one(crew_dict)
+    
+    # Auto-join creator
+    user_crew = UserCrew(
+        user_id=crew_data.founder_id,
+        crew_id=crew.id,
+        is_founder=True
+    )
+    await db.user_crews.insert_one(user_crew.model_dump())
+    
+    return crew
+
+@api_router.post("/crew/{crew_id}/join")
+async def join_crew(crew_id: str, user_id: str = "anonymous"):
+    """Join a crew"""
+    # Check if already joined
+    existing = await db.user_crews.find_one({"user_id": user_id, "crew_id": crew_id})
+    if existing:
+        return {"message": "Already joined"}
+    
+    # Add membership
+    user_crew = UserCrew(user_id=user_id, crew_id=crew_id, is_founder=False)
+    await db.user_crews.insert_one(user_crew.model_dump())
+    
+    # Increment member count
+    await db.crews.update_one({"id": crew_id}, {"$inc": {"member_count": 1}})
+    
+    return {"message": "Joined successfully"}
+
+@api_router.post("/crew/{crew_id}/leave")
+async def leave_crew(crew_id: str, user_id: str = "anonymous"):
+    """Leave a crew"""
+    # Remove membership
+    result = await db.user_crews.delete_one({"user_id": user_id, "crew_id": crew_id})
+    
+    if result.deleted_count > 0:
+        # Decrement member count
+        await db.crews.update_one({"id": crew_id}, {"$inc": {"member_count": -1}})
+        return {"message": "Left successfully"}
+    
+    return {"message": "Not a member"}
+
+@api_router.get("/crew/my-crews")
+async def get_my_crews(user_id: str = "anonymous"):
+    """Get crews user has joined"""
+    user_crews = await db.user_crews.find({"user_id": user_id}).to_list(length=None)
+    crew_ids = [uc["crew_id"] for uc in user_crews]
+    
+    if not crew_ids:
+        return []
+    
+    crews = await db.crews.find({"id": {"$in": crew_ids}}).to_list(length=None)
+    return [Crew(**crew) for crew in crews]
+
+@api_router.get("/crew/{crew_id}/content")
+async def get_crew_content(crew_id: str):
+    """Get content relevant to a crew"""
+    # Get crew info
+    crew = await db.crews.find_one({"id": crew_id})
+    if not crew:
+        raise HTTPException(status_code=404, detail="Crew not found")
+    
+    # Get feed items tagged for this crew
+    feed_items = await db.feed_items.find(
+        {"relevant_crews": crew["name"].lower().replace(" ", "_")}
+    ).to_list(length=None)
+    
+    # Get polls relevant to this crew
+    polls = await db.polls.find(
+        {"$or": [
+            {"relevant_crews": crew["name"].lower().replace(" ", "_")},
+            {"relevant_crews": "all"}
+        ]}
+    ).to_list(length=None)
+    
+    return {
+        "feed_items": feed_items,
+        "polls": polls
+    }
+
+# ============================================================================
+# WATCHLIST ENDPOINTS
+# ============================================================================
+
+@api_router.get("/watchlist/my-watchlist")
+async def get_my_watchlist(user_id: str = "anonymous"):
+    """Get user's watchlist"""
+    watchlist = await db.watchlist.find({"user_id": user_id}).to_list(length=None)
+    return [Watchlist(**item) for item in watchlist]
+
+@api_router.post("/watchlist/add", response_model=Watchlist)
+async def add_to_watchlist(item: WatchlistCreate):
+    """Add item to watchlist"""
+    # Check if already in watchlist
+    existing = await db.watchlist.find_one({
+        "user_id": item.user_id,
+        "content_id": item.content_id
+    })
+    
+    if existing:
+        # Update existing
+        await db.watchlist.update_one(
+            {"_id": existing["_id"]},
+            {"$set": {
+                "status": item.status,
+                "shared_with_crews": item.shared_with_crews
+            }}
+        )
+        return Watchlist(**existing)
+    
+    # Create new
+    watchlist_item = Watchlist(
+        user_id=item.user_id,
+        content_id=item.content_id,
+        content_type=item.content_type,
+        content_title=item.content_title,
+        content_image=item.content_image,
+        status=item.status,
+        shared_with_crews=item.shared_with_crews
+    )
+    
+    await db.watchlist.insert_one(watchlist_item.model_dump())
+    return watchlist_item
+
+@api_router.delete("/watchlist/{watchlist_id}")
+async def remove_from_watchlist(watchlist_id: str, user_id: str = "anonymous"):
+    """Remove item from watchlist"""
+    result = await db.watchlist.delete_one({"id": watchlist_id, "user_id": user_id})
+    
+    if result.deleted_count > 0:
+        return {"message": "Removed from watchlist"}
+    
+    raise HTTPException(status_code=404, detail="Item not found")
+
+@api_router.get("/watchlist/crew/{crew_id}")
+async def get_crew_watchlist(crew_id: str):
+    """Get what crew members are watching"""
+    # Get crew name
+    crew = await db.crews.find_one({"id": crew_id})
+    if not crew:
+        raise HTTPException(status_code=404, detail="Crew not found")
+    
+    # Get watchlist items shared with this crew
+    watchlist = await db.watchlist.find(
+        {"shared_with_crews": crew_id}
+    ).to_list(length=None)
+    
+    # Aggregate by content_id to show counts
+    from collections import Counter
+    content_counts = Counter([item["content_id"] for item in watchlist])
+    
+    # Get unique items with counts
+    unique_items = {}
+    for item in watchlist:
+        cid = item["content_id"]
+        if cid not in unique_items:
+            unique_items[cid] = {
+                **item,
+                "member_count": content_counts[cid]
+            }
+    
+    return list(unique_items.values())
+
+# ============================================================================
+# REACTIONS ENDPOINTS
+# ============================================================================
+
+@api_router.post("/reactions/add")
+async def add_reaction(reaction: ReactionCreate):
+    """Add or update reaction"""
+    # Check if user already reacted
+    existing = await db.reactions.find_one({
+        "user_id": reaction.user_id,
+        "content_id": reaction.content_id
+    })
+    
+    if existing:
+        # Update reaction
+        await db.reactions.update_one(
+            {"_id": existing["_id"]},
+            {"$set": {"reaction_type": reaction.reaction_type}}
+        )
+    else:
+        # Create new reaction
+        reaction_obj = Reaction(
+            user_id=reaction.user_id,
+            content_id=reaction.content_id,
+            reaction_type=reaction.reaction_type
+        )
+        await db.reactions.insert_one(reaction_obj.model_dump())
+    
+    return {"message": "Reaction added"}
+
+@api_router.delete("/reactions/remove")
+async def remove_reaction(user_id: str, content_id: str):
+    """Remove user's reaction"""
+    await db.reactions.delete_one({"user_id": user_id, "content_id": content_id})
+    return {"message": "Reaction removed"}
+
+@api_router.get("/reactions/{content_id}", response_model=ReactionCounts)
+async def get_reactions(content_id: str):
+    """Get reaction counts for content"""
+    reactions = await db.reactions.find({"content_id": content_id}).to_list(length=None)
+    
+    counts = {
+        "love": 0,
+        "fire": 0,
+        "must_watch": 0,
+        "funny": 0,
+        "emotional": 0,
+        "dislike": 0
+    }
+    
+    for reaction in reactions:
+        reaction_type = reaction.get("reaction_type")
+        if reaction_type in counts:
+            counts[reaction_type] += 1
+    
+    return ReactionCounts(
+        content_id=content_id,
+        love=counts["love"],
+        fire=counts["fire"],
+        must_watch=counts["must_watch"],
+        funny=counts["funny"],
+        emotional=counts["emotional"],
+        dislike=counts["dislike"],
+        total=sum(counts.values())
+    )
+
 @api_router.get("/proxy-image")
 async def proxy_image(url: str):
     """Proxy TMDB images to avoid ORB blocking"""
