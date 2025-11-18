@@ -428,6 +428,109 @@ const Crew = () => {
   );
 };
 
+// Quick Crew Card - Compact for "Your Crews"
+const QuickCrewCard = ({ crew }) => {
+  const getCrewIcon = () => {
+    if (crew.name === "Regional Riders") return "🇮🇳";
+    return crew.icon;
+  };
+
+  return (
+    <div className="flex-shrink-0 w-20 md:w-24">
+      <div className="bg-white/10 backdrop-blur-sm rounded-xl p-3 md:p-4 border border-white/20 hover:border-mint/50 transition-all cursor-pointer text-center">
+        <div className="text-3xl md:text-4xl mb-2">{getCrewIcon()}</div>
+        <p className="text-xs text-white font-semibold truncate">{crew.name}</p>
+      </div>
+    </div>
+  );
+};
+
+// Trending Content Card
+const TrendingCard = ({ item }) => {
+  return (
+    <div className="flex-shrink-0 w-32 md:w-40">
+      <div className="bg-white/5 backdrop-blur-sm rounded-xl overflow-hidden border border-white/10 hover:border-coral/50 transition-all cursor-pointer group">
+        <div className="aspect-[2/3] relative overflow-hidden">
+          <img 
+            src={item.thumbnail} 
+            alt={item.title}
+            className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
+          <div className="absolute bottom-0 left-0 right-0 p-2">
+            <p className="text-xs text-white font-bold truncate">{item.title}</p>
+            <div className="flex items-center gap-2 text-xs mt-1">
+              <span className="flex items-center gap-1" style={{ color: coral }}>
+                <Flame className="w-3 h-3" /> {item.reactions}
+              </span>
+              <span className="text-gray-400">{item.crews} crews</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+// Activity Feed Item
+const ActivityItem = ({ activity }) => {
+  return (
+    <div className="bg-white/5 backdrop-blur-sm rounded-xl p-3 md:p-4 border border-white/10 hover:border-white/20 transition-all">
+      <div className="flex items-center justify-between">
+        <div className="flex items-center gap-3">
+          <div className="text-2xl">{activity.emoji}</div>
+          <div>
+            <p className="text-sm text-white">
+              <span className="font-bold">{activity.crew}</span> {activity.action}
+            </p>
+            <div className="flex items-center gap-3 mt-1">
+              <span className="text-xs flex items-center gap-1" style={{ color: coral }}>
+                <Flame className="w-3 h-3" /> {activity.reactions}
+              </span>
+              <span className="text-xs text-gray-400">{activity.time}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+// Leaderboard Item
+const LeaderboardItem = ({ crew, rank }) => {
+  const getMedalColor = () => {
+    if (rank === 1) return "#FFD700"; // Gold
+    if (rank === 2) return "#C0C0C0"; // Silver
+    if (rank === 3) return "#CD7F32"; // Bronze
+    return mint;
+  };
+
+  return (
+    <div className="bg-white/5 backdrop-blur-sm rounded-xl p-3 md:p-4 border border-white/10 hover:border-white/20 transition-all">
+      <div className="flex items-center justify-between">
+        <div className="flex items-center gap-3">
+          <div 
+            className="w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm"
+            style={{ 
+              background: `linear-gradient(135deg, ${getMedalColor()}30 0%, ${getMedalColor()}10 100%)`,
+              color: getMedalColor(),
+              border: `2px solid ${getMedalColor()}`
+            }}
+          >
+            {rank}
+          </div>
+          <div className="text-2xl">{crew.emoji}</div>
+          <p className="text-sm md:text-base font-semibold text-white">{crew.name}</p>
+        </div>
+        <div className="flex items-center gap-1.5" style={{ color: coral }}>
+          <Flame className="w-4 h-4" />
+          <span className="text-sm font-bold">{crew.reactions}</span>
+        </div>
+      </div>
+    </div>
+  );
+};
+
 // Crew Card Component - Premium Design
 const CrewCard = ({ crew, isJoined, onAction, isLoading }) => {
   const [isHovered, setIsHovered] = useState(false);
