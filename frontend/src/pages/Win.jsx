@@ -49,7 +49,7 @@ const Win = () => {
   const handleVote = async (pollId, optionId) => {
     if (votedPolls[pollId]) return;
 
-    try:
+    try {
       const backendUrl = process.env.REACT_APP_BACKEND_URL || "https://connector-hub-2.preview.emergentagent.com";
       const response = await fetch(`${backendUrl}/api/win/polls/${pollId}/vote`, {
         method: "POST",
