@@ -153,7 +153,15 @@ async def main():
     
     print("\n" + "=" * 60)
     print(f"\nReady to generate taglines for all {len(items_needing_taglines)} items.")
-    confirm = input("Proceed with full generation? (yes/no): ").strip().lower()
+    
+    # Check for auto-proceed flag
+    auto_proceed = "--yes" in sys.argv or "-y" in sys.argv
+    
+    if auto_proceed:
+        print("✅ Auto-proceeding (--yes flag detected)")
+        confirm = "yes"
+    else:
+        confirm = input("Proceed with full generation? (yes/no): ").strip().lower()
     
     if confirm != "yes":
         print("❌ Cancelled. No changes made.")
