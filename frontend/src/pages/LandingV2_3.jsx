@@ -181,6 +181,7 @@ export default function LandingV2_3({ apiData, onShare }) {
           subline="Matches, highlights, and scores"
           items={sportsCards}
           onInfo={onInfo}
+          onShare={onShare}
         />
 
         <DetailsModal open={modalOpen} onClose={() => setModalOpen(false)} item={modalItem} />
