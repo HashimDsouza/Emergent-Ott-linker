@@ -248,7 +248,7 @@ const ContentDetail = () => {
                 {/* Line 4: Descriptor (left) + 'i' icon (right) */}
                 <div className="flex items-center gap-1 md:gap-1.5">
                   <div 
-                    className="italic flex-1 text-[10px] md:text-[11px]"
+                    className="italic flex-1 text-[11px] md:text-[12px] leading-tight"
                     style={{ color: coral }}
                   >
                     {content.descriptor}
