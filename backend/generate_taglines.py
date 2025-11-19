@@ -98,10 +98,10 @@ async def main():
     content_list = await db.content.find({}).to_list(length=None)
     print(f"📊 Found {len(content_list)} total items")
     
-    # Filter items that need taglines
+    # Filter items that need taglines (including None/null)
     items_needing_taglines = [
         item for item in content_list 
-        if not item.get("tagline") or item.get("tagline") in ["", "N/A", None]
+        if item.get("tagline") is None or item.get("tagline") in ["", "N/A", "None"]
     ]
     
     print(f"🎯 {len(items_needing_taglines)} items need taglines")
