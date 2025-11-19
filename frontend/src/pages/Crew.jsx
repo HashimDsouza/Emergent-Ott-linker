@@ -389,7 +389,7 @@ const Crew = () => {
                     
                     {/* User's Joined Crews */}
                     {myCrews.map((crew) => (
-                      <QuickCrewCard key={crew.id} crew={crew} />
+                      <QuickCrewCard key={crew.id} crew={crew} onClick={(crewId) => navigate(`/crew/${crewId}`)} />
                     ))}
                     
                     {/* Empty State if no crews */}
