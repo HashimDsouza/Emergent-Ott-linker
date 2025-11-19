@@ -1756,7 +1756,7 @@ async def get_crew_watchlist(crew_id: str):
         {"shared_with_crews": crew_id}
     ).to_list(length=None)
     
-    # Aggregate by content_id to show counts
+    # Convert to Watchlist models and aggregate by content_id
     from collections import Counter
     content_counts = Counter([item["content_id"] for item in watchlist])
     
@@ -1765,8 +1765,11 @@ async def get_crew_watchlist(crew_id: str):
     for item in watchlist:
         cid = item["content_id"]
         if cid not in unique_items:
+            # Remove _id before creating Watchlist model
+            item_dict = {k: v for k, v in item.items() if k != "_id"}
+            watchlist_item = Watchlist(**item_dict)
             unique_items[cid] = {
-                **item,
+                **watchlist_item.model_dump(),
                 "member_count": content_counts[cid]
             }
     
