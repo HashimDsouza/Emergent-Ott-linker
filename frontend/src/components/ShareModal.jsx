@@ -74,8 +74,8 @@ const ShareModal = ({ isOpen, onClose, content }) => {
   };
 
   const handleSocialShare = async (platform) => {
-    // Use the actual preview app URL
-    const shareUrl = `https://crew-discovery.preview.emergentagent.com/`;
+    // Deep link to specific content page
+    const shareUrl = `https://crew-discovery.preview.emergentagent.com/content/${content.id}`;
     const shareText = `Check out "${content.title}" on Connector!`;
 
     if (platform === "native" && navigator.share) {
@@ -100,8 +100,8 @@ const ShareModal = ({ isOpen, onClose, content }) => {
   };
 
   const handleCopyLink = () => {
-    // Use the actual preview app URL
-    const shareUrl = `https://crew-discovery.preview.emergentagent.com/`;
+    // Deep link to specific content page
+    const shareUrl = `https://crew-discovery.preview.emergentagent.com/content/${content.id}`;
     navigator.clipboard.writeText(shareUrl);
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
