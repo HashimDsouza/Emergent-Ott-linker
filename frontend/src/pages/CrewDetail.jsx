@@ -57,15 +57,18 @@ const CrewDetail = () => {
     try {
       const backendUrl = process.env.REACT_APP_BACKEND_URL || "https://crew-discovery.preview.emergentagent.com";
       
-      // Fetch content items (mock as shared to this crew)
-      const contentResponse = await fetch(`${backendUrl}/api/content`);
-      const allContent = await contentResponse.json();
+      // Fetch real watchlist items shared with this crew
+      const watchlistResponse = await fetch(`${backendUrl}/api/watchlist/crew/${crewId}`);
+      const watchlistData = await watchlistResponse.json();
       
-      // Mock: Take first 8 items as shared to this crew
-      const mockWatchlist = allContent.slice(0, 8).map(item => ({
+      // Enrich with mock reactions (until reactions API is fully integrated)
+      const enrichedWatchlist = watchlistData.map(item => ({
         ...item,
+        id: item.content_id,
+        title: item.content_title,
+        thumbnail: item.content_image,
         shared_by: "Anonymous User",
-        shared_at: new Date(Date.now() - Math.random() * 7 * 24 * 60 * 60 * 1000).toISOString(),
+        shared_at: item.created_at,
         reactions: {
           fire: Math.floor(Math.random() * 50),
           heart: Math.floor(Math.random() * 30),
@@ -74,9 +77,10 @@ const CrewDetail = () => {
         }
       }));
       
-      setWatchlist(mockWatchlist);
+      setWatchlist(enrichedWatchlist);
     } catch (error) {
       console.error("Error fetching watchlist:", error);
+      setWatchlist([]);
     }
   };
 
