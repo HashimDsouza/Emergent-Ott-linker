@@ -173,6 +173,7 @@ export default function LandingV2_3({ apiData, onShare }) {
           subline="Editor’s picks you can’t skip"
           items={cards.slice(6,12)}
           onInfo={onInfo}
+          onShare={onShare}
         />
         <Tray
           icon="🏆"
