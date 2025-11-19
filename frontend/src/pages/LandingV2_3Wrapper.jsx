@@ -43,10 +43,20 @@ export default function LandingV2_3Wrapper() {
     );
   }
 
+  const handleShare = (content) => {
+    setSelectedContent(content);
+    setShareModalOpen(true);
+  };
+
   return (
     <>
-      <LandingV2_3 apiData={apiData} />
+      <LandingV2_3 apiData={apiData} onShare={handleShare} />
       <ConnieFloating offsetPx={140} />
+      <ShareModal 
+        isOpen={shareModalOpen}
+        onClose={() => setShareModalOpen(false)}
+        content={selectedContent || {}}
+      />
     </>
   );
 }
