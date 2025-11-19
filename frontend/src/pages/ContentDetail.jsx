@@ -199,7 +199,7 @@ const ContentDetail = () => {
                 </div>
 
                 {/* Line 3: BUZZ METER + social icons (YouTube, Twitter, Reddit) + IMDb rating - EXACT MATCH */}
-                <div className="flex items-center gap-1 md:gap-1.5 uppercase tracking-wide opacity-85 mb-1 md:mb-1 text-[8px] md:text-[10px]">
+                <div className="flex items-center gap-1 md:gap-1.5 uppercase tracking-wide opacity-85 mb-1 md:mb-1 text-[9px] md:text-[10px]">
                   <span className="md:hidden">BUZZ</span>
                   <span className="hidden md:inline">BUZZ METER</span>
                   <a 
