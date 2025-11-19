@@ -31,11 +31,13 @@ const ContentDetail = () => {
       const response = await fetch(`${backendUrl}/api/content`);
       const allContent = await response.json();
       
-      // Find the specific content
+      // Find the specific content and map to card format
       const foundContent = allContent.find(item => item.id === contentId);
       
       if (foundContent) {
-        setContent(foundContent);
+        // Use the same mapping as tiles
+        const mappedContent = mapApiToCard(foundContent);
+        setContent(mappedContent);
       }
       setLoading(false);
     } catch (error) {
@@ -44,36 +46,26 @@ const ContentDetail = () => {
     }
   };
 
-  const openPlatform = (platform) => {
-    if (!content) return;
+  const handlePosterClick = () => {
+    if (!content || !content.platform) return;
     
-    // Open streaming platform (deeplink or web)
-    const platformUrls = {
-      'Netflix': `https://www.netflix.com/search?q=${encodeURIComponent(content.title)}`,
-      'Prime Video': `https://www.primevideo.com/search?phrase=${encodeURIComponent(content.title)}`,
-      'Jiohotstar': `https://www.hotstar.com/in/search?q=${encodeURIComponent(content.title)}`,
-      'Disney+ Hotstar': `https://www.hotstar.com/in/search?q=${encodeURIComponent(content.title)}`,
-      'Sony Liv': `https://www.sonyliv.com/search/${encodeURIComponent(content.title)}`,
-      'Zee5': `https://www.zee5.com/search?q=${encodeURIComponent(content.title)}`,
-      'Apple TV+': `https://tv.apple.com/search?q=${encodeURIComponent(content.title)}`,
-      'YouTube': content.buzz?.yt || `https://www.youtube.com/results?search_query=${encodeURIComponent(content.title)}`
-    };
-
-    const url = platformUrls[platform] || `https://www.google.com/search?q=${encodeURIComponent(content.title + ' ' + platform)}`;
-    window.open(url, '_blank');
-  };
-
-  const openSocialLink = (platform) => {
-    if (!content || !content.buzz) return;
+    // Open the streaming platform directly
+    const platform = content.platform.toLowerCase();
     
-    const urls = {
-      youtube: content.buzz.yt,
-      twitter: content.buzz.x,
-      reddit: content.buzz.reddit
-    };
-
-    if (urls[platform]) {
-      window.open(urls[platform], '_blank');
+    if (platform.includes('netflix')) {
+      window.open(`https://www.netflix.com/search?q=${encodeURIComponent(content.title)}`, '_blank');
+    } else if (platform.includes('prime')) {
+      window.open(`https://www.primevideo.com/search?phrase=${encodeURIComponent(content.title)}`, '_blank');
+    } else if (platform.includes('hotstar') || platform.includes('jiohotstar')) {
+      window.open(`https://www.hotstar.com/in/search?q=${encodeURIComponent(content.title)}`, '_blank');
+    } else if (platform.includes('sony')) {
+      window.open(`https://www.sonyliv.com/search/${encodeURIComponent(content.title)}`, '_blank');
+    } else if (platform.includes('zee')) {
+      window.open(`https://www.zee5.com/search?q=${encodeURIComponent(content.title)}`, '_blank');
+    } else if (platform.includes('apple')) {
+      window.open(`https://tv.apple.com/search?q=${encodeURIComponent(content.title)}`, '_blank');
+    } else {
+      window.open(`https://www.google.com/search?q=watch+${encodeURIComponent(content.title)}+on+${encodeURIComponent(content.platform)}`, '_blank');
     }
   };
 
