@@ -31,6 +31,7 @@ function App() {
             <Route path="/win" element={<Win />} />
             <Route path="/crew" element={<Crew />} />
             <Route path="/crew/:crewId" element={<CrewDetail />} />
+            <Route path="/content/:contentId" element={<ContentDetail />} />
             <Route path="/feed-admin" element={<FeedAdmin />} />
             <Route path="/original" element={<Home />} />
           </Routes>
