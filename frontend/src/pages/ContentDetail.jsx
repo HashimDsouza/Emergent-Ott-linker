@@ -113,137 +113,153 @@ const ContentDetail = () => {
           </button>
         </div>
 
-        {/* Content Hero */}
-        <div className="px-3 md:px-6 pt-4 md:pt-6">
-          <div className="max-w-5xl mx-auto">
-            <div className="grid md:grid-cols-[300px,1fr] gap-6 md:gap-8">
-              {/* Poster */}
-              <div className="relative overflow-hidden rounded-2xl aspect-[2/3] max-w-[300px] mx-auto md:mx-0">
-                {content.thumbnail ? (
-                  <img
-                    src={content.thumbnail}
-                    alt={content.title}
-                    className="w-full h-full object-cover"
-                  />
-                ) : (
-                  <div
-                    className="w-full h-full flex items-center justify-center"
-                    style={{ background: `linear-gradient(135deg, ${coral}30 0%, ${mint}20 100%)` }}
-                  >
-                    <span className="text-6xl">🎬</span>
-                  </div>
-                )}
+        {/* Content Tile - Match exact Tile visual identity */}
+        <div className="px-3 md:px-6 pt-6 pb-8">
+          <div className="max-w-md mx-auto">
+            {/* Tile Container - Exact same as Tile component */}
+            <div className="relative block rounded-lg md:rounded-xl overflow-hidden shadow-lg border border-white/10 group">
+              {/* Poster - 2:3 aspect ratio (portrait) - CLICKABLE */}
+              <div 
+                onClick={handlePosterClick}
+                className="relative cursor-pointer" 
+                style={{ background: `linear-gradient(135deg, ${coral}70 0%, ${mint}45 45%, ${charcoalSoft} 100%)` }}
+              >
+                {/* Share Icon - Top Right Corner */}
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setShareModalOpen(true);
+                  }}
+                  className="absolute top-2 right-2 z-10 w-6 h-6 md:w-7 md:h-7 rounded-full backdrop-blur-xl transition-all transform hover:scale-110 flex items-center justify-center"
+                  style={{
+                    background: 'rgba(14, 21, 20, 0.75)',
+                    border: `1px solid ${mint}40`,
+                    boxShadow: `0 0 12px ${mint}20`,
+                    opacity: 0.85
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.opacity = '1';
+                    e.currentTarget.style.boxShadow = `0 0 20px ${mint}50`;
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.opacity = '0.85';
+                    e.currentTarget.style.boxShadow = `0 0 12px ${mint}20`;
+                  }}
+                >
+                  <Share2 className="w-3.5 h-3.5 md:w-4 md:h-4" style={{ color: mint }} />
+                </button>
+
+                <div className="aspect-[2/3]">
+                  {content.thumbnail && (
+                    <img 
+                      src={content.thumbnail} 
+                      alt={content.title}
+                      className="w-full h-full object-cover"
+                    />
+                  )}
+                </div>
               </div>
 
-              {/* Info */}
-              <div className="space-y-4">
-                <div>
-                  <h1 className="text-3xl md:text-5xl font-bold text-white mb-2">
-                    {content.title}
-                  </h1>
-                  {content.imdb && (
-                    <div className="flex items-center gap-2 text-sm">
-                      <span className="px-2 py-1 rounded" style={{ background: `${mint}30`, color: mint }}>
-                        ⭐ {content.imdb}
-                      </span>
-                      {content.category && (
-                        <span className="text-gray-400">{content.category}</span>
+              {/* Info Section - Exact 4-line format */}
+              <div className="p-2 md:p-3" style={{ background: charcoal }}>
+                {/* Line 1: Title */}
+                <h2 className="text-xs md:text-sm font-bold text-white truncate mb-0.5">
+                  {content.title}
+                </h2>
+
+                {/* Line 2: Platform + Social Icons */}
+                <div className="flex items-center gap-2 mb-0.5">
+                  <span className="text-[10px] md:text-xs font-semibold truncate" style={{ color: mint }}>
+                    {content.platform}
+                  </span>
+                  {content.social_links && (
+                    <div className="flex items-center gap-1 ml-auto">
+                      {content.social_links.youtube && (
+                        <button
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            window.open(content.social_links.youtube, '_blank');
+                          }}
+                          className="w-4 h-4 md:w-5 md:h-5 flex items-center justify-center hover:scale-110 transition-transform"
+                        >
+                          <span className="text-[10px]">📺</span>
+                        </button>
+                      )}
+                      {content.social_links.twitter && (
+                        <button
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            window.open(content.social_links.twitter, '_blank');
+                          }}
+                          className="w-4 h-4 md:w-5 md:h-5 flex items-center justify-center hover:scale-110 transition-transform"
+                        >
+                          <span className="text-[10px]">🐦</span>
+                        </button>
+                      )}
+                      {content.social_links.reddit && (
+                        <button
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            window.open(content.social_links.reddit, '_blank');
+                          }}
+                          className="w-4 h-4 md:w-5 md:h-5 flex items-center justify-center hover:scale-110 transition-transform"
+                        >
+                          <span className="text-[10px]">🤖</span>
+                        </button>
                       )}
                     </div>
                   )}
                 </div>
 
-                {content.description && (
-                  <p className="text-gray-300 text-sm md:text-base leading-relaxed">
-                    {content.description}
-                  </p>
-                )}
+                {/* Line 3: Buzz with icons */}
+                <div className="text-[9px] md:text-[10px] italic mb-0.5" style={{ color: coral }}>
+                  {content.imdb && `⭐ ${content.imdb}`}
+                  {content.imdb && content.category && " • "}
+                  {content.category}
+                </div>
 
-                {content.genres && content.genres.length > 0 && (
-                  <div className="flex flex-wrap gap-2">
-                    {content.genres.slice(0, 5).map((genre, idx) => (
-                      <span
-                        key={idx}
-                        className="px-3 py-1 rounded-full text-xs font-semibold"
-                        style={{ background: 'rgba(255, 255, 255, 0.1)', color: 'white' }}
-                      >
-                        {genre}
-                      </span>
-                    ))}
-                  </div>
-                )}
-
-                {/* Watch On Button */}
-                {content.platform && (
+                {/* Line 4: Descriptor (left) + 'i' icon (right) */}
+                <div className="flex items-center justify-between gap-2">
+                  <span className="text-[9px] md:text-[10px] text-white/75 truncate flex-1">
+                    {content.descriptor}
+                  </span>
                   <button
-                    onClick={() => openPlatform(content.platform)}
-                    className="flex items-center gap-2 px-6 py-3 rounded-full font-bold text-white transition-all transform hover:scale-105"
-                    style={{
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setDetailModalOpen(true);
+                    }}
+                    className="flex-shrink-0 w-3.5 h-3.5 md:w-4 md:h-4 rounded-full flex items-center justify-center transition-all hover:scale-110"
+                    style={{ 
                       background: `linear-gradient(135deg, ${coral} 0%, ${mint} 100%)`,
-                      boxShadow: `0 8px 24px ${coral}40`
+                      boxShadow: `0 0 6px ${mint}40`
                     }}
                   >
-                    <Play className="w-5 h-5" />
-                    Watch on {content.platform}
+                    <Info className="w-2 h-2 md:w-2.5 md:h-2.5 text-white" />
                   </button>
-                )}
-
-                {/* Share Button */}
-                <button
-                  onClick={() => setShareModalOpen(true)}
-                  className="flex items-center gap-2 px-6 py-3 rounded-full font-semibold text-white border-2 transition-all"
-                  style={{ borderColor: mint, color: mint }}
-                >
-                  <ExternalLink className="w-4 h-4" />
-                  Share with Crew
-                </button>
-
-                {/* Social Buzz Links */}
-                {content.buzz && (
-                  <div className="pt-4 border-t border-white/10">
-                    <p className="text-sm font-semibold text-gray-400 mb-3">Check the Buzz:</p>
-                    <div className="flex gap-3">
-                      {content.buzz.yt && (
-                        <button
-                          onClick={() => openSocialLink('youtube')}
-                          className="flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-semibold text-white transition-all hover:scale-105"
-                          style={{ background: 'rgba(255, 0, 0, 0.2)', border: '1px solid rgba(255, 0, 0, 0.3)' }}
-                        >
-                          📺 YouTube
-                        </button>
-                      )}
-                      {content.buzz.x && (
-                        <button
-                          onClick={() => openSocialLink('twitter')}
-                          className="flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-semibold text-white transition-all hover:scale-105"
-                          style={{ background: 'rgba(29, 161, 242, 0.2)', border: '1px solid rgba(29, 161, 242, 0.3)' }}
-                        >
-                          🐦 Twitter
-                        </button>
-                      )}
-                      {content.buzz.reddit && (
-                        <button
-                          onClick={() => openSocialLink('reddit')}
-                          className="flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-semibold text-white transition-all hover:scale-105"
-                          style={{ background: 'rgba(255, 69, 0, 0.2)', border: '1px solid rgba(255, 69, 0, 0.3)' }}
-                        >
-                          🤖 Reddit
-                        </button>
-                      )}
-                    </div>
-                  </div>
-                )}
+                </div>
               </div>
             </div>
+
+            {/* Helper text */}
+            <p className="text-center text-xs text-gray-400 mt-4">
+              Tap poster to watch • Tap 'i' for details
+            </p>
           </div>
         </div>
       </div>
       <ConnectorFooter />
       <ConnieFloating offsetPx={140} />
+      
+      {/* Modals */}
       <ShareModal
         isOpen={shareModalOpen}
         onClose={() => setShareModalOpen(false)}
         content={content}
+      />
+      <DetailsModal
+        open={detailModalOpen}
+        onClose={() => setDetailModalOpen(false)}
+        item={content}
       />
     </>
   );
