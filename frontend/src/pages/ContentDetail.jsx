@@ -160,75 +160,79 @@ const ContentDetail = () => {
                 </div>
               </div>
 
-              {/* Info Section - Exact 4-line format */}
+              {/* Info Section - EXACT 4-line format matching Tile.jsx */}
               <div className="p-2 md:p-3" style={{ background: charcoal }}>
                 {/* Line 1: Title */}
                 <h2 className="text-xs md:text-sm font-bold text-white truncate mb-0.5">
                   {content.title}
                 </h2>
 
-                {/* Line 2: Platform + Social Icons */}
-                <div className="flex items-center gap-2 mb-0.5">
-                  <span className="text-[10px] md:text-xs font-semibold truncate" style={{ color: mint }}>
-                    {content.platform}
-                  </span>
-                  {content.social_links && (
-                    <div className="flex items-center gap-1 ml-auto">
-                      {content.social_links.youtube && (
-                        <button
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            window.open(content.social_links.youtube, '_blank');
-                          }}
-                          className="w-4 h-4 md:w-5 md:h-5 flex items-center justify-center hover:scale-110 transition-transform"
-                        >
-                          <span className="text-[10px]">📺</span>
-                        </button>
-                      )}
-                      {content.social_links.twitter && (
-                        <button
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            window.open(content.social_links.twitter, '_blank');
-                          }}
-                          className="w-4 h-4 md:w-5 md:h-5 flex items-center justify-center hover:scale-110 transition-transform"
-                        >
-                          <span className="text-[10px]">🐦</span>
-                        </button>
-                      )}
-                      {content.social_links.reddit && (
-                        <button
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            window.open(content.social_links.reddit, '_blank');
-                          }}
-                          className="w-4 h-4 md:w-5 md:h-5 flex items-center justify-center hover:scale-110 transition-transform"
-                        >
-                          <span className="text-[10px]">🤖</span>
-                        </button>
-                      )}
-                    </div>
+                {/* Line 2: Platform */}
+                <div className="text-[10px] md:text-xs font-semibold truncate mb-1 md:mb-1" style={{ color: mint }}>
+                  {content.platform}
+                </div>
+
+                {/* Line 3: BUZZ METER + social icons (YouTube, Twitter, Reddit) + IMDb rating - EXACT MATCH */}
+                <div className="flex items-center gap-1 md:gap-1.5 uppercase tracking-wide opacity-85 mb-1 md:mb-1 text-[8px] md:text-[10px]">
+                  <span className="md:hidden">BUZZ</span>
+                  <span className="hidden md:inline">BUZZ METER</span>
+                  <a 
+                    href={content.buzz?.yt || `https://www.youtube.com/results?search_query=${encodeURIComponent((content.title || 'trending') + ' trailer')}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={(e) => e.stopPropagation()}
+                  >
+                    <svg width="10" height="10" className="md:w-[14px] md:h-[14px]" viewBox="0 0 24 24"><path fill="#FF0000" d="M23.5 6.2a4 4 0 0 0-2.8-2.8C18.9 3 12 3 12 3s-6.9 0-8.7.4A4 4 0 0 0 .5 6.2 41.6 41.6 0 0 0 0 12a41.6 41.6 0 0 0 .5 5.8 4 4 0 0 0 2.8 2.8C5.1 21 12 21 12 21s6.9 0 8.7-.4a4 4 0 0 0 2.8-2.8A41.6 41.6 0 0 0 24 12a41.6 41.6 0 0 0-.5-5.8Z"/><path fill="#fff" d="m10 15 6-3-6-3v6z"/></svg>
+                  </a>
+                  <a 
+                    href={content.buzz?.x || `https://twitter.com/search?q=${encodeURIComponent(content.title || 'trending')}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={(e) => e.stopPropagation()}
+                  >
+                    <svg width="10" height="10" className="md:w-[14px] md:h-[14px]" viewBox="0 0 24 24"><path fill="#ffffff" d="M18.146 2H21l-6.5 7.43L22.5 22h-6.59l-5.16-6.64L4.7 22H2l6.97-7.97L1.5 2H8.09l4.66 6L18.146 2Zm-2.31 18.5h1.71L7.25 3.46H5.43l10.41 17.04Z"/></svg>
+                  </a>
+                  <a 
+                    href={content.buzz?.reddit || `https://www.reddit.com/search/?q=${encodeURIComponent(content.title || 'trending')}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={(e) => e.stopPropagation()}
+                  >
+                    <svg width="10" height="10" className="md:w-[14px] md:h-[14px]" viewBox="0 0 24 24"><path fill="#FF4500" d="M22 12.07c0-1.2-.98-2.18-2.18-2.18-.56 0-1.07.21-1.45.55-1.44-.94-3.23-1.54-5.2-1.61l1.11-3.51 3.06.72a1.64 1.64 0 1 0 .19-1.1l-3.6-.85a.7.7 0 0 0-.84.46l-1.4 4.42c-1.97.05-3.76.64-5.21 1.58a2.18 2.18 0 1 0-2.64 3.45c-.05.24-.08.49-.08.74 0 2.87 3.58 5.2 8 5.2s8-2.33 8-5.2c0-.25-.03-.5-.09-.74.5-.4.84-1 .84-1.73Z"/></svg>
+                  </a>
+                  {content.imdb && content.imdb_id && (
+                    <a 
+                      href={`https://www.imdb.com/title/${content.imdb_id}/`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={(e) => e.stopPropagation()}
+                      className="text-[9px] md:text-[10px] font-semibold flex-shrink-0 ml-0.5 hover:opacity-80 transition"
+                      style={{ color: '#fbbf24' }}
+                    >
+                      ⭐ {typeof content.imdb === 'number' ? content.imdb.toFixed(1) : content.imdb}
+                    </a>
+                  )}
+                  {content.imdb && !content.imdb_id && (
+                    <span className="text-[9px] md:text-[10px] font-semibold flex-shrink-0 ml-0.5" style={{ color: '#fbbf24' }}>
+                      ⭐ {typeof content.imdb === 'number' ? content.imdb.toFixed(1) : content.imdb}
+                    </span>
                   )}
                 </div>
 
-                {/* Line 3: Buzz with icons */}
-                <div className="text-[9px] md:text-[10px] italic mb-0.5" style={{ color: coral }}>
-                  {content.imdb && `⭐ ${content.imdb}`}
-                  {content.imdb && content.category && " • "}
-                  {content.category}
-                </div>
-
                 {/* Line 4: Descriptor (left) + 'i' icon (right) */}
-                <div className="flex items-center justify-between gap-2">
-                  <span className="text-[9px] md:text-[10px] text-white/75 truncate flex-1">
+                <div className="flex items-center gap-1 md:gap-1.5">
+                  <div 
+                    className="italic flex-1 text-[10px] md:text-[11px]"
+                    style={{ color: coral }}
+                  >
                     {content.descriptor}
-                  </span>
+                  </div>
                   <button
                     onClick={(e) => {
                       e.stopPropagation();
                       setDetailModalOpen(true);
                     }}
-                    className="flex-shrink-0 w-3.5 h-3.5 md:w-4 md:h-4 rounded-full flex items-center justify-center transition-all hover:scale-110"
+                    className="flex-shrink-0 w-3.5 h-3.5 md:w-[14px] md:h-[14px] rounded-full flex items-center justify-center transition-all hover:scale-110"
                     style={{ 
                       background: `linear-gradient(135deg, ${coral} 0%, ${mint} 100%)`,
                       boxShadow: `0 0 6px ${mint}40`
