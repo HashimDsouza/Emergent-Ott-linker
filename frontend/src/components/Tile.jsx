@@ -55,20 +55,30 @@ export default function Tile({ item, onInfo, onShare }) {
         className="relative" 
         style={{ background: `linear-gradient(135deg, ${coral}70 0%, ${mint}45 45%, ${charcoalSoft} 100%)` }}
       >
-        {/* Share Icon - Top Right Corner */}
+        {/* Share Icon - Top Right Corner - Always Visible, Premium Design */}
         {onShare && (
           <button
             onClick={(e) => {
               e.stopPropagation();
               onShare(item);
             }}
-            className="absolute top-2 right-2 z-10 p-1.5 md:p-2 rounded-full backdrop-blur-md transition-all opacity-0 group-hover:opacity-100 transform hover:scale-110"
+            className="absolute top-2 right-2 z-10 w-6 h-6 md:w-7 md:h-7 rounded-full backdrop-blur-xl transition-all transform hover:scale-110 flex items-center justify-center"
             style={{
-              background: 'rgba(0, 0, 0, 0.6)',
-              border: `1px solid ${mint}40`
+              background: 'rgba(14, 21, 20, 0.75)',
+              border: `1px solid ${mint}40`,
+              boxShadow: `0 0 12px ${mint}20`,
+              opacity: 0.85
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.opacity = '1';
+              e.currentTarget.style.boxShadow = `0 0 20px ${mint}50`;
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.opacity = '0.85';
+              e.currentTarget.style.boxShadow = `0 0 12px ${mint}20`;
             }}
           >
-            <Share2 className="w-3 h-3 md:w-4 md:h-4" style={{ color: mint }} />
+            <Share2 className="w-3.5 h-3.5 md:w-4 md:h-4" style={{ color: mint }} />
           </button>
         )}
 
