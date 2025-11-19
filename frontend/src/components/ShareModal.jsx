@@ -107,8 +107,9 @@ const ShareModal = ({ isOpen, onClose, content }) => {
   };
 
   const handleCopyLink = () => {
-    // Deep link to specific content page
-    const shareUrl = `https://crew-discovery.preview.emergentagent.com/content/${content.id}`;
+    // Use current preview URL (automatically updates with each fork)
+    const currentUrl = typeof window !== 'undefined' ? window.location.origin : 'https://crew-discovery.preview.emergentagent.com';
+    const shareUrl = `${currentUrl}/content/${content.id}`;
     navigator.clipboard.writeText(shareUrl);
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
