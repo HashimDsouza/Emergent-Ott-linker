@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Tile from "./Tile";
 
-export default function Tray({ icon, title, subline, items, onInfo }) {
+export default function Tray({ icon, title, subline, items, onInfo, onShare }) {
   const [expanded, setExpanded] = useState(false);
   const [visible, setVisible] = useState(true);
 
