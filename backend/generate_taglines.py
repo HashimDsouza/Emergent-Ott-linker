@@ -73,10 +73,12 @@ async def main():
     print("🎬 Connector Tagline Generator")
     print("=" * 60)
     
-    # Connect to MongoDB
+    # Connect to MongoDB - use correct database from env
     mongo_url = os.getenv("MONGO_URL", "mongodb://localhost:27017")
+    db_name = os.getenv("DB_NAME", "test_database")
     client = AsyncIOMotorClient(mongo_url)
-    db = client.connector
+    db = client[db_name]
+    print(f"✅ Using database: {db_name}")
     
     # Initialize LLM Chat
     api_key = os.getenv("EMERGENT_LLM_KEY")
