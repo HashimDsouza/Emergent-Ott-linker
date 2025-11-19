@@ -74,9 +74,16 @@ const ShareModal = ({ isOpen, onClose, content }) => {
   };
 
   const handleSocialShare = async (platform) => {
-    // Deep link to specific content page
-    const shareUrl = `https://crew-discovery.preview.emergentagent.com/content/${content.id}`;
-    const shareText = `Check out "${content.title}" on Connector!`;
+    // Use current preview URL (automatically updates with each fork)
+    const currentUrl = typeof window !== 'undefined' ? window.location.origin : 'https://crew-discovery.preview.emergentagent.com';
+    const shareUrl = `${currentUrl}/content/${content.id}`;
+    
+    // Randomize between the two copy options
+    const copyOptions = [
+      `You'll love this one: ${content.title}.`,
+      `Found something you would like: ${content.title}.`
+    ];
+    const shareText = copyOptions[Math.floor(Math.random() * copyOptions.length)];
 
     if (platform === "native" && navigator.share) {
       try {
