@@ -1,15 +1,17 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { motion } from "framer-motion";
 import { ConnectorHeader, ConnectorFooter } from "../components/ConnectorLayout";
 import ConnieFloating from "../components/ConnieFloating";
-import { ArrowLeft, ExternalLink, Play } from "lucide-react";
+import { ArrowLeft, Info, Share2 } from "lucide-react";
 import ShareModal from "../components/ShareModal";
+import DetailsModal from "../components/DetailsModal";
+import { mapApiToCard } from "../utils/mapApiToCard";
 
 // Brand colors
 const coral = "#FF4F64";
 const mint = "#30E0B2";
 const charcoal = "#0E1514";
+const charcoalSoft = "#173A35";
 
 const ContentDetail = () => {
   const { contentId } = useParams();
@@ -17,6 +19,7 @@ const ContentDetail = () => {
   const [content, setContent] = useState(null);
   const [loading, setLoading] = useState(true);
   const [shareModalOpen, setShareModalOpen] = useState(false);
+  const [detailModalOpen, setDetailModalOpen] = useState(false);
 
   useEffect(() => {
     fetchContent();
