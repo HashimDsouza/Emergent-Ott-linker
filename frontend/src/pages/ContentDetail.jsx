@@ -162,10 +162,36 @@ const ContentDetail = () => {
 
               {/* Info Section - EXACT 4-line format matching Tile.jsx */}
               <div className="p-2 md:p-3" style={{ background: charcoal }}>
-                {/* Line 1: Title */}
-                <h2 className="text-xs md:text-sm font-bold text-white truncate mb-0.5">
-                  {content.title}
-                </h2>
+                {/* Line 1: Title + Social Engagement Icons */}
+                <div className="flex items-center justify-between gap-2 mb-0.5">
+                  <h2 className="text-xs md:text-sm font-bold text-white truncate flex-1">
+                    {content.title}
+                  </h2>
+                  {/* Social Engagement Icons (right side) */}
+                  <div className="flex items-center gap-1 flex-shrink-0">
+                    <button
+                      onClick={(e) => e.stopPropagation()}
+                      className="inline-flex items-center gap-0.5 opacity-90 text-[8px] md:text-xs hover:scale-110 transition"
+                    >
+                      <span>❤️</span>
+                      <span>{Math.floor(Math.random() * 500) + 100}</span>
+                    </button>
+                    <button
+                      onClick={(e) => e.stopPropagation()}
+                      className="inline-flex items-center gap-0.5 opacity-90 text-[8px] md:text-xs hover:scale-110 transition"
+                    >
+                      <span>👍</span>
+                      <span>{Math.floor(Math.random() * 400) + 80}</span>
+                    </button>
+                    <button
+                      onClick={(e) => e.stopPropagation()}
+                      className="inline-flex items-center gap-0.5 opacity-90 text-[8px] md:text-xs hover:scale-110 transition"
+                    >
+                      <span>💬</span>
+                      <span>{Math.floor(Math.random() * 300) + 50}</span>
+                    </button>
+                  </div>
+                </div>
 
                 {/* Line 2: Platform */}
                 <div className="text-[10px] md:text-xs font-semibold truncate mb-1 md:mb-1" style={{ color: mint }}>
