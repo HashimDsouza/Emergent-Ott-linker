@@ -485,7 +485,7 @@ const Crew = () => {
 };
 
 // Quick Crew Card - Compact for "Your Crews"
-const QuickCrewCard = ({ crew }) => {
+const QuickCrewCard = ({ crew, onClick }) => {
   const getCrewIcon = () => {
     if (crew.name === "Regional Riders") return "🇮🇳";
     return crew.icon;
@@ -493,10 +493,13 @@ const QuickCrewCard = ({ crew }) => {
 
   return (
     <div className="flex-shrink-0 w-20 md:w-24">
-      <div className="bg-white/10 backdrop-blur-sm rounded-xl p-3 md:p-4 border border-white/20 hover:border-mint/50 transition-all cursor-pointer text-center">
+      <button
+        onClick={() => onClick(crew.id)}
+        className="w-full bg-white/10 backdrop-blur-sm rounded-xl p-3 md:p-4 border border-white/20 hover:border-mint/50 transition-all cursor-pointer text-center transform hover:scale-105"
+      >
         <div className="text-3xl md:text-4xl mb-2">{getCrewIcon()}</div>
         <p className="text-xs text-white font-semibold truncate">{crew.name}</p>
-      </div>
+      </button>
     </div>
   );
 };
