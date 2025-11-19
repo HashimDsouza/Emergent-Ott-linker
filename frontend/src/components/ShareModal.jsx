@@ -46,19 +46,20 @@ const ShareModal = ({ isOpen, onClose, content }) => {
     try {
       const backendUrl = process.env.REACT_APP_BACKEND_URL || "https://crew-discovery.preview.emergentagent.com";
       
-      // Share to each selected crew
-      for (const crewId of selectedCrews) {
-        await fetch(`${backendUrl}/api/crew/${crewId}/watchlist/add`, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            user_id: "anonymous",
-            content_id: content.id,
-            content_title: content.title,
-            content_thumbnail: content.thumbnail
-          })
-        });
-      }
+      // Add to watchlist with crew sharing
+      await fetch(`${backendUrl}/api/watchlist/add`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          user_id: "anonymous",
+          content_id: content.id,
+          content_type: content.category || "movie",
+          content_title: content.title,
+          content_image: content.thumbnail,
+          status: "want_to_watch",
+          shared_with_crews: selectedCrews
+        })
+      });
       
       // Success feedback
       setTimeout(() => {
