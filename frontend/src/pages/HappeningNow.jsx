@@ -54,47 +54,49 @@ function EnhancedTile({ item, onInfo, onShare, timeLabel, typeCapsule, dayLabel 
         </div>
       )}
 
-      {/* Remind Me Icon - Bottom Right of Image (positioned at bottom of image area) */}
-      {dayLabel !== 'LIVE' && (
-        <button
-          onClick={handleRemindMe}
-          className="absolute z-20 w-7 h-7 md:w-8 md:h-8 rounded-full backdrop-blur-xl transition-all transform hover:scale-110 flex items-center justify-center"
-          style={{
-            bottom: 'calc(3px + 3.5rem)',  // Just above the gradient separator
-            right: '8px',
-            background: 'rgba(14, 21, 20, 0.90)',
-            border: `1px solid ${reminded ? coral : 'rgba(255,255,255,0.3)'}`,
-            boxShadow: reminded ? `0 0 16px ${coral}80` : 'none'
-          }}
-        >
-          {reminded ? (
-            <BellRing className="w-3.5 h-3.5 md:w-4 md:h-4" style={{ color: coral }} />
-          ) : (
-            <Bell className="w-3.5 h-3.5 md:w-4 md:h-4" style={{ color: 'white' }} />
-          )}
-        </button>
-      )}
+      {/* Standard Tile - wrapped to add overlays */}
+      <div className="relative">
+        <Tile item={item} onInfo={onInfo} onShare={onShare} />
+        
+        {/* Type Capsule - ON THE IMAGE, Bottom Center (like "NEWLY ADDED") */}
+        {typeCapsule && (
+          <div 
+            className="absolute z-30 left-1/2 transform -translate-x-1/2 px-2.5 py-0.5 md:px-3 md:py-1 rounded-full text-center pointer-events-none"
+            style={{
+              top: 'calc(66.666% - 28px)', // Position at bottom of 2:3 aspect ratio image
+              backgroundColor: 'rgba(14, 21, 20, 0.92)',
+              border: `1px solid ${coral}60`,
+              boxShadow: `0 0 10px ${coral}40`,
+              maxWidth: '80%'
+            }}
+          >
+            <span className="text-white text-[8px] md:text-[9px] font-semibold uppercase tracking-wide truncate block">
+              {typeCapsule}
+            </span>
+          </div>
+        )}
 
-      {/* Type Capsule - Bottom Center of Image */}
-      {typeCapsule && (
-        <div 
-          className="absolute z-20 left-1/2 transform -translate-x-1/2 px-2.5 py-0.5 md:px-3 md:py-1 rounded-full text-center"
-          style={{
-            bottom: 'calc(3px + 3.5rem)', // Just above the gradient separator
-            backgroundColor: 'rgba(14, 21, 20, 0.92)',
-            border: `1px solid ${coral}60`,
-            boxShadow: `0 0 10px ${coral}40`,
-            maxWidth: '80%'
-          }}
-        >
-          <span className="text-white text-[8px] md:text-[9px] font-semibold uppercase tracking-wide truncate block">
-            {typeCapsule}
-          </span>
-        </div>
-      )}
-
-      {/* Standard Tile */}
-      <Tile item={item} onInfo={onInfo} onShare={onShare} />
+        {/* Remind Me Icon - ON THE IMAGE, Bottom Right */}
+        {dayLabel !== 'LIVE' && (
+          <button
+            onClick={handleRemindMe}
+            className="absolute z-30 w-7 h-7 md:w-8 md:h-8 rounded-full backdrop-blur-xl transition-all transform hover:scale-110 flex items-center justify-center"
+            style={{
+              top: 'calc(66.666% - 36px)', // Position at bottom of 2:3 aspect ratio image
+              right: '8px',
+              background: 'rgba(14, 21, 20, 0.90)',
+              border: `1px solid ${reminded ? coral : 'rgba(255,255,255,0.3)'}`,
+              boxShadow: reminded ? `0 0 16px ${coral}80` : 'none'
+            }}
+          >
+            {reminded ? (
+              <BellRing className="w-3.5 h-3.5 md:w-4 md:h-4" style={{ color: coral }} />
+            ) : (
+              <Bell className="w-3.5 h-3.5 md:w-4 md:h-4" style={{ color: 'white' }} />
+            )}
+          </button>
+        )}
+      </div>
     </div>
   );
 }
