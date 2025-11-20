@@ -29,6 +29,7 @@ function App() {
             <Route path="/entertainment" element={<Entertainment />} />
             <Route path="/game-on" element={<GameOn />} />
             <Route path="/get-with-it" element={<GetWithIt />} />
+            <Route path="/happening-now" element={<HappeningNow />} />
             <Route path="/win" element={<Win />} />
             <Route path="/crew" element={<Crew />} />
             <Route path="/crew/:crewId" element={<CrewDetail />} />
