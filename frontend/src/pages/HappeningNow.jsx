@@ -54,21 +54,23 @@ function EnhancedTile({ item, onInfo, onShare, timeLabel, typeCapsule, dayLabel 
         </div>
       )}
 
-      {/* Remind Me Icon - Bottom Right of Image */}
+      {/* Remind Me Icon - Bottom Right of Image (positioned at bottom of image area) */}
       {dayLabel !== 'LIVE' && (
         <button
           onClick={handleRemindMe}
-          className="absolute bottom-[72px] md:bottom-[90px] right-2 z-10 w-8 h-8 md:w-9 md:h-9 rounded-full backdrop-blur-xl transition-all transform hover:scale-110 flex items-center justify-center"
+          className="absolute z-20 w-7 h-7 md:w-8 md:h-8 rounded-full backdrop-blur-xl transition-all transform hover:scale-110 flex items-center justify-center"
           style={{
-            background: 'rgba(14, 21, 20, 0.85)',
+            bottom: 'calc(3px + 3.5rem)',  // Just above the gradient separator
+            right: '8px',
+            background: 'rgba(14, 21, 20, 0.90)',
             border: `1px solid ${reminded ? coral : 'rgba(255,255,255,0.3)'}`,
             boxShadow: reminded ? `0 0 16px ${coral}80` : 'none'
           }}
         >
           {reminded ? (
-            <BellRing className="w-4 h-4 md:w-5 md:h-5" style={{ color: coral }} />
+            <BellRing className="w-3.5 h-3.5 md:w-4 md:h-4" style={{ color: coral }} />
           ) : (
-            <Bell className="w-4 h-4 md:w-5 md:h-5" style={{ color: 'white' }} />
+            <Bell className="w-3.5 h-3.5 md:w-4 md:h-4" style={{ color: 'white' }} />
           )}
         </button>
       )}
@@ -76,15 +78,16 @@ function EnhancedTile({ item, onInfo, onShare, timeLabel, typeCapsule, dayLabel 
       {/* Type Capsule - Bottom Center of Image */}
       {typeCapsule && (
         <div 
-          className="absolute bottom-[72px] md:bottom-[90px] left-1/2 transform -translate-x-1/2 z-10 px-3 py-1 rounded-full text-center"
+          className="absolute z-20 left-1/2 transform -translate-x-1/2 px-2.5 py-0.5 md:px-3 md:py-1 rounded-full text-center"
           style={{
-            backgroundColor: 'rgba(14, 21, 20, 0.90)',
+            bottom: 'calc(3px + 3.5rem)', // Just above the gradient separator
+            backgroundColor: 'rgba(14, 21, 20, 0.92)',
             border: `1px solid ${coral}60`,
             boxShadow: `0 0 10px ${coral}40`,
-            maxWidth: '85%'
+            maxWidth: '80%'
           }}
         >
-          <span className="text-white text-[9px] md:text-[10px] font-semibold uppercase tracking-wide">
+          <span className="text-white text-[8px] md:text-[9px] font-semibold uppercase tracking-wide truncate block">
             {typeCapsule}
           </span>
         </div>
