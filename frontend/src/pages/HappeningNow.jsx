@@ -58,12 +58,13 @@ function EnhancedTile({ item, onInfo, onShare, timeLabel, typeCapsule, dayLabel 
       <div className="relative">
         <Tile item={item} onInfo={onInfo} onShare={onShare} />
         
-        {/* Type Capsule - ON THE IMAGE, Bottom Center (like "NEWLY ADDED") */}
+        {/* Type Capsule - Just above gradient separator */}
         {typeCapsule && (
           <div 
             className="absolute z-30 left-1/2 transform -translate-x-1/2 px-2.5 py-0.5 md:px-3 md:py-1 rounded-full text-center pointer-events-none"
             style={{
-              top: 'calc(66.666% - 10px)', // Position at very bottom of 2:3 aspect ratio image
+              top: 'calc(66.666% - 3px)', // Just above the 3px gradient separator
+              transform: 'translate(-50%, -100%)', // Move up by its own height
               backgroundColor: 'rgba(14, 21, 20, 0.92)',
               border: `1px solid ${coral}60`,
               boxShadow: `0 0 10px ${coral}40`,
@@ -76,23 +77,25 @@ function EnhancedTile({ item, onInfo, onShare, timeLabel, typeCapsule, dayLabel 
           </div>
         )}
 
-        {/* Remind Me Icon - ON THE IMAGE, Bottom Right */}
+        {/* Remind Me Icon - On Line 1 (title line) at the right end, above info "i" button */}
         {dayLabel !== 'LIVE' && (
           <button
             onClick={handleRemindMe}
-            className="absolute z-30 w-7 h-7 md:w-8 md:h-8 rounded-full backdrop-blur-xl transition-all transform hover:scale-110 flex items-center justify-center"
+            className="absolute z-30 transition-all transform hover:scale-110 flex items-center justify-center"
             style={{
-              top: 'calc(66.666% - 10px)', // Position at very bottom of 2:3 aspect ratio image
-              right: '8px',
-              background: 'rgba(14, 21, 20, 0.90)',
-              border: `1px solid ${reminded ? coral : 'rgba(255,255,255,0.3)'}`,
-              boxShadow: reminded ? `0 0 16px ${coral}80` : 'none'
+              top: 'calc(66.666% + 6px)', // Start of metadata section (after image + gradient)
+              right: '6px',
+              width: '16px',
+              height: '16px',
+              background: 'transparent',
+              border: 'none',
+              padding: 0
             }}
           >
             {reminded ? (
               <BellRing className="w-3.5 h-3.5 md:w-4 md:h-4" style={{ color: coral }} />
             ) : (
-              <Bell className="w-3.5 h-3.5 md:w-4 md:h-4" style={{ color: 'white' }} />
+              <Bell className="w-3.5 h-3.5 md:w-4 md:h-4" style={{ color: mint }} />
             )}
           </button>
         )}
