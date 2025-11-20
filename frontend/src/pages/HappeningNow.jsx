@@ -55,16 +55,15 @@ function EnhancedTile({ item, onInfo, onShare, timeLabel, typeCapsule, dayLabel 
       )}
 
       {/* Standard Tile - wrapped to add overlays */}
-      <div className="relative">
-        <Tile item={item} onInfo={onInfo} onShare={onShare} />
-        
-        {/* Type Capsule - Just above gradient separator */}
+      <div className="relative group">
+        {/* Type Capsule - ON IMAGE, bottom edge, just above gradient (positioned from bottom) */}
         {typeCapsule && (
           <div 
-            className="absolute z-30 left-1/2 transform -translate-x-1/2 px-2.5 py-0.5 md:px-3 md:py-1 rounded-full text-center pointer-events-none"
+            className="absolute left-1/2 -translate-x-1/2 px-2.5 py-0.5 md:px-3 md:py-1 rounded-full text-center pointer-events-none"
             style={{
-              top: 'calc(66.666% - 3px)', // Just above the 3px gradient separator
-              transform: 'translate(-50%, -100%)', // Move up by its own height
+              bottom: '0',  // Start from the very bottom of the container
+              transform: 'translate(-50%, calc(-100% - 4px - 3.5rem))', // Move up by: capsule height + 3px gradient + metadata height
+              zIndex: 20,
               backgroundColor: 'rgba(14, 21, 20, 0.92)',
               border: `1px solid ${coral}60`,
               boxShadow: `0 0 10px ${coral}40`,
@@ -76,26 +75,29 @@ function EnhancedTile({ item, onInfo, onShare, timeLabel, typeCapsule, dayLabel 
             </span>
           </div>
         )}
+        
+        <Tile item={item} onInfo={onInfo} onShare={onShare} />
 
-        {/* Remind Me Icon - On Line 1 (title line) at the right end, above info "i" button */}
+        {/* Remind Me Icon - In metadata section, Line 1 (title), right-aligned */}
         {dayLabel !== 'LIVE' && (
           <button
             onClick={handleRemindMe}
-            className="absolute z-30 transition-all transform hover:scale-110 flex items-center justify-center"
+            className="absolute transition-all hover:scale-110 flex items-center justify-center"
             style={{
-              top: 'calc(66.666% + 6px)', // Start of metadata section (after image + gradient)
-              right: '6px',
-              width: '16px',
-              height: '16px',
+              bottom: 'calc(3.5rem - 0.5rem)', // Position in title line (metadata height - offset)
+              right: '8px',
+              zIndex: 20,
+              width: '14px',
+              height: '14px',
               background: 'transparent',
               border: 'none',
               padding: 0
             }}
           >
             {reminded ? (
-              <BellRing className="w-3.5 h-3.5 md:w-4 md:h-4" style={{ color: coral }} />
+              <BellRing className="w-3.5 h-3.5" style={{ color: coral }} />
             ) : (
-              <Bell className="w-3.5 h-3.5 md:w-4 md:h-4" style={{ color: mint }} />
+              <Bell className="w-3.5 h-3.5" style={{ color: mint }} />
             )}
           </button>
         )}
