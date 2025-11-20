@@ -158,8 +158,6 @@ export default function LandingV2_3({ apiData, onShare }) {
       <div className="px-3 md:px-6 pt-4 md:pt-6">
         <div className="max-w-7xl mx-auto">
         <HeroFrontCenter onInfo={onInfo} />
-        {/* Happening Now Section - Phase A (MVP) */}
-        <HappeningNow onInfo={onInfo} onShare={onShare} />
 
         <Tray
           icon="🔥"
