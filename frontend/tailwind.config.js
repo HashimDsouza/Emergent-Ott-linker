@@ -52,8 +52,7 @@ module.exports = {
                                 '3': 'hsl(var(--chart-3))',
                                 '4': 'hsl(var(--chart-4))',
                                 '5': 'hsl(var(--chart-5))'
-                        }
-                        ,
+                        },
                         coral: {
                                 400: '#FF7F66',
                                 500: '#FF6B52',
