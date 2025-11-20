@@ -21,7 +21,7 @@ const ShareModal = ({ isOpen, onClose, content }) => {
 
   const fetchMyCrews = async () => {
     try {
-      const backendUrl = process.env.REACT_APP_BACKEND_URL || "https://crew-discovery.preview.emergentagent.com";
+      const backendUrl = process.env.REACT_APP_BACKEND_URL || "https://connector-hub-3.preview.emergentagent.com";
       const response = await fetch(`${backendUrl}/api/crew/my-crews?user_id=anonymous`);
       const data = await response.json();
       setMyCrews(data);
@@ -44,7 +44,7 @@ const ShareModal = ({ isOpen, onClose, content }) => {
     setSharing(true);
     
     try {
-      const backendUrl = process.env.REACT_APP_BACKEND_URL || "https://crew-discovery.preview.emergentagent.com";
+      const backendUrl = process.env.REACT_APP_BACKEND_URL || "https://connector-hub-3.preview.emergentagent.com";
       
       // Add to watchlist with crew sharing
       await fetch(`${backendUrl}/api/watchlist/add`, {
@@ -75,7 +75,7 @@ const ShareModal = ({ isOpen, onClose, content }) => {
 
   const handleSocialShare = async (platform) => {
     // Use current preview URL (automatically updates with each fork)
-    const currentUrl = typeof window !== 'undefined' ? window.location.origin : 'https://crew-discovery.preview.emergentagent.com';
+    const currentUrl = typeof window !== 'undefined' ? window.location.origin : 'https://connector-hub-3.preview.emergentagent.com';
     const shareUrl = `${currentUrl}/content/${content.id}`;
     
     // Randomize between the two copy options
@@ -108,7 +108,7 @@ const ShareModal = ({ isOpen, onClose, content }) => {
 
   const handleCopyLink = () => {
     // Use current preview URL (automatically updates with each fork)
-    const currentUrl = typeof window !== 'undefined' ? window.location.origin : 'https://crew-discovery.preview.emergentagent.com';
+    const currentUrl = typeof window !== 'undefined' ? window.location.origin : 'https://connector-hub-3.preview.emergentagent.com';
     const shareUrl = `${currentUrl}/content/${content.id}`;
     navigator.clipboard.writeText(shareUrl);
     setCopied(true);

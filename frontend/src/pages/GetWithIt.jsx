@@ -32,7 +32,7 @@ const GetWithIt = () => {
     try {
       setLoading(true);
       // Use the same pattern as other pages
-      const backendUrl = process.env.REACT_APP_BACKEND_URL || "https://crew-discovery.preview.emergentagent.com";
+      const backendUrl = process.env.REACT_APP_BACKEND_URL || "https://connector-hub-3.preview.emergentagent.com";
       
       console.log("Fetching from:", backendUrl);
       
