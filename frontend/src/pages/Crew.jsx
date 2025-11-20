@@ -268,10 +268,40 @@ const Crew = () => {
         <div className="px-3 md:px-6 py-4">
           <div className="max-w-7xl mx-auto space-y-6">
             {loading ? (
-              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-3 md:gap-4">
-                {[1, 2, 3, 4, 5, 6].map((i) => (
-                  <div key={i} className="bg-white/5 rounded-2xl h-48 animate-pulse" />
-                ))}
+              <div className="space-y-8">
+                {/* My Crews Skeleton */}
+                <div>
+                  <div className="h-6 w-32 rounded mb-3 animate-pulse" style={{ background: `${mint}30` }} />
+                  <div className="flex gap-3 overflow-x-auto pb-2">
+                    {[1, 2, 3, 4].map((i) => (
+                      <div key={i} className="flex-shrink-0 w-20 md:w-24">
+                        <div className="bg-white/10 rounded-xl p-3 md:p-4 h-24 animate-pulse" />
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Trending Skeleton */}
+                <div>
+                  <div className="h-6 w-40 rounded mb-3 animate-pulse" style={{ background: `${coral}30` }} />
+                  <div className="flex gap-3 overflow-x-auto pb-2">
+                    {[1, 2, 3, 4].map((i) => (
+                      <div key={i} className="flex-shrink-0 w-32 md:w-40">
+                        <div className="aspect-[2/3] rounded-xl animate-pulse" style={{ background: `${coral}20` }} />
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Activity Skeleton */}
+                <div>
+                  <div className="h-6 w-36 rounded mb-3 animate-pulse" style={{ background: `${mint}30` }} />
+                  <div className="space-y-2">
+                    {[1, 2, 3].map((i) => (
+                      <div key={i} className="bg-white/5 rounded-xl p-3 md:p-4 h-16 animate-pulse" />
+                    ))}
+                  </div>
+                </div>
               </div>
             ) : (
               <>
