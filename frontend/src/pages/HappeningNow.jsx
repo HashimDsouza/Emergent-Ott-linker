@@ -201,8 +201,16 @@ export default function HappeningNow({ apiData, onShare }) {
       return 'Season Premiere';
     }
     
-    // For series/shows - rotate through episode types
-    if (card.category === 'series' || card.genres?.includes('Drama') || card.genres?.includes('Thriller') || card.genres?.includes('Comedy')) {
+    // Check content_type to distinguish movies from series
+    const contentType = card.content_type?.toLowerCase() || '';
+    
+    // For movies
+    if (contentType === 'movie') {
+      return 'Premiere';
+    }
+    
+    // For series/TV shows - rotate through episode types
+    if (contentType === 'series' || contentType === 'tv' || card.category === 'series') {
       const variations = ['New Episode', 'Season Premiere', 'Series Finale'];
       return variations[cardIndex % variations.length];
     }
@@ -212,8 +220,14 @@ export default function HappeningNow({ apiData, onShare }) {
       return 'Award Show';
     }
     
-    // For movies/other content - default to Season Premiere for series-like content
-    return 'Season Premiere';
+    // Default: try to detect from genres if it's a series
+    if (card.genres?.includes('Drama') || card.genres?.includes('Thriller') || card.genres?.includes('Comedy')) {
+      const variations = ['New Episode', 'Season Premiere', 'Series Finale'];
+      return variations[cardIndex % variations.length];
+    }
+    
+    // Final fallback for unknown content - assume movie
+    return 'Premiere';
   };
 
   // Get next 5 days
