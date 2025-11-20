@@ -63,7 +63,7 @@ function EnhancedTile({ item, onInfo, onShare, timeLabel, typeCapsule, dayLabel 
           <div 
             className="absolute z-30 left-1/2 transform -translate-x-1/2 px-2.5 py-0.5 md:px-3 md:py-1 rounded-full text-center pointer-events-none"
             style={{
-              top: 'calc(66.666% - 28px)', // Position at bottom of 2:3 aspect ratio image
+              top: 'calc(66.666% - 10px)', // Position at very bottom of 2:3 aspect ratio image
               backgroundColor: 'rgba(14, 21, 20, 0.92)',
               border: `1px solid ${coral}60`,
               boxShadow: `0 0 10px ${coral}40`,
@@ -82,7 +82,7 @@ function EnhancedTile({ item, onInfo, onShare, timeLabel, typeCapsule, dayLabel 
             onClick={handleRemindMe}
             className="absolute z-30 w-7 h-7 md:w-8 md:h-8 rounded-full backdrop-blur-xl transition-all transform hover:scale-110 flex items-center justify-center"
             style={{
-              top: 'calc(66.666% - 36px)', // Position at bottom of 2:3 aspect ratio image
+              top: 'calc(66.666% - 10px)', // Position at very bottom of 2:3 aspect ratio image
               right: '8px',
               background: 'rgba(14, 21, 20, 0.90)',
               border: `1px solid ${reminded ? coral : 'rgba(255,255,255,0.3)'}`,
