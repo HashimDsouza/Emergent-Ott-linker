@@ -73,9 +73,31 @@ const ContentDetail = () => {
     return (
       <>
         <ConnectorHeader />
-        <div className="min-h-screen flex items-center justify-center" style={{ backgroundColor: charcoal }}>
-          <div className="text-white text-xl">Loading...</div>
+        <div className="min-h-screen pb-32" style={{ backgroundColor: charcoal }}>
+          <div className="px-3 md:px-6 pt-4">
+            <div className="h-4 w-24 rounded animate-pulse" style={{ background: `${mint}30` }} />
+          </div>
+          <div className="px-3 md:px-6 pt-6 pb-8">
+            <div className="max-w-md mx-auto">
+              {/* Skeleton Tile */}
+              <div className="relative block rounded-lg md:rounded-xl overflow-hidden shadow-lg border border-white/10">
+                <div className="aspect-[2/3] animate-pulse" style={{ background: `linear-gradient(135deg, ${coral}30 0%, ${mint}20 100%)` }}>
+                  <div className="absolute top-2 right-2 w-7 h-7 rounded-full bg-white/10" />
+                </div>
+                <div className="p-2 md:p-3">
+                  <div className="h-4 w-3/4 rounded mb-2 animate-pulse bg-white/10" />
+                  <div className="h-3 w-1/2 rounded mb-2 animate-pulse bg-white/10" />
+                  <div className="h-3 w-2/3 rounded mb-2 animate-pulse bg-white/10" />
+                  <div className="flex items-center justify-between">
+                    <div className="h-3 w-1/3 rounded animate-pulse bg-white/10" />
+                    <div className="w-4 h-4 rounded-full animate-pulse bg-white/10" />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
+        <ConnectorFooter />
       </>
     );
   }
