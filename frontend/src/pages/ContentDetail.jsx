@@ -270,10 +270,14 @@ const ContentDetail = () => {
               </div>
             </div>
 
-            {/* Helper text */}
-            <p className="text-center text-xs text-gray-400 mt-4">
-              Tap poster to watch • Tap 'i' for details
-            </p>
+          </div>
+
+          {/* Related Content Section */}
+          <div className="mt-8 md:mt-12">
+            <h3 className="text-lg md:text-xl font-bold text-white mb-4 flex items-center gap-2">
+              <span style={{ color: coral }}>✨</span> More Like This
+            </h3>
+            <RelatedContent currentContent={content} />
           </div>
         </div>
       </div>
