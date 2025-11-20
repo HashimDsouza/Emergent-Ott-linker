@@ -257,10 +257,22 @@ const CrewDetail = () => {
             </h2>
 
             {watchlist.length === 0 ? (
-              <div className="text-center py-16">
-                <div className="text-6xl mb-4">📭</div>
-                <h3 className="text-xl font-bold text-white mb-2">No content shared yet</h3>
-                <p className="text-gray-400">Be the first to share something to this crew!</p>
+              <div className="text-center py-16 px-4">
+                <div className="text-7xl mb-4 animate-bounce">🚀</div>
+                <h3 className="text-2xl font-bold text-white mb-3">This crew is just getting started!</h3>
+                <p className="text-gray-300 mb-6 max-w-md mx-auto">
+                  Be the first to share something awesome and get the conversation going
+                </p>
+                <button
+                  onClick={() => navigate("/")}
+                  className="px-6 py-3 rounded-full font-bold text-white transition-all transform hover:scale-105"
+                  style={{
+                    background: `linear-gradient(135deg, ${coral} 0%, ${mint} 100%)`,
+                    boxShadow: `0 8px 24px ${coral}40`
+                  }}
+                >
+                  Browse Content to Share
+                </button>
               </div>
             ) : (
               <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-3 md:gap-4">
