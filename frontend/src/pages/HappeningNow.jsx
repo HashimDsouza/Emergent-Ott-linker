@@ -189,9 +189,21 @@ export default function HappeningNow({ apiData, onShare }) {
       return card.leagueName || 'Match';
     }
     
+    // Specific title overrides
+    const title = card.title?.toLowerCase() || '';
+    if (title.includes('all her fault')) {
+      return 'Series Finale';
+    }
+    if (title.includes('morning show')) {
+      return 'New Episode';
+    }
+    if (title.includes('witcher')) {
+      return 'Season Premiere';
+    }
+    
     // For series/shows - rotate through episode types
     if (card.category === 'series' || card.genres?.includes('Drama') || card.genres?.includes('Thriller') || card.genres?.includes('Comedy')) {
-      const variations = ['New Episode', 'Series Premiere', 'Season Finale'];
+      const variations = ['New Episode', 'Season Premiere', 'Series Finale'];
       return variations[cardIndex % variations.length];
     }
     
@@ -200,8 +212,8 @@ export default function HappeningNow({ apiData, onShare }) {
       return 'Award Show';
     }
     
-    // For movies/other content
-    return 'Premiere';
+    // For movies/other content - default to Season Premiere for series-like content
+    return 'Season Premiere';
   };
 
   // Get next 5 days
