@@ -249,10 +249,13 @@ export default function HappeningNow({ apiData, onShare }) {
         const hour = baseTime + idx * 2; // 2-hour intervals
         const time12h = hour > 12 ? `${hour - 12}:00 PM` : `${hour}:00 AM`;
         
+        // Use global index for capsule variation (not just day index)
+        const globalIndex = dayIndex * 6 + idx;
+        
         return {
           ...card,
           timeLabel: card.isLive ? 'LIVE NOW' : time12h,
-          typeCapsule: getTypeCapsule(card, dayIndex),
+          typeCapsule: getTypeCapsule(card, globalIndex),
           dayLabel: day.shortLabel
         };
       });
