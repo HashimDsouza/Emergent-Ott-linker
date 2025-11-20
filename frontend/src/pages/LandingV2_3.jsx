@@ -2,7 +2,6 @@ import React, { useState, useMemo } from "react";
 import "../styles/gradients.css";
 import { mapApiToCard } from "../utils/mapApiToCard";
 import HeroFrontCenter from "../components/HeroFrontCenter";
-import HappeningNow from "../components/HappeningNow";
 import Tray from "../components/Tray";
 import DetailsModal from "../components/DetailsModal";
 import { ConnectorHeader, ConnectorFooter } from "../components/ConnectorLayout";
