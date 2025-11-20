@@ -13,6 +13,7 @@ import Win from "@/pages/Win";
 import Crew from "@/pages/Crew";
 import CrewDetail from "@/pages/CrewDetail";
 import ContentDetail from "@/pages/ContentDetail";
+import HappeningNow from "@/pages/HappeningNow";
 import FeedAdmin from "@/pages/FeedAdmin";
 
 function App() {
