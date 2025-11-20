@@ -176,22 +176,24 @@ export default function HappeningNow({ apiData, onShare }) {
   }, [allCards]);
 
   // Helper to get type capsule
-  const getTypeCapsule = (card, dayIndex) => {
+  const getTypeCapsule = (card, cardIndex) => {
+    // For sports - show league/tournament name
     if (card.category === 'sports') {
       return card.leagueName || 'Match';
     }
     
-    // For series/shows
-    if (card.category === 'series' || card.genres?.includes('Drama') || card.genres?.includes('Thriller')) {
+    // For series/shows - rotate through episode types
+    if (card.category === 'series' || card.genres?.includes('Drama') || card.genres?.includes('Thriller') || card.genres?.includes('Comedy')) {
       const variations = ['New Episode', 'Series Premiere', 'Season Finale'];
-      return variations[dayIndex % variations.length];
+      return variations[cardIndex % variations.length];
     }
     
     // For events
     if (card.category === 'event') {
-      return 'Special Event';
+      return 'Award Show';
     }
     
+    // For movies/other content
     return 'Premiere';
   };
 
