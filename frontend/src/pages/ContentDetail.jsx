@@ -98,6 +98,85 @@ const ContentDetail = () => {
     );
   }
 
+  // Related Content Component
+  const RelatedContent = ({ currentContent }) => {
+    const [relatedItems, setRelatedItems] = useState([]);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+      fetchRelatedContent();
+    }, [currentContent]);
+
+    const fetchRelatedContent = async () => {
+      try {
+        const backendUrl = process.env.REACT_APP_BACKEND_URL || "https://crew-discovery.preview.emergentagent.com";
+        const response = await fetch(`${backendUrl}/api/content`);
+        const allContent = await response.json();
+        
+        // Filter related content (same platform or category, exclude current)
+        const related = allContent
+          .filter(item => 
+            item.id !== currentContent.id && 
+            (item.platform === currentContent.platform || item.category === currentContent.category)
+          )
+          .slice(0, 6)
+          .map(item => mapApiToCard(item));
+        
+        setRelatedItems(related);
+        setLoading(false);
+      } catch (error) {
+        console.error("Error fetching related content:", error);
+        setLoading(false);
+      }
+    };
+
+    if (loading) {
+      return (
+        <div className="flex gap-3 overflow-x-auto pb-2 scrollbar-hide">
+          {[1, 2, 3, 4].map((i) => (
+            <div key={i} className="flex-shrink-0 w-32 md:w-40">
+              <div className="aspect-[2/3] rounded-xl animate-pulse" style={{ background: `${coral}20` }} />
+            </div>
+          ))}
+        </div>
+      );
+    }
+
+    if (relatedItems.length === 0) return null;
+
+    return (
+      <div className="flex gap-3 overflow-x-auto pb-2 scrollbar-hide">
+        {relatedItems.map((item) => (
+          <button
+            key={item.id}
+            onClick={() => navigate(`/content/${item.id}`)}
+            className="flex-shrink-0 w-32 md:w-40 group"
+          >
+            <div className="relative rounded-xl overflow-hidden border border-white/10 hover:border-white/20 transition-all">
+              <div className="aspect-[2/3] relative">
+                {item.thumbnail ? (
+                  <img
+                    src={item.thumbnail}
+                    alt={item.title}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                  />
+                ) : (
+                  <div className="w-full h-full flex items-center justify-center" style={{ background: `linear-gradient(135deg, ${coral}30 0%, ${mint}20 100%)` }}>
+                    <span className="text-4xl">🎬</span>
+                  </div>
+                )}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
+                <div className="absolute bottom-0 left-0 right-0 p-2">
+                  <p className="text-xs text-white font-bold line-clamp-2">{item.title}</p>
+                </div>
+              </div>
+            </div>
+          </button>
+        ))}
+      </div>
+    );
+  };
+
   return (
     <>
       <ConnectorHeader />
