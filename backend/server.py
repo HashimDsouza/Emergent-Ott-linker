@@ -644,6 +644,7 @@ class Content(BaseModel):
     season_release_date: Optional[str] = None  # ISO date
     series_start_year: Optional[int] = None  # Original series start year
     freshness_batch: Optional[str] = None  # Batch identifier (e.g., "nov25")
+    curation_flags: Optional[Dict] = None
 
 class TitleLink(BaseModel):
     model_config = ConfigDict(extra="ignore")
