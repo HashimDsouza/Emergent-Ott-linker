@@ -112,21 +112,22 @@ def curate_front_and_center():
     print("CURATING: FRONT & CENTER")
     print("="*60)
     
-    start_date, end_date = get_current_month_range()
+    # RELAXED: Current year instead of current month
+    year_start = f"{datetime.now().year}-01-01"
     
-    # Get titles from current month with high ratings
+    # Get titles from current year with high ratings
     query = {
-        'release_date': {'$gte': start_date, '$lt': end_date},
+        'release_date': {'$gte': year_start},
         'rating': {'$gte': 7.0}
     }
     
-    titles = list(db.content.find(query).sort('rating', -1).limit(20))
+    titles = list(db.content.find(query).sort([('rating', -1), ('release_date', -1)]).limit(30))
     
-    if len(titles) < 5:
-        # Fallback: Last 3 months
-        fallback_start = (datetime.now() - timedelta(days=90)).strftime('%Y-%m-%d')
+    if len(titles) < 10:
+        # Fallback: Last 2 years
+        fallback_start = (datetime.now() - timedelta(days=730)).strftime('%Y-%m-%d')
         query['release_date'] = {'$gte': fallback_start}
-        titles = list(db.content.find(query).sort('rating', -1).limit(20))
+        titles = list(db.content.find(query).sort('rating', -1).limit(30))
     
     # Custom mix for hero
     hero_mix = {
