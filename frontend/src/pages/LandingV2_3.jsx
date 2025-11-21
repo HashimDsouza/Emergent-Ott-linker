@@ -7,11 +7,37 @@ import DetailsModal from "../components/DetailsModal";
 import { ConnectorHeader, ConnectorFooter } from "../components/ConnectorLayout";
 
 export default function LandingV2_3({ apiData, onShare }) {
-  const cards = useMemo(() => (apiData?.items || []).map(mapApiToCard), [apiData]);
+  const allCards = useMemo(() => (apiData?.items || []).map(mapApiToCard), [apiData]);
   const [modalOpen, setModalOpen] = useState(false);
   const [modalItem, setModalItem] = useState(null);
 
   const onInfo = (item) => { setModalItem(item); setModalOpen(true); };
+
+  // Curated content from backend flags
+  const heroCards = useMemo(() => 
+    allCards
+      .filter(c => c.curation_flags?.front_and_center)
+      .sort((a, b) => (a.curation_flags?.front_and_center_priority || 999) - (b.curation_flags?.front_and_center_priority || 999))
+      .slice(0, 5),
+    [allCards]
+  );
+
+  const buzzingNowCards = useMemo(() => 
+    allCards
+      .filter(c => c.curation_flags?.buzzing_now)
+      .sort((a, b) => (a.curation_flags?.buzzing_now_rank || 999) - (b.curation_flags?.buzzing_now_rank || 999)),
+    [allCards]
+  );
+
+  const mustWatchCards = useMemo(() => 
+    allCards
+      .filter(c => c.curation_flags?.must_watch_today)
+      .sort((a, b) => (a.curation_flags?.must_watch_rank || 999) - (b.curation_flags?.must_watch_rank || 999)),
+    [allCards]
+  );
+
+  // Fallback to all cards if curation is empty
+  const cards = useMemo(() => allCards.length > 0 ? allCards : [], [allCards]);
 
   // Sports tiles for Game On tray - Static curated images (CDN)
   const sportsCards = useMemo(() => [
