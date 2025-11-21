@@ -208,39 +208,24 @@ def curate_buzzing_now():
 def curate_must_watch_today():
     """
     Your Must Watch Today: Top shows of current year
-    - 3 from this month, 2 from last month, 1 evergreen
-    - IMDB 7.5+
+    - RELAXED: Just get best rated from recent releases
+    - IMDB 7.0+ (lowered from 7.5)
     """
     print("\n" + "="*60)
     print("CURATING: YOUR MUST WATCH TODAY")
     print("="*60)
     
-    selected = []
+    # RELAXED: Get from last 2 years
+    two_years_ago = (datetime.now() - timedelta(days=730)).strftime('%Y-%m-%d')
     
-    # 3 from this month
-    start_date, end_date = get_current_month_range()
     query = {
-        'release_date': {'$gte': start_date, '$lt': end_date},
-        'rating': {'$gte': 7.5}
+        'release_date': {'$gte': two_years_ago},
+        'rating': {'$gte': 7.0}
     }
-    this_month = list(db.content.find(query).sort([('release_date', -1), ('rating', -1)]).limit(10))
-    selected.extend(apply_content_mix(this_month, 3))
     
-    # 2 from last month
-    last_month_start = (datetime.now() - timedelta(days=60)).strftime('%Y-%m-%d')
-    last_month_end = start_date
-    query['release_date'] = {'$gte': last_month_start, '$lt': last_month_end}
-    last_month = list(db.content.find(query).sort('rating', -1).limit(10))
-    selected.extend(apply_content_mix(last_month, 2))
+    titles = list(db.content.find(query).sort([('rating', -1), ('release_date', -1)]).limit(30))
     
-    # 1 evergreen (high rating from this year)
-    year_start = f"{datetime.now().year}-01-01"
-    query = {
-        'release_date': {'$gte': year_start},
-        'rating': {'$gte': 8.0}
-    }
-    evergreen = list(db.content.find(query).sort('rating', -1).limit(5))
-    selected.extend(apply_content_mix(evergreen, 1))
+    selected = apply_content_mix(titles, 6)
     
     for i, title in enumerate(selected):
         db.content.update_one(
