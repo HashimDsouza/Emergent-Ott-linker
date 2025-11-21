@@ -189,7 +189,7 @@ export default function LandingV2_3({ apiData, onShare }) {
           icon="🔥"
           title="Buzzing Now"
           subline="The internet’s current obsession"
-          items={cards.slice(0,6)}
+          items={buzzingNowCards.length > 0 ? buzzingNowCards : cards.slice(0,6)}
           onInfo={onInfo}
           onShare={onShare}
         />
