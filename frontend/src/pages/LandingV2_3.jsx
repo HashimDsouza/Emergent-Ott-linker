@@ -197,7 +197,7 @@ export default function LandingV2_3({ apiData, onShare }) {
           icon="👀"
           title="Your Must Watch Today"
           subline="Editor’s picks you can’t skip"
-          items={cards.slice(6,12)}
+          items={mustWatchCards.length > 0 ? mustWatchCards : cards.slice(6,12)}
           onInfo={onInfo}
           onShare={onShare}
         />
