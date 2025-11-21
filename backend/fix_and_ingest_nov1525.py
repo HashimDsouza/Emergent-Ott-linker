@@ -13,7 +13,7 @@ import time
 import openpyxl
 
 # TMDB API Setup
-TMDB_API_KEY = os.environ.get('TMDB_API_KEY', '6154ff47601fae74a6ba5e0676937ab8')
+TMDB_API_KEY = '0ec85c952e2d4ee771180e3068544ddf'
 TMDB_BASE_URL = 'https://api.themoviedb.org/3'
 
 # MongoDB Setup
