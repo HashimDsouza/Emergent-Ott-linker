@@ -247,22 +247,22 @@ def curate_must_watch_today():
 
 def curate_new_and_noted():
     """
-    New & Noted: Latest releases (last 7 days)
+    New & Noted: Latest releases
+    - RELAXED: Last year instead of last 7 days
     - Sorted newest first
-    - If <6, backfill with "coming this week"
     """
     print("\n" + "="*60)
     print("CURATING: NEW & NOTED")
     print("="*60)
     
-    week_ago = (datetime.now() - timedelta(days=7)).strftime('%Y-%m-%d')
-    today = datetime.now().strftime('%Y-%m-%d')
+    # RELAXED: Last year
+    year_ago = (datetime.now() - timedelta(days=365)).strftime('%Y-%m-%d')
     
     query = {
-        'release_date': {'$gte': week_ago, '$lte': today}
+        'release_date': {'$gte': year_ago}
     }
     
-    titles = list(db.content.find(query).sort('release_date', -1).limit(20))
+    titles = list(db.content.find(query).sort('release_date', -1).limit(30))
     
     selected = apply_content_mix(titles, 8)
     
