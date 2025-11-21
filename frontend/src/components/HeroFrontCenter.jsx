@@ -4,25 +4,29 @@ import { mapApiToCard } from "../utils/mapApiToCard";
 const coral = "#FF4F64", mint = "#30E0B2", charcoal = "#0E1514", charcoalSoft = "#173A35";
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 
-export default function HeroFrontCenter({ onInfo }) {
+export default function HeroFrontCenter({ onInfo, heroItems = [] }) {
   const [heroSlides, setHeroSlides] = useState([]);
   const [heroIndex, setHeroIndex] = useState(0);
   const [loading, setLoading] = useState(false);
 
-  // Fetch hero carousel content from API
+  // Use provided heroItems or fetch from API
   useEffect(() => {
-    async function fetchHeroContent() {
-      try {
-        const response = await fetch(`${BACKEND_URL}/api/content`);
-        const data = await response.json();
-        const heroItems = data.filter(item => item.category === 'hero').map(mapApiToCard);
-        setHeroSlides(heroItems);
-      } catch (error) {
-        console.error('Error fetching hero content:', error);
+    if (heroItems && heroItems.length > 0) {
+      setHeroSlides(heroItems);
+    } else {
+      async function fetchHeroContent() {
+        try {
+          const response = await fetch(`${BACKEND_URL}/api/content`);
+          const data = await response.json();
+          const items = data.filter(item => item.curation_flags?.front_and_center).map(mapApiToCard);
+          setHeroSlides(items.length > 0 ? items : data.slice(0, 5).map(mapApiToCard));
+        } catch (error) {
+          console.error('Error fetching hero content:', error);
+        }
       }
+      fetchHeroContent();
     }
-    fetchHeroContent();
-  }, []);
+  }, [heroItems]);
 
   // Auto-rotate carousel
   useEffect(() => {
