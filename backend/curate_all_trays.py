@@ -168,21 +168,21 @@ def curate_buzzing_now():
     print("CURATING: BUZZING NOW")
     print("="*60)
     
-    # Current week (last 7 days for flexibility)
-    week_ago = (datetime.now() - timedelta(days=7)).strftime('%Y-%m-%d')
+    # RELAXED: Current year instead of current week
+    year_start = f"{datetime.now().year}-01-01"
     
     query = {
         'rating': {'$gte': 7.0},
-        'release_date': {'$gte': week_ago}
+        'release_date': {'$gte': year_start}
     }
     
-    titles = list(db.content.find(query).sort('rating', -1).limit(20))
+    titles = list(db.content.find(query).sort([('release_date', -1), ('rating', -1)]).limit(30))
     
     if len(titles) < 6:
-        # Fallback: Current month with high ratings
-        start_date, _ = get_current_month_range()
-        query['release_date'] = {'$gte': start_date}
-        titles = list(db.content.find(query).sort('rating', -1).limit(20))
+        # Fallback: Last 2 years with high ratings
+        two_years_ago = (datetime.now() - timedelta(days=730)).strftime('%Y-%m-%d')
+        query['release_date'] = {'$gte': two_years_ago}
+        titles = list(db.content.find(query).sort('rating', -1).limit(30))
     
     selected = apply_content_mix(titles, 6)
     
