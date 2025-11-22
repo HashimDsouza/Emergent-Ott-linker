@@ -219,3 +219,10 @@ export const getRandomGameBroLine = (sportId = 'default') => {
 export const generateMatchDescriptor = (match) => {
   return match.descriptor || 'Epic matchup ahead.';
 };
+
+// Helper to get flag image URL
+export const getFlagUrl = (countryCode) => {
+  if (!countryCode) return null;
+  const code = countryCode.toLowerCase();
+  return `https://flagcdn.com/w40/${code}.png`;
+};
