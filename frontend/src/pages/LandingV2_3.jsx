@@ -221,30 +221,6 @@ export default function LandingV2_3({ apiData, onShare }) {
           onShare={onShare}
         />
         <Tray
-          icon="📅"
-          title="New & Noted"
-          subline="Fresh releases you need to see"
-          items={newNotedCards.length > 0 ? newNotedCards : cards.slice(12,20)}
-          onInfo={onInfo}
-          onShare={onShare}
-        />
-        <Tray
-          icon="🤝"
-          title="Bro Recommends"
-          subline="Handpicked just for you"
-          items={broRecommendsCards.length > 0 ? broRecommendsCards : cards.slice(20,28)}
-          onInfo={onInfo}
-          onShare={onShare}
-        />
-        <Tray
-          icon="💎"
-          title="Hidden Gems"
-          subline="Underrated classics worth discovering"
-          items={hiddenGemsCards.length > 0 ? hiddenGemsCards : cards.slice(28,36)}
-          onInfo={onInfo}
-          onShare={onShare}
-        />
-        <Tray
           icon="🏆"
           title="Game On"
           subline="Matches, highlights, and scores"
