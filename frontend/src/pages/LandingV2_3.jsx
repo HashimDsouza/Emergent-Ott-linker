@@ -215,7 +215,7 @@ export default function LandingV2_3({ apiData, onShare }) {
           onShare={onShare}
         />
 
-        <DetailsModal open={modalOpen} onClose={() => setModalOpen(false)} item={modalItem} />
+          <DetailsModal open={modalOpen} onClose={() => setModalOpen(false)} item={modalItem} />
         </div>
       </div>
       
