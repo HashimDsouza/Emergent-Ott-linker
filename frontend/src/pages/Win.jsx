@@ -83,16 +83,13 @@ const Win = () => {
   };
 
   const selectAnswer = (answer) => {
-    if (showFeedback) return;
+    if (showFeedback) return; // Prevent changing answer after selection
+    
     setSelectedAnswer(answer);
-  };
+    setShowFeedback(true); // Show feedback immediately
+    setQuizAnswers([...quizAnswers, answer]);
 
-  const submitAnswer = () => {
-    if (!selectedAnswer) return;
-    setShowFeedback(true);
-    setQuizAnswers([...quizAnswers, selectedAnswer]);
-
-    // Auto-advance after 3 seconds (more time to read feedback)
+    // Auto-advance after 2.5 seconds
     setTimeout(() => {
       if (currentQuestion < activeQuiz.questions.length - 1) {
         setCurrentQuestion(currentQuestion + 1);
@@ -100,9 +97,15 @@ const Win = () => {
         setShowFeedback(false);
       } else {
         // Quiz complete, submit for results
-        submitQuiz([...quizAnswers, selectedAnswer]);
+        submitQuiz([...quizAnswers, answer]);
       }
-    }, 3000);
+    }, 2500);
+  };
+
+  const submitAnswer = () => {
+    // This function is no longer needed but keeping for backwards compatibility
+    if (!selectedAnswer || showFeedback) return;
+    selectAnswer(selectedAnswer);
   };
 
   const submitQuiz = async (answers) => {
