@@ -425,10 +425,15 @@ const ContentDetail = () => {
       <ConnieFloating offsetPx={140} />
       
       {/* Modals */}
-      <ShareModal
+      <SocialShareModal
         isOpen={shareModalOpen}
         onClose={() => setShareModalOpen(false)}
-        content={content}
+        content={content || {}}
+      />
+      <ShareToCrewModal
+        isOpen={crewShareModalOpen}
+        onClose={() => setCrewShareModalOpen(false)}
+        content={content || {}}
       />
       <DetailsModal
         open={detailModalOpen}
