@@ -270,7 +270,7 @@ def curate_new_and_noted():
     
     query = {
         'release_date': {'$gte': ninety_days_ago},
-        'category': {'$ne': 'sports'}  # EXCLUDE SPORTS
+        'content_type': {'$nin': ['sports', 'sports_event', 'documentary']}  # EXCLUDE SPORTS & DOCS
     }
     
     titles = list(db.content.find(query).sort('release_date', -1).limit(30))
