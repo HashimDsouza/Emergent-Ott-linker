@@ -6,23 +6,32 @@ const coral = "#FF4F64";
 const mint = "#30E0B2";
 const charcoal = "#0E1514";
 
-export default function SocialShareModal({ isOpen, onClose, content }) {
+export default function SocialShareModal({ isOpen, onClose, content = {} }) {
   const [copied, setCopied] = useState(false);
   const [showCrewModal, setShowCrewModal] = useState(false);
 
   if (!isOpen) return null;
+  
+  // Ensure content exists with defaults
+  const safeContent = {
+    id: content?.id || '',
+    title: content?.title || 'this content',
+    platform: content?.platform || '',
+    descriptor: content?.descriptor || '',
+    thumbnail: content?.thumbnail || '',
+  };
 
   // Generate shareable URL
-  const shareUrl = `${window.location.origin}/content/${content.id}`;
-  const shareTitle = content.title || "Check out this content!";
+  const shareUrl = `${window.location.origin}/content/${safeContent.id}`;
+  const shareTitle = safeContent.title;
   
   // Premium, personalized copy options - rotate randomly
   const personalizedCopies = useMemo(() => [
-    `Found "${content.title}" on Connector and instantly thought of you 💫`,
-    `Adding "${content.title}" to your must-watch. You're welcome 😉`,
-    `Found it on Connector. Saved for you: ${content.title} ✨`,
-    `Found "${content.title}" on Connector and I think you'll love it 🎬`
-  ], [content.title]);
+    `Found "${safeContent.title}" on Connector and instantly thought of you 💫`,
+    `Adding "${safeContent.title}" to your must-watch. You're welcome 😉`,
+    `Found it on Connector. Saved for you: ${safeContent.title} ✨`,
+    `Found "${safeContent.title}" on Connector and I think you'll love it 🎬`
+  ], [safeContent.title]);
   
   const selectedCopy = useMemo(() => {
     return personalizedCopies[Math.floor(Math.random() * personalizedCopies.length)];
