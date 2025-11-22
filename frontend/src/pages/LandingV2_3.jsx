@@ -190,7 +190,7 @@ export default function LandingV2_3({ apiData, onShare }) {
         {/* Trays - Constrained Width for Readability */}
         <div className="max-w-7xl mx-auto px-3 md:px-6">
 
-        <Tray
+          <Tray
           icon="🔥"
           title="Buzzing Now"
           subline="The internet’s current obsession"
@@ -198,7 +198,7 @@ export default function LandingV2_3({ apiData, onShare }) {
           onInfo={onInfo}
           onShare={onShare}
         />
-        <Tray
+          <Tray
           icon="👀"
           title="Your Must Watch Today"
           subline="Editor’s picks you can’t skip"
@@ -206,7 +206,7 @@ export default function LandingV2_3({ apiData, onShare }) {
           onInfo={onInfo}
           onShare={onShare}
         />
-        <Tray
+          <Tray
           icon="🏆"
           title="Game On"
           subline="Matches, highlights, and scores"
