@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import { ConnectorHeader, ConnectorFooter } from "../components/ConnectorLayout";
 import ConnieFloating from "../components/ConnieFloating";
+import ShareToCrewModal from "../components/ShareToCrewModal";
 import { Users, Plus, Check, X, Sparkles, TrendingUp, Activity, Trophy, ChevronDown, Flame, Heart, ThumbsUp, Eye, Laugh, Frown } from "lucide-react";
 import Confetti from "react-confetti";
 
@@ -24,6 +25,8 @@ const Crew = () => {
   const [trendingContent, setTrendingContent] = useState([]);
   const [showConfetti, setShowConfetti] = useState(false);
   const [confettiRecycle, setConfettiRecycle] = useState(true);
+  const [showShareModal, setShowShareModal] = useState(false);
+  const [selectedContent, setSelectedContent] = useState(null);
 
   const iconOptions = ["🎬", "🏏", "📺", "⚽", "🎵", "🌍", "🎮", "🍿", "🎭", "📚", "🏀", "🎸"];
 
