@@ -513,6 +513,7 @@ const Crew = () => {
                         item={item} 
                         onAddToWatchlist={handleAddToWatchlist}
                         onShare={handleShare}
+                        navigate={navigate}
                       />
                     ))}
                   </div>
