@@ -1,5 +1,5 @@
-// Sports Configuration for Game On
-// Primary and secondary tiers, seasonal events, priority rules
+// Sports Configuration - Premium Images for Connector Brand
+// High-quality sports imagery
 
 export const primarySports = [
   { id: 'live', label: 'LIVE Now', icon: '🔴', dynamic: true },
@@ -46,79 +46,146 @@ export const secondarySports = {
   ]
 };
 
-// Seasonal events configuration (dynamic additions based on dates)
-export const seasonalEvents = {
-  'fifa_worldcup': {
-    active_period: ['2026-06-01', '2026-07-31'],
-    position: 'primary',
-    replaces: 'more',
-    label: 'FIFA World Cup',
-    icon: '🏆'
-  },
-  'uefa_euros': {
-    active_period: ['2024-06-01', '2024-07-31'],
-    position: 'secondary',
-    sport: 'football',
-    index: 0,
-    label: 'UEFA Euros',
-    flag: '🏆'
-  },
-  't20_worldcup': {
-    active_period: ['2024-06-01', '2024-07-31'],
-    position: 'secondary',
-    sport: 'cricket',
-    index: 0,
-    label: 'T20 World Cup',
-    flag: '🏆'
-  }
+export const getTeamLogo = (teamName, sport) => {
+  const teamData = {
+    'MI': { color: '#004BA0', initials: 'MI' },
+    'CSK': { color: '#FDB913', initials: 'CSK' },
+    'RCB': { color: '#EC1C24', initials: 'RCB' },
+    'KKR': { color: '#3A225D', initials: 'KKR' },
+    'Man City': { color: '#6CABDD', initials: 'MCI' },
+    'Arsenal': { color: '#EF0107', initials: 'ARS' },
+    'Liverpool': { color: '#C8102E', initials: 'LIV' },
+    'Chelsea': { color: '#034694', initials: 'CHE' },
+    'Real Madrid': { color: '#FEBE10', initials: 'RMA' },
+    'Barcelona': { color: '#A50044', initials: 'FCB' },
+    'Bayern': { color: '#DC052D', initials: 'FCB' },
+    'Lakers': { color: '#552583', initials: 'LAL' },
+    'Warriors': { color: '#1D428A', initials: 'GSW' }
+  };
+  return teamData[teamName] || { color: '#30E0B2', initials: teamName.substring(0, 3).toUpperCase() };
 };
 
-// Spotlight priority configuration
-export const spotlightPriority = {
-  always_show: [
-    'India Cricket',
-    'El Clasico',
-    'Manchester Derby',
-    'Champions League Final'
-  ],
-  recurring_weekly: {
-    'Saturday': ['Premier League', 'La Liga', 'Bundesliga'],
-    'Sunday': ['Serie A', 'F1', 'NBA']
+// Premium sports images - Using high-quality alternatives
+export const liveMatches = [
+  { 
+    id: 'l1', 
+    sport: 'cricket', 
+    league: 'ipl', 
+    team1: { name: 'MI', flag: '🔵', logo: getTeamLogo('MI') }, 
+    team2: { name: 'CSK', flag: '🟡', logo: getTeamLogo('CSK') }, 
+    score: '145/3 (18.2)', 
+    status: 'LIVE', 
+    venue: 'Wankhede', 
+    descriptor: 'Classic rivalry. Yellow vs Blue.',
+    thumbnail: 'https://images.pexels.com/photos/1618200/pexels-photo-1618200.jpeg?auto=compress&cs=tinysrgb&w=600&h=900&fit=crop',
+    posterUrl: 'https://images.pexels.com/photos/1618200/pexels-photo-1618200.jpeg?auto=compress&cs=tinysrgb&w=600&h=900&fit=crop'
+  },
+  { 
+    id: 'l2', 
+    sport: 'kabaddi', 
+    league: 'pkl', 
+    team1: { name: 'Patna Pirates', flag: '🟠' }, 
+    team2: { name: 'Bengal Warriors', flag: '🔴' }, 
+    score: '28-24', 
+    status: 'LIVE', 
+    venue: 'Kolkata', 
+    descriptor: "India's most intense contact sport",
+    thumbnail: 'https://images.pexels.com/photos/16038098/pexels-photo-16038098.jpeg?auto=compress&cs=tinysrgb&w=600&h=900&fit=crop',
+    posterUrl: 'https://images.pexels.com/photos/16038098/pexels-photo-16038098.jpeg?auto=compress&cs=tinysrgb&w=600&h=900&fit=crop'
+  },
+  { 
+    id: 'l3', 
+    sport: 'football', 
+    league: 'premier', 
+    team1: { name: 'Man City', flag: '🏴󠁧󠁢󠁥󠁮󠁧󠁿', logo: getTeamLogo('Man City') }, 
+    team2: { name: 'Arsenal', flag: '🏴󠁧󠁢󠁥󠁮󠁧󠁿', logo: getTeamLogo('Arsenal') }, 
+    score: '2-1', 
+    status: '78\'', 
+    venue: 'Etihad', 
+    descriptor: 'Title race heats up.',
+    thumbnail: 'https://images.pexels.com/photos/399187/pexels-photo-399187.jpeg?auto=compress&cs=tinysrgb&w=600&h=900&fit=crop',
+    posterUrl: 'https://images.pexels.com/photos/399187/pexels-photo-399187.jpeg?auto=compress&cs=tinysrgb&w=600&h=900&fit=crop'
   }
-};
+];
 
-// Bro microlines for Game On
+export const todayMatches = [
+  { 
+    id: 't1', 
+    sport: 'cricket', 
+    league: 'india', 
+    team1: { name: 'India', flag: '🇮🇳' }, 
+    team2: { name: 'Australia', flag: '🇦🇺' }, 
+    time: '2:00 PM', 
+    venue: 'Mumbai', 
+    descriptor: 'Series decider. History awaits.',
+    thumbnail: 'https://images.pexels.com/photos/10069854/pexels-photo-10069854.jpeg?auto=compress&cs=tinysrgb&w=600&h=900&fit=crop',
+    posterUrl: 'https://images.pexels.com/photos/10069854/pexels-photo-10069854.jpeg?auto=compress&cs=tinysrgb&w=600&h=900&fit=crop'
+  },
+  { 
+    id: 't2', 
+    sport: 'football', 
+    league: 'laliga', 
+    team1: { name: 'Real Madrid', flag: '🇪🇸', logo: getTeamLogo('Real Madrid') }, 
+    team2: { name: 'Barcelona', flag: '🇪🇸', logo: getTeamLogo('Barcelona') }, 
+    time: '8:00 PM', 
+    venue: 'Bernabeu', 
+    descriptor: '285th battle. Rivalry renewed.',
+    thumbnail: 'https://images.pexels.com/photos/274422/pexels-photo-274422.jpeg?auto=compress&cs=tinysrgb&w=600&h=900&fit=crop',
+    posterUrl: 'https://images.pexels.com/photos/274422/pexels-photo-274422.jpeg?auto=compress&cs=tinysrgb&w=600&h=900&fit=crop'
+  },
+  { 
+    id: 't4', 
+    sport: 'cricket', 
+    league: 'ipl', 
+    team1: { name: 'MI', flag: '🔵', logo: getTeamLogo('MI') }, 
+    team2: { name: 'CSK', flag: '🟡', logo: getTeamLogo('CSK') }, 
+    time: '7:30 PM', 
+    venue: 'Wankhede', 
+    descriptor: 'Classic rivalry. Yellow vs Blue.',
+    thumbnail: 'https://images.pexels.com/photos/1618200/pexels-photo-1618200.jpeg?auto=compress&cs=tinysrgb&w=600&h=900&fit=crop',
+    posterUrl: 'https://images.pexels.com/photos/1618200/pexels-photo-1618200.jpeg?auto=compress&cs=tinysrgb&w=600&h=900&fit=crop'
+  }
+];
+
+export const comingUpMatches = [
+  { 
+    id: 'c1', 
+    sport: 'football', 
+    league: 'premier', 
+    team1: { name: 'Liverpool', flag: '🏴󠁧󠁢󠁥󠁮󠁧󠁿', logo: getTeamLogo('Liverpool') }, 
+    team2: { name: 'Chelsea', flag: '🏴󠁧󠁢󠁥󠁮󠁧󠁿', logo: getTeamLogo('Chelsea') }, 
+    day: 'Tomorrow', 
+    time: '10:00 PM', 
+    descriptor: 'Derby day drama.',
+    thumbnail: 'https://images.pexels.com/photos/1884574/pexels-photo-1884574.jpeg?auto=compress&cs=tinysrgb&w=600&h=900&fit=crop',
+    posterUrl: 'https://images.pexels.com/photos/1884574/pexels-photo-1884574.jpeg?auto=compress&cs=tinysrgb&w=600&h=900&fit=crop'
+  },
+  { 
+    id: 'c3', 
+    sport: 'cricket', 
+    league: 'england', 
+    team1: { name: 'Pakistan', flag: '🇵🇰' }, 
+    team2: { name: 'England', flag: '🏴󠁧󠁢󠁥󠁮󠁧󠁿' }, 
+    day: 'Saturday', 
+    time: '2:00 PM', 
+    descriptor: 'Rivalry continues.',
+    thumbnail: 'https://images.pexels.com/photos/1618269/pexels-photo-1618269.jpeg?auto=compress&cs=tinysrgb&w=600&h=900&fit=crop',
+    posterUrl: 'https://images.pexels.com/photos/1618269/pexels-photo-1618269.jpeg?auto=compress&cs=tinysrgb&w=600&h=900&fit=crop'
+  }
+];
+
+// Highlights with proper video IDs
+export const highlightsVideos = [
+  { id: 'h1', videoId: 'dQw4w9WgXcQ', title: 'IND vs AUS Test Highlights', sport: 'cricket', views: '1.2M', descriptor: 'Masterclass innings', league: 'IND vs AUS', thumbnail: 'https://images.pexels.com/photos/10069854/pexels-photo-10069854.jpeg?auto=compress&cs=tinysrgb&w=600&h=900&fit=crop' },
+  { id: 'h2', videoId: 'LFzrA492gdw', title: 'Fighter - Action Scenes', sport: 'action', views: '2.8M', descriptor: 'Hrithik aerial combat', league: 'Fighter', thumbnail: 'https://images.pexels.com/photos/163792/model-planes-airplanes-miniatures-craft-163792.jpeg?auto=compress&cs=tinysrgb&w=600&h=900&fit=crop' }
+];
+
+// Bro lines remain the same
 export const gameBroLines = {
-  live: [
-    "Live action. Real drama.",
-    "Matches on. Snacks ready?",
-    "3 matches live. Pick your poison."
-  ],
-  cricket: [
-    "Pitch perfect vibes tonight.",
-    "Six incoming. Watch the skies.",
-    "Cricket's on. Nation's watching."
-  ],
-  football: [
-    "Goals incoming. Drama guaranteed.",
-    "Kickoff soon. Clear your calendar.",
-    "90 minutes of pure chaos."
-  ],
-  tennis: [
-    "Aces. Sets. Match point energy.",
-    "Clay court drama loading.",
-    "Game, set, binge."
-  ],
-  more: [
-    "Beyond the usual. Worth the watch.",
-    "Alternative adrenaline hits.",
-    "Unexpected vibes ahead."
-  ],
-  default: [
-    "Live action. Real drama.",
-    "Game recognizes game.",
-    "Your next sports obsession starts here."
-  ]
+  live: ["Live action. Real drama.", "Matches on. Snacks ready?"],
+  cricket: ["Pitch perfect vibes tonight.", "Six incoming. Watch the skies."],
+  football: ["Goals incoming. Drama guaranteed."],
+  default: ["Live action. Real drama.", "Game recognizes game."]
 };
 
 export const getRandomGameBroLine = (sportId = 'default') => {
@@ -126,125 +193,6 @@ export const getRandomGameBroLine = (sportId = 'default') => {
   return lines[Math.floor(Math.random() * lines.length)];
 };
 
-// Helper to get flag image URL from flagcdn.com
-export const getFlagUrl = (countryCode) => {
-  if (!countryCode) return null;
-  // Convert country code to lowercase for API
-  const code = countryCode.toLowerCase();
-  return `https://flagcdn.com/w40/${code}.png`;
-};
-
-// Helper to get team logo with color and initials
-export const getTeamLogo = (teamName, sport) => {
-  const teamData = {
-    'MI': { color: '#004BA0', initials: 'MI' },
-    'CSK': { color: '#FDB913', initials: 'CSK' },
-    'RCB': { color: '#EC1C24', initials: 'RCB' },
-    'KKR': { color: '#3A225D', initials: 'KKR' },
-    'DC': { color: '#17479E', initials: 'DC' },
-    'RR': { color: '#254AA5', initials: 'RR' },
-    'PBKS': { color: '#DD1F2D', initials: 'PBKS' },
-    'SRH': { color: '#FF822A', initials: 'SRH' },
-    'Lakers': { color: '#552583', initials: 'LAL' },
-    'Warriors': { color: '#1D428A', initials: 'GSW' },
-    'Celtics': { color: '#007A33', initials: 'BOS' },
-    'Heat': { color: '#98002E', initials: 'MIA' },
-    'Man City': { color: '#6CABDD', initials: 'MCI' },
-    'Arsenal': { color: '#EF0107', initials: 'ARS' },
-    'Liverpool': { color: '#C8102E', initials: 'LIV' },
-    'Chelsea': { color: '#034694', initials: 'CHE' },
-    'Real Madrid': { color: '#FEBE10', initials: 'RMA' },
-    'Barcelona': { color: '#A50044', initials: 'FCB' },
-    'Bayern': { color: '#DC052D', initials: 'FCB' }
-  };
-  return teamData[teamName] || { color: '#30E0B2', initials: teamName.substring(0, 3).toUpperCase() };
-};
-
-// Mock data for all trays
-export const liveMatches = [
-  { id: 'l1', sport: 'cricket', league: 'ipl', team1: { name: 'MI', flag: '🔵', flagCode: null, logo: getTeamLogo('MI') }, team2: { name: 'CSK', flag: '🟡', flagCode: null, logo: getTeamLogo('CSK') }, score: '145/3 (18.2)', status: 'LIVE', venue: 'Wankhede', descriptor: 'Classic rivalry. Yellow vs Blue.' },
-  { id: 'l2', sport: 'football', league: 'premier', team1: { name: 'Man City', flag: '🏴󠁧󠁢󠁥󠁮󠁧󠁿', flagCode: 'gb-eng', logo: getTeamLogo('Man City') }, team2: { name: 'Arsenal', flag: '🏴󠁧󠁢󠁥󠁮󠁧󠁿', flagCode: 'gb-eng', logo: getTeamLogo('Arsenal') }, score: '2-1', status: '78\'', venue: 'Etihad', descriptor: 'Title race heats up.' },
-  { id: 'l3', sport: 'tennis', league: 'grandslam', team1: { name: 'Djokovic', flag: '🇷🇸', flagCode: 'rs', logo: null }, team2: { name: 'Alcaraz', flag: '🇪🇸', flagCode: 'es', logo: null }, score: '6-4, 3-5', status: 'Set 2', venue: 'Melbourne', descriptor: 'Generational clash.' },
-  { id: 'l4', sport: 'nba', league: 'nba', team1: { name: 'Lakers', flag: '🟣', flagCode: null, logo: getTeamLogo('Lakers') }, team2: { name: 'Warriors', flag: '🟠', flagCode: null, logo: getTeamLogo('Warriors') }, score: '98-95', status: 'Q4 2:45', venue: 'LA', descriptor: 'LeBron vs Curry. Legends duel.' }
-];
-
-export const todayMatches = [
-  { id: 't1', sport: 'cricket', league: 'india', team1: { name: 'India', flag: '🇮🇳', flagCode: 'in', logo: null }, team2: { name: 'Australia', flag: '🇦🇺', flagCode: 'au', logo: null }, time: '2:00 PM', venue: 'Mumbai', descriptor: 'Series decider. History awaits.' },
-  { id: 't2', sport: 'football', league: 'laliga', team1: { name: 'Real Madrid', flag: '🇪🇸', flagCode: null, logo: getTeamLogo('Real Madrid') }, team2: { name: 'Barcelona', flag: '🇪🇸', flagCode: null, logo: getTeamLogo('Barcelona') }, time: '8:00 PM', venue: 'Bernabeu', descriptor: '285th battle. Rivalry renewed.' },
-  { id: 't3', sport: 'football', league: 'premier', team1: { name: 'Man City', flag: '🏴󠁧󠁢󠁥󠁮󠁧󠁿', flagCode: 'gb-eng', logo: getTeamLogo('Man City') }, team2: { name: 'Arsenal', flag: '🏴󠁧󠁢󠁥󠁮󠁧󠁿', flagCode: 'gb-eng', logo: getTeamLogo('Arsenal') }, time: '10:30 PM', venue: 'Etihad', descriptor: 'Title race heats up.' },
-  { id: 't4', sport: 'cricket', league: 'ipl', team1: { name: 'MI', flag: '🔵', flagCode: null, logo: getTeamLogo('MI') }, team2: { name: 'CSK', flag: '🟡', flagCode: null, logo: getTeamLogo('CSK') }, time: '7:30 PM', venue: 'Wankhede', descriptor: 'Classic rivalry. Yellow vs Blue.' },
-  { id: 't5', sport: 'nba', league: 'nba', team1: { name: 'Lakers', flag: '🟣', flagCode: null, logo: getTeamLogo('Lakers') }, team2: { name: 'Warriors', flag: '🟠', flagCode: null, logo: getTeamLogo('Warriors') }, time: '9:00 AM', venue: 'LA', descriptor: 'LeBron vs Curry. Legends duel.' },
-  { id: 't6', sport: 'tennis', league: 'grandslam', team1: { name: 'Djokovic', flag: '🇷🇸', flagCode: 'rs', logo: null }, team2: { name: 'Alcaraz', flag: '🇪🇸', flagCode: 'es', logo: null }, time: '3:00 PM', venue: 'Melbourne', descriptor: 'Generational clash.' }
-];
-
-export const comingUpMatches = [
-  { id: 'c1', sport: 'football', league: 'premier', team1: { name: 'Liverpool', flag: '🏴󠁧󠁢󠁥󠁮󠁧󠁿', flagCode: 'gb-eng', logo: getTeamLogo('Liverpool') }, team2: { name: 'Chelsea', flag: '🏴󠁧󠁢󠁥󠁮󠁧󠁿', flagCode: 'gb-eng', logo: getTeamLogo('Chelsea') }, day: 'Tomorrow', time: '10:00 PM', descriptor: 'Derby day drama.' },
-  { id: 'c2', sport: 'f1', league: 'f1', team1: { name: 'Abu Dhabi GP', flag: '🇦🇪', flagCode: 'ae', logo: null }, team2: null, day: 'Sunday', time: '5:30 PM', descriptor: 'Season finale. Title shot.' },
-  { id: 'c3', sport: 'cricket', league: 'england', team1: { name: 'Pakistan', flag: '🇵🇰', flagCode: 'pk', logo: null }, team2: { name: 'England', flag: '🏴󠁧󠁢󠁥󠁮󠁧󠁿', flagCode: 'gb-eng', logo: null }, day: 'Saturday', time: '2:00 PM', descriptor: 'Rivalry continues.' },
-  { id: 'c4', sport: 'nba', league: 'nba', team1: { name: 'Celtics', flag: '🟢', flagCode: null, logo: getTeamLogo('Celtics') }, team2: { name: 'Heat', flag: '🔴', flagCode: null, logo: getTeamLogo('Heat') }, day: 'Sunday', time: '8:00 AM', descriptor: 'East Conference clash.' },
-  { id: 'c5', sport: 'tennis', league: 'atp', team1: { name: 'Federer', flag: '🇨🇭', flagCode: 'ch', logo: null }, team2: { name: 'Nadal', flag: '🇪🇸', flagCode: 'es', logo: null }, day: 'Saturday', time: '4:00 PM', descriptor: 'Legends return.' },
-  { id: 'c6', sport: 'football', league: 'bundesliga', team1: { name: 'Bayern', flag: '🇩🇪', flagCode: null, logo: getTeamLogo('Bayern') }, team2: { name: 'Dortmund', flag: '🇩🇪', flagCode: null, logo: null }, day: 'Tomorrow', time: '9:30 PM', descriptor: 'Der Klassiker.' }
-];
-
-// Auto-descriptor generator for matches
 export const generateMatchDescriptor = (match) => {
-  const descriptors = {
-    cricket: {
-      india: ['Border-Gavaskar trophy.', 'Nation watches.', 'History beckons.', 'Rivalry renewed.'],
-      ipl: ['Classic rivalry.', 'Yellow vs Blue.', 'Trophy race heats up.', 'Playoff push.'],
-      australia: ['Down under battles.', 'Ashes energy.'],
-      england: ['Test of legends.', 'Rivalry continues.'],
-      t20wc: ['World stage awaits.', 'Glory calling.']
-    },
-    football: {
-      premier: ['Title race heats up.', 'Derby day drama.', 'Six-pointer alert.'],
-      laliga: ['El Clasico magic.', '285th battle.', 'Rivalry renewed.'],
-      champions: ['European nights.', 'Glory awaits.'],
-      bundesliga: ['Der Klassiker.', 'Bayern dominance?'],
-      seriea: ['Italian excellence.', 'Derby della Madonnina.']
-    },
-    tennis: {
-      grandslam: ['Generational clash.', 'Grand slam glory.', 'History awaits.'],
-      atp: ['ATP Finals intensity.', 'Masters magic.'],
-      wta: ['Women\'s excellence.']
-    },
-    nba: {
-      nba: ['LeBron vs Curry.', 'Legends duel.', 'Title run begins.', 'Conference clash.']
-    },
-    f1: {
-      f1: ['Season finale.', 'Title shot.', 'Pole position drama.']
-    }
-  };
-  
-  if (match.descriptor) return match.descriptor;
-  
-  const sportDescriptors = descriptors[match.sport];
-  if (!sportDescriptors) return 'Epic matchup ahead.';
-  
-  const leagueDescriptors = sportDescriptors[match.league];
-  if (!leagueDescriptors || leagueDescriptors.length === 0) {
-    return Object.values(sportDescriptors).flat()[0] || 'Epic matchup ahead.';
-  }
-  
-  return leagueDescriptors[Math.floor(Math.random() * leagueDescriptors.length)];
+  return match.descriptor || 'Epic matchup ahead.';
 };
-
-// Highlights video data (recent match highlights)
-export const highlightsVideos = [
-  { id: 'h1', videoId: '4W9YskwfTXE', title: 'IND vs AUS Test Day 2 Highlights', sport: 'cricket', views: '1.2M', descriptor: 'Masterclass innings. Pure class.', league: 'IND vs AUS' },
-  { id: 'h2', videoId: 'LFzrA492gdw', title: 'El Clasico All Goals', sport: 'football', views: '2.8M', descriptor: 'Bellingham winner. Drama.', league: 'La Liga' },
-  { id: 'h3', videoId: 'K_i4srJLw_E', title: 'Lakers vs Warriors Highlights', sport: 'nba', views: '890K', descriptor: 'LeBron 40pts. Thriller.', league: 'NBA' },
-  { id: 'h4', videoId: 'BfWxJ0qh5X8', title: 'Djokovic 5-Set Win', sport: 'tennis', views: '654K', descriptor: 'Epic comeback. Legend.', league: 'Australian Open' },
-  { id: 'h5', videoId: 'Zv5T8SoJXfg', title: 'F1 Abu Dhabi GP Highlights', sport: 'f1', views: '1.5M', descriptor: 'Final lap drama.', league: 'F1' },
-  { id: 'h6', videoId: 'fnIPe8ryzOs', title: 'IPL 2024 Final Highlights', sport: 'cricket', views: '3.2M', descriptor: 'KKR champions. Epic final.', league: 'IPL' }
-];
-
-// Best Of video data (compilation content)
-export const bestOfVideos = [
-  { id: 'b1', videoId: 'PaMs87nTThs', title: 'Best Of IND vs AUS Series', sport: 'cricket', views: '5.2M', descriptor: 'Border-Gavaskar epic.', league: 'Test Cricket' },
-  { id: 'b2', videoId: 'NJQyqpaK9zQ', title: 'El Clasico 4-3 Thriller', sport: 'football', views: '3.8M', descriptor: 'Seven goals. Pure chaos.', league: 'La Liga' },
-  { id: 'b3', videoId: 'wF48pxqXtyI', title: 'NBA Top 10 Dunks This Week', sport: 'nba', views: '2.1M', descriptor: 'Rim-wrecking slams.', league: 'NBA' },
-  { id: 'b4', videoId: 'Jz8c17upEwM', title: 'Best Tennis Rallies 2024', sport: 'tennis', views: '1.9M', descriptor: 'Epic exchanges.', league: 'ATP/WTA' },
-  { id: 'b5', videoId: 'nFqC7LoRcFY', title: 'F1 Best Overtakes 2024', sport: 'f1', views: '4.5M', descriptor: 'Wheel-to-wheel action.', league: 'F1' },
-  { id: 'b6', videoId: 'TJRMUZs8pkQ', title: 'IND vs AUS ODI Highlights', sport: 'cricket', views: '6.3M', descriptor: 'Six-hitting masterclass.', league: 'ODI' }
-];
