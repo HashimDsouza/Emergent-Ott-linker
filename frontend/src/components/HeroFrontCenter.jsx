@@ -83,15 +83,8 @@ export default function HeroFrontCenter({ onInfo, heroItems = [] }) {
       <div
         onClick={handleHeroClick}
         className="relative rounded-2xl md:rounded-3xl overflow-hidden border border-white/10 shadow-xl cursor-pointer hover:border-white/20 transition hero-container"
-        style={{ height: "280px" }}
+        style={{ aspectRatio: "16/9", maxHeight: "500px" }}
       >
-        <style>{`
-          @media (min-width: 768px) {
-            .hero-container {
-              height: 450px !important;
-            }
-          }
-        `}</style>
 
         {/* Background image - use backdrop (landscape) format */}
         <div 
