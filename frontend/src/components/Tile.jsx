@@ -264,6 +264,18 @@ export default function Tile({ item, onInfo, onShare, onAddToWatchlist }) {
             <span className="absolute text-[7px] md:text-[11px] font-bold" style={{ color: "#0E1514" }}>i</span>
           </button>
         </div>
+
+        {/* Social Proof - Line 4 */}
+        {onAddToWatchlist && socialProofCount > 0 && (
+          <div className="mt-1 pt-1 border-t border-white/10">
+            <p className="text-[8px] md:text-[9px] text-white/60 flex items-center gap-1">
+              <Bookmark className="w-2.5 h-2.5" style={{ color: mint }} />
+              <span>
+                <span style={{ color: mint }} className="font-semibold">{socialProofCount}</span> members added this
+              </span>
+            </p>
+          </div>
+        )}
       </div>
     </div>
   );
