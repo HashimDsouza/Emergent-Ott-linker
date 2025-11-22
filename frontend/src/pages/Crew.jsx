@@ -26,8 +26,20 @@ const Crew = () => {
   const [trendingContent, setTrendingContent] = useState([]);
   const [showConfetti, setShowConfetti] = useState(false);
   const [confettiRecycle, setConfettiRecycle] = useState(true);
-  const [showShareModal, setShowShareModal] = useState(false);
+  const [showSocialShareModal, setShowSocialShareModal] = useState(false);
+  const [showCrewShareModal, setShowCrewShareModal] = useState(false);
   const [selectedContent, setSelectedContent] = useState(null);
+
+  // Setup global function for crew share modal trigger
+  useEffect(() => {
+    window.openCrewShareModal = (content) => {
+      setSelectedContent(content);
+      setShowCrewShareModal(true);
+    };
+    return () => {
+      delete window.openCrewShareModal;
+    };
+  }, []);
 
   const iconOptions = ["🎬", "🏏", "📺", "⚽", "🎵", "🌍", "🎮", "🍿", "🎭", "📚", "🏀", "🎸"];
 
