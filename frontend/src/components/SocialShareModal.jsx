@@ -9,8 +9,6 @@ const charcoal = "#0E1514";
 export default function SocialShareModal({ isOpen, onClose, content = {} }) {
   const [copied, setCopied] = useState(false);
   const [showCrewModal, setShowCrewModal] = useState(false);
-
-  if (!isOpen) return null;
   
   // Ensure content exists with defaults
   const safeContent = {
@@ -25,7 +23,8 @@ export default function SocialShareModal({ isOpen, onClose, content = {} }) {
   const shareUrl = `${window.location.origin}/content/${safeContent.id}`;
   const shareTitle = safeContent.title;
   
-  // Premium, personalized copy options - rotate randomly
+  // Premium, personalized copy options - rotate randomly  
+  // MUST be before early return to avoid hooks error
   const personalizedCopies = useMemo(() => [
     `Found "${safeContent.title}" on Connector and instantly thought of you 💫`,
     `Adding "${safeContent.title}" to your must-watch. You're welcome 😉`,
@@ -38,6 +37,8 @@ export default function SocialShareModal({ isOpen, onClose, content = {} }) {
   }, [personalizedCopies]);
   
   const shareDescription = selectedCopy;
+
+  if (!isOpen) return null;
 
   const copyToClipboard = async () => {
     try {
