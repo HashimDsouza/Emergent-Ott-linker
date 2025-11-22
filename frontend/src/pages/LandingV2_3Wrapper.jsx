@@ -55,8 +55,9 @@ export default function LandingV2_3Wrapper() {
       await axios.post(`${API}/watchlist/add`, {
         user_id: "anonymous",
         content_id: content.id || content.title,
+        content_type: "movie",
         content_title: content.title,
-        content_thumbnail: content.thumbnail || content.poster_url || content.posterUrl,
+        content_image: content.thumbnail || content.poster_url || content.posterUrl,
       });
     } catch (error) {
       console.error("Error adding to watchlist:", error);
