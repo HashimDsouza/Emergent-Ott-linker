@@ -104,30 +104,30 @@ def get_current_month_range():
 
 def curate_front_and_center():
     """
-    Front & Center: Top 5 biggest shows of current month
+    Front & Center: Top 5 biggest shows of current year
+    - NO SPORTS - Entertainment only
     - Pool of 10 titles (rotate 5 at a time)
-    - 2 International, 2 Hindi, 1 Anime (if missing, replace with International)
+    - Best ratings + recent releases
     """
     print("\n" + "="*60)
-    print("CURATING: FRONT & CENTER")
+    print("CURATING: FRONT & CENTER (NO SPORTS)")
     print("="*60)
     
-    # RELAXED: Current year instead of current month
+    # STRICT: Current year, no sports, high ratings
     year_start = f"{datetime.now().year}-01-01"
     
-    # Get titles from current year with high ratings
     query = {
         'release_date': {'$gte': year_start},
-        'rating': {'$gte': 7.0}
+        'rating': {'$gte': 7.5},
+        'category': {'$ne': 'sports'}  # EXCLUDE SPORTS
     }
     
     titles = list(db.content.find(query).sort([('rating', -1), ('release_date', -1)]).limit(30))
     
     if len(titles) < 10:
-        # Fallback: Last 2 years
-        fallback_start = (datetime.now() - timedelta(days=730)).strftime('%Y-%m-%d')
-        query['release_date'] = {'$gte': fallback_start}
-        titles = list(db.content.find(query).sort('rating', -1).limit(30))
+        # Fallback: Lower rating but keep current year
+        query['rating'] = {'$gte': 7.0}
+        titles = list(db.content.find(query).sort([('rating', -1), ('release_date', -1)]).limit(30))
     
     # Custom mix for hero
     hero_mix = {
