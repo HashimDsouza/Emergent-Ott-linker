@@ -36,6 +36,25 @@ export default function LandingV2_3({ apiData, onShare }) {
     [allCards]
   );
 
+  const newNotedCards = useMemo(() => 
+    allCards
+      .filter(c => c.curation_flags?.new_and_noted)
+      .sort((a, b) => (a.curation_flags?.new_and_noted_rank || 999) - (b.curation_flags?.new_and_noted_rank || 999)),
+    [allCards]
+  );
+
+  const broRecommendsCards = useMemo(() => 
+    allCards
+      .filter(c => c.curation_flags?.bro_recommends),
+    [allCards]
+  );
+
+  const hiddenGemsCards = useMemo(() => 
+    allCards
+      .filter(c => c.curation_flags?.hidden_gems),
+    [allCards]
+  );
+
   // Fallback to all cards if curation is empty
   const cards = useMemo(() => allCards.length > 0 ? allCards : [], [allCards]);
 
