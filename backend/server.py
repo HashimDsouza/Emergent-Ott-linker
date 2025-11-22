@@ -600,8 +600,8 @@ class Content(BaseModel):
     platform: str
     platform_content_id: Optional[str] = None
     rating: Optional[float] = 0.0  # Can be IMDb or TMDB rating
-    thumbnail: str  # TMDB poster URL
-    description: str
+    thumbnail: Optional[str] = None  # TMDB poster URL
+    description: Optional[str] = ""  # Description/overview
     release_date: Optional[str] = None
     social_links: Dict[str, str] = Field(default_factory=dict)
     content_type: str
