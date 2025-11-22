@@ -427,7 +427,7 @@ const PollCard = ({ poll, voted, onVote }) => {
         <p className="text-xs md:text-sm text-gray-400 mb-4">{poll.description}</p>
       )}
 
-      <div className="space-y-3">
+      <div className="space-y-2 md:space-y-3">
         {poll.options.map((option) => {
           const percentage = totalVotes > 0 ? Math.round((option.votes / totalVotes) * 100) : 0;
           const isSelected = voted === option.id;
@@ -437,25 +437,45 @@ const PollCard = ({ poll, voted, onVote }) => {
               key={option.id}
               onClick={() => !hasVoted && onVote(poll.id, option.id)}
               disabled={hasVoted}
-              className="w-full text-left relative overflow-hidden rounded-xl p-4 transition-all"
+              className="w-full text-left relative overflow-hidden rounded-xl p-3 md:p-4 transition-all group"
               style={{
-                backgroundColor: hasVoted ? (isSelected ? `${coral}20` : 'rgba(255, 255, 255, 0.05)') : 'rgba(255, 255, 255, 0.05)',
-                border: `2px solid ${isSelected ? coral : 'rgba(255, 255, 255, 0.1)'}`,
-                cursor: hasVoted ? 'default' : 'pointer'
+                backgroundColor: hasVoted ? (isSelected ? `${mint}15` : 'rgba(255, 255, 255, 0.03)') : 'rgba(255, 255, 255, 0.05)',
+                border: `1.5px solid ${isSelected ? mint : 'rgba(255, 255, 255, 0.1)'}`,
+                cursor: hasVoted ? 'default' : 'pointer',
+                boxShadow: isSelected ? `0 4px 16px ${mint}40` : 'none'
+              }}
+              onMouseEnter={(e) => {
+                if (!hasVoted) {
+                  e.currentTarget.style.borderColor = `${mint}60`;
+                  e.currentTarget.style.transform = 'translateX(4px)';
+                }
+              }}
+              onMouseLeave={(e) => {
+                if (!hasVoted) {
+                  e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.1)';
+                  e.currentTarget.style.transform = 'translateX(0)';
+                }
               }}
             >
               {hasVoted && (
                 <motion.div
                   className="absolute inset-0 h-full rounded-xl"
-                  style={{ backgroundColor: `${mint}30`, width: `${percentage}%` }}
+                  style={{ 
+                    background: `linear-gradient(90deg, ${mint}25 0%, ${mint}10 100%)`,
+                    width: `${percentage}%` 
+                  }}
                   initial={{ width: 0 }}
                   animate={{ width: `${percentage}%` }}
                   transition={{ duration: 0.8, ease: "easeOut" }}
                 />
               )}
               <div className="relative flex justify-between items-center">
-                <span className="text-white font-medium">{option.text}</span>
-                {hasVoted && <span className="text-white font-bold">{percentage}%</span>}
+                <span className="text-white font-medium text-sm md:text-base">{option.text}</span>
+                {hasVoted && (
+                  <span className="text-white font-bold text-sm md:text-base" style={{ color: mint }}>
+                    {percentage}%
+                  </span>
+                )}
               </div>
             </button>
           );
