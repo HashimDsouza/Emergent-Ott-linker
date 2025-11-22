@@ -92,7 +92,7 @@ export default function HeroFrontCenter({ onInfo, heroItems = [] }) {
           style={
             currentSlide.backdrop_path 
               ? {
-                  backgroundImage: `url(${currentSlide.backdrop_path})`,
+                  backgroundImage: `url(${currentSlide.backdrop_path.replace('/w500/', '/original/')})`,
                   backgroundSize: 'cover',
                   backgroundPosition: 'center center',
                   backgroundRepeat: 'no-repeat',
