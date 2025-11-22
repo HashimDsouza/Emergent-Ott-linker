@@ -50,13 +50,36 @@ export default function LandingV2_3Wrapper() {
     setShareModalOpen(true);
   };
 
+  const handleAddToWatchlist = async (content) => {
+    try {
+      await axios.post(`${API}/watchlist/add`, {
+        user_id: "anonymous",
+        content_id: content.id || content.title,
+        content_title: content.title,
+        content_thumbnail: content.thumbnail || content.poster_url || content.posterUrl,
+      });
+    } catch (error) {
+      console.error("Error adding to watchlist:", error);
+    }
+  };
+
+  const handleShareToCrew = (content) => {
+    setSelectedContent(content);
+    setShareToCrewModalOpen(true);
+  };
+
   return (
     <>
-      <LandingV2_3 apiData={apiData} onShare={handleShare} />
+      <LandingV2_3 apiData={apiData} onShare={handleShareToCrew} onAddToWatchlist={handleAddToWatchlist} />
       <ConnieFloating offsetPx={140} />
       <ShareModal 
         isOpen={shareModalOpen}
         onClose={() => setShareModalOpen(false)}
+        content={selectedContent || {}}
+      />
+      <ShareToCrewModal
+        isOpen={shareToCrewModalOpen}
+        onClose={() => setShareToCrewModalOpen(false)}
         content={selectedContent || {}}
       />
     </>
