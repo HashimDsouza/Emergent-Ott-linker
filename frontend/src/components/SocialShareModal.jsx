@@ -220,24 +220,45 @@ export default function SocialShareModal({ isOpen, onClose, content }) {
             </div>
           </div>
 
-          {/* Social Platforms */}
-          <div className="px-6 py-4">
-            <p className="text-xs text-white/60 mb-3">Share to social media</p>
-            <div className="grid grid-cols-3 gap-3">
+          {/* Social Platforms - Premium Grid */}
+          <div className="relative px-4 sm:px-6 py-4 sm:py-5">
+            <p className="text-[10px] sm:text-xs text-white/50 mb-3 uppercase tracking-wider font-medium">
+              Share to platform
+            </p>
+            <div className="grid grid-cols-3 gap-2 sm:gap-3">
               {socialPlatforms.map((platform) => (
                 <button
                   key={platform.id}
                   onClick={() => shareToSocial(platform.id)}
-                  className="flex flex-col items-center gap-2 p-3 rounded-xl border border-white/10 hover:border-white/20 transition-all group"
-                  style={{ background: "rgba(255, 255, 255, 0.03)" }}
+                  className="flex flex-col items-center gap-1.5 sm:gap-2 p-2 sm:p-3 rounded-xl transition-all group relative overflow-hidden"
+                  style={{ 
+                    background: "rgba(255, 255, 255, 0.02)",
+                    border: "1px solid rgba(255, 255, 255, 0.08)",
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.background = "rgba(255, 255, 255, 0.08)";
+                    e.currentTarget.style.borderColor = `${platform.bgColor}40`;
+                    e.currentTarget.style.transform = "translateY(-2px)";
+                    e.currentTarget.style.boxShadow = `0 8px 20px -8px ${platform.bgColor}60`;
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.background = "rgba(255, 255, 255, 0.02)";
+                    e.currentTarget.style.borderColor = "rgba(255, 255, 255, 0.08)";
+                    e.currentTarget.style.transform = "translateY(0)";
+                    e.currentTarget.style.boxShadow = "none";
+                  }}
                 >
                   <div
-                    className="w-12 h-12 rounded-full flex items-center justify-center transition-transform group-hover:scale-110"
-                    style={{ backgroundColor: `${platform.color}20`, color: platform.color }}
+                    className="w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center transition-all"
+                    style={{ 
+                      backgroundColor: platform.bgColor,
+                      color: platform.color,
+                      boxShadow: `0 4px 12px -4px ${platform.bgColor}80`
+                    }}
                   >
                     {platform.icon}
                   </div>
-                  <span className="text-xs text-white/80 font-medium text-center">
+                  <span className="text-[10px] sm:text-xs text-white/70 font-medium text-center leading-tight">
                     {platform.name}
                   </span>
                 </button>
