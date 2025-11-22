@@ -162,28 +162,30 @@ def curate_buzzing_now():
     """
     Buzzing Now: Top shows of current week
     - IMDB 7.0+
-    - Based on ratings + recency
+    - NO SPORTS - Entertainment only
+    - Latest releases from current year
     - Content mix: 50/35/14/1
     """
     print("\n" + "="*60)
-    print("CURATING: BUZZING NOW")
+    print("CURATING: BUZZING NOW (NO SPORTS)")
     print("="*60)
     
-    # RELAXED: Current year instead of current week
-    year_start = f"{datetime.now().year}-01-01"
+    # STRICT: Last 6 months only for freshness
+    six_months_ago = (datetime.now() - timedelta(days=180)).strftime('%Y-%m-%d')
     
     query = {
         'rating': {'$gte': 7.0},
-        'release_date': {'$gte': year_start}
+        'release_date': {'$gte': six_months_ago},
+        'category': {'$ne': 'sports'}  # EXCLUDE SPORTS
     }
     
     titles = list(db.content.find(query).sort([('release_date', -1), ('rating', -1)]).limit(30))
     
     if len(titles) < 6:
-        # Fallback: Last 2 years with high ratings
-        two_years_ago = (datetime.now() - timedelta(days=730)).strftime('%Y-%m-%d')
-        query['release_date'] = {'$gte': two_years_ago}
-        titles = list(db.content.find(query).sort('rating', -1).limit(30))
+        # Fallback: Current year, no sports
+        year_start = f"{datetime.now().year}-01-01"
+        query['release_date'] = {'$gte': year_start}
+        titles = list(db.content.find(query).sort([('release_date', -1), ('rating', -1)]).limit(30))
     
     selected = apply_content_mix(titles, 6)
     
