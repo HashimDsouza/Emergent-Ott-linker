@@ -11,7 +11,7 @@ export const mapApiToCard = (x) => ({
   imdb: (x.imdb_rating && x.imdb_rating > 0) ? x.imdb_rating : (x.vote_average && x.vote_average > 0) ? x.vote_average : (x.rating && x.rating > 0) ? x.rating : "N/A",
   imdb_id: x.imdb_id || null,
   rating: (x.imdb_rating && x.imdb_rating > 0) ? x.imdb_rating : (x.vote_average && x.vote_average > 0) ? x.vote_average : (x.rating && x.rating > 0) ? x.rating : null,
-  descriptor: x.tagline ?? "Trending on YouTube",
+  descriptor: x.descriptor || "Trust us, this one's worth your time",
   // Pass through enriched metadata
   description: x.description || "A compact, cinematic synopsis that gives just enough to decide.",
   genres: x.genres || ["Thriller", "Heist", "Dark Comedy"],
