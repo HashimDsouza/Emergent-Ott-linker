@@ -41,7 +41,7 @@ export default function Tray({ icon, title, subline, items, onInfo, onShare, onA
             key={it.id} 
             className={expanded ? "flex-none w-[30%] md:w-[18%] snap-start" : ""}
           >
-            <Tile item={it} onInfo={onInfo} onShare={onShare} />
+            <Tile item={it} onInfo={onInfo} onShare={onShare} onAddToWatchlist={onAddToWatchlist} />
           </div>
         ))}
       </div>
