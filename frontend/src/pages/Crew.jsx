@@ -173,6 +173,15 @@ const Crew = () => {
   return (
     <>
       <ConnectorHeader />
+      {showConfetti && (
+        <Confetti
+          width={window.innerWidth}
+          height={window.innerHeight}
+          recycle={confettiRecycle}
+          numberOfPieces={200}
+          colors={[coral, mint, '#FFD700', '#FF6B2C', '#9333EA']}
+        />
+      )}
       <div className="min-h-screen pb-32" style={{ backgroundColor: charcoal }}>
         {/* Header - Match GetWithIt Style */}
         <div className="px-3 md:px-6 pt-4 md:pt-6 pb-3 md:pb-4">
