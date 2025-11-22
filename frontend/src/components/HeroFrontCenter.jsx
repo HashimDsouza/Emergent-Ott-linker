@@ -96,19 +96,18 @@ export default function HeroFrontCenter({ onInfo, heroItems = [] }) {
         {/* Background image - use backdrop (landscape) format */}
         <div 
           className="absolute inset-0"
-          style={{
-            backgroundImage: currentSlide.backdrop_path 
-              ? `url(${currentSlide.backdrop_path})` 
-              : 'none',
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-            backgroundColor: currentSlide.backdrop_path 
-              ? '#000' 
-              : 'transparent',
-            background: !currentSlide.backdrop_path 
-              ? `linear-gradient(135deg, ${coral} 0%, ${mint} 55%, ${charcoalSoft} 100%)` 
-              : undefined
-          }}
+          style={
+            currentSlide.backdrop_path 
+              ? {
+                  backgroundImage: `url(${currentSlide.backdrop_path})`,
+                  backgroundSize: 'cover',
+                  backgroundPosition: 'center',
+                  backgroundColor: '#000'
+                }
+              : {
+                  background: `linear-gradient(135deg, ${coral} 0%, ${mint} 55%, ${charcoalSoft} 100%)`
+                }
+          }
         />
 
         
