@@ -203,11 +203,11 @@ export default function SocialShareModal({ isOpen, onClose, content = {} }) {
           {/* Content Preview - Compact on mobile */}
           <div className="relative px-4 sm:px-6 py-3 sm:py-4 border-b" style={{ borderColor: "rgba(255, 255, 255, 0.08)" }}>
             <div className="flex items-center gap-2 sm:gap-3">
-              {content.thumbnail && (
+              {safeContent.thumbnail && (
                 <div className="flex-shrink-0">
                   <img
-                    src={content.thumbnail}
-                    alt={content.title}
+                    src={safeContent.thumbnail}
+                    alt={safeContent.title}
                     className="w-12 h-16 sm:w-14 sm:h-20 object-cover rounded-lg shadow-lg"
                     style={{
                       border: `1px solid rgba(48, 224, 178, 0.2)`,
@@ -217,13 +217,13 @@ export default function SocialShareModal({ isOpen, onClose, content = {} }) {
               )}
               <div className="flex-1 min-w-0">
                 <p className="text-xs sm:text-sm font-semibold text-white line-clamp-2 mb-1">
-                  {content.title}
+                  {safeContent.title}
                 </p>
                 <p className="text-[10px] sm:text-xs font-medium mb-0.5" style={{ color: mint }}>
-                  {content.platform}
+                  {safeContent.platform}
                 </p>
                 <p className="text-[10px] sm:text-xs text-white/50 line-clamp-1">
-                  {content.descriptor}
+                  {safeContent.descriptor}
                 </p>
               </div>
             </div>
