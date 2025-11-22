@@ -212,8 +212,34 @@ const ContentDetail = () => {
     );
   };
 
+  // SEO and Open Graph tags
+  const pageTitle = content ? `${content.title} - Watch on ${content.platform}` : "Content Details";
+  const pageDescription = content ? content.descriptor || `Watch ${content.title} on ${content.platform}` : "";
+  const pageImage = content?.thumbnail || "";
+  const pageUrl = `${window.location.origin}/content/${contentId}`;
+
   return (
     <>
+      {/* SEO Meta Tags */}
+      <Helmet>
+        <title>{pageTitle}</title>
+        <meta name="description" content={pageDescription} />
+        
+        {/* Open Graph / Facebook */}
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content={pageUrl} />
+        <meta property="og:title" content={pageTitle} />
+        <meta property="og:description" content={pageDescription} />
+        <meta property="og:image" content={pageImage} />
+        
+        {/* Twitter */}
+        <meta property="twitter:card" content="summary_large_image" />
+        <meta property="twitter:url" content={pageUrl} />
+        <meta property="twitter:title" content={pageTitle} />
+        <meta property="twitter:description" content={pageDescription} />
+        <meta property="twitter:image" content={pageImage} />
+      </Helmet>
+
       <ConnectorHeader />
       <div className="min-h-screen pb-32" style={{ backgroundColor: charcoal }}>
         {/* Back Button */}
