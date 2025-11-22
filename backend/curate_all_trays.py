@@ -170,21 +170,21 @@ def curate_buzzing_now():
     print("CURATING: BUZZING NOW (NO SPORTS)")
     print("="*60)
     
-    # STRICT: Last 6 months only for freshness
-    six_months_ago = (datetime.now() - timedelta(days=180)).strftime('%Y-%m-%d')
+    # STRICT: Last 3 months only for freshness (user wants very recent content)
+    three_months_ago = (datetime.now() - timedelta(days=90)).strftime('%Y-%m-%d')
     
     query = {
         'rating': {'$gte': 7.0},
-        'release_date': {'$gte': six_months_ago},
-        'category': {'$ne': 'sports'}  # EXCLUDE SPORTS
+        'release_date': {'$gte': three_months_ago},
+        'content_type': {'$nin': ['sports', 'sports_event', 'documentary']}  # EXCLUDE SPORTS & DOCS
     }
     
     titles = list(db.content.find(query).sort([('release_date', -1), ('rating', -1)]).limit(30))
     
     if len(titles) < 6:
-        # Fallback: Current year, no sports
-        year_start = f"{datetime.now().year}-01-01"
-        query['release_date'] = {'$gte': year_start}
+        # Fallback: Last 6 months, no sports
+        six_months_ago = (datetime.now() - timedelta(days=180)).strftime('%Y-%m-%d')
+        query['release_date'] = {'$gte': six_months_ago}
         titles = list(db.content.find(query).sort([('release_date', -1), ('rating', -1)]).limit(30))
     
     selected = apply_content_mix(titles, 6)
