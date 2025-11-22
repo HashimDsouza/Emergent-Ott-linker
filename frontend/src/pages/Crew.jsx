@@ -61,7 +61,7 @@ const Crew = () => {
       const data = await response.json();
       
       // Filter for Nov 2025 trending titles that we want to show
-      const trendingTitles = ["Pushpa 2 - The Rule", "Squid Game", "Mirzapur", "Sacred Games"];
+      const trendingTitles = ["The Family Man Season 3", "Stranger Things", "Pluribus", "Severance"];
       const trending = data
         .filter(item => trendingTitles.some(title => item.title.includes(title)))
         .slice(0, 4)
