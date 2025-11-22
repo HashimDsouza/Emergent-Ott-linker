@@ -611,11 +611,10 @@ const QuickCrewCard = ({ crew, onClick }) => {
   );
 };
 
-// Trending Content Card
-const TrendingCard = ({ item, onAddToWatchlist, onShare }) => {
+// Trending Content Card - Must be inside the Crew component to use navigate
+const TrendingCard = ({ item, onAddToWatchlist, onShare, navigate }) => {
   const imageUrl = item.thumbnail || item.poster_url || item.image_url;
   const [added, setAdded] = React.useState(false);
-  const navigate = useNavigate();
   
   return (
     <div className="flex-shrink-0 w-32 md:w-40">
