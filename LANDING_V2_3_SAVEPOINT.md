@@ -104,7 +104,7 @@ sudo supervisorctl restart all
 
 **Preview URL:**
 ```
-https://connector-hub-3.preview.emergentagent.com/landing/v2_3
+https://trailblazer-beta.preview.emergentagent.com/landing/v2_3
 ```
 
 **Local:**

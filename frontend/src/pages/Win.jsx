@@ -35,7 +35,7 @@ const Win = () => {
 
   const fetchContent = async () => {
     try {
-      const backendUrl = process.env.REACT_APP_BACKEND_URL || "https://connector-hub-3.preview.emergentagent.com";
+      const backendUrl = process.env.REACT_APP_BACKEND_URL || "https://trailblazer-beta.preview.emergentagent.com";
       
       const [pollsRes, quizzesRes] = await Promise.all([
         fetch(`${backendUrl}/api/win/polls`),
@@ -58,7 +58,7 @@ const Win = () => {
     if (votedPolls[pollId]) return;
 
     try {
-      const backendUrl = process.env.REACT_APP_BACKEND_URL || "https://connector-hub-3.preview.emergentagent.com";
+      const backendUrl = process.env.REACT_APP_BACKEND_URL || "https://trailblazer-beta.preview.emergentagent.com";
       const response = await fetch(`${backendUrl}/api/win/polls/${pollId}/vote`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -107,7 +107,7 @@ const Win = () => {
 
   const submitQuiz = async (answers) => {
     try {
-      const backendUrl = process.env.REACT_APP_BACKEND_URL || "https://connector-hub-3.preview.emergentagent.com";
+      const backendUrl = process.env.REACT_APP_BACKEND_URL || "https://trailblazer-beta.preview.emergentagent.com";
       const response = await fetch(`${backendUrl}/api/win/quizzes/${activeQuiz.id}/submit`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },

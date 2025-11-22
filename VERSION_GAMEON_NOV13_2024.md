@@ -175,7 +175,7 @@ CORS_ORIGINS="*"
 
 ### Frontend .env
 ```bash
-REACT_APP_BACKEND_URL=https://connector-hub-3.preview.emergentagent.com
+REACT_APP_BACKEND_URL=https://trailblazer-beta.preview.emergentagent.com
 ```
 
 ---
@@ -328,7 +328,7 @@ REACT_APP_BACKEND_URL=https://connector-hub-3.preview.emergentagent.com
 2. Verify `.env` files have required API keys
 3. Restart backend: `sudo supervisorctl restart backend`
 4. Frontend auto-reloads on file changes
-5. Verify at: https://connector-hub-3.preview.emergentagent.com
+5. Verify at: https://trailblazer-beta.preview.emergentagent.com
 
 ### Critical Files to Preserve:
 - `/app/backend/.env` (API keys)

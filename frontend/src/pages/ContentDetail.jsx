@@ -27,7 +27,7 @@ const ContentDetail = () => {
 
   const fetchContent = async () => {
     try {
-      const backendUrl = process.env.REACT_APP_BACKEND_URL || "https://connector-hub-3.preview.emergentagent.com";
+      const backendUrl = process.env.REACT_APP_BACKEND_URL || "https://trailblazer-beta.preview.emergentagent.com";
       const response = await fetch(`${backendUrl}/api/content`);
       const allContent = await response.json();
       
@@ -131,7 +131,7 @@ const ContentDetail = () => {
 
     const fetchRelatedContent = async () => {
       try {
-        const backendUrl = process.env.REACT_APP_BACKEND_URL || "https://connector-hub-3.preview.emergentagent.com";
+        const backendUrl = process.env.REACT_APP_BACKEND_URL || "https://trailblazer-beta.preview.emergentagent.com";
         const response = await fetch(`${backendUrl}/api/content`);
         const allContent = await response.json();
         
