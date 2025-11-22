@@ -204,6 +204,7 @@ export default function LandingV2_3({ apiData, onShare, onAddToWatchlist }) {
             items={mustWatchCards.length > 0 ? mustWatchCards : cards.slice(6,12)}
             onInfo={onInfo}
             onShare={onShare}
+            onAddToWatchlist={onAddToWatchlist}
           />
           <Tray
             icon="🏆"
