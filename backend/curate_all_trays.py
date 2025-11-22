@@ -210,22 +210,29 @@ def curate_buzzing_now():
 def curate_must_watch_today():
     """
     Your Must Watch Today: Top shows of current year
-    - RELAXED: Just get best rated from recent releases
-    - IMDB 7.0+ (lowered from 7.5)
+    - NO SPORTS - Entertainment only
+    - IMDB 7.5+ for quality
+    - From current year
     """
     print("\n" + "="*60)
-    print("CURATING: YOUR MUST WATCH TODAY")
+    print("CURATING: YOUR MUST WATCH TODAY (NO SPORTS)")
     print("="*60)
     
-    # RELAXED: Get from last 2 years
-    two_years_ago = (datetime.now() - timedelta(days=730)).strftime('%Y-%m-%d')
+    # STRICT: Current year only, no sports
+    year_start = f"{datetime.now().year}-01-01"
     
     query = {
-        'release_date': {'$gte': two_years_ago},
-        'rating': {'$gte': 7.0}
+        'release_date': {'$gte': year_start},
+        'rating': {'$gte': 7.5},
+        'category': {'$ne': 'sports'}  # EXCLUDE SPORTS
     }
     
     titles = list(db.content.find(query).sort([('rating', -1), ('release_date', -1)]).limit(30))
+    
+    if len(titles) < 6:
+        # Fallback: Lower rating threshold but keep current year
+        query['rating'] = {'$gte': 7.0}
+        titles = list(db.content.find(query).sort([('rating', -1), ('release_date', -1)]).limit(30))
     
     selected = apply_content_mix(titles, 6)
     
