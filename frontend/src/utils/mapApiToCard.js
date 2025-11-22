@@ -7,9 +7,10 @@ export const mapApiToCard = (x) => ({
   posterUrl: x.poster_url || x.thumbnail || null,
   backdrop_path: x.backdrop_path || null,
   // Use IMDb rating if available, otherwise TMDB rating, otherwise fallback
-  imdb: x.imdb_rating ?? x.vote_average ?? x.rating ?? "N/A",
+  // Treat 0 or 0.0 as missing data
+  imdb: (x.imdb_rating && x.imdb_rating > 0) ? x.imdb_rating : (x.vote_average && x.vote_average > 0) ? x.vote_average : (x.rating && x.rating > 0) ? x.rating : "N/A",
   imdb_id: x.imdb_id || null,
-  rating: x.imdb_rating ?? x.vote_average ?? x.rating ?? null,
+  rating: (x.imdb_rating && x.imdb_rating > 0) ? x.imdb_rating : (x.vote_average && x.vote_average > 0) ? x.vote_average : (x.rating && x.rating > 0) ? x.rating : null,
   descriptor: x.tagline ?? "Trending on YouTube",
   // Pass through enriched metadata
   description: x.description || "A compact, cinematic synopsis that gives just enough to decide.",
