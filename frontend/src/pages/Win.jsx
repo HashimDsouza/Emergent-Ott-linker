@@ -148,13 +148,28 @@ const Win = () => {
     return (
       <div className="min-h-screen flex items-center justify-center" style={{ backgroundColor: charcoal }}>
         <div className="w-full max-w-2xl px-4">
-          {/* Header */}
-          <div className="flex justify-between items-center mb-4">
-            <button onClick={exitQuiz} className="text-white text-sm hover:opacity-70">
-              ← Exit
+          {/* Header with Back to Win Button */}
+          <div className="flex justify-between items-center mb-6">
+            <button 
+              onClick={exitQuiz} 
+              className="flex items-center gap-2 px-4 py-2 rounded-full text-white text-sm font-medium transition-all"
+              style={{
+                background: 'rgba(255, 255, 255, 0.05)',
+                border: '1px solid rgba(255, 255, 255, 0.1)',
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.background = 'rgba(255, 255, 255, 0.1)';
+                e.currentTarget.style.borderColor = mint;
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.background = 'rgba(255, 255, 255, 0.05)';
+                e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.1)';
+              }}
+            >
+              ← Back to Win
             </button>
-            <span className="text-gray-400 text-sm">
-              Question {currentQuestion + 1}/{activeQuiz.questions.length}
+            <span className="text-gray-400 text-sm font-medium">
+              {currentQuestion + 1} of {activeQuiz.questions.length}
             </span>
           </div>
 
