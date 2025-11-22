@@ -555,8 +555,9 @@ const QuickCrewCard = ({ crew, onClick }) => {
 };
 
 // Trending Content Card
-const TrendingCard = ({ item }) => {
+const TrendingCard = ({ item, onAddToWatchlist }) => {
   const imageUrl = item.thumbnail || item.poster_url || item.image_url;
+  const [added, setAdded] = React.useState(false);
   
   return (
     <div className="flex-shrink-0 w-32 md:w-40">
@@ -582,6 +583,24 @@ const TrendingCard = ({ item }) => {
           >
             <span className="text-4xl">🎬</span>
           </div>
+          
+          {/* Add to Watchlist Button - Top Left */}
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              setAdded(!added);
+              onAddToWatchlist?.(item);
+            }}
+            className="absolute top-2 left-2 z-10 w-7 h-7 rounded-full backdrop-blur-xl transition-all transform hover:scale-110 flex items-center justify-center"
+            style={{
+              background: added ? mint : 'rgba(14, 21, 20, 0.75)',
+              border: `1px solid ${added ? mint : mint + '40'}`,
+              boxShadow: `0 0 12px ${mint}20`,
+            }}
+          >
+            <Check className="w-4 h-4" style={{ color: added ? charcoal : mint }} />
+          </button>
+          
           <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
           <div className="absolute bottom-0 left-0 right-0 p-2">
             <p className="text-xs text-white font-bold truncate">{item.title}</p>
