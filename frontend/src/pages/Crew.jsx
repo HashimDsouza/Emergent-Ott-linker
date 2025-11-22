@@ -110,6 +110,14 @@ const Crew = () => {
         method: "POST"
       });
       
+      // Trigger confetti animation
+      setShowConfetti(true);
+      setConfettiRecycle(true);
+      setTimeout(() => {
+        setConfettiRecycle(false);
+        setTimeout(() => setShowConfetti(false), 3000);
+      }, 2000);
+      
       await fetchCrews();
       await fetchMyCrews();
     } catch (error) {
