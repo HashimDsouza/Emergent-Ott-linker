@@ -145,32 +145,49 @@ export default function SocialShareModal({ isOpen, onClose, content }) {
   return (
     <AnimatePresence>
       <div
-        className="fixed inset-0 z-50 flex items-center justify-center p-4"
-        style={{ backgroundColor: "rgba(0, 0, 0, 0.75)" }}
+        className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4"
+        style={{ 
+          backgroundColor: "rgba(0, 0, 0, 0.85)",
+          backdropFilter: "blur(8px)",
+        }}
         onClick={onClose}
       >
         <motion.div
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
-          exit={{ opacity: 0, scale: 0.9 }}
+          initial={{ opacity: 0, scale: 0.95, y: 20 }}
+          animate={{ opacity: 1, scale: 1, y: 0 }}
+          exit={{ opacity: 0, scale: 0.95, y: 20 }}
+          transition={{ type: "spring", damping: 25, stiffness: 300 }}
           onClick={(e) => e.stopPropagation()}
-          className="relative w-full max-w-md rounded-2xl overflow-hidden border"
+          className="relative w-full max-w-sm sm:max-w-md rounded-2xl sm:rounded-3xl overflow-hidden border"
           style={{
-            background: charcoal,
-            borderColor: "rgba(48, 224, 178, 0.3)",
+            background: `linear-gradient(145deg, ${charcoal} 0%, rgba(23, 58, 53, 0.95) 100%)`,
+            borderColor: `rgba(48, 224, 178, 0.2)`,
+            boxShadow: `0 25px 50px -12px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(48, 224, 178, 0.1)`,
           }}
         >
+          {/* Ambient glow effect */}
+          <div 
+            className="absolute top-0 left-1/2 transform -translate-x-1/2 w-full h-32 opacity-20 blur-3xl"
+            style={{
+              background: `radial-gradient(circle, ${mint} 0%, transparent 70%)`
+            }}
+          />
+          
           {/* Header */}
           <div
-            className="px-6 py-4 border-b flex items-center justify-between"
-            style={{ borderColor: "rgba(255, 255, 255, 0.1)" }}
+            className="relative px-4 sm:px-6 py-3 sm:py-4 border-b flex items-center justify-between"
+            style={{ borderColor: "rgba(255, 255, 255, 0.08)" }}
           >
-            <h3 className="text-lg font-bold text-white">Share Content</h3>
+            <h3 className="text-base sm:text-lg font-bold text-white">Share on Connector</h3>
             <button
               onClick={onClose}
-              className="w-8 h-8 rounded-full flex items-center justify-center hover:bg-white/10 transition"
+              className="w-8 h-8 rounded-full flex items-center justify-center transition-all hover:bg-white/10"
+              style={{ 
+                background: "rgba(255, 255, 255, 0.05)",
+                border: "1px solid rgba(255, 255, 255, 0.1)"
+              }}
             >
-              <X className="w-5 h-5 text-white" />
+              <X className="w-4 h-4 text-white" />
             </button>
           </div>
 
