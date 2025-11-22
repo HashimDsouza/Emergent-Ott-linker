@@ -21,7 +21,18 @@ const ContentDetail = () => {
   const [content, setContent] = useState(null);
   const [loading, setLoading] = useState(true);
   const [shareModalOpen, setShareModalOpen] = useState(false);
+  const [crewShareModalOpen, setCrewShareModalOpen] = useState(false);
   const [detailModalOpen, setDetailModalOpen] = useState(false);
+
+  // Setup global function for crew share modal trigger
+  useEffect(() => {
+    window.openCrewShareModal = (content) => {
+      setCrewShareModalOpen(true);
+    };
+    return () => {
+      delete window.openCrewShareModal;
+    };
+  }, []);
 
   useEffect(() => {
     fetchContent();
