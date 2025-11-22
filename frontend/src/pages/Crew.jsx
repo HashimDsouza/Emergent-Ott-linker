@@ -69,7 +69,7 @@ const Crew = () => {
           title: item.title,
           reactions: Math.floor(Math.random() * 100) + 50, // Mock reactions
           crews: Math.floor(Math.random() * 8) + 3, // Mock crew count
-          thumbnail: item.thumbnail
+          thumbnail: item.thumbnail || item.poster_url || item.image_url
         }));
       
       setTrendingContent(trending);
