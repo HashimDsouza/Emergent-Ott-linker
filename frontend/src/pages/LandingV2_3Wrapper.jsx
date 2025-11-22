@@ -3,6 +3,7 @@ import axios from "axios";
 import LandingV2_3 from "./LandingV2_3";
 import ConnieFloating from "../components/ConnieFloating";
 import ShareModal from "../components/ShareModal";
+import ShareToCrewModal from "../components/ShareToCrewModal";
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 const API = `${BACKEND_URL}/api`;
@@ -11,6 +12,7 @@ export default function LandingV2_3Wrapper() {
   const [apiData, setApiData] = useState({ items: [] });
   const [loading, setLoading] = useState(true);
   const [shareModalOpen, setShareModalOpen] = useState(false);
+  const [shareToCrewModalOpen, setShareToCrewModalOpen] = useState(false);
   const [selectedContent, setSelectedContent] = useState(null);
 
   useEffect(() => {
