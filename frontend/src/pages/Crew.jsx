@@ -3,7 +3,8 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import { ConnectorHeader, ConnectorFooter } from "../components/ConnectorLayout";
 import ConnieFloating from "../components/ConnieFloating";
-import { Users, Plus, Check, X, Sparkles, TrendingUp, Activity, Trophy, ChevronDown, Flame } from "lucide-react";
+import { Users, Plus, Check, X, Sparkles, TrendingUp, Activity, Trophy, ChevronDown, Flame, Heart, ThumbsUp, Eye, Laugh, Frown } from "lucide-react";
+import Confetti from "react-confetti";
 
 // Brand colors
 const coral = "#FF4F64";
@@ -21,6 +22,8 @@ const Crew = () => {
   const [joiningCrew, setJoiningCrew] = useState(null);
   const [hoveredCapsule, setHoveredCapsule] = useState(null);
   const [trendingContent, setTrendingContent] = useState([]);
+  const [showConfetti, setShowConfetti] = useState(false);
+  const [confettiRecycle, setConfettiRecycle] = useState(true);
 
   const iconOptions = ["🎬", "🏏", "📺", "⚽", "🎵", "🌍", "🎮", "🍿", "🎭", "📚", "🏀", "🎸"];
 
