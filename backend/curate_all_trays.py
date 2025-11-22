@@ -224,7 +224,7 @@ def curate_must_watch_today():
     query = {
         'release_date': {'$gte': year_start},
         'rating': {'$gte': 7.5},
-        'category': {'$ne': 'sports'}  # EXCLUDE SPORTS
+        'content_type': {'$nin': ['sports', 'sports_event', 'documentary']}  # EXCLUDE SPORTS & DOCS
     }
     
     titles = list(db.content.find(query).sort([('rating', -1), ('release_date', -1)]).limit(30))
