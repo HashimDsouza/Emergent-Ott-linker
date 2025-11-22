@@ -182,8 +182,9 @@ const Crew = () => {
         body: JSON.stringify({
           user_id: "anonymous",
           content_id: content.id || content.title,
+          content_type: "movie",
           content_title: content.title,
-          content_thumbnail: content.thumbnail || content.poster_url || content.image_url,
+          content_image: content.thumbnail || content.poster_url || content.image_url,
         })
       });
     } catch (error) {
