@@ -194,7 +194,7 @@ export default function LandingV2_3({ apiData, onShare }) {
             icon="🔥"
             title="Buzzing Now"
             subline="The internet’s current obsession"
-          items={buzzingNowCards.length > 0 ? buzzingNowCards : cards.slice(0,6)}
+            items={buzzingNowCards.length > 0 ? buzzingNowCards : cards.slice(0,6)}
           onInfo={onInfo}
           onShare={onShare}
         />
@@ -202,7 +202,7 @@ export default function LandingV2_3({ apiData, onShare }) {
             icon="👀"
             title="Your Must Watch Today"
             subline="Editor’s picks you can’t skip"
-          items={mustWatchCards.length > 0 ? mustWatchCards : cards.slice(6,12)}
+            items={mustWatchCards.length > 0 ? mustWatchCards : cards.slice(6,12)}
           onInfo={onInfo}
           onShare={onShare}
         />
@@ -210,7 +210,7 @@ export default function LandingV2_3({ apiData, onShare }) {
             icon="🏆"
             title="Game On"
             subline="Matches, highlights, and scores"
-          items={sportsCards}
+            items={sportsCards}
           onInfo={onInfo}
           onShare={onShare}
         />
