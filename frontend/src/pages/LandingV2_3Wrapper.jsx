@@ -75,16 +75,11 @@ export default function LandingV2_3Wrapper() {
     }
   };
 
-  const handleShareToCrew = (content) => {
-    setSelectedContent(content);
-    setShareToCrewModalOpen(true);
-  };
-
   return (
     <>
-      <LandingV2_3 apiData={apiData} onShare={handleShareToCrew} onAddToWatchlist={handleAddToWatchlist} />
+      <LandingV2_3 apiData={apiData} onShare={handleShare} onAddToWatchlist={handleAddToWatchlist} />
       <ConnieFloating offsetPx={140} />
-      <ShareModal 
+      <SocialShareModal 
         isOpen={shareModalOpen}
         onClose={() => setShareModalOpen(false)}
         content={selectedContent || {}}
