@@ -26,10 +26,10 @@ export default function SocialShareModal({ isOpen, onClose, content = {} }) {
   // Premium, personalized copy options - rotate randomly  
   // MUST be before early return to avoid hooks error
   const personalizedCopies = useMemo(() => [
-    `Found "${safeContent.title}" on Connector and instantly thought of you 💫`,
-    `Adding "${safeContent.title}" to your must-watch. You're welcome 😉`,
-    `Found it on Connector. Saved for you: ${safeContent.title} ✨`,
-    `Found "${safeContent.title}" on Connector and I think you'll love it 🎬`
+    `Found it on Connector and instantly thought of you 💫`,
+    `Adding it to your must-watch. You're welcome 😉`,
+    `Found it on Connector. Saved for you ✨`,
+    `Found it on Connector and I think you'll love it 🎬`
   ], [safeContent.title]);
   
   const selectedCopy = useMemo(() => {
