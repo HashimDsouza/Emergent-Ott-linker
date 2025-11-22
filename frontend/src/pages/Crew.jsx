@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import { ConnectorHeader, ConnectorFooter } from "../components/ConnectorLayout";
 import ConnieFloating from "../components/ConnieFloating";
+import SocialShareModal from "../components/SocialShareModal";
 import ShareToCrewModal from "../components/ShareToCrewModal";
 import { Users, Plus, Check, X, Sparkles, TrendingUp, Activity, Trophy, ChevronDown, Flame, Heart, ThumbsUp, Eye, Laugh, Frown } from "lucide-react";
 import Confetti from "react-confetti";
