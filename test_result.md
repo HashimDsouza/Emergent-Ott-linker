@@ -387,10 +387,11 @@ metadata:
 
 test_plan:
   current_focus:
-    - "YouTube Data API Integration for Game On sports highlights"
-  stuck_tasks: []
+    - "Social Share Modal functionality on landing page"
+  stuck_tasks:
+    - "Social Share Modal functionality on landing page"
   test_all: false
-  test_priority: "high_first"
+  test_priority: "critical_first"
 
 agent_communication:
   - agent: "main"
