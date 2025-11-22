@@ -401,7 +401,7 @@ const Win = () => {
   );
 };
 
-// Poll Card Component
+// Poll Card Component - Premium Design
 const PollCard = ({ poll, voted, onVote }) => {
   const hasVoted = !!voted;
   const totalVotes = poll.total_votes;
@@ -410,11 +410,21 @@ const PollCard = ({ poll, voted, onVote }) => {
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      className="bg-white/5 rounded-2xl p-6 border border-white/10"
+      className="bg-white/5 backdrop-blur-sm rounded-2xl p-5 md:p-6 border relative overflow-hidden"
+      style={{
+        borderColor: 'rgba(48, 224, 178, 0.15)',
+        boxShadow: '0 8px 32px rgba(0, 0, 0, 0.2)'
+      }}
     >
-      <h3 className="text-lg md:text-xl font-bold text-white mb-2">{poll.question}</h3>
+      {/* Ambient glow */}
+      <div 
+        className="absolute top-0 right-0 w-32 h-32 opacity-10 blur-3xl"
+        style={{ background: `radial-gradient(circle, ${mint} 0%, transparent 70%)` }}
+      />
+      
+      <h3 className="text-base md:text-lg font-bold text-white mb-4 relative z-10">{poll.question}</h3>
       {poll.description && (
-        <p className="text-sm text-gray-400 mb-4">{poll.description}</p>
+        <p className="text-xs md:text-sm text-gray-400 mb-4">{poll.description}</p>
       )}
 
       <div className="space-y-3">
