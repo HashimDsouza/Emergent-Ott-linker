@@ -27,5 +27,7 @@ export const mapApiToCard = (x) => ({
   social_links: x.social_links || { youtube: null, twitter: null, reddit: null },
   buzz: x.social_links ?? { yt: null, x: null, reddit: null },
   category: x.category || "Entertainment",
-  content_type: x.content_type || "movie"
+  content_type: x.content_type || "movie",
+  // Curation flags for tray assignment
+  curation_flags: x.curation_flags || null
 });
