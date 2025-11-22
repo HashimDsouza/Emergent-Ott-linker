@@ -11,7 +11,7 @@ import sys
 from typing import Dict, List, Optional
 
 # Backend URL from environment
-BACKEND_URL = "https://traymgr.preview.emergentagent.com"
+BACKEND_URL = "https://viewflow-enhance.preview.emergentagent.com"
 
 class Nov2025ContentTester:
     def __init__(self):

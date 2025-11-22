@@ -32,7 +32,7 @@ const GetWithIt = () => {
     try {
       setLoading(true);
       // Use the same pattern as other pages
-      const backendUrl = process.env.REACT_APP_BACKEND_URL || "https://traymgr.preview.emergentagent.com";
+      const backendUrl = process.env.REACT_APP_BACKEND_URL || "https://viewflow-enhance.preview.emergentagent.com";
       
       console.log("Fetching from:", backendUrl);
       

@@ -27,7 +27,7 @@ const ContentDetail = () => {
 
   const fetchContent = async () => {
     try {
-      const backendUrl = process.env.REACT_APP_BACKEND_URL || "https://traymgr.preview.emergentagent.com";
+      const backendUrl = process.env.REACT_APP_BACKEND_URL || "https://viewflow-enhance.preview.emergentagent.com";
       const response = await fetch(`${backendUrl}/api/content`);
       const allContent = await response.json();
       
@@ -131,7 +131,7 @@ const ContentDetail = () => {
 
     const fetchRelatedContent = async () => {
       try {
-        const backendUrl = process.env.REACT_APP_BACKEND_URL || "https://traymgr.preview.emergentagent.com";
+        const backendUrl = process.env.REACT_APP_BACKEND_URL || "https://viewflow-enhance.preview.emergentagent.com";
         const response = await fetch(`${backendUrl}/api/content`);
         const allContent = await response.json();
         

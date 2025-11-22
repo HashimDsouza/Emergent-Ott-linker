@@ -56,7 +56,7 @@ const Crew = () => {
 
   const fetchTrendingContent = async () => {
     try {
-      const backendUrl = process.env.REACT_APP_BACKEND_URL || "https://traymgr.preview.emergentagent.com";
+      const backendUrl = process.env.REACT_APP_BACKEND_URL || "https://viewflow-enhance.preview.emergentagent.com";
       const response = await fetch(`${backendUrl}/api/content`);
       const data = await response.json();
       
@@ -80,7 +80,7 @@ const Crew = () => {
 
   const fetchCrews = async () => {
     try {
-      const backendUrl = process.env.REACT_APP_BACKEND_URL || "https://traymgr.preview.emergentagent.com";
+      const backendUrl = process.env.REACT_APP_BACKEND_URL || "https://viewflow-enhance.preview.emergentagent.com";
       const response = await fetch(`${backendUrl}/api/crew/list`);
       const data = await response.json();
       setCrews(data);
@@ -93,7 +93,7 @@ const Crew = () => {
 
   const fetchMyCrews = async () => {
     try {
-      const backendUrl = process.env.REACT_APP_BACKEND_URL || "https://traymgr.preview.emergentagent.com";
+      const backendUrl = process.env.REACT_APP_BACKEND_URL || "https://viewflow-enhance.preview.emergentagent.com";
       const response = await fetch(`${backendUrl}/api/crew/my-crews?user_id=anonymous`);
       const data = await response.json();
       setMyCrews(data);
@@ -105,7 +105,7 @@ const Crew = () => {
   const handleJoinCrew = async (crewId) => {
     setJoiningCrew(crewId);
     try {
-      const backendUrl = process.env.REACT_APP_BACKEND_URL || "https://traymgr.preview.emergentagent.com";
+      const backendUrl = process.env.REACT_APP_BACKEND_URL || "https://viewflow-enhance.preview.emergentagent.com";
       await fetch(`${backendUrl}/api/crew/${crewId}/join?user_id=anonymous`, {
         method: "POST"
       });
@@ -129,7 +129,7 @@ const Crew = () => {
 
   const handleLeaveCrew = async (crewId) => {
     try {
-      const backendUrl = process.env.REACT_APP_BACKEND_URL || "https://traymgr.preview.emergentagent.com";
+      const backendUrl = process.env.REACT_APP_BACKEND_URL || "https://viewflow-enhance.preview.emergentagent.com";
       await fetch(`${backendUrl}/api/crew/${crewId}/leave?user_id=anonymous`, {
         method: "POST"
       });
@@ -146,7 +146,7 @@ const Crew = () => {
     if (!newCrew.name.trim()) return;
 
     try {
-      const backendUrl = process.env.REACT_APP_BACKEND_URL || "https://traymgr.preview.emergentagent.com";
+      const backendUrl = process.env.REACT_APP_BACKEND_URL || "https://viewflow-enhance.preview.emergentagent.com";
       await fetch(`${backendUrl}/api/crew/create`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },

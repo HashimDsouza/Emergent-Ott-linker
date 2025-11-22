@@ -253,7 +253,7 @@ async def get_sports_images():
     try:
         from fastapi import Request
         # Get the base URL for proxying
-        backend_url = os.environ.get('BACKEND_URL', 'https://traymgr.preview.emergentagent.com')
+        backend_url = os.environ.get('BACKEND_URL', 'https://viewflow-enhance.preview.emergentagent.com')
         
         # Pre-defined image URLs for commonly used teams
         # These will be proxied through our backend to bypass CORS

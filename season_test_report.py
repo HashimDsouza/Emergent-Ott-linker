@@ -9,7 +9,7 @@ import aiohttp
 import json
 from typing import Dict, List
 
-BACKEND_URL = "https://traymgr.preview.emergentagent.com"
+BACKEND_URL = "https://viewflow-enhance.preview.emergentagent.com"
 
 async def test_season_specific_enrichment():
     """Test season-specific enrichment for TV shows"""
