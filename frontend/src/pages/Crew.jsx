@@ -607,13 +607,17 @@ const QuickCrewCard = ({ crew, onClick }) => {
 };
 
 // Trending Content Card
-const TrendingCard = ({ item, onAddToWatchlist }) => {
+const TrendingCard = ({ item, onAddToWatchlist, onShare }) => {
   const imageUrl = item.thumbnail || item.poster_url || item.image_url;
   const [added, setAdded] = React.useState(false);
+  const navigate = useNavigate();
   
   return (
     <div className="flex-shrink-0 w-32 md:w-40">
-      <div className="bg-white/5 backdrop-blur-sm rounded-xl overflow-hidden border border-white/10 hover:border-coral/50 transition-all cursor-pointer group">
+      <div 
+        onClick={() => item.id && navigate(`/content/${item.id}`)}
+        className="bg-white/5 backdrop-blur-sm rounded-xl overflow-hidden border border-white/10 hover:border-coral/50 transition-all cursor-pointer group"
+      >
         <div className="aspect-[2/3] relative overflow-hidden">
           {imageUrl ? (
             <img 
