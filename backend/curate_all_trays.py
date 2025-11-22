@@ -317,29 +317,34 @@ def curate_bro_recommends():
     
     selected = []
     
-    # 3 underrated gems (high rating, recent, not in other trays)
+    # 3 underrated gems (high rating, recent, not in other trays, NO SPORTS)
     year_start = f"{datetime.now().year}-01-01"
     query = {
         'rating': {'$gte': 7.5},
-        'release_date': {'$gte': year_start}
+        'release_date': {'$gte': year_start},
+        'category': {'$ne': 'sports'}  # NO SPORTS
     }
     gems = list(db.content.find(query).sort('rating', -1).limit(20))
     # Filter out already used titles
     gems = [t for t in gems if t['id'] not in used_titles]
     selected.extend(apply_content_mix(gems, 3))
     
-    # 2 trending (recent releases, good ratings)
+    # 2 trending (recent releases, good ratings, NO SPORTS)
     month_ago = (datetime.now() - timedelta(days=30)).strftime('%Y-%m-%d')
     query = {
         'rating': {'$gte': 7.0},
-        'release_date': {'$gte': month_ago}
+        'release_date': {'$gte': month_ago},
+        'category': {'$ne': 'sports'}  # NO SPORTS
     }
     trending = list(db.content.find(query).sort([('release_date', -1), ('rating', -1)]).limit(15))
     trending = [t for t in trending if t['id'] not in used_titles]
     selected.extend(apply_content_mix(trending, 2))
     
-    # 1 wildcard (high rating, any time)
-    query = {'rating': {'$gte': 8.0}}
+    # 1 wildcard (high rating, any time, NO SPORTS)
+    query = {
+        'rating': {'$gte': 8.0},
+        'category': {'$ne': 'sports'}  # NO SPORTS
+    }
     wildcard = list(db.content.find(query).sort('rating', -1).limit(10))
     wildcard = [t for t in wildcard if t['id'] not in used_titles]
     if wildcard:
