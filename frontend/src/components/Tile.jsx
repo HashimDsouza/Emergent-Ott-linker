@@ -57,6 +57,44 @@ export default function Tile({ item, onInfo, onShare, onAddToWatchlist }) {
         className="relative" 
         style={{ background: `linear-gradient(135deg, ${coral}70 0%, ${mint}45 45%, ${charcoalSoft} 100%)` }}
       >
+        {/* Add to Watchlist Button - Top Left Corner */}
+        {onAddToWatchlist && (
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              setInWatchlist(!inWatchlist);
+              if (!inWatchlist) {
+                setSocialProofCount(prev => prev + 1);
+                addXP(1, 'save');
+              } else {
+                setSocialProofCount(prev => prev - 1);
+              }
+              onAddToWatchlist(item);
+            }}
+            className="absolute top-2 left-2 z-10 w-6 h-6 md:w-7 md:h-7 rounded-full backdrop-blur-xl transition-all transform hover:scale-110 flex items-center justify-center"
+            style={{
+              background: inWatchlist ? mint : 'rgba(14, 21, 20, 0.75)',
+              border: `1px solid ${inWatchlist ? mint : mint + '40'}`,
+              boxShadow: `0 0 12px ${mint}20`,
+              opacity: 0.85
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.opacity = '1';
+              e.currentTarget.style.boxShadow = `0 0 20px ${mint}50`;
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.opacity = '0.85';
+              e.currentTarget.style.boxShadow = `0 0 12px ${mint}20`;
+            }}
+          >
+            {inWatchlist ? (
+              <Check className="w-3.5 h-3.5 md:w-4 md:h-4" style={{ color: charcoalSoft }} />
+            ) : (
+              <Bookmark className="w-3.5 h-3.5 md:w-4 md:h-4" style={{ color: mint }} />
+            )}
+          </button>
+        )}
+        
         {/* Share Icon - Top Right Corner - Always Visible, Premium Design */}
         {onShare && (
           <button
