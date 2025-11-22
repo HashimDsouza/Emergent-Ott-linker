@@ -79,10 +79,10 @@ export default function HeroFrontCenter({ onInfo, heroItems = [] }) {
   };
 
   return (
-    <section className="mb-4 md:mb-8">
+    <section className="w-full px-3 md:px-6">
       <div
         onClick={handleHeroClick}
-        className="relative rounded-2xl md:rounded-3xl overflow-hidden border border-white/10 shadow-xl cursor-pointer hover:border-white/20 transition hero-container"
+        className="relative rounded-2xl md:rounded-3xl overflow-hidden border border-white/10 shadow-xl cursor-pointer hover:border-white/20 transition hero-container w-full"
         style={{ aspectRatio: "16/9", maxHeight: "500px" }}
       >
 
