@@ -50,9 +50,10 @@ export default function ShareToCrewModal({ isOpen, onClose, content }) {
           body: JSON.stringify({
             user_id: "anonymous",
             content_id: content.id,
+            content_type: "movie",
             content_title: content.title,
-            content_thumbnail: content.thumbnail || content.poster_url,
-            crew_id: crewId,
+            content_image: content.thumbnail || content.poster_url,
+            shared_with_crews: [crewId],
           }),
         });
       }
