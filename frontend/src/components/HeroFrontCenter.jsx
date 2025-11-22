@@ -100,8 +100,10 @@ export default function HeroFrontCenter({ onInfo, heroItems = [] }) {
             backgroundImage: currentSlide.backdrop_path 
               ? `url(${currentSlide.backdrop_path})` 
               : `linear-gradient(135deg, ${coral} 0%, ${mint} 55%, ${charcoalSoft} 100%)`,
-            backgroundSize: 'cover',
-            backgroundPosition: 'center 30%'
+            backgroundSize: currentSlide.backdrop_path ? 'contain' : 'cover',
+            backgroundPosition: 'center',
+            backgroundRepeat: 'no-repeat',
+            backgroundColor: '#000'
           }}
         />
         
