@@ -197,7 +197,7 @@ export default function LandingV2_3({ apiData, onShare }) {
             items={buzzingNowCards.length > 0 ? buzzingNowCards : cards.slice(0,6)}
             onInfo={onInfo}
             onShare={onShare}
-        />
+          />
           <Tray
             icon="👀"
             title="Your Must Watch Today"
@@ -205,7 +205,7 @@ export default function LandingV2_3({ apiData, onShare }) {
             items={mustWatchCards.length > 0 ? mustWatchCards : cards.slice(6,12)}
             onInfo={onInfo}
             onShare={onShare}
-        />
+          />
           <Tray
             icon="🏆"
             title="Game On"
@@ -213,7 +213,7 @@ export default function LandingV2_3({ apiData, onShare }) {
             items={sportsCards}
             onInfo={onInfo}
             onShare={onShare}
-        />
+          />
 
           <DetailsModal open={modalOpen} onClose={() => setModalOpen(false)} item={modalItem} />
         </div>
