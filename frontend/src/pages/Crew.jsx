@@ -556,26 +556,32 @@ const QuickCrewCard = ({ crew, onClick }) => {
 
 // Trending Content Card
 const TrendingCard = ({ item }) => {
+  const imageUrl = item.thumbnail || item.poster_url || item.image_url;
+  
   return (
     <div className="flex-shrink-0 w-32 md:w-40">
       <div className="bg-white/5 backdrop-blur-sm rounded-xl overflow-hidden border border-white/10 hover:border-coral/50 transition-all cursor-pointer group">
         <div className="aspect-[2/3] relative overflow-hidden">
-          {item.thumbnail ? (
+          {imageUrl ? (
             <img 
-              src={item.thumbnail} 
+              src={imageUrl} 
               alt={item.title}
               className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
-            />
-          ) : (
-            <div 
-              className="w-full h-full flex items-center justify-center"
-              style={{
-                background: `linear-gradient(135deg, ${coral}30 0%, ${mint}20 100%)`
+              onError={(e) => {
+                e.target.style.display = 'none';
+                e.target.nextSibling.style.display = 'flex';
               }}
-            >
-              <span className="text-4xl">🎬</span>
-            </div>
-          )}
+            />
+          ) : null}
+          <div 
+            className="w-full h-full flex items-center justify-center"
+            style={{
+              display: imageUrl ? 'none' : 'flex',
+              background: `linear-gradient(135deg, ${coral}30 0%, ${mint}20 100%)`
+            }}
+          >
+            <span className="text-4xl">🎬</span>
+          </div>
           <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
           <div className="absolute bottom-0 left-0 right-0 p-2">
             <p className="text-xs text-white font-bold truncate">{item.title}</p>
