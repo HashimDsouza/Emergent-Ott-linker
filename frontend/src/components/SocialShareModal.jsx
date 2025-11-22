@@ -320,7 +320,7 @@ export default function SocialShareModal({ isOpen, onClose, content = {} }) {
               onClick={() => {
                 onClose();
                 if (window.openCrewShareModal) {
-                  window.openCrewShareModal(content);
+                  window.openCrewShareModal(safeContent);
                 }
               }}
               className="w-full px-4 py-3 rounded-xl font-semibold text-xs sm:text-sm transition-all flex items-center justify-center gap-2 relative overflow-hidden group"
