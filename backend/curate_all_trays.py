@@ -322,7 +322,7 @@ def curate_bro_recommends():
     query = {
         'rating': {'$gte': 7.5},
         'release_date': {'$gte': year_start},
-        'category': {'$ne': 'sports'}  # NO SPORTS
+        'content_type': {'$nin': ['sports', 'sports_event', 'documentary']}  # NO SPORTS & DOCS
     }
     gems = list(db.content.find(query).sort('rating', -1).limit(20))
     # Filter out already used titles
@@ -334,7 +334,7 @@ def curate_bro_recommends():
     query = {
         'rating': {'$gte': 7.0},
         'release_date': {'$gte': month_ago},
-        'category': {'$ne': 'sports'}  # NO SPORTS
+        'content_type': {'$nin': ['sports', 'sports_event', 'documentary']}  # NO SPORTS & DOCS
     }
     trending = list(db.content.find(query).sort([('release_date', -1), ('rating', -1)]).limit(15))
     trending = [t for t in trending if t['id'] not in used_titles]
@@ -343,7 +343,7 @@ def curate_bro_recommends():
     # 1 wildcard (high rating, any time, NO SPORTS)
     query = {
         'rating': {'$gte': 8.0},
-        'category': {'$ne': 'sports'}  # NO SPORTS
+        'content_type': {'$nin': ['sports', 'sports_event', 'documentary']}  # NO SPORTS & DOCS
     }
     wildcard = list(db.content.find(query).sort('rating', -1).limit(10))
     wildcard = [t for t in wildcard if t['id'] not in used_titles]
