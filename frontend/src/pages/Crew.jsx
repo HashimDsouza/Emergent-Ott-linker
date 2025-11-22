@@ -657,6 +657,26 @@ const TrendingCard = ({ item, onAddToWatchlist, onShare }) => {
             <Check className="w-4 h-4" style={{ color: added ? charcoal : mint }} />
           </button>
           
+          {/* Share Button - Top Right */}
+          {onShare && (
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                onShare(item);
+              }}
+              className="absolute top-2 right-2 z-10 w-7 h-7 rounded-full backdrop-blur-xl transition-all transform hover:scale-110 flex items-center justify-center"
+              style={{
+                background: 'rgba(14, 21, 20, 0.75)',
+                border: `1px solid ${mint}40`,
+                boxShadow: `0 0 12px ${mint}20`,
+              }}
+            >
+              <svg className="w-4 h-4" style={{ color: mint }} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z" />
+              </svg>
+            </button>
+          )}
+          
           <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
           <div className="absolute bottom-0 left-0 right-0 p-2">
             <p className="text-xs text-white font-bold truncate">{item.title}</p>
