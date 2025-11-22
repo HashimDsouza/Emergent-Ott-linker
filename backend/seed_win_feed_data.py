@@ -107,67 +107,57 @@ def seed_data():
         {
             "id": "feed-1",
             "title": "The Family Man Season 3 Breaks Records",
-            "subtitle": "Most watched Indian series premiere",
             "description": "The highly anticipated third season of The Family Man has shattered viewership records, becoming Prime Video's biggest Indian series premiere ever.",
             "category": "entertainment",
             "image_url": "https://image.tmdb.org/t/p/original/eEzKigDI64OomZV6VTJvoPGmVu1.jpg",
-            "source": "Prime Video",
-            "timestamp": datetime.now(timezone.utc).isoformat(),
-            "priority": 1,
-            "featured": True,
-            "tags": ["trending", "breaking", "ott"]
+            "source_url": "https://www.primevideo.com/detail/The-Family-Man/0LNF2JG4BSPPWJ9SUZ2Y8C",
+            "published_at": datetime.now(timezone.utc).isoformat(),
+            "is_hero": True,
+            "priority": 1
         },
         {
             "id": "feed-2",
             "title": "Stranger Things Season 5 Release Date Confirmed",
-            "subtitle": "Final season arrives November 2025",
             "description": "Netflix has officially confirmed November 26, 2025 as the release date for Stranger Things' fifth and final season.",
             "category": "entertainment",
             "image_url": "https://image.tmdb.org/t/p/original/56v2KjBlU4XaOv9rVYEQypROD7P.jpg",
-            "source": "Netflix",
-            "timestamp": datetime.now(timezone.utc).isoformat(),
-            "priority": 2,
-            "featured": True,
-            "tags": ["netflix", "trending"]
+            "source_url": "https://www.netflix.com/title/80057281",
+            "published_at": datetime.now(timezone.utc).isoformat(),
+            "is_hero": False,
+            "priority": 2
         },
         {
             "id": "feed-3",
             "title": "ICC Women's World Cup Final Today",
-            "subtitle": "India vs Australia at 2 PM",
             "description": "The Women's Cricket World Cup final is set for today at 2 PM IST. India takes on Australia in what promises to be an epic showdown.",
             "category": "sports",
             "image_url": "https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?w=600&h=900&fit=crop&q=80",
-            "source": "JioHotstar",
-            "timestamp": datetime.now(timezone.utc).isoformat(),
-            "priority": 3,
-            "featured": False,
-            "tags": ["live", "cricket", "sports"]
+            "source_url": "https://www.hotstar.com/in/sports",
+            "published_at": datetime.now(timezone.utc).isoformat(),
+            "is_hero": False,
+            "priority": 3
         },
         {
             "id": "feed-4",
             "title": "Pluribus Gets Critical Acclaim",
-            "subtitle": "8.6 rating on IMDb",
             "description": "Netflix's new series Pluribus is receiving rave reviews from critics and audiences alike, with an impressive 8.6 rating on IMDb.",
             "category": "entertainment",
             "image_url": "https://image.tmdb.org/t/p/original/8Y6A0bjCi1ZVAYQzf0LlEmckv5O.jpg",
-            "source": "Netflix",
-            "timestamp": datetime.now(timezone.utc).isoformat(),
-            "priority": 4,
-            "featured": False,
-            "tags": ["review", "netflix"]
+            "source_url": "https://www.netflix.com/title/225171",
+            "published_at": datetime.now(timezone.utc).isoformat(),
+            "is_hero": False,
+            "priority": 4
         },
         {
             "id": "feed-5",
             "title": "Premier League Weekend Highlights",
-            "subtitle": "Manchester United dominates",
             "description": "Manchester United secured a convincing 3-0 victory over Nottingham Forest in today's Premier League clash.",
             "category": "sports",
             "image_url": "https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=600&h=900&fit=crop&q=80",
-            "source": "JioHotstar",
-            "timestamp": datetime.now(timezone.utc).isoformat(),
-            "priority": 5,
-            "featured": False,
-            "tags": ["football", "premier-league"]
+            "source_url": "https://www.hotstar.com/in/sports/football",
+            "published_at": datetime.now(timezone.utc).isoformat(),
+            "is_hero": False,
+            "priority": 5
         }
     ]
     
