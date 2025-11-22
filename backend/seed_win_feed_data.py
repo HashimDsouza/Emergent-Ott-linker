@@ -20,7 +20,7 @@ def seed_data():
     # Clear existing data
     db.polls.delete_many({})
     db.quizzes.delete_many({})
-    db.feed.delete_many({})
+    db.feed_items.delete_many({})
     
     # ===== POLLS DATA =====
     polls = [
