@@ -6,7 +6,7 @@ import Tray from "../components/Tray";
 import DetailsModal from "../components/DetailsModal";
 import { ConnectorHeader, ConnectorFooter } from "../components/ConnectorLayout";
 
-export default function LandingV2_3({ apiData, onShare }) {
+export default function LandingV2_3({ apiData, onShare, onAddToWatchlist }) {
   const allCards = useMemo(() => (apiData?.items || []).map(mapApiToCard), [apiData]);
   const [modalOpen, setModalOpen] = useState(false);
   const [modalItem, setModalItem] = useState(null);
