@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import LandingV2_3 from "./LandingV2_3";
 import ConnieFloating from "../components/ConnieFloating";
-import ShareModal from "../components/ShareModal";
+import SocialShareModal from "../components/SocialShareModal";
 import ShareToCrewModal from "../components/ShareToCrewModal";
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
