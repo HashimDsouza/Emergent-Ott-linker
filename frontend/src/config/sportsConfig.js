@@ -180,6 +180,29 @@ export const highlightsVideos = [
   { id: 'h2', videoId: 'LFzrA492gdw', title: 'Fighter - Action Scenes', sport: 'action', views: '2.8M', descriptor: 'Hrithik aerial combat', league: 'Fighter', thumbnail: 'https://images.pexels.com/photos/163792/model-planes-airplanes-miniatures-craft-163792.jpeg?auto=compress&cs=tinysrgb&w=600&h=900&fit=crop' }
 ];
 
+// Best Of video data
+export const bestOfVideos = [
+  { id: 'b1', videoId: 'PaMs87nTThs', title: 'Best Of IND vs AUS Series', sport: 'cricket', views: '5.2M', descriptor: 'Border-Gavaskar epic', league: 'Test Cricket' },
+  { id: 'b2', videoId: 'NJQyqpaK9zQ', title: 'El Clasico 4-3 Thriller', sport: 'football', views: '3.8M', descriptor: 'Seven goals. Pure chaos', league: 'La Liga' },
+  { id: 'b3', videoId: 'wF48pxqXtyI', title: 'NBA Top 10 Dunks This Week', sport: 'nba', views: '2.1M', descriptor: 'Rim-wrecking slams', league: 'NBA' }
+];
+
+// Seasonal events
+export const seasonalEvents = {
+  'fifa_worldcup': {
+    active_period: ['2026-06-01', '2026-07-31'],
+    position: 'primary',
+    replaces: 'more',
+    label: 'FIFA World Cup',
+    icon: '🏆'
+  }
+};
+
+// Spotlight priority
+export const spotlightPriority = {
+  always_show: ['India Cricket', 'El Clasico', 'Champions League Final']
+};
+
 // Bro lines remain the same
 export const gameBroLines = {
   live: ["Live action. Real drama.", "Matches on. Snacks ready?"],
