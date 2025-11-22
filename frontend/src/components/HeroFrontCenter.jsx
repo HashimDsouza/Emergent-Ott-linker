@@ -79,11 +79,26 @@ export default function HeroFrontCenter({ onInfo, heroItems = [] }) {
   };
 
   return (
-    <section className="w-full px-3 md:px-6">
+    <section className="w-full px-3 md:px-6 mb-6 md:mb-8">
       <div
         onClick={handleHeroClick}
-        className="relative rounded-2xl md:rounded-3xl overflow-hidden border border-white/10 shadow-xl cursor-pointer hover:border-white/20 transition hero-container w-full"
-        style={{ aspectRatio: "16/9", maxHeight: "500px" }}
+        className="relative rounded-2xl md:rounded-3xl overflow-hidden border cursor-pointer transition-all duration-500 ease-out hero-container w-full group"
+        style={{ 
+          aspectRatio: "16/9", 
+          maxHeight: "500px",
+          boxShadow: "0 8px 40px rgba(0, 0, 0, 0.4)",
+          borderColor: "rgba(48, 224, 178, 0.15)"
+        }}
+        onMouseEnter={(e) => {
+          e.currentTarget.style.boxShadow = "0 12px 48px rgba(0, 0, 0, 0.5), 0 0 32px rgba(48, 224, 178, 0.2)";
+          e.currentTarget.style.borderColor = "rgba(48, 224, 178, 0.3)";
+          e.currentTarget.style.transform = "scale(1.005)";
+        }}
+        onMouseLeave={(e) => {
+          e.currentTarget.style.boxShadow = "0 8px 40px rgba(0, 0, 0, 0.4)";
+          e.currentTarget.style.borderColor = "rgba(48, 224, 178, 0.15)";
+          e.currentTarget.style.transform = "scale(1)";
+        }}
       >
 
         {/* Background image - use backdrop (landscape) format */}
