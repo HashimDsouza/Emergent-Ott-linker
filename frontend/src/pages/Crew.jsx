@@ -205,9 +205,9 @@ const Crew = () => {
     }
   };
 
-  const handleShareToCrew = (content) => {
+  const handleShare = (content) => {
     setSelectedContent(content);
-    setShowShareModal(true);
+    setShowSocialShareModal(true);
   };
 
   return (
@@ -223,10 +223,15 @@ const Crew = () => {
         />
       )}
       
-      {/* Share to Crew Modal */}
+      {/* Share Modals */}
+      <SocialShareModal
+        isOpen={showSocialShareModal}
+        onClose={() => setShowSocialShareModal(false)}
+        content={selectedContent || {}}
+      />
       <ShareToCrewModal
-        isOpen={showShareModal}
-        onClose={() => setShowShareModal(false)}
+        isOpen={showCrewShareModal}
+        onClose={() => setShowCrewShareModal(false)}
         content={selectedContent || {}}
       />
       <div className="min-h-screen pb-32" style={{ backgroundColor: charcoal }}>
