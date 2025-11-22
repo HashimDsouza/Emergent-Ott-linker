@@ -173,6 +173,29 @@ const Crew = () => {
     return myCrews.some(c => c.id === crewId);
   };
 
+  const handleAddToWatchlist = async (content) => {
+    try {
+      const backendUrl = process.env.REACT_APP_BACKEND_URL || "https://viewflow-enhance.preview.emergentagent.com";
+      await fetch(`${backendUrl}/api/watchlist/add`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          user_id: "anonymous",
+          content_id: content.id || content.title,
+          content_title: content.title,
+          content_thumbnail: content.thumbnail || content.poster_url || content.image_url,
+        })
+      });
+    } catch (error) {
+      console.error("Error adding to watchlist:", error);
+    }
+  };
+
+  const handleShareToCrew = (content) => {
+    setSelectedContent(content);
+    setShowShareModal(true);
+  };
+
   return (
     <>
       <ConnectorHeader />
@@ -185,6 +208,13 @@ const Crew = () => {
           colors={[coral, mint, '#FFD700', '#FF6B2C', '#9333EA']}
         />
       )}
+      
+      {/* Share to Crew Modal */}
+      <ShareToCrewModal
+        isOpen={showShareModal}
+        onClose={() => setShowShareModal(false)}
+        content={selectedContent || {}}
+      />
       <div className="min-h-screen pb-32" style={{ backgroundColor: charcoal }}>
         {/* Header - Match GetWithIt Style */}
         <div className="px-3 md:px-6 pt-4 md:pt-6 pb-3 md:pb-4">
