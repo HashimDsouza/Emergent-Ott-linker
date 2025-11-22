@@ -181,7 +181,7 @@ def seed_data():
         print(f"✅ Inserted {len(result.inserted_ids)} quizzes")
     
     if feed_items:
-        result = db.feed.insert_many(feed_items)
+        result = db.feed_items.insert_many(feed_items)
         print(f"✅ Inserted {len(result.inserted_ids)} feed items")
     
     # Set hero item (first feed item marked as featured)
