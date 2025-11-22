@@ -51,7 +51,24 @@ export default function Tile({ item, onInfo, onShare, onAddToWatchlist }) {
   };
 
   return (
-    <div onClick={handleClick} className="relative block rounded-lg md:rounded-xl overflow-hidden shadow-lg border border-white/10 hover:-translate-y-0.5 transition cursor-pointer max-w-full group">
+    <div 
+      onClick={handleClick} 
+      className="relative block rounded-xl overflow-hidden border transition-all duration-300 ease-out cursor-pointer max-w-full group hover:scale-[1.02]"
+      style={{
+        boxShadow: "0 4px 20px rgba(0, 0, 0, 0.25)",
+        borderColor: "rgba(48, 224, 178, 0.12)"
+      }}
+      onMouseEnter={(e) => {
+        e.currentTarget.style.boxShadow = "0 8px 32px rgba(0, 0, 0, 0.35), 0 0 24px rgba(48, 224, 178, 0.15)";
+        e.currentTarget.style.borderColor = "rgba(48, 224, 178, 0.25)";
+        e.currentTarget.style.transform = "translateY(-2px) scale(1.02)";
+      }}
+      onMouseLeave={(e) => {
+        e.currentTarget.style.boxShadow = "0 4px 20px rgba(0, 0, 0, 0.25)";
+        e.currentTarget.style.borderColor = "rgba(48, 224, 178, 0.12)";
+        e.currentTarget.style.transform = "translateY(0) scale(1)";
+      }}
+    >
       {/* Poster - 2:3 aspect ratio (portrait) */}
       <div 
         className="relative" 
