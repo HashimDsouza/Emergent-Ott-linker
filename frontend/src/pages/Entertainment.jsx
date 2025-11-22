@@ -82,16 +82,20 @@ export default function Entertainment() {
     fetchContent();
   }, []);
 
-  // Tray data filtering
-  const newNoted = content.slice(0, 12); // First 12 items (simulating "Now Playing")
-  const broRecommendsData = content.filter(item => 
-    broRecommends.includes(item.title)
-  ).slice(0, 12);
+  // Tray data filtering - using curation flags from backend
+  const newNoted = content
+    .filter(item => item.curation_flags?.new_and_noted)
+    .sort((a, b) => (a.curation_flags?.new_and_noted_rank || 999) - (b.curation_flags?.new_and_noted_rank || 999));
+  
+  const broRecommendsData = content
+    .filter(item => item.curation_flags?.bro_recommends);
+  
+  const hiddenGems = content
+    .filter(item => item.curation_flags?.hidden_gems);
+  
+  // Keep adrenaline rush as fallback/additional tray
   const adrenalineRush = content.filter(item => 
     item.genre?.includes('Action') || item.genre?.includes('Thriller')
-  ).slice(0, 12);
-  const hiddenGems = content.filter(item => 
-    item.imdb && parseFloat(item.imdb) >= 7.8
   ).slice(0, 12);
 
   const handleCapsuleClick = (capsule) => {
