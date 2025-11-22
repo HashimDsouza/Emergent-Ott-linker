@@ -508,7 +508,12 @@ const Crew = () => {
                   </h2>
                   <div className="flex gap-3 overflow-x-auto pb-2 scrollbar-hide">
                     {trendingContent.map((item, idx) => (
-                      <TrendingCard key={idx} item={item} onAddToWatchlist={handleAddToWatchlist} />
+                      <TrendingCard 
+                        key={idx} 
+                        item={item} 
+                        onAddToWatchlist={handleAddToWatchlist}
+                        onShare={handleShare}
+                      />
                     ))}
                   </div>
                 </div>
