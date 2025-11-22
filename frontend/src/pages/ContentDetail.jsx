@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+import { Helmet } from "react-helmet";
 import { ConnectorHeader, ConnectorFooter } from "../components/ConnectorLayout";
 import ConnieFloating from "../components/ConnieFloating";
 import { ArrowLeft, Info, Share2 } from "lucide-react";
-import ShareModal from "../components/ShareModal";
+import SocialShareModal from "../components/SocialShareModal";
+import ShareToCrewModal from "../components/ShareToCrewModal";
 import DetailsModal from "../components/DetailsModal";
 import { mapApiToCard } from "../utils/mapApiToCard";
 
