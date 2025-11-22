@@ -192,7 +192,7 @@ export default function LandingV2_3({ apiData, onShare }) {
 
           <Tray
             icon="🔥"
-          title="Buzzing Now"
+            title="Buzzing Now"
           subline="The internet’s current obsession"
           items={buzzingNowCards.length > 0 ? buzzingNowCards : cards.slice(0,6)}
           onInfo={onInfo}
@@ -200,7 +200,7 @@ export default function LandingV2_3({ apiData, onShare }) {
         />
           <Tray
             icon="👀"
-          title="Your Must Watch Today"
+            title="Your Must Watch Today"
           subline="Editor’s picks you can’t skip"
           items={mustWatchCards.length > 0 ? mustWatchCards : cards.slice(6,12)}
           onInfo={onInfo}
@@ -208,7 +208,7 @@ export default function LandingV2_3({ apiData, onShare }) {
         />
           <Tray
             icon="🏆"
-          title="Game On"
+            title="Game On"
           subline="Matches, highlights, and scores"
           items={sportsCards}
           onInfo={onInfo}
