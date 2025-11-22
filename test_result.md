@@ -390,11 +390,10 @@ metadata:
 
 test_plan:
   current_focus:
-    - "Social Share Modal functionality on landing page"
-  stuck_tasks:
-    - "Social Share Modal functionality on landing page"
+    - "Redesign Crew page with activity-based engagement layout"
+  stuck_tasks: []
   test_all: false
-  test_priority: "critical_first"
+  test_priority: "high_first"
 
 agent_communication:
   - agent: "testing"
