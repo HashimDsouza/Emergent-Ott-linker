@@ -195,6 +195,7 @@ export default function LandingV2_3({ apiData, onShare, onAddToWatchlist }) {
             items={buzzingNowCards.length > 0 ? buzzingNowCards : cards.slice(0,6)}
             onInfo={onInfo}
             onShare={onShare}
+            onAddToWatchlist={onAddToWatchlist}
           />
           <Tray
             icon="👀"
