@@ -63,32 +63,40 @@ def seed_data():
             "title": "OTT Trivia Challenge",
             "description": "Test your knowledge of the latest shows and movies!",
             "category": "entertainment",
-            "difficulty": "medium",
+            "date": datetime.now(timezone.utc).strftime("%Y-%m-%d"),
             "questions": [
                 {
                     "id": "q1",
                     "question": "Which show features Manoj Bajpayee as a secret agent?",
-                    "options": ["The Family Man", "Sacred Games", "Paatal Lok", "Special Ops"],
-                    "correct_answer": 0,
-                    "explanation": "The Family Man stars Manoj Bajpayee as Srikant Tiwari, a middle-class man secretly working for TASC."
+                    "options": ["A", "B", "C", "D"],
+                    "option_texts": ["The Family Man", "Sacred Games", "Paatal Lok", "Special Ops"],
+                    "correct_answer": "A",
+                    "explanation_correct": "Correct! The Family Man stars Manoj Bajpayee as Srikant Tiwari, a middle-class man secretly working for TASC.",
+                    "explanation_incorrect": "Not quite! The correct answer is The Family Man, where Manoj Bajpayee plays Srikant Tiwari.",
+                    "difficulty": "medium"
                 },
                 {
                     "id": "q2",
                     "question": "Stranger Things is set in which decade?",
-                    "options": ["1970s", "1980s", "1990s", "2000s"],
-                    "correct_answer": 1,
-                    "explanation": "Stranger Things is set in the 1980s, featuring classic 80s music, fashion, and culture."
+                    "options": ["A", "B", "C", "D"],
+                    "option_texts": ["1970s", "1980s", "1990s", "2000s"],
+                    "correct_answer": "B",
+                    "explanation_correct": "Correct! Stranger Things is set in the 1980s, featuring classic 80s music, fashion, and culture.",
+                    "explanation_incorrect": "Oops! Stranger Things is actually set in the 1980s with its iconic 80s vibe.",
+                    "difficulty": "medium"
                 },
                 {
                     "id": "q3",
                     "question": "What is the main setting of Panchayat?",
-                    "options": ["Mumbai", "Delhi", "Rural UP Village", "Bangalore"],
-                    "correct_answer": 2,
-                    "explanation": "Panchayat is set in a rural village in Uttar Pradesh, following an engineering graduate who becomes a Panchayat secretary."
+                    "options": ["A", "B", "C", "D"],
+                    "option_texts": ["Mumbai", "Delhi", "Rural UP Village", "Bangalore"],
+                    "correct_answer": "C",
+                    "explanation_correct": "Perfect! Panchayat is set in a rural village in Uttar Pradesh, following an engineering graduate who becomes a Panchayat secretary.",
+                    "explanation_incorrect": "Try again! Panchayat is set in a rural UP village, not a big city.",
+                    "difficulty": "easy"
                 }
             ],
-            "attempts": 1234,
-            "average_score": 2.1,
+            "total_attempts": 1234,
             "created_at": datetime.now(timezone.utc).isoformat(),
             "active": True
         }
