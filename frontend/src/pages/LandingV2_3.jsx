@@ -215,7 +215,6 @@ export default function LandingV2_3({ apiData, onShare }) {
 
           <DetailsModal open={modalOpen} onClose={() => setModalOpen(false)} item={modalItem} />
         </div>
-      </div>
       
       {/* Footer */}
       <ConnectorFooter />
