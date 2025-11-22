@@ -256,22 +256,30 @@ def curate_must_watch_today():
 
 def curate_new_and_noted():
     """
-    New & Noted: Latest releases
-    - RELAXED: Last year instead of last 7 days
+    New & Noted: Latest releases ONLY
+    - NO SPORTS - Entertainment only
+    - Last 90 days (strict freshness)
     - Sorted newest first
     """
     print("\n" + "="*60)
-    print("CURATING: NEW & NOTED")
+    print("CURATING: NEW & NOTED (LATEST RELEASES ONLY, NO SPORTS)")
     print("="*60)
     
-    # RELAXED: Last year
-    year_ago = (datetime.now() - timedelta(days=365)).strftime('%Y-%m-%d')
+    # STRICT: Last 90 days for true "new" content
+    ninety_days_ago = (datetime.now() - timedelta(days=90)).strftime('%Y-%m-%d')
     
     query = {
-        'release_date': {'$gte': year_ago}
+        'release_date': {'$gte': ninety_days_ago},
+        'category': {'$ne': 'sports'}  # EXCLUDE SPORTS
     }
     
     titles = list(db.content.find(query).sort('release_date', -1).limit(30))
+    
+    if len(titles) < 8:
+        # Fallback: Last 6 months
+        six_months_ago = (datetime.now() - timedelta(days=180)).strftime('%Y-%m-%d')
+        query['release_date'] = {'$gte': six_months_ago}
+        titles = list(db.content.find(query).sort('release_date', -1).limit(30))
     
     selected = apply_content_mix(titles, 8)
     
