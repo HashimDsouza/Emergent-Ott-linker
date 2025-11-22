@@ -15,6 +15,17 @@ export default function LandingV2_3Wrapper() {
   const [shareToCrewModalOpen, setShareToCrewModalOpen] = useState(false);
   const [selectedContent, setSelectedContent] = useState(null);
 
+  // Setup global function for crew share modal trigger
+  useEffect(() => {
+    window.openCrewShareModal = (content) => {
+      setSelectedContent(content);
+      setShareToCrewModalOpen(true);
+    };
+    return () => {
+      delete window.openCrewShareModal;
+    };
+  }, []);
+
   useEffect(() => {
     loadContent();
   }, []);
