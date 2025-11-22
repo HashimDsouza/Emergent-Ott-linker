@@ -1,11 +1,11 @@
 import React from "react";
 import { useBro } from "../context/BroContext";
-import { Share2 } from "lucide-react";
+import { Share2, Check, Bookmark } from "lucide-react";
 
 const coral = "#FF4F64", mint = "#30E0B2", charcoalSoft = "#173A35";
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 
-export default function Tile({ item, onInfo, onShare }) {
+export default function Tile({ item, onInfo, onShare, onAddToWatchlist }) {
   const badgeCls = "text-[8px] md:text-[10px] px-1 md:px-1.5 py-0.5 rounded-full bg-white/10 border border-white/15";
   const counter = "text-[8px] md:text-[10px] opacity-75";
   
@@ -16,6 +16,8 @@ export default function Tile({ item, onInfo, onShare }) {
   const [liked, setLiked] = React.useState(false);
   const [disliked, setDisliked] = React.useState(false);
   const [showTooltip, setShowTooltip] = React.useState(false);
+  const [inWatchlist, setInWatchlist] = React.useState(false);
+  const [socialProofCount, setSocialProofCount] = React.useState(Math.floor(Math.random() * 50) + 5);
 
   const handleClick = async (e) => {
     e.preventDefault();
