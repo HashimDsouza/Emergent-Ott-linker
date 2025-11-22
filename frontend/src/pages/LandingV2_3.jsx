@@ -180,15 +180,13 @@ export default function LandingV2_3({ apiData, onShare }) {
       {/* Header */}
       <ConnectorHeader />
       
-      {/* Main Content */}
-      <div className="pt-4 md:pt-6">
-        {/* Hero - Full Width (no max-width constraint) */}
-        <div className="px-3 md:px-6">
-          <HeroFrontCenter onInfo={onInfo} heroItems={heroCards.length > 0 ? heroCards : cards.slice(0, 5)} />
-        </div>
+      {/* Hero Section - True Full Bleed at Viewport Level */}
+      <div className="w-full mb-4 md:mb-8">
+        <HeroFrontCenter onInfo={onInfo} heroItems={heroCards.length > 0 ? heroCards : cards.slice(0, 5)} />
+      </div>
 
-        {/* Trays - Constrained Width for Readability */}
-        <div className="max-w-7xl mx-auto px-3 md:px-6">
+      {/* Content Trays - Constrained Width for Readability */}
+      <div className="max-w-7xl mx-auto px-3 md:px-6">
 
           <Tray
             icon="🔥"
