@@ -213,6 +213,7 @@ export default function LandingV2_3({ apiData, onShare, onAddToWatchlist }) {
             items={sportsCards}
             onInfo={onInfo}
             onShare={onShare}
+            onAddToWatchlist={onAddToWatchlist}
           />
 
           <DetailsModal open={modalOpen} onClose={() => setModalOpen(false)} item={modalItem} />
