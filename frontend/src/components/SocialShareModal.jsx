@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useMemo } from "react";
 import { X, Check, Link as LinkIcon, Users } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -15,7 +15,20 @@ export default function SocialShareModal({ isOpen, onClose, content }) {
   // Generate shareable URL
   const shareUrl = `${window.location.origin}/content/${content.id}`;
   const shareTitle = content.title || "Check out this content!";
-  const shareDescription = content.descriptor || `Watch ${content.title} on ${content.platform}`;
+  
+  // Premium, personalized copy options - rotate randomly
+  const personalizedCopies = useMemo(() => [
+    `Found "${content.title}" on Connector and instantly thought of you 💫`,
+    `Adding "${content.title}" to your must-watch. You're welcome 😉`,
+    `Found it on Connector. Saved for you: ${content.title} ✨`,
+    `Found "${content.title}" on Connector and I think you'll love it 🎬`
+  ], [content.title]);
+  
+  const selectedCopy = useMemo(() => {
+    return personalizedCopies[Math.floor(Math.random() * personalizedCopies.length)];
+  }, [personalizedCopies]);
+  
+  const shareDescription = selectedCopy;
 
   const copyToClipboard = async () => {
     try {
