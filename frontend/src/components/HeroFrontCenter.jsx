@@ -100,8 +100,9 @@ export default function HeroFrontCenter({ onInfo, heroItems = [] }) {
             currentSlide.backdrop_path 
               ? {
                   backgroundImage: `url(${currentSlide.backdrop_path})`,
-                  backgroundSize: 'cover',
+                  backgroundSize: 'contain',
                   backgroundPosition: 'center',
+                  backgroundRepeat: 'no-repeat',
                   backgroundColor: '#000'
                 }
               : {
