@@ -33,7 +33,7 @@ const CrewDetail = () => {
 
   const fetchCrewDetails = async () => {
     try {
-      const backendUrl = process.env.REACT_APP_BACKEND_URL || "https://trailblazer-beta.preview.emergentagent.com";
+      const backendUrl = process.env.REACT_APP_BACKEND_URL || "https://traymgr.preview.emergentagent.com";
       
       // Fetch crew details
       const crewResponse = await fetch(`${backendUrl}/api/crew/list`);
@@ -55,7 +55,7 @@ const CrewDetail = () => {
 
   const fetchWatchlist = async () => {
     try {
-      const backendUrl = process.env.REACT_APP_BACKEND_URL || "https://trailblazer-beta.preview.emergentagent.com";
+      const backendUrl = process.env.REACT_APP_BACKEND_URL || "https://traymgr.preview.emergentagent.com";
       
       // Fetch real watchlist items shared with this crew
       const watchlistResponse = await fetch(`${backendUrl}/api/watchlist/crew/${crewId}`);
@@ -86,7 +86,7 @@ const CrewDetail = () => {
 
   const handleJoinLeave = async () => {
     try {
-      const backendUrl = process.env.REACT_APP_BACKEND_URL || "https://trailblazer-beta.preview.emergentagent.com";
+      const backendUrl = process.env.REACT_APP_BACKEND_URL || "https://traymgr.preview.emergentagent.com";
       const endpoint = isJoined ? "leave" : "join";
       
       await fetch(`${backendUrl}/api/crew/${crewId}/${endpoint}?user_id=anonymous`, {
