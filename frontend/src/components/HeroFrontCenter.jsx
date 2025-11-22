@@ -83,12 +83,12 @@ export default function HeroFrontCenter({ onInfo, heroItems = [] }) {
       <div
         onClick={handleHeroClick}
         className="relative rounded-2xl md:rounded-3xl overflow-hidden border border-white/10 shadow-xl cursor-pointer hover:border-white/20 transition hero-container"
-        style={{ height: "200px" }}
+        style={{ height: "280px" }}
       >
         <style>{`
           @media (min-width: 768px) {
             .hero-container {
-              height: 380px !important;
+              height: 450px !important;
             }
           }
         `}</style>
