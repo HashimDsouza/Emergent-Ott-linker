@@ -93,24 +93,24 @@ export default function HeroFrontCenter({ onInfo, heroItems = [] }) {
           }
         `}</style>
 
-        {/* Background image - use poster (vertical) format */}
+        {/* Background image - use backdrop (landscape) format */}
         <div 
-          className="absolute inset-0 flex items-center justify-center"
+          className="absolute inset-0"
           style={{
-            background: currentSlide.poster_url 
+            backgroundImage: currentSlide.backdrop_path 
+              ? `url(${currentSlide.backdrop_path})` 
+              : 'none',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            backgroundColor: currentSlide.backdrop_path 
               ? '#000' 
-              : `linear-gradient(135deg, ${coral} 0%, ${mint} 55%, ${charcoalSoft} 100%)`
+              : 'transparent',
+            background: !currentSlide.backdrop_path 
+              ? `linear-gradient(135deg, ${coral} 0%, ${mint} 55%, ${charcoalSoft} 100%)` 
+              : undefined
           }}
-        >
-          {currentSlide.poster_url && (
-            <img 
-              src={currentSlide.poster_url} 
-              alt={currentSlide.title}
-              className="h-full w-auto object-contain"
-              style={{ maxWidth: '100%' }}
-            />
-          )}
-        </div>
+        />
+
         
         {/* Gradient overlays */}
         <div className="absolute inset-x-0 top-0 h-1/2" style={{ background: `linear-gradient(180deg, ${charcoal}66, transparent)` }} />
