@@ -10,7 +10,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 # TMDB API Configuration
-TMDB_API_KEY = "8bb8195209354fd890e45f0c185fe72b"  # Read-only demo key
+TMDB_API_KEY = os.getenv('TMDB_API_KEY', '')
 TMDB_BASE_URL = "https://api.themoviedb.org/3"
 
 def get_tmdb_backdrop(tmdb_id, content_type):
