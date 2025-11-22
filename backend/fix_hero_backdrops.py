@@ -44,8 +44,9 @@ def get_tmdb_backdrop(tmdb_id, content_type):
 def fix_hero_backdrops():
     """Update hero items with proper TMDB backdrop images"""
     mongo_url = os.getenv('MONGO_URL', 'mongodb://localhost:27017')
+    db_name = os.getenv('DB_NAME', 'connector')
     client = MongoClient(mongo_url)
-    db = client['moviedb']
+    db = client[db_name]
     
     # Find all hero items
     hero_items = list(db.content.find({
