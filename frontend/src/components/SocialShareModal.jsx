@@ -266,61 +266,73 @@ export default function SocialShareModal({ isOpen, onClose, content }) {
             </div>
           </div>
 
-          {/* Copy Link Section */}
-          <div className="px-6 py-4 border-t" style={{ borderColor: "rgba(255, 255, 255, 0.1)" }}>
-            <p className="text-xs text-white/60 mb-2">Or copy link</p>
+          {/* Copy Link Section - Refined */}
+          <div className="relative px-4 sm:px-6 py-3 sm:py-4 border-t" style={{ borderColor: "rgba(255, 255, 255, 0.08)" }}>
+            <p className="text-[10px] sm:text-xs text-white/50 mb-2 uppercase tracking-wider font-medium">
+              Direct Link
+            </p>
             <div className="flex items-center gap-2">
               <div
-                className="flex-1 px-3 py-2 rounded-lg text-sm text-white/60 truncate border"
+                className="flex-1 px-3 py-2 sm:py-2.5 rounded-lg text-[11px] sm:text-xs text-white/50 truncate border backdrop-blur-sm"
                 style={{
-                  background: "rgba(255, 255, 255, 0.05)",
-                  borderColor: "rgba(255, 255, 255, 0.1)",
+                  background: "rgba(255, 255, 255, 0.03)",
+                  borderColor: "rgba(255, 255, 255, 0.08)",
                 }}
               >
                 {shareUrl}
               </div>
               <button
                 onClick={copyToClipboard}
-                className="px-4 py-2 rounded-lg font-semibold text-sm transition-all flex items-center gap-2"
+                className="px-3 sm:px-4 py-2 sm:py-2.5 rounded-lg font-semibold text-[11px] sm:text-xs transition-all flex items-center gap-1.5 sm:gap-2 flex-shrink-0"
                 style={{
                   background: copied ? mint : `linear-gradient(135deg, ${coral} 0%, ${mint} 100%)`,
                   color: "white",
+                  boxShadow: copied ? `0 4px 12px -4px ${mint}80` : `0 4px 12px -4px ${coral}60`,
                 }}
               >
                 {copied ? (
                   <>
-                    <Check className="w-4 h-4" />
-                    Copied!
+                    <Check className="w-3 h-3 sm:w-4 sm:h-4" />
+                    <span className="hidden sm:inline">Copied!</span>
                   </>
                 ) : (
                   <>
-                    <LinkIcon className="w-4 h-4" />
-                    Copy
+                    <LinkIcon className="w-3 h-3 sm:w-4 sm:h-4" />
+                    <span>Copy</span>
                   </>
                 )}
               </button>
             </div>
           </div>
 
-          {/* Share to Crew Button */}
-          <div className="px-6 py-4 border-t" style={{ borderColor: "rgba(255, 255, 255, 0.1)" }}>
+          {/* Share to Crew Button - Premium CTA */}
+          <div className="relative px-4 sm:px-6 py-3 sm:py-4 border-t" style={{ borderColor: "rgba(255, 255, 255, 0.08)" }}>
             <button
               onClick={() => {
                 onClose();
-                // Trigger crew share modal through parent
                 if (window.openCrewShareModal) {
                   window.openCrewShareModal(content);
                 }
               }}
-              className="w-full px-4 py-3 rounded-xl font-semibold text-sm transition-all flex items-center justify-center gap-2 border"
+              className="w-full px-4 py-3 rounded-xl font-semibold text-xs sm:text-sm transition-all flex items-center justify-center gap-2 relative overflow-hidden group"
               style={{
-                background: "rgba(48, 224, 178, 0.1)",
-                borderColor: mint,
+                background: "rgba(48, 224, 178, 0.08)",
+                border: `1px solid ${mint}40`,
                 color: mint,
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.background = "rgba(48, 224, 178, 0.15)";
+                e.currentTarget.style.borderColor = mint;
+                e.currentTarget.style.boxShadow = `0 8px 20px -8px ${mint}60`;
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.background = "rgba(48, 224, 178, 0.08)";
+                e.currentTarget.style.borderColor = `${mint}40`;
+                e.currentTarget.style.boxShadow = "none";
               }}
             >
               <Users className="w-4 h-4" />
-              Share to Crew
+              <span>Share with Your Crew</span>
             </button>
           </div>
         </motion.div>
